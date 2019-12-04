@@ -1,0 +1,15 @@
+D:\ProjectTemplate\SimplCommerce-master\build\SimplCommerce.MSBuildTasks\bin\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.deps.json
+D:\ProjectTemplate\SimplCommerce-master\build\SimplCommerce.MSBuildTasks\bin\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.dll
+D:\ProjectTemplate\SimplCommerce-master\build\SimplCommerce.MSBuildTasks\bin\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.pdb
+D:\ProjectTemplate\SimplCommerce-master\build\SimplCommerce.MSBuildTasks\obj\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.csprojAssemblyReference.cache
+D:\ProjectTemplate\SimplCommerce-master\build\SimplCommerce.MSBuildTasks\obj\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.AssemblyInfoInputs.cache
+D:\ProjectTemplate\SimplCommerce-master\build\SimplCommerce.MSBuildTasks\obj\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.AssemblyInfo.cs
+D:\ProjectTemplate\SimplCommerce-master\build\SimplCommerce.MSBuildTasks\obj\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.dll
+D:\ProjectTemplate\SimplCommerce-master\build\SimplCommerce.MSBuildTasks\obj\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.pdb
+D:\Works\AnstDashboard\build\SimplCommerce.MSBuildTasks\bin\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.deps.json
+D:\Works\AnstDashboard\build\SimplCommerce.MSBuildTasks\bin\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.dll
+D:\Works\AnstDashboard\build\SimplCommerce.MSBuildTasks\bin\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.pdb
+D:\Works\AnstDashboard\build\SimplCommerce.MSBuildTasks\obj\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.AssemblyInfoInputs.cache
+D:\Works\AnstDashboard\build\SimplCommerce.MSBuildTasks\obj\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.AssemblyInfo.cs
+D:\Works\AnstDashboard\build\SimplCommerce.MSBuildTasks\obj\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.dll
+D:\Works\AnstDashboard\build\SimplCommerce.MSBuildTasks\obj\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.pdb

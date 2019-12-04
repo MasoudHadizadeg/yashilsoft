@@ -1,0 +1,116 @@
+<div style="text-align: right;background: #8689c8;" class="p-1" *ngIf="showListHeader">
+    <dx-button class="mediumIcon" icon="plus" (onClick)="addEntity()" *ngIf="!isForSelectReadOnly && allowInsertInForm">
+    </dx-button>
+    <dx-button class="mediumIcon" icon="edit" (onClick)="editEntity(selectedItemId)" style="margin-right: 5px"
+               *ngIf="selectedItemId && !isForSelectReadOnly && allowEditSelectedRow && allowEditInForm">
+    </dx-button>
+    <dx-button *ngIf="showFilterButton && showFilterButton===true" class="mediumIcon" icon="filter" style="margin-right: 5px" (onClick)="toggleFilter()" >
+    </dx-button>
+    <span style="color: white">
+        {{title}}
+    </span>
+</div>
+
+<dx-data-grid id="gridContainer"
+              *ngIf="!isForTree"
+              width="100%"
+              [allowColumnResizing]="allowColumnResizing"
+              [dataSource]="gridDataSource"
+              [showBorders]="true"
+              [rtlEnabled]="true"
+              [rowAlternationEnabled]="true"
+              [height]="gridHeight"
+              [allowColumnReordering]="true"
+              [columns]="columns"
+              [wordWrapEnabled]="wordWrapEnabled"
+              [remoteOperations]="lazyLoading"
+              (onSelectionChanged)="onSelectionChanged($event)">
+    <dxo-summary>
+        <dxi-group-item
+                column="id"
+                summaryType="count">
+        </dxi-group-item>
+    </dxo-summary>
+    <dxo-group-panel [visible]="true" *ngIf="allowGrouping"></dxo-group-panel>
+    <dxo-grouping #expand [autoExpandAll]="false" expandMode='rowClick'></dxo-grouping>
+
+    <dxo-scrolling *ngIf="virtualPaging" mode="virtual" rowRenderingMode="virtual"
+                   columnRenderingMode="virtual"></dxo-scrolling>
+    <dxo-filter-row
+            [visible]="allowFilter"></dxo-filter-row>
+    <dxo-header-filter
+            [visible]="allowFilter"></dxo-header-filter>
+    <dxo-selection mode="single"></dxo-selection>
+
+    <div *dxTemplate="let data of 'cellTemplate'">
+        <dx-button class="smallIcon" icon="edit" (onClick)="editEntity(data.data.id)"
+                   *ngIf="allowEditRecord(data.data) && allowEditInForm"></dx-button>
+        <dx-button style="margin-right: 3px" class="smallIcon" icon="btnTrash" icon="trash"
+                   *ngIf="allowDeleteRecord(data.data)"
+                   (onClick)="delete(data.data.id)"></dx-button>
+    </div>
+    <div *dxTemplate="let data of 'base64ImgTemplate'">
+        <div class="employeeInfo">
+            <img class="employeePhoto" [src]="data.data.picUrl"/>
+        </div>
+    </div>
+    <div *dxTemplate="let data of 'intDate'">
+        {{data.displayValue | intToStringDate}}
+    </div>
+    <div *dxTemplate="let data of 'jalaliDate'">
+        {{data.displayValue | jalali}}
+    </div>
+    <div *dxTemplate="let data of 'stringTime'">
+        {{data.displayValue | intToStringTime}}
+    </div>
+</dx-data-grid>
+<dx-tree-list
+        *ngIf="isForTree"
+        [rootValue]="rootValue"
+        id="dataTreeList"
+        [dataSource]="gridDataSource"
+        [height]="gridHeight"
+        parentIdExpr="parentId"
+        [showRowLines]="true"
+        [showBorders]="true"
+        [columnAutoWidth]="true"
+        [rtlEnabled]="true"
+        [rowAlternationEnabled]="true"
+        [height]="gridHeight"
+        [columnHidingEnabled]="true"
+        [columns]="columns"
+        [selectedRowKeys]="selectedRowKeys"
+        (onSelectionChanged)="onSelectionChanged($event)">
+    <dxo-filter-row
+            [visible]="allowFilter"></dxo-filter-row>
+    <dxo-header-filter
+            [visible]="allowFilter"></dxo-header-filter>
+    <dxo-selection mode="single"></dxo-selection>
+    <dxo-remote-operations
+            [sorting]="true"
+            [paging]="true">
+    </dxo-remote-operations>
+    <dxo-paging [pageSize]="8"></dxo-paging>
+    <dxo-pager
+            [showPageSizeSelector]="true"
+            [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+    <div *dxTemplate="let data of 'cellTemplate'">
+        <dx-button class="smallIcon" icon="edit" (onClick)="editEntity(data.data.id)"></dx-button>
+        <dx-button style="margin-right: 3px" class="smallIcon" icon="btnTrash" icon="trash"
+                   (onClick)="delete(data.data.id)"></dx-button>
+    </div>
+</dx-tree-list>
+<dx-popup
+        class="popup"
+        [fullScreen]="true"
+        [showTitle]="true"
+        title=""
+        [dragEnabled]="false"
+        [closeOnOutsideClick]="true"
+        [(visible)]="showEditForm"
+        (onHidden)="dialogClosed()"
+        [deferRendering]="false">
+    <div *dxTemplate="let data = model of 'content'">
+        <ng-template appDetailComponentHost></ng-template>
+    </div>
+</dx-popup>

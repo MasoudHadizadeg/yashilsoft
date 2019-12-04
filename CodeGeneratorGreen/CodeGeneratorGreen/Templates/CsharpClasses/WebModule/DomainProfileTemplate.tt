@@ -1,0 +1,65 @@
+<#@ template language="C#" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+using Yashil.Common.Core.Interfaces;
+using Yashil.Core.Entities;
+using AutoMapper; 
+using Yashil.Core.Entities;
+using <#=ApplicationInfo.Instance.ClassNamespace #>.Web.Areas.<#=ApplicationInfo.Instance.AreaName #>.ViewModels;
+
+namespace <#=ApplicationInfo.Instance.ClassNamespace #>.Web.Areas.<#=ApplicationInfo.Instance.AreaName #>
+{
+
+	public class <#=ApplicationInfo.Instance.ClassNamespace #>Profile : Profile,IOrderedMapperProfile
+		{
+             public int Order => 1;
+			 public <#=ApplicationInfo.Instance.ClassNamespace #>Profile()
+				{	
+	<#
+			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
+			{
+				var foreignColumns = table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name) && x.IsForeignKey && x.ReferencedObjectTitleColumn != null && x.ReferencedObject != table.Name);
+				#>
+				
+				CreateMap<<#=table.Name #>, <#=table.Name #>EditModel>()
+				<#
+				foreach (var foreignColumn in foreignColumns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
+				{
+					#>
+					.ForMember(x => x.<#= foreignColumn.Name.Replace("Id", "") #>Title, 
+					b => b.MapFrom(c => c.<#= foreignColumn.Name.Replace("Id", "") #>.<#=foreignColumn.ReferencedObjectTitleColumn #>))
+				<#
+				} #>;
+
+                CreateMap<<#=table.Name #>, <#=table.Name #>ListViewModel>()
+						<#
+				foreach (var foreignColumn in foreignColumns.Where(x => x.Name != "CreateBy" && x.Name != "ModifyBy"))
+				{
+					#>
+					.ForMember(x => x.<#= foreignColumn.Name.Replace("Id", "") #>Title, 
+					b => b.MapFrom(c => c.<#= foreignColumn.Name.Replace("Id", "") #>.<#=foreignColumn.ReferencedObjectTitleColumn #>))<#
+				} #>;
+
+				CreateMap<<#=table.Name #>, <#=table.Name #>ViewModel>()
+						<#
+				foreach (var foreignColumn in foreignColumns.Where(x => x.Name != "CreateBy" && x.Name != "ModifyBy"))
+				{
+					#>
+					.ForMember(x => x.<#= foreignColumn.Name.Replace("Id", "") #>Title, 
+					b => b.MapFrom(c => c.<#= foreignColumn.Name.Replace("Id", "") #>.<#=foreignColumn.ReferencedObjectTitleColumn #>))<#
+				} #>;
+
+				CreateMap<<#=table.Name #>EditModel, <#=table.Name #>>();
+
+                CreateMap<<#=table.Name #>, <#=table.Name #>SimpleViewModel>();
+	   
+	<#
+			} #>
+		}
+	}
+}

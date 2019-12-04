@@ -1,0 +1,29 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+			<#
+			var table = SqlToCsharpHelper.table;
+			string repositoryProp = table.Name.FirstCharacterToLower()+"Repository";
+			#>
+
+using Yashil.Common.Core.Interfaces;
+using Yashil.Common.Infrastructure.Implementations;
+using Yashil.Core.Entities;
+using <#=ApplicationInfo.Instance.ClassNamespace#>.Core.Repositories;
+using <#=ApplicationInfo.Instance.ClassNamespace#>.Core.Services;
+
+namespace <#= ApplicationInfo.Instance.ServiceNamespace #>
+{
+	public class <#= table.Name #>Service : GenericService<<#= table.Name #>,int>, I<#= table.Name #>Service
+    {
+		private readonly IUnitOfWork _unitOfWork;
+        private readonly I<#=table.Name#>Repository _<#=repositoryProp#>;
+       
+		public <#= table.Name #>Service (IUnitOfWork unitOfWork, I<#=table.Name#>Repository <#=repositoryProp#>) : base(unitOfWork, <#=repositoryProp#>)
+        {
+			_unitOfWork = unitOfWork;
+			_<#=repositoryProp#> = <#=repositoryProp#>;
+        }
+    }
+}      
+ 

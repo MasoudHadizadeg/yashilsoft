@@ -1,0 +1,88 @@
+<#@ template language="C#" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+<#@ import namespace="Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+	<#
+			var table = SqlToCsharpHelper.table;
+			string angularFriendlyName = table.Name.ToAngularFrendlyName();
+			string firstCharacterLower = table.Name.FirstCharacterToLower();
+			int i = 0;
+			List<Column> foreignKeys = new List<Column>();
+			// Iterate all columns
+			foreach (Column col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
+			{
+				i++;
+				if (col.IsForeignKey)
+				{
+					foreignKeys.Add(col);
+				}
+
+				// Handle nullable columns by making the type nullable
+			}
+
+			#>	
+
+import {Component, OnInit} from '@angular/core';
+import {BaseEdit} from '../../../shared/base/classes/base-edit';
+import {GenericDataService} from '../../../shared/base/services/generic-data.service';
+import {Entity} from '../../../shared/base/base-data/entity.enum';
+import {createStore} from 'devextreme-aspnet-data-nojquery';
+
+
+@Component({
+  selector: 'app-<#=angularFriendlyName #>-detail',
+  templateUrl: './<#=angularFriendlyName #>-detail.component.html'
+})
+export class <#=table.Name #>DetailComponent extends BaseEdit implements OnInit {
+	<#
+			
+			string foreignKeyVar;
+			foreach (var col in foreignKeys)
+			{
+				foreignKeyVar = col.Name.FirstCharacterToLower().Replace("Id", "");
+				var isLarge = col.ReferencedObjectIsLarge; //:TODO SqlToCsharpHelper.FTableIsLarg(server.Databases[sqlDatabase],table,col);
+				if (isLarge)
+				{
+					#>
+	 <#= foreignKeyVar #>DataSource:any;
+	 <#
+				}
+				else
+				{
+					#>
+		<#= foreignKeyVar #>s: any[] = [];
+	<#
+				}
+			}
+	#>
+  constructor(private genericDataService: GenericDataService) {
+    super(genericDataService);
+    this.entityName = '<#=firstCharacterLower #>';
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
+		<#foreach (var col in foreignKeys)
+			{
+				var refTable = col.ReferencedObject;
+				var isLarge = col.ReferencedObjectIsLarge; //:TODO FTableIsLarg(server.Databases[sqlDatabase], table, col);
+
+				foreignKeyVar = col.Name.FirstCharacterToLower().Replace("Id", "");
+
+				if (isLarge)
+				{
+					#>
+					this.<#=foreignKeyVar #>DataSource = this._genericDataService.createCustomDatasourceForSelect('id', '<#=refTable.FirstCharacterToLower()#>');
+				<#
+				}
+				else
+				{
+					#>
+			this._genericDataService.getEntitiesByEntityName(Entity.<#=refTable #>).subscribe(res => this.<#=foreignKeyVar #>s = res);
+		<#
+				}
+			} #>
+  }      
+}

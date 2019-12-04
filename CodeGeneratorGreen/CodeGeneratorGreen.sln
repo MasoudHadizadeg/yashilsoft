@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGeneratorGreen", "CodeGeneratorGreen\CodeGeneratorGreen.csproj", "{7CFB19F6-F61D-44D6-95FE-4D030C7D7A2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CFB19F6-F61D-44D6-95FE-4D030C7D7A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CFB19F6-F61D-44D6-95FE-4D030C7D7A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CFB19F6-F61D-44D6-95FE-4D030C7D7A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CFB19F6-F61D-44D6-95FE-4D030C7D7A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54EDC279-BC3D-47B3-A74B-599836320315}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/YashilSoft
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CodeGeneratorGreen\\CodeGeneratorGreen.csproj
+		SccProjectName1 = CodeGeneratorGreen/CodeGeneratorGreen
+		SccLocalPath1 = CodeGeneratorGreen
+	EndGlobalSection
+EndGlobal

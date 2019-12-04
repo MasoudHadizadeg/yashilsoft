@@ -1,0 +1,8 @@
+ 
+ {
+  "id": "YashilBaseInfo.Web",
+  "name": "YashilBaseInfo",
+  "isBundledWithHost": true,
+  "version": "1.0.0",
+  "subFolder": "YashilBaseInfo"
+}

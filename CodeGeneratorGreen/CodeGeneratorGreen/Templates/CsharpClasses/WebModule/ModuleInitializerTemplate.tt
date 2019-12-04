@@ -1,0 +1,44 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Yashil.Common.SharedKernel.Module;
+using <#=ApplicationInfo.Instance.ClassNamespace#>.Core.Repositories;
+using <#=ApplicationInfo.Instance.ClassNamespace#>.Core.Services;
+using <#=ApplicationInfo.Instance.ClassNamespace#>.Infrastructure.RepositoryImpl;
+using <#=ApplicationInfo.Instance.ClassNamespace#>.Infrastructure.ServiceImpl;
+using Microsoft.Extensions.Configuration;
+
+namespace <#=ApplicationInfo.Instance.ClassNamespace#>.Web
+{
+    public class ModuleInitializer : IModuleInitializer
+    {
+        public void OnStartup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
+        {
+
+        }
+
+        public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        {
+	        <#
+			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
+			{
+				var foreignColumns = table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name) && x.IsForeignKey && x.ReferencedObjectTitleColumn != null && x.ReferencedObject != table.Name);
+				#>
+                 services.AddScoped<I<#=table.Name#>Repository, <#=table.Name#>Repository>();
+                 services.AddScoped<I<#=table.Name#>Service, <#=table.Name#>Service>();
+             <# } #>        
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+        }
+    }
+}

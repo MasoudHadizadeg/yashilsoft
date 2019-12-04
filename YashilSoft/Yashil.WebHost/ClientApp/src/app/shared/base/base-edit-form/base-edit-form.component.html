@@ -1,0 +1,29 @@
+<app-busy-indicator>
+    <dx-scroll-view [height]="formHeight">
+        <form autocomplete="off" (ngSubmit)="onFormSubmit($event)" #detailFormww="ngForm"  class="m-lg-1 m-md-1"
+              enctype="multipart/form-data">
+            <div id="form-container">
+                <ng-content></ng-content>
+                <div class="dx-fieldset">
+                    <dx-button
+                            id="btnSave"
+                            text="ذخیره"
+                            icon="fa fa-save"
+                            type="success"
+                            class="ml-3 mr-3 "
+                            [disabled]="!allowSave"
+                            [useSubmitBehavior]="true">
+                    </dx-button>
+                    <dx-button
+                            id="btnClose"
+                            text="بستن"
+                            *ngIf="showCloseButton"
+                            type="success"
+                            icon="fa fa-window-close "
+                            (onClick)="onCloseForm($event)">
+                    </dx-button>
+                </div>
+            </div>
+        </form>
+    </dx-scroll-view>
+</app-busy-indicator>

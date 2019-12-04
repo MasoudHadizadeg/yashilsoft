@@ -1,0 +1,21 @@
+<div #wrapper class="wrapper"
+     [ngClass]="{'nav-collapsed': iscollapsed, 'menu-collapsed': iscollapsed, 'sidebar-sm': isSidebarSm, 'sidebar-lg': isSidebarLg}"
+     [dir]="options.direction">
+    <div #appSidebar appSidebar class="app-sidebar" (toggleHideSidebar)="toggleHideSidebar($event)"
+         [ngClass]="{'hide-sidebar': hideSidebar}" data-active-color="white" [attr.data-background-color]="bgColor"
+         [attr.data-image]="bgImage">
+        <app-sidebar></app-sidebar>
+        <div class="sidebar-background" #sidebarBgImage></div>
+    </div>
+    <app-navbar (toggleHideSidebar)="toggleHideSidebar($event)"></app-navbar>
+    <div class="main-panel">
+        <div class="main-content">
+            <div class="content-wrapper">
+                <div class="container-fluid">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

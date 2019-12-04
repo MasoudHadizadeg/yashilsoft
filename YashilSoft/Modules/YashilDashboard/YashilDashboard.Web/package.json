@@ -1,0 +1,11 @@
+{
+    "name": "DXWebApplication1",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "devextreme": "19.2.3",
+        "@devexpress/analytics-core": "19.2.3",
+        "devexpress-dashboard": "19.2.3",
+        "jquery-ui-dist": "^1.12.1"
+    }
+}

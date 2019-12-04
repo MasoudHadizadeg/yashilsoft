@@ -1,0 +1,8 @@
+ 
+ {
+  "id": "YashilUserManagement.Web",
+  "name": "YashilUserManagement",
+  "isBundledWithHost": true,
+  "version": "1.0.0",
+  "subFolder": "YashilUserManagement"
+}

@@ -1,0 +1,189 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+			<#
+			var table = SqlToCsharpHelper.table;
+			#>
+using System; 
+using Yashil.Common.Core.Interfaces;
+namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
+{
+
+        public class <#= table.Name #>ListViewModel:IBaseViewModel
+    {
+		public int ViewModelId
+	        {
+	            get => Id;
+	            set => Id = value;
+	        }
+<#
+			// Keep count so we don't whitespace the last property/column
+			int i = 0;
+			// Iterate all columns
+			foreach (Column col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
+			{
+				i++;
+				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
+				// If we can't map it, skip it
+				if (string.IsNullOrWhiteSpace(propertyType) || propertyType == "byte[]")
+				{
+					// Skip
+					continue;
+				}
+
+				// Handle nullable columns by making the type nullable
+				if (col.AllowNull && (propertyType != "string" && propertyType != "byte[]"))
+				{
+					propertyType += "?";
+				}
+
+#>
+        public <#= propertyType #> <#= col.Name #> { get; set; }
+		<# if (col.IsForeignKey)
+				{
+					#>
+		public string <#= col.Name.Replace("Id", "") #>Title { get; set; }	
+		<#
+				} #>
+
+<#
+			}
+#>
+    }
+
+
+    public class <#= table.Name #>ViewModel:IBaseViewModel
+    {
+		public int ViewModelId
+	        {
+	            get => Id;
+	            set => Id = value;
+	        }
+<#
+			// Keep count so we don't whitespace the last property/column
+			 i = 0;
+			// Iterate all columns
+			foreach (Column col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
+			{
+				i++;
+				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
+				// If we can't map it, skip it
+				if (string.IsNullOrWhiteSpace(propertyType))
+				{
+					// Skip
+					continue;
+				}
+
+				// Handle nullable columns by making the type nullable
+				if (col.AllowNull && (propertyType != "string" && propertyType != "byte[]"))
+				{
+					propertyType += "?";
+				}
+
+#>
+        public <#= propertyType #> <#= col.Name #> { get; set; }
+		<# if (col.IsForeignKey)
+				{
+					#>
+		public string <#= col.Name.Replace("Id", "") #>Title { get; set; }	
+		<#
+				} #>
+
+<#
+			}
+#>
+    }
+
+
+	    public class <#= table.Name #>EditModel:IBaseViewModel
+        {
+	        public int ViewModelId
+	            {
+	                get => Id;
+	                set => Id = value;
+	            }
+<#
+			// Keep count so we don't whitespace the last property/column
+			var columnCount = table.Columns.Count;
+			i = 0;
+			// Iterate all columns
+			foreach (Column col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
+			{
+				i++;
+				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
+				// If we can't map it, skip it
+				if (string.IsNullOrWhiteSpace(propertyType))
+				{
+					// Skip
+					continue;
+				}
+
+				// Handle nullable columns by making the type nullable
+				if (col.AllowNull && (propertyType != "string" && propertyType != "byte[]"))
+				{
+					propertyType += "?";
+				}
+
+#>
+        public <#= propertyType #> <#= col.Name #> { get; set; }
+		<# if (col.IsForeignKey)
+				{
+					#>
+		public string <#= col.Name.Replace("Id", "") #>Title { get; set; }	
+		<#
+				} #>
+		
+<#
+				// Do we insert the space?
+				if (i != columnCount)
+				{
+#>
+<#
+				}
+#>
+<#
+			}
+#>
+    }
+
+  
+
+
+
+public class <#= table.Name #>SimpleViewModel:IBaseViewModel
+        {
+	        public int ViewModelId
+	            {
+	                get => Id;
+	                set => Id = value;
+	            }
+<#
+			// Keep count so we don't whitespace the last property/column
+			 columnCount = table.Columns.Count;
+			i = 0;
+			// Iterate all columns
+			bool hasTitleColumn=false;
+			foreach (Column col in table.Columns.Where(x => ApplicationInfo.Instance.SimpleViewModelColumns.Contains(x.Name)))
+			{
+				i++;
+				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
+				if(col.Name=="Title"){
+					hasTitleColumn=true;
+				}
+				#>
+        public <#= propertyType #> <#= col.Name #> { get; set; }
+
+			<#
+				}
+			
+			if(!hasTitleColumn)
+			{#>
+				public string Title { get; set; }
+			<#}#>
+    }
+
+}      

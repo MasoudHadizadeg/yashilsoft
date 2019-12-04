@@ -1,0 +1,21 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+			<#
+			var table = SqlToCsharpHelper.table;
+			#>
+
+using Yashil.Common.Core.Interfaces;
+using Yashil.Core.Entities;
+
+namespace <#= ApplicationInfo.Instance.IServiceNamespace #>
+{
+	public interface I<#= table.Name #>Service : IGenericService<<#= table.Name #>>
+    {
+    }
+}      
+ 

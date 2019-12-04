@@ -1,0 +1,52 @@
+<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="CodeGeneratorGreen.Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+			<#
+			var table = SqlToCsharpHelper.table;
+			string angularFriendlyName = table.Name.ToAngularFrendlyName();
+			string firstCharacterLower = table.Name.FirstCharacterToLower();
+			#>
+
+		import { Component, OnInit } from '@angular/core';
+		import {<#=table.Name #>DetailComponent} from './<#=angularFriendlyName #>-detail.component';
+		@Component({
+		  selector: 'app-<#=angularFriendlyName #>-list',
+		  templateUrl: './<#=angularFriendlyName #>-list.component.html'
+		})
+		export class <#=table.Name #>ListComponent {
+		  selectedItemId: number;
+		  columns: any[] = [];
+		  entityName = '<#=firstCharacterLower #>';
+		  detailComponent = <#=table.Name #>DetailComponent;
+		  constructor() {
+			<#
+			// Iterate all columns
+
+			
+			foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name)))
+			{
+				var colCaption = col.Name.FirstCharacterToLower();
+
+				// If we can't map it, skip it
+				string colNamef;
+				if (col.IsForeignKey)
+					colNamef = colCaption.Replace("Id", "") + "Title";
+				else
+					colNamef = col.Name.FirstCharacterToLower();
+
+				colCaption = string.IsNullOrEmpty(col.ColDesc) ? col.Name : col.ColDesc.Replace("*", "");
+				#>
+				this.columns.push({ 
+					caption: '<#=colCaption #>',
+					dataField: '<#=colNamef #>'
+					});
+			<#
+			} #>
+				
+				}
+		}

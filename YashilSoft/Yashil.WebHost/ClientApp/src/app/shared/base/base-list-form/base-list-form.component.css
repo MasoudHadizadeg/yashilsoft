@@ -1,0 +1,16 @@
+:host :host body {
+    background-color: #e74c3c;
+}
+
+.fix-height {
+    height: calc(100% - 350px);
+    background-color: green;
+}
+
+/*::ng-deep .smallIcon .dx-icon {*/
+    /*font-size: 14px;*/
+/*}*/
+
+/*::ng-deep .smallIcon .dx-button-content {*/
+    /*padding: 3px !important;*/
+/*}*/

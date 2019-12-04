@@ -1,0 +1,22 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="Classes" #>
+			<#
+			var table = SqlToCsharpHelper.table;
+			#>
+
+using Yashil.Common.Infrastructure.Implementations;
+using Yashil.Core.Entities;
+using Yashil.Infrastructure.Data; 
+using <#=ApplicationInfo.Instance.ClassNamespace#>.Core.Repositories;
+
+namespace <#= ApplicationInfo.Instance.RepositoryNamespace #>
+{
+	public class <#= table.Name #>Repository : GenericRepository<<#= table.Name #>,int>, I<#= table.Name #>Repository
+    {
+        private readonly YashilAppDbContext _context;
+		public <#= table.Name #>Repository (<#=ApplicationInfo.Instance.DbContextName#> context) : base(context)
+            {
+                _context = context;
+            }
+    }
+}      

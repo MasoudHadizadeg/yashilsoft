@@ -1,0 +1,22 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+
+	export enum Entity {
+	<#
+			var tablesCount = SqlToCsharpHelper.dbTables.TableList.Count();
+			var i = 1;
+			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
+			{
+				i++;
+				#>
+		  <#=table.Name #> = '<#=table.Name #>' <# if (i <= tablesCount){ #>,<#}#>
+		  
+	<#
+			} #>
+	}

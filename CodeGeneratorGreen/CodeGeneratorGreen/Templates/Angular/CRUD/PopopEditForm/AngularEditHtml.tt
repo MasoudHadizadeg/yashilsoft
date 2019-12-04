@@ -1,0 +1,101 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+<#@ import namespace="System.Linq" #>
+
+			<#
+			var table = SqlToCsharpHelper.table;
+			#>
+<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+
+<#
+			// Keep count so we don't whitespace the last property/column
+			int i = 0;
+
+			// Iterate all columns
+			foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
+			{
+				i++;
+				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
+				string colNameFirstCharLower = col.Name.FirstCharacterToLower();
+				// If we can't map it, skip it
+				if (string.IsNullOrWhiteSpace(propertyType) || col.Name == "Id")
+				{
+					// Skip
+					continue;
+				}
+
+				var colCaption = string.IsNullOrEmpty(col.ColDesc) ? col.Name : col.ColDesc.Replace("*", "");
+
+				// Handle nullable columns by making the type nullable
+				var editorType = propertyType == "bool" ? "editorType='dxCheckBox'" : "";
+
+				var fTableIsLarge = col.ReferencedObjectIsLarge;
+
+				#>
+				<# if (col.IsForeignKey)
+				{
+					var label = col.ReferencedObjectTitleColumn.FirstCharacterToLower();
+					#>
+					
+				<#	if (fTableIsLarge)
+					{
+						#>
+					<dxi-item dataField="<#=colNameFirstCharLower #>" editorType="dxLookup" [label]="{text: '<#=colCaption #>'}"  
+					[editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: <#=colNameFirstCharLower.Replace("Id", "") #>DataSource,displayExpr:'<#=label #>',valueExpr:'id' }">
+
+				<#
+					}
+					else
+					{
+						#>
+					<dxi-item dataField="<#=colNameFirstCharLower #>" editorType="dxSelectBox" [label]="{text: '<#=colCaption #>'}"  
+					[editorOptions]="{ items: <#=colNameFirstCharLower.Replace("Id", "") #>s,displayExpr:'<#=label #>',valueExpr:'id' }">
+					<#
+					} #>
+				<#
+				}
+				else
+				{
+					#>
+					<dxi-item [label]="{text: '<#=colCaption #>'}"  dataField="<#= colNameFirstCharLower #>" <#=editorType #>>
+						<#if (col.Name.Contains("Date"))
+					{
+						#>
+							<dp-date-picker
+							[config]="datePickerConfig"
+							dir="rtl"
+							mode="day"
+							placeholder="<#=colCaption #>"
+							theme="dp-material"
+							<#if (propertyType == "bool")
+						{
+							#>
+							[ngModel]="entity.<#=colNameFirstCharLower #> | intToDateTime" (ngModelChange)="entity.<#=colNameFirstCharLower #>=convertDateToInt($event)">
+							<#
+						}
+						else
+						{
+							#>
+							[ngModel]="entity.<#=colNameFirstCharLower #>" (ngModelChange)="entity.<#=colNameFirstCharLower #>=convertDateToStrint($event)">
+							<#
+						} #>
+							</dp-date-picker>
+						<#
+					} #>
+						
+				<#
+				} #>
+					<#if (!col.AllowNull && propertyType != "bool")
+				{
+					#>
+							<dxi-validation-rule  type="required" message="<#=colCaption #> اجباری می باشد"></dxi-validation-rule>
+						<#
+				} #>	
+				</dxi-item>
+<#
+			}
+#>
+</dx-form>
+</app-base-edit-form>

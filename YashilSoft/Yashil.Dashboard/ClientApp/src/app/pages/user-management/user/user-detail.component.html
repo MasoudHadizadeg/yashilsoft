@@ -1,0 +1,81 @@
+
+			<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+
+									<dxi-item [label]="{text: 'نام کاربری'}"  dataField="userName" >
+												
+																<dxi-validation-rule type="required" message="نام کاربری ?????? ?? ????"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'نام'}"  dataField="firstName" >
+												
+																<dxi-validation-rule type="required" message="نام ?????? ?? ????"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'نام خانوادگی'}"  dataField="lastName" >
+												
+																<dxi-validation-rule type="required" message="نام خانوادگی ?????? ?? ????"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'کد ملی'}"  dataField="nationalCode" >
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'ایمیل'}"  dataField="email" >
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'کلمه عبور'}"  dataField="password" >
+												
+																<dxi-validation-rule type="required" message="کلمه عبور ?????? ?? ????"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'فعال'}"  dataField="isActive" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'شماره موبایل'}"  dataField="mobileNumber" >
+												
+										
+				</dxi-item>
+									
+									<dxi-item dataField="organizationId" editorType="dxLookup" [label]="{text: 'سازمان'}"  
+					[editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: organizationDataSource,displayExpr:'title',valueExpr:'id' }">
+
+																				<dxi-validation-rule type="required" message="سازمان ?????? ?? ????"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'زمان ایجاد'}"  dataField="createTime" >
+												
+																<dxi-validation-rule type="required" message="زمان ایجاد ?????? ?? ????"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'تاریخ ایجاد'}"  dataField="createDate" >
+													<dp-date-picker
+							[config]="datePickerConfig"
+							dir="rtl"
+							mode="day"
+							placeholder="تاریخ ایجاد"
+							theme="dp-material"
+														[ngModel]="entity.createDate" (ngModelChange)="entity.createDate=convertDateToStrint($event)">
+														</dp-date-picker>
+												
+																<dxi-validation-rule type="required" message="تاریخ ایجاد ?????? ?? ????"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'PasswordSalt'}"  dataField="passwordSalt" >
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'آدرس'}"  dataField="address" >
+												
+										
+				</dxi-item>
+									
+									<dxi-item dataField="accessLevel" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"  
+					[editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
+																					<dxi-validation-rule type="required" message="سطح دسترسی ?????? ?? ????"></dxi-validation-rule>
+							
+				</dxi-item>
+</dx-form>
+</app-base-edit-form>

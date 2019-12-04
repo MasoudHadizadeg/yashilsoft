@@ -1,0 +1,28 @@
+[
+  {
+    "id": "YashilBaseInfo.Web",
+    "version": "1.0.0",
+    "subFolder": "YashilBaseInfo"
+  },
+  {
+    "id": "YashilUserManagement.Web",
+    "version": "1.0.0",
+    "subFolder": "YashilUserManagement"
+  },
+  {
+    "id": "YashilDashboard.Web",
+    "version": "1.0.0",
+    "subFolder": "YashilDashboard"
+  },
+  {
+    "id": "YashilReport.Web",
+    "version": "1.0.0",
+    "subFolder": "YashilReport"
+  },
+  {
+    "id": "Yashil.Runtime",
+    "version": "1.0.0",
+    "subFolder": "",
+    "fullPath": "Yashil"
+  }
+]

@@ -1,0 +1,8 @@
+ 
+ {
+  "id": "YashilReport.Web",
+  "name": "YashilReport",
+  "isBundledWithHost": true,
+  "version": "1.0.0",
+  "subFolder": "YashilReport"
+}

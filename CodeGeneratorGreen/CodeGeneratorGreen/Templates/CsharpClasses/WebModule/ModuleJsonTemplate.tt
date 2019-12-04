@@ -1,0 +1,15 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+ 
+ {
+  "id": "<#=ApplicationInfo.Instance.ClassNamespace#>.Web",
+  "name": "<#=ApplicationInfo.Instance.ClassNamespace#>",
+  "isBundledWithHost": true,
+  "version": "1.0.0",
+  "subFolder": "<#=ApplicationInfo.Instance.ClassNamespace#>"
+}

@@ -1,0 +1,14 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+			<#
+			var table = SqlToCsharpHelper.table;
+			string angularFriendlyName = table.Name.ToAngularFrendlyName();
+			#>
+	<app-base-list-form [columns]="columns" [entityName]="entityName" [detailComponent]="detailComponent">
+	</app-base-list-form>

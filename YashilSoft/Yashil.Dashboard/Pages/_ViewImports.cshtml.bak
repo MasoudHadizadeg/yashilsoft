@@ -1,0 +1,3 @@
+@using TLSApp
+@namespace TLSApp.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

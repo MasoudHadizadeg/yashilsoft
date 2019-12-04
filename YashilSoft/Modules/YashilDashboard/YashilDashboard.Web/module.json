@@ -1,0 +1,8 @@
+ 
+ {
+  "id": "YashilDashboard.Web",
+  "name": "YashilDashboard",
+  "isBundledWithHost": true,
+  "version": "1.0.0",
+  "subFolder": "YashilDashboard"
+}

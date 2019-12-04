@@ -1,0 +1,61 @@
+<!--Lock Screen Starts-->
+<section id="lock-screen">
+  <div class="container-fluid forgot-password-bg">
+    <div class="row full-height-vh m-0">
+      <div class="col-12 d-flex align-items-center justify-content-center">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body lock-screen-img">
+              <div class="row m-0">
+                <div class="col-lg-6 d-lg-block d-none text-center py-2">
+                  <img
+                    src="../../assets/img/gallery/lock.png"
+                    alt=""
+                    class="img-fluid"
+                    height="230"
+                    width="400"
+                  />
+                </div>
+                <div class="col-lg-6 col-md-12 pt-3 px-4 bg-white">
+                  <h4 class="card-title mb-3">
+                    Your Session is locked
+                  </h4>
+                  <input
+                    type="text"
+                    class="form-control mb-3"
+                    placeholder="Email"
+                  />
+                  <input
+                    type="password"
+                    class="form-control mb-3"
+                    placeholder="password"
+                  />
+                  <div class="fg-actions d-flex justify-content-between">
+                    <div class="login-btn">
+                      <button
+                        class="btn btn-link text-decoration-none text-primary"
+                      >
+                        Are You Not John Doe ?
+                      </button>
+                    </div>
+                    <div class="recover-pass">
+                      <button class="btn btn-primary">
+                        <a
+                          class="text-decoration-none text-white"
+                          [routerLink]="['/dashboard/dashboard1']"
+                        >
+                          Unlock
+                        </a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Lock Screen Ends-->

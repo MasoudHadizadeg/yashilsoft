@@ -1,0 +1,19 @@
+
+			<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+
+									
+									<dxi-item dataField="userId" editorType="dxLookup" [label]="{text: 'کاربر'}"  
+					[editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: userDataSource,displayExpr:'userName',valueExpr:'id' }">
+
+																				<dxi-validation-rule type="required" message="کاربر ?????? ?? ????"></dxi-validation-rule>
+							
+				</dxi-item>
+									
+									<dxi-item dataField="roleId" editorType="dxSelectBox" [label]="{text: 'نقش'}"  
+					[editorOptions]="{ items: roles,displayExpr:'title',valueExpr:'id' }">
+																					<dxi-validation-rule type="required" message="نقش ?????? ?? ????"></dxi-validation-rule>
+							
+				</dxi-item>
+</dx-form>
+</app-base-edit-form>

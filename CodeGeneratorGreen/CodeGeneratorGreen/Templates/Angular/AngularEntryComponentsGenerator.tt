@@ -1,0 +1,33 @@
+<#@ template language="C#" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+<#@ import namespace="Models" #>
+<#@ import namespace="System.Linq" #>
+
+<#
+			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
+			{
+				string angularFriendlyName = table.Name.ToAngularFrendlyName();
+				#>
+				import {<#=table.Name #>DetailComponent} from './<#=angularFriendlyName #>/<#=angularFriendlyName #>-detail.component';
+				<#
+			}
+
+			#>
+			import {Provider} from '@angular/core';
+				export const ENTRYCOMPONENTS:Provider[]=[
+	<#
+			var tablesCount = SqlToCsharpHelper.dbTables.TableList.Count();
+			var i = 1;
+			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
+			{
+				i++;
+				#>
+		  <#=table.Name #>DetailComponent <# if (i <= tablesCount)
+				{
+					#>,<#
+				} #>
+		  
+	<#
+			} #>
+	];

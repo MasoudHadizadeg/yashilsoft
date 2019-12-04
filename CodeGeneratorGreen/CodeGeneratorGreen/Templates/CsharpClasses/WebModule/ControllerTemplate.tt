@@ -1,0 +1,29 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+	<#		var table = SqlToCsharpHelper.table; 
+			string lowerTableName = table.Name.FirstCharacterToLower();
+			#> 
+using AutoMapper;
+using Yashil.Common.Web.Infrastructure.BaseClasses;
+using Yashil.Core.Entities;
+using <#= ApplicationInfo.Instance.ClassNamespace #>.Core.Services;
+using  <#= ApplicationInfo.Instance.ClassNamespace #>.Web.Areas.<#= ApplicationInfo.Instance.AreaName #>.ViewModels;
+
+namespace <#= ApplicationInfo.Instance.ControllerNamespace #>
+{
+	public class <#=table.Name#>Controller : BaseController<<#=table.Name#> ,int,<#=table.Name#>ListViewModel, <#=table.Name#>ViewModel, <#=table.Name#>EditModel,<#=table.Name#>SimpleViewModel>
+    {
+        private readonly IMapper _mapper;
+        private readonly I<#=table.Name#>Service _<#=lowerTableName#>Service;
+        public <#=table.Name#>Controller(I<#=table.Name#>Service <#=lowerTableName#>Service, IMapper mapper) : base(<#=lowerTableName#>Service, mapper)
+        {
+            _mapper=mapper;
+            _<#=lowerTableName#>Service=<#=lowerTableName#>Service;
+        }
+    }
+}      

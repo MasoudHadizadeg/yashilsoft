@@ -1,0 +1,15 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="Classes" #>
+			<#
+			var table = SqlToCsharpHelper.table;
+			#>
+
+using Yashil.Common.Core.Interfaces;
+using Yashil.Core.Entities; 
+
+namespace <#= ApplicationInfo.Instance.IRepositoryNamespace #>
+{
+	public interface I<#= table.Name #>Repository : IGenericRepository<<#= table.Name #>>
+    {
+    }
+}      

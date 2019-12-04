@@ -1,0 +1,51 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="Extentions" #>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+
+import {RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from '../../shared/_guards';
+<#
+			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
+			{
+				string angularFriendlyName = table.Name.ToAngularFrendlyName();
+				#>
+				import {<#=table.Name #>ListComponent} from './<#=angularFriendlyName #>/<#=angularFriendlyName #>-list.component';
+				<#
+			}
+			     
+
+			#>
+import {FullLayoutSplitComponent} from '../../layouts/fullsplit/full-layout-split.component';
+import {NgModule} from '@angular/core';
+const routes: Routes = [    
+	<#
+			var tablesCount = SqlToCsharpHelper.dbTables.TableList.Count;
+			var i = 1;
+			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
+			{
+				i++;
+				string pathName = table.Name.FirstCharacterToLower() + "s";
+				#>
+				{path: '<#=pathName#>', component: <#=table.Name #>ListComponent, canActivate: [AuthGuard]}<# if (i <= tablesCount)
+				{
+					#>,<#
+				} #>
+		  
+	<#
+			} #>
+];
+
+@NgModule({
+        imports: [RouterModule.forChild(routes)],
+        exports: [RouterModule],
+    }
+)
+export class <#= ApplicationInfo.Instance.AngularModuleName #>RoutingModule {
+
+}
