@@ -18,8 +18,6 @@ namespace YashilDashboard.Web.Areas.Dash.ViewModels
         public int ConnectionStringId { get; set; }
 				public string ConnectionStringTitle { get; set; }	
 		
-        public int AccessLevel { get; set; }
-		
     }
 
 
@@ -38,8 +36,6 @@ namespace YashilDashboard.Web.Areas.Dash.ViewModels
         public int ConnectionStringId { get; set; }
 				public string ConnectionStringTitle { get; set; }	
 		
-        public int AccessLevel { get; set; }
-		
     }
 
 
@@ -57,8 +53,6 @@ namespace YashilDashboard.Web.Areas.Dash.ViewModels
 				
         public int ConnectionStringId { get; set; }
 				public string ConnectionStringTitle { get; set; }	
-				
-        public int AccessLevel { get; set; }
 				
     }
 

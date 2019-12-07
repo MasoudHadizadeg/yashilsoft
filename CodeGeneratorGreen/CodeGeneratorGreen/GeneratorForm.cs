@@ -35,23 +35,26 @@ namespace CodeGeneratorGreen
                 new ModuleInfo
                 {
                     ClassNamespace = "YashilDashboard", AngularModuleName = "Dashboard", AreaName = "Dash",
-                    XmlFileName = "Data_Dash",GenerateProjectFiles=false
+                    XmlFileName = "Data_Dash", GenerateProjectFiles = false, GenerateControllers = false,
+                    GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
                 },
                 new ModuleInfo
                 {
                     ClassNamespace = "YashilUserManagement", AngularModuleName = "UserManagement", AreaName = "UserMng",
-                    XmlFileName = "Data_user",GenerateProjectFiles=false
+                    XmlFileName = "Data_user", GenerateProjectFiles = false, GenerateControllers = false,
+                    GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
                 },
                 new ModuleInfo
                 {
                     ClassNamespace = "YashilReport", AngularModuleName = "Report", AreaName = "Rpt",
-                    XmlFileName = "Data_Rpt",GenerateProjectFiles=false
-                }
-                ,
+                    XmlFileName = "Data_Rpt", GenerateProjectFiles = false, GenerateControllers = false,
+                    GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
+                },
                 new ModuleInfo
                 {
                     ClassNamespace = "YashilBaseInfo", AngularModuleName = "BaseInfo", AreaName = "BaseInf",
-                    XmlFileName = "Data_base",GenerateProjectFiles=false
+                    XmlFileName = "Data_base", GenerateProjectFiles = false, GenerateControllers = false,
+                    GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
                 }
             };
 
@@ -73,35 +76,49 @@ namespace CodeGeneratorGreen
                     GenerateAngularListHtml(table);
                     GenerateAngularEditForm(table);
                     GenerateAngularEditHtmlForm(table);
-                    GenerateController(table);
-                    GenerateViewModels(table);
-                    GenerateRepositories(table);
-                    GenerateIRepositories(table);
-                    GenerateIServices(table);
-                    GenerateServices(table);
+                    if (ApplicationInfo.Instance.ModuleInfo.GenerateControllers)
+                    {
+                        GenerateController(table);
+                    }
+
+                    if (ApplicationInfo.Instance.ModuleInfo.GenerateViewModels)
+                    {
+                        GenerateViewModels(table);
+                    }
+
+                    if (ApplicationInfo.Instance.ModuleInfo.GenerateRepositories)
+                    {
+                        GenerateRepositories(table);
+                        GenerateIRepositories(table);
+                    }
+
+                    if (ApplicationInfo.Instance.ModuleInfo.GenerateServices)
+                    {
+                        GenerateIServices(table);
+                        GenerateServices(table);
+                    }
                 }
-
-                
-
                 GenerateDomainProfile();
+
                 GenerateAngularEntityEnum();
                 GenerateAngularIndexFile();
                 GenerateAngularEntryComponentFile();
                 GenerateAngularRouter();
                 GenerateAngularSidebarRoutes();
                 GenerateAngularModule();
-                GenerateModuleInitializer();
-                GenerateModuleJsonTemplate();
-                GenerateProgramTemplate();
+
                 if (ApplicationInfo.Instance.ModuleInfo.GenerateProjectFiles)
                 {
+                 
+                    GenerateModuleInitializer();
+                    GenerateModuleJsonTemplate();
+                    GenerateProgramTemplate();
                     GenerateCoreCsproj();
                     GenerateCoreCsprojUser();
                     GenerateWebCsprojUser();
                     GenerateWebProjectCsproj();
                     GenerateInfrastructureCsprojTemplate();
                 }
-                
             }
 
             Application.Exit();

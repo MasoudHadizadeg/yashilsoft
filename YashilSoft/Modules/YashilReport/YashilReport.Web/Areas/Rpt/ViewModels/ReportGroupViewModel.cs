@@ -16,7 +16,7 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
 		
         public string Description { get; set; }
 		
-        public int AccessLevel { get; set; }
+        public int AccessLevelId { get; set; }
 		
     }
 
@@ -34,7 +34,7 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
 		
         public string Description { get; set; }
 		
-        public int AccessLevel { get; set; }
+        public int AccessLevelId { get; set; }
 		
     }
 
@@ -52,7 +52,7 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
 				
         public string Description { get; set; }
 				
-        public int AccessLevel { get; set; }
+        public int AccessLevelId { get; set; }
 				
     }
 

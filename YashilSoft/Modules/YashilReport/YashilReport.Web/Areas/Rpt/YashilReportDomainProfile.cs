@@ -1,8 +1,7 @@
 
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
-using AutoMapper; 
-using Yashil.Core.Entities;
+using AutoMapper;
 using YashilReport.Web.Areas.Rpt.ViewModels;
 
 namespace YashilReport.Web.Areas.Rpt
@@ -13,6 +12,20 @@ namespace YashilReport.Web.Areas.Rpt
              public int Order => 1;
 			 public YashilReportProfile()
 				{	
+					
+				CreateMap<ReportGroup, ReportGroupEditModel>()
+				;
+
+                CreateMap<ReportGroup, ReportGroupListViewModel>()
+						;
+
+				CreateMap<ReportGroup, ReportGroupViewModel>()
+						;
+
+				CreateMap<ReportGroupEditModel, ReportGroup>();
+
+                CreateMap<ReportGroup, ReportGroupSimpleViewModel>();
+	   
 					
 				CreateMap<ReportConnectionString, ReportConnectionStringEditModel>()
 									.ForMember(x => x.ReportTitle, 
@@ -45,12 +58,12 @@ namespace YashilReport.Web.Areas.Rpt
 
                 CreateMap<RoleReport, RoleReportListViewModel>()
 											.ForMember(x => x.RoleTitle, 
-					b => b.MapFrom(c => c.Role.Title)).ForMember(x => x.ReportTitle, 
+					b => b.MapFrom(c => c.Role.Title))					.ForMember(x => x.ReportTitle, 
 					b => b.MapFrom(c => c.Report.Title));
 
 				CreateMap<RoleReport, RoleReportViewModel>()
 											.ForMember(x => x.RoleTitle, 
-					b => b.MapFrom(c => c.Role.Title)).ForMember(x => x.ReportTitle, 
+					b => b.MapFrom(c => c.Role.Title))					.ForMember(x => x.ReportTitle, 
 					b => b.MapFrom(c => c.Report.Title));
 
 				CreateMap<RoleReportEditModel, RoleReport>();
@@ -74,20 +87,6 @@ namespace YashilReport.Web.Areas.Rpt
 				CreateMap<ReportStoreEditModel, ReportStore>();
 
                 CreateMap<ReportStore, ReportStoreSimpleViewModel>();
-	   
-					
-				CreateMap<ReportGroup, ReportGroupEditModel>()
-				;
-
-                CreateMap<ReportGroup, ReportGroupListViewModel>()
-						;
-
-				CreateMap<ReportGroup, ReportGroupViewModel>()
-						;
-
-				CreateMap<ReportGroupEditModel, ReportGroup>();
-
-                CreateMap<ReportGroup, ReportGroupSimpleViewModel>();
 	   
 					
 				CreateMap<UserReport, UserReportEditModel>()

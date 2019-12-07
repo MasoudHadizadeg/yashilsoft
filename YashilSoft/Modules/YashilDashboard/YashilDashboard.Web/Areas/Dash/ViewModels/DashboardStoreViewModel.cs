@@ -26,7 +26,7 @@ namespace YashilDashboard.Web.Areas.Dash.ViewModels
 		
         public bool? Animation { get; set; }
 		
-        public int AccessLevel { get; set; }
+        public int AccessLevelId { get; set; }
 				public string AccessLevelTitle { get; set; }	
 		
     }
@@ -57,7 +57,7 @@ namespace YashilDashboard.Web.Areas.Dash.ViewModels
 		
         public bool? Animation { get; set; }
 		
-        public int AccessLevel { get; set; }
+        public int AccessLevelId { get; set; }
 				public string AccessLevelTitle { get; set; }	
 		
     }
@@ -88,7 +88,7 @@ namespace YashilDashboard.Web.Areas.Dash.ViewModels
 				
         public bool? Animation { get; set; }
 				
-        public int AccessLevel { get; set; }
+        public int AccessLevelId { get; set; }
 				public string AccessLevelTitle { get; set; }	
 				
     }

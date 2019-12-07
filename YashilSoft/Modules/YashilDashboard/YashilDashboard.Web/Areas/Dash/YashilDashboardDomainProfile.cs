@@ -1,8 +1,7 @@
 
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
-using AutoMapper; 
-using Yashil.Core.Entities;
+using AutoMapper;
 using YashilDashboard.Web.Areas.Dash.ViewModels;
 
 namespace YashilDashboard.Web.Areas.Dash
