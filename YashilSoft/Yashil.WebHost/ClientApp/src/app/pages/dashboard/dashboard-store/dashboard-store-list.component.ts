@@ -39,6 +39,10 @@
 					caption: 'انیمیشن',
 					dataField: 'animation'
 					});
+							this.columns.push({ 
+					caption: 'سطح دسترسی',
+					dataField: 'accessLevelTitle'
+					});
 							
 				}
 		}

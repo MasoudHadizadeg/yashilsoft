@@ -15,6 +15,10 @@
 					caption: 'عنوان',
 					dataField: 'title'
 					});
+							this.columns.push({ 
+					caption: 'سطح دسترسی',
+					dataField: 'accessLevelId'
+					});
 							
 				}
 		}

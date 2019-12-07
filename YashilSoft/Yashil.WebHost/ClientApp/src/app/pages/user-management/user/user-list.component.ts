@@ -47,6 +47,10 @@
 					caption: 'آدرس',
 					dataField: 'address'
 					});
+							this.columns.push({ 
+					caption: 'سطح دسترسی',
+					dataField: 'accessLevelTitle'
+					});
 							
 				}
 		}

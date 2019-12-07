@@ -4,17 +4,17 @@
 
 									<dxi-item [label]="{text: 'نام کاربری'}"  dataField="userName" >
 												
-																<dxi-validation-rule  type="required" message="نام کاربری اجباری می باشد"></dxi-validation-rule> 
+																<dxi-validation-rule  type="required" message="نام کاربری اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
 									<dxi-item [label]="{text: 'نام'}"  dataField="firstName" >
 												
-																<dxi-validation-rule  type="required" message="نام اجباری می باشد"></dxi-validation-rule> 
+																<dxi-validation-rule  type="required" message="نام اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
 									<dxi-item [label]="{text: 'نام خانوادگی'}"  dataField="lastName" >
 												
-																<dxi-validation-rule  type="required" message="نام خانوادگی اجباری می باشد"></dxi-validation-rule> 
+																<dxi-validation-rule  type="required" message="نام خانوادگی اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
 									<dxi-item [label]="{text: 'کد ملی'}"  dataField="nationalCode" >
@@ -33,7 +33,7 @@
 												
 										
 				</dxi-item>
-									<dxi-item [label]="{text: 'شماره موبایل'}"  dataField="mobileNumber" >
+									<dxi-item [label]="{text: 'شماره موبایل'}"  dataField="mobileNumber" editorType='dxNumberBox'>
 												
 										
 				</dxi-item>
@@ -47,15 +47,15 @@
 												
 										
 				</dxi-item>
-									<dxi-item [label]="{text: 'آدرس'}"  dataField="address" >
+									<dxi-item [label]="{text: 'آدرس'}"  dataField="address" editorType='dxTextArea'>
 												
 										
 				</dxi-item>
 									
-									<dxi-item dataField="accessLevel" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"  
+									<dxi-item dataField="accessLevelId" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"  
 					[editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: accessLevelDataSource,displayExpr:'title',valueExpr:'id' }">
 
-																				<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule> 
+																				<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
 </dx-form>

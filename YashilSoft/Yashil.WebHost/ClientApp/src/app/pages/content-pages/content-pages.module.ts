@@ -9,29 +9,25 @@ import {LockScreenPageComponent} from './lock-screen/lock-screen-page.component'
 import {LoginPageComponent} from './login/login-page.component';
 import {MaintenancePageComponent} from './maintenance/maintenance-page.component';
 import {RegisterPageComponent} from './register/register-page.component';
-import {ReportDesignerComponent} from './stimulsoft/report-designer/report-designer.component';
-import {ReportViewerComponent} from './stimulsoft/report-viewer/report-viewer.component';
 import {CoreModule} from '../../core/core.module';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ContentPagesRoutingModule,
-    FormsModule,
-    CoreModule
-  ],
-  declarations: [
-    ComingSoonPageComponent,
-    ErrorPageComponent,
-    ForgotPasswordPageComponent,
-    LockScreenPageComponent,
-    LoginPageComponent,
-    MaintenancePageComponent,
-    RegisterPageComponent,
-    ReportDesignerComponent,
-    ReportViewerComponent
-  ]
+    imports: [
+        CommonModule,
+        ContentPagesRoutingModule,
+        FormsModule,
+        CoreModule
+    ],
+    declarations: [
+        ComingSoonPageComponent,
+        ErrorPageComponent,
+        ForgotPasswordPageComponent,
+        LockScreenPageComponent,
+        LoginPageComponent,
+        MaintenancePageComponent,
+        RegisterPageComponent
+    ]
 })
 export class ContentPagesModule {
 }

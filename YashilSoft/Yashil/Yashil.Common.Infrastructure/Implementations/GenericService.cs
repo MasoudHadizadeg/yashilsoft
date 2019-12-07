@@ -41,7 +41,7 @@ namespace Yashil.Common.Infrastructure.Implementations
             }
         }
 
-        public async Task<TModel> AddAsync(TModel t, bool saveAfterAdd = false)
+        public virtual async Task<TModel> AddAsync(TModel t, bool saveAfterAdd = false)
         {
             var addedEntity = await _repository.AddAsync(t);
             if (saveAfterAdd)
@@ -86,7 +86,7 @@ namespace Yashil.Common.Infrastructure.Implementations
             return await _repository.CountAsync();
         }
 
-        public LoadResult GetAll<TViewModel>(IMapper mapper, CustomDataSourceLoadOptions loadOptions,
+        public virtual LoadResult GetAll<TViewModel>(IMapper mapper, CustomDataSourceLoadOptions loadOptions,
             bool readOnly = false)
         {
             return LoadResult<TViewModel>(mapper, loadOptions, _repository.GetAll(readOnly));
@@ -105,7 +105,7 @@ namespace Yashil.Common.Infrastructure.Implementations
             return DataSourceLoader.Load(list.ProjectTo<TViewModel>(mapper.ConfigurationProvider), loadOptions);
         }
 
-        public async Task<int> SaveChangeAsync()
+        public virtual async Task<int> SaveChangeAsync()
         {
             return await _unitOfWork.CommitAsync();
         }

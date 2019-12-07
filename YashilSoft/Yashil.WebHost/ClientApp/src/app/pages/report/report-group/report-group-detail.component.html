@@ -4,16 +4,16 @@
 
 									<dxi-item [label]="{text: 'عنوان'}"  dataField="title" >
 												
-																<dxi-validation-rule  type="required" message="عنوان اجباری می باشد"></dxi-validation-rule> 
+																<dxi-validation-rule  type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
-									<dxi-item [label]="{text: 'توضیح'}"  dataField="description" >
+									<dxi-item [label]="{text: 'توضیح'}"  dataField="description" editorType='dxTextArea'>
 												
 										
 				</dxi-item>
-									<dxi-item [label]="{text: 'سطح دسترسی'}"  dataField="accessLevel" >
+									<dxi-item [label]="{text: 'سطح دسترسی'}"  dataField="accessLevelId" editorType='dxNumberBox'>
 												
-																<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule> 
+																<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
 </dx-form>

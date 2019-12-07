@@ -12,11 +12,11 @@
 		  detailComponent = DashboardConnectionStringDetailComponent;
 		  constructor() {
 							this.columns.push({ 
-					caption: 'DashboardId',
+					caption: 'داشبورد',
 					dataField: 'dashboardTitle'
 					});
 							this.columns.push({ 
-					caption: 'ConnectionStringId',
+					caption: 'رشته اتصال',
 					dataField: 'connectionStringTitle'
 					});
 							

@@ -45,12 +45,12 @@ namespace YashilReport.Web.Areas.Rpt
 
                 CreateMap<RoleReport, RoleReportListViewModel>()
 											.ForMember(x => x.RoleTitle, 
-					b => b.MapFrom(c => c.Role.Title))					.ForMember(x => x.ReportTitle, 
+					b => b.MapFrom(c => c.Role.Title)).ForMember(x => x.ReportTitle, 
 					b => b.MapFrom(c => c.Report.Title));
 
 				CreateMap<RoleReport, RoleReportViewModel>()
 											.ForMember(x => x.RoleTitle, 
-					b => b.MapFrom(c => c.Role.Title))					.ForMember(x => x.ReportTitle, 
+					b => b.MapFrom(c => c.Role.Title)).ForMember(x => x.ReportTitle, 
 					b => b.MapFrom(c => c.Report.Title));
 
 				CreateMap<RoleReportEditModel, RoleReport>();

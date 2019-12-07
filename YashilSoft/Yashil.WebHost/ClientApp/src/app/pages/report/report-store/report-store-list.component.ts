@@ -43,6 +43,10 @@
 					caption: 'ماژول',
 					dataField: 'moduleKey'
 					});
+							this.columns.push({ 
+					caption: 'سطح دسترسی',
+					dataField: 'accessLevelTitle'
+					});
 							
 				}
 		}

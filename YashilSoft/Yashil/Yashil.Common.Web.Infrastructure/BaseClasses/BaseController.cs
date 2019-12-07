@@ -101,7 +101,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             CustomMapBeforeInsert(editModel, entity);
             try
             {
-                entity.CreateBy = CurrentUserId.Value;
+                if (CurrentUserId != null) entity.CreateBy = CurrentUserId.Value;
                 entity.CreationDate = DateTime.Now;
 
                 await _genericService.AddAsync(entity, true);

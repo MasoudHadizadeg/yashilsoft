@@ -249,13 +249,21 @@ namespace Yashil.Infrastructure.Data
             {
                 entity.ToTable("DashboardConnectionString", "dash");
 
+                entity.HasComment("رشته های اتصال داشبورد");
+
+                entity.Property(e => e.Id).HasComment("کد");
+
                 entity.Property(e => e.ApplicationId).HasComment("برنامه");
+
+                entity.Property(e => e.ConnectionStringId).HasComment("رشته اتصال");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
 
                 entity.Property(e => e.CreationDate)
                     .HasColumnType("datetime")
                     .HasComment("زمان ایجاد");
+
+                entity.Property(e => e.DashboardId).HasComment("داشبورد");
 
                 entity.Property(e => e.Deleted).HasComment("حذف شده");
 
@@ -794,6 +802,8 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.Picture)
                     .IsUnicode(false)
                     .HasComment("تصویر");
+
+                entity.Property(e => e.ReportFile).HasComment("داشبورد");
 
                 entity.Property(e => e.ReportKey)
                     .HasMaxLength(300)
@@ -1390,7 +1400,6 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100)
-                    .IsUnicode(false)
                     .HasComment("عنوان");
 
                 entity.HasOne(d => d.CreateByNavigation)
@@ -1423,8 +1432,7 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.BaseType)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .IsFixedLength()
+                    .HasMaxLength(100)
                     .HasComment("نوع پایه");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
@@ -1450,8 +1458,7 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .IsFixedLength()
+                    .HasMaxLength(100)
                     .HasComment("عنوان");
 
                 entity.HasOne(d => d.CreateByNavigation)

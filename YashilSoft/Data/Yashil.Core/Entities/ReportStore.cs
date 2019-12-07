@@ -31,6 +31,7 @@ namespace Yashil.Core.Entities
         public int? ApplicationId { get; set; }
         public int AccessLevelId { get; set; }
         public bool Deleted { get; set; }
+        public byte[] ReportFile { get; set; }
 
         public virtual AccessLevel AccessLevel { get; set; }
         public virtual User CreateByNavigation { get; set; }

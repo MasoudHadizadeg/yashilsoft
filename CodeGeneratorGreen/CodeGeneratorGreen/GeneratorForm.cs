@@ -8,7 +8,6 @@ using CodeGeneratorGreen.Models;
 using CodeGeneratorGreen.Templates.Angular;
 using CodeGeneratorGreen.Templates.Angular.CRUD.ListForm;
 using CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm;
-using CodeGeneratorGreen.Templates.CsharpClasses;
 using CodeGeneratorGreen.Templates.CsharpClasses.ProjectTemplates;
 using CodeGeneratorGreen.Templates.CsharpClasses.Repositories;
 using CodeGeneratorGreen.Templates.CsharpClasses.Services;
@@ -52,7 +51,7 @@ namespace CodeGeneratorGreen
                 new ModuleInfo
                 {
                     ClassNamespace = "YashilBaseInfo", AngularModuleName = "BaseInfo", AreaName = "BaseInf",
-                    XmlFileName = "Data_base",GenerateProjectFiles=true
+                    XmlFileName = "Data_base",GenerateProjectFiles=false
                 }
             };
 
