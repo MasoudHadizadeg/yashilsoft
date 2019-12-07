@@ -141,13 +141,12 @@ namespace Yashil.Common.Infrastructure.Implementations
             if (firstOrDefault != null) _context.Set<T>().Remove(firstOrDefault);
         }
 
-        public ValueTask<T>? UpdateAsync(T t, object key, List<string> modifiedProperties)
+        public async Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> modifiedProperties)
         {
-           
             if (t == null)
                 return null;
-            var exist = _context.Set<T>().FindAsync(key);
-            var existResult = exist.Result;
+            var exist =await _context.Set<T>().FindAsync(key);
+            var existResult = exist;
             if (existResult != null)
             {
                 var entityEntry = _context.Entry(existResult);
@@ -159,7 +158,7 @@ namespace Yashil.Common.Infrastructure.Implementations
                 if (modifiedProperties != null && modifiedProperties.Count > 0)
                 {
                     var notModifiedProperties = entityEntry.Properties
-                        .Where(m => m.IsModified &&  
+                        .Where(m => m.IsModified &&
                                     !modifiedProperties.Contains(m.Metadata.Name))
                         .ToList();
                     foreach (var notModifiedProperty in notModifiedProperties)
@@ -169,21 +168,8 @@ namespace Yashil.Common.Infrastructure.Implementations
                 }
             }
 
-            return exist;
+            return new ValueTask<T>(exist);
         }
-
-        //public async Task<T> UpdateAsync(T t, object key)
-        //{
-        //    if (t == null)
-        //        return null;
-        //    T exist = await _context.Set<T>().FindAsync(key);
-        //    if (exist != null)
-        //    {
-        //        _context.Entry(exist).CurrentValues.SetValues(t);
-        //    }
-
-        //    return exist;
-        //}
 
         #endregion
 
@@ -195,27 +181,6 @@ namespace Yashil.Common.Infrastructure.Implementations
         public async Task<int> CountAsync()
         {
             return await _context.Set<T>().CountAsync();
-        }
-
-        private bool _disposed;
-
-        protected void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
-
-                this._disposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

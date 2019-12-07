@@ -9,7 +9,7 @@ namespace Yashil.Common.Core.Interfaces
     public interface IGenericService<TModel> where TModel : class
     {
         void Delete(TModel entity, bool saveAfterDelete = false);
-        void Delete(object id, bool saveAfterDelete = false);
+        Task Delete(object id, bool saveAfterDelete = false);
         Task<TModel> AddAsync(TModel t, bool saveAfterAdd = false);
         Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, List<string> modifiedProperties, bool saveAfterUpdate = false);
         Task<TViewModel> GetAsync<TViewModel>(IMapper mapper, object id, bool readOnly);

@@ -32,21 +32,21 @@ namespace Yashil.Common.Infrastructure.Implementations
             }
         }
 
-        public void Delete(object id, bool saveAfterDelete = false)
+        public async Task Delete(object id, bool saveAfterDelete = false)
         {
             _repository.Delete(id);
             if (saveAfterDelete)
             {
-                _unitOfWork.CommitAsync();
+                await _unitOfWork.CommitAsync();
             }
         }
 
-        public Task<TModel> AddAsync(TModel t, bool saveAfterAdd = false)
+        public async Task<TModel> AddAsync(TModel t, bool saveAfterAdd = false)
         {
-            var addedEntity = _repository.AddAsync(t);
+            var addedEntity = await _repository.AddAsync(t);
             if (saveAfterAdd)
             {
-                _unitOfWork.CommitAsync();
+                await _unitOfWork.CommitAsync();
             }
 
             return addedEntity;
@@ -55,7 +55,7 @@ namespace Yashil.Common.Infrastructure.Implementations
         public async Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, List<string> modifiedProperties,
             bool saveAfterUpdate = false)
         {
-            var updateAsync = _repository.UpdateAsync(t, key, modifiedProperties);
+            var updateAsync = await _repository.UpdateAsync(t, key, modifiedProperties);
             if (saveAfterUpdate)
             {
                 await _unitOfWork.CommitAsync();
@@ -105,9 +105,9 @@ namespace Yashil.Common.Infrastructure.Implementations
             return DataSourceLoader.Load(list.ProjectTo<TViewModel>(mapper.ConfigurationProvider), loadOptions);
         }
 
-        public Task<int> SaveChangeAsync()
+        public async Task<int> SaveChangeAsync()
         {
-            return _unitOfWork.CommitAsync();
+            return await _unitOfWork.CommitAsync();
         }
     }
 }

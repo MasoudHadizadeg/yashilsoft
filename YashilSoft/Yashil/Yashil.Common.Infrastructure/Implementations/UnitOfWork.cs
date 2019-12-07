@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.EntityFrameworkCore;
 using Yashil.Common.Core.Interfaces;
@@ -13,34 +14,31 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             _context = context;
         }
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
 
         public int Commit()
         {
-            int result;
-            using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            try
             {
-                result = _context.SaveChanges();
-                scope.Complete();
+               return _context.SaveChanges();
             }
-
-            return result;
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public async Task<int> CommitAsync()
         {
-            int result;
-            using (TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            try
             {
-                result = await _context.SaveChangesAsync();
-                scope.Complete();
+                return await _context.SaveChangesAsync();
             }
-
-            return result;
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
-
     }
 }

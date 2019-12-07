@@ -47,43 +47,18 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             return await _genericService.GetAllAsync<TListViewModel>(_mapper, loadOptions, true);
         }
 
-
         [HttpGet("GetForSelect")]
         public Task<LoadResult> GetForSelect(CustomDataSourceLoadOptions loadOptions)
         {
             return GetAllForSelect(loadOptions);
         }
 
-        private Expression<Func<TModel, bool>> CustomFilter(CustomDataSourceLoadOptions loadOptions)
-        {
-            return model => true;
-        }
-
-        private Expression<Func<TModel, bool>> CustomFilterForSelect(CustomDataSourceLoadOptions loadOptions)
-        {
-            return model => true;
-        }
-
-        private Task<LoadResult> GetAll(CustomDataSourceLoadOptions loadOptions)
-        {
-            // var filter = CustomFilter(loadOptions);
-            // var list = Repo.GetAll().Where(filter).OrderByDescending(x => x.Id);
-            //var loadResult = DataSourceLoader.Load(list.ProjectTo<TViewModel>(_mapper.ConfigurationProvider), loadOptions);
-            //return loadResult;
-            return _genericService.GetAllAsync<TViewModel>(_mapper, loadOptions, true);
-        }
-
-        private Task<LoadResult> GetAllForSelect(CustomDataSourceLoadOptions loadOptions)
-        {
-            return _genericService.GetAllAsync<TSelectViewModel>(_mapper, loadOptions, true);
-        }
-
         [HttpGet("{id}")]
-        public Task<TEditModel> GetEntity([FromRoute] TK id)
+        public async Task<TEditModel> GetEntity([FromRoute] TK id)
         {
             try
             {
-                return _genericService.GetAsync<TEditModel>(_mapper, id, true);
+                return await _genericService.GetAsync<TEditModel>(_mapper, id, true);
             }
             catch (Exception e)
             {
@@ -92,21 +67,12 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             }
         }
 
-        private void CustomMapAfterSelectById(TEditModel model)
-        {
-        }
-
-        private Expression<Func<TModel, object>>[] GetIncludes()
-        {
-            return new Expression<Func<TModel, object>>[] { };
-        }
-
         [HttpDelete("{id}")]
-        public HttpResponseMessage DeleteEntity([FromRoute] TK id)
+        public async Task<HttpResponseMessage> DeleteEntity([FromRoute] TK id)
         {
             try
             {
-                _genericService.Delete(id, true);
+                await _genericService.Delete(id, true);
             }
             catch (Exception e)
             {
@@ -150,28 +116,8 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             return Accepted();
         }
 
-        private string CustomValidateBeforeInsert(TEditModel editModel)
-        {
-            return null;
-        }
-
-        [NonAction]
-        private void AfterInsert(TEditModel editModel, TModel entity)
-        {
-        }
-
-        [NonAction]
-        private void CustomMapBeforeInsert(TEditModel editModel, TModel entity)
-        {
-        }
-
-        [NonAction]
-        private void CustomMapBeforeUpdate(TEditModel editModel, TModel entity)
-        {
-        }
-
         [HttpPut]
-        public HttpResponseMessage PutEntity(TEditModel editModel)
+        public async Task<HttpResponseMessage> PutEntity(TEditModel editModel)
         {
             if (!ModelState.IsValid)
             {
@@ -187,7 +133,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
 
                 CustomMapBeforeUpdate(editModel, entity);
                 List<string> notModifiedProperties = GetNotModifiedProperties(entity);
-                _genericService.UpdateAsync(entity, entity.Id, notModifiedProperties, true);
+                await _genericService.UpdateAsync(entity, entity.Id, notModifiedProperties, true);
                 AfterUpdate(editModel, entity);
             }
             catch (Exception e)
@@ -198,11 +144,6 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             }
 
             return new HttpResponseMessage(HttpStatusCode.OK);
-        }
-
-        [NonAction]
-        private void AfterUpdate(TEditModel editModel, TModel entity)
-        {
         }
 
         [HttpPut("PutEntityCustom")]
@@ -229,6 +170,64 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
+        private Expression<Func<TModel, bool>> CustomFilter(CustomDataSourceLoadOptions loadOptions)
+        {
+            return model => true;
+        }
+
+        private Expression<Func<TModel, bool>> CustomFilterForSelect(CustomDataSourceLoadOptions loadOptions)
+        {
+            return model => true;
+        }
+
+        private Task<LoadResult> GetAll(CustomDataSourceLoadOptions loadOptions)
+        {
+            // var filter = CustomFilter(loadOptions);
+            // var list = Repo.GetAll().Where(filter).OrderByDescending(x => x.Id);
+            //var loadResult = DataSourceLoader.Load(list.ProjectTo<TViewModel>(_mapper.ConfigurationProvider), loadOptions);
+            //return loadResult;
+            return _genericService.GetAllAsync<TViewModel>(_mapper, loadOptions, true);
+        }
+
+        private async Task<LoadResult> GetAllForSelect(CustomDataSourceLoadOptions loadOptions)
+        {
+            return await _genericService.GetAllAsync<TSelectViewModel>(_mapper, loadOptions, true);
+        }
+
+        private Expression<Func<TModel, object>>[] GetIncludes()
+        {
+            return new Expression<Func<TModel, object>>[] { };
+        }
+
+        [NonAction]
+        private void CustomMapAfterSelectById(TEditModel model)
+        {
+        }
+
+        private string CustomValidateBeforeInsert(TEditModel editModel)
+        {
+            return null;
+        }
+
+        [NonAction]
+        private void AfterInsert(TEditModel editModel, TModel entity)
+        {
+        }
+
+        [NonAction]
+        private void CustomMapBeforeInsert(TEditModel editModel, TModel entity)
+        {
+        }
+
+        [NonAction]
+        private void CustomMapBeforeUpdate(TEditModel editModel, TModel entity)
+        {
+        }
+
+        [NonAction]
+        private void AfterUpdate(TEditModel editModel, TModel entity)
+        {
+        }
 
         private List<string> GetNotModifiedProperties(TModel entity)
         {
