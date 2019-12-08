@@ -1,4 +1,4 @@
-			using System; 
+			using System.ComponentModel.DataAnnotations;
 using Yashil.Common.Core.Interfaces;
 namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
 {
@@ -50,13 +50,24 @@ namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
 	                get => Id;
 	                set => Id = value;
 	            }
+
         public int Id { get; set; }
+				
+					[StringLength(20)]
+										 [Required] 
 				
         public string Title { get; set; }
 				
+					[StringLength(20)]
+										 [Required] 
+				
         public string BaseType { get; set; }
 				
+					
+					
         public string Description { get; set; }
+				
+					 [Required] 
 				
         public bool IsActive { get; set; }
 				

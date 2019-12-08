@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -53,10 +54,27 @@ namespace YashilReport.Infrastructure.ServiceImpl
             return report.SaveToJsonString();
         }
 
-        public override Task<ReportStore> AddAsync(ReportStore reportStore, bool saveAfterAdd = false)
+
+        public void DeleteContentionString(int reportId, bool save = false)
+        {
+            _reportStoreRepository.DeleteContentionString(reportId);
+        }
+
+        public async Task<ReportStore> GetEntityForEdit(int reportId)
+        {
+            return await _reportStoreRepository.GetForEditAsync(reportId, true);
+        }
+
+        public override async Task<ReportStore> AddAsync(ReportStore reportStore, bool saveAfterAdd = false)
         {
             reportStore.ReportFile = new StiReport().SaveToByteArray();
-            return base.AddAsync(reportStore, saveAfterAdd);
+            return await base.AddAsync(reportStore, saveAfterAdd);
+        }
+
+        public override Task<ValueTask<ReportStore>?> UpdateAsync(ReportStore t, object key,
+            List<string> modifiedProperties, bool saveAfterUpdate = false)
+        {
+            return base.UpdateAsync(t, key, modifiedProperties, saveAfterUpdate);
         }
     }
 }

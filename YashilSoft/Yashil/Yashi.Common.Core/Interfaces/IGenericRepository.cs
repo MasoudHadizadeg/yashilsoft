@@ -15,6 +15,7 @@ namespace Yashil.Common.Core.Interfaces
 
         // T Update(T t, object key, string[] modifiedProperties);
         Task<T> AddAsync(T t);
+        T Add(T t);
         Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> modifiedProperties);
         T Get(object id, bool readOnly = false);
         IQueryable<T> GetAll(bool readOnly = false);

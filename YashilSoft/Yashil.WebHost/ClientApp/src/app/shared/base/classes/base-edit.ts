@@ -205,7 +205,6 @@ export class BaseEdit implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loadEntityData();
     }
 
     public afterLoadData(res: any): any {

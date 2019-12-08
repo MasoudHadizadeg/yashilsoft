@@ -78,6 +78,6 @@ SELECT s.name                           AS '@schema',
        )
 FROM   sys.schemas                      AS s
        INNER JOIN sys.tables            AS t
-            ON  s.schema_id = t.schema_id AND t.name NOT IN ('sysdiagrams','TableDesc') and s.name='base'
+            ON  s.schema_id = t.schema_id AND t.name NOT IN ('sysdiagrams','TableDesc') and s.name='um'
                 FOR XML PATH('Table'),
        ROOT('Tables')

@@ -11,30 +11,30 @@ import {AuthGuard} from './shared/_guards';
 import {JwtInterceptor} from './shared/_helpers';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 
 @NgModule({
-  declarations: [AppComponent, ContentLayoutComponent],
-  imports: [
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    SharedModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient]
-      }
-    })
-  ],
-  providers: [
-    AuthGuard,
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
-  ],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, ContentLayoutComponent],
+    imports: [
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        SharedModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient]
+            }
+        })
+    ],
+    providers: [
+        AuthGuard,
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

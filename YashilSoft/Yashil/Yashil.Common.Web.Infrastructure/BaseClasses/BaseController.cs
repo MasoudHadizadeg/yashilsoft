@@ -58,13 +58,18 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
         {
             try
             {
-                return await _genericService.GetAsync<TEditModel>(_mapper, id, true);
+                return await GetEntityForEdit(id);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        protected virtual async Task<TEditModel> GetEntityForEdit(TK id)
+        {
+            return await _genericService.GetAsync<TEditModel>(_mapper, id, true);
         }
 
         [HttpDelete("{id}")]
@@ -132,7 +137,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
                 entity.ModificationDate = DateTime.Now;
 
                 CustomMapBeforeUpdate(editModel, entity);
-                List<string> notModifiedProperties = GetNotModifiedProperties(entity);
+                var notModifiedProperties = GetNotModifiedProperties(entity);
                 await _genericService.UpdateAsync(entity, entity.Id, notModifiedProperties, true);
                 AfterUpdate(editModel, entity);
             }
@@ -200,32 +205,32 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
         }
 
         [NonAction]
-        private void CustomMapAfterSelectById(TEditModel model)
+        protected virtual void CustomMapAfterSelectById(TEditModel model)
         {
         }
 
-        private string CustomValidateBeforeInsert(TEditModel editModel)
+        protected virtual string CustomValidateBeforeInsert(TEditModel editModel)
         {
             return null;
         }
 
         [NonAction]
-        private void AfterInsert(TEditModel editModel, TModel entity)
+        protected virtual void AfterInsert(TEditModel editModel, TModel entity)
         {
         }
 
         [NonAction]
-        private void CustomMapBeforeInsert(TEditModel editModel, TModel entity)
+        protected virtual void CustomMapBeforeInsert(TEditModel editModel, TModel entity)
         {
         }
 
         [NonAction]
-        private void CustomMapBeforeUpdate(TEditModel editModel, TModel entity)
+        protected virtual void CustomMapBeforeUpdate(TEditModel editModel, TModel entity)
         {
         }
 
         [NonAction]
-        private void AfterUpdate(TEditModel editModel, TModel entity)
+        protected virtual void AfterUpdate(TEditModel editModel, TModel entity)
         {
         }
 

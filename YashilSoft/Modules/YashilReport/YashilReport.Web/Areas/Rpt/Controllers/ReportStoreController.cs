@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
@@ -14,13 +15,15 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IReportStoreService _reportStoreService;
+        private readonly IReportConnectionStringService _reportConnectionStringService;
 
-
-        public ReportStoreController(IReportStoreService reportStoreService, IMapper mapper,
+        public ReportStoreController(IReportStoreService reportStoreService,
+            IReportConnectionStringService reportConnectionStringService, IMapper mapper,
             IWebHostEnvironment webHostEnvironment) : base(reportStoreService, mapper)
         {
             _mapper = mapper;
             _reportStoreService = reportStoreService;
+            _reportConnectionStringService = reportConnectionStringService;
         }
 
 
@@ -86,6 +89,47 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
 //            if (commandObject.Database == "MS SQL") result = new MssqlAdapter().Process(commandObject);
 //
 //            return new ObjectResult(result);
+        }
+
+        protected override void CustomMapBeforeInsert(ReportStoreEditModel editModel, ReportStore entity)
+        {
+            CustomMap(editModel, entity);
+        }
+
+        protected override void CustomMapBeforeUpdate(ReportStoreEditModel editModel, ReportStore entity)
+        {
+            _reportStoreService.DeleteContentionString(editModel.Id);
+            foreach (var connectionStringId in editModel.ConnectionStringList)
+            {
+               _reportConnectionStringService.Add(new ReportConnectionString
+               {
+                    ConnectionStringId = Convert.ToInt32(connectionStringId),
+                    ReportId = editModel.Id,
+                    CreateBy = CurrentUserId.Value,
+                    CreationDate = DateTime.Now
+                },false);
+            }
+            
+        }
+
+        private void CustomMap(ReportStoreEditModel editModel, ReportStore entity)
+        {
+            foreach (var connectionStringId in editModel.ConnectionStringList)
+            {
+                entity.ReportConnectionString.Add(new ReportConnectionString()
+                {
+                    ConnectionStringId = Convert.ToInt32(connectionStringId),
+                    ReportId = editModel.Id,
+                    CreateBy = CurrentUserId.Value,
+                    CreationDate = DateTime.Now
+                });
+            }
+        }
+
+        protected override async Task<ReportStoreEditModel> GetEntityForEdit(int id)
+        {
+            var reportStore = await _reportStoreService.GetEntityForEdit(id);
+            return _mapper.Map<ReportStore, ReportStoreEditModel>(reportStore);
         }
     }
 }

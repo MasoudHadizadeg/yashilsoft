@@ -6,6 +6,7 @@ namespace YashilReport.Core.Services
 {
 	public interface IReportConnectionStringService : IGenericService<ReportConnectionString>
     {
+        
     }
 }      
  

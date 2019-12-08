@@ -1,137 +1,135 @@
-
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 using AutoMapper;
+using Yashil.Core.Entities;
 using YashilDashboard.Web.Areas.Dash.ViewModels;
 
 namespace YashilDashboard.Web.Areas.Dash
 {
+    public class YashilDashboardProfile : Profile, IOrderedMapperProfile
+    {
+        public int Order => 1;
 
-	public class YashilDashboardProfile : Profile,IOrderedMapperProfile
-		{
-             public int Order => 1;
-			 public YashilDashboardProfile()
-				{	
-					
-				CreateMap<DashboardConnectionString, DashboardConnectionStringEditModel>()
-									.ForMember(x => x.DashboardTitle, 
-					b => b.MapFrom(c => c.Dashboard.Title))
-									.ForMember(x => x.ConnectionStringTitle, 
-					b => b.MapFrom(c => c.ConnectionString.Name))
-				;
+        public YashilDashboardProfile()
+        {
+            CreateMap<DashboardStore, DashboardStoreEditModel>()
+                .ForMember(x => x.AccessLevelTitle,
+                    b => b.MapFrom(c => c.AccessLevel.Title))
+                ;
 
-                CreateMap<DashboardConnectionString, DashboardConnectionStringListViewModel>()
-											.ForMember(x => x.DashboardTitle, 
-					b => b.MapFrom(c => c.Dashboard.Title))					.ForMember(x => x.ConnectionStringTitle, 
-					b => b.MapFrom(c => c.ConnectionString.Name));
+            CreateMap<DashboardStore, DashboardStoreListViewModel>()
+                .ForMember(x => x.AccessLevelTitle,
+                    b => b.MapFrom(c => c.AccessLevel.Title));
 
-				CreateMap<DashboardConnectionString, DashboardConnectionStringViewModel>()
-											.ForMember(x => x.DashboardTitle, 
-					b => b.MapFrom(c => c.Dashboard.Title))					.ForMember(x => x.ConnectionStringTitle, 
-					b => b.MapFrom(c => c.ConnectionString.Name));
+            CreateMap<DashboardStore, DashboardStoreViewModel>()
+                .ForMember(x => x.AccessLevelTitle,
+                    b => b.MapFrom(c => c.AccessLevel.Title));
 
-				CreateMap<DashboardConnectionStringEditModel, DashboardConnectionString>();
+            CreateMap<DashboardStoreEditModel, DashboardStore>();
 
-                CreateMap<DashboardConnectionString, DashboardConnectionStringSimpleViewModel>();
-	   
-					
-				CreateMap<UserDashboard, UserDashboardEditModel>()
-									.ForMember(x => x.UserTitle, 
-					b => b.MapFrom(c => c.User.UserName))
-									.ForMember(x => x.DashboardTitle, 
-					b => b.MapFrom(c => c.Dashboard.Title))
-				;
+            CreateMap<DashboardStore, DashboardStoreSimpleViewModel>();
 
-                CreateMap<UserDashboard, UserDashboardListViewModel>()
-											.ForMember(x => x.UserTitle, 
-					b => b.MapFrom(c => c.User.UserName))					.ForMember(x => x.DashboardTitle, 
-					b => b.MapFrom(c => c.Dashboard.Title));
 
-				CreateMap<UserDashboard, UserDashboardViewModel>()
-											.ForMember(x => x.UserTitle, 
-					b => b.MapFrom(c => c.User.UserName))					.ForMember(x => x.DashboardTitle, 
-					b => b.MapFrom(c => c.Dashboard.Title));
+            CreateMap<DashboardConnectionString, DashboardConnectionStringEditModel>()
+                .ForMember(x => x.DashboardTitle,
+                    b => b.MapFrom(c => c.Dashboard.Title))
+                .ForMember(x => x.ConnectionStringTitle,
+                    b => b.MapFrom(c => c.ConnectionString.Title))
+                ;
 
-				CreateMap<UserDashboardEditModel, UserDashboard>();
+            CreateMap<DashboardConnectionString, DashboardConnectionStringListViewModel>()
+                .ForMember(x => x.DashboardTitle,
+                    b => b.MapFrom(c => c.Dashboard.Title)).ForMember(x => x.ConnectionStringTitle,
+                    b => b.MapFrom(c => c.ConnectionString.Title));
 
-                CreateMap<UserDashboard, UserDashboardSimpleViewModel>();
-	   
-					
-				CreateMap<RoleDashboard, RoleDashboardEditModel>()
-									.ForMember(x => x.RoleTitle, 
-					b => b.MapFrom(c => c.Role.Title))
-									.ForMember(x => x.DashboardTitle, 
-					b => b.MapFrom(c => c.Dashboard.Title))
-				;
+            CreateMap<DashboardConnectionString, DashboardConnectionStringViewModel>()
+                .ForMember(x => x.DashboardTitle,
+                    b => b.MapFrom(c => c.Dashboard.Title)).ForMember(x => x.ConnectionStringTitle,
+                    b => b.MapFrom(c => c.ConnectionString.Title));
 
-                CreateMap<RoleDashboard, RoleDashboardListViewModel>()
-											.ForMember(x => x.RoleTitle, 
-					b => b.MapFrom(c => c.Role.Title))					.ForMember(x => x.DashboardTitle, 
-					b => b.MapFrom(c => c.Dashboard.Title));
+            CreateMap<DashboardConnectionStringEditModel, DashboardConnectionString>();
 
-				CreateMap<RoleDashboard, RoleDashboardViewModel>()
-											.ForMember(x => x.RoleTitle, 
-					b => b.MapFrom(c => c.Role.Title))					.ForMember(x => x.DashboardTitle, 
-					b => b.MapFrom(c => c.Dashboard.Title));
+            CreateMap<DashboardConnectionString, DashboardConnectionStringSimpleViewModel>();
 
-				CreateMap<RoleDashboardEditModel, RoleDashboard>();
 
-                CreateMap<RoleDashboard, RoleDashboardSimpleViewModel>();
-	   
-					
-				CreateMap<DashboardGroup, DashboardGroupEditModel>()
-				;
+            CreateMap<UserDashboard, UserDashboardEditModel>()
+                .ForMember(x => x.UserTitle,
+                    b => b.MapFrom(c => c.User.UserName))
+                .ForMember(x => x.DashboardTitle,
+                    b => b.MapFrom(c => c.Dashboard.Title))
+                ;
 
-                CreateMap<DashboardGroup, DashboardGroupListViewModel>()
-						;
+            CreateMap<UserDashboard, UserDashboardListViewModel>()
+                .ForMember(x => x.UserTitle,
+                    b => b.MapFrom(c => c.User.UserName)).ForMember(x => x.DashboardTitle,
+                    b => b.MapFrom(c => c.Dashboard.Title));
 
-				CreateMap<DashboardGroup, DashboardGroupViewModel>()
-						;
+            CreateMap<UserDashboard, UserDashboardViewModel>()
+                .ForMember(x => x.UserTitle,
+                    b => b.MapFrom(c => c.User.UserName)).ForMember(x => x.DashboardTitle,
+                    b => b.MapFrom(c => c.Dashboard.Title));
 
-				CreateMap<DashboardGroupEditModel, DashboardGroup>();
+            CreateMap<UserDashboardEditModel, UserDashboard>();
 
-                CreateMap<DashboardGroup, DashboardGroupSimpleViewModel>();
-	   
-					
-				CreateMap<DashboardStore, DashboardStoreEditModel>()
-									.ForMember(x => x.AccessLevelTitle, 
-					b => b.MapFrom(c => c.AccessLevel.Title))
-				;
+            CreateMap<UserDashboard, UserDashboardSimpleViewModel>();
 
-                CreateMap<DashboardStore, DashboardStoreListViewModel>()
-											.ForMember(x => x.AccessLevelTitle, 
-					b => b.MapFrom(c => c.AccessLevel.Title));
 
-				CreateMap<DashboardStore, DashboardStoreViewModel>()
-											.ForMember(x => x.AccessLevelTitle, 
-					b => b.MapFrom(c => c.AccessLevel.Title));
+            CreateMap<RoleDashboard, RoleDashboardEditModel>()
+                .ForMember(x => x.RoleTitle,
+                    b => b.MapFrom(c => c.Role.Title))
+                .ForMember(x => x.DashboardTitle,
+                    b => b.MapFrom(c => c.Dashboard.Title))
+                ;
 
-				CreateMap<DashboardStoreEditModel, DashboardStore>();
+            CreateMap<RoleDashboard, RoleDashboardListViewModel>()
+                .ForMember(x => x.RoleTitle,
+                    b => b.MapFrom(c => c.Role.Title)).ForMember(x => x.DashboardTitle,
+                    b => b.MapFrom(c => c.Dashboard.Title));
 
-                CreateMap<DashboardStore, DashboardStoreSimpleViewModel>();
-	   
-					
-				CreateMap<DashboardGroupDashboard, DashboardGroupDashboardEditModel>()
-									.ForMember(x => x.DashboardStoreTitle, 
-					b => b.MapFrom(c => c.DashboardStore.Title))
-									.ForMember(x => x.DashboardGroupTitle, 
-					b => b.MapFrom(c => c.DashboardGroup.Title))
-				;
+            CreateMap<RoleDashboard, RoleDashboardViewModel>()
+                .ForMember(x => x.RoleTitle,
+                    b => b.MapFrom(c => c.Role.Title)).ForMember(x => x.DashboardTitle,
+                    b => b.MapFrom(c => c.Dashboard.Title));
 
-                CreateMap<DashboardGroupDashboard, DashboardGroupDashboardListViewModel>()
-											.ForMember(x => x.DashboardStoreTitle, 
-					b => b.MapFrom(c => c.DashboardStore.Title))					.ForMember(x => x.DashboardGroupTitle, 
-					b => b.MapFrom(c => c.DashboardGroup.Title));
+            CreateMap<RoleDashboardEditModel, RoleDashboard>();
 
-				CreateMap<DashboardGroupDashboard, DashboardGroupDashboardViewModel>()
-											.ForMember(x => x.DashboardStoreTitle, 
-					b => b.MapFrom(c => c.DashboardStore.Title))					.ForMember(x => x.DashboardGroupTitle, 
-					b => b.MapFrom(c => c.DashboardGroup.Title));
+            CreateMap<RoleDashboard, RoleDashboardSimpleViewModel>();
 
-				CreateMap<DashboardGroupDashboardEditModel, DashboardGroupDashboard>();
 
-                CreateMap<DashboardGroupDashboard, DashboardGroupDashboardSimpleViewModel>();
-	   
-			}
-	}
+            CreateMap<DashboardGroup, DashboardGroupEditModel>()
+                ;
+
+            CreateMap<DashboardGroup, DashboardGroupListViewModel>()
+                ;
+
+            CreateMap<DashboardGroup, DashboardGroupViewModel>()
+                ;
+
+            CreateMap<DashboardGroupEditModel, DashboardGroup>();
+
+            CreateMap<DashboardGroup, DashboardGroupSimpleViewModel>();
+
+
+            CreateMap<DashboardGroupDashboard, DashboardGroupDashboardEditModel>()
+                .ForMember(x => x.DashboardStoreTitle,
+                    b => b.MapFrom(c => c.DashboardStore.Title))
+                .ForMember(x => x.DashboardGroupTitle,
+                    b => b.MapFrom(c => c.DashboardGroup.Title))
+                ;
+
+            CreateMap<DashboardGroupDashboard, DashboardGroupDashboardListViewModel>()
+                .ForMember(x => x.DashboardStoreTitle,
+                    b => b.MapFrom(c => c.DashboardStore.Title)).ForMember(x => x.DashboardGroupTitle,
+                    b => b.MapFrom(c => c.DashboardGroup.Title));
+
+            CreateMap<DashboardGroupDashboard, DashboardGroupDashboardViewModel>()
+                .ForMember(x => x.DashboardStoreTitle,
+                    b => b.MapFrom(c => c.DashboardStore.Title)).ForMember(x => x.DashboardGroupTitle,
+                    b => b.MapFrom(c => c.DashboardGroup.Title));
+
+            CreateMap<DashboardGroupDashboardEditModel, DashboardGroupDashboard>();
+
+            CreateMap<DashboardGroupDashboard, DashboardGroupDashboardSimpleViewModel>();
+        }
+    }
 }

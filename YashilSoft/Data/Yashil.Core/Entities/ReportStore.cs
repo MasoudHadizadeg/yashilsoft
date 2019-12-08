@@ -16,6 +16,7 @@ namespace Yashil.Core.Entities
 
         public int Id { get; set; }
         public string Title { get; set; }
+        public byte[] ReportFile { get; set; }
         public string CssClass { get; set; }
         public string Picture { get; set; }
         public string Color { get; set; }
@@ -31,7 +32,6 @@ namespace Yashil.Core.Entities
         public int? ApplicationId { get; set; }
         public int AccessLevelId { get; set; }
         public bool Deleted { get; set; }
-        public byte[] ReportFile { get; set; }
 
         public virtual AccessLevel AccessLevel { get; set; }
         public virtual User CreateByNavigation { get; set; }

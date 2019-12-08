@@ -91,17 +91,16 @@ namespace YashilUserManagement.Web.Areas.UserMng
 
 
             CreateMap<RoleResourceAction, RoleResourceActionEditModel>()
-               
                 .ForMember(x => x.RoleTitle,
                     b => b.MapFrom(c => c.Role.Title))
                 ;
 
             CreateMap<RoleResourceAction, RoleResourceActionListViewModel>()
-               .ForMember(x => x.RoleTitle,
+                .ForMember(x => x.RoleTitle,
                     b => b.MapFrom(c => c.Role.Title));
 
             CreateMap<RoleResourceAction, RoleResourceActionViewModel>()
-               .ForMember(x => x.RoleTitle,
+                .ForMember(x => x.RoleTitle,
                     b => b.MapFrom(c => c.Role.Title));
 
             CreateMap<RoleResourceActionEditModel, RoleResourceAction>();

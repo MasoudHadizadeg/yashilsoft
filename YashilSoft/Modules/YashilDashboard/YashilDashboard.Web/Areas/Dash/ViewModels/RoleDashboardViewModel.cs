@@ -1,4 +1,4 @@
-			using System; 
+			using System.ComponentModel.DataAnnotations;
 using Yashil.Common.Core.Interfaces;
 namespace YashilDashboard.Web.Areas.Dash.ViewModels
 {
@@ -46,10 +46,17 @@ namespace YashilDashboard.Web.Areas.Dash.ViewModels
 	                get => Id;
 	                set => Id = value;
 	            }
+
         public int Id { get; set; }
+				
+					[Range(0,int.MaxValue)]
+										 [Required] 
 				
         public int RoleId { get; set; }
 				public string RoleTitle { get; set; }	
+				
+					[Range(0,int.MaxValue)]
+										 [Required] 
 				
         public int DashboardId { get; set; }
 				public string DashboardTitle { get; set; }	

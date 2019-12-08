@@ -8,7 +8,7 @@
 			<#
 			var table = SqlToCsharpHelper.table;
 			#>
-using System; 
+using System.ComponentModel.DataAnnotations;
 using Yashil.Common.Core.Interfaces;
 namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
 {
@@ -41,7 +41,7 @@ namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
 					propertyType += "?";
 				}
 
-#>
+				#>
         public <#= propertyType #> <#= col.Name #> { get; set; }
 		<# if (col.IsForeignKey)
 				{
@@ -65,7 +65,7 @@ namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
 	        }
 <#
 			// Keep count so we don't whitespace the last property/column
-			 i = 0;
+			i = 0;
 			// Iterate all columns
 			foreach (Column col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
 			{
@@ -128,7 +128,26 @@ namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
 					propertyType += "?";
 				}
 
-#>
+				if (propertyType == "int" && col.IsPrimaryKey != "1")
+				{
+					#>
+					[Range(0,int.MaxValue)]
+					<#
+				}
+				if (propertyType == "string" && col.MaxLength!="-1")
+				{
+					#>
+					[StringLength(<#=col.MaxLength #>)]
+					<#
+				}
+				if (!col.AllowNull && col.IsPrimaryKey != "1")
+				{
+					#>
+					 [Required] 
+				<#
+				}
+				#>
+
         public <#= propertyType #> <#= col.Name #> { get; set; }
 		<# if (col.IsForeignKey)
 				{
@@ -163,27 +182,32 @@ public class <#= table.Name #>SimpleViewModel:IBaseViewModel
 	            }
 <#
 			// Keep count so we don't whitespace the last property/column
-			 columnCount = table.Columns.Count;
+			columnCount = table.Columns.Count;
 			i = 0;
 			// Iterate all columns
-			bool hasTitleColumn=false;
-			foreach (Column col in table.Columns.Where(x => ApplicationInfo.Instance.SimpleViewModelColumns.Contains(x.Name)))
+			bool hasTitleColumn = false;
+			foreach (Column col in table.Columns.Where(x =>
+				ApplicationInfo.Instance.SimpleViewModelColumns.Contains(x.Name)))
 			{
 				i++;
 				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
-				if(col.Name=="Title"){
-					hasTitleColumn=true;
+				if (col.Name == "Title")
+				{
+					hasTitleColumn = true;
 				}
+
 				#>
         public <#= propertyType #> <#= col.Name #> { get; set; }
 
 			<#
-				}
+			}
 			
-			if(!hasTitleColumn)
-			{#>
+			if (!hasTitleColumn)
+			{
+				#>
 				public string Title { get; set; }
-			<#}#>
+			<#
+			} #>
     }
 
 }      

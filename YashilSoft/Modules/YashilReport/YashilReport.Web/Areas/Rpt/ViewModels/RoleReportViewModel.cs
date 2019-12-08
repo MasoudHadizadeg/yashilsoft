@@ -1,4 +1,4 @@
-			using System; 
+			using System.ComponentModel.DataAnnotations;
 using Yashil.Common.Core.Interfaces;
 namespace YashilReport.Web.Areas.Rpt.ViewModels
 {
@@ -46,10 +46,17 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
 	                get => Id;
 	                set => Id = value;
 	            }
+
         public int Id { get; set; }
+				
+					[Range(0,int.MaxValue)]
+										 [Required] 
 				
         public int RoleId { get; set; }
 				public string RoleTitle { get; set; }	
+				
+					[Range(0,int.MaxValue)]
+										 [Required] 
 				
         public int ReportId { get; set; }
 				public string ReportTitle { get; set; }	

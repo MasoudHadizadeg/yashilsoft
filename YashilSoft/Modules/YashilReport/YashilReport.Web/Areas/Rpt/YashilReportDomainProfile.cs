@@ -1,137 +1,132 @@
-
+using System.Linq;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 using AutoMapper;
 using YashilReport.Web.Areas.Rpt.ViewModels;
+using static System.String;
 
 namespace YashilReport.Web.Areas.Rpt
 {
+    public class YashilReportProfile : Profile, IOrderedMapperProfile
+    {
+        public int Order => 1;
 
-	public class YashilReportProfile : Profile,IOrderedMapperProfile
-		{
-             public int Order => 1;
-			 public YashilReportProfile()
-				{	
-					
-				CreateMap<ReportGroup, ReportGroupEditModel>()
-				;
+        public YashilReportProfile()
+        {
+            CreateMap<ReportGroup, ReportGroupEditModel>();
 
-                CreateMap<ReportGroup, ReportGroupListViewModel>()
-						;
+            CreateMap<ReportGroup, ReportGroupListViewModel>();
 
-				CreateMap<ReportGroup, ReportGroupViewModel>()
-						;
+            CreateMap<ReportGroup, ReportGroupViewModel>();
 
-				CreateMap<ReportGroupEditModel, ReportGroup>();
+            CreateMap<ReportGroupEditModel, ReportGroup>();
 
-                CreateMap<ReportGroup, ReportGroupSimpleViewModel>();
-	   
-					
-				CreateMap<ReportConnectionString, ReportConnectionStringEditModel>()
-									.ForMember(x => x.ReportTitle, 
-					b => b.MapFrom(c => c.Report.Title))
-									.ForMember(x => x.ConnectionStringTitle, 
-					b => b.MapFrom(c => c.ConnectionString.Name))
-				;
+            CreateMap<ReportGroup, ReportGroupSimpleViewModel>();
 
-                CreateMap<ReportConnectionString, ReportConnectionStringListViewModel>()
-											.ForMember(x => x.ReportTitle, 
-					b => b.MapFrom(c => c.Report.Title))					.ForMember(x => x.ConnectionStringTitle, 
-					b => b.MapFrom(c => c.ConnectionString.Name));
 
-				CreateMap<ReportConnectionString, ReportConnectionStringViewModel>()
-											.ForMember(x => x.ReportTitle, 
-					b => b.MapFrom(c => c.Report.Title))					.ForMember(x => x.ConnectionStringTitle, 
-					b => b.MapFrom(c => c.ConnectionString.Name));
+            CreateMap<ReportConnectionString, ReportConnectionStringEditModel>()
+                .ForMember(x => x.ReportTitle,
+                    b => b.MapFrom(c => c.Report.Title))
+                .ForMember(x => x.ConnectionStringTitle,
+                    b => b.MapFrom(c => c.ConnectionString.Title));
 
-				CreateMap<ReportConnectionStringEditModel, ReportConnectionString>();
+            CreateMap<ReportConnectionString, ReportConnectionStringListViewModel>()
+                .ForMember(x => x.ReportTitle,
+                    b => b.MapFrom(c => c.Report.Title)).ForMember(x => x.ConnectionStringTitle,
+                    b => b.MapFrom(c => c.ConnectionString.Title));
 
-                CreateMap<ReportConnectionString, ReportConnectionStringSimpleViewModel>();
-	   
-					
-				CreateMap<RoleReport, RoleReportEditModel>()
-									.ForMember(x => x.RoleTitle, 
-					b => b.MapFrom(c => c.Role.Title))
-									.ForMember(x => x.ReportTitle, 
-					b => b.MapFrom(c => c.Report.Title))
-				;
+            CreateMap<ReportConnectionString, ReportConnectionStringViewModel>()
+                .ForMember(x => x.ReportTitle,
+                    b => b.MapFrom(c => c.Report.Title)).ForMember(x => x.ConnectionStringTitle,
+                    b => b.MapFrom(c => c.ConnectionString.Title));
 
-                CreateMap<RoleReport, RoleReportListViewModel>()
-											.ForMember(x => x.RoleTitle, 
-					b => b.MapFrom(c => c.Role.Title))					.ForMember(x => x.ReportTitle, 
-					b => b.MapFrom(c => c.Report.Title));
+            CreateMap<ReportConnectionStringEditModel, ReportConnectionString>();
 
-				CreateMap<RoleReport, RoleReportViewModel>()
-											.ForMember(x => x.RoleTitle, 
-					b => b.MapFrom(c => c.Role.Title))					.ForMember(x => x.ReportTitle, 
-					b => b.MapFrom(c => c.Report.Title));
+            CreateMap<ReportConnectionString, ReportConnectionStringSimpleViewModel>();
 
-				CreateMap<RoleReportEditModel, RoleReport>();
 
-                CreateMap<RoleReport, RoleReportSimpleViewModel>();
-	   
-					
-				CreateMap<ReportStore, ReportStoreEditModel>()
-									.ForMember(x => x.AccessLevelTitle, 
-					b => b.MapFrom(c => c.AccessLevel.Title))
-				;
+            CreateMap<ReportStore, ReportStoreEditModel>()
+                .ForMember(x => x.AccessLevelTitle, b => b.MapFrom(c => c.AccessLevel.Title)).ForMember(
+                    x => x.ConnectionStringIds,
+                    b => b.MapFrom(c => Join(",", c.ReportConnectionString.Select(d => d.ConnectionStringId))));
 
-                CreateMap<ReportStore, ReportStoreListViewModel>()
-											.ForMember(x => x.AccessLevelTitle, 
-					b => b.MapFrom(c => c.AccessLevel.Title));
+            CreateMap<ReportStore, ReportStoreListViewModel>()
+                .ForMember(x => x.AccessLevelTitle,
+                    b => b.MapFrom(c => c.AccessLevel.Title));
 
-				CreateMap<ReportStore, ReportStoreViewModel>()
-											.ForMember(x => x.AccessLevelTitle, 
-					b => b.MapFrom(c => c.AccessLevel.Title));
+            CreateMap<ReportStore, ReportStoreViewModel>()
+                .ForMember(x => x.AccessLevelTitle,
+                    b => b.MapFrom(c => c.AccessLevel.Title));
 
-				CreateMap<ReportStoreEditModel, ReportStore>();
+            CreateMap<ReportStoreEditModel, ReportStore>();
 
-                CreateMap<ReportStore, ReportStoreSimpleViewModel>();
-	   
-					
-				CreateMap<UserReport, UserReportEditModel>()
-									.ForMember(x => x.UserTitle, 
-					b => b.MapFrom(c => c.User.UserName))
-									.ForMember(x => x.ReportTitle, 
-					b => b.MapFrom(c => c.Report.Title))
-				;
+            CreateMap<ReportStore, ReportStoreSimpleViewModel>();
 
-                CreateMap<UserReport, UserReportListViewModel>()
-											.ForMember(x => x.UserTitle, 
-					b => b.MapFrom(c => c.User.UserName))					.ForMember(x => x.ReportTitle, 
-					b => b.MapFrom(c => c.Report.Title));
 
-				CreateMap<UserReport, UserReportViewModel>()
-											.ForMember(x => x.UserTitle, 
-					b => b.MapFrom(c => c.User.UserName))					.ForMember(x => x.ReportTitle, 
-					b => b.MapFrom(c => c.Report.Title));
+            CreateMap<RoleReport, RoleReportEditModel>()
+                .ForMember(x => x.RoleTitle,
+                    b => b.MapFrom(c => c.Role.Title))
+                .ForMember(x => x.ReportTitle,
+                    b => b.MapFrom(c => c.Report.Title))
+                ;
 
-				CreateMap<UserReportEditModel, UserReport>();
+            CreateMap<RoleReport, RoleReportListViewModel>()
+                .ForMember(x => x.RoleTitle,
+                    b => b.MapFrom(c => c.Role.Title)).ForMember(x => x.ReportTitle,
+                    b => b.MapFrom(c => c.Report.Title));
 
-                CreateMap<UserReport, UserReportSimpleViewModel>();
-	   
-					
-				CreateMap<ReportGroupReport, ReportGroupReportEditModel>()
-									.ForMember(x => x.ReportStoreTitle, 
-					b => b.MapFrom(c => c.ReportStore.Title))
-									.ForMember(x => x.ReportGroupTitle, 
-					b => b.MapFrom(c => c.ReportGroup.Title))
-				;
+            CreateMap<RoleReport, RoleReportViewModel>()
+                .ForMember(x => x.RoleTitle,
+                    b => b.MapFrom(c => c.Role.Title)).ForMember(x => x.ReportTitle,
+                    b => b.MapFrom(c => c.Report.Title));
 
-                CreateMap<ReportGroupReport, ReportGroupReportListViewModel>()
-											.ForMember(x => x.ReportStoreTitle, 
-					b => b.MapFrom(c => c.ReportStore.Title))					.ForMember(x => x.ReportGroupTitle, 
-					b => b.MapFrom(c => c.ReportGroup.Title));
+            CreateMap<RoleReportEditModel, RoleReport>();
 
-				CreateMap<ReportGroupReport, ReportGroupReportViewModel>()
-											.ForMember(x => x.ReportStoreTitle, 
-					b => b.MapFrom(c => c.ReportStore.Title))					.ForMember(x => x.ReportGroupTitle, 
-					b => b.MapFrom(c => c.ReportGroup.Title));
+            CreateMap<RoleReport, RoleReportSimpleViewModel>();
 
-				CreateMap<ReportGroupReportEditModel, ReportGroupReport>();
 
-                CreateMap<ReportGroupReport, ReportGroupReportSimpleViewModel>();
-	   
-			}
-	}
+            CreateMap<UserReport, UserReportEditModel>()
+                .ForMember(x => x.UserTitle,
+                    b => b.MapFrom(c => c.User.UserName))
+                .ForMember(x => x.ReportTitle,
+                    b => b.MapFrom(c => c.Report.Title))
+                ;
+
+            CreateMap<UserReport, UserReportListViewModel>()
+                .ForMember(x => x.UserTitle,
+                    b => b.MapFrom(c => c.User.UserName)).ForMember(x => x.ReportTitle,
+                    b => b.MapFrom(c => c.Report.Title));
+
+            CreateMap<UserReport, UserReportViewModel>()
+                .ForMember(x => x.UserTitle,
+                    b => b.MapFrom(c => c.User.UserName)).ForMember(x => x.ReportTitle,
+                    b => b.MapFrom(c => c.Report.Title));
+
+            CreateMap<UserReportEditModel, UserReport>();
+
+            CreateMap<UserReport, UserReportSimpleViewModel>();
+
+
+            CreateMap<ReportGroupReport, ReportGroupReportEditModel>()
+                .ForMember(x => x.ReportStoreTitle,
+                    b => b.MapFrom(c => c.ReportStore.Title))
+                .ForMember(x => x.ReportGroupTitle,
+                    b => b.MapFrom(c => c.ReportGroup.Title))
+                ;
+
+            CreateMap<ReportGroupReport, ReportGroupReportListViewModel>()
+                .ForMember(x => x.ReportStoreTitle,
+                    b => b.MapFrom(c => c.ReportStore.Title)).ForMember(x => x.ReportGroupTitle,
+                    b => b.MapFrom(c => c.ReportGroup.Title));
+
+            CreateMap<ReportGroupReport, ReportGroupReportViewModel>()
+                .ForMember(x => x.ReportStoreTitle,
+                    b => b.MapFrom(c => c.ReportStore.Title)).ForMember(x => x.ReportGroupTitle,
+                    b => b.MapFrom(c => c.ReportGroup.Title));
+
+            CreateMap<ReportGroupReportEditModel, ReportGroupReport>();
+
+            CreateMap<ReportGroupReport, ReportGroupReportSimpleViewModel>();
+        }
+    }
 }

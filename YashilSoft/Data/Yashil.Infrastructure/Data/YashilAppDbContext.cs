@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Yashil.Core.Entities;
+
 namespace Yashil.Infrastructure.Data
 {
     public partial class YashilAppDbContext : DbContext
@@ -42,7 +43,8 @@ namespace Yashil.Infrastructure.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=YashilDb;Persist Security Info=True;User ID=sa;Password=salam;MultipleActiveResultSets=True");
+                optionsBuilder.UseSqlServer(
+                    "Data Source=.;Initial Catalog=YashilDb;Persist Security Info=True;User ID=sa;Password=salam;MultipleActiveResultSets=True");
             }
         }
 
@@ -399,7 +401,6 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Code)
                     .HasMaxLength(150)
-                    .IsFixedLength()
                     .HasComment("کد");
 
                 entity.Property(e => e.Color)
@@ -803,7 +804,7 @@ namespace Yashil.Infrastructure.Data
                     .IsUnicode(false)
                     .HasComment("تصویر");
 
-                entity.Property(e => e.ReportFile).HasComment("داشبورد");
+                entity.Property(e => e.ReportFile).HasComment("گزارش");
 
                 entity.Property(e => e.ReportKey)
                     .HasMaxLength(300)
@@ -1397,9 +1398,10 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
                     .HasComment("عنوان");
 
                 entity.HasOne(d => d.CreateByNavigation)
@@ -1432,7 +1434,8 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.BaseType)
                     .IsRequired()
-                    .HasMaxLength(100)
+                    .HasMaxLength(10)
+                    .IsFixedLength()
                     .HasComment("نوع پایه");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
@@ -1458,7 +1461,8 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasMaxLength(100)
+                    .HasMaxLength(10)
+                    .IsFixedLength()
                     .HasComment("عنوان");
 
                 entity.HasOne(d => d.CreateByNavigation)

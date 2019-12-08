@@ -1,7 +1,8 @@
 
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
-using AutoMapper;
+using AutoMapper; 
+using Yashil.Core.Entities;
 using YashilBaseInfo.Web.Areas.BaseInf.ViewModels;
 
 namespace YashilBaseInfo.Web.Areas.BaseInf
@@ -12,20 +13,6 @@ namespace YashilBaseInfo.Web.Areas.BaseInf
              public int Order => 1;
 			 public YashilBaseInfoProfile()
 				{	
-					
-				CreateMap<YashilDataProvider, YashilDataProviderEditModel>()
-				;
-
-                CreateMap<YashilDataProvider, YashilDataProviderListViewModel>()
-						;
-
-				CreateMap<YashilDataProvider, YashilDataProviderViewModel>()
-						;
-
-				CreateMap<YashilDataProviderEditModel, YashilDataProvider>();
-
-                CreateMap<YashilDataProvider, YashilDataProviderSimpleViewModel>();
-	   
 					
 				CreateMap<YashilConnectionString, YashilConnectionStringEditModel>()
 									.ForMember(x => x.DataProviderTitle, 
@@ -57,6 +44,20 @@ namespace YashilBaseInfo.Web.Areas.BaseInf
 				CreateMap<AccessLevelEditModel, AccessLevel>();
 
                 CreateMap<AccessLevel, AccessLevelSimpleViewModel>();
+	   
+					
+				CreateMap<YashilDataProvider, YashilDataProviderEditModel>()
+				;
+
+                CreateMap<YashilDataProvider, YashilDataProviderListViewModel>()
+						;
+
+				CreateMap<YashilDataProvider, YashilDataProviderViewModel>()
+						;
+
+				CreateMap<YashilDataProviderEditModel, YashilDataProvider>();
+
+                CreateMap<YashilDataProvider, YashilDataProviderSimpleViewModel>();
 	   
 			}
 	}

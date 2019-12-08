@@ -52,7 +52,18 @@ namespace Yashil.Common.Infrastructure.Implementations
             return addedEntity;
         }
 
-        public async Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, List<string> modifiedProperties,
+        public TModel Add(TModel t, bool saveAfterAdd = false)
+        {
+            var addedEntity =  _repository.Add(t);
+            if (saveAfterAdd)
+            {
+                 _unitOfWork.Commit();
+            }
+
+            return addedEntity;
+        }
+
+        public virtual async Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, List<string> modifiedProperties,
             bool saveAfterUpdate = false)
         {
             var updateAsync = await _repository.UpdateAsync(t, key, modifiedProperties);
@@ -64,13 +75,13 @@ namespace Yashil.Common.Infrastructure.Implementations
             return updateAsync;
         }
 
-        public async Task<TViewModel> GetAsync<TViewModel>(IMapper mapper, object id, bool readOnly)
+        public virtual async Task<TViewModel> GetAsync<TViewModel>(IMapper mapper, object id, bool readOnly)
         {
             var valueTask = await _repository.GetAsync(id, readOnly);
             return mapper.Map<TViewModel>(valueTask);
         }
 
-        public async Task<List<TViewModel>> GetAllAsync<TViewModel>(IMapper mapper, bool readOnly = false)
+        public virtual async Task<List<TViewModel>> GetAllAsync<TViewModel>(IMapper mapper, bool readOnly = false)
         {
             return await _repository.GetAll(readOnly).ProjectTo<TViewModel>(mapper.ConfigurationProvider).ToListAsync();
         }

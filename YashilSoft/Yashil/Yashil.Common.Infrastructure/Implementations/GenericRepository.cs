@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Yashil.Common.Core.Interfaces;
 
 namespace Yashil.Common.Infrastructure.Implementations
@@ -37,17 +36,6 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             return readOnly ? _context.Set<T>().AsNoTracking() : _context.Set<T>();
         }
-
-        //public async Task<T> GetAsync(object id, bool readOnly = false)
-        //{
-        //    // TODO:FIX ReadOnly
-        //    return
-        //    //readOnly
-        //    //? await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id.Equals(id))
-        //    //    : 
-        //    await _context.Set<T>().FindAsync(id);
-        //}
-
 
         public async Task<IEnumerable<T>> GetAllAsync(bool readOnly = false)
         {
@@ -119,7 +107,6 @@ namespace Yashil.Common.Infrastructure.Implementations
         public T Add(T t)
         {
             _context.Set<T>().Add(t);
-            //   // _context.SaveChanges();
             return t;
         }
 
@@ -145,7 +132,7 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             if (t == null)
                 return null;
-            var exist =await _context.Set<T>().FindAsync(key);
+            var exist = await _context.Set<T>().FindAsync(key);
             var existResult = exist;
             if (existResult != null)
             {

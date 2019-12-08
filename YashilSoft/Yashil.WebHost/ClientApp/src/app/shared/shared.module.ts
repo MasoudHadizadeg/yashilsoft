@@ -23,11 +23,13 @@ import {DxCheckBoxModule} from 'devextreme-angular/ui/check-box'
 import {DxFileUploaderModule} from 'devextreme-angular/ui/file-uploader'
 import {DxFormModule} from 'devextreme-angular/ui/form'
 import {DxLookupModule} from 'devextreme-angular/ui/lookup'
+import {DxColorBoxModule} from 'devextreme-angular/ui/color-box'
 import {DxNumberBoxModule} from 'devextreme-angular/ui/number-box'
 import {DxPopupModule} from 'devextreme-angular/ui/popup'
 import {DxResponsiveBoxModule} from 'devextreme-angular/ui/responsive-box'
 import {DxScrollViewModule} from 'devextreme-angular/ui/scroll-view'
 import {DxSelectBoxModule} from 'devextreme-angular/ui/select-box'
+import {DxTagBoxModule} from 'devextreme-angular/ui/tag-box';
 import {DxTreeListModule} from 'devextreme-angular/ui/tree-list';
 import {DxTextAreaModule} from 'devextreme-angular/ui/text-area';
 import {DxTabPanelModule} from 'devextreme-angular/ui/tab-panel';
@@ -35,6 +37,7 @@ import {DxTileViewModule} from 'devextreme-angular/ui/tile-view';
 import {DxListModule} from 'devextreme-angular/ui/list'
 import {DxValidatorModule} from 'devextreme-angular/ui/validator'
 import {DxValidationSummaryModule} from 'devextreme-angular/ui/validation-summary';
+
 import {MessagesComponent} from './base/messages/messages.component';
 import {SecuredImageComponent} from './base/core/components/secured-image/secured-image.component';
 import {Base64imageDirective} from './directives/base64image.directive';
@@ -54,107 +57,111 @@ import {DynamicScriptLoaderService} from './services/dynamic-script-loader.servi
 import {CoreModule} from '../core/core.module';
 
 @NgModule({
-  exports: [
-    CoreModule,
-    FullLayoutComponent,
-    FullLayoutSplitComponent,
-    IntToDateTimePipe,
-    IntToStringDatePipe,
-    IntToStringTimePipe,
-    PersianDayPipe,
-    JalaliPipe,
-    CommonModule,
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    ToggleFullscreenDirective,
-    SidebarDirective,
-    TranslateModule,
-    BaseListFormComponent,
-    BaseEditFormComponent,
-    SecuredImageComponent,
-    DxLookupModule,
-    DxScrollViewModule,
-    DxDataGridModule,
-    DxCheckBoxModule,
-    DxSelectBoxModule,
-    DxNumberBoxModule,
-    DxFormModule,
-    DxButtonModule,
-    DxPopupModule,
-    DxResponsiveBoxModule,
-    DxFileUploaderModule,
-    DxTreeListModule,
-    DxTextAreaModule,
-    DxTabPanelModule,
-    DxTileViewModule,
-    DxValidatorModule,
-    DxValidationSummaryModule,
-    Base64imageDirective,
-    DetailComponentDirective,
-    DxListModule
-  ],
-  imports: [
-    FormsModule,
-    RouterModule,
-    CommonModule,
-    DxTileViewModule,
-    TranslateModule,
-    DxLookupModule,
-    DxScrollViewModule,
-    DxDataGridModule,
-    DxCheckBoxModule,
-    DxSelectBoxModule,
-    DxNumberBoxModule,
-    DxFormModule,
-    DxButtonModule,
-    DxPopupModule,
-    DxResponsiveBoxModule,
-    DpDatePickerModule,
-    DxFileUploaderModule,
-    DxTreeListModule,
-    DxTextAreaModule,
-    DxTabPanelModule,
-    DxListModule,
-    DxValidatorModule,
-    DxValidationSummaryModule,
-    AngularSplitModule,
-    CoreModule
-  ],
-  declarations: [
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    ToggleFullscreenDirective,
-    SidebarDirective,
-    SidebarLinkDirective,
-    SidebarListDirective,
-    SidebarAnchorToggleDirective,
-    SidebarToggleDirective,
-    Base64imageDirective,
-    BaseListFormComponent,
-    BaseEditFormComponent,
-    MessagesComponent,
-    SecuredImageComponent,
-    Base64imageDirective,
-    DetailComponentDirective,
-    IntToDateTimePipe,
-    IntToStringDatePipe,
-    JalaliPipe,
-    IntToStringTimePipe,
-    PersianDayPipe,
-    FullLayoutComponent,
-    FullLayoutSplitComponent
-  ],
-  providers: [
-    DynamicScriptLoaderService,
-    MessageService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor, multi: true
-    },
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
-  ],
+    exports: [
+        CoreModule,
+        FullLayoutComponent,
+        FullLayoutSplitComponent,
+        IntToDateTimePipe,
+        IntToStringDatePipe,
+        IntToStringTimePipe,
+        PersianDayPipe,
+        JalaliPipe,
+        CommonModule,
+        FooterComponent,
+        NavbarComponent,
+        SidebarComponent,
+        ToggleFullscreenDirective,
+        SidebarDirective,
+        TranslateModule,
+        BaseListFormComponent,
+        BaseEditFormComponent,
+        SecuredImageComponent,
+        DxLookupModule,
+        DxColorBoxModule,
+        DxScrollViewModule,
+        DxDataGridModule,
+        DxCheckBoxModule,
+        DxSelectBoxModule,
+        DxNumberBoxModule,
+        DxFormModule,
+        DxButtonModule,
+        DxPopupModule,
+        DxTagBoxModule,
+        DxResponsiveBoxModule,
+        DxFileUploaderModule,
+        DxTreeListModule,
+        DxTextAreaModule,
+        DxTabPanelModule,
+        DxTileViewModule,
+        DxValidatorModule,
+        DxValidationSummaryModule,
+        Base64imageDirective,
+        DetailComponentDirective,
+        DxListModule
+    ],
+    imports: [
+        FormsModule,
+        RouterModule,
+        CommonModule,
+        DxTileViewModule,
+        TranslateModule,
+        DxLookupModule,
+        DxScrollViewModule,
+        DxDataGridModule,
+        DxColorBoxModule,
+        DxCheckBoxModule,
+        DxSelectBoxModule,
+        DxNumberBoxModule,
+        DxFormModule,
+        DxButtonModule,
+        DxPopupModule,
+        DxResponsiveBoxModule,
+        DpDatePickerModule,
+        DxFileUploaderModule,
+        DxTreeListModule,
+        DxTagBoxModule,
+        DxTextAreaModule,
+        DxTabPanelModule,
+        DxListModule,
+        DxValidatorModule,
+        DxValidationSummaryModule,
+        AngularSplitModule,
+        CoreModule
+    ],
+    declarations: [
+        FooterComponent,
+        NavbarComponent,
+        SidebarComponent,
+        ToggleFullscreenDirective,
+        SidebarDirective,
+        SidebarLinkDirective,
+        SidebarListDirective,
+        SidebarAnchorToggleDirective,
+        SidebarToggleDirective,
+        Base64imageDirective,
+        BaseListFormComponent,
+        BaseEditFormComponent,
+        MessagesComponent,
+        SecuredImageComponent,
+        Base64imageDirective,
+        DetailComponentDirective,
+        IntToDateTimePipe,
+        IntToStringDatePipe,
+        JalaliPipe,
+        IntToStringTimePipe,
+        PersianDayPipe,
+        FullLayoutComponent,
+        FullLayoutSplitComponent
+    ],
+    providers: [
+        DynamicScriptLoaderService,
+        MessageService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor, multi: true
+        },
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    ],
 })
 export class SharedModule {
 }
