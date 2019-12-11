@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Yashil.Common.Core.Interfaces;
+using Yashil.Core.Interfaces;
 
 namespace Yashil.Core.Entities
 {

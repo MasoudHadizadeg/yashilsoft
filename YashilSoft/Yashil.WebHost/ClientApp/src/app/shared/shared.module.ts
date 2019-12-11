@@ -55,6 +55,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import {DynamicScriptLoaderService} from './services/dynamic-script-loader.service';
 import {CoreModule} from '../core/core.module';
+import {ContentLayoutComponent} from '../layouts/content/content-layout.component';
 
 @NgModule({
     exports: [

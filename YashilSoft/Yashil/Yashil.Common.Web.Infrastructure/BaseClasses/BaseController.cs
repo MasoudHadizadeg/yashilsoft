@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
+using Yashil.Core.Interfaces;
 
 namespace Yashil.Common.Web.Infrastructure.BaseClasses
 {
@@ -137,8 +138,9 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
                 entity.ModificationDate = DateTime.Now;
 
                 CustomMapBeforeUpdate(editModel, entity);
-                var notModifiedProperties = GetNotModifiedProperties(entity);
-                await _genericService.UpdateAsync(entity, entity.Id, notModifiedProperties, true);
+                var notModifiedProperties = GetModifiedProperties(entity);
+                await UpdateAsync(entity, entity.Id, notModifiedProperties);
+
                 AfterUpdate(editModel, entity);
             }
             catch (Exception e)
@@ -150,6 +152,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
+
 
         [HttpPut("PutEntityCustom")]
         public HttpResponseMessage PutEntityCustom(EditableViewModel<TEditModel> editModel)
@@ -233,8 +236,13 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
         protected virtual void AfterUpdate(TEditModel editModel, TModel entity)
         {
         }
-
-        private List<string> GetNotModifiedProperties(TModel entity)
+        [NonAction]
+        protected virtual async Task UpdateAsync(TModel entity, TK entityId, List<string> notModifiedProperties)
+        {
+            await _genericService.UpdateAsync(entity, entity.Id, notModifiedProperties, true);
+        }
+        [NonAction]
+        private List<string> GetModifiedProperties(TModel entity)
         {
             return new List<string>();
         }

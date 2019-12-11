@@ -1,5 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {DxFormComponent} from 'devextreme-angular';
 
 @Component({
     selector: 'app-register-page',

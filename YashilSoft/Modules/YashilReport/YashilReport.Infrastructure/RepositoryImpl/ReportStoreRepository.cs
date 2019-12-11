@@ -17,7 +17,7 @@ namespace YashilReport.Infrastructure.RepositoryImpl
             _context = context;
         }
 
-        public void DeleteContentionString(int reportId)
+        public void DeleteContentionStrings(int reportId)
         {
             _context.ReportConnectionString.RemoveRange(
                 _context.ReportConnectionString.Where(x => x.ReportId == reportId));

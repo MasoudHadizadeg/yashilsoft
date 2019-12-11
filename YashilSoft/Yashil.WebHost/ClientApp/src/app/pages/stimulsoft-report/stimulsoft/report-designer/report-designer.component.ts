@@ -4,6 +4,7 @@ import {DynamicScriptLoaderService} from '../../../../shared/services/dynamic-sc
 import {YashilComponent} from '../../../../core/baseClasses/yashilComponent';
 import {Location} from '@angular/common';
 import {HttpParams} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
 
 declare var Stimulsoft: any;
 
@@ -15,9 +16,14 @@ declare var Stimulsoft: any;
 })
 
 export class ReportDesignerComponent extends YashilComponent implements OnInit {
-    constructor(private genericDataService: GenericDataService, private location: Location,
+    reportId: any;
+
+    constructor(private route: ActivatedRoute, private genericDataService: GenericDataService, private location: Location,
                 private dynamicScriptLoaderService: DynamicScriptLoaderService) {
         super();
+        if (this.route.snapshot.params.id) {
+            this.reportId = this.route.snapshot.params.id;
+        }
     }
 
     ngOnInit() {
@@ -43,8 +49,9 @@ export class ReportDesignerComponent extends YashilComponent implements OnInit {
         options.toolbar.showFileMenu = false;
         options.toolbar.showFileMenuAbout = false;
         options.toolbar.viewMode = Stimulsoft.Viewer.StiWebViewMode.WholeReport;
+        Stimulsoft.Base.StiFontCollection.addOpentypeFontFile('assets/fonts/iransans/fonts/iransansweb.ttf', 'IRANSansWeb');
         const designer = new Stimulsoft.Designer.StiDesigner(options, 'StiDesigner', false);
-        const param = new HttpParams().set('id', '1009');
+        const param = new HttpParams().set('id', this.reportId);
         this.genericDataService.getEntitiesWithAction('reportStore', 'GetReportDesigner', param).subscribe((data: any) => {
             this.setBusy(false);
             report.load(JSON.parse(data));

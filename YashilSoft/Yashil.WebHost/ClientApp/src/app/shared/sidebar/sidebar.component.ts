@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {GenericDataService} from '../base/services/generic-data.service';
 import {RouteInfo} from './sidebar.metadata';
+import {DxFormComponent} from 'devextreme-angular';
 
 @Component({
     selector: 'app-sidebar',

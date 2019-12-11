@@ -1,6 +1,7 @@
 ﻿import {EventEmitter, Output, ViewChild} from '@angular/core'
 import {IBusyIndicator} from '../interfaces'
 import {BusyIndicatorComponent} from '../components/busy-indicator/busy-indicator.component';
+import {DxFormComponent} from 'devextreme-angular';
 
 export class YashilComponent {
 

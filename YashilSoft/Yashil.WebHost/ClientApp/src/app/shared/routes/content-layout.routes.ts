@@ -5,5 +5,9 @@ export const CONTENT_ROUTES: Routes = [
     {
         path: '',
         loadChildren: './pages/content-pages/content-pages.module#ContentPagesModule'
+    },
+    {
+        path: 'rpt',
+        loadChildren: './pages/stimulsoft-report/stimulsoft-report.module#StimulsoftReportModule'
     }
 ];

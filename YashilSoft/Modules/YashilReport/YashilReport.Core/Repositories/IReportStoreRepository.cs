@@ -7,7 +7,7 @@ namespace YashilReport.Core.Repositories
 {
 	public interface IReportStoreRepository : IGenericRepository<ReportStore>
     {
-        void DeleteContentionString(int reportId);
+        void DeleteContentionStrings(int reportId);
         Task<ReportStore> GetForEditAsync(int reportId, bool readOnly = true);
     }
 }      

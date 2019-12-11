@@ -5,6 +5,7 @@ import {DxFormComponent} from 'devextreme-angular/ui/form';
 import notify from 'devextreme/ui/notify';
 import config from 'devextreme/core/config';
 import {catchError} from 'rxjs/operators';
+import {DxPopupComponent} from 'devextreme-angular';
 
 export class BaseEdit implements OnInit {
     // tslint:disable-next-line:variable-name

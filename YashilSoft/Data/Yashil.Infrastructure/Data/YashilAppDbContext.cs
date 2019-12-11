@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Yashil.Core.Entities;
-
 namespace Yashil.Infrastructure.Data
 {
     public partial class YashilAppDbContext : DbContext
@@ -43,8 +42,7 @@ namespace Yashil.Infrastructure.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(
-                    "Data Source=.;Initial Catalog=YashilDb;Persist Security Info=True;User ID=sa;Password=salam;MultipleActiveResultSets=True");
+                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=YashilDb;Persist Security Info=True;User ID=sa;Password=salam;MultipleActiveResultSets=True");
             }
         }
 
@@ -278,7 +276,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.ConnectionString)
                     .WithMany(p => p.DashboardConnectionString)
                     .HasForeignKey(d => d.ConnectionStringId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DashboardConnectionString_YashilConnectionString");
 
                 entity.HasOne(d => d.CreateByNavigation)
@@ -290,7 +287,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.Dashboard)
                     .WithMany(p => p.DashboardConnectionString)
                     .HasForeignKey(d => d.DashboardId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DashboardConnectionString_DashboardStore");
 
                 entity.HasOne(d => d.ModifyByNavigation)
@@ -370,13 +366,11 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.DashboardGroup)
                     .WithMany(p => p.DashboardGroupDashboard)
                     .HasForeignKey(d => d.DashboardGroupId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DashboardGroupDashboard_DashboardGroup");
 
                 entity.HasOne(d => d.DashboardStore)
                     .WithMany(p => p.DashboardGroupDashboard)
                     .HasForeignKey(d => d.DashboardStoreId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DashboardGroupDashboard_DashboardStore");
 
                 entity.HasOne(d => d.ModifyByNavigation)
@@ -665,7 +659,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.Report)
                     .WithMany(p => p.ReportConnectionString)
                     .HasForeignKey(d => d.ReportId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ReportConnectionString_ReportStore");
             });
 
@@ -676,8 +669,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasComment("گروه گزارش");
 
                 entity.Property(e => e.Id).HasComment("کد");
-
-                entity.Property(e => e.AccessLevelId).HasComment("سطح دسترسی");
 
                 entity.Property(e => e.ApplicationId).HasComment("برنامه");
 
@@ -749,7 +740,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.ReportStore)
                     .WithMany(p => p.ReportGroupReport)
                     .HasForeignKey(d => d.ReportStoreId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ReportGroupReport_ReportStore");
             });
 
@@ -1071,7 +1061,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.Report)
                     .WithMany(p => p.RoleReport)
                     .HasForeignKey(d => d.ReportId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RoleReport_Report");
 
                 entity.HasOne(d => d.Role)
@@ -1242,7 +1231,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.Dashboard)
                     .WithMany(p => p.UserDashboard)
                     .HasForeignKey(d => d.DashboardId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UserDashboard_Dashboard");
 
                 entity.HasOne(d => d.ModifyByNavigation)
@@ -1299,7 +1287,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.Report)
                     .WithMany(p => p.UserReport)
                     .HasForeignKey(d => d.ReportId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UserReport_Report");
 
                 entity.HasOne(d => d.User)
@@ -1413,7 +1400,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.DataProvider)
                     .WithMany(p => p.YashilConnectionString)
                     .HasForeignKey(d => d.DataProviderId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_YashilConnectionString_YashilDataProvider");
 
                 entity.HasOne(d => d.ModifyByNavigation)
@@ -1434,8 +1420,7 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.BaseType)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .IsFixedLength()
+                    .HasMaxLength(100)
                     .HasComment("نوع پایه");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
@@ -1461,8 +1446,7 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .IsFixedLength()
+                    .HasMaxLength(100)
                     .HasComment("عنوان");
 
                 entity.HasOne(d => d.CreateByNavigation)

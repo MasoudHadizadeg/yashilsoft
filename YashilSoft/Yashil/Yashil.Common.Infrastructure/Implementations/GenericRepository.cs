@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Yashil.Common.Core.Interfaces;
+using Yashil.Core.Interfaces;
 
 namespace Yashil.Common.Infrastructure.Implementations
 {
@@ -31,6 +32,7 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             return _context.Set<T>().FindAsync(id);
         }
+
 
         public IQueryable<T> GetAll(bool readOnly = false)
         {

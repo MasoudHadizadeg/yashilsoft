@@ -27,12 +27,6 @@ import {DashboardRoutingModule} from './dashboard-routing.module';
         ImageCropperModule
     ],
     providers: [
-        MessageService,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: JwtInterceptor, multi: true
-        },
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
     ],
     exports: [COMPONENTS],
 })

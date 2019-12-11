@@ -1,11 +1,15 @@
 using System;
+using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
+using YashilReport.Core;
 using YashilReport.Core.Services;
+using YashilReport.Infrastructure.ReportClasses.Adapters;
 using YashilReport.Web.Areas.Rpt.ViewModels;
 
 namespace YashilReport.Web.Areas.Rpt.Controllers
@@ -70,25 +74,14 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         [HttpPost("Handler")]
         public IActionResult Handler([FromBody] string command)
         {
-            return null;
-//            //CommandJson
-//            var options = new JsonSerializerOptions
-//            {
-//                PropertyNameCaseInsensitive = true
-//            };
-//
-//            var commandObject = JsonSerializer.Deserialize<CommandJson>(command, options);
-//            var connectionString = _configuration.GetSection("ConnectionStrings").GetSection("TLSAppDB").Value;
-//            if (commandObject.Connection == "TlsConnectionString")
-//            {
-//                commandObject.ConnectionString = connectionString;
-//            }
-//
-//            Result result = new Result();
-//
-//            if (commandObject.Database == "MS SQL") result = new MssqlAdapter().Process(commandObject);
-//
-//            return new ObjectResult(result);
+            //CommandJson
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            var commandObject = JsonSerializer.Deserialize<CommandJson>(command, options);
+            return new ObjectResult(_reportStoreService.HandleReport(commandObject));
         }
 
         protected override void CustomMapBeforeInsert(ReportStoreEditModel editModel, ReportStore entity)
@@ -96,27 +89,29 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
             CustomMap(editModel, entity);
         }
 
-        protected override void CustomMapBeforeUpdate(ReportStoreEditModel editModel, ReportStore entity)
+        protected override Task UpdateAsync(ReportStore entity, int entityId, List<string> notModifiedProperties)
         {
-            _reportStoreService.DeleteContentionString(editModel.Id);
+            List<ReportConnectionString> reportConnectionStrings = new List<ReportConnectionString>();
             foreach (var connectionStringId in editModel.ConnectionStringList)
             {
-               _reportConnectionStringService.Add(new ReportConnectionString
-               {
+                reportConnectionStrings.Add(new ReportConnectionString
+                {
                     ConnectionStringId = Convert.ToInt32(connectionStringId),
                     ReportId = editModel.Id,
                     CreateBy = CurrentUserId.Value,
                     CreationDate = DateTime.Now
-                },false);
+                });
             }
-            
+            return base.UpdateAsync(entity, entityId, notModifiedProperties);
         }
+
+       
 
         private void CustomMap(ReportStoreEditModel editModel, ReportStore entity)
         {
             foreach (var connectionStringId in editModel.ConnectionStringList)
             {
-                entity.ReportConnectionString.Add(new ReportConnectionString()
+                entity.ReportConnectionString.Add(new ReportConnectionString
                 {
                     ConnectionStringId = Convert.ToInt32(connectionStringId),
                     ReportId = editModel.Id,

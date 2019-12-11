@@ -8,6 +8,7 @@ using DevExtreme.AspNet.Data.ResponseModel;
 using Microsoft.EntityFrameworkCore;
 using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
+using Yashil.Core.Interfaces;
 
 namespace Yashil.Common.Infrastructure.Implementations
 {
@@ -79,6 +80,12 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             var valueTask = await _repository.GetAsync(id, readOnly);
             return mapper.Map<TViewModel>(valueTask);
+        }
+
+        public TModel Get(object id, bool readOnly=false)
+        {
+            return _repository.Get(id, readOnly);
+            
         }
 
         public virtual async Task<List<TViewModel>> GetAllAsync<TViewModel>(IMapper mapper, bool readOnly = false)

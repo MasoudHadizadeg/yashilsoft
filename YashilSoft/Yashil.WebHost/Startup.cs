@@ -19,6 +19,7 @@ using Yashil.Common.SharedKernel;
 using Yashil.Common.SharedKernel.Module;
 using Yashil.Common.SharedKernel.Web;
 using Yashil.Infrastructure.Data;
+using Yashil.Runtime.RequestFormatter;
 using Yashil.WebHost.Extensions;
 
 
@@ -49,9 +50,7 @@ namespace Yashil.WebHost
             //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             //Configuration = builder.Build();
-
         }
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -64,7 +63,7 @@ namespace Yashil.WebHost
                     builder.WithHeaders("Content-Type");
                 });
             });
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(x => x.InputFormatters.Insert(0, new RawRequestBodyFormatter()));
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
 
@@ -170,29 +169,6 @@ namespace Yashil.WebHost
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-        }
-
-        protected virtual void AddAutoMapper(IServiceCollection services)
-        {
-            ////find mapper configurations provided by other assemblies
-            //var mapperConfigurations = typeFinder.FindClassesOfType<IOrderedMapperProfile>();
-
-            ////create and sort instances of mapper configurations
-            //var instances = mapperConfigurations
-            //    .Select(mapperConfiguration => (IOrderedMapperProfile)Activator.CreateInstance(mapperConfiguration))
-            //    .OrderBy(mapperConfiguration => mapperConfiguration.Order);
-
-            ////create AutoMapper configuration
-            //var config = new MapperConfiguration(cfg =>
-            //{
-            //    foreach (var instance in instances)
-            //    {
-            //        cfg.AddProfile(instance.GetType());
-            //    }
-            //});
-
-            ////register
-            //AutoMapperConfiguration.Init(config);
         }
     }
 }
