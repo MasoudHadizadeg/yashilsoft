@@ -20,6 +20,12 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="%2a%2a\**" />
+    <EmbeddedResource Remove="%2a%2a\**" />
+    <None Remove="%2a%2a\**" />
+  </ItemGroup>
+
   
   <ItemGroup>
     <ProjectReference Include="..\Modules\YashilBaseInfo\YashilBaseInfo.Web\YashilBaseInfo.Web.csproj" />
@@ -37,11 +43,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Modules\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
   <Target Name="CopyModule" AfterTargets="Build">
     <CopyModuleTask ProjectDir="$(ProjectDir)" TargetFramework="netcoreapp3.0" BuildConfiguration="$(ConfigurationName)" />

@@ -10,10 +10,10 @@ const routes: Routes = [
         component: FullLayoutComponent,
         children: [
             {path: '', component: HomeComponent, canActivate: [AuthGuard]},
-            {path: 'um', loadChildren: '../user-management/user-management.module#UserManagementModule'},
-            {path: 'dash', loadChildren: '../dashboard/dashboard.module#DashboardModule'},
-            {path: 'rpt', loadChildren: '../report/report.module#ReportModule'},
-            {path: 'base', loadChildren: '../base-info/base-info.module#BaseInfoModule'},
+            {path: 'um', loadChildren: () => import('../user-management/user-management.module').then(m => m.UserManagementModule)},
+            {path: 'dash', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule)},
+            {path: 'rpt', loadChildren: () => import('../report/report.module').then(m => m.ReportModule)},
+            {path: 'base', loadChildren: () => import('../base-info/base-info.module').then(m => m.BaseInfoModule)},
         ]
     }
 ];

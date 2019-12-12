@@ -4,10 +4,10 @@ import {Routes} from '@angular/router';
 export const CONTENT_ROUTES: Routes = [
     {
         path: '',
-        loadChildren: './pages/content-pages/content-pages.module#ContentPagesModule'
+        loadChildren: () => import('./pages/content-pages/content-pages.module').then(m => m.ContentPagesModule)
     },
     {
         path: 'rpt',
-        loadChildren: './pages/stimulsoft-report/stimulsoft-report.module#StimulsoftReportModule'
+        loadChildren: () => import('./pages/stimulsoft-report/stimulsoft-report.module').then(m => m.StimulsoftReportModule)
     }
 ];

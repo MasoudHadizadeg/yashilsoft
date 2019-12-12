@@ -4,6 +4,6 @@ import {Routes, RouterModule} from '@angular/router';
 export const Full_SPLIT_ROUTES: Routes = [
     {
         path: '',
-        loadChildren: './pages/full-layout-split-pages/full-split-pages.module#FullSplitPagesModule'
+        loadChildren: () => import('./pages/full-layout-split-pages/full-split-pages.module').then(m => m.FullSplitPagesModule)
     }
 ];
