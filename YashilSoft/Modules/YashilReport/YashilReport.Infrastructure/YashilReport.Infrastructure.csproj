@@ -8,8 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFrameworkCore.Scaffolding.Handlebars" Version="3.5.0" />
-    <PackageReference Include="Stimulsoft.Reports.Web.NetCore" Version="2019.3.6" />
+    <PackageReference Include="Stimulsoft.Reports.Web.NetCore" Version="2019.4.2" />
   </ItemGroup>
 
   <ItemGroup>

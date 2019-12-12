@@ -7,8 +7,8 @@ namespace YashilReport.Core.Services
 {
     public interface IReportStoreService : IGenericService<ReportStore>
     {
-        Task<bool> SaveReportDesign(int dataReportId, string dataReportFile);
         string GetReportDesigner(int reportId);
+        string GetReportViewer(int reportId);
         void DeleteContentionStrings(int reportId, bool save = false);
         Task<ReportStore> GetEntityForEdit(int reportId);
         Task UpdateReportStoreWithConnectionStringAsync(ReportStore entity, List<ReportConnectionString> reportConnectionStrings, List<string> notModifiedProperties);

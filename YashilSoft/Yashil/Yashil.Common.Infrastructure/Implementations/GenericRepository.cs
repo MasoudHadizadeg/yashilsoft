@@ -33,17 +33,14 @@ namespace Yashil.Common.Infrastructure.Implementations
             return _context.Set<T>().FindAsync(id);
         }
 
+        public Task<IEnumerable<T>> GetAllAsync(bool readOnly = false)
+        {
+            throw new NotImplementedException();
+        }
 
         public IQueryable<T> GetAll(bool readOnly = false)
         {
             return readOnly ? _context.Set<T>().AsNoTracking() : _context.Set<T>();
-        }
-
-        public async Task<IEnumerable<T>> GetAllAsync(bool readOnly = false)
-        {
-            return readOnly
-                ? await _context.Set<T>().AsNoTracking().ToListAsync()
-                : await _context.Set<T>().ToListAsync();
         }
 
         public IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties)

@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Data.ResponseModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -45,7 +47,9 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
         [HttpGet]
         public async Task<LoadResult> GetEntities(CustomDataSourceLoadOptions loadOptions)
         {
-            return await _genericService.GetAllAsync<TListViewModel>(_mapper, loadOptions, true);
+            var entities = _genericService.GetAll(true);
+            return await DataSourceLoader.LoadAsync(entities.ProjectTo<TViewModel>(_mapper.ConfigurationProvider),
+                loadOptions);
         }
 
         [HttpGet("GetForSelect")]
@@ -70,7 +74,8 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
 
         protected virtual async Task<TEditModel> GetEntityForEdit(TK id)
         {
-            return await _genericService.GetAsync<TEditModel>(_mapper, id, true);
+            var entity = await _genericService.GetAsync(id, true);
+            return _mapper.Map<TEditModel>(entity);
         }
 
         [HttpDelete("{id}")]
@@ -139,7 +144,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
 
                 CustomMapBeforeUpdate(editModel, entity);
                 var notModifiedProperties = GetModifiedProperties(entity);
-                await UpdateAsync(entity, entity.Id, notModifiedProperties);
+                await UpdateAsync(entity, editModel, entity.Id, notModifiedProperties);
 
                 AfterUpdate(editModel, entity);
             }
@@ -188,18 +193,11 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             return model => true;
         }
 
-        private Task<LoadResult> GetAll(CustomDataSourceLoadOptions loadOptions)
-        {
-            // var filter = CustomFilter(loadOptions);
-            // var list = Repo.GetAll().Where(filter).OrderByDescending(x => x.Id);
-            //var loadResult = DataSourceLoader.Load(list.ProjectTo<TViewModel>(_mapper.ConfigurationProvider), loadOptions);
-            //return loadResult;
-            return _genericService.GetAllAsync<TViewModel>(_mapper, loadOptions, true);
-        }
-
         private async Task<LoadResult> GetAllForSelect(CustomDataSourceLoadOptions loadOptions)
         {
-            return await _genericService.GetAllAsync<TSelectViewModel>(_mapper, loadOptions, true);
+            var entities = _genericService.GetAll(true);
+            return await DataSourceLoader.LoadAsync(entities.ProjectTo<TSelectViewModel>(_mapper.ConfigurationProvider),
+                loadOptions);
         }
 
         private Expression<Func<TModel, object>>[] GetIncludes()
@@ -236,13 +234,16 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
         protected virtual void AfterUpdate(TEditModel editModel, TModel entity)
         {
         }
+
         [NonAction]
-        protected virtual async Task UpdateAsync(TModel entity, TK entityId, List<string> notModifiedProperties)
+        protected virtual async Task UpdateAsync(TModel entity, TEditModel editModel, TK entityId,
+            List<string> notModifiedProperties)
         {
             await _genericService.UpdateAsync(entity, entity.Id, notModifiedProperties, true);
         }
+
         [NonAction]
-        private List<string> GetModifiedProperties(TModel entity)
+        protected List<string> GetModifiedProperties(TModel entity)
         {
             return new List<string>();
         }

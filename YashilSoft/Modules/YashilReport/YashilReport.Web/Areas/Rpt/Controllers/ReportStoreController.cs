@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Stimulsoft.Report;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
 using YashilReport.Core;
@@ -44,23 +46,13 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         }
 
         [HttpGet("GetReportViewer")]
-        public JsonResult GetReportViewer()
+        public JsonResult GetReportViewer(int id)
         {
-//            var report = new StiReport();
-//            var path = Path.Combine(ProjectConfiguration.FileRootPath, "Files", @"Reports\Report.mrt");
-//            if (System.IO.File.Exists(path))
-//            {
-//                report.Load(path);
-//
-//                var dbMsSql = (StiSqlDatabase) report.Dictionary.Databases["TlsConnectionString"];
-//                // Set Fake Connection
-//                dbMsSql.ConnectionString = "...";
-//                // @"Data Source=.;Initial Catalog=TLSDb;Integrated Security=False;Persist Security Info=True;User ID=sa;Password=salam";
-//                report.Render();
-//                var reportStr = report.SaveDocumentJsonToString();
-//                var res = new JsonResult(reportStr);
-//                return res;
-//            }
+            string reportStr = _reportStoreService.GetReportViewer(id);
+            if (!string.IsNullOrEmpty(reportStr))
+            {
+                return new JsonResult(reportStr);
+            }
 
             return null;
         }
@@ -68,13 +60,22 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         [HttpPost("SaveReportDesign")]
         public async Task<bool> SaveReportDesign(ReportFileViewModel data)
         {
-            return await _reportStoreService.SaveReportDesign(data.ReportId, data.ReportFile);
+            var report = new StiReport();
+            report.LoadFromString(data.ReportFile);
+            var reportStore = new ReportStore
+            {
+                Id = data.ReportId,
+                ModifyBy = CurrentUserId,
+                ModificationDate = DateTime.Now,
+                ReportFile = report.SaveToByteArray()
+            };
+            await _reportStoreService.UpdateAsync(reportStore, data.ReportId, new List<string> {"ReportFile"}, true);
+            return true;
         }
 
         [HttpPost("Handler")]
         public IActionResult Handler([FromBody] string command)
         {
-            //CommandJson
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
@@ -85,29 +86,6 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         }
 
         protected override void CustomMapBeforeInsert(ReportStoreEditModel editModel, ReportStore entity)
-        {
-            CustomMap(editModel, entity);
-        }
-
-        protected override Task UpdateAsync(ReportStore entity, int entityId, List<string> notModifiedProperties)
-        {
-            List<ReportConnectionString> reportConnectionStrings = new List<ReportConnectionString>();
-            foreach (var connectionStringId in editModel.ConnectionStringList)
-            {
-                reportConnectionStrings.Add(new ReportConnectionString
-                {
-                    ConnectionStringId = Convert.ToInt32(connectionStringId),
-                    ReportId = editModel.Id,
-                    CreateBy = CurrentUserId.Value,
-                    CreationDate = DateTime.Now
-                });
-            }
-            return base.UpdateAsync(entity, entityId, notModifiedProperties);
-        }
-
-       
-
-        private void CustomMap(ReportStoreEditModel editModel, ReportStore entity)
         {
             foreach (var connectionStringId in editModel.ConnectionStringList)
             {
@@ -120,6 +98,24 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
                 });
             }
         }
+
+
+        protected override async Task UpdateAsync(ReportStore entity, ReportStoreEditModel editModel, int entityId,
+            List<string> notModifiedProperties)
+        {
+            var reportConnectionStrings = editModel.ConnectionStringList.Select(conStringId =>
+                new ReportConnectionString
+                {
+                    ConnectionStringId = Convert.ToInt32(conStringId),
+                    ReportId = editModel.Id,
+                    CreateBy = CurrentUserId.Value,
+                    CreationDate = DateTime.Now
+                }).ToList();
+
+            await _reportStoreService.UpdateReportStoreWithConnectionStringAsync(entity, reportConnectionStrings,
+                GetModifiedProperties(entity));
+        }
+
 
         protected override async Task<ReportStoreEditModel> GetEntityForEdit(int id)
         {

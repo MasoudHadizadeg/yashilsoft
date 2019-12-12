@@ -3,11 +3,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-  </ItemGroup> 
+  </PropertyGroup> 
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Yashil.Core\Yashil.Core.csproj" />

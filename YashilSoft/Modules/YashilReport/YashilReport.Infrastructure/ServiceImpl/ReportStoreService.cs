@@ -33,17 +33,34 @@ namespace YashilReport.Infrastructure.ServiceImpl
             _reportConnectionStringService = reportConnectionStringService;
         }
 
-        public Task<bool> SaveReportDesign(int dataReportId, string dataReportFile)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public string GetReportDesigner(int reportId)
         {
             var report = new StiReport();
             var reportStore = _reportStoreRepository.Get(reportId, true);
             report.Load(reportStore.ReportFile);
             return report.SaveToJsonString();
+        }
+
+        public string GetReportViewer(int reportId)
+        {
+            var report = new StiReport();
+            var reportStore = _reportStoreRepository.Get(reportId, true);
+            report.Load(reportStore.ReportFile);
+
+            var reportConnectionStrings = _connectionStringService.GetByReportId(reportId).Select(x =>
+                new {x.Title, x.ConnectionString, DataProviderTitle = x.DataProvider.Title}).ToList();
+            foreach (StiDatabase db in report.Dictionary.Databases)
+            {
+                // TODO: Add Common Databases
+                var connection = reportConnectionStrings.Find(x => x.Title == db.Name);
+                if (connection.DataProviderTitle == "MS SQL")
+                {
+                    ((StiSqlDatabase) db).ConnectionString = connection.ConnectionString;
+                }
+            }
+
+            report.Render();
+            return report.SaveDocumentJsonToString();
         }
 
         public void DeleteContentionStrings(int reportId, bool save = false)
@@ -59,7 +76,6 @@ namespace YashilReport.Infrastructure.ServiceImpl
         private StiReport AddConnectionStringToReport(int reportId,
             List<ReportConnectionString> reportConnectionStrings)
         {
-            DeleteContentionStrings(reportId);
             var reportStore = Get(reportId);
             var report = new StiReport();
             report.Load(reportStore.ReportFile);
@@ -67,12 +83,8 @@ namespace YashilReport.Infrastructure.ServiceImpl
             var connectionStrings =
                 _connectionStringService.FindByIds(reportConnectionStrings.Select(x => x.ConnectionStringId));
 
-            var deleteDatabases =
-                report.Dictionary.Databases.Items.Where(x => !connectionStrings.Select(c => c.Title).Contains(x.Name));
-            foreach (var db in deleteDatabases)
-            {
-                report.Dictionary.Databases.Remove(db);
-            }
+            report.Dictionary.Databases.Clear();
+
 
             foreach (var connectionString in reportConnectionStrings)
             {
@@ -91,9 +103,10 @@ namespace YashilReport.Infrastructure.ServiceImpl
             List<ReportConnectionString> reportConnectionStrings,
             List<string> notModifiedProperties)
         {
+            DeleteContentionStrings(entity.Id);
             var report = AddConnectionStringToReport(entity.Id, reportConnectionStrings);
             entity.ReportFile = report.SaveToByteArray();
-            await UpdateAsync(entity, entity.Id, notModifiedProperties,true);
+            await UpdateAsync(entity, entity.Id, notModifiedProperties, true);
         }
 
         public Result HandleReport(CommandJson command)
@@ -122,17 +135,19 @@ namespace YashilReport.Infrastructure.ServiceImpl
             return await base.AddAsync(reportStore, saveAfterAdd);
         }
 
+
         /// <summary>
-        /// اضافه کردن عناوین مربوط به پایگاه داده های  انتخاب شده به گزارش
-        /// متن مربوط به رشته اتصال نباید در گزارش ذخیره شود و موقع اجرای پرس و جو های گزارش  این رشته های اتصال از پایگاه داده خوانده خواهد شد
+        /// Add Predefined Connection String NAME ONLY To Report Databases
+        /// DO NOT Set Connection String In Report For Security Reason
         /// </summary>
-        /// <param name="report">گزارش</param>
-        /// <param name="connection">ارتباط</param>
+        /// <param name="report"></param>
+        /// <param name="connection"></param>
         private void AddDatabaseToReport(StiReport report, YashilConnectionString connection)
         {
             if (connection.DataProvider.Title == "MS SQL")
             {
-                report.Dictionary.Databases.Add(new StiSqlDatabase(connection.Title, connection.Title, connection.Title));
+                report.Dictionary.Databases.Add(
+                    new StiSqlDatabase(connection.Title, connection.Title, connection.Title));
             }
             else if (connection.DataProvider.Title == "Postgres")
             {

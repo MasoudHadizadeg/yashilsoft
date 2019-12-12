@@ -10,7 +10,10 @@ declare var Stimulsoft: any;
 
 @Component({
     selector: 'app-report-viewer',
-    templateUrl: './report-designer.component.html',
+    template: `
+        <app-busy-indicator>
+            <div style="text-align: left; direction: ltr" id="viewerContent"></div>
+        </app-busy-indicator>`,
     styleUrls: ['./report-designer.component.css'],
     encapsulation: ViewEncapsulation.None
 })
@@ -30,7 +33,6 @@ export class ReportDesignerComponent extends YashilComponent implements OnInit {
         this.setBusy(true);
         this.dynamicScriptLoaderService.load(['report', 'viewer', 'designer'], ['viewer_whiteblue', 'designer_whiteblue']).then(data => {
             Stimulsoft.Base.Localization.StiLocalization.setLocalizationFile('assets/stimulsoft/localization/fa.xml');
-            Stimulsoft.Base.Localization.StiLocalization
             this.designReport();
         }).catch(error => console.log(error));
     }
@@ -61,7 +63,7 @@ export class ReportDesignerComponent extends YashilComponent implements OnInit {
         designer.onSaveReport = function (e) {
             const jsonStr = e.report.saveToJsonString();
             that.genericDataService.postEntityByUrl(`api/reportStore/SaveReportDesign`, {
-                reportId: 1,
+                reportId: +that.reportId,
                 reportFile: jsonStr
             }).subscribe(() => {
                 alert('گزارش با موفقیت ذخیره شد');

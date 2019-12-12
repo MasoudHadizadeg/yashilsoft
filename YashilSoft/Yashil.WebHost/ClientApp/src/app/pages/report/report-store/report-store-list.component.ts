@@ -14,6 +14,7 @@ export class ReportStoreListComponent {
 
     constructor(private router: Router) {
         this.DesignReport = this.DesignReport.bind(this);
+        this.ViewReport = this.ViewReport.bind(this);
         this.columns.push({
             caption: 'عنوان',
             dataField: 'title'
@@ -31,13 +32,19 @@ export class ReportStoreListComponent {
             dataField: 'accessLevelTitle'
         });
         this.columns.push({
+            caption: 'نمایش/طراحی  گزارش',
             type: 'buttons',
-            width: 50,
+            width: 130,
             buttons: [
                 {
-                    hint: '  طراحی گزارش',
+                    hint: 'طراحی ',
                     icon: 'chart',
                     onClick: this.DesignReport
+                },
+                {
+                    hint: 'نمایش ',
+                    icon: 'columnchooser',
+                    onClick: this.ViewReport
                 }]
         });
     }
@@ -45,5 +52,10 @@ export class ReportStoreListComponent {
     DesignReport(e) {
         const selectedReportId = e.row.data.Id;
         this.router.navigate(['pages/rpt/designReport', e.row.data.id]);
+    }
+
+    ViewReport(e) {
+        const selectedReportId = e.row.data.Id;
+        this.router.navigate(['pages/rpt/viewReport', e.row.data.id]);
     }
 }

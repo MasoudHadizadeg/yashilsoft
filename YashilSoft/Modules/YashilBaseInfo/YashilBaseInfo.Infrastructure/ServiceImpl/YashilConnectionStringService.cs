@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -29,6 +30,11 @@ namespace YashilBaseInfo.Infrastructure.ServiceImpl
         public string GetConnectionStringByName(string connectionName)
         {
             return _yashilConnectionStringRepository.GetConnectionStringByName(connectionName);
+        }
+
+        public IQueryable<YashilConnectionString> GetByReportId(int reportId)
+        {
+            return _yashilConnectionStringRepository.GetByReportId(reportId);
         }
     }
 }

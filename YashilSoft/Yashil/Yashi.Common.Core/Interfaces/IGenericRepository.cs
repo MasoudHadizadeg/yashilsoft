@@ -21,8 +21,6 @@ namespace Yashil.Common.Core.Interfaces
         IQueryable<T> GetAll(bool readOnly = false);
         IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties);
         ValueTask<T> GetAsync(object id, bool readOnly = true);
-        Task<IEnumerable<T>> GetAllAsync(bool readOnly = false);
-
         Task<int> CountAsync();
 
     }

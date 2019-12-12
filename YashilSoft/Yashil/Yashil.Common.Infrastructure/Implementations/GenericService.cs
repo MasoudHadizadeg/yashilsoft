@@ -3,10 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using DevExtreme.AspNet.Data;
-using DevExtreme.AspNet.Data.ResponseModel;
 using Microsoft.EntityFrameworkCore;
-using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Interfaces;
 
@@ -76,6 +73,12 @@ namespace Yashil.Common.Infrastructure.Implementations
             return updateAsync;
         }
 
+        public async Task<TModel> GetAsync(object id, bool readOnly)
+        {
+            return await _repository.GetAsync(id, readOnly);
+        }
+
+
         public virtual async Task<TViewModel> GetAsync<TViewModel>(IMapper mapper, object id, bool readOnly)
         {
             var valueTask = await _repository.GetAsync(id, readOnly);
@@ -93,39 +96,19 @@ namespace Yashil.Common.Infrastructure.Implementations
             return await _repository.GetAll(readOnly).ProjectTo<TViewModel>(mapper.ConfigurationProvider).ToListAsync();
         }
 
-        public async Task<LoadResult> GetAllAsync<TViewModel>(IMapper mapper, CustomDataSourceLoadOptions loadOptions,
-            bool readOnly = false)
-        {
-            return await LoadResultAsync<TViewModel>(mapper, loadOptions, _repository.GetAll(readOnly));
-        }
-
         public async Task<int> CountAsync()
         {
             return await _repository.CountAsync();
         }
 
-        public virtual LoadResult GetAll<TViewModel>(IMapper mapper, CustomDataSourceLoadOptions loadOptions,
-            bool readOnly = false)
-        {
-            return LoadResult<TViewModel>(mapper, loadOptions, _repository.GetAll(readOnly));
-        }
-
-        private async Task<LoadResult> LoadResultAsync<TViewModel>(IMapper mapper,
-            CustomDataSourceLoadOptions loadOptions, IQueryable list)
-        {
-            return await DataSourceLoader.LoadAsync(list.ProjectTo<TViewModel>(mapper.ConfigurationProvider),
-                loadOptions);
-        }
-
-        private LoadResult LoadResult<TViewModel>(IMapper mapper, CustomDataSourceLoadOptions loadOptions,
-            IQueryable list)
-        {
-            return DataSourceLoader.Load(list.ProjectTo<TViewModel>(mapper.ConfigurationProvider), loadOptions);
-        }
-
         public virtual async Task<int> SaveChangeAsync()
         {
             return await _unitOfWork.CommitAsync();
+        }
+
+        public IQueryable<TModel> GetAll(bool readOnly)
+        {
+            return _repository.GetAll(readOnly);
         }
     }
 }
