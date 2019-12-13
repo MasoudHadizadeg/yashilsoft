@@ -14,7 +14,7 @@ import {DxFormComponent} from 'devextreme-angular';
 })
 export class SidebarComponent implements OnInit, AfterViewInit {
 
-    @ViewChild('toggleIcon') toggleIcon: ElementRef;
+    @ViewChild('toggleIcon', { static: true }) toggleIcon: ElementRef;
     public menuItems: RouteInfo[];
     depth: number;
     activeTitle: string;

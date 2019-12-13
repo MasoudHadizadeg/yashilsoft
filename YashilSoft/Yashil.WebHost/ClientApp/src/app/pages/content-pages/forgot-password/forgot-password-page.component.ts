@@ -10,7 +10,7 @@ import {DxFormComponent} from 'devextreme-angular';
 })
 
 export class ForgotPasswordPageComponent {
-    @ViewChild('f' ) forogtPasswordForm: NgForm;
+    @ViewChild('f', { static: false }) forogtPasswordForm: NgForm;
 
     constructor(private router: Router,
                 private route: ActivatedRoute) {

@@ -1,10 +1,10 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-base-edit-form',
   templateUrl: './base-edit-form.component.html'
 })
-export class BaseEditFormComponent implements AfterViewInit {
+export class BaseEditFormComponent implements OnInit {
   @Input()
   allowSave = true;
   @Input()
@@ -21,7 +21,7 @@ export class BaseEditFormComponent implements AfterViewInit {
     this.closeFormClick.next(true);
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.formHeight = window.innerHeight - 150;
   }
 }

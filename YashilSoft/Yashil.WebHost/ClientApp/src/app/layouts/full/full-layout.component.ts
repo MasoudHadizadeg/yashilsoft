@@ -11,9 +11,9 @@ import {DxFormComponent} from 'devextreme-angular';
 })
 
 export class FullLayoutComponent implements OnInit, AfterViewInit {
-    @ViewChild('sidebarBgImage') sidebarBgImage: ElementRef;
-    @ViewChild('appSidebar') appSidebar: ElementRef;
-    @ViewChild('wrapper') wrapper: ElementRef;
+    @ViewChild('sidebarBgImage', { static: true }) sidebarBgImage: ElementRef;
+    @ViewChild('appSidebar', { static: true }) appSidebar: ElementRef;
+    @ViewChild('wrapper', { static: true }) wrapper: ElementRef;
 
     options = {
         direction: 'rtl',

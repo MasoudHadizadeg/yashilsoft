@@ -9,7 +9,7 @@ import {DxFormComponent} from 'devextreme-angular';
 })
 
 export class LockScreenPageComponent {
-    @ViewChild('f' ) lockScreenForm: NgForm;
+    @ViewChild('f', { static: false }) lockScreenForm: NgForm;
 
     onSubmit() {
         this.lockScreenForm.reset();

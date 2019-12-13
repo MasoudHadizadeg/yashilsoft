@@ -79,7 +79,7 @@ export class BaseList implements OnInit, AfterViewInit {
     parentIdExpr: 'parentId';
     @Input()
     isForSelectReadOnly = false;
-    @ViewChild(DetailComponentDirective) detailComponentContainer: DetailComponentDirective;
+    @ViewChild(DetailComponentDirective, { static: false }) detailComponentContainer: DetailComponentDirective;
     @Input()
     detailComponent: Type<any>;
     loadData: boolean;
@@ -120,10 +120,10 @@ export class BaseList implements OnInit, AfterViewInit {
     isForTree: boolean;
 // The Root Value In Tree Mode
     closeActionEmitter = new EventEmitter<boolean>();
-    @ViewChild(DxPopupComponent) popupComponent: DxPopupComponent;
-    @ViewChild(DxDataGridComponent) listGrid: DxDataGridComponent;
-    @ViewChild(BaseEditFormComponent) baseEdit: BaseEditFormComponent;
-    @ContentChild(TemplateRef)
+    @ViewChild(DxPopupComponent, { static: true }) popupComponent: DxPopupComponent;
+    @ViewChild(DxDataGridComponent, { static: false }) listGrid: DxDataGridComponent;
+    @ViewChild(BaseEditFormComponent, { static: false }) baseEdit: BaseEditFormComponent;
+    @ContentChild(TemplateRef,{ static: false})
     template: TemplateRef<BaseEdit>;
     // tslint:disable-next-line:variable-name
     private _showEditForm: boolean;

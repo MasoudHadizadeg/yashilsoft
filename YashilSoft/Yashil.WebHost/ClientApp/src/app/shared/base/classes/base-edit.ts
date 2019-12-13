@@ -79,7 +79,7 @@ export class BaseEdit implements OnInit {
     }
 
     // @ViewChild('detailForm') detailForm;
-    @ViewChild(DxFormComponent) detailForm: DxFormComponent
+    @ViewChild(DxFormComponent, { static: true }) detailForm: DxFormComponent
 
     // @ViewChild('baseEditForm') baseEditForm;
     @Input() isNew: boolean;

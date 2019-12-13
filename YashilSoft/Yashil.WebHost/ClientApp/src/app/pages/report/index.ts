@@ -1,7 +1,5 @@
 import {ReportGroupDetailComponent} from './report-group/report-group-detail.component';
 import {ReportGroupListComponent} from './report-group/report-group-list.component';
-import {ReportConnectionStringDetailComponent} from './report-connection-string/report-connection-string-detail.component';
-import {ReportConnectionStringListComponent} from './report-connection-string/report-connection-string-list.component';
 import {RoleReportDetailComponent} from './role-report/role-report-detail.component';
 import {RoleReportListComponent} from './role-report/role-report-list.component';
 import {ReportStoreDetailComponent} from './report-store/report-store-detail.component';
@@ -14,8 +12,6 @@ import {Provider} from '@angular/core';
 export const COMPONENTS: Provider[] = [
     ReportGroupListComponent,
     ReportGroupDetailComponent,
-    ReportConnectionStringListComponent,
-    ReportConnectionStringDetailComponent,
     RoleReportListComponent,
     RoleReportDetailComponent,
     ReportStoreListComponent,

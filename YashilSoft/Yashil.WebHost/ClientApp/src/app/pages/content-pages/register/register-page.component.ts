@@ -9,7 +9,7 @@ import {DxFormComponent} from 'devextreme-angular';
 })
 
 export class RegisterPageComponent {
-    @ViewChild('f' ) registerForm: NgForm;
+    @ViewChild('f', { static: false }) registerForm: NgForm;
 
     //  On submit click, reset field value
     onSubmit() {
