@@ -1,20 +1,19 @@
+<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
-			<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
-<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
 
-									
-									<dxi-item dataField="dashboardId" editorType="dxLookup" [label]="{text: 'داشبورد'}"  
-					[editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: dashboardDataSource,displayExpr:'title',valueExpr:'id' }">
+        <dxi-item dataField="dashboardId" editorType="dxLookup" [label]="{text: 'داشبورد'}"
+                  [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: dashboardDataSource,displayExpr:'title',valueExpr:'id' }">
 
-																				<dxi-validation-rule  type="required" message="داشبورد اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="connectionStringId" editorType="dxLookup" [label]="{text: 'رشته اتصال'}"  
-					[editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: connectionStringDataSource,displayExpr:'name',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="داشبورد اجباری می باشد"></dxi-validation-rule>
 
-																				<dxi-validation-rule  type="required" message="رشته اتصال اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-</dx-form>
+        </dxi-item>
+
+        <dxi-item dataField="connectionStringId" editorType="dxLookup" [label]="{text: 'رشته اتصال'}"
+                  [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: connectionStringDataSource,displayExpr:'name',valueExpr:'id' }">
+
+            <dxi-validation-rule type="required" message="رشته اتصال اجباری می باشد"></dxi-validation-rule>
+
+        </dxi-item>
+    </dx-form>
 </app-base-edit-form>

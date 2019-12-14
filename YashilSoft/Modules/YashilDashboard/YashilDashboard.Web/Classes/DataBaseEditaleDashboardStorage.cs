@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using DevExpress.DashboardWeb;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ namespace YashilDashboard.Web.Classes
     {
         // private readonly IDashboardStoreService _dashboardService;
         private readonly IServiceProvider _serviceProvider;
+
         public DataBaseEditableDashboardStorage(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
@@ -23,7 +25,8 @@ namespace YashilDashboard.Web.Classes
 
         string IEditableDashboardStorage.AddDashboard(XDocument document, string dashboardName)
         {
-            IDashboardStoreService dashboardService = _serviceProvider.CreateScope().ServiceProvider.GetRequiredService<IDashboardStoreService>();
+            var dashboardService = _serviceProvider.CreateScope().ServiceProvider
+                .GetRequiredService<IDashboardStoreService>();
             var dashboardStore = new DashboardStore
             {
                 AccessLevelId = 1,
@@ -32,7 +35,7 @@ namespace YashilDashboard.Web.Classes
                 DashboardFile = XDocumentHelper.GetDashboardFile(document),
                 Title = dashboardName
             };
-            dashboardService.AddAsync(dashboardStore,true);
+            dashboardService.AddAsync(dashboardStore, true);
 
             return dashboardStore.Id.ToString();
         }
@@ -40,12 +43,17 @@ namespace YashilDashboard.Web.Classes
 
         XDocument IDashboardStorage.LoadDashboard(string dashboardId)
         {
-            //IDashboardStoreService dashboardService = _serviceProvider.CreateScope().ServiceProvider.GetRequiredService<IDashboardStoreService>();
-            //var dashboardStore = dashboardService.GetAsync(Int32.Parse(dashboardId), true);
-            //var stream = new MemoryStream(dashboardStore.DashboardFile);
+            var dashboardService = _serviceProvider.CreateScope().ServiceProvider
+                .GetRequiredService<IDashboardStoreService>();
+            var dashboardStore = dashboardService.Get(Int32.Parse(dashboardId), true);
 
-            //return XDocument.Load(stream);
-            return null;
+            if (dashboardStore?.DashboardFile != null)
+            {
+                var stream = new MemoryStream(dashboardStore.DashboardFile);
+                return XDocument.Load(stream);
+            }
+
+            return new XDocument();
         }
 
         IEnumerable<DashboardInfo> IDashboardStorage.GetAvailableDashboardsInfo()
@@ -59,10 +67,17 @@ namespace YashilDashboard.Web.Classes
 
         void IDashboardStorage.SaveDashboard(string dashboardId, XDocument document)
         {
-            //IDashboardStoreService dashboardService = _serviceProvider.CreateScope().ServiceProvider.GetRequiredService<IDashboardStoreService>();
-            //dashboardService.UpdateDashboardFile(Int32.Parse(dashboardId), document);
-            //dashboardService.SaveChange();
-            
+            var stream = new MemoryStream();
+            document.Save(stream);
+            stream.Position = 0;
+            var dashboardService = _serviceProvider.CreateScope().ServiceProvider
+                .GetRequiredService<IDashboardStoreService>();
+            var dashboardStore = new DashboardStore
+            {
+                Id = Convert.ToInt32(dashboardId), DashboardFile = stream.ToArray(), ModificationDate = DateTime.Now
+            };
+
+            dashboardService.Update(dashboardStore, dashboardStore.Id, new List<string> {"DashboardFile"}, true);
         }
     }
 }

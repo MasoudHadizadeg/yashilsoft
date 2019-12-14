@@ -126,6 +126,35 @@ namespace Yashil.Common.Infrastructure.Implementations
             var firstOrDefault = _context.Set<T>().Find(id);
             if (firstOrDefault != null) _context.Set<T>().Remove(firstOrDefault);
         }
+        public T Update(T t, object key, List<string> modifiedProperties)
+        {
+            if (t == null)
+                return null;
+            var exist =  _context.Set<T>().Find(key);
+            var existResult = exist;
+            if (existResult != null)
+            {
+                var entityEntry = _context.Entry(existResult);
+                entityEntry.CurrentValues.SetValues(t);
+
+                entityEntry.Property("CreationDate").IsModified = false;
+                entityEntry.Property("CreateBy").IsModified = false;
+
+                if (modifiedProperties != null && modifiedProperties.Count > 0)
+                {
+                    var notModifiedProperties = entityEntry.Properties
+                        .Where(m => m.IsModified &&
+                                    !modifiedProperties.Contains(m.Metadata.Name))
+                        .ToList();
+                    foreach (var notModifiedProperty in notModifiedProperties)
+                    {
+                        entityEntry.Property(notModifiedProperty.Metadata.Name).IsModified = false;
+                    }
+                }
+            }
+
+            return exist;
+        }
 
         public async Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> modifiedProperties)
         {
@@ -168,5 +197,7 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             return await _context.Set<T>().CountAsync();
         }
+
+        
     }
 }

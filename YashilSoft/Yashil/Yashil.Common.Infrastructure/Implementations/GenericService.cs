@@ -73,6 +73,17 @@ namespace Yashil.Common.Infrastructure.Implementations
             return updateAsync;
         }
 
+        public TModel Update(TModel t, object key, List<string> modifiedProperties, bool saveAfterUpdate = false)
+        {
+            var updateAsync = _repository.Update(t, key, modifiedProperties);
+            if (saveAfterUpdate)
+            {
+                 _unitOfWork.Commit();
+            }
+
+            return updateAsync;
+        }
+
         public async Task<TModel> GetAsync(object id, bool readOnly)
         {
             return await _repository.GetAsync(id, readOnly);

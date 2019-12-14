@@ -17,23 +17,6 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
 
         public string Title { get; set; }
 
-        public string CssClass { get; set; }
-
-        public string Picture { get; set; }
-
-        public string Color { get; set; }
-
-        public bool? Animation { get; set; }
-
-        public string Description { get; set; }
-
-        public string ReportKey { get; set; }
-
-        public string DesignString { get; set; }
-
-        public string ModuleKey { get; set; }
-
-        public int AccessLevelId { get; set; }
         public string AccessLevelTitle { get; set; }
     }
 

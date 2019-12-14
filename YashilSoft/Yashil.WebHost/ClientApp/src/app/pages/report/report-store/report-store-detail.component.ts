@@ -10,7 +10,6 @@ import {Entity} from '../../../shared/base/base-data/entity.enum';
 })
 export class ReportStoreDetailComponent extends BaseEdit implements OnInit {
     accessLevelDataSource: any;
-    connectionStringDataSource: any;
     connectionStrings: any[] = [];
 
     constructor(private genericDataService: GenericDataService) {
@@ -21,7 +20,6 @@ export class ReportStoreDetailComponent extends BaseEdit implements OnInit {
     ngOnInit() {
         super.ngOnInit();
         this.accessLevelDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'accessLevel');
-        // this.connectionStringDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'yashilConnectionString');
         this._genericDataService.getEntitiesByEntityNameForSelect(Entity.YashilConnectionString).subscribe(res => this.connectionStrings = res);
     }
 

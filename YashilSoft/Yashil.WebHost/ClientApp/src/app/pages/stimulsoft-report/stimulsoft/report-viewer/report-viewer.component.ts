@@ -30,7 +30,7 @@ export class ReportViewerComponent extends YashilComponent implements OnInit {
 
     ngOnInit() {
         this.setBusy(true);
-        this.dynamicScriptLoaderService.load(['report', 'viewer', 'designer'], ['viewer_whiteblue', 'designer_whiteblue']).then(data => {
+        this.dynamicScriptLoaderService.load(['report', 'designer'], ['viewer_whiteblue', 'designer_whiteblue']).then(data => {
             Stimulsoft.Base.Localization.StiLocalization.setLocalizationFile('assets/stimulsoft/localization/fa.xml');
             this.showReport();
         }).catch(error => console.log(error));

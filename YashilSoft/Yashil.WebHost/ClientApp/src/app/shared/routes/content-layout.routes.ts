@@ -10,4 +10,9 @@ export const CONTENT_ROUTES: Routes = [
         path: 'rpt',
         loadChildren: () => import('../../pages/stimulsoft-report/stimulsoft-report.module').then(m => m.StimulsoftReportModule)
     }
+    ,
+    {
+        path: 'dash',
+        loadChildren: () => import('../../pages/dev-dashboard/dev-dashboard.module').then(m => m.DevDashboardModule)
+    }
 ];

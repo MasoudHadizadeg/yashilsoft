@@ -1,3 +1,4 @@
+using System.Linq;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 using AutoMapper;
@@ -13,9 +14,10 @@ namespace YashilDashboard.Web.Areas.Dash
         public YashilDashboardProfile()
         {
             CreateMap<DashboardStore, DashboardStoreEditModel>()
-                .ForMember(x => x.AccessLevelTitle,
-                    b => b.MapFrom(c => c.AccessLevel.Title))
-                ;
+                .ForMember(x => x.AccessLevelTitle, b => b.MapFrom(c => c.AccessLevel.Title))
+                .ForMember(x => x.ConnectionStringIds,
+                    b => b.MapFrom(c =>
+                        c.DashboardConnectionString.Select(x =>  x.ConnectionString.Id)));
 
             CreateMap<DashboardStore, DashboardStoreListViewModel>()
                 .ForMember(x => x.AccessLevelTitle,

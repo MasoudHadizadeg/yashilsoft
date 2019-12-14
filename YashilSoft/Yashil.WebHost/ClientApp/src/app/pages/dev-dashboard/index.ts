@@ -1,8 +1,8 @@
-import {ReportViewerComponent} from './stimulsoft/report-viewer/report-viewer.component';
-import {ReportDesignerComponent} from './stimulsoft/report-designer/report-designer.component';
 import {Provider} from '@angular/core';
+import {DashboardDesignerComponent} from './dashboard-designer/dashboard-designer.component';
+import {DashboardViewerComponent} from './dashboard-viewer/dashboard-viewer.component';
 
 export const COMPONENTS: Provider[] = [
-    ReportDesignerComponent,
-    ReportViewerComponent
+    DashboardDesignerComponent,
+    DashboardViewerComponent
 ];

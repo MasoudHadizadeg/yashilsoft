@@ -1,5 +1,3 @@
-import DataSource from 'devextreme/data/data_source';
-import {HttpClient, HttpParams} from '@angular/common/http';
 import {
     AfterViewInit,
     ComponentFactoryResolver,
@@ -24,11 +22,16 @@ import {FormEditType} from './edit-type';
 import {DialogService} from '../../../_services/dialog.service';
 import {Router} from '@angular/router';
 import {SharedDataService} from '../../../core/services/shared-data.service';
+import {CustomDevDataSource} from './custom-dev-data-source';
+import {HttpClient} from '@angular/common/http';
 
-export class BaseList implements OnInit, AfterViewInit {
+export class BaseList extends CustomDevDataSource implements OnInit, AfterViewInit {
     /*
     * this use for custom Mode when u need bind data to custom component without dataSource
     * */
+    selectedItemId: number;
+    allowEditSelectedRow: boolean;
+    allowDeleteSelectedRow: boolean;
     @Input()
     showFilterButton = true;
     @Input()
@@ -39,8 +42,6 @@ export class BaseList implements OnInit, AfterViewInit {
     allowInsertInForm = true;
     @Input()
     allowEditInForm = true;
-    @Input()
-    allowDeleteInForm = true;
     @Input()
     @Input()
     allowPaging = true;
@@ -72,14 +73,13 @@ export class BaseList implements OnInit, AfterViewInit {
         return this._rootValue;
     }
 
-    // This Property Used For Set Tree List RowKeys
-    selectedRowKeys: any[] = [];
+
     @Input()
     offsetHeight: number;
     parentIdExpr: 'parentId';
     @Input()
     isForSelectReadOnly = false;
-    @ViewChild(DetailComponentDirective, { static: false }) detailComponentContainer: DetailComponentDirective;
+    @ViewChild(DetailComponentDirective, {static: false}) detailComponentContainer: DetailComponentDirective;
     @Input()
     detailComponent: Type<any>;
     loadData: boolean;
@@ -100,7 +100,6 @@ export class BaseList implements OnInit, AfterViewInit {
     entities: any = {};
     gridDataSource: any = {};
     _genericDataService: GenericDataService;
-    private httpClient: HttpClient;
     dataEntityName: string;
     remoteOperations: any = {};
 
@@ -120,10 +119,10 @@ export class BaseList implements OnInit, AfterViewInit {
     isForTree: boolean;
 // The Root Value In Tree Mode
     closeActionEmitter = new EventEmitter<boolean>();
-    @ViewChild(DxPopupComponent, { static: true }) popupComponent: DxPopupComponent;
-    @ViewChild(DxDataGridComponent, { static: false }) listGrid: DxDataGridComponent;
-    @ViewChild(BaseEditFormComponent, { static: false }) baseEdit: BaseEditFormComponent;
-    @ContentChild(TemplateRef,{ static: false})
+    @ViewChild(DxPopupComponent, {static: true}) popupComponent: DxPopupComponent;
+    @ViewChild(DxDataGridComponent, {static: false}) listGrid: DxDataGridComponent;
+    @ViewChild(BaseEditFormComponent, {static: false}) baseEdit: BaseEditFormComponent;
+    @ContentChild(TemplateRef, {static: false})
     template: TemplateRef<BaseEdit>;
     // tslint:disable-next-line:variable-name
     private _showEditForm: boolean;
@@ -156,13 +155,8 @@ export class BaseList implements OnInit, AfterViewInit {
 
     @Input()
     columns: any[] = [];
-    rowKey = 'id';
     isNew = false;
-    selectedItemId: number;
     selectedRowId: number;
-
-    allowEditSelectedRow: boolean;
-    allowDeleteSelectedRow: boolean;
     _componentFactoryResolver: ComponentFactoryResolver
 
     public get isCustomEditForm() {
@@ -171,10 +165,10 @@ export class BaseList implements OnInit, AfterViewInit {
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver,
                 private dialogService: DialogService, genericDataService: GenericDataService,
-                public sharedDataService: SharedDataService,
-                @Inject(HttpClient) httpClient: HttpClient, public router: Router) {
+                public sharedDataService: SharedDataService, @Inject(HttpClient) httpClient: HttpClient,
+                public router: Router) {
+        super(httpClient);
         this._genericDataService = genericDataService;
-        this.httpClient = httpClient;
         this.bindDataSource = this.bindDataSource.bind(this);
         this.allowEditRecord = this.allowEditRecord.bind(this);
         this.allowDeleteRecord = this.allowDeleteRecord.bind(this);
@@ -228,74 +222,7 @@ export class BaseList implements OnInit, AfterViewInit {
             return;
         }
         const pageFilters = this.customFilters;
-        this.gridDataSource = new DataSource(
-            {
-                key: 'id',
-                load: (loadOptions) => {
-                    let params: HttpParams = new HttpParams();
-                    [
-                        'skip',
-                        'take',
-                        'requireTotalCount',
-                        'requireGroupCount',
-                        'sort',
-                        // 'filter',
-                        'totalSummary',
-                        'group',
-                        'groupSummary'
-                    ].forEach(function (i) {
-                            if (i in loadOptions && (loadOptions[i] && loadOptions[i] !== '')) {
-                                params = params.set(i, JSON.stringify(loadOptions[i]));
-                            }
-                        }
-                    );
-                    let rf = new Array();
-                    const filterParamKey = 'filter';
-                    let addFirstAnd = false;
-                    if (loadOptions[filterParamKey] && loadOptions[filterParamKey] !== '') {
-                        addFirstAnd = true;
-                        const filters = loadOptions[filterParamKey];
-                        if (filters[1] === 'and') {
-                            rf = filters;
-                        } else {
-                            rf.push(filters);
-                        }
-                    }
-                    params = params.set('filter', JSON.stringify(rf));
-                    const cp = new Array();
-                    for (let k = 0; k < pageFilters.length; k++) {
-                        cp.push(pageFilters[k]);
-                    }
-                    params = params.set('customParams', JSON.stringify(cp));
-                    let listUrl = this.entityName;
-                    if (this.customListUrl != null && this.customListUrl !== undefined) {
-                        listUrl = this.customListUrl;
-                    }
-                    return this.httpClient.get(`/api/${listUrl}`, {params: params})
-                        .toPromise()
-                        .then(result => {
-                            this.afterLoadData(result);
-                            return {
-                                data: result['data'],
-                                totalCount: result['totalCount'],
-                                summary: result['summary'],
-                                groupCount: result['groupCount']
-                            };
-                        });
-                },
-                update: (key: any | string | number, values: any) => {
-                    const params: HttpParams = new HttpParams();
-                    const changedProps = Object.keys(values);
-                    for (let i = 0; i < changedProps.length; i++) {
-                        changedProps[i] = changedProps[i].charAt(0).toUpperCase() + changedProps[i].slice(1);
-                    }
-                    const data = {EditModel: values, ChangedProps: changedProps};
-                    values['id'] = key.id;
-                    return this.httpClient.put<any>('/api/' + this.entityName + '/PutEntityCustom', data, {})
-                        .toPromise().then();
-                }
-            }
-        );
+        this.gridDataSource = this.getCustomDataSource(this.entityName, pageFilters, this.customListUrl);
     }
 
     private declareDeleteConfirm() {
@@ -434,19 +361,18 @@ export class BaseList implements OnInit, AfterViewInit {
         }
     }
 
-    // :TODO  This Method Must Be Private and Other Class Cannot change it,but Other Class Maybe Need for  it
+    protected setSelectedRow(selectedRowId, selectedRow) {
+        this.selectedItemId = selectedRowId;
+        this.allowEditSelectedRow = this.allowEditRecord(selectedRow);
+        this.allowDeleteSelectedRow = this.allowDeleteRecord(selectedRow);
+    }
+
     afterLoadData(result) {
         if (result && result['data'].length > 0) {
             const firstRowId = result['data'][0][this.rowKey];
             this.selectedRowKeys = [firstRowId];
             this.setSelectedRow(firstRowId, result['data'][0]);
         }
-    }
-
-    private setSelectedRow(selectedRowId, selectedRow) {
-        this.selectedItemId = selectedRowId;
-        this.allowEditSelectedRow = this.allowEditRecord(selectedRow);
-        this.allowDeleteSelectedRow = this.allowDeleteRecord(selectedRow);
     }
 
     allowEditRecord(data: any) {
