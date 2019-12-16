@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using DevExpress.DashboardCommon;
 using DevExpress.DashboardWeb;
+using DevExpress.DataAccess.Sql;
 using Microsoft.Extensions.DependencyInjection;
 using Yashil.Common.SharedKernel.Helpers;
 using Yashil.Core.Entities;
@@ -25,6 +27,9 @@ namespace YashilDashboard.Web.Classes
 
         string IEditableDashboardStorage.AddDashboard(XDocument document, string dashboardName)
         {
+//            Dashboard dashboard=new Dashboard();
+//            var sqlDataConnection = new SqlDataConnection {Name = "conn1"};
+//            dashboard.DataConnections.Add(sqlDataConnection);
             var dashboardService = _serviceProvider.CreateScope().ServiceProvider
                 .GetRequiredService<IDashboardStoreService>();
             var dashboardStore = new DashboardStore
@@ -32,7 +37,7 @@ namespace YashilDashboard.Web.Classes
                 AccessLevelId = 1,
                 CreateBy = 7,
                 CreationDate = DateTime.Now,
-                DashboardFile = XDocumentHelper.GetDashboardFile(document),
+                DashboardFile = XDocumentHelper.GetBytes(document),
                 Title = dashboardName
             };
             dashboardService.AddAsync(dashboardStore, true);

@@ -6,5 +6,6 @@ namespace YashilDashboard.Core.Repositories
 {
 	public interface IDashboardStoreRepository : IGenericRepository<DashboardStore>
     {
+        void DeleteContentionStrings(int dashboardId);
     }
 }      

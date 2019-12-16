@@ -1,4 +1,3 @@
-	 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +8,21 @@ using Microsoft.AspNetCore.Mvc;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
 using YashilDashboard.Core.Services;
-using  YashilDashboard.Web.Areas.Dash.ViewModels;
+using YashilDashboard.Web.Areas.Dash.ViewModels;
 
 namespace YashilDashboard.Web.Areas.Dash.Controllers
 {
-	public class DashboardStoreController : BaseController<DashboardStore ,int,DashboardStoreListViewModel, DashboardStoreViewModel, DashboardStoreEditModel,DashboardStoreSimpleViewModel>
+    public class DashboardStoreController : BaseController<DashboardStore, int, DashboardStoreListViewModel,
+        DashboardStoreViewModel, DashboardStoreEditModel, DashboardStoreSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IDashboardStoreService _dashboardStoreService;
-        public DashboardStoreController(IDashboardStoreService dashboardStoreService, IMapper mapper) : base(dashboardStoreService, mapper)
+
+        public DashboardStoreController(IDashboardStoreService dashboardStoreService, IMapper mapper) : base(
+            dashboardStoreService, mapper)
         {
-            _mapper=mapper;
-            _dashboardStoreService=dashboardStoreService;
+            _mapper = mapper;
+            _dashboardStoreService = dashboardStoreService;
         }
 
 
@@ -48,22 +50,6 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
             return null;
         }
 
-//        [HttpPost("SaveDashboardDesign")]
-//        public async Task<bool> SaveDashboardDesign(DashboardFileViewModel data)
-//        {
-////            var Dashboard = new StiDashboard();
-////            Dashboard.LoadFromString(data.DashboardFile);
-////            var DashboardStore = new DashboardStore
-////            {
-////                Id = data.DashboardId,
-////                ModifyBy = CurrentUserId,
-////                ModificationDate = DateTime.Now,
-////                DashboardFile = Dashboard.SaveToByteArray()
-////            };
-////            await _dashboardStoreService.UpdateAsync(DashboardStore, data.DashboardId, new List<string> { "DashboardFile" }, true);
-//            return true;
-//        }
-
         [HttpPost("Handler")]
         public IActionResult Handler([FromBody] string command)
         {
@@ -84,15 +70,14 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
                 entity.DashboardConnectionString.Add(new DashboardConnectionString
                 {
                     ConnectionStringId = Convert.ToInt32(connectionStringId),
-                    DashboardId = editModel.Id,
                     CreateBy = CurrentUserId.Value,
                     CreationDate = DateTime.Now
                 });
             }
         }
 
-
-        protected override async Task UpdateAsync(DashboardStore entity, DashboardStoreEditModel editModel, int entityId,
+        protected override async Task UpdateAsync(DashboardStore entity, DashboardStoreEditModel editModel,
+            int entityId,
             List<string> notModifiedProperties)
         {
             var dashboardConnectionStrings = editModel.ConnectionStringIds.Select(conStringId =>
@@ -104,15 +89,9 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
                     CreationDate = DateTime.Now
                 }).ToList();
 
-            await _dashboardStoreService.UpdateDashboardStoreWithConnectionStringAsync(entity, dashboardConnectionStrings,
+            await _dashboardStoreService.UpdateDashboardStoreWithConnectionStringAsync(entity,
+                dashboardConnectionStrings,
                 GetModifiedProperties(entity));
         }
-
-
-//        protected override async Task<DashboardStoreEditModel> GetEntityForEdit(int id)
-//        {
-//            var dashboardStore = await _dashboardStoreService.GetEntityForEdit(id);
-//            return _mapper.Map<DashboardStore, DashboardStoreEditModel>(dashboardStore);
-//        }
     }
-}      
+}

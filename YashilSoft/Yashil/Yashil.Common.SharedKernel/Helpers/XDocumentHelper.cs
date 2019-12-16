@@ -8,7 +8,7 @@ namespace Yashil.Common.SharedKernel.Helpers
 {
     public class XDocumentHelper
     {
-        public static byte[] GetDashboardFile(XDocument document)
+        public static byte[] GetBytes(XDocument document)
         {
             var stream = new MemoryStream();
             document.Save(stream);

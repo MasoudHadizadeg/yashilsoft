@@ -11,7 +11,6 @@ using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
 using YashilReport.Core;
 using YashilReport.Core.Services;
-using YashilReport.Infrastructure.ReportClasses.Adapters;
 using YashilReport.Web.Areas.Rpt.ViewModels;
 
 namespace YashilReport.Web.Areas.Rpt.Controllers
@@ -31,7 +30,6 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
             _reportStoreService = reportStoreService;
             _reportConnectionStringService = reportConnectionStringService;
         }
-
 
         [HttpGet("GetReportDesigner")]
         public JsonResult GetReportDesigner(int id)
@@ -92,13 +90,11 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
                 entity.ReportConnectionString.Add(new ReportConnectionString
                 {
                     ConnectionStringId = Convert.ToInt32(connectionStringId),
-                    ReportId = editModel.Id,
                     CreateBy = CurrentUserId.Value,
                     CreationDate = DateTime.Now
                 });
             }
         }
-
 
         protected override async Task UpdateAsync(ReportStore entity, ReportStoreEditModel editModel, int entityId,
             List<string> notModifiedProperties)
@@ -115,7 +111,6 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
             await _reportStoreService.UpdateReportStoreWithConnectionStringAsync(entity, reportConnectionStrings,
                 GetModifiedProperties(entity));
         }
-
 
         protected override async Task<ReportStoreEditModel> GetEntityForEdit(int id)
         {

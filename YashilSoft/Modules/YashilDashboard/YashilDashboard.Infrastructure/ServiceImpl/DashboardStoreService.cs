@@ -1,8 +1,16 @@
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using DevExpress.DashboardCommon;
+using DevExpress.DashboardCommon.Native;
+using DevExpress.DataAccess.Sql;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
+using Yashil.Common.SharedKernel.Helpers;
 using Yashil.Core.Entities;
+using YashilBaseInfo.Core.Services;
 using YashilDashboard.Core.Repositories;
 using YashilDashboard.Core.Services;
 
@@ -12,12 +20,18 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IDashboardStoreRepository _dashboardStoreRepository;
+        private readonly IYashilConnectionStringService _connectionStringService;
+        private readonly IDashboardConnectionStringService _dashboardConnectionStringService;
 
-        public DashboardStoreService(IUnitOfWork unitOfWork, IDashboardStoreRepository dashboardStoreRepository) : base(
+        public DashboardStoreService(IUnitOfWork unitOfWork, IDashboardStoreRepository dashboardStoreRepository,
+            IYashilConnectionStringService connectionStringService,
+            IDashboardConnectionStringService dashboardConnectionStringService) : base(
             unitOfWork, dashboardStoreRepository)
         {
             _unitOfWork = unitOfWork;
             _dashboardStoreRepository = dashboardStoreRepository;
+            _connectionStringService = connectionStringService;
+            _dashboardConnectionStringService = dashboardConnectionStringService;
         }
 
         public string GetDashboardDesigner(int dashboardId)
@@ -35,14 +49,78 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
             List<string> notModifiedProperties)
         {
             DeleteContentionStrings(entity.Id);
-//            var report = AddConnectionStringToReport(entity.Id, reportConnectionStrings);
-//            entity.ReportFile = report.SaveToByteArray();
+            var dashboard = AddConnectionStringToDashboard(entity.Id, dashboardConnectionStrings);
             await UpdateAsync(entity, entity.Id, notModifiedProperties, true);
         }
 
-        private void DeleteContentionStrings(in int entityId)
+        private Dashboard AddConnectionStringToDashboard(int dashboardId,
+            List<DashboardConnectionString> dashboardConnectionStrings)
         {
-            throw new System.NotImplementedException();
+            var dashboardStore = Get(dashboardId);
+            var dashboard = new Dashboard();
+            var stream = new MemoryStream(dashboardStore.DashboardFile);
+            dashboard.LoadFromXml(stream);
+
+            var connectionStrings =
+                _connectionStringService.FindByIds(dashboardConnectionStrings.Select(x => x.ConnectionStringId));
+
+            dashboard.DataConnections.Clear();
+
+
+            foreach (var connectionString in dashboardConnectionStrings)
+            {
+                _dashboardConnectionStringService.Add(connectionString);
+            }
+
+            foreach (var connection in connectionStrings)
+            {
+                AddDatabaseToDashboard(dashboard, connection);
+            }
+
+            return dashboard;
+        }
+
+        private void DeleteContentionStrings(int dashboardId)
+        {
+            _dashboardStoreRepository.DeleteContentionStrings(dashboardId);
+        }
+
+        public override async Task<DashboardStore> AddAsync(DashboardStore dashboardStore, bool saveAfterAdd = false)
+        {
+            var dashboard = new Dashboard();
+            var connectionStrings =
+                _connectionStringService.FindByIds(
+                    dashboardStore.DashboardConnectionString.Select(x => x.ConnectionStringId));
+            foreach (var connection in connectionStrings)
+            {
+                AddDatabaseToDashboard(dashboard, connection);
+            }
+
+            dashboardStore.DashboardFile = XDocumentHelper.GetBytes(dashboard.SaveToXDocument());
+            return await base.AddAsync(dashboardStore, saveAfterAdd);
+        }
+
+        private void AddDatabaseToDashboard(Dashboard dashboard, YashilConnectionString connection)
+        {
+            if (connection.DataProvider.Title == "MS SQL")
+            {
+                var sqlDataConnection = new SqlDataConnection
+                {
+                    Name = connection.Title, ConnectionString = connection.ConnectionString
+                };
+                dashboard.DataConnections.Add(sqlDataConnection);
+            }
+
+//            else if (connection.DataProvider.Title == "Postgres")
+//            {
+//                report.Dictionary.Databases.Add(new StiPostgreSQLDatabase(connection.Title, connection.Title,
+//                    connection.Title));
+//            }
+//            else if (connection.DataProvider.Title == "MySql")
+//            {
+//                report.Dictionary.Databases.Add(new StiMySqlDatabase(connection.Title, connection.Title,
+//                    connection.Title));
+//            }
         }
     }
 }
