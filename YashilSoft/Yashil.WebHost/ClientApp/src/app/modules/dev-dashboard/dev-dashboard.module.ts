@@ -11,11 +11,7 @@ import {DevDashboardRoutingModule} from './dev-dashboard-routing.module';
     declarations: [COMPONENTS],
     entryComponents: [ENTRYCOMPONENTS],
     imports: [
-        CommonModule,
         DevDashboardRoutingModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule,
         SharedModule
     ],
     exports: [COMPONENTS],

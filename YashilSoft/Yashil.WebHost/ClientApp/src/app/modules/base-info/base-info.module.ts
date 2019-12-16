@@ -14,12 +14,10 @@ import {BaseInfoRoutingModule} from './base-info-routing.module';
     declarations: [COMPONENTS],
     entryComponents: [ENTRYCOMPONENTS],
     imports: [
-        CommonModule,
         BaseInfoRoutingModule,
         DpDatePickerModule,
         SharedModule,
-        AngularSplitModule.forRoot(),
-        ImageCropperModule
+        AngularSplitModule.forRoot()
     ],
     providers: [],
     exports: [COMPONENTS],

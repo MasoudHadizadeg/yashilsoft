@@ -49,11 +49,11 @@ export class DashboardStoreListComponent {
 
     DesignDashboard(e) {
         const selectedDashboardId = e.row.data.Id;
-        this.router.navigate(['modules/dash/designDashboard', e.row.data.id]);
+        this.router.navigate(['pages/dash/designDashboard', e.row.data.id]);
     }
 
     ViewDashboard(e) {
         const selectedDashboardId = e.row.data.Id;
-        this.router.navigate(['modules/dash/viewDashboard', e.row.data.id]);
+        this.router.navigate(['pages/dash/viewDashboard', e.row.data.id]);
     }
 }

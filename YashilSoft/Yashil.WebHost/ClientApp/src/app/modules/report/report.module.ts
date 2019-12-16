@@ -14,7 +14,6 @@ import {ReportRoutingModule} from './report-routing.module';
     declarations: [COMPONENTS],
     entryComponents: [ENTRYCOMPONENTS],
     imports: [
-        CommonModule,
         ReportRoutingModule,
         DpDatePickerModule,
         SharedModule,

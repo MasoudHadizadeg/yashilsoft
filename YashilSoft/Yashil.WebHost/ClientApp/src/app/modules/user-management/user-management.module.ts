@@ -16,7 +16,6 @@ import {UserManagementRoutingModule} from './user-management-routing.module';
     declarations: [COMPONENTS],
     entryComponents: [ENTRYCOMPONENTS],
     imports: [
-        CommonModule,
         UserManagementRoutingModule,
         DpDatePickerModule,
         SharedModule,

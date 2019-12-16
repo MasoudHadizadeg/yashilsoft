@@ -51,11 +51,11 @@ export class ReportStoreListComponent {
 
     DesignReport(e) {
         const selectedReportId = e.row.data.Id;
-        this.router.navigate(['modules/rpt/designReport', e.row.data.id]);
+        this.router.navigate(['pages/rpt/designReport', e.row.data.id]);
     }
 
     ViewReport(e) {
         const selectedReportId = e.row.data.Id;
-        this.router.navigate(['modules/rpt/viewReport', e.row.data.id]);
+        this.router.navigate(['pages/rpt/viewReport', e.row.data.id]);
     }
 }

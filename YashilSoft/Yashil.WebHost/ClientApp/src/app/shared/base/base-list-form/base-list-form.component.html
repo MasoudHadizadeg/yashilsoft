@@ -1,9 +1,9 @@
 <div style="text-align: right;background: #8689c8;" class="p-1" *ngIf="showListHeader">
     <dx-button class="mediumIcon" icon="plus" (onClick)="addEntity()" *ngIf="!isForSelectReadOnly && allowInsertInForm">
     </dx-button>
-    <dx-button class="mediumIcon" icon="edit" (onClick)="editEntity(selectedItemId)" style="margin-right: 5px"
-               *ngIf="selectedItemId && !isForSelectReadOnly && allowEditSelectedRow && allowEditInForm">
-    </dx-button>
+<!--    <dx-button class="mediumIcon" icon="edit" (onClick)="editEntity(selectedItemId)" style="margin-right: 5px"-->
+    <!--               *ngIf="selectedItemId && !isForSelectReadOnly && allowEditSelectedRow && allowEditInForm">-->
+    <!--    </dx-button>-->
     <dx-button *ngIf="showFilterButton && showFilterButton===true" class="mediumIcon" icon="filter" style="margin-right: 5px" (onClick)="toggleFilter()" >
     </dx-button>
     <span style="color: white">

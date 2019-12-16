@@ -11,7 +11,6 @@ import {StimulsoftReportRoutingModule} from './stimulsoft-report-routing.module'
     declarations: [COMPONENTS],
     entryComponents: [ENTRYCOMPONENTS],
     imports: [
-        CommonModule,
         StimulsoftReportRoutingModule,
         SharedModule
     ],

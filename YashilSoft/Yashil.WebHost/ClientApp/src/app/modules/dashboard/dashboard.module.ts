@@ -12,7 +12,6 @@ import {DashboardRoutingModule} from './dashboard-routing.module';
     declarations: [COMPONENTS],
     entryComponents: [ENTRYCOMPONENTS],
     imports: [
-        CommonModule,
         DashboardRoutingModule,
         DpDatePickerModule,
         SharedModule,
