@@ -5,20 +5,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {COMPONENTS} from './index';
 import {SharedModule} from '../../shared/shared.module';
 import {ENTRYCOMPONENTS} from './entryIndex';
-import {DevDashboardRoutingModule} from './dev-dashboard-routing.module';
+import {StimulsoftReportRoutingModule} from './stimulsoft-report-routing.module';
 
 @NgModule({
     declarations: [COMPONENTS],
     entryComponents: [ENTRYCOMPONENTS],
     imports: [
-        CommonModule,
-        DevDashboardRoutingModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule,
+        StimulsoftReportRoutingModule,
         SharedModule
     ],
     exports: [COMPONENTS],
 })
-export class DevDashboardModule {
+export class StimulsoftReportModule {
 }

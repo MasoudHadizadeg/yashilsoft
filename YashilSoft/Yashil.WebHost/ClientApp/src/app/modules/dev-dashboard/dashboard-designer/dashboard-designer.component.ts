@@ -3,6 +3,8 @@ import {AfterViewInit, Component, ElementRef, OnDestroy} from '@angular/core';
 import {DashboardControl, ResourceManager} from 'devexpress-dashboard';
 import {YashilComponent} from '../../../core/baseClasses/yashilComponent';
 import {ActivatedRoute} from '@angular/router';
+import {DashboardMenuItem} from 'devexpress-dashboard/designer';
+import {Location} from '@angular/common';
 
 declare var require: (e: string) => object;
 
@@ -16,7 +18,7 @@ export class DashboardDesignerComponent extends YashilComponent implements After
     private dashboardControl!: DashboardControl;
     dashboardId: any;
 
-    constructor(private route: ActivatedRoute, private element: ElementRef) {
+    constructor(private location: Location, private route: ActivatedRoute, private element: ElementRef) {
         super();
         if (this.route.snapshot.params.id) {
             this.dashboardId = this.route.snapshot.params.id;
@@ -43,8 +45,19 @@ export class DashboardDesignerComponent extends YashilComponent implements After
             useCardLegacyLayout: false,
             workingMode: 'Designer'
         });
-        let toolbox = this.dashboardControl.findExtension('toolbox');
-        // toolbox.removeMenuItem("open-dashboard");
+        const toolBox = this.dashboardControl.findExtension('toolbox');
+        this.dashboardControl.unregisterExtension('create-dashboard');
+        this.dashboardControl.unregisterExtension('open-dashboard');
+
+        const that = this;
+        const dashboardMenuItem = new DashboardMenuItem('save-as_custom', 'Exit', 120, 0, function () {
+            that.location.back();
+        });
+        toolBox.menuItems.push(dashboardMenuItem);
+        // tslint:disable-next-line:prefer-const
+        const HELLOWORLD_ITEM_ICON = '<svg id="helloWorldItemIcon" viewBox="0 0 24 24"><path stroke="#42f48f" fill="#42f48f" d="M12 2 L2 22 L22 22 Z" /></svg>';
+        ResourceManager.registerIcon(HELLOWORLD_ITEM_ICON);
+
 
         this.dashboardControl.render();
     }

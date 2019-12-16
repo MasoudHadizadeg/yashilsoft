@@ -10,10 +10,7 @@ declare var Stimulsoft: any;
 
 @Component({
     selector: 'app-report-viewer',
-    template: `
-        <app-busy-indicator>
-            <div style="text-align: left; direction: ltr" id="viewerContent"></div>
-        </app-busy-indicator>`,
+    templateUrl: './report-designer.component.html',
     styleUrls: ['./report-designer.component.css'],
     encapsulation: ViewEncapsulation.None
 })

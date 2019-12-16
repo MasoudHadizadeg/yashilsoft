@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'app-footer',
@@ -6,7 +6,6 @@ import { Component, HostBinding } from '@angular/core';
     styleUrls: ['./footer.component.scss']
 })
 
-export class FooterComponent{
-    //Variables
-    currentDate : Date = new Date();
+export class FooterComponent {
+    // currentDate: Date = new Date();
 }

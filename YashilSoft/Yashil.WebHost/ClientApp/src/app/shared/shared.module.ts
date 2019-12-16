@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 // COMPONENTS
 import {FooterComponent} from './footer/footer.component';
@@ -16,7 +15,6 @@ import {SidebarToggleDirective} from './directives/sidebartoggle.directive';
 import {BaseListFormComponent} from './base/base-list-form/base-list-form.component';
 import {BaseEditFormComponent} from './base/base-edit-form/base-edit-form.component';
 import {DpDatePickerModule} from 'ng2-jalali-date-picker';
-import {FormsModule} from '@angular/forms';
 import {DxDataGridModule} from 'devextreme-angular/ui/data-grid'
 import {DxButtonModule} from 'devextreme-angular/ui/button'
 import {DxCheckBoxModule} from 'devextreme-angular/ui/check-box'
@@ -55,7 +53,6 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import {DynamicScriptLoaderService} from './services/dynamic-script-loader.service';
 import {CoreModule} from '../core/core.module';
-import {ContentLayoutComponent} from '../layouts/content/content-layout.component';
 
 @NgModule({
     exports: [
@@ -101,9 +98,6 @@ import {ContentLayoutComponent} from '../layouts/content/content-layout.componen
         DxListModule
     ],
     imports: [
-        FormsModule,
-        RouterModule,
-        CommonModule,
         DxTileViewModule,
         TranslateModule,
         DxLookupModule,
