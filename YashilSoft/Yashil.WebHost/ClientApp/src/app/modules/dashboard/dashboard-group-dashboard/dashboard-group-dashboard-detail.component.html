@@ -1,0 +1,20 @@
+
+			<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+
+									
+									<dxi-item dataField="dashboardStoreId" editorType="dxLookup" [label]="{text: 'داشبورد'}"  
+					[editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: dashboardStoreDataSource,displayExpr:'title',valueExpr:'id' }">
+
+																				<dxi-validation-rule  type="required" message="داشبورد اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+									
+									<dxi-item dataField="dashboardGroupId" editorType="dxLookup" [label]="{text: 'گروه داشبورد'}"  
+					[editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: dashboardGroupDataSource,displayExpr:'title',valueExpr:'id' }">
+
+																				<dxi-validation-rule  type="required" message="گروه داشبورد اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+</dx-form>
+</app-base-edit-form>
