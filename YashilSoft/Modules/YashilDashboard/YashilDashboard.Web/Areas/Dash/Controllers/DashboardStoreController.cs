@@ -93,5 +93,16 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
                 dashboardConnectionStrings,
                 GetModifiedProperties(entity));
         }
+
+//        protected override async Task<ReportStoreEditModel> GetEntityForEdit(int id)
+//        {
+//            var reportStore = await _reportStoreService.GetEntityForEdit(id);
+//            return _mapper.Map<ReportStore, ReportStoreEditModel>(reportStore);
+//        }
+        protected override async Task<DashboardStoreEditModel> GetEntityForEdit(int id)
+        {
+            var dashboardStore = await _dashboardStoreService.GetEntityForEdit(id);
+            return _mapper.Map<DashboardStore, DashboardStoreEditModel>(dashboardStore);
+        }
     }
 }

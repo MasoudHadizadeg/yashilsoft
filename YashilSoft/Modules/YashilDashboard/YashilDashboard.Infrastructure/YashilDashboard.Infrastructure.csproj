@@ -9,12 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="DevExpress.Dashboard.Core" Version="19.2.3" />
+    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Yashil.Infrastructure\Yashil.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\..\Yashil\Yashil.Common.Infrastructure\Yashil.Common.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\..\Yashil\Yashil.Common.SharedKernel\Yashil.Common.SharedKernel.csproj" />
     <ProjectReference Include="..\..\YashilBaseInfo\YashilBaseInfo.Core\YashilBaseInfo.Core.csproj" />
     <ProjectReference Include="..\YashilDashboard.Core\YashilDashboard.Core.csproj" />
   </ItemGroup>

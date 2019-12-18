@@ -101,7 +101,6 @@ export class BaseEdit implements OnInit {
     }
 
     constructor(genericDataService: GenericDataService) {
-        config({rtlEnabled: true});
         this._genericDataService = genericDataService;
     }
 

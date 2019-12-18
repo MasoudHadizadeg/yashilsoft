@@ -7,12 +7,11 @@
 
   <ItemGroup>
     <PackageReference Include="Stimulsoft.Reports.Engine.NetCore" Version="2019.4.2" />
+    <PackageReference Include="Yashil.Common.Web.Infrastructure" Version="1.0.0" />
   </ItemGroup> 
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Yashil.Core\Yashil.Core.csproj" />
-    <ProjectReference Include="..\..\..\Yashil\Yashil.Common.SharedKernel\Yashil.Common.SharedKernel.csproj" />
-    <ProjectReference Include="..\..\..\Yashil\Yashil.Common.Web.Infrastructure\Yashil.Common.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\YashilReport.Core\YashilReport.Core.csproj" />
     <ProjectReference Include="..\YashilReport.Infrastructure\YashilReport.Infrastructure.csproj" />
   </ItemGroup>

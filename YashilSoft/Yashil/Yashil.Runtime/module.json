@@ -1,8 +1,0 @@
-{
-  "id": "Yashil.Runtime",
-  "name": "Runtime",
-  "isBundledWithHost": true,
-  "version": "1.0.0",
-  "subFolder": "",
-  "fullPath": "Yashil"
-}

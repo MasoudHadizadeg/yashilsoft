@@ -56,6 +56,11 @@ namespace YashilDashboard.Web.Areas.Dash.ViewModels
 
     public class DashboardStoreEditModel : IBaseViewModel
     {
+        public DashboardStoreEditModel()
+        {
+            ConnectionStringIds = new List<int>();
+        }
+
         public int ViewModelId
         {
             get => Id;

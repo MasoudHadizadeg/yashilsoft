@@ -38,7 +38,7 @@ namespace YashilDashboard.Web
             .AddControllersWithViews()
             .AddDefaultDashboardController((configurator, serviceProvider) =>
             {
-                configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(Configuration));
+               configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(Configuration));
                 //var dataBaseDashboardStorage =
                 //    new DataBaseEditableDashboardStorage(
                 //        Configuration.GetConnectionString("DashboardStorageConnection"));

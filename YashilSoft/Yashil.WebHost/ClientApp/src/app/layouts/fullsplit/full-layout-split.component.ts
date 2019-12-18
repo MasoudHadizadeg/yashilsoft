@@ -10,9 +10,9 @@ import {DxFormComponent} from 'devextreme-angular';
 })
 
 export class FullLayoutSplitComponent implements OnInit, AfterViewInit {
-    @ViewChild('sidebarBgImage', { static: true }) sidebarBgImage: ElementRef;
-    @ViewChild('appSidebar', { static: true }) appSidebar: ElementRef;
-    @ViewChild('wrapper', { static: true }) wrapper: ElementRef;
+    @ViewChild('sidebarBgImage', {static: true}) sidebarBgImage: ElementRef;
+    @ViewChild('appSidebar', {static: true}) appSidebar: ElementRef;
+    @ViewChild('wrapper', {static: true}) wrapper: ElementRef;
 
     options = {
         direction: 'rtl',

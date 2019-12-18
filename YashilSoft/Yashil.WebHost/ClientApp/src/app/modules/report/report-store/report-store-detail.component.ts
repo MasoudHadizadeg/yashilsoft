@@ -20,7 +20,7 @@ export class ReportStoreDetailComponent extends BaseEdit implements OnInit {
     ngOnInit() {
         super.ngOnInit();
         this.accessLevelDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'accessLevel');
-        this._genericDataService.getEntitiesByEntityNameForSelect(Entity.in).subscribe(res => this.connectionStrings = res);
+        this._genericDataService.getEntitiesByEntityNameForSelect(Entity.YashilConnectionString).subscribe(res => this.connectionStrings = res);
     }
 
     doBeforeSubmit(e) {

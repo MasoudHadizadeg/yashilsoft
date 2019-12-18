@@ -1,8 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Inject, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {ConfigService} from '../../shared/services/config.service';
-import {DxFormComponent} from 'devextreme-angular';
-
 
 @Component({
     selector: 'app-full-layout',
@@ -11,9 +9,9 @@ import {DxFormComponent} from 'devextreme-angular';
 })
 
 export class FullLayoutComponent implements OnInit, AfterViewInit {
-    @ViewChild('sidebarBgImage', { static: true }) sidebarBgImage: ElementRef;
-    @ViewChild('appSidebar', { static: true }) appSidebar: ElementRef;
-    @ViewChild('wrapper', { static: true }) wrapper: ElementRef;
+    @ViewChild('sidebarBgImage', {static: true}) sidebarBgImage: ElementRef;
+    @ViewChild('appSidebar', {static: true}) appSidebar: ElementRef;
+    @ViewChild('wrapper', {static: true}) wrapper: ElementRef;
 
     options = {
         direction: 'rtl',
@@ -79,7 +77,6 @@ export class FullLayoutComponent implements OnInit, AfterViewInit {
             if (this.config.layout.dir) {
                 this.options.direction = this.config.layout.dir;
             }
-
 
             if (this.config.layout.variant === 'Dark') {
                 this.renderer.addClass(this.document.body, 'layout-dark');

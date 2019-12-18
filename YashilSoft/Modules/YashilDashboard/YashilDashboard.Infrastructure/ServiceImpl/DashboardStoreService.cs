@@ -2,10 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using DevExpress.DashboardCommon;
-using DevExpress.DashboardCommon.Native;
-using DevExpress.DataAccess.Sql;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Common.SharedKernel.Helpers;
@@ -50,7 +47,14 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
         {
             DeleteContentionStrings(entity.Id);
             var dashboard = AddConnectionStringToDashboard(entity.Id, dashboardConnectionStrings);
+            entity.DashboardFile = XDocumentHelper.GetBytes(dashboard.SaveToXDocument());
+            // entity.DashboardFile= dashboard
             await UpdateAsync(entity, entity.Id, notModifiedProperties, true);
+        }
+
+        public async Task<DashboardStore> GetEntityForEdit(int dashboardId)
+        {
+            return await _dashboardStoreRepository.GetForEditAsync(dashboardId);
         }
 
         private Dashboard AddConnectionStringToDashboard(int dashboardId,
@@ -104,11 +108,14 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
         {
             if (connection.DataProvider.Title == "MS SQL")
             {
-                var sqlDataConnection = new SqlDataConnection
-                {
-                    Name = connection.Title, ConnectionString = connection.ConnectionString
-                };
-                dashboard.DataConnections.Add(sqlDataConnection);
+                DashboardSqlDataSource dashboardSqlDataSource = new DashboardSqlDataSource("tbao", "tbao");
+                // dashboard.DataSources.Add(new );
+//                var sqlDataConnection = new SqlDataConnection
+//                {
+//                    Name = connection.Title, ConnectionString = connection.ConnectionString
+//                };
+                // dashboard.DataConnections.Add(sqlDataConnection);
+                dashboard.DataSources.Add(dashboardSqlDataSource);
             }
 
 //            else if (connection.DataProvider.Title == "Postgres")

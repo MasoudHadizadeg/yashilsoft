@@ -3,12 +3,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup> 
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Yashil.Common.Web.Infrastructure" Version="1.0.0" />
+  </ItemGroup> 
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Yashil.Core\Yashil.Core.csproj" />
-    <ProjectReference Include="..\..\..\Yashil\Yashil.Common.SharedKernel\Yashil.Common.SharedKernel.csproj" />
-    <ProjectReference Include="..\..\..\Yashil\Yashil.Common.Web.Infrastructure\Yashil.Common.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\YashilUserManagement.Core\YashilUserManagement.Core.csproj" />
     <ProjectReference Include="..\YashilUserManagement.Infrastructure\YashilUserManagement.Infrastructure.csproj" />
   </ItemGroup>

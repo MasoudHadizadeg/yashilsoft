@@ -13,14 +13,11 @@ namespace SimplCommerce.MSBuildTasks
         private readonly string moduleFileName = "module.json";
         private readonly string bundleConfigFileName = "bundleconfig.json";
 
-        [Required]
-        public string ProjectDir { get; set; }
+        [Required] public string ProjectDir { get; set; }
 
-        [Required]
-        public string BuildConfiguration { get; set; }
+        [Required] public string BuildConfiguration { get; set; }
 
-        [Required]
-        public string TargetFramework { get; set; }
+        [Required] public string TargetFramework { get; set; }
 
         public override bool Execute()
         {
@@ -28,7 +25,7 @@ namespace SimplCommerce.MSBuildTasks
             if (!File.Exists(modulesFilePath))
             {
                 Log.LogError(modulesFilePath);
-                Log.LogError($"{modulesFileName} is not fould");
+                Log.LogError($"{modulesFileName} is not found");
                 return false;
             }
 
@@ -53,53 +50,66 @@ namespace SimplCommerce.MSBuildTasks
 
         private bool CopyModule(Module module)
         {
-            var sourceRoot = Path.Combine(new DirectoryInfo(ProjectDir).Parent.FullName, "Modules", module.SubFolder, module.Id);
-            if (!string.IsNullOrWhiteSpace(module.FullPath))
+            if (module.Id == "Yashil.Runtime")
             {
-                sourceRoot = Path.Combine(new DirectoryInfo(ProjectDir).Parent.FullName, module.FullPath, module.Id);
+                Log.LogMessage(module.Id);
+                return true;
             }
 
-            var moduleManifestFile = Path.Combine(sourceRoot, moduleFileName);
-            if (!File.Exists(moduleManifestFile))
+            var directoryInfo = new DirectoryInfo(ProjectDir).Parent;
+            if (directoryInfo != null)
             {
-                Log.LogError(moduleManifestFile);
-                Log.LogError($"{moduleFileName} is not fould for {module.Id}");
-                return false;
-            }
+                var sourceRoot = Path.Combine(directoryInfo.FullName, "Modules", module.SubFolder,
+                    module.Id);
+                if (!string.IsNullOrWhiteSpace(module.FullPath))
+                {
+                    sourceRoot = Path.Combine(directoryInfo.FullName, module.FullPath, module.Id);
+                }
 
-            ModuleManifest moduleManifest = null;
-            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(File.ReadAllText(moduleManifestFile))))
-            {
-                var ser = new DataContractJsonSerializer(typeof(ModuleManifest));
-                moduleManifest = ser.ReadObject(ms) as ModuleManifest;
-            }
+                var moduleManifestFile = Path.Combine(sourceRoot, moduleFileName);
+                if (!File.Exists(moduleManifestFile))
+                {
+                    Log.LogError(moduleManifestFile);
+                    Log.LogError($"{moduleFileName} is not found for {module.Id}");
+                    return false;
+                }
 
-            var destination = Path.Combine(ProjectDir, "Modules", module.SubFolder, module.Id);
-            //var destinationWwwroot = Path.Combine(ProjectDir, "wwwroot", "modules", module.Id.Split('.').Last().ToLower());
-            var destinationWwwroot = Path.Combine(ProjectDir, "wwwroot");
+                ModuleManifest moduleManifest = null;
+                using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(File.ReadAllText(moduleManifestFile))))
+                {
+                    var ser = new DataContractJsonSerializer(typeof(ModuleManifest));
+                    moduleManifest = ser.ReadObject(ms) as ModuleManifest;
+                }
 
-            CreateOrCleanDirectory(destinationWwwroot);
-            CreateOrCleanDirectory(destination);
+                var destination = Path.Combine(ProjectDir, "Modules", module.SubFolder, module.Id);
+                //var destinationWwwroot = Path.Combine(ProjectDir, "wwwroot", "modules", module.Id.Split('.').Last().ToLower());
+                var destinationWwwroot = Path.Combine(ProjectDir, "wwwroot");
 
-            File.Copy(Path.Combine(sourceRoot, moduleFileName),
-                Path.Combine(destination, moduleFileName), true);
+                CreateOrCleanDirectory(destinationWwwroot);
+                CreateOrCleanDirectory(destination);
 
-            var bundleConfigFile = Path.Combine(sourceRoot, bundleConfigFileName);
-            if (File.Exists(bundleConfigFile))
-            {
-                File.Copy(Path.Combine(bundleConfigFile),
-                    Path.Combine(destination, bundleConfigFileName), true);
-            }
+                File.Copy(Path.Combine(sourceRoot, moduleFileName),
+                    Path.Combine(destination, moduleFileName), true);
 
-            CopyDirectory(Path.Combine(sourceRoot, "wwwroot"), destinationWwwroot);
-            if (!moduleManifest.IsBundledWithHost)
-            {
-                CopyDirectory(Path.Combine(sourceRoot, "bin", BuildConfiguration, TargetFramework), Path.Combine(destination, "bin"));
-            }
+                var bundleConfigFile = Path.Combine(sourceRoot, bundleConfigFileName);
+                if (File.Exists(bundleConfigFile))
+                {
+                    File.Copy(Path.Combine(bundleConfigFile),
+                        Path.Combine(destination, bundleConfigFileName), true);
+                }
 
-            if (module.Id == "SimplCommerce.Module.SampleData")
-            {
-                CopyDirectory(Path.Combine(sourceRoot, "SampleContent"), Path.Combine(destination, "SampleContent"));
+                CopyDirectory(Path.Combine(sourceRoot, "wwwroot"), destinationWwwroot);
+                if (!moduleManifest.IsBundledWithHost)
+                {
+                    CopyDirectory(Path.Combine(sourceRoot, "bin", BuildConfiguration, TargetFramework),
+                        Path.Combine(destination, "bin"));
+                }
+
+                if (module.Id == "SimplCommerce.Module.SampleData")
+                {
+                    CopyDirectory(Path.Combine(sourceRoot, "SampleContent"),
+                        Path.Combine(destination, "SampleContent"));
+                }
             }
 
             Log.LogMessage(MessageImportance.High, $"Copied module {module.Id}");
@@ -108,7 +118,6 @@ namespace SimplCommerce.MSBuildTasks
 
         private void CreateOrCleanDirectory(string path)
         {
-
             if (Directory.Exists(path))
             {
                 var di = new DirectoryInfo(path);
@@ -116,6 +125,7 @@ namespace SimplCommerce.MSBuildTasks
                 {
                     file.Delete();
                 }
+
                 foreach (var dir in di.GetDirectories())
                 {
                     dir.Delete(true);
@@ -129,7 +139,6 @@ namespace SimplCommerce.MSBuildTasks
 
         private void CopyDirectory(string sourcePath, string targetPath)
         {
-
             if (!Directory.Exists(sourcePath))
             {
                 return;
@@ -140,7 +149,6 @@ namespace SimplCommerce.MSBuildTasks
 
         private void CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
-
             Directory.CreateDirectory(target.FullName);
 
             foreach (var file in source.GetFiles())

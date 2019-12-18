@@ -1,10 +1,11 @@
 <div style="text-align: right;background: #8689c8;" class="p-1" *ngIf="showListHeader">
     <dx-button class="mediumIcon" icon="plus" (onClick)="addEntity()" *ngIf="!isForSelectReadOnly && allowInsertInForm">
     </dx-button>
-<!--    <dx-button class="mediumIcon" icon="edit" (onClick)="editEntity(selectedItemId)" style="margin-right: 5px"-->
+    <!--    <dx-button class="mediumIcon" icon="edit" (onClick)="editEntity(selectedItemId)" style="margin-right: 5px"-->
     <!--               *ngIf="selectedItemId && !isForSelectReadOnly && allowEditSelectedRow && allowEditInForm">-->
     <!--    </dx-button>-->
-    <dx-button *ngIf="showFilterButton && showFilterButton===true" class="mediumIcon" icon="filter" style="margin-right: 5px" (onClick)="toggleFilter()" >
+    <dx-button *ngIf="showFilterButton && showFilterButton===true" class="mediumIcon" icon="filter"
+               style="margin-right: 5px" (onClick)="toggleFilter()">
     </dx-button>
     <span style="color: white">
         {{title}}
@@ -64,23 +65,23 @@
         {{data.displayValue | intToStringTime}}
     </div>
 </dx-data-grid>
-<dx-tree-list
-        *ngIf="isForTree"
-        [rootValue]="rootValue"
-        id="dataTreeList"
-        [dataSource]="gridDataSource"
-        [height]="gridHeight"
-        parentIdExpr="parentId"
-        [showRowLines]="true"
-        [showBorders]="true"
-        [columnAutoWidth]="true"
-        [rtlEnabled]="true"
-        [rowAlternationEnabled]="true"
-        [height]="gridHeight"
-        [columnHidingEnabled]="true"
-        [columns]="columns"
-        [selectedRowKeys]="selectedRowKeys"
-        (onSelectionChanged)="onSelectionChanged($event)">
+<dx-tree-list columnChooser="true"
+              *ngIf="isForTree"
+              [rootValue]="rootValue"
+              id="dataTreeList"
+              [dataSource]="gridDataSource"
+              [height]="gridHeight"
+              parentIdExpr="parentId"
+              [showRowLines]="true"
+              [showBorders]="true"
+              [columnAutoWidth]="true"
+              [rtlEnabled]="true"
+              [rowAlternationEnabled]="true"
+              [height]="gridHeight"
+              [columnHidingEnabled]="true"
+              [columns]="columns"
+              [selectedRowKeys]="selectedRowKeys"
+              (onSelectionChanged)="onSelectionChanged($event)">
     <dxo-filter-row
             [visible]="allowFilter"></dxo-filter-row>
     <dxo-header-filter

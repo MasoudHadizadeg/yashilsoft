@@ -84,5 +84,7 @@ namespace YashilDashboard.Web.Classes
 
             dashboardService.Update(dashboardStore, dashboardStore.Id, new List<string> {"DashboardFile"}, true);
         }
+
+         
     }
 }

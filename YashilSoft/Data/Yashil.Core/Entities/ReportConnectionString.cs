@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using Yashil.Core.Interfaces;
+using Yashil.Common.Core.Interfaces;
 
 namespace Yashil.Core.Entities
 {
@@ -21,4 +20,4 @@ namespace Yashil.Core.Entities
         public virtual User ModifyByNavigation { get; set; }
         public virtual ReportStore Report { get; set; }
     }
-    }
+}

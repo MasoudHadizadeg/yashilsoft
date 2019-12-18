@@ -4,7 +4,7 @@ import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {loadMessages, locale} from 'devextreme/localization';
 import {Message} from '../devextreme/localization/messages/message';
-
+import config from 'devextreme/core/config';
 
 @Component({
     selector: 'app-root',

@@ -2,7 +2,6 @@ using System.Linq;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 using AutoMapper;
-using Yashil.Core.Entities;
 using YashilDashboard.Web.Areas.Dash.ViewModels;
 
 namespace YashilDashboard.Web.Areas.Dash
@@ -16,8 +15,7 @@ namespace YashilDashboard.Web.Areas.Dash
             CreateMap<DashboardStore, DashboardStoreEditModel>()
                 .ForMember(x => x.AccessLevelTitle, b => b.MapFrom(c => c.AccessLevel.Title))
                 .ForMember(x => x.ConnectionStringIds,
-                    b => b.MapFrom(c =>
-                        c.DashboardConnectionString.Select(x =>  x.ConnectionString.Id)));
+                    b => b.MapFrom(c => c.DashboardConnectionString.Select(d => d.ConnectionStringId)));
 
             CreateMap<DashboardStore, DashboardStoreListViewModel>()
                 .ForMember(x => x.AccessLevelTitle,
@@ -36,8 +34,7 @@ namespace YashilDashboard.Web.Areas.Dash
                 .ForMember(x => x.DashboardTitle,
                     b => b.MapFrom(c => c.Dashboard.Title))
                 .ForMember(x => x.ConnectionStringTitle,
-                    b => b.MapFrom(c => c.ConnectionString.Title))
-                ;
+                    b => b.MapFrom(c => c.ConnectionString.Title));
 
             CreateMap<DashboardConnectionString, DashboardConnectionStringListViewModel>()
                 .ForMember(x => x.DashboardTitle,

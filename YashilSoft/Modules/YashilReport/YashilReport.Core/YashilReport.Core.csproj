@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Yashil.Core\Yashil.Core.csproj" />
-    <ProjectReference Include="..\..\..\Yashil\Yashi.Common.Core\Yashil.Common.Core.csproj" />
   </ItemGroup>
 
 </Project>

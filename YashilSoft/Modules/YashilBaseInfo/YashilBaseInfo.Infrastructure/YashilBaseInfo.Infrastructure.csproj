@@ -9,8 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Yashil.Infrastructure\Yashil.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\..\Yashil\Yashil.Common.Infrastructure\Yashil.Common.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\..\Yashil\Yashil.Common.SharedKernel\Yashil.Common.SharedKernel.csproj" />
     <ProjectReference Include="..\YashilBaseInfo.Core\YashilBaseInfo.Core.csproj" />
   </ItemGroup>
 

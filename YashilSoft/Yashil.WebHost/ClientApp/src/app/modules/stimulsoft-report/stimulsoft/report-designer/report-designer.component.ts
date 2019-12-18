@@ -45,7 +45,7 @@ export class ReportDesignerComponent extends YashilComponent implements OnInit {
         options.appearance.rightToLeft = true;
         options.appearance.showSaveDialog = false;
         options.appearance.fullScreenMode = true;
-        options.toolbar.showFileMenu = false;
+        // options.toolbar.showFileMenu = false;
         options.toolbar.showFileMenuAbout = false;
         options.toolbar.viewMode = Stimulsoft.Viewer.StiWebViewMode.WholeReport;
         Stimulsoft.Base.StiFontCollection.addOpentypeFontFile('assets/fonts/iransans/fonts/iransansweb.ttf', 'IRANSansWeb');

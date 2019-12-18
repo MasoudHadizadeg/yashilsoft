@@ -1,4 +1,7 @@
+
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
 using Yashil.Infrastructure.Data;
@@ -19,6 +22,10 @@ namespace YashilDashboard.Infrastructure.RepositoryImpl
         {
             _context.DashboardConnectionString.RemoveRange(
                 _context.DashboardConnectionString.Where(x => x.DashboardId == dashboardId));
+        }
+        public async Task<DashboardStore> GetForEditAsync(int dashboardId, bool readOnly = true)
+        {
+            return await _context.DashboardStore.Include(x => x.DashboardConnectionString).FirstOrDefaultAsync(x => x.Id == dashboardId);
         }
     }
 }

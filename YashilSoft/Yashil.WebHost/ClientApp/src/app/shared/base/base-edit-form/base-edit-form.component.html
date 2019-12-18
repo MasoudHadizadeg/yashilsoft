@@ -1,8 +1,8 @@
 <app-busy-indicator>
-    <dx-scroll-view [height]="formHeight">
-        <form autocomplete="off" (ngSubmit)="onFormSubmit($event)" #detailFormww="ngForm"  class="m-lg-1 m-md-1"
+    <dx-scroll-view [height]="formHeight" rtlEnabled="true">
+        <form autocomplete="off" (ngSubmit)="onFormSubmit($event)" #detailFormww="ngForm" class="m-lg-1 m-md-1"
               enctype="multipart/form-data">
-            <div id="form-container">
+            <div id="form-container" style="text-align: right">
                 <ng-content></ng-content>
                 <div class="dx-fieldset">
                     <dx-button

@@ -10,7 +10,7 @@ export class YashilComponent {
     @Output()
     onCloseRequest = new EventEmitter();
 
-    @ViewChild(BusyIndicatorComponent, {static: false}) busyIndicator: IBusyIndicator;
+    @ViewChild(BusyIndicatorComponent, {static: true}) busyIndicator: IBusyIndicator;
 
     setBusy(newState: boolean, msg?: string) {
         this.busyState = newState;
