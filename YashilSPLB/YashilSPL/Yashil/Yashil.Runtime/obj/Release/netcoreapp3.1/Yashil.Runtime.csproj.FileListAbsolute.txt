@@ -1,0 +1,13 @@
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\bin\Release\netcoreapp3.1\Yashil.Runtime.deps.json
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\bin\Release\netcoreapp3.1\Yashil.Runtime.dll
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\bin\Release\netcoreapp3.1\Yashil.Runtime.pdb
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\bin\Release\netcoreapp3.1\Yashil.Common.Core.dll
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\bin\Release\netcoreapp3.1\Yashil.Common.SharedKernel.dll
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\bin\Release\netcoreapp3.1\Yashil.Common.Core.pdb
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\bin\Release\netcoreapp3.1\Yashil.Common.SharedKernel.pdb
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\obj\Release\netcoreapp3.1\Yashil.Runtime.csprojAssemblyReference.cache
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\obj\Release\netcoreapp3.1\Yashil.Runtime.AssemblyInfoInputs.cache
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\obj\Release\netcoreapp3.1\Yashil.Runtime.AssemblyInfo.cs
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\obj\Release\netcoreapp3.1\Yashil.Runtime.csproj.CopyComplete
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\obj\Release\netcoreapp3.1\Yashil.Runtime.dll
+D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\obj\Release\netcoreapp3.1\Yashil.Runtime.pdb
