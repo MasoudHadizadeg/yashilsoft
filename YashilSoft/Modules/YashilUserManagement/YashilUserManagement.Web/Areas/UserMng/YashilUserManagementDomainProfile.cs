@@ -131,7 +131,8 @@ namespace YashilUserManagement.Web.Areas.UserMng
 
             CreateMap<User, UserListViewModel>()
                 .ForMember(x => x.OrganizationTitle,
-                    b => b.MapFrom(c => c.Organization.Title)).ForMember(x => x.AccessLevelTitle,
+                    b => b.MapFrom(c => c.Organization.Title))
+                .ForMember(x => x.AccessLevelTitle,
                     b => b.MapFrom(c => c.AccessLevel.Title));
 
             CreateMap<User, UserViewModel>()
@@ -141,17 +142,15 @@ namespace YashilUserManagement.Web.Areas.UserMng
 
             CreateMap<UserEditModel, User>();
 
-            CreateMap<User, UserSimpleViewModel>();
+            CreateMap<User, UserSimpleViewModel>().ForMember(x => x.Title,
+                b => b.MapFrom(c => c.FirstName + " " + c.LastName));
 
 
-            CreateMap<Role, RoleEditModel>()
-                ;
+            CreateMap<Role, RoleEditModel>();
 
-            CreateMap<Role, RoleListViewModel>()
-                ;
+            CreateMap<Role, RoleListViewModel>();
 
-            CreateMap<Role, RoleViewModel>()
-                ;
+            CreateMap<Role, RoleViewModel>();
 
             CreateMap<RoleEditModel, Role>();
 
@@ -160,8 +159,7 @@ namespace YashilUserManagement.Web.Areas.UserMng
 
             CreateMap<Menu, MenuEditModel>()
                 .ForMember(x => x.ResourceTitle,
-                    b => b.MapFrom(c => c.Resource.Title))
-                ;
+                    b => b.MapFrom(c => c.Resource.Title));
 
             CreateMap<Menu, MenuListViewModel>()
                 .ForMember(x => x.ResourceTitle,
