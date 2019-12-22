@@ -11,13 +11,15 @@ import {HttpClient} from '@angular/common/http';
 export class AssignableListComponent extends YashilComponent implements OnInit {
     itemDataSource: any;
     @Input()
-    itemEntityTitle: string;
+    selectedItemId: number;
+    @Input()
+    itemEntityName: string;
     @Input()
     itemEntityLabel: string;
     @Input()
     columns: any[] = [];
     @Input()
-    assignableListTitle: string;
+    assignableListName: string;
     assignedItemDataSource: any = {};
     notAssignedItemDatasource: any = {};
     httpClient: HttpClient
@@ -28,8 +30,8 @@ export class AssignableListComponent extends YashilComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.itemDataSource = this.genericDataService.createCustomDatasourceForSelect('id', this.itemEntityTitle);
-        this.assignedItemDataSource = new CustomDevDataSource(this.httpClient).getCustomDataSource(this.itemEntityTitle, [], '');
-        this.notAssignedItemDatasource = new CustomDevDataSource(this.httpClient).getCustomDataSource(this.itemEntityTitle, [], '');
+        this.itemDataSource = this.genericDataService.createCustomDatasourceForSelect('id', this.itemEntityName);
+        this.assignedItemDataSource = new CustomDevDataSource(this.httpClient).getCustomDataSourceAssignedList(this.assignableListName, [], this.selectedItemId);
+        this.notAssignedItemDatasource = new CustomDevDataSource(this.httpClient).getCustomDataSourceNotAssignedList(this.assignableListName, [], this.selectedItemId);
     }
 }
