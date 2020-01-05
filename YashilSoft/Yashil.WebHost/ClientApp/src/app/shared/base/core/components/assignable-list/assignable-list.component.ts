@@ -1,14 +1,13 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
-import {YashilComponent} from '../../../core/baseClasses/yashilComponent';
-import {GenericDataService} from '../../../shared/base/services/generic-data.service';
-import {CustomDevDataSource} from '../../../shared/base/classes/custom-dev-data-source';
 import {HttpClient} from '@angular/common/http';
+import {GenericDataService} from '../../../services/generic-data.service';
+import {CustomDevDataSource} from '../../../classes/custom-dev-data-source';
 
 @Component({
     selector: 'app-assignable-list',
     templateUrl: 'assignable-list.component.html'
 })
-export class AssignableListComponent extends YashilComponent implements OnInit {
+export class AssignableListComponent implements OnInit {
     itemDataSource: any;
     @Input()
     selectedItemId: number;
@@ -25,11 +24,17 @@ export class AssignableListComponent extends YashilComponent implements OnInit {
     httpClient: HttpClient
 
     constructor(@Inject(HttpClient) httpClient: HttpClient, private genericDataService: GenericDataService) {
-        super();
         this.httpClient = httpClient;
     }
 
     ngOnInit() {
+        if (this.columns.length === 0) {
+            this.columns.push({
+                caption: 'عنوان',
+                dataField: 'title'
+            });
+        }
+        this.selectedItemId = 2016;
         this.itemDataSource = this.genericDataService.createCustomDatasourceForSelect('id', this.itemEntityName);
         this.assignedItemDataSource = new CustomDevDataSource(this.httpClient).getCustomDataSourceAssignedList(this.assignableListName, [], this.selectedItemId);
         this.notAssignedItemDatasource = new CustomDevDataSource(this.httpClient).getCustomDataSourceNotAssignedList(this.assignableListName, [], this.selectedItemId);

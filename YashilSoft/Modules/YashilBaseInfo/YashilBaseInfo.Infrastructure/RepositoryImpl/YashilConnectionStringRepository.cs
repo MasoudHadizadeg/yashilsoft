@@ -32,5 +32,10 @@ namespace YashilBaseInfo.Infrastructure.RepositoryImpl
         {
             return DbSet.Where(x => x.ReportConnectionString.Any(r => r.ReportId == reportId));
         }
+
+        public YashilConnectionString FindByName(string connectionName)
+        {
+            return DbSet.FirstOrDefault(x => x.Title == connectionName);
+        }
     }
 }

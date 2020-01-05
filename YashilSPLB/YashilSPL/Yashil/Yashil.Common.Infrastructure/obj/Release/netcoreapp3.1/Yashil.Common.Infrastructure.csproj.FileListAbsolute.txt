@@ -22,3 +22,14 @@ D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\obj\Release\ne
 D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\obj\Release\netcoreapp3.1\Yashil.Common.Infrastructure.csproj.CopyComplete
 D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\obj\Release\netcoreapp3.1\Yashil.Common.Infrastructure.dll
 D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\obj\Release\netcoreapp3.1\Yashil.Common.Infrastructure.pdb
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\bin\Release\netcoreapp3.1\Yashil.Common.Infrastructure.deps.json
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\bin\Release\netcoreapp3.1\Yashil.Common.Infrastructure.dll
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\bin\Release\netcoreapp3.1\Yashil.Common.Infrastructure.pdb
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\bin\Release\netcoreapp3.1\Yashil.Common.Core.dll
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\bin\Release\netcoreapp3.1\Yashil.Common.Core.pdb
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\obj\Release\netcoreapp3.1\Yashil.Common.Infrastructure.csprojAssemblyReference.cache
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\obj\Release\netcoreapp3.1\Yashil.Common.Infrastructure.AssemblyInfoInputs.cache
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\obj\Release\netcoreapp3.1\Yashil.Common.Infrastructure.AssemblyInfo.cs
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\obj\Release\netcoreapp3.1\Yashil.Common.Infrastructure.csproj.CopyComplete
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\obj\Release\netcoreapp3.1\Yashil.Common.Infrastructure.dll
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\obj\Release\netcoreapp3.1\Yashil.Common.Infrastructure.pdb

@@ -11,6 +11,7 @@ namespace YashilBaseInfo.Core.Services
         List<YashilConnectionString> FindByIds(IEnumerable<int> connectionStringIds);
         string GetConnectionStringByName(string commandObjectConnection);
         IQueryable<YashilConnectionString> GetByReportId(int reportId);
+        YashilConnectionString FindByName(string connectionName);
     }
 }      
  

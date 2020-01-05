@@ -1,0 +1,13 @@
+.textLeft {
+}
+
+.textLeft textarea {
+    text-align: left !important;
+    direction: ltr !important;
+}
+
+textarea[name="connectionString"] {
+    text-align: left !important;
+    direction: ltr !important;
+    background-color: red;
+}

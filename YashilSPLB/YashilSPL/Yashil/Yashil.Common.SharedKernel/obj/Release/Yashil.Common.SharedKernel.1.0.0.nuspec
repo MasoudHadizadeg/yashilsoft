@@ -21,6 +21,6 @@
     </frameworkReferences>
   </metadata>
   <files>
-    <file src="D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\bin\Release\netcoreapp3.1\Yashil.Common.SharedKernel.dll" target="lib\netcoreapp3.1\Yashil.Common.SharedKernel.dll" />
+    <file src="D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\bin\Release\netcoreapp3.1\Yashil.Common.SharedKernel.dll" target="lib\netcoreapp3.1\Yashil.Common.SharedKernel.dll" />
   </files>
 </package>

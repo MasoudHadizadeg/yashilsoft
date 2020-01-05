@@ -41,4 +41,4 @@ namespace Yashil.Core.Entities
         public virtual ICollection<RoleReport> RoleReport { get; set; }
         public virtual ICollection<UserReport> UserReport { get; set; }
     }
-    }
+}

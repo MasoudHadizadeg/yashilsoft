@@ -106,9 +106,10 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
 
         private void AddDatabaseToDashboard(Dashboard dashboard, YashilConnectionString connection)
         {
+
             if (connection.DataProvider.Title == "MS SQL")
             {
-                DashboardSqlDataSource dashboardSqlDataSource = new DashboardSqlDataSource("tbao", "tbao");
+                DashboardSqlDataSource dashboardSqlDataSource = new DashboardSqlDataSource(connection.Title, connection.Title);
                 // dashboard.DataSources.Add(new );
 //                var sqlDataConnection = new SqlDataConnection
 //                {

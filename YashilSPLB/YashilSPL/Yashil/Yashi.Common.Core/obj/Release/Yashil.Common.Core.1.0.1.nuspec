@@ -15,6 +15,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="D:\Works\YashilSPLB\YashilSPL\Yashil\Yashi.Common.Core\bin\Release\netcoreapp3.1\Yashil.Common.Core.dll" target="lib\netcoreapp3.1\Yashil.Common.Core.dll" />
+    <file src="D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashi.Common.Core\bin\Release\netcoreapp3.1\Yashil.Common.Core.dll" target="lib\netcoreapp3.1\Yashil.Common.Core.dll" />
   </files>
 </package>

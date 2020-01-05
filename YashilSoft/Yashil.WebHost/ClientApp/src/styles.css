@@ -90,11 +90,6 @@ dx-datagrid-text-content
 .angular-with-newlines {
     white-space: pre-wrap;
 }
-
-div {
-  font-family: 'iransans' !important;
-}
-
 .customLabel {
     margin: 20px 0;
     white-space: nowrap;

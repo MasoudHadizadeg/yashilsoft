@@ -2,29 +2,26 @@
     <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
         <dxi-item [label]="{text: 'عنوان'}" dataField="title">
-
             <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
 
         <dxi-item dataField="dataProviderId" editorType="dxLookup" [label]="{text: 'تامین کننده داده'}"
-                  [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: dataProviderDataSource,displayExpr:'title',valueExpr:'id' }">
-
+                  [editorOptions]="{ onSelectionChanged: setconnectionString,closeOnOutsideClick:true,showPopupTitle:false, dataSource: dataProviderDataSource,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="تامین کننده داده اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
-        <dxi-item dir="ltr" [label]="{text: 'رشته اتصال'}" dataField="connectionString" editorType='dxTextArea'>
+        <dxi-item
+                [label]="{text: 'رشته اتصال'}"
+                dataField="connectionString"
+                alignment="left"
+                location="left"
 
+                editorType='dxTextArea'>
             <dxi-validation-rule type="required" message="رشته اتصال اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
-        <dxi-item [label]="{text: 'توضیح'}" dataField="description" editorType='dxTextArea'>
-
-
+        <dxi-item   [label]="{text: 'توضیح'}" dataField="description" editorType='dxTextArea'
+                  [editorOptions]="{rtlEnabled:false}">
         </dxi-item>
         <dxi-item [label]="{text: 'فعال بودن'}" dataField="isActive" editorType='dxCheckBox'>
-
-
         </dxi-item>
     </dx-form>
 </app-base-edit-form>

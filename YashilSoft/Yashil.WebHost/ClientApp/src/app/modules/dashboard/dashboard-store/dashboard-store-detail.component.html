@@ -1,5 +1,5 @@
 <app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
-    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity" rtlEnabled="true"
+    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity"
              style="text-align: right !important;">
 
         <dxi-item [label]="{text: 'کد'}" dataField="code">
@@ -11,12 +11,12 @@
 
         <dxi-item [label]="{text: 'کلاس'}" dataField="cssClass">
         </dxi-item>
-        <dxi-item dataField="color" editorType="dxColorBox" [label]="{text: 'رنگ'}"
-                  [editorOptions]="{rtlEnabled:false,applyValueMode:'instantly'}">
+        <dxi-item dataField="color" editorType="dxColorBox" [label]="{text: 'رنگ'}">
             <dxi-validation-rule type="required" message="رنگ"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item dataField="ConnectionStringIds" editorType="dxTagBox" [label]="{text: 'رشته های اتصال'}"
-                  [editorOptions]="{  value:entity.connectionStringIds,applyValueMode: 'useButtons',showSelectionControls:true,items:connectionStrings,displayExpr:'title',valueExpr:'id' }">
+        <dxi-item dataField="ConnectionStringIds" editorType="dxTagBox"
+                  [label]="{text: 'رشته های اتصال'}"
+                  [editorOptions]="{rtlEnabled:true,  value:entity.connectionStringIds,applyValueMode: 'useButtons',showSelectionControls:true,items:connectionStrings,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="رشته های اتصال اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
         <dxi-item dataField="accessLevelId" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"

@@ -9,11 +9,11 @@
     <description>Package Description</description>
     <dependencies>
       <group targetFramework=".NETCoreApp3.1">
-        <dependency id="Yashil.Common.Core" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Yashil.Common.Core" version="1.0.1" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\bin\Release\netcoreapp3.1\Yashil.Common.Infrastructure.dll" target="lib\netcoreapp3.1\Yashil.Common.Infrastructure.dll" />
+    <file src="D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Infrastructure\bin\Release\netcoreapp3.1\Yashil.Common.Infrastructure.dll" target="lib\netcoreapp3.1\Yashil.Common.Infrastructure.dll" />
   </files>
 </package>

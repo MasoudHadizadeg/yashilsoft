@@ -1,20 +1,19 @@
 import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {customAnimations} from '../animations/custom-animations';
 import {ConfigService} from '../services/config.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, RouteConfigLoadEnd, RouteConfigLoadStart, Router, RouterEvent} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {GenericDataService} from '../base/services/generic-data.service';
 import {RouteInfo} from './sidebar.metadata';
-import {DxFormComponent} from 'devextreme-angular';
+import {YashilComponent} from '../../core/baseClasses/yashilComponent';
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     animations: customAnimations
 })
-export class SidebarComponent implements OnInit, AfterViewInit {
-
-    @ViewChild('toggleIcon', { static: true }) toggleIcon: ElementRef;
+export class SidebarComponent extends YashilComponent implements OnInit, AfterViewInit {
+    @ViewChild('toggleIcon', {static: true}) toggleIcon: ElementRef;
     public menuItems: RouteInfo[];
     depth: number;
     activeTitle: string;
@@ -23,7 +22,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     navCollapsedOpen = false;
     logoUrl = 'assets/img/logo.png';
     public config: any = {};
-
+    public isShowingRouteLoadIndicator: boolean;
 
     constructor(
         private elementRef: ElementRef,
@@ -34,6 +33,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         private configService: ConfigService,
         private  genericDataService: GenericDataService
     ) {
+        super();
         this.genericDataService.getEntitiesWithAction('Menu', 'UserMenu', null).subscribe(res => {
             this.menuItems = res;
         });
@@ -41,6 +41,35 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             this.depth = 0;
             this.expanded = true;
         }
+        this.isShowingRouteLoadIndicator = false;
+
+        // As the router loads modules asynchronously (via loadChildren), we're going to
+        // keep track of how many asynchronous requests are currently active. If there is
+        // at least one pending load request, we'll show the indicator.
+        let asyncLoadCount = 0;
+        router.events.subscribe(
+            (event: RouterEvent): void => {
+
+                if (event instanceof RouteConfigLoadStart) {
+
+                    this.setBusy(true)
+                    asyncLoadCount++;
+
+                } else if (event instanceof RouteConfigLoadEnd) {
+
+                    asyncLoadCount--;
+                    this.setBusy(false);
+                }
+
+                // If there is at least one pending asynchronous config load request,
+                // then let's show the loading indicator.
+                // --
+                // CAUTION: I'm using CSS to include a small delay such that this loading
+                // indicator won't be seen by people with sufficiently fast connections.
+                this.isShowingRouteLoadIndicator = !!asyncLoadCount;
+
+            }
+        );
     }
 
 
@@ -79,6 +108,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
 
     }
+
 
     toggleSlideInOut() {
         this.expanded = !this.expanded;

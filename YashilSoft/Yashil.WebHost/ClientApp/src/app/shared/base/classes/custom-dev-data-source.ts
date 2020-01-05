@@ -14,6 +14,14 @@ export class CustomDevDataSource {
         this.httpClient = httpClient;
     }
 
+    getCustomDataSourceAssignedList(entityName, pageFilters: any[], selectedId: number) {
+        return this.getCustomDataSource(entityName, pageFilters, `${entityName}/GetAssignedListAsync?id=${selectedId}`);
+    }
+
+    getCustomDataSourceNotAssignedList(entityName, pageFilters: any[], selectedId: number) {
+        return this.getCustomDataSource(entityName, pageFilters, `${entityName}/GetNotAssignedListAsync?id=${selectedId}`);
+    }
+
     getCustomDataSource(entityName, pageFilters: any[], customListUrl: string) {
         return new DataSource(
             {

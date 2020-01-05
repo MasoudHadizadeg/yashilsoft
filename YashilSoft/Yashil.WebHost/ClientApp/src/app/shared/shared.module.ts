@@ -53,6 +53,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import {DynamicScriptLoaderService} from './services/dynamic-script-loader.service';
 import {CoreModule} from '../core/core.module';
+import {AssignableListComponent} from './base/core/components/assignable-list/assignable-list.component';
+import {NgScrollbarModule} from 'ngx-scrollbar';
 
 @NgModule({
     exports: [
@@ -73,6 +75,7 @@ import {CoreModule} from '../core/core.module';
         TranslateModule,
         BaseListFormComponent,
         BaseEditFormComponent,
+        AssignableListComponent,
         SecuredImageComponent,
         DxLookupModule,
         DxColorBoxModule,
@@ -98,6 +101,7 @@ import {CoreModule} from '../core/core.module';
         DxListModule
     ],
     imports: [
+        NgScrollbarModule,
         DxTileViewModule,
         TranslateModule,
         DxLookupModule,
@@ -124,6 +128,7 @@ import {CoreModule} from '../core/core.module';
         CoreModule
     ],
     declarations: [
+        AssignableListComponent,
         FooterComponent,
         NavbarComponent,
         SidebarComponent,

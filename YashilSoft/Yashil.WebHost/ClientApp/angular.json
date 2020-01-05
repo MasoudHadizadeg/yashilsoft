@@ -23,9 +23,7 @@
             "styles": [
               "src/assets/css/demo.css",
               "src/assets/sass/app.scss",
-              "src/styles.css",
-              "node_modules/devextreme/dist/css/dx.common.css",
-              "node_modules/devextreme/dist/css/dx.light.css"
+              "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

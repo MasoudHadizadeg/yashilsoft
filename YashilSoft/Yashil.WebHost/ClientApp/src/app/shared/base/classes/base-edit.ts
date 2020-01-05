@@ -3,8 +3,8 @@ import {EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {GenericDataService} from '../services/generic-data.service';
 import {DxFormComponent} from 'devextreme-angular/ui/form';
 import notify from 'devextreme/ui/notify';
-import config from 'devextreme/core/config';
 import {catchError} from 'rxjs/operators';
+import {BaseEditFormComponent} from '../base-edit-form/base-edit-form.component';
 
 export class BaseEdit implements OnInit {
     // tslint:disable-next-line:variable-name
@@ -78,7 +78,8 @@ export class BaseEdit implements OnInit {
     }
 
     // @ViewChild('detailForm') detailForm;
-    @ViewChild(DxFormComponent, { static: true }) detailForm: DxFormComponent
+    @ViewChild(DxFormComponent, {static: true}) detailForm: DxFormComponent
+    @ViewChild(BaseEditFormComponent, {static: true}) baseEditFormComponent: BaseEditFormComponent
 
     // @ViewChild('baseEditForm') baseEditForm;
     @Input() isNew: boolean;
@@ -125,6 +126,7 @@ export class BaseEdit implements OnInit {
     }
 
     public formSubmit(e) {
+        this.baseEditFormComponent.allowSave = false;
         let errorMsg = 'بروز خطا در ذخیره سازی';
         this.doBeforeSubmit(e);
         if (this.detailForm && this.detailForm.instance) {
@@ -132,9 +134,11 @@ export class BaseEdit implements OnInit {
                 const result = this.detailForm.instance.validate();
                 if (result && !result.isValid) {
                     e.preventDefault();
+                    this.baseEditFormComponent.allowSave = true;
                     return;
                 }
             } catch (e) {
+                this.baseEditFormComponent.allowSave = true;
             }
         }
         if (this.entity.id) {
@@ -149,6 +153,7 @@ export class BaseEdit implements OnInit {
                         at: 'center top'
                     }
                 }, 'error', 3000);
+                this.baseEditFormComponent.allowSave = true;
                 return '';
             })).subscribe(
                 msg => {
@@ -185,6 +190,7 @@ export class BaseEdit implements OnInit {
                             at: 'center top'
                         }
                     }, 'success', 3000);
+                    // this.baseEditFormComponent.allowSave = true;
                     this.afterSave();
                     this.closeForm();
                 }

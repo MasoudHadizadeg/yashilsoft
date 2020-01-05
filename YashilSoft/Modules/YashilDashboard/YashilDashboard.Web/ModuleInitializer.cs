@@ -13,17 +13,20 @@ using YashilDashboard.Infrastructure.RepositoryImpl;
 using YashilDashboard.Infrastructure.ServiceImpl;
 using Microsoft.Extensions.Configuration;
 using YashilDashboard.Web.Classes;
+using YashilBaseInfo.Core.Services;
 
 namespace YashilDashboard.Web
 {
     public class ModuleInitializer : IModuleInitializer
     {
+        private IServiceCollection _serviceCollection;
         public void OnStartup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
         }
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
+            _serviceCollection = services;
             /*
              *     configurator.SetConnectionStringsProvider(
                         new DashboardConnectionStringsProvider(configuration, "DashboardConnectionStrings"));
@@ -46,7 +49,7 @@ namespace YashilDashboard.Web
                 .AddDefaultDashboardController((configurator, sProvider) =>
                 {
                     configurator.ConfigureDataConnection += Configurator_ConfigureDataConnection;
-                    configurator.SetConnectionStringsProvider(new YashilDashboardConnectionStringsProvider(configuration, "DashboardConnectionStrings"));
+                    // configurator.SetConnectionStringsProvider(new YashilDashboardConnectionStringsProvider(sProvider,configuration, "DashboardConnectionStrings"));
                     //configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(configuration, "DashboardConnectionStrings"));
                     configurator.SetDashboardStorage(new DataBaseEditableDashboardStorage(sProvider));
 
@@ -55,13 +58,14 @@ namespace YashilDashboard.Web
         private void Configurator_ConfigureDataConnection(object sender,
             DevExpress.DashboardWeb.ConfigureDataConnectionWebEventArgs e)
         {
-            if (e.ConnectionName == "tbao")
+            var dashboardService = _serviceCollection.BuildServiceProvider().CreateScope().ServiceProvider
+                .GetRequiredService<IYashilConnectionStringService>();
+            var conn = dashboardService.FindByName(e.ConnectionName);
+            if (conn != null)
             {
-                
-                //SQLiteConnectionParameters sqliteParams = new SQLiteConnectionParameters();
-                //sqliteParams.FileName = "file:Data/nwind.db";
-                //e.ConnectionParameters = sqliteParams;
+                e.ConnectionParameters = new CustomStringConnectionParameters(conn.ConnectionString);
             }
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,20 +1,38 @@
-	 
+
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Data.ResponseModel;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
 using YashilReport.Core.Services;
-using  YashilReport.Web.Areas.Rpt.ViewModels;
+using YashilReport.Web.Areas.Rpt.ViewModels;
 
 namespace YashilReport.Web.Areas.Rpt.Controllers
 {
-	public class ReportGroupController : BaseController<ReportGroup ,int,ReportGroupListViewModel, ReportGroupViewModel, ReportGroupEditModel,ReportGroupSimpleViewModel>
+    public class ReportGroupController : BaseController<ReportGroup, int, ReportGroupListViewModel, ReportGroupViewModel, ReportGroupEditModel, ReportGroupSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IReportGroupService _reportGroupService;
         public ReportGroupController(IReportGroupService reportGroupService, IMapper mapper) : base(reportGroupService, mapper)
         {
-            _mapper=mapper;
-            _reportGroupService=reportGroupService;
+            _mapper = mapper;
+            _reportGroupService = reportGroupService;
+        }
+        [HttpGet("GetAssignedListAsync")]
+        public async Task<LoadResult> GetAssignedListAsync(CustomDataSourceLoadOptions loadOptions, int id)
+        {
+            var entities =  _reportGroupService.GetByReportId(id);
+            return await DataSourceLoader.LoadAsync(entities.ProjectTo<ReportGroupSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+        [HttpGet("GetNotAssignedListAsync")]
+        public async Task<LoadResult> GetNotAssignedListAsync(CustomDataSourceLoadOptions loadOptions, int id)
+        {
+            var entities = _reportGroupService.GetNotAssignedToReportId(id);
+            return await DataSourceLoader.LoadAsync(entities.ProjectTo<ReportGroupSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
     }
-}      
+}

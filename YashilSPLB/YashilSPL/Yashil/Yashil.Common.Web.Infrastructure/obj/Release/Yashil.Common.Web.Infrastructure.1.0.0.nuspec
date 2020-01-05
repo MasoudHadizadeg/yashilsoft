@@ -9,13 +9,13 @@
     <description>Package Description</description>
     <dependencies>
       <group targetFramework=".NETCoreApp3.1">
-        <dependency id="Yashil.Common.Core" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Yashil.Common.Core" version="1.0.1" exclude="Build,Analyzers" />
         <dependency id="AutoMapper" version="9.0.0" exclude="Build,Analyzers" />
         <dependency id="DevExtreme.AspNet.Data" version="2.5.1" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="D:\Works\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Web.Infrastructure\bin\Release\netcoreapp3.1\Yashil.Common.Web.Infrastructure.dll" target="lib\netcoreapp3.1\Yashil.Common.Web.Infrastructure.dll" />
+    <file src="D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.Web.Infrastructure\bin\Release\netcoreapp3.1\Yashil.Common.Web.Infrastructure.dll" target="lib\netcoreapp3.1\Yashil.Common.Web.Infrastructure.dll" />
   </files>
 </package>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Yashil.Common.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Yashil.Common.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Yashil.Common.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0")]

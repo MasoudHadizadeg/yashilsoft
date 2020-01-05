@@ -36,5 +36,10 @@ namespace YashilBaseInfo.Infrastructure.ServiceImpl
         {
             return _yashilConnectionStringRepository.GetByReportId(reportId);
         }
+
+        public YashilConnectionString FindByName(string connectionName)
+        {
+            return _yashilConnectionStringRepository.FindByName(connectionName);
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace YashilBaseInfo.Core.Repositories
         List<YashilConnectionString> FindByIds(IEnumerable<int> connectionStringIds);
         string GetConnectionStringByName(string connectionName);
         IQueryable<YashilConnectionString> GetByReportId(int reportId);
+        YashilConnectionString FindByName(string connectionName);
     }
 }
