@@ -1,0 +1,18 @@
+.header-rect {
+  direction: rtl;
+  height: 50px;
+  width: 100%;
+  background-color: #3f3d56;
+  padding: 5px 5%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 12px;
+  color: #f4ffdb;
+
+  img {
+    cursor: pointer;
+    height: 30px;
+    margin-right: 10px;
+  }
+}

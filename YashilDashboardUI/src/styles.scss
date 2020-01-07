@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('./assets/fonts/Iransans/IRANSansWeb.woff') format('woff');
+  font-weight: normal;
+}
+
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: IRANSans !important;
+  outline: none;
+}
+
+body {
+  font-family: IRANSans !important;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.exit {
+  background: url('./assets/icons/exit_to_app-24px.svg') no-repeat right ;
+}
+
+.headerButton {
+  cursor: pointer;
+  color: white;
+  text-underline: none;
+  text-decoration: none;
+  border: 1px solid white;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 8px 25px 8px 8px;
+  margin-left: 10px;
+}
+
+.user {
+  background: url('./assets/icons/person-24px.svg') no-repeat right;
+}

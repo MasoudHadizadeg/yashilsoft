@@ -1,0 +1,62 @@
+<div class="spa-body-top">
+  <div class="mobile-navbar">
+    <div (click)="toggleMenu($event);" class="mobile-button">
+      <img width="28px" height="24px" src="./assets/img/header-icon/menu.svg">
+    </div>
+    <div class="icon">
+      <img width="80px" src="./assets/img/header-icon/inst.png">
+    </div>
+    <div [ngStyle]="{'transform': mobileMenuToggle ?  'scaleY(1)' :  'scaleY(0)' }" class="mobile-menu-container">
+      <div *ngFor="let m of navBarItems">
+        <a [id]="m?.id" href="{{m.id}}">
+          {{m?.title}}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav">
+
+    <div class="nav-content">
+      <div class="nav-icon">
+        <img src="./assets/img/header-icon/inst.png">
+      </div>
+      <span *ngFor="let item of navBarItems" class="menu-item">
+      <a href="{{item.id}}">
+        {{item?.title}}
+      </a>
+      </span>
+    </div>
+
+  </div>
+  <div class="slider">
+    <div [ngClass]="{'animationClassRight' : animationState === true}" class="slider-text">
+      <p>
+        <strong>
+          {{currentSlider.bigTitle}}
+        </strong>
+      </p>
+      <p>
+       <span>
+       {{currentSlider.smallTitle}}
+      </span>
+      </p>
+
+    </div>
+
+    <div [ngClass]="{'animationClassLeft' : animationState === true}" class="slider-image">
+      <img [src]="currentSlider?.imageUrl">
+    </div>
+
+    <div (click)="changeSlider('prev')" class="arrow left-arrow">
+      <img src="./assets/img/slider/arrow-left.svg">
+    </div>
+    <div (click)="changeSlider('next')" class="arrow right-arrow">
+      <img src="./assets/img/slider/arrow-right.svg">
+    </div>
+
+  </div>
+</div>
+
+
+

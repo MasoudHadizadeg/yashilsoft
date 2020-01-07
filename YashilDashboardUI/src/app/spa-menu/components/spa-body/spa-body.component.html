@@ -1,0 +1,9 @@
+<ysh-spa-navbar></ysh-spa-navbar>
+<div class="body-content">
+  <ysh-spa-body-section
+    [section]="item"
+    [showBlue]="1 === i"
+    [sectionCount]="sectionItems.length"
+    *ngFor="let item of sectionItems;let i = index">
+  </ysh-spa-body-section>
+</div>

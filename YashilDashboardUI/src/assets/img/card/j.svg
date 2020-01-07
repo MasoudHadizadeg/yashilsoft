@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2220" height="1159" viewBox="0 0 2220 1159">
+  <defs>
+    <clipPath id="clip-vectore1_2">
+      <rect width="2220" height="1159"/>
+    </clipPath>
+  </defs>
+  <g id="vectore1_2" data-name="vectore1 – 2" clip-path="url(#clip-vectore1_2)">
+    <rect width="2220" height="1159" fill="#fff"/>
+    <g id="vectore" transform="translate(-133 -878.879)">
+      <rect id="Rectangle_166" data-name="Rectangle 166" width="30.141" height="30.141" transform="translate(471.048 1583.239) rotate(180)" fill="tomato"/>
+      <rect id="Rectangle_167" data-name="Rectangle 167" width="30.141" height="30.141" transform="translate(471.048 1539.701) rotate(180)" fill="#3f3d56"/>
+      <rect id="Rectangle_168" data-name="Rectangle 168" width="30.141" height="30.141" transform="translate(471.048 1496.164) rotate(180)" fill="#575a89"/>
+    </g>
+  </g>
+</svg>

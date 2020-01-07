@@ -1,0 +1,20 @@
+.scroll-up-button {
+  border-radius: 3px;
+  cursor: pointer;
+  //visibility: hidden;
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  background-color: tomato;
+  bottom: 20px;
+  right: 30px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  img {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+  }
+  z-index: 1000000;
+}

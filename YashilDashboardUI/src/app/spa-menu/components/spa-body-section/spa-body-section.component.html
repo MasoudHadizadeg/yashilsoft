@@ -1,0 +1,17 @@
+<section [id]="section.id" [ngStyle]="{'margin-top': cardItems.length > 4 ? '40px' : '0'}" class="section">
+  <img class="section-image"
+       width="300px" height="300px"
+       src="./assets/img/card/Artboard.png">
+  <div class="section-image2" [ngStyle]="{height : 500 * sectionCount -1 + 'px'}" *ngIf="showBlue"></div>
+  <div class="section-header">
+    {{section?.title}}
+  </div>
+  <div class="long-description">
+    {{section?.longDescription}}
+  </div>
+  <div class="card-parent">
+    <div class="cart-item" *ngFor="let cartItem of cardItems">
+      <ysh-spa-card-tile [cartItem]="cartItem"></ysh-spa-card-tile>
+    </div>
+  </div>
+</section>
