@@ -17,9 +17,8 @@ export class ReportGroupListComponent {
             dataField: 'title'
         });
         this.columns.push({
-            caption: 'سطح دسترسی',
-            dataField: 'accessLevelId'
+            caption: 'عنوان انگلیسی',
+            dataField: 'englishTitle'
         });
-
     }
 }

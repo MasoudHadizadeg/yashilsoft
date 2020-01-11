@@ -55,8 +55,8 @@ namespace YashilReport.Web.Areas.Rpt
                     b => b.MapFrom(c => c.AccessLevel.Title));
 
             CreateMap<ReportStore, ReportStoreViewModel>()
-                .ForMember(x => x.AccessLevelTitle,
-                    b => b.MapFrom(c => c.AccessLevel.Title));
+                .ForMember(x => x.ReportGroups, b => b.MapFrom(c => c.ReportGroupReport.Select(g => g.Id)))
+                .ForMember(x => x.AccessLevelTitle, b => b.MapFrom(c => c.AccessLevel.Title));
 
             CreateMap<ReportStoreEditModel, ReportStore>();
 
@@ -76,9 +76,8 @@ namespace YashilReport.Web.Areas.Rpt
                     b => b.MapFrom(c => c.Report.Title));
 
             CreateMap<RoleReport, RoleReportViewModel>()
-                .ForMember(x => x.RoleTitle,
-                    b => b.MapFrom(c => c.Role.Title)).ForMember(x => x.ReportTitle,
-                    b => b.MapFrom(c => c.Report.Title));
+                .ForMember(x => x.RoleTitle, b => b.MapFrom(c => c.Role.Title))
+                .ForMember(x => x.ReportTitle, b => b.MapFrom(c => c.Report.Title));
 
             CreateMap<RoleReportEditModel, RoleReport>();
 
@@ -94,12 +93,14 @@ namespace YashilReport.Web.Areas.Rpt
 
             CreateMap<UserReport, UserReportListViewModel>()
                 .ForMember(x => x.UserTitle,
-                    b => b.MapFrom(c => c.User.UserName)).ForMember(x => x.ReportTitle,
+                    b => b.MapFrom(c => c.User.UserName))
+                .ForMember(x => x.ReportTitle,
                     b => b.MapFrom(c => c.Report.Title));
 
             CreateMap<UserReport, UserReportViewModel>()
                 .ForMember(x => x.UserTitle,
-                    b => b.MapFrom(c => c.User.UserName)).ForMember(x => x.ReportTitle,
+                    b => b.MapFrom(c => c.User.UserName))
+                .ForMember(x => x.ReportTitle,
                     b => b.MapFrom(c => c.Report.Title));
 
             CreateMap<UserReportEditModel, UserReport>();
@@ -111,17 +112,18 @@ namespace YashilReport.Web.Areas.Rpt
                 .ForMember(x => x.ReportStoreTitle,
                     b => b.MapFrom(c => c.ReportStore.Title))
                 .ForMember(x => x.ReportGroupTitle,
-                    b => b.MapFrom(c => c.ReportGroup.Title))
-                ;
+                    b => b.MapFrom(c => c.ReportGroup.Title));
 
             CreateMap<ReportGroupReport, ReportGroupReportListViewModel>()
                 .ForMember(x => x.ReportStoreTitle,
-                    b => b.MapFrom(c => c.ReportStore.Title)).ForMember(x => x.ReportGroupTitle,
+                    b => b.MapFrom(c => c.ReportStore.Title))
+                .ForMember(x => x.ReportGroupTitle,
                     b => b.MapFrom(c => c.ReportGroup.Title));
 
             CreateMap<ReportGroupReport, ReportGroupReportViewModel>()
                 .ForMember(x => x.ReportStoreTitle,
-                    b => b.MapFrom(c => c.ReportStore.Title)).ForMember(x => x.ReportGroupTitle,
+                    b => b.MapFrom(c => c.ReportStore.Title))
+                .ForMember(x => x.ReportGroupTitle,
                     b => b.MapFrom(c => c.ReportGroup.Title));
 
             CreateMap<ReportGroupReportEditModel, ReportGroupReport>();

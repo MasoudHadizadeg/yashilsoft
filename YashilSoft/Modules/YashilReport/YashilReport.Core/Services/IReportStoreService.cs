@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
@@ -13,5 +14,6 @@ namespace YashilReport.Core.Services
         Task<ReportStore> GetEntityForEdit(int reportId);
         Task UpdateReportStoreWithConnectionStringAsync(ReportStore entity, List<ReportConnectionString> reportConnectionStrings, List<string> notModifiedProperties);
         Result HandleReport(CommandJson command);
+        IQueryable<ReportStore> GetReportList();
     }
 }

@@ -26,11 +26,14 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
                 if (CryptographyHelper.VerifyPasswordHash(loginViewModel.Password + loginViewModel.UserName,
                     passwordBytes, passwordSalt))
                 {
+                    var isAdmin = _userService.IsAdmin(user.Id);
                     return new UserValidationResaultViewModel<int>
                     {
                         ClaimsIdentity = new ClaimsIdentity(new[]
                         {
-                            new Claim(ClaimTypes.Name, user.Id.ToString())
+                            new Claim(ClaimTypes.Name, user.Id.ToString()),
+                            new Claim("IA",isAdmin.ToString() ),
+                            new Claim(ClaimTypes.Surname, $"{user.FirstName} {user.LastName}")
                         }),
                         IsSuccess = true,
                         UserId = user.Id,

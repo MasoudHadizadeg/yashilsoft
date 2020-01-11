@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Yashil.Common.Core.Interfaces;
@@ -23,12 +24,16 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
 
     public class ReportStoreViewModel : IBaseViewModel
     {
+        public ReportStoreViewModel()
+        {
+            ReportGroups = new List<int>();
+        }
         public int ViewModelId
         {
             get => Id;
             set => Id = value;
         }
-
+        public List<int> ReportGroups { get; set; }
         public int Id { get; set; }
 
         public string Title { get; set; }

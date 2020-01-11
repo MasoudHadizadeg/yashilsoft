@@ -14,7 +14,7 @@ export class YashilConnectionStringDetailComponent extends BaseEdit implements O
     constructor(private genericDataService: GenericDataService) {
         super(genericDataService);
         this.entityName = 'yashilConnectionString';
-        this.setconnectionString = this.setconnectionString.bind(this);
+        this.setConnectionString = this.setConnectionString.bind(this);
     }
 
     ngOnInit() {
@@ -22,8 +22,10 @@ export class YashilConnectionStringDetailComponent extends BaseEdit implements O
         this.dataProviderDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'yashilDataProvider');
     }
 
-    setconnectionString(e) {
-        this.entity.connectionString = e.selectedItem.description;
+    setConnectionString(e) {
+        if (!this.entity.id || this.entity.id === 0) {
+            this.entity.connectionString = e.selectedItem.description;
+        }
     }
 
     getClassName() {

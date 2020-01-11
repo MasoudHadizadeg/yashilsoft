@@ -134,10 +134,10 @@ export class BaseEdit implements OnInit {
                 const result = this.detailForm.instance.validate();
                 if (result && !result.isValid) {
                     e.preventDefault();
-                    this.baseEditFormComponent.allowSave = true;
                     return;
                 }
             } catch (e) {
+            } finally {
                 this.baseEditFormComponent.allowSave = true;
             }
         }

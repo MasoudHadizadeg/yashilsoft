@@ -1,6 +1,5 @@
-
 using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Claims;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -13,11 +12,12 @@ namespace YashilReport.Infrastructure.ServiceImpl
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IReportGroupRepository _reportGroupRepository;
-
-        public ReportGroupService(IUnitOfWork unitOfWork, IReportGroupRepository reportGroupRepository) : base(unitOfWork, reportGroupRepository)
+        private readonly ClaimsPrincipal _claimsPrincipal;
+        public ReportGroupService(IUnitOfWork unitOfWork, IReportGroupRepository reportGroupRepository, ClaimsPrincipal claimsPrincipal) : base(unitOfWork, reportGroupRepository)
         {
             _unitOfWork = unitOfWork;
             _reportGroupRepository = reportGroupRepository;
+            _claimsPrincipal = claimsPrincipal;
         }
 
         public  IQueryable<ReportGroup> GetByReportId(int id)
@@ -28,6 +28,11 @@ namespace YashilReport.Infrastructure.ServiceImpl
         public IQueryable<ReportGroup> GetNotAssignedToReportId(int id)
         {
             return _reportGroupRepository.GetNotAssignedToReportId(id);
+        }
+
+        public IQueryable<ReportGroup> GetReportGroupList()
+        {
+            return  _reportGroupRepository.GetAll(true);
         }
     }
 }

@@ -18,5 +18,10 @@ namespace YashilUserManagement.Infrastructure.RepositoryImpl
         {
             return DbSet.Where(x => x.UserName == userName).FirstOrDefaultAsync();
         }
+
+        public bool IsAdmin(int userId)
+        {
+            return DbSet.Count(x => x.UserRoleUser.Any(e => e.Role.Id == 1 && e.UserId == userId)) >= 1;
+        }
     }
 }

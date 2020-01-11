@@ -24,6 +24,11 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
             return _userRepository.GetUserByUserName(userName);
         }
 
+        public bool IsAdmin(int userId)
+        {
+            return _userRepository.IsAdmin(userId);
+        }
+
         public void SetUserPass(string userUserName, byte[] passwordHash, byte[] passwordSalt)
         {
             var user = _userRepository.GetUserByUserName(userUserName).Result;

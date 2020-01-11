@@ -8,5 +8,6 @@ namespace YashilUserManagement.Core.Repositories
 	public interface IUserRepository : IGenericRepository<User>
     {
         Task<User> GetUserByUserName(string userName);
+        bool IsAdmin(int userId);
     }
 }      

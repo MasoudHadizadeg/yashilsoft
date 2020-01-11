@@ -1,2 +1,21 @@
-<app-assignable-list assignableListName="ReportGroup" itemEntityName="ReportStore" selectedItemId="selectedEntityId">
-</app-assignable-list>
+<!--<app-assignable-list assignableListName="ReportGroup" itemEntityName="ReportStore" selectedItemId="selectedEntityId">-->
+<!--</app-assignable-list>-->
+<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
+
+
+        <dxi-item dataField="reportStoreId" editorType="dxLookup" [label]="{text: 'گزارش'}"
+                  [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: reportStoreDataSource,displayExpr:'title',valueExpr:'id' }">
+
+            <dxi-validation-rule type="required" message="گزارش اجباری می باشد"></dxi-validation-rule>
+
+        </dxi-item>
+
+        <dxi-item dataField="reportGroupId" editorType="dxLookup" [label]="{text: 'گروه گزارش'}"
+                  [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: reportGroupDataSource,displayExpr:'title',valueExpr:'id' }">
+
+            <dxi-validation-rule type="required" message="گروه گزارش اجباری می باشد"></dxi-validation-rule>
+
+        </dxi-item>
+    </dx-form>
+</app-base-edit-form>

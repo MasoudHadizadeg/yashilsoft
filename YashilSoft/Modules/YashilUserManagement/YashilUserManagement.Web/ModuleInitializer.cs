@@ -1,5 +1,7 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Yashil.Common.SharedKernel.Module;
 using YashilUserManagement.Core.Repositories;
@@ -20,6 +22,7 @@ namespace YashilUserManagement.Web
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IYashilPasswordValidator<int>, PasswordValidator>();
+            services.AddTransient<ClaimsPrincipal>(s => s.GetService<IHttpContextAccessor>().HttpContext.User);
             services.AddScoped<IResourceRepository, ResourceRepository>();
             services.AddScoped<IResourceService, ResourceService>();
             services.AddScoped<IApplicationRepository, ApplicationRepository>();

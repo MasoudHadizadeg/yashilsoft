@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Stimulsoft.Report;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
@@ -67,7 +69,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
                 ModificationDate = DateTime.Now,
                 ReportFile = report.SaveToByteArray()
             };
-            await _reportStoreService.UpdateAsync(reportStore, data.ReportId, new List<string> {"ReportFile"}, true);
+            await _reportStoreService.UpdateAsync(reportStore, data.ReportId, new List<string> { "ReportFile" }, true);
             return true;
         }
 
@@ -111,11 +113,18 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
             await _reportStoreService.UpdateReportStoreWithConnectionStringAsync(entity, reportConnectionStrings,
                 GetModifiedProperties(entity));
         }
-
         protected override async Task<ReportStoreEditModel> GetEntityForEdit(int id)
         {
             var reportStore = await _reportStoreService.GetEntityForEdit(id);
             return _mapper.Map<ReportStore, ReportStoreEditModel>(reportStore);
         }
+
+        [HttpGet("GetReportList")]
+        public async Task<List<ReportStoreViewModel>> GetReportList()
+        {
+            return await _reportStoreService.GetReportList()
+                .ProjectTo<ReportStoreViewModel>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
     }
 }

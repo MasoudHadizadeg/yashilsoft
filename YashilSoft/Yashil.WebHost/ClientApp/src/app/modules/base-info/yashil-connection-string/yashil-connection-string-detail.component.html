@@ -6,7 +6,7 @@
         </dxi-item>
 
         <dxi-item dataField="dataProviderId" editorType="dxLookup" [label]="{text: 'تامین کننده داده'}"
-                  [editorOptions]="{ onSelectionChanged: setconnectionString,closeOnOutsideClick:true,showPopupTitle:false, dataSource: dataProviderDataSource,displayExpr:'title',valueExpr:'id' }">
+                  [editorOptions]="{ onSelectionChanged: setConnectionString,closeOnOutsideClick:true,showPopupTitle:false, dataSource: dataProviderDataSource,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="تامین کننده داده اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
         <dxi-item

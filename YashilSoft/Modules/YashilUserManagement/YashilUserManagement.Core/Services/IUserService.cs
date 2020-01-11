@@ -9,5 +9,6 @@ namespace YashilUserManagement.Core.Services
     {
         Task<User> GetUserByUserName(string userName);
         void SetUserPass(string userUserName, byte[] passwordHash, byte[] passwordSalt);
+        bool IsAdmin(int id);
     }
 }      

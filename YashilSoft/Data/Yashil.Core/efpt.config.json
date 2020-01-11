@@ -1,0 +1,126 @@
+﻿{
+   "ContextClassName": "YashildbContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "DoNotCombineNamespace": false,
+   "IdReplace": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Entities",
+   "ProjectRootNamespace": "Yashil.Core",
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "HasPrimaryKey": true,
+         "Name": "[base].[AccessLevel]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[base].[YashilConnectionString]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[base].[YashilDataProvider]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dash].[DashboardConnectionString]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dash].[DashboardGroup]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dash].[DashboardGroupDashboard]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dash].[DashboardStore]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dash].[RoleDashboard]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dash].[UserDashboard]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[rpt].[ReportConnectionString]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[rpt].[ReportGroup]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[rpt].[ReportGroupReport]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[rpt].[ReportStore]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[rpt].[RoleReport]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[rpt].[UserReport]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[um].[AppAction]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[um].[AppConfig]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[um].[Application]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[um].[Menu]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[um].[Organization]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[um].[Resource]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[um].[ResourceAppAction]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[um].[Role]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[um].[RoleResourceAction]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[um].[User]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[um].[UserRole]"
+      }
+   ],
+   "UseDatabaseNames": false,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": true,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseSpatial": false
+}

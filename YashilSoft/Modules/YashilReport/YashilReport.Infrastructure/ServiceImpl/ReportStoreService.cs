@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Stimulsoft.Report;
@@ -21,16 +23,17 @@ namespace YashilReport.Infrastructure.ServiceImpl
         private readonly IReportStoreRepository _reportStoreRepository;
         private readonly IYashilConnectionStringService _connectionStringService;
         private readonly IReportConnectionStringService _reportConnectionStringService;
-
+        private readonly ClaimsPrincipal _claimsPrincipal;
         public ReportStoreService(IUnitOfWork unitOfWork, IReportStoreRepository reportStoreRepository,
             IWebHostEnvironment webHostEnvironment, IYashilConnectionStringService yashilConnectionStringService,
-            IReportConnectionStringService reportConnectionStringService) :
+            IReportConnectionStringService reportConnectionStringService, ClaimsPrincipal claimsPrincipal) :
             base(unitOfWork, reportStoreRepository)
         {
             _unitOfWork = unitOfWork;
             _reportStoreRepository = reportStoreRepository;
             _connectionStringService = yashilConnectionStringService;
             _reportConnectionStringService = reportConnectionStringService;
+            _claimsPrincipal = claimsPrincipal;
         }
 
         public string GetReportDesigner(int reportId)
@@ -48,14 +51,14 @@ namespace YashilReport.Infrastructure.ServiceImpl
             report.Load(reportStore.ReportFile);
 
             var reportConnectionStrings = _connectionStringService.GetByReportId(reportId).Select(x =>
-                new {x.Title, x.ConnectionString, DataProviderTitle = x.DataProvider.Title}).ToList();
+                new { x.Title, x.ConnectionString, DataProviderTitle = x.DataProvider.Title }).ToList();
             foreach (StiDatabase db in report.Dictionary.Databases)
             {
                 // TODO: Add Common Databases
                 var connection = reportConnectionStrings.Find(x => x.Title == db.Name);
                 if (connection.DataProviderTitle == "MS SQL")
                 {
-                    ((StiSqlDatabase) db).ConnectionString = connection.ConnectionString;
+                    ((StiSqlDatabase)db).ConnectionString = connection.ConnectionString;
                 }
             }
 
@@ -120,6 +123,12 @@ namespace YashilReport.Infrastructure.ServiceImpl
             return null;
         }
 
+        public IQueryable<ReportStore> GetReportList()
+        {
+            var currentUserId = Convert.ToInt32(this._claimsPrincipal.Identity.Name);
+            return _reportStoreRepository.GetUserReportList(currentUserId);
+        }
+
         public override async Task<ReportStore> AddAsync(ReportStore reportStore, bool saveAfterAdd = false)
         {
             var report = new StiReport();
@@ -160,5 +169,6 @@ namespace YashilReport.Infrastructure.ServiceImpl
                     connection.Title));
             }
         }
+
     }
 }

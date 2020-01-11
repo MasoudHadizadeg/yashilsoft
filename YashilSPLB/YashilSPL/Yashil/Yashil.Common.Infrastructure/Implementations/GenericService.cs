@@ -12,7 +12,7 @@ namespace Yashil.Common.Infrastructure.Implementations
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IGenericRepository<TModel> _repository;
-
+        
 
         public GenericService(IUnitOfWork unitOfWork, IGenericRepository<TModel> repository)
         {

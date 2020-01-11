@@ -27,5 +27,13 @@ namespace YashilReport.Infrastructure.RepositoryImpl
         {
             return await _context.ReportStore.Include(x => x.ReportConnectionString).FirstOrDefaultAsync(x => x.Id == reportId);
         }
+
+        public IQueryable<ReportStore> GetUserReportList(int currentUserId)
+        {
+            var userRoles = _context.UserRole.Where(x => x.UserId == currentUserId).Select(x => x.Role);
+            return _context.ReportStore.Where(x =>
+                x.CreateBy == currentUserId || x.RoleReport.Any(c => userRoles.Contains(c.Role)) ||
+                x.UserReport.Any(u => u.UserId == currentUserId));
+        }
     }
 }

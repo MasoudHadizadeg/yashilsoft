@@ -10,6 +10,7 @@ namespace YashilReport.Core.Services
     {
         IQueryable<ReportGroup> GetByReportId(int id);
         IQueryable<ReportGroup> GetNotAssignedToReportId(int id);
+        IQueryable<ReportGroup> GetReportGroupList();
     }
 }      
  
