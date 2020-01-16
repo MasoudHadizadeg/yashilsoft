@@ -69,7 +69,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
                 ModificationDate = DateTime.Now,
                 ReportFile = report.SaveToByteArray()
             };
-            await _reportStoreService.UpdateAsync(reportStore, data.ReportId, new List<string> { "ReportFile" }, true);
+            await _reportStoreService.UpdateAsync(reportStore, data.ReportId, new List<string> {"ReportFile"}, true);
             return true;
         }
 
@@ -87,7 +87,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
 
         protected override void CustomMapBeforeInsert(ReportStoreEditModel editModel, ReportStore entity)
         {
-            foreach (var connectionStringId in editModel.ConnectionStringList)
+            foreach (var connectionStringId in editModel.ConnectionStringIds)
             {
                 entity.ReportConnectionString.Add(new ReportConnectionString
                 {
@@ -101,7 +101,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         protected override async Task UpdateAsync(ReportStore entity, ReportStoreEditModel editModel, int entityId,
             List<string> notModifiedProperties)
         {
-            var reportConnectionStrings = editModel.ConnectionStringList.Select(conStringId =>
+            var reportConnectionStrings = editModel.ConnectionStringIds.Select(conStringId =>
                 new ReportConnectionString
                 {
                     ConnectionStringId = Convert.ToInt32(conStringId),
@@ -113,6 +113,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
             await _reportStoreService.UpdateReportStoreWithConnectionStringAsync(entity, reportConnectionStrings,
                 GetModifiedProperties(entity));
         }
+
         protected override async Task<ReportStoreEditModel> GetEntityForEdit(int id)
         {
             var reportStore = await _reportStoreService.GetEntityForEdit(id);
@@ -125,6 +126,5 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
             return await _reportStoreService.GetReportList()
                 .ProjectTo<ReportStoreViewModel>(_mapper.ConfigurationProvider).ToListAsync();
         }
-
     }
 }

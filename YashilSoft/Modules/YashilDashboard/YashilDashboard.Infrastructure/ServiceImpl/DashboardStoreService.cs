@@ -68,7 +68,7 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
             var connectionStrings =
                 _connectionStringService.FindByIds(dashboardConnectionStrings.Select(x => x.ConnectionStringId));
 
-            dashboard.DataConnections.Clear();
+            dashboard.DataSources.Clear();
 
 
             foreach (var connectionString in dashboardConnectionStrings)

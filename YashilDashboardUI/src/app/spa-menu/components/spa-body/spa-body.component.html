@@ -1,9 +1,10 @@
-<ysh-spa-navbar></ysh-spa-navbar>
-<div class="body-content">
+<ysh-spa-navbar *ngIf="reportDataService" [navBarItems]="reportDataService?.groups"></ysh-spa-navbar>
+<div class="body-content" *ngIf="reportDataService.groupItems">
   <ysh-spa-body-section
+    [cardItems]="reportDataService.groupItems |groupItem:item.id "
     [section]="item"
     [showBlue]="1 === i"
-    [sectionCount]="sectionItems.length"
-    *ngFor="let item of sectionItems;let i = index">
+    [sectionCount]="reportDataService.groups.length"
+    *ngFor="let item of reportDataService.groups;let i = index">
   </ysh-spa-body-section>
 </div>

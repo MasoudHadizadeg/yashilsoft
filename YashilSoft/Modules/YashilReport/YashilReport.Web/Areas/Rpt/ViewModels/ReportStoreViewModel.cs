@@ -28,11 +28,13 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
         {
             ReportGroups = new List<int>();
         }
+
         public int ViewModelId
         {
             get => Id;
             set => Id = value;
         }
+
         public List<int> ReportGroups { get; set; }
         public int Id { get; set; }
 
@@ -42,7 +44,7 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
 
         public string CssClass { get; set; }
 
-        public string Picture { get; set; }
+        public byte[] Picture { get; set; }
 
         public string Color { get; set; }
 
@@ -63,6 +65,11 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
 
     public class ReportStoreEditModel : IBaseViewModel
     {
+        ReportStoreEditModel()
+        {
+            ConnectionStringIds = new List<int>();
+        }
+
         public int ViewModelId
         {
             get => Id;
@@ -75,7 +82,7 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
 
         [StringLength(50)] public string CssClass { get; set; }
 
-        public string Picture { get; set; }
+        public byte[] Picture { get; set; }
 
         [StringLength(50)] public string Color { get; set; }
 
@@ -90,11 +97,7 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
 
         [Range(0, int.MaxValue)] [Required] public int AccessLevelId { get; set; }
         public string AccessLevelTitle { get; set; }
-        public string ConnectionStringIds { get; set; }
-
-        public string[] ConnectionStringList => string.IsNullOrEmpty(ConnectionStringIds)
-            ? null
-            : ConnectionStringIds.Split(",", StringSplitOptions.RemoveEmptyEntries);
+        public List<int> ConnectionStringIds { get; set; }
     }
 
     public class ReportStoreSimpleViewModel : IBaseViewModel

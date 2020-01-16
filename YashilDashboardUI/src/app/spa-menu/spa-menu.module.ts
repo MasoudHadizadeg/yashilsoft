@@ -7,6 +7,7 @@ import {SpaIndexComponent} from './pages/spa-index/spa-index.component';
 import {SpaNavbarComponent} from './components/spa-navbar/spa-navbar.component';
 import {SpaBodySectionComponent} from './components/spa-body-section/spa-body-section.component';
 import {SpaCardTileComponent} from './components/spa-card-tile/spa-card-tile.component';
+import {ReportViewerComponent} from '../report/report-viewer/report-viewer.component';
 import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
@@ -17,6 +18,7 @@ import {SharedModule} from '../shared/shared.module';
     SpaNavbarComponent,
     SpaBodySectionComponent,
     SpaCardTileComponent,
+    ReportViewerComponent
   ],
   imports: [
     CommonModule,

@@ -23,10 +23,13 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "devextreme": "^19.2.5",
+    "devextreme-aspnet-data-nojquery": "^2.5.1",
+    "devextreme-cldr-data": "^1.0.2",
     "ng2-jalali-date-picker": "^2.2.7",
     "rxjs": "^6.5.4",
     "tslib": "^1.10.0",
-    "yashil-core": "file:lib/yashil-core-1.0.1.tgz",
+    "yashil-core": "file:lib/yashil-core-1.0.8.tgz",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

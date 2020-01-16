@@ -1,9 +1,11 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {FakeModel} from '../../models/FakeModel';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ScrollAfterRouteChange} from '../../../shared/helper/ScrollFunction';
 import {interval} from 'rxjs';
 import {SliderFunction} from '../../../shared/helper/SliderFunction';
+import {GenericDataService} from 'yashil-core';
+import {EnvService} from '../../../shared/services/env.service';
 
 @Component({
   selector: 'ysh-spa-navbar',
@@ -12,15 +14,36 @@ import {SliderFunction} from '../../../shared/helper/SliderFunction';
 })
 
 export class SpaNavbarComponent implements OnInit, AfterViewInit {
-
-  navBarItems = FakeModel.menu;
+  @Input()
+  navBarItems: any[] = [];
   sliderContent = FakeModel.sliderContent;
   mobileMenuToggle: boolean;
-  currentMenu;
   currentSliderId;
   currentSlider = {bigTitle: '', smallTitle: '', imageUrl: ''};
   animationState;
   animationTime = 6;
+
+  constructor(private router: ActivatedRoute) {
+  }
+
+  ngOnInit() {
+    this.mobileMenuToggle = false;
+    this.animationState = false;
+    this.initialSlider();
+    window.onclick = () => {
+      this.mobileMenuToggle = false;
+    };
+  }
+
+  ngAfterViewInit(): void {
+
+  }
+
+  initialSlider() {
+    this.currentSliderId = 0;
+    this.setSliderContent();
+    this.sliderInterval();
+  }
 
   changeSlider(value) {
     this.currentSliderId = SliderFunction(this.sliderContent, value, this.currentSliderId);
@@ -34,31 +57,6 @@ export class SpaNavbarComponent implements OnInit, AfterViewInit {
     this.currentSlider.imageUrl = this.sliderContent[this.currentSliderId].imageUrl;
   }
 
-  constructor(private router: Router) {
-    this.currentMenu = this.router.getCurrentNavigation();
-  }
-
-
-  toggleMenu(event) {
-    event.stopPropagation();
-    this.mobileMenuToggle = !this.mobileMenuToggle;
-  }
-
-  ngOnInit() {
-    this.mobileMenuToggle = false;
-
-    this.animationState = false;
-
-    this.currentSliderId = 0;
-
-    this.setSliderContent();
-    this.sliderInterval();
-
-    window.onclick = () => {
-      this.mobileMenuToggle = false;
-    };
-  }
-
   sliderInterval() {
     const timer = interval(1000);
     const subscriber = timer.subscribe(t => {
@@ -69,7 +67,8 @@ export class SpaNavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    ScrollAfterRouteChange(this.currentMenu);
+  toggleMenu(event) {
+    event.stopPropagation();
+    this.mobileMenuToggle = !this.mobileMenuToggle;
   }
 }

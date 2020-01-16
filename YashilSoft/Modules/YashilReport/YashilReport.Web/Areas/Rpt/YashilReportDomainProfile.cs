@@ -46,9 +46,9 @@ namespace YashilReport.Web.Areas.Rpt
 
 
             CreateMap<ReportStore, ReportStoreEditModel>()
-                .ForMember(x => x.AccessLevelTitle, b => b.MapFrom(c => c.AccessLevel.Title)).ForMember(
-                    x => x.ConnectionStringIds,
-                    b => b.MapFrom(c => Join(",", c.ReportConnectionString.Select(d => d.ConnectionStringId))));
+                .ForMember(x => x.AccessLevelTitle, b => b.MapFrom(c => c.AccessLevel.Title))
+                .ForMember(x => x.ConnectionStringIds,
+                    b => b.MapFrom(c => c.ReportConnectionString.Select(d => d.ConnectionStringId)));
 
             CreateMap<ReportStore, ReportStoreListViewModel>()
                 .ForMember(x => x.AccessLevelTitle,

@@ -1,14 +1,14 @@
 import {ContentPagesRoutingModule} from './content-pages-routing.module';
 import {NgModule} from '@angular/core';
 import {LoginPageComponent} from './login/login-page.component';
-import {SharedModule} from '../shared/shared.module';
 import {FormsModule} from '@angular/forms';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
     ContentPagesRoutingModule,
-    SharedModule,
-    FormsModule
+    FormsModule,
+    SharedModule.forRoot()
   ],
   declarations: [
     LoginPageComponent

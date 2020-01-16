@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 })
 export class EnvService {
   public apiUrl = '';
-
+  public mode = '';
   // Whether or not to enable debug mode
   public enableDebug = true;
 

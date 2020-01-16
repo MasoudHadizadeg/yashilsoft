@@ -26,7 +26,7 @@ namespace Yashil.Core.Entities
         public byte[] ReportFile { get; set; }
         [StringLength(50)]
         public string CssClass { get; set; }
-        public string Picture { get; set; }
+        public byte[] Picture { get; set; }
         [StringLength(50)]
         public string Color { get; set; }
         public bool? Animation { get; set; }

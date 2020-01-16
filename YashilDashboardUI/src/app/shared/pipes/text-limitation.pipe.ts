@@ -6,12 +6,15 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class TextLimitationPipe implements PipeTransform {
 
   transform(value: any, args: any): any {
-    const defaultLength = 100;
-    if (typeof value === 'string') {
-      return this.limitation(value, args ? args : defaultLength);
-    } else {
-      return this.limitation(value.toString(), args ? args : defaultLength);
+    if (value) {
+      const defaultLength = 100;
+      if (typeof value === 'string') {
+        return this.limitation(value, args ? args : defaultLength);
+      } else {
+        return this.limitation(value.toString(), args ? args : defaultLength);
+      }
     }
+    return value;
   }
 
   limitation(value: string, limitNumber) {

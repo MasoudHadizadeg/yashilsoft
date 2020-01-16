@@ -43,7 +43,7 @@ namespace YashilDashboard.Web.Areas.Dash.ViewModels
 
         public string CssClass { get; set; }
 
-        public string Picture { get; set; }
+        public byte[] Picture { get; set; }
 
         public string Color { get; set; }
 
@@ -79,7 +79,7 @@ namespace YashilDashboard.Web.Areas.Dash.ViewModels
         [StringLength(50)] public string CssClass { get; set; }
 
 
-        public string Picture { get; set; }
+        public byte[] Picture { get; set; }
 
         [StringLength(50)] public string Color { get; set; }
 

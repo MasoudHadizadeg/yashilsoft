@@ -275,7 +275,7 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Description).HasComment("توضیح");
 
-                entity.Property(e => e.EnglishTitle).HasComment("عنوان");
+                entity.Property(e => e.EnglishTitle).HasComment("عنوان انگلیسی");
 
                 entity.Property(e => e.ModificationDate).HasComment("زمان تغییر");
 
@@ -291,9 +291,7 @@ namespace Yashil.Infrastructure.Data
                 entity.HasIndex(e => new { e.DashboardGroupId, e.DashboardStoreId })
                     .HasName("IX_DashboardGroupDashboard");
 
-                entity.Property(e => e.Id)
-                    .HasComment("کد")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasComment("کد");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
 
@@ -375,9 +373,7 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
 
-                entity.Property(e => e.Picture)
-                    .IsUnicode(false)
-                    .HasComment("تصویر");
+                entity.Property(e => e.Picture).HasComment("تصویر");
 
                 entity.Property(e => e.Title).HasComment("عنوان");
 
@@ -605,7 +601,7 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Description).HasComment("توضیح");
 
-                entity.Property(e => e.EnglishTitle).HasComment("عنوان");
+                entity.Property(e => e.EnglishTitle).HasComment("عنوان انگلیسی");
 
                 entity.Property(e => e.ModificationDate).HasComment("زمان تغییر");
 
@@ -702,9 +698,7 @@ namespace Yashil.Infrastructure.Data
                     .IsUnicode(false)
                     .HasComment("ماژول");
 
-                entity.Property(e => e.Picture)
-                    .IsUnicode(false)
-                    .HasComment("تصویر");
+                entity.Property(e => e.Picture).HasComment("تصویر");
 
                 entity.Property(e => e.ReportFile).HasComment("گزارش");
 

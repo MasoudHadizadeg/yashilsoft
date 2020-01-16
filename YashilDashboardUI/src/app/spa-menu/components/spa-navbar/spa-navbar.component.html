@@ -8,7 +8,7 @@
     </div>
     <div [ngStyle]="{'transform': mobileMenuToggle ?  'scaleY(1)' :  'scaleY(0)' }" class="mobile-menu-container">
       <div *ngFor="let m of navBarItems">
-        <a [id]="m?.id" href="{{m.id}}">
+        <a [id]="m?.id" href="#{{m.englishTitle}}">
           {{m?.title}}
         </a>
       </div>
@@ -22,7 +22,7 @@
         <img src="./assets/img/header-icon/inst.png">
       </div>
       <span *ngFor="let item of navBarItems" class="menu-item">
-      <a href="{{item.id}}">
+      <a href="#{{item.englishTitle}}" id="m_{{item.englishTitle}}">
         {{item?.title}}
       </a>
       </span>

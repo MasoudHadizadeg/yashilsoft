@@ -8,18 +8,19 @@
                     <dx-button
                             id="btnSave"
                             text="ذخیره"
-                            icon="fa fa-save"
+                            icon="save"
                             type="success"
                             class="ml-3 mr-3 "
                             [disabled]="!allowSave "
                             [useSubmitBehavior]="true">
                     </dx-button>
                     <dx-button
+                            class="ml-3 mr-3"
                             id="btnClose"
                             text="بستن"
                             *ngIf="showCloseButton"
                             type="success"
-                            icon="fa fa-window-close "
+                            icon="close"
                             (onClick)="onCloseForm($event)">
                     </dx-button>
                 </div>

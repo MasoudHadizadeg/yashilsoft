@@ -43,7 +43,7 @@ export class YshTooltipDirective {
     this.child.style.color = '#ffffff';
     this.child.style.whitespace = 'none';
 
-    if (this.text.length > this.textLimitation) {
+    if (this.text && this.text.length > this.textLimitation) {
       this.renderer.appendChild(this.el.nativeElement, this.child);
     }
   }

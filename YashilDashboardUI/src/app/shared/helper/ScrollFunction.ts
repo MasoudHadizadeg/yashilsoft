@@ -14,9 +14,11 @@ export function ShowScrollButtonFunctionality() {
 
 
 export function ScrollAfterRouteChange(currentMenu: any) {
-  const currentSection = document.getElementById(currentMenu.finalUrl.fragment);
-  if (currentSection) {
-    const currentMenuItemEl = document.getElementById('#' + currentMenu.finalUrl.fragment);
-    currentMenuItemEl.click();
+  if (currentMenu) {
+    const currentMenuItemEl = document.getElementById('m_' + currentMenu);
+    if (currentMenuItemEl) {
+      currentMenuItemEl.click();
+    }
   }
 }
+

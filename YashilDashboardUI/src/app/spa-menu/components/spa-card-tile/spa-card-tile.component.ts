@@ -1,4 +1,6 @@
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {EnvService} from '../../../shared/services/env.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'ysh-spa-card-tile',
@@ -9,12 +11,13 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 export class SpaCardTileComponent implements OnInit {
 
 
-  @Input() cartItem;
+  @Input()
+  cartItem: any = {};
 
-  constructor() {
+  constructor(private env: EnvService, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
-  }
 
+  }
 }

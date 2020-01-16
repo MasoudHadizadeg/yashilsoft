@@ -6,7 +6,8 @@ import {AuthenticationService, User, YashilComponent} from 'yashil-core';
   templateUrl: './spa-header.component.html',
   styleUrls: ['./spa-header.component.scss']
 })
-export class SpaHeaderComponent extends YashilComponent {
+export class SpaHeaderComponent extends YashilComponent implements OnInit {
+  userFullName: string;
 
   constructor(private authenticationService: AuthenticationService) {
     super();
@@ -14,6 +15,10 @@ export class SpaHeaderComponent extends YashilComponent {
 
   signOut() {
     this.authenticationService.logout();
+  }
+
+  ngOnInit(): void {
+    this.userFullName = this.authenticationService.getPayloadByPropName('family_name');
   }
 
 }

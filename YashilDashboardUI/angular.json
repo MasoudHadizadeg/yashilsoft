@@ -29,9 +29,12 @@
               "src/env.js"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/yashil-core/assets/css/yashil-core.css"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
@@ -54,7 +57,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumError": "17mb"
                 },
                 {
                   "type": "anyComponentStyle",
