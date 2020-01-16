@@ -2,6 +2,8 @@ import * as Globalize from 'globalize';
 import {YashilComponent} from '../../../core/baseClasses/yashilComponent';
 import {AfterViewInit, Component, ElementRef, OnDestroy} from '@angular/core';
 import {DashboardControl, ResourceManager} from 'devexpress-dashboard';
+import {Location} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
 
 declare var require: (e: string) => object
 
@@ -13,10 +15,14 @@ declare var require: (e: string) => object
 
 export class DashboardViewerComponent extends YashilComponent implements AfterViewInit, OnDestroy {
     private dashboardControl!: DashboardControl;
+    dashboardId: any;
 
-    constructor(private element: ElementRef) {
+    constructor(private element: ElementRef, private route: ActivatedRoute) {
         super();
         this.initGlobalize();
+        if (this.route.snapshot.params.id) {
+            this.dashboardId = this.route.snapshot.params.id;
+        }
         ResourceManager.embedBundledResources();
     }
 
@@ -33,9 +39,9 @@ export class DashboardViewerComponent extends YashilComponent implements AfterVi
     ngAfterViewInit(): void {
         this.dashboardControl = new DashboardControl(this.element.nativeElement.querySelector('.dashboard-container'), {
             // Specifies a URL of the Web Dashboard's server.
-            endpoint: 'https://localhost:44368/api/dashboard',
+            endpoint: '/api/dashboard',
             workingMode: 'ViewerOnly',
-            initialDashboardId: '1',
+            initialDashboardId: this.dashboardId,
             loadDefaultDashboard: false,
             useCardLegacyLayout: false
         });
