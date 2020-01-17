@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Security.Claims;
 using Yashil.Common.Core.Interfaces;
@@ -32,7 +33,8 @@ namespace YashilReport.Infrastructure.ServiceImpl
 
         public IQueryable<ReportGroup> GetReportGroupList()
         {
-            return  _reportGroupRepository.GetAll(true);
+            var currentUserId = Convert.ToInt32(this._claimsPrincipal.Identity.Name);
+            return  _reportGroupRepository.GetUserReportGroupList(currentUserId);
         }
     }
 }

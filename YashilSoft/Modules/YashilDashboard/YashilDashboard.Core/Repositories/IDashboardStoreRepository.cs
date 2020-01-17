@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities; 
@@ -8,5 +9,6 @@ namespace YashilDashboard.Core.Repositories
     {
         void DeleteContentionStrings(int dashboardId);
         Task<DashboardStore> GetForEditAsync(int dashboardId, bool readOnly = false);
+        IQueryable<DashboardStore> GetUserDashboardList(int currentUserId);
     }
 }      

@@ -45,8 +45,49 @@ export class DashboardViewerComponent extends YashilComponent implements AfterVi
             loadDefaultDashboard: false,
             useCardLegacyLayout: false
         });
+        const that = this;
+        const api = this.dashboardControl.findExtension('viewer-api');
 
+        api['_options'].onItemWidgetCreated = function (s, e) {
+            that.customizeWidgets(s);
+        }
+
+        api['_options'].onItemWidgetUpdated = function (s, e) {
+            that.customizeWidgets(s);
+        }
         this.dashboardControl.render();
+    }
+
+    customizeWidgets(args) {
+        const widget = args.getWidget();
+        widget.option('rtlEnabled', true);
+        if (widget.NAME === 'dxDataGrid') {
+            for (let i = 0; i < widget.columnCount(); i++) {
+                widget.columnOption(i, 'alignment', 'right');
+            }
+        }
+        if (args.ItemName === 'chartDashboardItem') {
+            const chart = args.GetWidget();
+            chart.option({
+                tooltip: {
+                    enabled: false
+                },
+                onArgumentAxisClick: function (info) {
+                    info.component.getAllSeries()[0].getPointsByArg(info.argument)[0].showTooltip()
+                }
+            });
+        }
+        if (args.ItemName === 'pieDashboardItem1') {
+            const pie = args.GetWidget()[0];
+            pie.option({
+                legend: {
+                    visible: true,
+                    border: {
+                        visible: true
+                    }
+                }
+            });
+        }
     }
 
     ngOnDestroy(): void {

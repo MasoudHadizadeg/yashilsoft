@@ -6,21 +6,25 @@ import {EnvServiceProvider} from './services/env.service.provider';
 import {YashilCoreModule} from 'yashil-core';
 import {BypassSecurityTrustResourceUrlPipe} from './pipes/bypass-security-trust-resource-url.pipe';
 import {GroupItemPipe} from './pipes/group-item.pipe';
+import {ContentLayoutComponent} from '../layouts/content/content-layout.component';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    YashilCoreModule
+    YashilCoreModule,
+    RouterModule
   ],
   providers: [EnvServiceProvider],
-  declarations: [TextLimitationPipe, BypassSecurityTrustResourceUrlPipe, YshTooltipDirective, GroupItemPipe],
+  declarations: [ContentLayoutComponent, TextLimitationPipe, BypassSecurityTrustResourceUrlPipe, YshTooltipDirective, GroupItemPipe],
   exports: [
     TextLimitationPipe,
     BypassSecurityTrustResourceUrlPipe,
     YshTooltipDirective,
     YashilCoreModule,
-    GroupItemPipe
+    GroupItemPipe,
+    ContentLayoutComponent
   ]
 })
 export class SharedModule {

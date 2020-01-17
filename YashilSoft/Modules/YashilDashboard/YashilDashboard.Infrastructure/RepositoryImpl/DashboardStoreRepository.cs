@@ -27,5 +27,13 @@ namespace YashilDashboard.Infrastructure.RepositoryImpl
         {
             return await _context.DashboardStore.Include(x => x.DashboardConnectionString).FirstOrDefaultAsync(x => x.Id == dashboardId);
         }
+
+        public IQueryable<DashboardStore> GetUserDashboardList(int currentUserId)
+        {
+            var userRoles = _context.UserRole.Where(x => x.UserId == currentUserId).Select(x => x.Role);
+            return _context.DashboardStore.Where(x =>
+                x.CreateBy == currentUserId || x.RoleDashboard.Any(c => userRoles.Contains(c.Role)) ||
+                x.UserDashboard.Any(u => u.UserId == currentUserId));
+        }
     }
 }

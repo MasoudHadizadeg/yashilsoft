@@ -21,21 +21,14 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
         public string AccessLevelTitle { get; set; }
     }
 
-
     public class ReportStoreViewModel : IBaseViewModel
     {
-        public ReportStoreViewModel()
-        {
-            ReportGroups = new List<int>();
-        }
 
         public int ViewModelId
         {
             get => Id;
             set => Id = value;
         }
-
-        public List<int> ReportGroups { get; set; }
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -61,7 +54,6 @@ namespace YashilReport.Web.Areas.Rpt.ViewModels
         public int AccessLevelId { get; set; }
         public string AccessLevelTitle { get; set; }
     }
-
 
     public class ReportStoreEditModel : IBaseViewModel
     {

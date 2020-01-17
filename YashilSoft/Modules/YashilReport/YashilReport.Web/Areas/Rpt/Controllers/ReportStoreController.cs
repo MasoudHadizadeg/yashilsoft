@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Stimulsoft.Report;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
+using Yashil.Core.CustomViewModels;
 using Yashil.Core.Entities;
 using YashilReport.Core;
 using YashilReport.Core.Services;
@@ -121,10 +122,10 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         }
 
         [HttpGet("GetReportList")]
-        public async Task<List<ReportStoreViewModel>> GetReportList()
+        public async Task<List<StoreCustomViewModel>> GetReportList()
         {
             return await _reportStoreService.GetReportList()
-                .ProjectTo<ReportStoreViewModel>(_mapper.ConfigurationProvider).ToListAsync();
+                .ProjectTo<StoreCustomViewModel>(_mapper.ConfigurationProvider).ToListAsync();
         }
     }
 }

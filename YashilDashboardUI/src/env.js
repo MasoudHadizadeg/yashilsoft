@@ -3,7 +3,7 @@
 
   // API url
   window.__env.apiUrl = 'https://localhost:44370';
-  window.__env.mode = 'Report';
+  window.__env.mode = 'Dashboard';// Dashboard Or Report
 
 
   // Whether or not to enable debug mode

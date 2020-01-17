@@ -10,5 +10,6 @@ namespace YashilReport.Core.Repositories
     {
         IQueryable<ReportGroup> GetByReportId(int id);
         IQueryable<ReportGroup> GetNotAssignedToReportId(int id);
+        IQueryable<ReportGroup> GetUserReportGroupList(int currentUserId);
     }
 }      

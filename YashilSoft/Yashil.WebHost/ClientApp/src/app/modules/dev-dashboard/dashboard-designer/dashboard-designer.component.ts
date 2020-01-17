@@ -58,12 +58,50 @@ export class DashboardDesignerComponent extends YashilComponent implements OnIni
         // tslint:disable-next-line:prefer-const
         // const HELLOWORLD_ITEM_ICON = '<svg id="helloWorldItemIcon" viewBox="0 0 24 24"><path stroke="#42f48f" fill="#42f48f" d="M12 2 L2 22 L22 22 Z" /></svg>';
         // ResourceManager.registerIcon(HELLOWORLD_ITEM_ICON);
+        const api = this.dashboardControl.findExtension('viewer-api');
 
+        api['_options'].onItemWidgetCreated = function (s, e) {
+            that.customizeWidgets(s);
+        }
+
+        api['_options'].onItemWidgetUpdated = function (s, e) {
+            that.customizeWidgets(s);
+        }
 
         this.dashboardControl.render();
         this.setBusy(false);
     }
-
+    customizeWidgets(args) {
+        const widget = args.getWidget();
+        widget.option('rtlEnabled', true);
+        if (widget.NAME === 'dxDataGrid') {
+            for (let i = 0; i < widget.columnCount(); i++) {
+                widget.columnOption(i, 'alignment', 'right');
+            }
+        }
+        if (args.ItemName === 'chartDashboardItem') {
+            const chart = args.GetWidget();
+            chart.option({
+                tooltip: {
+                    enabled: false
+                },
+                onArgumentAxisClick: function (info) {
+                    info.component.getAllSeries()[0].getPointsByArg(info.argument)[0].showTooltip()
+                }
+            });
+        }
+        if (args.ItemName === 'pieDashboardItem1') {
+            const pie = args.GetWidget()[0];
+            pie.option({
+                legend: {
+                    visible: true,
+                    border: {
+                        visible: true
+                    }
+                }
+            });
+        }
+    }
     ngOnDestroy(): void {
         this.dashboardControl.dispose();
     }

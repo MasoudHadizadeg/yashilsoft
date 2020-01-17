@@ -1,0 +1,24 @@
+<div class="tile" *ngIf="cartItem" routerLink="/view/{{env.mode}}/{{cartItem.id}}" >
+  <div class="tile-image">
+    <img width=85px
+         height=85px [src]="cartItem.picture | fixBase64Image">
+  </div>
+  <div style="text-align: center;margin-top: 25px;margin-bottom: 5px">
+    <strong class="center">{{cartItem.title}}</strong>
+  </div>
+  <div class="tile-title">
+    <div class="tile-description"
+         yshYshTooltip
+         [text]="cartItem?.description"
+         [textLimitation]="100">
+      {{cartItem?.description | textLimitation:100}}
+    </div>
+  </div>
+  <!--  <div routerLink="/view{{env.mode}}/{{cartItem.id}}" class="button">-->
+  <!--    <img width="20px" height="20px" src="./assets/img/common/left.svg">-->
+  <!--    <span>مشاهده گزارش</span>-->
+  <!--  </div>-->
+
+  <div class="border-bottom">
+  </div>
+</div>

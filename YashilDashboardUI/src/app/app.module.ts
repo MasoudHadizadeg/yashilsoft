@@ -5,15 +5,13 @@ import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NotFoundComponent} from './shared/components/not-found/not-found.component';
-import {ContentLayoutComponent} from './layouts/content/content-layout.component';
 import {AuthGuard, GenericDataService, JwtInterceptor} from 'yashil-core';
 import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent,
-    ContentLayoutComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

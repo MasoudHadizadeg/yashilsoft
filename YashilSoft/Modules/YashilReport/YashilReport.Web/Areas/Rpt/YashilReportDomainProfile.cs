@@ -2,6 +2,7 @@ using System.Linq;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 using AutoMapper;
+using Yashil.Core.CustomViewModels;
 using YashilReport.Web.Areas.Rpt.ViewModels;
 using static System.String;
 
@@ -53,9 +54,9 @@ namespace YashilReport.Web.Areas.Rpt
             CreateMap<ReportStore, ReportStoreListViewModel>()
                 .ForMember(x => x.AccessLevelTitle,
                     b => b.MapFrom(c => c.AccessLevel.Title));
-
+            CreateMap<ReportStore, StoreCustomViewModel>()
+                .ForMember(x => x.Groups, b => b.MapFrom(c => c.ReportGroupReport.Select(g => g.Id)));
             CreateMap<ReportStore, ReportStoreViewModel>()
-                .ForMember(x => x.ReportGroups, b => b.MapFrom(c => c.ReportGroupReport.Select(g => g.Id)))
                 .ForMember(x => x.AccessLevelTitle, b => b.MapFrom(c => c.AccessLevel.Title));
 
             CreateMap<ReportStoreEditModel, ReportStore>();

@@ -2,6 +2,7 @@ using System.Linq;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 using AutoMapper;
+using Yashil.Core.CustomViewModels;
 using YashilDashboard.Web.Areas.Dash.ViewModels;
 
 namespace YashilDashboard.Web.Areas.Dash
@@ -20,6 +21,9 @@ namespace YashilDashboard.Web.Areas.Dash
             CreateMap<DashboardStore, DashboardStoreListViewModel>()
                 .ForMember(x => x.AccessLevelTitle,
                     b => b.MapFrom(c => c.AccessLevel.Title));
+            CreateMap<DashboardStore, StoreCustomViewModel>()
+                .ForMember(x => x.Groups, b 
+                    => b.MapFrom(c => c.DashboardGroupDashboard.Select(g => g.Id)));
 
             CreateMap<DashboardStore, DashboardStoreViewModel>()
                 .ForMember(x => x.AccessLevelTitle,

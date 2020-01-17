@@ -7,7 +7,7 @@ export class GroupItemPipe implements PipeTransform {
 
   transform(value: any, id: any): any {
     if (value) {
-      return value.filter(x => x.reportGroups.contains(id));
+      return value.filter(x => x.groups.contains(id));
     }
   }
 }

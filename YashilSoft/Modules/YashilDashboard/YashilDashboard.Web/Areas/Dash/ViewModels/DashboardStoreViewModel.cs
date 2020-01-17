@@ -53,6 +53,28 @@ namespace YashilDashboard.Web.Areas.Dash.ViewModels
         public string AccessLevelTitle { get; set; }
     }
 
+    public class DashboardStoreCustomViewModel : IBaseViewModel
+    {
+        public int ViewModelId
+        {
+            get => Id;
+            set => Id = value;
+        }
+
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+
+        public string Description { get; set; }
+
+        public string CssClass { get; set; }
+
+        public byte[] Picture { get; set; }
+
+        public string Color { get; set; }
+
+    }
+
 
     public class DashboardStoreEditModel : IBaseViewModel
     {

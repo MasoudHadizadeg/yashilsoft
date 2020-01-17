@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using DevExpress.DashboardCommon;
 using Yashil.Common.Core.Interfaces;
@@ -19,16 +21,18 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
         private readonly IDashboardStoreRepository _dashboardStoreRepository;
         private readonly IYashilConnectionStringService _connectionStringService;
         private readonly IDashboardConnectionStringService _dashboardConnectionStringService;
+        private readonly ClaimsPrincipal _claimsPrincipal;
 
         public DashboardStoreService(IUnitOfWork unitOfWork, IDashboardStoreRepository dashboardStoreRepository,
             IYashilConnectionStringService connectionStringService,
-            IDashboardConnectionStringService dashboardConnectionStringService) : base(
+            IDashboardConnectionStringService dashboardConnectionStringService, ClaimsPrincipal claimsPrincipal) : base(
             unitOfWork, dashboardStoreRepository)
         {
             _unitOfWork = unitOfWork;
             _dashboardStoreRepository = dashboardStoreRepository;
             _connectionStringService = connectionStringService;
             _dashboardConnectionStringService = dashboardConnectionStringService;
+            _claimsPrincipal = claimsPrincipal;
         }
 
         public string GetDashboardDesigner(int dashboardId)
@@ -55,6 +59,12 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
         public async Task<DashboardStore> GetEntityForEdit(int dashboardId)
         {
             return await _dashboardStoreRepository.GetForEditAsync(dashboardId);
+        }
+
+        public IQueryable<DashboardStore> GetDashboardList()
+        {
+            var currentUserId = Convert.ToInt32(this._claimsPrincipal.Identity.Name);
+            return _dashboardStoreRepository.GetUserDashboardList(currentUserId);
         }
 
         private Dashboard AddConnectionStringToDashboard(int dashboardId,
@@ -106,29 +116,12 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
 
         private void AddDatabaseToDashboard(Dashboard dashboard, YashilConnectionString connection)
         {
-
             if (connection.DataProvider.Title == "MS SQL")
             {
-                DashboardSqlDataSource dashboardSqlDataSource = new DashboardSqlDataSource(connection.Title, connection.Title);
-                // dashboard.DataSources.Add(new );
-//                var sqlDataConnection = new SqlDataConnection
-//                {
-//                    Name = connection.Title, ConnectionString = connection.ConnectionString
-//                };
-                // dashboard.DataConnections.Add(sqlDataConnection);
+                DashboardSqlDataSource dashboardSqlDataSource =
+                    new DashboardSqlDataSource(connection.Title, connection.Title);
                 dashboard.DataSources.Add(dashboardSqlDataSource);
             }
-
-//            else if (connection.DataProvider.Title == "Postgres")
-//            {
-//                report.Dictionary.Databases.Add(new StiPostgreSQLDatabase(connection.Title, connection.Title,
-//                    connection.Title));
-//            }
-//            else if (connection.DataProvider.Title == "MySql")
-//            {
-//                report.Dictionary.Databases.Add(new StiMySqlDatabase(connection.Title, connection.Title,
-//                    connection.Title));
-//            }
         }
     }
 }
