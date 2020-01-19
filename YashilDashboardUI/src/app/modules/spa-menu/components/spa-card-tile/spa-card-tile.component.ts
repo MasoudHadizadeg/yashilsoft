@@ -10,7 +10,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class SpaCardTileComponent implements OnInit {
 
-
+  mode: string;
   @Input()
   cartItem: any = {};
 
@@ -18,6 +18,7 @@ export class SpaCardTileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mode = this.env.mode;
 
   }
 }
