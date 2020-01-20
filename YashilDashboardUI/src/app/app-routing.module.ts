@@ -6,7 +6,7 @@ import {ContentLayoutComponent} from './layouts/content/content-layout.component
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import(`./modules/spa-menu/spa-menu.module`).then(m => m.SpaMenuModule)
+    loadChildren: () => import('./modules/spa-menu/spa-menu.module').then(m => m.SpaMenuModule)
   },
   {
     path: '404',
