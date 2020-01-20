@@ -12,6 +12,8 @@ import {ReportDataService} from '../../services/report-data.service';
 })
 export class SpaBodyComponent implements OnInit, AfterViewInit {
 
+  groups: any[];
+  groupItems: any[];
 
   constructor(private genericDataService: GenericDataService, private env: EnvService, private reportDataService: ReportDataService) {
   }
@@ -25,6 +27,9 @@ export class SpaBodyComponent implements OnInit, AfterViewInit {
         .subscribe((res: any) => {
           this.reportDataService.groupItems = res;
         });
+    } else {
+      this.groups = this.reportDataService.groups;
+      this.groupItems = this.reportDataService.groupItems;
     }
   }
 
