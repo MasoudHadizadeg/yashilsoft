@@ -65,7 +65,7 @@ namespace Yashil.WebHost
             });
             services.AddControllersWithViews(x => x.InputFormatters.Insert(0, new RawRequestBodyFormatter()));
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
+            // services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
 
             GlobalConfiguration.WebRootPath = _hostingEnvironment.WebRootPath;
             GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath;
