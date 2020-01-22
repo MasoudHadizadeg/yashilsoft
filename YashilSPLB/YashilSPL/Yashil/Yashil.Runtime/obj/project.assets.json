@@ -664,7 +664,7 @@
           "bin/placeholder/Yashil.Common.Core.dll": {}
         }
       },
-      "Yashil.Common.SharedKernel/1.0.0": {
+      "Yashil.Common.SharedKernel/1.0.2": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -2213,7 +2213,7 @@
       "path": "../Yashi.Common.Core/Yashil.Common.Core.csproj",
       "msbuildProject": "../Yashi.Common.Core/Yashil.Common.Core.csproj"
     },
-    "Yashil.Common.SharedKernel/1.0.0": {
+    "Yashil.Common.SharedKernel/1.0.2": {
       "type": "project",
       "path": "../Yashil.Common.SharedKernel/Yashil.Common.SharedKernel.csproj",
       "msbuildProject": "../Yashil.Common.SharedKernel/Yashil.Common.SharedKernel.csproj"
@@ -2225,12 +2225,12 @@
       "Microsoft.AspNetCore.Mvc.Abstractions >= 2.2.0",
       "System.IdentityModel.Tokens.Jwt >= 5.6.0",
       "Yashil.Common.Core >= 1.1.1",
-      "Yashil.Common.SharedKernel >= 1.0.0"
+      "Yashil.Common.SharedKernel >= 1.0.2"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\1\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\masoud\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -2238,26 +2238,28 @@
       "projectUniqueName": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Runtime\\Yashil.Runtime.csproj",
       "projectName": "Yashil.Runtime",
       "projectPath": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Runtime\\Yashil.Runtime.csproj",
-      "packagesPath": "C:\\Users\\1\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\masoud\\.nuget\\packages\\",
       "outputPath": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Runtime\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\masoud\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "E:\\LocalNugetPackages": {},
-        "http://192.168.25.101:8086/Feeds/nuget": {},
+        "C:\\Users\\masoud\\.nuget\\packages": {},
+        "D:\\Works\\YashilPackageSource": {},
+        "D:\\programmingtools\\Stimulsoft\\Stimulsoft Reports AIO 2019.4.2\\Nuget Patched Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

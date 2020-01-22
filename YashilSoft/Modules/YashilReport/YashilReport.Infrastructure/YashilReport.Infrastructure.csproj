@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Stimulsoft.Reports.Web.NetCore" Version="2019.4.2" />
-    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.0.0" />
+    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>

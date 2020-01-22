@@ -42,12 +42,16 @@ namespace Yashil.Common.SharedKernel.Helpers
             return true;
         }
 
-        public static string AesKey;
-        public static string AesIv;
+        /*
+         *   CryptographyHelper.AesKey = "MhJMpckQWBMVZdkkRgMQPslZPSpIYfCY";
+            CryptographyHelper.AesIv = "xApR40xu823N1DFs";
+         */
+        public static string AesKey = "MhJMpckQWBMVZdkkRgMQPslZPSpIYfCY";
+        public static string AesIv = "xApR40xu823N1DFs";
 
         public static string AesDecrypt(string txt)
         {
-            return EncryptProvider.AESEncrypt(txt, AesKey, AesIv);
+            return EncryptProvider.AESDecrypt(txt, AesKey, AesIv);
         }
 
         public static string AesEncrypt(string txt)

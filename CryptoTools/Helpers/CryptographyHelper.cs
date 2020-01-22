@@ -47,7 +47,7 @@ namespace CryptoTools.Helpers
 
         public static string AesDecrypt(string txt)
         {
-            return EncryptProvider.AESEncrypt(txt, AesKey, AesIv);
+            return EncryptProvider.AESDecrypt(txt, AesKey, AesIv);
         }
 
         public static string AesEncrypt(string txt)

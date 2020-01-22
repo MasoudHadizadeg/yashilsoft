@@ -71,17 +71,15 @@ namespace Yashil.WebHost
             services.AddControllersWithViews(x => x.InputFormatters.Insert(0, new RawRequestBodyFormatter()));
             // In production, the Angular files will be served from this directory
             // services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
-            CryptographyHelper.AesKey = "MhJMpckQWBMVZdkkRgMQPslZPSpIYfCY";
-            CryptographyHelper.AesIv = "xApR40xu823N1DFs";
-
             GlobalConfiguration.WebRootPath = _hostingEnvironment.WebRootPath;
             GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath;
             services.AddRazorPages();
             services.AddModules(_hostingEnvironment.ContentRootPath);
             services.Configure<RazorViewEngineOptions>(
                 options => { options.ViewLocationExpanders.Add(new ThemeableViewLocationExpander()); });
+            var connectionString = CryptographyHelper.AesDecrypt(_configuration.GetConnectionString("YashilAppDB"));
             services.AddDbContext<YashilAppDbContext>(options =>
-                options.UseSqlServer(CryptographyHelper.AesDecrypt(_configuration.GetConnectionString("YashilAppDB"))));
+                options.UseSqlServer(connectionString));
             services.AddScoped<IUnitOfWork, UnitOfWork<YashilAppDbContext>>();
 
             List<IOrderedMapperProfile> orderedMapperProfiles = new List<IOrderedMapperProfile>();
