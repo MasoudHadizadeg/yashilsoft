@@ -55,11 +55,13 @@ namespace Yashil.WebHost
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var allowedOrigins = _configuration.GetSection("AllowedOrigins:Origins").Get<string[]>();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
-                    builder => 
-                        builder.AllowAnyOrigin()
+                    builder =>
+                        builder.WithOrigins(allowedOrigins)
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());
