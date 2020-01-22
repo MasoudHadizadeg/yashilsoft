@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Common.SharedKernel;
+using Yashil.Common.SharedKernel.Helpers;
 using Yashil.Common.SharedKernel.Module;
 using Yashil.Common.SharedKernel.Web;
 using Yashil.Infrastructure.Data;
@@ -40,7 +41,7 @@ namespace Yashil.WebHost
                     .FirstOrDefault(t => typeof(IModuleInitializer).IsAssignableFrom(t));
                 if (moduleInitializerType != null && moduleInitializerType != typeof(IModuleInitializer))
                 {
-                    var moduleInitializer = (IModuleInitializer) Activator.CreateInstance(moduleInitializerType);
+                    var moduleInitializer = (IModuleInitializer)Activator.CreateInstance(moduleInitializerType);
                     moduleInitializer.OnStartup(configuration, hostingEnvironment);
                 }
             }
@@ -62,14 +63,16 @@ namespace Yashil.WebHost
                 options.AddPolicy("CorsPolicy",
                     builder =>
                         builder.WithOrigins(allowedOrigins)
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials());
             });
 
             services.AddControllersWithViews(x => x.InputFormatters.Insert(0, new RawRequestBodyFormatter()));
             // In production, the Angular files will be served from this directory
             // services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
+            CryptographyHelper.AesKey = "MhJMpckQWBMVZdkkRgMQPslZPSpIYfCY";
+            CryptographyHelper.AesIv = "xApR40xu823N1DFs";
 
             GlobalConfiguration.WebRootPath = _hostingEnvironment.WebRootPath;
             GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath;
@@ -78,7 +81,7 @@ namespace Yashil.WebHost
             services.Configure<RazorViewEngineOptions>(
                 options => { options.ViewLocationExpanders.Add(new ThemeableViewLocationExpander()); });
             services.AddDbContext<YashilAppDbContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("YashilAppDB")));
+                options.UseSqlServer(CryptographyHelper.AesDecrypt(_configuration.GetConnectionString("YashilAppDB"))));
             services.AddScoped<IUnitOfWork, UnitOfWork<YashilAppDbContext>>();
 
             List<IOrderedMapperProfile> orderedMapperProfiles = new List<IOrderedMapperProfile>();
@@ -88,7 +91,7 @@ namespace Yashil.WebHost
                     .FirstOrDefault(t => typeof(IModuleInitializer).IsAssignableFrom(t));
                 if (moduleInitializerType != null && moduleInitializerType != typeof(IModuleInitializer))
                 {
-                    var moduleInitializer = (IModuleInitializer) Activator.CreateInstance(moduleInitializerType);
+                    var moduleInitializer = (IModuleInitializer)Activator.CreateInstance(moduleInitializerType);
                     services.AddSingleton(typeof(IModuleInitializer), moduleInitializer);
                     moduleInitializer.ConfigureServices(services, _configuration);
                 }
@@ -97,7 +100,7 @@ namespace Yashil.WebHost
                     .FirstOrDefault(t => typeof(IOrderedMapperProfile).IsAssignableFrom(t));
                 if (orderedMapperProfile != null)
                 {
-                    orderedMapperProfiles.Add((IOrderedMapperProfile) Activator.CreateInstance(orderedMapperProfile));
+                    orderedMapperProfiles.Add((IOrderedMapperProfile)Activator.CreateInstance(orderedMapperProfile));
                 }
             }
 

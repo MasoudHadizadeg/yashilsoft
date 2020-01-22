@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Yashil.Infrastructure\Yashil.Infrastructure.csproj" />
     <ProjectReference Include="..\YashilBaseInfo.Core\YashilBaseInfo.Core.csproj" />
   </ItemGroup>

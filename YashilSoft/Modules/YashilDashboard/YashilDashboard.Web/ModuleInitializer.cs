@@ -49,8 +49,6 @@ namespace YashilDashboard.Web
                 .AddDefaultDashboardController((configurator, sProvider) =>
                 {
                     configurator.ConfigureDataConnection += Configurator_ConfigureDataConnection;
-                    // configurator.SetConnectionStringsProvider(new YashilDashboardConnectionStringsProvider(sProvider,configuration, "DashboardConnectionStrings"));
-                    //configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(configuration, "DashboardConnectionStrings"));
                     configurator.SetDashboardStorage(new DataBaseEditableDashboardStorage(sProvider));
 
                 });
@@ -58,12 +56,12 @@ namespace YashilDashboard.Web
         private void Configurator_ConfigureDataConnection(object sender,
             DevExpress.DashboardWeb.ConfigureDataConnectionWebEventArgs e)
         {
-            var dashboardService = _serviceCollection.BuildServiceProvider().CreateScope().ServiceProvider
+            var connectionStringService = _serviceCollection.BuildServiceProvider().CreateScope().ServiceProvider
                 .GetRequiredService<IYashilConnectionStringService>();
-            var conn = dashboardService.FindByName(e.ConnectionName);
+            var conn = connectionStringService.FindByName(e.ConnectionName);
             if (conn != null)
             {
-                e.ConnectionParameters = new CustomStringConnectionParameters(conn.ConnectionString);
+                e.ConnectionParameters = new CustomStringConnectionParameters(connectionStringService.Decrypt(conn.ConnectionString));
             }
 
         }

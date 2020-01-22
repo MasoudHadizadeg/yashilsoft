@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+/YashilDashboardUI/.idea
+/YashilDashboardUI/node_modules
+
 # User-specific files
 *.rsuser
 *.suo
@@ -23,12 +26,12 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
-[Oo]bj/
-[Ll]og/
+**/[Bb]in/
+**/[Oo]bj/
+**/[Ll]og/
 
 # Visual Studio 2015/2017 cache/options directory
-.vs/
+**/.vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 

@@ -8,6 +8,7 @@ using Stimulsoft.Report;
 using Stimulsoft.Report.Dictionary;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
+using Yashil.Common.SharedKernel.Helpers;
 using Yashil.Core.Entities;
 using YashilBaseInfo.Core.Services;
 using YashilReport.Core;
@@ -58,7 +59,7 @@ namespace YashilReport.Infrastructure.ServiceImpl
                 var connection = reportConnectionStrings.Find(x => x.Title == db.Name);
                 if (connection.DataProviderTitle == "MS SQL")
                 {
-                    ((StiSqlDatabase)db).ConnectionString = connection.ConnectionString;
+                    ((StiSqlDatabase)db).ConnectionString = _connectionStringService.Decrypt(connection.ConnectionString);
                 }
             }
 
@@ -132,9 +133,7 @@ namespace YashilReport.Infrastructure.ServiceImpl
         public override async Task<ReportStore> AddAsync(ReportStore reportStore, bool saveAfterAdd = false)
         {
             var report = new StiReport();
-            var connectionStrings =
-                _connectionStringService.FindByIds(
-                    reportStore.ReportConnectionString.Select(x => x.ConnectionStringId));
+            var connectionStrings =_connectionStringService.FindByIds(reportStore.ReportConnectionString.Select(x => x.ConnectionStringId));
             foreach (var connection in connectionStrings)
             {
                 AddDatabaseToReport(report, connection);
