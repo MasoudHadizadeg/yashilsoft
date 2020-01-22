@@ -57,12 +57,14 @@ namespace Yashil.WebHost
         {
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAnyOrigin", builder =>
-                {
-                    builder.AllowAnyOrigin();
-                    builder.WithHeaders("Content-Type");
-                });
+                options.AddPolicy("CorsPolicy",
+                    builder => 
+                        builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
             });
+
             services.AddControllersWithViews(x => x.InputFormatters.Insert(0, new RawRequestBodyFormatter()));
             // In production, the Angular files will be served from this directory
             // services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
@@ -71,14 +73,12 @@ namespace Yashil.WebHost
             GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath;
             services.AddRazorPages();
             services.AddModules(_hostingEnvironment.ContentRootPath);
-            // services.AddCustomizedMvc(GlobalConfiguration.Modules); TODO:FIX THIS REMOVE COMMENT
             services.Configure<RazorViewEngineOptions>(
                 options => { options.ViewLocationExpanders.Add(new ThemeableViewLocationExpander()); });
             services.AddDbContext<YashilAppDbContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("YashilAppDB")));
             services.AddScoped<IUnitOfWork, UnitOfWork<YashilAppDbContext>>();
 
-            // var config = new MapperConfiguration();
             List<IOrderedMapperProfile> orderedMapperProfiles = new List<IOrderedMapperProfile>();
             foreach (var module in GlobalConfiguration.Modules)
             {
@@ -107,7 +107,7 @@ namespace Yashil.WebHost
                 }
             });
 
-            IMapper mapper = mappingConfig.CreateMapper();
+            var mapper = mappingConfig.CreateMapper();
             services.AddSingleton<IMapper>(mapper);
         }
 
@@ -125,12 +125,12 @@ namespace Yashil.WebHost
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+
             app.UseRouting();
+
             app.UseDevExpressControls();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();
