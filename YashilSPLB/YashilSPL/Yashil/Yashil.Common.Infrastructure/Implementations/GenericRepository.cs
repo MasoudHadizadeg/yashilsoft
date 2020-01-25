@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 
 namespace Yashil.Common.Infrastructure.Implementations
@@ -12,12 +13,14 @@ namespace Yashil.Common.Infrastructure.Implementations
         where T : class, IBaseEntity<TR> where TR : IEquatable<TR>
     {
         private readonly DbContext _context;
-        protected readonly DbSet<T> DbSet;
+        private readonly DbSet<T> _dbSet;
+        private readonly IUserPrincipal _userPrincipal;
 
-        public GenericRepository(DbContext context)
+        public GenericRepository(DbContext context, IUserPrincipal userPrincipal)
         {
             _context = context;
-            DbSet = _context.Set<T>();
+            _userPrincipal = userPrincipal;
+            _dbSet = _context.Set<T>();
         }
 
         #region public Select Methods For Service Classes
@@ -125,11 +128,12 @@ namespace Yashil.Common.Infrastructure.Implementations
             var firstOrDefault = _context.Set<T>().Find(id);
             if (firstOrDefault != null) _context.Set<T>().Remove(firstOrDefault);
         }
+
         public T Update(T t, object key, List<string> modifiedProperties)
         {
             if (t == null)
                 return null;
-            var exist =  _context.Set<T>().Find(key);
+            var exist = _context.Set<T>().Find(key);
             var existResult = exist;
             if (existResult != null)
             {
@@ -196,7 +200,5 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             return await _context.Set<T>().CountAsync();
         }
-
-        
     }
 }

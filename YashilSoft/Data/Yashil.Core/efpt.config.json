@@ -10,7 +10,7 @@
    "OutputPath": "Entities",
    "ProjectRootNamespace": "Yashil.Core",
    "SelectedHandlebarsLanguage": 0,
-   "SelectedToBeGenerated": 0,
+   "SelectedToBeGenerated": 2,
    "Tables": [
       {
          "HasPrimaryKey": true,

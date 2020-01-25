@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 
 namespace Yashil.Common.Infrastructure.Implementations
@@ -12,12 +13,14 @@ namespace Yashil.Common.Infrastructure.Implementations
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IGenericRepository<TModel> _repository;
-        
+        private readonly IUserPrincipal _userPrincipal;
 
-        public GenericService(IUnitOfWork unitOfWork, IGenericRepository<TModel> repository)
+        public GenericService(IUnitOfWork unitOfWork, IGenericRepository<TModel> repository,
+            IUserPrincipal userPrincipal)
         {
             _unitOfWork = unitOfWork;
             _repository = repository;
+            _userPrincipal = userPrincipal;
         }
 
         public void Delete(TModel entity, bool saveAfterDelete = false)
@@ -51,10 +54,10 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         public TModel Add(TModel t, bool saveAfterAdd = false)
         {
-            var addedEntity =  _repository.Add(t);
+            var addedEntity = _repository.Add(t);
             if (saveAfterAdd)
             {
-                 _unitOfWork.Commit();
+                _unitOfWork.Commit();
             }
 
             return addedEntity;
@@ -77,7 +80,7 @@ namespace Yashil.Common.Infrastructure.Implementations
             var updateAsync = _repository.Update(t, key, modifiedProperties);
             if (saveAfterUpdate)
             {
-                 _unitOfWork.Commit();
+                _unitOfWork.Commit();
             }
 
             return updateAsync;
@@ -95,10 +98,9 @@ namespace Yashil.Common.Infrastructure.Implementations
             return mapper.Map<TViewModel>(valueTask);
         }
 
-        public TModel Get(object id, bool readOnly=false)
+        public TModel Get(object id, bool readOnly = false)
         {
             return _repository.Get(id, readOnly);
-            
         }
 
         public virtual async Task<List<TViewModel>> GetAllAsync<TViewModel>(IMapper mapper, bool readOnly = false)

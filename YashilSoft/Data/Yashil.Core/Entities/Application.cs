@@ -15,6 +15,7 @@ namespace Yashil.Core.Entities
             AppAction = new HashSet<AppAction>();
             AppConfig = new HashSet<AppConfig>();
             DashboardStore = new HashSet<DashboardStore>();
+            InverseParent = new HashSet<Application>();
             Menu = new HashSet<Menu>();
             Organization = new HashSet<Organization>();
             Resource = new HashSet<Resource>();
@@ -39,6 +40,7 @@ namespace Yashil.Core.Entities
         [Column(TypeName = "datetime")]
         public DateTime? ModificationDate { get; set; }
         public bool Deleted { get; set; }
+        public int? ParentId { get; set; }
 
         [ForeignKey("CreateBy")]
         [InverseProperty("ApplicationCreateByNavigation")]
@@ -46,12 +48,17 @@ namespace Yashil.Core.Entities
         [ForeignKey("ModifyBy")]
         [InverseProperty("ApplicationModifyByNavigation")]
         public virtual User ModifyByNavigation { get; set; }
+        [ForeignKey("ParentId")]
+        [InverseProperty("InverseParent")]
+        public virtual Application Parent { get; set; }
         [InverseProperty("Application")]
         public virtual ICollection<AppAction> AppAction { get; set; }
         [InverseProperty("Application")]
         public virtual ICollection<AppConfig> AppConfig { get; set; }
         [InverseProperty("Application")]
         public virtual ICollection<DashboardStore> DashboardStore { get; set; }
+        [InverseProperty("Parent")]
+        public virtual ICollection<Application> InverseParent { get; set; }
         [InverseProperty("Application")]
         public virtual ICollection<Menu> Menu { get; set; }
         [InverseProperty("Application")]

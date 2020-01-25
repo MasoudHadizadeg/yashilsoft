@@ -42,7 +42,7 @@ namespace Yashil.Core.Entities
         public DateTime CreationDate { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ModificationDate { get; set; }
-        public int? ApplicationId { get; set; }
+        public int ApplicationId { get; set; }
         public int AccessLevelId { get; set; }
         public bool Deleted { get; set; }
 

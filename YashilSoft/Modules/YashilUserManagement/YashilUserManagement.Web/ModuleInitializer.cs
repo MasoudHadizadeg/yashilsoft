@@ -10,6 +10,7 @@ using YashilUserManagement.Infrastructure.RepositoryImpl;
 using YashilUserManagement.Infrastructure.ServiceImpl;
 using Microsoft.Extensions.Configuration;
 using Yashil.Common.Core.Interfaces;
+using Yashil.Core.Classes;
 
 namespace YashilUserManagement.Web
 {
@@ -22,7 +23,8 @@ namespace YashilUserManagement.Web
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IYashilPasswordValidator<int>, PasswordValidator>();
-            services.AddTransient<ClaimsPrincipal>(s => s.GetService<IHttpContextAccessor>().HttpContext.User);
+            services.AddTransient(s => s.GetService<IHttpContextAccessor>().HttpContext.User);
+            services.AddScoped<IUserPrincipal, UserPrincipal>();
             services.AddScoped<IResourceRepository, ResourceRepository>();
             services.AddScoped<IResourceService, ResourceService>();
             services.AddScoped<IApplicationRepository, ApplicationRepository>();

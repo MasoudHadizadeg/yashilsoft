@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Yashil.Common.Core.Dtos;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.SharedKernel.Helpers;
+using Yashil.Core.Classes;
 using YashilUserManagement.Core.Services;
 
 namespace YashilUserManagement.Infrastructure.ServiceImpl
@@ -32,7 +33,9 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
                         ClaimsIdentity = new ClaimsIdentity(new[]
                         {
                             new Claim(ClaimTypes.Name, user.Id.ToString()),
-                            new Claim("IA",isAdmin.ToString() ),
+                            new Claim(YashilClaimTypes.OrganizationId, user.OrganizationId?.ToString()),
+                            new Claim(YashilClaimTypes.ApplicationId, user.ApplicationId.ToString()),
+                            new Claim(YashilClaimTypes.IsAdmin, isAdmin.ToString()),
                             new Claim(ClaimTypes.Surname, $"{user.FirstName} {user.LastName}")
                         }),
                         IsSuccess = true,

@@ -149,6 +149,7 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.Application)
                     .WithMany(p => p.AppConfig)
                     .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AppConfig_Application");
 
                 entity.HasOne(d => d.CreateByNavigation)
@@ -201,6 +202,11 @@ namespace Yashil.Infrastructure.Data
                     .WithMany(p => p.ApplicationModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
                     .HasConstraintName("FK_Application_User1");
+
+                entity.HasOne(d => d.Parent)
+                    .WithMany(p => p.InverseParent)
+                    .HasForeignKey(d => d.ParentId)
+                    .HasConstraintName("FK_Application_Application");
             });
 
             modelBuilder.Entity<DashboardConnectionString>(entity =>
@@ -386,6 +392,7 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.Application)
                     .WithMany(p => p.DashboardStore)
                     .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Dashboard_Application");
 
                 entity.HasOne(d => d.CreateByNavigation)
@@ -510,6 +517,7 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.Application)
                     .WithMany(p => p.Organization)
                     .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Organization_Application");
 
                 entity.HasOne(d => d.CreateByNavigation)
@@ -829,6 +837,7 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.Application)
                     .WithMany(p => p.Role)
                     .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Role_Application");
 
                 entity.HasOne(d => d.CreateByNavigation)
@@ -1026,6 +1035,7 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.Application)
                     .WithMany(p => p.User)
                     .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_User_Application");
 
                 entity.HasOne(d => d.Organization)
@@ -1214,21 +1224,11 @@ namespace Yashil.Infrastructure.Data
                     .IsUnicode(false)
                     .HasComment("عنوان");
 
-                entity.HasOne(d => d.CreateByNavigation)
-                    .WithMany(p => p.YashilConnectionStringCreateByNavigation)
-                    .HasForeignKey(d => d.CreateBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_YashilConnectionString_User");
-
                 entity.HasOne(d => d.DataProvider)
                     .WithMany(p => p.YashilConnectionString)
                     .HasForeignKey(d => d.DataProviderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_YashilConnectionString_YashilDataProvider");
-
-                entity.HasOne(d => d.ModifyByNavigation)
-                    .WithMany(p => p.YashilConnectionStringModifyByNavigation)
-                    .HasForeignKey(d => d.ModifyBy)
-                    .HasConstraintName("FK_YashilConnectionString_User1");
             });
 
             modelBuilder.Entity<YashilDataProvider>(entity =>

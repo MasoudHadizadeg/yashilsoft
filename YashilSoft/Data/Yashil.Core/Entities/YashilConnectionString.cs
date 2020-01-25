@@ -35,18 +35,12 @@ namespace Yashil.Core.Entities
         [Column(TypeName = "datetime")]
         public DateTime? ModificationDate { get; set; }
         public bool Deleted { get; set; }
-        public int? ApplicationId { get; set; }
+        public int ApplicationId { get; set; }
         public int AccessLevelId { get; set; }
 
-        [ForeignKey("CreateBy")]
-        [InverseProperty("YashilConnectionStringCreateByNavigation")]
-        public virtual User CreateByNavigation { get; set; }
         [ForeignKey("DataProviderId")]
         [InverseProperty("YashilConnectionString")]
         public virtual YashilDataProvider DataProvider { get; set; }
-        [ForeignKey("ModifyBy")]
-        [InverseProperty("YashilConnectionStringModifyByNavigation")]
-        public virtual User ModifyByNavigation { get; set; }
         [InverseProperty("ConnectionString")]
         public virtual ICollection<DashboardConnectionString> DashboardConnectionString { get; set; }
         [InverseProperty("ConnectionString")]

@@ -53,8 +53,6 @@ namespace Yashil.Core.Entities
             UserRoleCreateByNavigation = new HashSet<UserRole>();
             UserRoleModifyByNavigation = new HashSet<UserRole>();
             UserRoleUser = new HashSet<UserRole>();
-            YashilConnectionStringCreateByNavigation = new HashSet<YashilConnectionString>();
-            YashilConnectionStringModifyByNavigation = new HashSet<YashilConnectionString>();
             YashilDataProviderCreateByNavigation = new HashSet<YashilDataProvider>();
             YashilDataProviderModifyByNavigation = new HashSet<YashilDataProvider>();
         }
@@ -89,7 +87,7 @@ namespace Yashil.Core.Entities
         public DateTime CreationDate { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ModificationDate { get; set; }
-        public int? ApplicationId { get; set; }
+        public int ApplicationId { get; set; }
         public int AccessLevelId { get; set; }
         public bool Deleted { get; set; }
 
@@ -184,10 +182,6 @@ namespace Yashil.Core.Entities
         public virtual ICollection<UserRole> UserRoleModifyByNavigation { get; set; }
         [InverseProperty("User")]
         public virtual ICollection<UserRole> UserRoleUser { get; set; }
-        [InverseProperty("CreateByNavigation")]
-        public virtual ICollection<YashilConnectionString> YashilConnectionStringCreateByNavigation { get; set; }
-        [InverseProperty("ModifyByNavigation")]
-        public virtual ICollection<YashilConnectionString> YashilConnectionStringModifyByNavigation { get; set; }
         [InverseProperty("CreateByNavigation")]
         public virtual ICollection<YashilDataProvider> YashilDataProviderCreateByNavigation { get; set; }
         [InverseProperty("ModifyByNavigation")]

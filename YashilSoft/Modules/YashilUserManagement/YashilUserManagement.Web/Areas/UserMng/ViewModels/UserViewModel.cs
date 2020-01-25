@@ -107,10 +107,6 @@ namespace YashilUserManagement.Web.Areas.UserMng.ViewModels
         public int? OrganizationId { get; set; }
         public string OrganizationTitle { get; set; }
 
-
-        public byte[] PasswordSalt { get; set; }
-
-
         public string Address { get; set; }
 
         [Range(0, int.MaxValue)] [Required] public int AccessLevelId { get; set; }

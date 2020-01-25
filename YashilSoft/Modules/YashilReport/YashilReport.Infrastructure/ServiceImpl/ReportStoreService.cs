@@ -9,6 +9,7 @@ using Stimulsoft.Report.Dictionary;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Common.SharedKernel.Helpers;
+using Yashil.Core.Classes;
 using Yashil.Core.Entities;
 using YashilBaseInfo.Core.Services;
 using YashilReport.Core;
@@ -24,17 +25,17 @@ namespace YashilReport.Infrastructure.ServiceImpl
         private readonly IReportStoreRepository _reportStoreRepository;
         private readonly IYashilConnectionStringService _connectionStringService;
         private readonly IReportConnectionStringService _reportConnectionStringService;
-        private readonly ClaimsPrincipal _claimsPrincipal;
+        private readonly IUserPrincipal _userPrincipal;
         public ReportStoreService(IUnitOfWork unitOfWork, IReportStoreRepository reportStoreRepository,
             IWebHostEnvironment webHostEnvironment, IYashilConnectionStringService yashilConnectionStringService,
-            IReportConnectionStringService reportConnectionStringService, ClaimsPrincipal claimsPrincipal) :
+            IReportConnectionStringService reportConnectionStringService, IUserPrincipal userPrincipal) :
             base(unitOfWork, reportStoreRepository)
         {
             _unitOfWork = unitOfWork;
             _reportStoreRepository = reportStoreRepository;
             _connectionStringService = yashilConnectionStringService;
             _reportConnectionStringService = reportConnectionStringService;
-            _claimsPrincipal = claimsPrincipal;
+            _userPrincipal = userPrincipal;
         }
 
         public string GetReportDesigner(int reportId)
@@ -126,8 +127,7 @@ namespace YashilReport.Infrastructure.ServiceImpl
 
         public IQueryable<ReportStore> GetReportList()
         {
-            var currentUserId = Convert.ToInt32(this._claimsPrincipal.Identity.Name);
-            return _reportStoreRepository.GetUserReportList(currentUserId);
+            return _reportStoreRepository.GetUserReportList(_userPrincipal);
         }
 
         public override async Task<ReportStore> AddAsync(ReportStore reportStore, bool saveAfterAdd = false)
