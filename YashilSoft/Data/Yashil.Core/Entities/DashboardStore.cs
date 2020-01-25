@@ -42,6 +42,7 @@ namespace Yashil.Core.Entities
         public int ApplicationId { get; set; }
         public int AccessLevelId { get; set; }
         public bool Deleted { get; set; }
+        public int CreatorOrganizationId { get; set; }
 
         [ForeignKey("AccessLevelId")]
         [InverseProperty("DashboardStore")]
@@ -52,6 +53,9 @@ namespace Yashil.Core.Entities
         [ForeignKey("CreateBy")]
         [InverseProperty("DashboardStoreCreateByNavigation")]
         public virtual User CreateByNavigation { get; set; }
+        [ForeignKey("CreatorOrganizationId")]
+        [InverseProperty("DashboardStore")]
+        public virtual Organization CreatorOrganization { get; set; }
         [ForeignKey("ModifyBy")]
         [InverseProperty("DashboardStoreModifyByNavigation")]
         public virtual User ModifyByNavigation { get; set; }

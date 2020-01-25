@@ -4,7 +4,6 @@ using Yashil.Core.Entities;
 using AutoMapper;
 using Yashil.Core.CustomViewModels;
 using YashilReport.Web.Areas.Rpt.ViewModels;
-using static System.String;
 
 namespace YashilReport.Web.Areas.Rpt
 {

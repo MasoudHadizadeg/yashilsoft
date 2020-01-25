@@ -1,6 +1,7 @@
 			
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -14,7 +15,7 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
 		private readonly IUnitOfWork _unitOfWork;
         private readonly IMenuRepository _menuRepository;
        
-		public MenuService (IUnitOfWork unitOfWork, IMenuRepository menuRepository) : base(unitOfWork, menuRepository)
+		public MenuService (IUnitOfWork unitOfWork, IMenuRepository menuRepository, IUserPrincipal userPrincipal) : base(unitOfWork, menuRepository,userPrincipal)
         {
 			_unitOfWork = unitOfWork;
 			_menuRepository = menuRepository;

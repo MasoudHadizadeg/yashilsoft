@@ -1,18 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Threading.Tasks;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
 using Yashil.Infrastructure.Data;
 using YashilReport.Core.Repositories;
 
-namespace YashilReport.Infrastructure.RepositoryImpl
+using Yashil.Common.Core.Classes; namespace YashilReport.Infrastructure.RepositoryImpl
 {
     public class ReportGroupRepository : GenericRepository<ReportGroup, int>, IReportGroupRepository
     {
         private readonly YashilAppDbContext _context;
 
-        public ReportGroupRepository(YashilAppDbContext context) : base(context)
+        public ReportGroupRepository(YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)
         {
             _context = context;
         }

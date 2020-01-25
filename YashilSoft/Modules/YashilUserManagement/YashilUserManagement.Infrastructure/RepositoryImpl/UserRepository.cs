@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
 using Yashil.Infrastructure.Data;
@@ -10,7 +11,7 @@ namespace YashilUserManagement.Infrastructure.RepositoryImpl
 {
     public class UserRepository : GenericRepository<User, int>, IUserRepository
     {
-        public UserRepository(YashilAppDbContext context) : base(context)
+        public UserRepository(YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)
         {
         }
 

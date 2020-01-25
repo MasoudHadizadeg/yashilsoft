@@ -32,7 +32,11 @@ namespace Yashil.Core.Entities
         public DateTime? ModificationDate { get; set; }
         public int ApplicationId { get; set; }
         public bool Deleted { get; set; }
+        public int CreatorOrganizationId { get; set; }
 
+        [ForeignKey("CreatorOrganizationId")]
+        [InverseProperty("DashboardGroup")]
+        public virtual Organization CreatorOrganization { get; set; }
         [InverseProperty("DashboardGroup")]
         public virtual ICollection<DashboardGroupDashboard> DashboardGroupDashboard { get; set; }
     }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Common.SharedKernel.Helpers;
@@ -17,8 +18,9 @@ namespace YashilBaseInfo.Infrastructure.ServiceImpl
         private readonly IYashilConnectionStringRepository _yashilConnectionStringRepository;
 
         public YashilConnectionStringService(IUnitOfWork unitOfWork,
-            IYashilConnectionStringRepository yashilConnectionStringRepository) : base(unitOfWork,
-            yashilConnectionStringRepository)
+            IYashilConnectionStringRepository yashilConnectionStringRepository, IUserPrincipal userPrincipal) : base(
+            unitOfWork,
+            yashilConnectionStringRepository, userPrincipal)
         {
             _unitOfWork = unitOfWork;
             _yashilConnectionStringRepository = yashilConnectionStringRepository;

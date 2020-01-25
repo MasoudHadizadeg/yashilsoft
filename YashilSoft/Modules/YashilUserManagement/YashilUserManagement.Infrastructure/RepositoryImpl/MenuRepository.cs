@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
 using Yashil.Infrastructure.Data;
@@ -13,7 +14,7 @@ namespace YashilUserManagement.Infrastructure.RepositoryImpl
     {
         private readonly YashilAppDbContext _context;
 
-        public MenuRepository(YashilAppDbContext context) : base(context)
+        public MenuRepository(YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)
         {
             _context = context;
         }

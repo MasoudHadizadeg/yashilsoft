@@ -27,6 +27,7 @@ namespace Yashil.Core.Entities
         public DateTime? ModificationDate { get; set; }
         public int ApplicationId { get; set; }
         public bool Deleted { get; set; }
+        public int CreatorOrganizationId { get; set; }
 
         [ForeignKey("ApplicationId")]
         [InverseProperty("AppConfig")]
@@ -34,6 +35,9 @@ namespace Yashil.Core.Entities
         [ForeignKey("CreateBy")]
         [InverseProperty("AppConfigCreateByNavigation")]
         public virtual User CreateByNavigation { get; set; }
+        [ForeignKey("CreatorOrganizationId")]
+        [InverseProperty("AppConfig")]
+        public virtual Organization CreatorOrganization { get; set; }
         [ForeignKey("ModifyBy")]
         [InverseProperty("AppConfigModifyByNavigation")]
         public virtual User ModifyByNavigation { get; set; }

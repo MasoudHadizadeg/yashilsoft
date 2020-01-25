@@ -33,8 +33,7 @@
     <ProjectReference Include="..\Modules\YashilBaseInfo\YashilBaseInfo.Web\YashilBaseInfo.Web.csproj" />
     <ProjectReference Include="..\Modules\YashilDashboard\YashilDashboard.Web\YashilDashboard.Web.csproj" />
     <ProjectReference Include="..\Modules\YashilReport\YashilReport.Web\YashilReport.Web.csproj" />
-    <ProjectReference
-      Include="..\Modules\YashilUserManagement\YashilUserManagement.Web\YashilUserManagement.Web.csproj" />
+    <ProjectReference Include="..\Modules\YashilUserManagement\YashilUserManagement.Web\YashilUserManagement.Web.csproj" />
   </ItemGroup>
   <ItemGroup>
 
@@ -45,11 +44,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.0" />
-    <PackageReference Include="Yashil.Common.Core" Version="1.1.1" />
+    <PackageReference Include="Yashil.Common.Core" Version="1.1.5" />
     <PackageReference Include="Yashil.Runtime" Version="1.0.0" />
   </ItemGroup>
   <Target Name="CopyModule" AfterTargets="Build">
-    <CopyModuleTask ProjectDir="$(ProjectDir)" TargetFramework="netcoreapp3.0"
-                    BuildConfiguration="$(ConfigurationName)" />
+    <CopyModuleTask ProjectDir="$(ProjectDir)" TargetFramework="netcoreapp3.0" BuildConfiguration="$(ConfigurationName)" />
   </Target>
 </Project>

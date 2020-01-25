@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using DevExpress.DataAccess.ConnectionParameters;
-using DevExpress.DataAccess.Native;
 using DevExpress.DataAccess.Web;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using YashilBaseInfo.Core.Services;
-using YashilDashboard.Core.Services;
 
 namespace YashilDashboard.Web.Classes
 {

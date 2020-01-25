@@ -90,6 +90,7 @@ namespace Yashil.Core.Entities
         public int ApplicationId { get; set; }
         public int AccessLevelId { get; set; }
         public bool Deleted { get; set; }
+        public int CreatorOrganizationId { get; set; }
 
         [ForeignKey("AccessLevelId")]
         [InverseProperty("User")]

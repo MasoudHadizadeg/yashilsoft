@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using DevExpress.DashboardCommon;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Common.SharedKernel.Helpers;
@@ -25,8 +26,8 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
 
         public DashboardStoreService(IUnitOfWork unitOfWork, IDashboardStoreRepository dashboardStoreRepository,
             IYashilConnectionStringService connectionStringService,
-            IDashboardConnectionStringService dashboardConnectionStringService, ClaimsPrincipal claimsPrincipal) : base(
-            unitOfWork, dashboardStoreRepository)
+            IDashboardConnectionStringService dashboardConnectionStringService, ClaimsPrincipal claimsPrincipal,
+            IUserPrincipal userPrincipal) : base(unitOfWork, dashboardStoreRepository, userPrincipal)
         {
             _unitOfWork = unitOfWork;
             _dashboardStoreRepository = dashboardStoreRepository;

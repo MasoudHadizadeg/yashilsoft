@@ -2,6 +2,7 @@ using System.Linq;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
 using Yashil.Infrastructure.Data;
+using Yashil.Common.Core.Classes;
 using YashilDashboard.Core.Repositories;
 
 namespace YashilDashboard.Infrastructure.RepositoryImpl
@@ -10,7 +11,7 @@ namespace YashilDashboard.Infrastructure.RepositoryImpl
     {
         private readonly YashilAppDbContext _context;
 
-        public DashboardGroupRepository(YashilAppDbContext context) : base(context)
+        public DashboardGroupRepository(YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)
         {
             _context = context;
         }

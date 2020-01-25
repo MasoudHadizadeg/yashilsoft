@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
 using Yashil.Infrastructure.Data;
+using Yashil.Common.Core.Classes;
 using YashilDashboard.Core.Repositories;
 
 namespace YashilDashboard.Infrastructure.RepositoryImpl
@@ -13,7 +14,7 @@ namespace YashilDashboard.Infrastructure.RepositoryImpl
     {
         private readonly YashilAppDbContext _context;
 
-        public DashboardStoreRepository(YashilAppDbContext context) : base(context)
+        public DashboardStoreRepository(YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)
         {
             _context = context;
         }

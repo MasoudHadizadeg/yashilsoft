@@ -53,8 +53,6 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Id).HasComment("کد");
 
-                entity.Property(e => e.ApplicationId).HasComment("برنامه");
-
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
 
                 entity.Property(e => e.CreationDate).HasComment("زمان ایجاد");
@@ -76,6 +74,12 @@ namespace Yashil.Infrastructure.Data
                     .HasForeignKey(d => d.CreateBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AccessLevel_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.AccessLevel)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AccessLevel_Organization");
 
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.AccessLevelModifyByNavigation)
@@ -158,6 +162,12 @@ namespace Yashil.Infrastructure.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AppConfig_User");
 
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.AppConfig)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AppConfig_Organization");
+
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.AppConfigModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
@@ -218,8 +228,6 @@ namespace Yashil.Infrastructure.Data
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasComment("کد");
-
-                entity.Property(e => e.ApplicationId).HasComment("برنامه");
 
                 entity.Property(e => e.ConnectionStringId).HasComment("رشته اتصال");
 
@@ -288,6 +296,12 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
 
                 entity.Property(e => e.Title).HasComment("عنوان");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.DashboardGroup)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DashboardGroup_Organization");
             });
 
             modelBuilder.Entity<DashboardGroupDashboard>(entity =>
@@ -401,6 +415,12 @@ namespace Yashil.Infrastructure.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Dashboard_User");
 
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.DashboardStore)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DashboardStore_Organization");
+
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.DashboardStoreModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
@@ -412,8 +432,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasComment("منو");
 
                 entity.Property(e => e.Id).HasComment("کد");
-
-                entity.Property(e => e.ApplicationId).HasComment("برنامه");
 
                 entity.Property(e => e.Badge)
                     .IsUnicode(false)
@@ -454,11 +472,6 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.ResourceId).HasComment("منبع");
 
                 entity.Property(e => e.Title).HasComment("عنوان");
-
-                entity.HasOne(d => d.Application)
-                    .WithMany(p => p.Menu)
-                    .HasForeignKey(d => d.ApplicationId)
-                    .HasConstraintName("FK_Menu_Application");
 
                 entity.HasOne(d => d.CreateByNavigation)
                     .WithMany(p => p.MenuCreateByNavigation)
@@ -547,8 +560,6 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Id).HasComment("کد");
 
-                entity.Property(e => e.ApplicationId).HasComment("برنامه");
-
                 entity.Property(e => e.ConnectionStringId).HasComment("رشته اتصال");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
@@ -616,6 +627,18 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
 
                 entity.Property(e => e.Title).HasComment("عنوان");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.ReportGroup)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ReportGroup_Application");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.ReportGroup)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ReportGroup_Organization");
             });
 
             modelBuilder.Entity<ReportGroupReport>(entity =>
@@ -722,11 +745,23 @@ namespace Yashil.Infrastructure.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ReportStore_AccessLevel");
 
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.ReportStore)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ReportStore_Application");
+
                 entity.HasOne(d => d.CreateByNavigation)
                     .WithMany(p => p.ReportStoreCreateByNavigation)
                     .HasForeignKey(d => d.CreateBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ReportStore_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.ReportStore)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ReportStore_Organization");
 
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.ReportStoreModifyByNavigation)
@@ -739,8 +774,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasComment("منابع");
 
                 entity.Property(e => e.Id).HasComment("کد");
-
-                entity.Property(e => e.ApplicationId).HasComment("برنامه");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
 
@@ -759,11 +792,6 @@ namespace Yashil.Infrastructure.Data
                     .HasComment("آدرس منبع");
 
                 entity.Property(e => e.Type).HasComment("نوع");
-
-                entity.HasOne(d => d.Application)
-                    .WithMany(p => p.Resource)
-                    .HasForeignKey(d => d.ApplicationId)
-                    .HasConstraintName("FK_Resource_Application");
 
                 entity.HasOne(d => d.CreateByNavigation)
                     .WithMany(p => p.ResourceCreateByNavigation)
@@ -846,6 +874,12 @@ namespace Yashil.Infrastructure.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Role_User");
 
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.Role)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Role_Organization");
+
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.RoleModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
@@ -907,8 +941,6 @@ namespace Yashil.Infrastructure.Data
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasComment("کد");
-
-                entity.Property(e => e.ApplicationId).HasComment("برنامه");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
 
@@ -1103,8 +1135,6 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Id).HasComment("کد");
 
-                entity.Property(e => e.ApplicationId).HasComment("برنامه");
-
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
 
                 entity.Property(e => e.CreationDate).HasComment("زمان ایجاد");
@@ -1224,6 +1254,18 @@ namespace Yashil.Infrastructure.Data
                     .IsUnicode(false)
                     .HasComment("عنوان");
 
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.YashilConnectionString)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_YashilConnectionString_Application");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.YashilConnectionString)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_YashilConnectionString_Organization");
+
                 entity.HasOne(d => d.DataProvider)
                     .WithMany(p => p.YashilConnectionString)
                     .HasForeignKey(d => d.DataProviderId)
@@ -1236,8 +1278,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasComment(" انواع تامین کننده داده");
 
                 entity.Property(e => e.Id).HasComment("کد");
-
-                entity.Property(e => e.ApplicationId).HasComment("برنامه");
 
                 entity.Property(e => e.BaseType).HasComment("نوع پایه");
 

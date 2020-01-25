@@ -1,4 +1,5 @@
 			
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -12,7 +13,7 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
 		private readonly IUnitOfWork _unitOfWork;
         private readonly IAppActionRepository _appActionRepository;
        
-		public AppActionService (IUnitOfWork unitOfWork, IAppActionRepository appActionRepository) : base(unitOfWork, appActionRepository)
+		public AppActionService (IUnitOfWork unitOfWork, IAppActionRepository appActionRepository, IUserPrincipal userPrincipal) : base(unitOfWork, appActionRepository,userPrincipal)
         {
 			_unitOfWork = unitOfWork;
 			_appActionRepository = appActionRepository;

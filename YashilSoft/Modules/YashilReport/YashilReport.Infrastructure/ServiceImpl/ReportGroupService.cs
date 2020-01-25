@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Security.Claims;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -14,7 +15,7 @@ namespace YashilReport.Infrastructure.ServiceImpl
         private readonly IUnitOfWork _unitOfWork;
         private readonly IReportGroupRepository _reportGroupRepository;
         private readonly ClaimsPrincipal _claimsPrincipal;
-        public ReportGroupService(IUnitOfWork unitOfWork, IReportGroupRepository reportGroupRepository, ClaimsPrincipal claimsPrincipal) : base(unitOfWork, reportGroupRepository)
+        public ReportGroupService(IUnitOfWork unitOfWork, IReportGroupRepository reportGroupRepository, ClaimsPrincipal claimsPrincipal,IUserPrincipal userPrincipal) : base(unitOfWork, reportGroupRepository,userPrincipal)
         {
             _unitOfWork = unitOfWork;
             _reportGroupRepository = reportGroupRepository;

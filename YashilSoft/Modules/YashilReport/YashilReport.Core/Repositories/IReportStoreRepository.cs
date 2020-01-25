@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Yashil.Common.Core.Interfaces;
-using Yashil.Core.Classes;
 using Yashil.Core.Entities; 
 
 namespace YashilReport.Core.Repositories
@@ -10,6 +9,6 @@ namespace YashilReport.Core.Repositories
     {
         void DeleteContentionStrings(int reportId);
         Task<ReportStore> GetForEditAsync(int reportId, bool readOnly = true);
-        IQueryable<ReportStore> GetUserReportList(IUserPrincipal userPrincipal);
+        IQueryable<ReportStore> GetUserReportList();
     }
 }      

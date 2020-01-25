@@ -377,7 +377,7 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
-      "Yashil.Common.Core/1.1.1": {
+      "Yashil.Common.Core/1.1.5": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -1488,7 +1488,7 @@
         "system.threading.tasks.nuspec"
       ]
     },
-    "Yashil.Common.Core/1.1.1": {
+    "Yashil.Common.Core/1.1.5": {
       "type": "project",
       "path": "../Yashi.Common.Core/Yashil.Common.Core.csproj",
       "msbuildProject": "../Yashi.Common.Core/Yashil.Common.Core.csproj"
@@ -1498,7 +1498,7 @@
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper >= 9.0.0",
       "DevExtreme.AspNet.Data >= 2.5.1",
-      "Yashil.Common.Core >= 1.1.1"
+      "Yashil.Common.Core >= 1.1.5"
     ]
   },
   "packageFolders": {

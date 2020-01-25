@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,8 +8,8 @@ using YashilUserManagement.Core.Services;
 using YashilUserManagement.Infrastructure.RepositoryImpl;
 using YashilUserManagement.Infrastructure.ServiceImpl;
 using Microsoft.Extensions.Configuration;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
-using Yashil.Core.Classes;
 
 namespace YashilUserManagement.Web
 {

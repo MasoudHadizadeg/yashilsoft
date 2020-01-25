@@ -1,5 +1,6 @@
 			
 using System.Threading.Tasks;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -12,11 +13,12 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
     {
 		private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
-       
-		public UserService (IUnitOfWork unitOfWork, IUserRepository userRepository) : base(unitOfWork, userRepository)
+        private readonly IUserPrincipal _userPrincipal;
+		public UserService (IUnitOfWork unitOfWork, IUserRepository userRepository, IUserPrincipal userPrincipal) : base(unitOfWork, userRepository,userPrincipal)
         {
 			_unitOfWork = unitOfWork;
 			_userRepository = userRepository;
+            _userPrincipal = userPrincipal;
         }
 
         public Task<User> GetUserByUserName(string userName)

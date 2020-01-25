@@ -1,4 +1,3 @@
-using System.Configuration;
 using DevExpress.AspNetCore;
 using DevExpress.DashboardAspNetCore;
 using DevExpress.DashboardCommon;

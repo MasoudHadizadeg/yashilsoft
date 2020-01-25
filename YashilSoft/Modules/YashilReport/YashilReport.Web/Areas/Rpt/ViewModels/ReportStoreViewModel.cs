@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Yashil.Common.Core.Interfaces;
 
 namespace YashilReport.Web.Areas.Rpt.ViewModels

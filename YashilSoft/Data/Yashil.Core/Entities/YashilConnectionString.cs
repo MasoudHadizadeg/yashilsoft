@@ -37,7 +37,14 @@ namespace Yashil.Core.Entities
         public bool Deleted { get; set; }
         public int ApplicationId { get; set; }
         public int AccessLevelId { get; set; }
+        public int CreatorOrganizationId { get; set; }
 
+        [ForeignKey("ApplicationId")]
+        [InverseProperty("YashilConnectionString")]
+        public virtual Application Application { get; set; }
+        [ForeignKey("CreatorOrganizationId")]
+        [InverseProperty("YashilConnectionString")]
+        public virtual Organization CreatorOrganization { get; set; }
         [ForeignKey("DataProviderId")]
         [InverseProperty("YashilConnectionString")]
         public virtual YashilDataProvider DataProvider { get; set; }

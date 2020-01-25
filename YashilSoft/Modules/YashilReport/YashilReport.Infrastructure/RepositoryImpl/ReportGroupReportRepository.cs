@@ -4,12 +4,12 @@ using Yashil.Core.Entities;
 using Yashil.Infrastructure.Data; 
 using YashilReport.Core.Repositories;
 
-namespace YashilReport.Infrastructure.RepositoryImpl
+using Yashil.Common.Core.Classes; namespace YashilReport.Infrastructure.RepositoryImpl
 {
 	public class ReportGroupReportRepository : GenericRepository<ReportGroupReport,int>, IReportGroupReportRepository
     {
         private readonly YashilAppDbContext _context;
-		public ReportGroupReportRepository (YashilAppDbContext context) : base(context)
+		public ReportGroupReportRepository (YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)
             {
                 _context = context;
             }

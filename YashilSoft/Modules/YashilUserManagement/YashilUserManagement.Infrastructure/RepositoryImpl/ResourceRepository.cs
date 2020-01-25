@@ -1,4 +1,5 @@
 			
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
 using Yashil.Infrastructure.Data; 
@@ -9,7 +10,7 @@ namespace YashilUserManagement.Infrastructure.RepositoryImpl
 	public class ResourceRepository : GenericRepository<Resource,int>, IResourceRepository
     {
         private readonly YashilAppDbContext _context;
-		public ResourceRepository (YashilAppDbContext context) : base(context)
+		public ResourceRepository (YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)
             {
                 _context = context;
             }

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Yashil.Common.Core.Interfaces;
-using Yashil.Core.Entities;
 
 namespace YashilDashboard.Web.Areas.Dash.ViewModels
 {

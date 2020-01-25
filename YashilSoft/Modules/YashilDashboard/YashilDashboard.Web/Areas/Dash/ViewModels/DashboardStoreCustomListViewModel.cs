@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace YashilDashboard.Web.Areas.Dash.ViewModels
+﻿namespace YashilDashboard.Web.Areas.Dash.ViewModels
 {
     public class DashboardStoreCustomListViewModel
     {

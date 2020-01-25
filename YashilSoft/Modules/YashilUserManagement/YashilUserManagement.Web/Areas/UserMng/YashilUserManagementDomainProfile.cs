@@ -1,7 +1,6 @@
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 using AutoMapper;
-using Yashil.Core.Entities;
 using YashilUserManagement.Web.Areas.UserMng.ViewModels;
 
 namespace YashilUserManagement.Web.Areas.UserMng

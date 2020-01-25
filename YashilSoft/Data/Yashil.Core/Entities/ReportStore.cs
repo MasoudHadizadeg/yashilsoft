@@ -45,13 +45,20 @@ namespace Yashil.Core.Entities
         public int ApplicationId { get; set; }
         public int AccessLevelId { get; set; }
         public bool Deleted { get; set; }
+        public int CreatorOrganizationId { get; set; }
 
         [ForeignKey("AccessLevelId")]
         [InverseProperty("ReportStore")]
         public virtual AccessLevel AccessLevel { get; set; }
+        [ForeignKey("ApplicationId")]
+        [InverseProperty("ReportStore")]
+        public virtual Application Application { get; set; }
         [ForeignKey("CreateBy")]
         [InverseProperty("ReportStoreCreateByNavigation")]
         public virtual User CreateByNavigation { get; set; }
+        [ForeignKey("CreatorOrganizationId")]
+        [InverseProperty("ReportStore")]
+        public virtual Organization CreatorOrganization { get; set; }
         [ForeignKey("ModifyBy")]
         [InverseProperty("ReportStoreModifyByNavigation")]
         public virtual User ModifyByNavigation { get; set; }

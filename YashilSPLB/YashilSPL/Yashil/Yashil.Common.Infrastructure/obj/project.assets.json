@@ -355,7 +355,7 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
-      "Yashil.Common.Core/1.1.1": {
+      "Yashil.Common.Core/1.1.5": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -1421,7 +1421,7 @@
         "system.threading.tasks.nuspec"
       ]
     },
-    "Yashil.Common.Core/1.1.1": {
+    "Yashil.Common.Core/1.1.5": {
       "type": "project",
       "path": "../Yashi.Common.Core/Yashil.Common.Core.csproj",
       "msbuildProject": "../Yashi.Common.Core/Yashil.Common.Core.csproj"
@@ -1429,7 +1429,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Yashil.Common.Core >= 1.1.1"
+      "Yashil.Common.Core >= 1.1.5"
     ]
   },
   "packageFolders": {
@@ -1437,7 +1437,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.1.6",
     "restore": {
       "projectUniqueName": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Common.Infrastructure\\Yashil.Common.Infrastructure.csproj",
       "projectName": "Yashil.Common.Infrastructure",

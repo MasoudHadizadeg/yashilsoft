@@ -12,3 +12,4 @@ D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashi.Common.Core\obj\Release\net
 D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashi.Common.Core\obj\Release\netcoreapp3.1\Yashil.Common.Core.AssemblyInfo.cs
 D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashi.Common.Core\obj\Release\netcoreapp3.1\Yashil.Common.Core.dll
 D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashi.Common.Core\obj\Release\netcoreapp3.1\Yashil.Common.Core.pdb
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashi.Common.Core\obj\Release\netcoreapp3.1\Yashil.Common.Core.csprojAssemblyReference.cache

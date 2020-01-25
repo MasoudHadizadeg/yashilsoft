@@ -16,11 +16,12 @@ namespace Yashil.Core.Entities
             AppConfig = new HashSet<AppConfig>();
             DashboardStore = new HashSet<DashboardStore>();
             InverseParent = new HashSet<Application>();
-            Menu = new HashSet<Menu>();
             Organization = new HashSet<Organization>();
-            Resource = new HashSet<Resource>();
+            ReportGroup = new HashSet<ReportGroup>();
+            ReportStore = new HashSet<ReportStore>();
             Role = new HashSet<Role>();
             User = new HashSet<User>();
+            YashilConnectionString = new HashSet<YashilConnectionString>();
         }
 
         [Key]
@@ -60,14 +61,16 @@ namespace Yashil.Core.Entities
         [InverseProperty("Parent")]
         public virtual ICollection<Application> InverseParent { get; set; }
         [InverseProperty("Application")]
-        public virtual ICollection<Menu> Menu { get; set; }
-        [InverseProperty("Application")]
         public virtual ICollection<Organization> Organization { get; set; }
         [InverseProperty("Application")]
-        public virtual ICollection<Resource> Resource { get; set; }
+        public virtual ICollection<ReportGroup> ReportGroup { get; set; }
+        [InverseProperty("Application")]
+        public virtual ICollection<ReportStore> ReportStore { get; set; }
         [InverseProperty("Application")]
         public virtual ICollection<Role> Role { get; set; }
         [InverseProperty("Application")]
         public virtual ICollection<User> User { get; set; }
+        [InverseProperty("Application")]
+        public virtual ICollection<YashilConnectionString> YashilConnectionString { get; set; }
     }
     }

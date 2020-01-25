@@ -30,12 +30,15 @@ namespace Yashil.Core.Entities
         public DateTime CreationDate { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ModificationDate { get; set; }
-        public int ApplicationId { get; set; }
         public bool Deleted { get; set; }
+        public int CreatorOrganizationId { get; set; }
 
         [ForeignKey("CreateBy")]
         [InverseProperty("AccessLevelCreateByNavigation")]
         public virtual User CreateByNavigation { get; set; }
+        [ForeignKey("CreatorOrganizationId")]
+        [InverseProperty("AccessLevel")]
+        public virtual Organization CreatorOrganization { get; set; }
         [ForeignKey("ModifyBy")]
         [InverseProperty("AccessLevelModifyByNavigation")]
         public virtual User ModifyByNavigation { get; set; }

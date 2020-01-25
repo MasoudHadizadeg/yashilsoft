@@ -33,7 +33,6 @@ namespace Yashil.Core.Entities
         [Column(TypeName = "datetime")]
         public DateTime? ModificationDate { get; set; }
         public bool Deleted { get; set; }
-        public int? ApplicationId { get; set; }
 
         [ForeignKey("CreateBy")]
         [InverseProperty("YashilDataProviderCreateByNavigation")]

@@ -1,4 +1,3 @@
-			using System; 
 using Yashil.Common.Core.Interfaces;
 namespace YashilUserManagement.Web.Areas.UserMng.ViewModels
 {

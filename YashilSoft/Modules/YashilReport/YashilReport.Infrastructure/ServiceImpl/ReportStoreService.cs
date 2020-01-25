@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Stimulsoft.Report;
 using Stimulsoft.Report.Dictionary;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
-using Yashil.Common.SharedKernel.Helpers;
-using Yashil.Core.Classes;
 using Yashil.Core.Entities;
 using YashilBaseInfo.Core.Services;
 using YashilReport.Core;
@@ -29,7 +26,7 @@ namespace YashilReport.Infrastructure.ServiceImpl
         public ReportStoreService(IUnitOfWork unitOfWork, IReportStoreRepository reportStoreRepository,
             IWebHostEnvironment webHostEnvironment, IYashilConnectionStringService yashilConnectionStringService,
             IReportConnectionStringService reportConnectionStringService, IUserPrincipal userPrincipal) :
-            base(unitOfWork, reportStoreRepository)
+            base(unitOfWork, reportStoreRepository, userPrincipal)
         {
             _unitOfWork = unitOfWork;
             _reportStoreRepository = reportStoreRepository;
@@ -127,7 +124,7 @@ namespace YashilReport.Infrastructure.ServiceImpl
 
         public IQueryable<ReportStore> GetReportList()
         {
-            return _reportStoreRepository.GetUserReportList(_userPrincipal);
+            return _reportStoreRepository.GetUserReportList();
         }
 
         public override async Task<ReportStore> AddAsync(ReportStore reportStore, bool saveAfterAdd = false)

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Security.Claims;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -9,16 +10,16 @@ using YashilDashboard.Core.Services;
 
 namespace YashilDashboard.Infrastructure.ServiceImpl
 {
-	public class DashboardGroupService : GenericService<DashboardGroup,int>, IDashboardGroupService
+    public class DashboardGroupService : GenericService<DashboardGroup, int>, IDashboardGroupService
     {
-		private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IDashboardGroupRepository _dashboardGroupRepository;
         private readonly ClaimsPrincipal _claimsPrincipal;
-        public DashboardGroupService (IUnitOfWork unitOfWork, IDashboardGroupRepository dashboardGroupRepository, ClaimsPrincipal claimsPrincipal) : base(unitOfWork, dashboardGroupRepository)
+
+        public DashboardGroupService(IUnitOfWork unitOfWork, IDashboardGroupRepository dashboardGroupRepository, IUserPrincipal userPrincipal) : base(unitOfWork, dashboardGroupRepository, userPrincipal)
         {
-			_unitOfWork = unitOfWork;
-			_dashboardGroupRepository = dashboardGroupRepository;
-            _claimsPrincipal = claimsPrincipal;
+            _unitOfWork = unitOfWork;
+            _dashboardGroupRepository = dashboardGroupRepository;
         }
 
         public IQueryable<DashboardGroup> GetDashboardGroupList()
@@ -27,5 +28,4 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
             return _dashboardGroupRepository.GetUserDashboardGroupList(currentUserId);
         }
     }
-}      
- 
+}

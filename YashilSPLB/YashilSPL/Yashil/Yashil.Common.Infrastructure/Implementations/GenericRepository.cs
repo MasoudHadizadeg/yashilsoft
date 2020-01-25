@@ -13,14 +13,14 @@ namespace Yashil.Common.Infrastructure.Implementations
         where T : class, IBaseEntity<TR> where TR : IEquatable<TR>
     {
         private readonly DbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> DbSet;
         private readonly IUserPrincipal _userPrincipal;
 
         public GenericRepository(DbContext context, IUserPrincipal userPrincipal)
         {
             _context = context;
             _userPrincipal = userPrincipal;
-            _dbSet = _context.Set<T>();
+            DbSet = _context.Set<T>();
         }
 
         #region public Select Methods For Service Classes

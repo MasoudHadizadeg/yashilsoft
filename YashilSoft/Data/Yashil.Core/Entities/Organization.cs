@@ -12,8 +12,16 @@ namespace Yashil.Core.Entities
     {
         public Organization()
         {
+            AccessLevel = new HashSet<AccessLevel>();
+            AppConfig = new HashSet<AppConfig>();
+            DashboardGroup = new HashSet<DashboardGroup>();
+            DashboardStore = new HashSet<DashboardStore>();
             InverseParent = new HashSet<Organization>();
+            ReportGroup = new HashSet<ReportGroup>();
+            ReportStore = new HashSet<ReportStore>();
+            Role = new HashSet<Role>();
             User = new HashSet<User>();
+            YashilConnectionString = new HashSet<YashilConnectionString>();
         }
 
         [Key]
@@ -37,6 +45,7 @@ namespace Yashil.Core.Entities
         public DateTime? ModificationDate { get; set; }
         public int ApplicationId { get; set; }
         public bool Deleted { get; set; }
+        public int CreatorOrganizationId { get; set; }
 
         [ForeignKey("ApplicationId")]
         [InverseProperty("Organization")]
@@ -50,9 +59,25 @@ namespace Yashil.Core.Entities
         [ForeignKey("ParentId")]
         [InverseProperty("InverseParent")]
         public virtual Organization Parent { get; set; }
+        [InverseProperty("CreatorOrganization")]
+        public virtual ICollection<AccessLevel> AccessLevel { get; set; }
+        [InverseProperty("CreatorOrganization")]
+        public virtual ICollection<AppConfig> AppConfig { get; set; }
+        [InverseProperty("CreatorOrganization")]
+        public virtual ICollection<DashboardGroup> DashboardGroup { get; set; }
+        [InverseProperty("CreatorOrganization")]
+        public virtual ICollection<DashboardStore> DashboardStore { get; set; }
         [InverseProperty("Parent")]
         public virtual ICollection<Organization> InverseParent { get; set; }
+        [InverseProperty("CreatorOrganization")]
+        public virtual ICollection<ReportGroup> ReportGroup { get; set; }
+        [InverseProperty("CreatorOrganization")]
+        public virtual ICollection<ReportStore> ReportStore { get; set; }
+        [InverseProperty("CreatorOrganization")]
+        public virtual ICollection<Role> Role { get; set; }
         [InverseProperty("Organization")]
         public virtual ICollection<User> User { get; set; }
+        [InverseProperty("CreatorOrganization")]
+        public virtual ICollection<YashilConnectionString> YashilConnectionString { get; set; }
     }
     }
