@@ -65,7 +65,7 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
         public IQueryable<DashboardStore> GetDashboardList()
         {
             var currentUserId = Convert.ToInt32(this._claimsPrincipal.Identity.Name);
-            return _dashboardStoreRepository.GetUserDashboardList(currentUserId);
+            return _dashboardStoreRepository.GetUserDashboardList();
         }
 
         private Dashboard AddConnectionStringToDashboard(int dashboardId,

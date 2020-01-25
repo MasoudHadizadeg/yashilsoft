@@ -9,6 +9,6 @@ namespace YashilDashboard.Core.Repositories
     {
         void DeleteContentionStrings(int dashboardId);
         Task<DashboardStore> GetForEditAsync(int dashboardId, bool readOnly = false);
-        IQueryable<DashboardStore> GetUserDashboardList(int currentUserId);
+        IQueryable<DashboardStore> GetUserDashboardList();
     }
 }      
