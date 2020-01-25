@@ -28,16 +28,22 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
                     passwordBytes, passwordSalt))
                 {
                     var isAdmin = _userService.IsAdmin(user.Id);
+                    var claimsIdentity = new ClaimsIdentity(new[]
+                    {
+                        new Claim(ClaimTypes.Name, user.Id.ToString()),
+                        new Claim(YashilClaimTypes.ApplicationId, user.ApplicationId.ToString()),
+                        new Claim(YashilClaimTypes.IsAdmin, isAdmin.ToString()),
+                        new Claim(ClaimTypes.Surname, $"{user.FirstName} {user.LastName}")
+                    });
+                    if (user.OrganizationId.HasValue)
+                    {
+                        claimsIdentity.AddClaim(new Claim(YashilClaimTypes.OrganizationId,
+                            user.OrganizationId.ToString()));
+                    }
+
                     return new UserValidationResaultViewModel<int>
                     {
-                        ClaimsIdentity = new ClaimsIdentity(new[]
-                        {
-                            new Claim(ClaimTypes.Name, user.Id.ToString()),
-                            new Claim(YashilClaimTypes.OrganizationId, user.OrganizationId?.ToString()),
-                            new Claim(YashilClaimTypes.ApplicationId, user.ApplicationId.ToString()),
-                            new Claim(YashilClaimTypes.IsAdmin, isAdmin.ToString()),
-                            new Claim(ClaimTypes.Surname, $"{user.FirstName} {user.LastName}")
-                        }),
+                        ClaimsIdentity = claimsIdentity,
                         IsSuccess = true,
                         UserId = user.Id,
                         UserName = user.UserName
