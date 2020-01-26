@@ -9,5 +9,6 @@ namespace YashilUserManagement.Core.Repositories
     {
         Task<User> GetUserByUserName(string userName);
         bool IsAdmin(int userId);
+        bool CheckExistsUserName(string userName);
     }
 }      

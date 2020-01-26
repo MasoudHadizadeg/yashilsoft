@@ -1,8 +1,10 @@
 			
+using System.Text;
 using System.Threading.Tasks;
 using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
+using Yashil.Common.SharedKernel.Helpers;
 using Yashil.Core.Entities;
 using YashilUserManagement.Core.Repositories;
 using YashilUserManagement.Core.Services;
@@ -29,6 +31,11 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
         public bool IsAdmin(int userId)
         {
             return _userRepository.IsAdmin(userId);
+        }
+
+        public bool CheckExistsUserName(string userName)
+        {
+            return _userRepository.CheckExistsUserName(userName);
         }
 
         public void SetUserPass(string userUserName, byte[] passwordHash, byte[] passwordSalt)

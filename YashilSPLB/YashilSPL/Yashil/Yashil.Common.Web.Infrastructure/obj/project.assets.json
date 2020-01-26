@@ -1506,7 +1506,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.0.4",
     "restore": {
       "projectUniqueName": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Common.Web.Infrastructure\\Yashil.Common.Web.Infrastructure.csproj",
       "projectName": "Yashil.Common.Web.Infrastructure",

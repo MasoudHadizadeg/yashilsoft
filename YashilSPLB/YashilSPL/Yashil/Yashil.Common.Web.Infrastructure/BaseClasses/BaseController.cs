@@ -142,7 +142,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
                 entity.ModificationDate = DateTime.Now;
 
                 CustomMapBeforeUpdate(editModel, entity);
-                var notModifiedProperties = GetModifiedProperties(entity);
+                var notModifiedProperties = GetNotModifiedProperties(entity);
                 await UpdateAsync(entity, editModel, entity.Id, notModifiedProperties);
 
                 AfterUpdate(editModel, entity);
@@ -242,7 +242,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
         }
 
         [NonAction]
-        protected List<string> GetModifiedProperties(TModel entity)
+        protected virtual List<string> GetNotModifiedProperties(TModel entity)
         {
             return new List<string>();
         }

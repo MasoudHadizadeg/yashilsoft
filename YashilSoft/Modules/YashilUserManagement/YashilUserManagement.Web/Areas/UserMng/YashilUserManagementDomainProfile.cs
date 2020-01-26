@@ -121,12 +121,7 @@ namespace YashilUserManagement.Web.Areas.UserMng
             CreateMap<AppConfig, AppConfigSimpleViewModel>();
 
 
-            CreateMap<User, UserEditModel>()
-                .ForMember(x => x.OrganizationTitle,
-                    b => b.MapFrom(c => c.Organization.Title))
-                .ForMember(x => x.AccessLevelTitle,
-                    b => b.MapFrom(c => c.AccessLevel.Title))
-                ;
+            CreateMap<User, UserEditModel>();
 
             CreateMap<User, UserListViewModel>()
                 .ForMember(x => x.OrganizationTitle,

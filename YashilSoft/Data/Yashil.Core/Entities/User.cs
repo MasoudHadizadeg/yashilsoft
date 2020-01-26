@@ -63,12 +63,12 @@ namespace Yashil.Core.Entities
         [StringLength(200)]
         public string UserName { get; set; }
         [Required]
-        [StringLength(500)]
+        [StringLength(200)]
         public string FirstName { get; set; }
         [Required]
-        [StringLength(10)]
+        [StringLength(200)]
         public string LastName { get; set; }
-        [StringLength(20)]
+        [StringLength(10)]
         public string NationalCode { get; set; }
         [StringLength(300)]
         public string Email { get; set; }

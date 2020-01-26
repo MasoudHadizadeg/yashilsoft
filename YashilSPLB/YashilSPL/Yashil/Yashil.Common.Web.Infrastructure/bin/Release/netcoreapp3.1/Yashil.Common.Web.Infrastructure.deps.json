@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Yashil.Common.Web.Infrastructure/1.0.0": {
+      "Yashil.Common.Web.Infrastructure/1.0.4": {
         "dependencies": {
           "AutoMapper": "9.0.0",
           "DevExtreme.AspNet.Data": "2.5.1",
@@ -414,7 +414,7 @@
     }
   },
   "libraries": {
-    "Yashil.Common.Web.Infrastructure/1.0.0": {
+    "Yashil.Common.Web.Infrastructure/1.0.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

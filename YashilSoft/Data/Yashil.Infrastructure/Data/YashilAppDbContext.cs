@@ -1016,6 +1016,10 @@ namespace Yashil.Infrastructure.Data
             {
                 entity.HasComment("کاربران");
 
+                entity.HasIndex(e => new { e.UserName, e.ApplicationId })
+                    .HasName("IX_User")
+                    .IsUnique();
+
                 entity.Property(e => e.Id).HasComment("کد");
 
                 entity.Property(e => e.AccessLevelId).HasComment("سطح دسترسی");
@@ -1038,9 +1042,7 @@ namespace Yashil.Infrastructure.Data
                     .HasDefaultValueSql("((1))")
                     .HasComment("فعال");
 
-                entity.Property(e => e.LastName)
-                    .IsFixedLength()
-                    .HasComment("نام خانوادگی");
+                entity.Property(e => e.LastName).HasComment("نام خانوادگی");
 
                 entity.Property(e => e.MobileNumber).HasComment("شماره موبایل");
 
@@ -1050,6 +1052,7 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.NationalCode)
                     .IsUnicode(false)
+                    .IsFixedLength()
                     .HasComment("کد ملی");
 
                 entity.Property(e => e.OrganizationId).HasComment("سازمان");

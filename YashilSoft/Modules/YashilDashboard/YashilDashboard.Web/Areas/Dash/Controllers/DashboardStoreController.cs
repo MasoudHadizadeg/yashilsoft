@@ -93,7 +93,7 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
 
             await _dashboardStoreService.UpdateDashboardStoreWithConnectionStringAsync(entity,
                 dashboardConnectionStrings,
-                GetModifiedProperties(entity));
+                GetNotModifiedProperties(entity));
         }
 
         protected override async Task<DashboardStoreEditModel> GetEntityForEdit(int id)

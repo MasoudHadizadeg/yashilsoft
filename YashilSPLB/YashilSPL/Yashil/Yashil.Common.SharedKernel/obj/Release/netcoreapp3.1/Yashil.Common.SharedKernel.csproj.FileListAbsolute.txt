@@ -13,3 +13,4 @@ D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Re
 D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.AssemblyInfo.cs
 D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.dll
 D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.pdb
+D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.csprojAssemblyReference.cache

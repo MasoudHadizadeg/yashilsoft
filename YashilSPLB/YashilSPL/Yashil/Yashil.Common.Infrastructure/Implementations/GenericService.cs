@@ -63,10 +63,10 @@ namespace Yashil.Common.Infrastructure.Implementations
             return addedEntity;
         }
 
-        public virtual async Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, List<string> modifiedProperties,
+        public virtual async Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, List<string> notModifiedProps,
             bool saveAfterUpdate = false)
         {
-            var updateAsync = await _repository.UpdateAsync(t, key, modifiedProperties);
+            var updateAsync = await _repository.UpdateAsync(t, key, notModifiedProps);
             if (saveAfterUpdate)
             {
                 await _unitOfWork.CommitAsync();

@@ -112,7 +112,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
                 }).ToList();
 
             await _reportStoreService.UpdateReportStoreWithConnectionStringAsync(entity, reportConnectionStrings,
-                GetModifiedProperties(entity));
+                GetNotModifiedProperties(entity));
         }
 
         protected override async Task<ReportStoreEditModel> GetEntityForEdit(int id)
