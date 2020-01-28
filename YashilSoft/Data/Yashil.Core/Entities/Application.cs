@@ -8,12 +8,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Yashil.Core.Entities
 {
 [Table("Application", Schema = "um")]
-    public partial class Application : IBaseEntity<int>
+    public partial class Application : IBaseEntity<int> 
     {
         public Application()
         {
             AppAction = new HashSet<AppAction>();
             AppConfig = new HashSet<AppConfig>();
+            DashboardGroup = new HashSet<DashboardGroup>();
             DashboardStore = new HashSet<DashboardStore>();
             InverseParent = new HashSet<Application>();
             Organization = new HashSet<Organization>();
@@ -56,6 +57,8 @@ namespace Yashil.Core.Entities
         public virtual ICollection<AppAction> AppAction { get; set; }
         [InverseProperty("Application")]
         public virtual ICollection<AppConfig> AppConfig { get; set; }
+        [InverseProperty("Application")]
+        public virtual ICollection<DashboardGroup> DashboardGroup { get; set; }
         [InverseProperty("Application")]
         public virtual ICollection<DashboardStore> DashboardStore { get; set; }
         [InverseProperty("Parent")]

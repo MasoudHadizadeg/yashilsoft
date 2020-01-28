@@ -9,7 +9,7 @@ using YashilUserManagement.Core.Repositories;
 
 namespace YashilUserManagement.Infrastructure.RepositoryImpl
 {
-    public class UserRepository : GenericRepository<User, int>, IUserRepository
+    public class UserRepository : GenericApplicationBasedRepository<User, int>, IUserRepository
     {
         private readonly IUserPrincipal _userPrincipal;
         public UserRepository(YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)

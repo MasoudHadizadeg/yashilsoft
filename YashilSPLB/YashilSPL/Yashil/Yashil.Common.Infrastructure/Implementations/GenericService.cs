@@ -34,7 +34,7 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         public async Task Delete(object id, bool saveAfterDelete = false)
         {
-            _repository.Delete(id);
+            _repository.Delete(id,false);
             if (saveAfterDelete)
             {
                 await _unitOfWork.CommitAsync();

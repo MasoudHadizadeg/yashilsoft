@@ -11,8 +11,8 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.0",
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
           "System.IdentityModel.Tokens.Jwt": "5.6.0",
-          "Yashil.Common.Core": "1.1.5",
-          "Yashil.Common.SharedKernel": "1.0.2"
+          "Yashil.Common.Core": "1.1.7",
+          "Yashil.Common.SharedKernel": "1.0.3"
         },
         "runtime": {
           "Yashil.Runtime.dll": {}
@@ -378,7 +378,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "Yashil.Common.Core/1.1.5": {
+      "Yashil.Common.Core/1.1.7": {
         "dependencies": {
           "AutoMapper": "9.0.0",
           "Microsoft.EntityFrameworkCore": "3.1.0"
@@ -387,7 +387,7 @@
           "Yashil.Common.Core.dll": {}
         }
       },
-      "Yashil.Common.SharedKernel/1.0.2": {
+      "Yashil.Common.SharedKernel/1.0.3": {
         "dependencies": {
           "DevExtreme.AspNet.Data": "2.5.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.0",
@@ -790,12 +790,12 @@
       "path": "system.threading.tasks/4.3.0",
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
     },
-    "Yashil.Common.Core/1.1.5": {
+    "Yashil.Common.Core/1.1.7": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Yashil.Common.SharedKernel/1.0.2": {
+    "Yashil.Common.SharedKernel/1.0.3": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

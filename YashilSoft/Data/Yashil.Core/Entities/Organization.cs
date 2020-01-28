@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Yashil.Core.Entities
 {
 [Table("Organization", Schema = "um")]
-    public partial class Organization : IBaseEntity<int>
+    public partial class Organization : IBaseEntity<int>, IApplicationBasedEntity
     {
         public Organization()
         {
@@ -20,7 +20,8 @@ namespace Yashil.Core.Entities
             ReportGroup = new HashSet<ReportGroup>();
             ReportStore = new HashSet<ReportStore>();
             Role = new HashSet<Role>();
-            User = new HashSet<User>();
+            UserCreatorOrganization = new HashSet<User>();
+            UserOrganization = new HashSet<User>();
             YashilConnectionString = new HashSet<YashilConnectionString>();
         }
 
@@ -75,8 +76,10 @@ namespace Yashil.Core.Entities
         public virtual ICollection<ReportStore> ReportStore { get; set; }
         [InverseProperty("CreatorOrganization")]
         public virtual ICollection<Role> Role { get; set; }
+        [InverseProperty("CreatorOrganization")]
+        public virtual ICollection<User> UserCreatorOrganization { get; set; }
         [InverseProperty("Organization")]
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<User> UserOrganization { get; set; }
         [InverseProperty("CreatorOrganization")]
         public virtual ICollection<YashilConnectionString> YashilConnectionString { get; set; }
     }

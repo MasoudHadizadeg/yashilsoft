@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Yashil.Core.Entities
 {
 [Table("User", Schema = "um")]
-    public partial class User : IBaseEntity<int>
+    public partial class User : IBaseEntity<int>, IApplicationBasedEntity
     {
         public User()
         {
@@ -66,19 +66,21 @@ namespace Yashil.Core.Entities
         [StringLength(200)]
         public string FirstName { get; set; }
         [Required]
-        [StringLength(200)]
+        [StringLength(400)]
         public string LastName { get; set; }
         [StringLength(10)]
         public string NationalCode { get; set; }
         [StringLength(300)]
         public string Email { get; set; }
-        [MaxLength(200)]
+        [Required]
+        [MaxLength(400)]
         public byte[] Password { get; set; }
         [Required]
         public bool? IsActive { get; set; }
         public int? MobileNumber { get; set; }
         public int? OrganizationId { get; set; }
-        [MaxLength(200)]
+        [Required]
+        [MaxLength(400)]
         public byte[] PasswordSalt { get; set; }
         public string Address { get; set; }
         public int CreateBy { get; set; }
@@ -98,8 +100,11 @@ namespace Yashil.Core.Entities
         [ForeignKey("ApplicationId")]
         [InverseProperty("User")]
         public virtual Application Application { get; set; }
+        [ForeignKey("CreatorOrganizationId")]
+        [InverseProperty("UserCreatorOrganization")]
+        public virtual Organization CreatorOrganization { get; set; }
         [ForeignKey("OrganizationId")]
-        [InverseProperty("User")]
+        [InverseProperty("UserOrganization")]
         public virtual Organization Organization { get; set; }
         [InverseProperty("CreateByNavigation")]
         public virtual ICollection<AccessLevel> AccessLevelCreateByNavigation { get; set; }

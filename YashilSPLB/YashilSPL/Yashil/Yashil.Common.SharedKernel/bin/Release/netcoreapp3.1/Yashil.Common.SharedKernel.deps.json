@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Yashil.Common.SharedKernel/1.0.2": {
+      "Yashil.Common.SharedKernel/1.0.3": {
         "dependencies": {
           "DevExtreme.AspNet.Data": "2.5.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.0",
@@ -191,7 +191,7 @@
     }
   },
   "libraries": {
-    "Yashil.Common.SharedKernel/1.0.2": {
+    "Yashil.Common.SharedKernel/1.0.3": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

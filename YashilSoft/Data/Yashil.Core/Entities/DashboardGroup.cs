@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Yashil.Core.Entities
 {
 [Table("DashboardGroup", Schema = "dash")]
-    public partial class DashboardGroup : IBaseEntity<int>
+    public partial class DashboardGroup : IBaseEntity<int>, IApplicationBasedEntity
     {
         public DashboardGroup()
         {
@@ -34,6 +34,9 @@ namespace Yashil.Core.Entities
         public bool Deleted { get; set; }
         public int CreatorOrganizationId { get; set; }
 
+        [ForeignKey("ApplicationId")]
+        [InverseProperty("DashboardGroup")]
+        public virtual Application Application { get; set; }
         [ForeignKey("CreatorOrganizationId")]
         [InverseProperty("DashboardGroup")]
         public virtual Organization CreatorOrganization { get; set; }

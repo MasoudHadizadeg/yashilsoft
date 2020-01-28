@@ -7,7 +7,7 @@ using YashilDashboard.Core.Repositories;
 
 namespace YashilDashboard.Infrastructure.RepositoryImpl
 {
-    public class DashboardGroupRepository : GenericRepository<DashboardGroup, int>, IDashboardGroupRepository
+    public class DashboardGroupRepository : GenericApplicationBasedRepository<DashboardGroup, int>, IDashboardGroupRepository
     {
         private readonly YashilAppDbContext _context;
 

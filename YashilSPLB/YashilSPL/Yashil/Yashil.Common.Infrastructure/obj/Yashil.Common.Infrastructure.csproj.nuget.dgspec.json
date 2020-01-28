@@ -5,7 +5,7 @@
   },
   "projects": {
     "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj": {
-      "version": "1.1.5",
+      "version": "1.1.7",
       "restore": {
         "projectUniqueName": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj",
         "projectName": "Yashil.Common.Core",
@@ -77,7 +77,7 @@
       }
     },
     "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Common.Infrastructure\\Yashil.Common.Infrastructure.csproj": {
-      "version": "1.1.6",
+      "version": "1.1.9",
       "restore": {
         "projectUniqueName": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Common.Infrastructure\\Yashil.Common.Infrastructure.csproj",
         "projectName": "Yashil.Common.Infrastructure",

@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Stimulsoft.Reports.Web.NetCore" Version="2019.4.2" />
-    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.0.2" />
+    <PackageReference Include="Stimulsoft.Reports.Engine.NetCore" Version="2020.1.1" />
+    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>

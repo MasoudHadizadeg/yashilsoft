@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Yashil.Core.Entities
 {
 [Table("YashilConnectionString", Schema = "base")]
-    public partial class YashilConnectionString : IBaseEntity<int>
+    public partial class YashilConnectionString : IBaseEntity<int>, IApplicationBasedEntity
     {
         public YashilConnectionString()
         {

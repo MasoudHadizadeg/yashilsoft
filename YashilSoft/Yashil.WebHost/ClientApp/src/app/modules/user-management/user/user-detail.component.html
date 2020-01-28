@@ -1,7 +1,7 @@
 <app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
     <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
-        <dxi-item [label]="{text: 'نام کاربری'}" name="uName" dataField="userNameStr"
+        <dxi-item [label]="{text: 'نام کاربری'}" name="uName" dataField="UserName"
                   [editorOptions]="{ disabled: entity.id }">
             <dxi-validation-rule type="required" message="نام کاربری اجباری می باشد"></dxi-validation-rule>
             <dxi-validation-rule type="custom" [validationCallback]="validateLogin"

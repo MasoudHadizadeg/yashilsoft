@@ -25,27 +25,27 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         #region public Select Methods For Service Classes
 
-        public T Get(object id, bool readOnly = false)
+        public virtual T Get(object id, bool readOnly = false)
         {
             return _context.Set<T>().Find(id);
         }
 
-        public ValueTask<T> GetAsync(object id, bool readOnly = true)
+        public virtual ValueTask<T> GetAsync(object id, bool readOnly = true)
         {
             return _context.Set<T>().FindAsync(id);
         }
 
-        public Task<IEnumerable<T>> GetAllAsync(bool readOnly = false)
+        public virtual Task<IEnumerable<T>> GetAllAsync(bool readOnly = false)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<T> GetAll(bool readOnly = false)
+        public virtual IQueryable<T> GetAll(bool readOnly = false)
         {
             return readOnly ? _context.Set<T>().AsNoTracking() : _context.Set<T>();
         }
 
-        public IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties)
+        public virtual IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties)
         {
             var queryable = GetAll();
             foreach (var includeProperty in includeProperties)
@@ -60,14 +60,14 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         #region private Select Methods For Repository Classes
 
-        private T Find(Expression<Func<T, bool>> match, bool readOnly = false)
+        private  T Find(Expression<Func<T, bool>> match, bool readOnly = false)
         {
             return readOnly
                 ? _context.Set<T>().AsNoTracking().SingleOrDefault(match)
                 : _context.Set<T>().SingleOrDefault(match);
         }
 
-        private async Task<T> FindAsync(Expression<Func<T, bool>> match, bool readOnly = false)
+        private  async Task<T> FindAsync(Expression<Func<T, bool>> match, bool readOnly = false)
         {
             return readOnly
                 ? await _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(match)
@@ -105,31 +105,45 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         #region Add And Update Methods
 
-        public T Add(T t)
+        public virtual T Add(T t)
         {
+            t.CreateBy = _userPrincipal.Id;
+            t.CreationDate = DateTime.Now;
+            
             _context.Set<T>().Add(t);
             return t;
         }
 
-        public async Task<T> AddAsync(T t)
+        public virtual async Task<T> AddAsync(T t)
         {
             await _context.Set<T>().AddAsync(t);
             return t;
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
             // _context.SaveChanges();
         }
 
-        public void Delete(object id)
+        public virtual void Delete(object id, bool logical = false)
         {
             var firstOrDefault = _context.Set<T>().Find(id);
-            if (firstOrDefault != null) _context.Set<T>().Remove(firstOrDefault);
+
+            if (firstOrDefault != null)
+            {
+                if (!logical)
+                {
+                    _context.Set<T>().Remove(firstOrDefault);
+                }
+                else
+                {
+                    firstOrDefault.Deleted = true;
+                }
+            }
         }
 
-        public T Update(T t, object key, List<string> modifiedProperties)
+        public virtual T Update(T t, object key, List<string> modifiedProperties)
         {
             if (t == null)
                 return null;
@@ -159,7 +173,7 @@ namespace Yashil.Common.Infrastructure.Implementations
             return exist;
         }
 
-        public async Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> notModifiedProps)
+        public virtual async Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> notModifiedProps)
         {
             if (t == null)
                 return null;
@@ -191,12 +205,12 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         #endregion
 
-        public int Count()
+        public  int Count()
         {
             return _context.Set<T>().Count();
         }
 
-        public async Task<int> CountAsync()
+        public virtual async Task<int> CountAsync()
         {
             return await _context.Set<T>().CountAsync();
         }

@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Yashil.Core.Entities
 {
 [Table("ReportStore", Schema = "rpt")]
-    public partial class ReportStore : IBaseEntity<int>
+    public partial class ReportStore : IBaseEntity<int>, IApplicationBasedEntity
     {
         public ReportStore()
         {

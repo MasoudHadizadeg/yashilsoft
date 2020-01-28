@@ -8,12 +8,10 @@ namespace Yashil.Common.Core.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
-        // T Add(T t);
         void Delete(T entity);
 
-        void Delete(object id);
+        void Delete(object id, bool logical = false);
 
-        // T Update(T t, object key, string[] modifiedProperties);
         Task<T> AddAsync(T t);
         T Add(T t);
         Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> modifiedProperties);

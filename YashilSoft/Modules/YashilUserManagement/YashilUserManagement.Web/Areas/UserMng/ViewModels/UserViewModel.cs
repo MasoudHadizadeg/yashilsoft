@@ -82,14 +82,14 @@ namespace YashilUserManagement.Web.Areas.UserMng.ViewModels
 
         [Required] [StringLength(200)] public string UserName { get; set; }
         [Required] [StringLength(200)] public string FirstName { get; set; }
-        [Required] [StringLength(200)] public string LastName { get; set; }
+        [Required] [StringLength(400)] public string LastName { get; set; }
         [StringLength(10)] public string NationalCode { get; set; }
         [StringLength(300)] public string Email { get; set; }
+
         [Required] public bool? IsActive { get; set; }
         public int? MobileNumber { get; set; }
         public int? OrganizationId { get; set; }
         public string Address { get; set; }
-        public int AccessLevelId { get; set; }
         public string PasswordStr { get; set; }
     }
 

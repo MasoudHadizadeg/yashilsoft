@@ -130,6 +130,9 @@ namespace Yashil.Infrastructure.Data
             {
                 entity.HasComment("تنظیمات");
 
+                entity.HasIndex(e => new { e.ApplicationId, e.KeyTitle })
+                    .HasName("IX_AppConfig");
+
                 entity.Property(e => e.Id).HasComment("کد");
 
                 entity.Property(e => e.ApplicationId).HasComment("برنامه");
@@ -296,6 +299,12 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
 
                 entity.Property(e => e.Title).HasComment("عنوان");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.DashboardGroup)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DashboardGroup_Application");
 
                 entity.HasOne(d => d.CreatorOrganization)
                     .WithMany(p => p.DashboardGroup)
@@ -601,7 +610,7 @@ namespace Yashil.Infrastructure.Data
             {
                 entity.HasComment("گروه گزارش");
 
-                entity.HasIndex(e => e.EnglishTitle)
+                entity.HasIndex(e => new { e.EnglishTitle, e.ApplicationId })
                     .HasName("IX_ReportGroup_1")
                     .IsUnique();
 
@@ -840,6 +849,10 @@ namespace Yashil.Infrastructure.Data
             {
                 entity.HasComment("نقش");
 
+                entity.HasIndex(e => new { e.Title, e.ApplicationId })
+                    .HasName("IX_Role")
+                    .IsUnique();
+
                 entity.Property(e => e.Id).HasComment("کد");
 
                 entity.Property(e => e.ApplicationId).HasComment("برنامه");
@@ -1073,8 +1086,14 @@ namespace Yashil.Infrastructure.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_User_Application");
 
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.UserCreatorOrganization)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_User_Organization1");
+
                 entity.HasOne(d => d.Organization)
-                    .WithMany(p => p.User)
+                    .WithMany(p => p.UserOrganization)
                     .HasForeignKey(d => d.OrganizationId)
                     .HasConstraintName("FK_User_Organization");
             });

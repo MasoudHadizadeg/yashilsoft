@@ -7,7 +7,7 @@ using YashilUserManagement.Core.Repositories;
 
 namespace YashilUserManagement.Infrastructure.RepositoryImpl
 {
-	public class AppConfigRepository : GenericRepository<AppConfig,int>, IAppConfigRepository
+	public class AppConfigRepository : GenericApplicationBasedRepository<AppConfig,int>, IAppConfigRepository
     {
         private readonly YashilAppDbContext _context;
 		public AppConfigRepository (YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)

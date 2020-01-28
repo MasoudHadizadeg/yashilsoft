@@ -7,8 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yashil.Core.Entities
 {
-[Table("AppConfig", Schema = "um")]
-    public partial class AppConfig : IBaseEntity<int>
+    [Table("AppConfig", Schema = "um")]
+    public partial class AppConfig : IBaseEntity<int>, IApplicationBasedEntity
     {
         [Key]
         public int Id { get; set; }
@@ -42,4 +42,4 @@ namespace Yashil.Core.Entities
         [InverseProperty("AppConfigModifyByNavigation")]
         public virtual User ModifyByNavigation { get; set; }
     }
-    }
+}

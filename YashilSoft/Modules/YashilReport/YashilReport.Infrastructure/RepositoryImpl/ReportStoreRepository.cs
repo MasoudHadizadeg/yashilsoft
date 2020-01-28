@@ -11,12 +11,13 @@ using YashilReport.Core.Repositories;
 
 namespace YashilReport.Infrastructure.RepositoryImpl
 {
-    public class ReportStoreRepository : GenericRepository<ReportStore, int>, IReportStoreRepository
+    public class ReportStoreRepository : GenericApplicationBasedRepository<ReportStore, int>, IReportStoreRepository
     {
         private readonly YashilAppDbContext _context;
         private readonly IUserPrincipal _userPrincipal;
 
-        public ReportStoreRepository(YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)
+        public ReportStoreRepository(YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context,
+            userPrincipal)
         {
             _context = context;
             _userPrincipal = userPrincipal;
@@ -40,13 +41,17 @@ namespace YashilReport.Infrastructure.RepositoryImpl
         public async Task<ReportStore> GetForEditAsync(int reportId, bool readOnly = true)
         {
             return await _context.ReportStore.Include(x => x.ReportConnectionString)
-                .Where(CheckReportAccess()).FirstOrDefaultAsync();
+                .Where(CheckReportAccess()).FirstOrDefaultAsync(x => x.Id == reportId);
         }
 
         public IQueryable<ReportStore> GetUserReportList()
         {
-            var userRoles = _context.UserRole.Where(x => x.UserId == _userPrincipal.Id).Select(x => x.Role);
             return _context.ReportStore.Where(CheckReportAccess());
         }
+
+//        public override ReportStore Get(object id, bool readOnly = false)
+//        {
+//            return _context.ReportStore.Where(CheckReportAccess()).FirstOrDefault(x => x.Id == (int) id);
+//        }
     }
 }

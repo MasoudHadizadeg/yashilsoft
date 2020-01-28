@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Yashil.Core.Entities
 {
 [Table("ReportGroup", Schema = "rpt")]
-    public partial class ReportGroup : IBaseEntity<int>
+    public partial class ReportGroup : IBaseEntity<int>, IApplicationBasedEntity
     {
         public ReportGroup()
         {

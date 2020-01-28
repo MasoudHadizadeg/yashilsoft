@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Yashil.Core.Entities
 {
 [Table("Role", Schema = "um")]
-    public partial class Role : IBaseEntity<int>
+    public partial class Role : IBaseEntity<int>, IApplicationBasedEntity
     {
         public Role()
         {

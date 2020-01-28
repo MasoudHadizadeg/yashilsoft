@@ -7,7 +7,7 @@ using YashilReport.Core.Repositories;
 
 using Yashil.Common.Core.Classes; namespace YashilReport.Infrastructure.RepositoryImpl
 {
-    public class ReportGroupRepository : GenericRepository<ReportGroup, int>, IReportGroupRepository
+    public class ReportGroupRepository : GenericApplicationBasedRepository<ReportGroup, int>, IReportGroupRepository
     {
         private readonly YashilAppDbContext _context;
 

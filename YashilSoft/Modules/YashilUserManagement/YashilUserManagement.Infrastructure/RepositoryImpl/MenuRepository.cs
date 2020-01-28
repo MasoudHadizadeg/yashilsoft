@@ -10,7 +10,7 @@ using YashilUserManagement.Core.Repositories;
 
 namespace YashilUserManagement.Infrastructure.RepositoryImpl
 {
-    public class MenuRepository : GenericRepository<Menu, int>, IMenuRepository
+    public class MenuRepository : GenericApplicationBasedRepository<Menu, int>, IMenuRepository
     {
         private readonly YashilAppDbContext _context;
 

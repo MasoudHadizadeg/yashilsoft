@@ -1,5 +1,9 @@
+using System;
 using Microsoft.EntityFrameworkCore.Design;
 using System.Collections.Generic;
+using System.IO;
+using EntityFrameworkCore.Scaffolding.Handlebars;
+using HandlebarsDotNet;
 using Microsoft.Extensions.DependencyInjection;
 
 /*
@@ -8,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
  */
 namespace Yashil.Core
 {
-    public  class ScaffoldingDesignTimeServices : IDesignTimeServices
+    public class ScaffoldingDesignTimeServices : IDesignTimeServices
     {
         public void ConfigureDesignTimeServices(IServiceCollection services)
         {
@@ -19,6 +23,17 @@ namespace Yashil.Core
             });
             var options = GetReverseEngineerOptions();
             services.AddHandlebarsScaffolding(options);
+
+            var myHelper = (helperName: "my-helper",
+                helperFunction: (Action<TextWriter, Dictionary<string, object>, object[]>) MyHbsHelper);
+
+            // Add optional Handlebars helpers
+            services.AddHandlebarsHelpers(myHelper);
+
+            Handlebars.RegisterHelper("handleNewLines", (output, context, arguments) =>
+            {
+                
+            });
         }
 
         protected virtual ReverseEngineerOptions GetReverseEngineerOptions()
@@ -28,8 +43,12 @@ namespace Yashil.Core
 
         protected virtual List<string> GetExcludedTables()
         {
-            return new List<string> { "TableDesc", "Schemas" };
+            return new List<string> {"TableDesc", "Schemas"};
         }
 
+        void MyHbsHelper(TextWriter writer, Dictionary<string, object> context, object[] parameters)
+        {
+            writer.Write("// My Handlebars Helper");
+        }
     }
 }

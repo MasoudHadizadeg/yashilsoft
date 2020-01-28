@@ -8,15 +8,11 @@ interface Resources {
 export const ScriptStore: Resources[] = [
     {name: 'report', src: 'assets/stimulsoft/scripts/stimulsoft.reports.js'},
     {name: 'designer', src: 'assets/stimulsoft/scripts/stimulsoft.designer.js'},
-    {name: 'viewer', src: 'assets/stimulsoft/scripts/stimulsoft.viewer.js'},
-    {name: 'map', src: 'assets/stimulsoft/scripts/stimulsoft.reports.maps.js'}
+    {name: 'viewer', src: 'assets/stimulsoft/scripts/stimulsoft.viewer.js'}
 ];
 export const CssStore: Resources[] = [
     {name: 'designer_whiteblue', src: 'assets/stimulsoft/css/stimulsoft.designer.office2013.whiteblue.css'},
-    {name: 'viewer_whiteblue', src: 'assets/stimulsoft/css/stimulsoft.viewer.office2013.whiteblue.css'},
-    {name: 'viewer_lightgraygreen', src: 'assets/stimulsoft/css/stimulsoft.designer.office2013.lightgraygreen.css'},
-    {name: 'viewer_verydarkgraygreen', src: 'assets/stimulsoft/css/stimulsoft.viewer.office2013.whiteblue.css'},
-
+    {name: 'viewer_whiteblue', src: 'assets/stimulsoft/css/stimulsoft.viewer.office2013.whiteblue.css'}
 ];
 declare var document: any;
 

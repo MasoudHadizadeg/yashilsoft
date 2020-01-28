@@ -7,8 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yashil.Core.Entities
 {
-[Table("Menu", Schema = "um")]
-    public partial class Menu : IBaseEntity<int>
+    [Table("Menu", Schema = "um")]
+    public partial class Menu : IBaseEntity<int>, IApplicationBasedEntity
     {
         public Menu()
         {
@@ -57,5 +57,8 @@ namespace Yashil.Core.Entities
         public virtual Resource Resource { get; set; }
         [InverseProperty("Parent")]
         public virtual ICollection<Menu> InverseParent { get; set; }
+
+        public int ApplicationId { get; set; }
+        public int CreatorOrganizationId { get; set; }
     }
-    }
+}
