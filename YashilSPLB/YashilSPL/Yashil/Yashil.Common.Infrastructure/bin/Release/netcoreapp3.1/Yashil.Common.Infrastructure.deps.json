@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Yashil.Common.Infrastructure/1.1.9": {
+      "Yashil.Common.Infrastructure/1.1.12": {
         "dependencies": {
           "Yashil.Common.Core": "1.1.7"
         },
@@ -269,7 +269,7 @@
     }
   },
   "libraries": {
-    "Yashil.Common.Infrastructure/1.1.9": {
+    "Yashil.Common.Infrastructure/1.1.12": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

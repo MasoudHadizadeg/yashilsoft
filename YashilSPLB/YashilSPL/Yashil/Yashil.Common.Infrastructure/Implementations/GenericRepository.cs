@@ -143,7 +143,7 @@ namespace Yashil.Common.Infrastructure.Implementations
             }
         }
 
-        public virtual T Update(T t, object key, List<string> modifiedProperties)
+        public virtual T Update(T t, object key, List<string> notModifiedProps)
         {
             if (t == null)
                 return null;
@@ -157,11 +157,11 @@ namespace Yashil.Common.Infrastructure.Implementations
                 entityEntry.Property("CreationDate").IsModified = false;
                 entityEntry.Property("CreateBy").IsModified = false;
 
-                if (modifiedProperties != null && modifiedProperties.Count > 0)
+                if (notModifiedProps != null && notModifiedProps.Count > 0)
                 {
                     var notModifiedProperties = entityEntry.Properties
                         .Where(m => m.IsModified &&
-                                    !modifiedProperties.Contains(m.Metadata.Name))
+                                    notModifiedProps.Contains(m.Metadata.Name))
                         .ToList();
                     foreach (var notModifiedProperty in notModifiedProperties)
                     {
@@ -191,7 +191,7 @@ namespace Yashil.Common.Infrastructure.Implementations
                 {
                     var notModifiedProperties = entityEntry.Properties
                         .Where(m => m.IsModified &&
-                                    !notModifiedProps.Contains(m.Metadata.Name))
+                                    notModifiedProps.Contains(m.Metadata.Name))
                         .ToList();
                     foreach (var notModifiedProperty in notModifiedProperties)
                     {

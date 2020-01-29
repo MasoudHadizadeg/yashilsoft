@@ -21,6 +21,6 @@ namespace Yashil.Common.Core.Interfaces
         ValueTask<T> GetAsync(object id, bool readOnly = true);
         Task<int> CountAsync();
 
-        T Update(T t, object key, List<string> modifiedProperties);
+        T Update(T t, object key, List<string> notModifiedProps);
     }
 }
