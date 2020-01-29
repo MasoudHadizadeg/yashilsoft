@@ -1,10 +1,11 @@
+
 <app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
     <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
-
-        <dxi-item [label]="{text: 'نام کاربری'}" name="uName" dataField="UserName"
+        <div class="dx-item dx-box-item" style="display: flex; min-width: auto; flex: 1 1 0px;"><div class="dx-item-content dx-box-item-content" style="width: auto; height: auto; display: flex; flex-basis: 0px; flex-grow: 1; flex-direction: column;"><div class="dx-first-row dx-first-col dx-field-item dx-col-0 dx-field-item-required dx-flex-layout dx-label-h-align"><label class="dx-field-item-label dx-field-item-label-location-left" for="dx_dx-44e6ac9f-5c4a-7678-92ea-424db16663e7_passwordStr"><span class="dx-field-item-label-content" style="width: 86px;"><span class="dx-field-item-label-text">کلمه عبور:</span><span class="dx-field-item-required-mark">&nbsp;*</span></span></label><div class="dx-field-item-content dx-field-item-content-location-right"><div class="dx-show-invalid-badge dx-textbox dx-texteditor dx-editor-outlined dx-widget dx-validator dx-visibility-change-handler"><div class="dx-texteditor-container"><div class="dx-texteditor-input-container"><input autocomplete="off" id="dx_dx-44e6ac9f-5c4a-7678-92ea-424db16663e7_passwordStr" class="dx-texteditor-input" type="password" spellcheck="false" name="passwordStr" tabindex="0" role="textbox" aria-required="true"><div data-dx_placeholder="" class="dx-placeholder dx-state-invisible"></div></div><div class="dx-texteditor-buttons-container"><div></div></div></div></div></div></div></div></div>
+        <dxi-item [label]="{text: 'نام کاربری'}" name="uName" dataField="userName"
                   [editorOptions]="{ disabled: entity.id }">
             <dxi-validation-rule type="required" message="نام کاربری اجباری می باشد"></dxi-validation-rule>
-            <dxi-validation-rule type="custom" [validationCallback]="validateLogin"
+            <dxi-validation-rule type="custom" [validationCallback]="validateUserName"
                                  message="نام کاربری تکراری می باشد"></dxi-validation-rule>
         </dxi-item>
         <dxi-item [label]="{text: 'نام'}" dataField="firstName">
@@ -14,9 +15,9 @@
             <dxi-validation-rule type="required" message="نام خانوادگی اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
         <dxi-item [label]="{text: 'کد ملی'}" dataField="nationalCode">
-        </dxi-item>
-
-        <dxi-item [label]="{text: 'ایمیل'}" dataField="email">
+            <dxi-validation-rule type="required" message="کد ملی اجباری می باشد"></dxi-validation-rule>
+            <dxi-validation-rule type="custom" [validationCallback]="validateNationalCode"
+                                 message="کد ملی وارد شده صحیح نمی باشد"></dxi-validation-rule>
         </dxi-item>
 
         <dxi-item name="pss" [editorOptions]="{ mode: 'password' }" [label]="{text: 'کلمه عبور'}"
@@ -32,23 +33,25 @@
             <dxi-validation-rule type="compare" [comparisonTarget]="passwordComparison"
                                  message="تکرار کلمه عبور صحیح نیست" *ngIf="!entity.id "></dxi-validation-rule>
         </dxi-item>
-
-        <dxi-item [label]="{text: 'فعال'}" dataField="isActive" editorType='dxCheckBox'>
+        <dxi-item dataField="accessLevelId" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"
+                  [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: accessLevelDataSource,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="organizationId" editorType="dxLookup" [label]="{text: 'سازمان'}"
+                  [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: organizationDataSource,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="کد ملی اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item [label]="{text: 'ایمیل'}" dataField="email">
         </dxi-item>
 
         <dxi-item [label]="{text: 'شماره موبایل'}" dataField="mobileNumber" editorType='dxNumberBox'>
         </dxi-item>
 
-        <dxi-item dataField="organizationId" editorType="dxLookup" [label]="{text: 'سازمان'}"
-                  [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: organizationDataSource,displayExpr:'title',valueExpr:'id' }">
-        </dxi-item>
-
         <dxi-item [label]="{text: 'آدرس'}" dataField="address" editorType='dxTextArea'>
         </dxi-item>
 
-        <dxi-item dataField="accessLevelId" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"
-                  [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: accessLevelDataSource,displayExpr:'title',valueExpr:'id' }">
-            <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
+        <dxi-item [label]="{text: 'فعال'}" dataField="isActive" editorType='dxCheckBox'>
         </dxi-item>
+
     </dx-form>
 </app-base-edit-form>

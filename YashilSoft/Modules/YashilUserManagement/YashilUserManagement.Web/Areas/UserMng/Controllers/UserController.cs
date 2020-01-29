@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
@@ -6,6 +7,7 @@ using Yashil.Common.SharedKernel.Helpers;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
 using YashilUserManagement.Core.Services;
+using YashilUserManagement.Web.Areas.UserMng.Helper;
 using YashilUserManagement.Web.Areas.UserMng.ViewModels;
 
 namespace YashilUserManagement.Web.Areas.UserMng.Controllers
@@ -49,13 +51,31 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
 
         protected override List<string> GetNotModifiedProperties(User entity)
         {
-            return entity.Password == null ? new List<string>(new[] {"Password"}) : null;
+            var notModifiedProperties = new List<string>();
+            if (entity.Password == null)
+            {
+                notModifiedProperties.Add("Password");
+                notModifiedProperties.Add("PasswordSalt");
+            }
+
+            if (entity.Id != 0)
+            {
+                notModifiedProperties.Add("UserName");
+            }
+
+            return entity.Password == null ? new List<string>(notModifiedProperties) : null;
         }
 
         [HttpGet("CheckUserName")]
         public object CheckUserName(string userName)
         {
             return !_userService.CheckExistsUserName(userName);
+        }
+
+        [HttpGet("CheckNationalCode")]
+        public object CheckNationalCode(string nationalCode)
+        {
+            return nationalCode.IsValidNationalCode();
         }
     }
 }

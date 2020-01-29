@@ -3,7 +3,6 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {HttpParams} from '@angular/common/http';
 import {GenericDataService, YashilComponent} from 'yashil-core';
-import {EnvService} from '../../../shared/services/env.service';
 
 declare var Stimulsoft: any;
 
@@ -34,6 +33,8 @@ export class ReportViewerComponent extends YashilComponent implements OnInit {
     const that = this;
     const report = new Stimulsoft.Report.StiReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
+    StiOptions.WebServer.url = this.genericDataService.baseUrl + '/reportStore/handler';
+
     options.toolbar.showAboutButton = false;
     options.toolbar.showOpenButton = false;
     options.appearance.showTooltipsHelp = false;
@@ -43,7 +44,7 @@ export class ReportViewerComponent extends YashilComponent implements OnInit {
     const viewer = new Stimulsoft.Viewer.StiViewer(options, 'StiViewer', false);
 
     const param = new HttpParams().set('id', this.reportId);
-    this.genericDataService.getEntitiesWithAction('reportStore', 'GetReportViewer', param).subscribe((data: any) => {
+    this.genericDataService.getEntitiesWithAction('reportStore', 'GetReportDesigner', param).subscribe((data: any) => {
       this.setBusy(false);
       report.load(JSON.parse(data));
       viewer.report = report;

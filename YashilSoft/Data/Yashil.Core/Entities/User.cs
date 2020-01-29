@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yashil.Core.Entities
 {
-[Table("User", Schema = "um")]
+    [Table("User", Schema = "um")]
     public partial class User : IBaseEntity<int>, IApplicationBasedEntity
     {
         public User()
@@ -77,7 +77,8 @@ namespace Yashil.Core.Entities
         public byte[] Password { get; set; }
         [Required]
         public bool? IsActive { get; set; }
-        public int? MobileNumber { get; set; }
+        [MaxLength(20)]
+        public string MobileNumber { get; set; }
         public int? OrganizationId { get; set; }
         [Required]
         [MaxLength(400)]
@@ -193,4 +194,4 @@ namespace Yashil.Core.Entities
         [InverseProperty("ModifyByNavigation")]
         public virtual ICollection<YashilDataProvider> YashilDataProviderModifyByNavigation { get; set; }
     }
-    }
+}

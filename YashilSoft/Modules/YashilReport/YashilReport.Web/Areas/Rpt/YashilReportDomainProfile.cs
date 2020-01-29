@@ -54,7 +54,7 @@ namespace YashilReport.Web.Areas.Rpt
                 .ForMember(x => x.AccessLevelTitle,
                     b => b.MapFrom(c => c.AccessLevel.Title));
             CreateMap<ReportStore, StoreCustomViewModel>()
-                .ForMember(x => x.Groups, b => b.MapFrom(c => c.ReportGroupReport.Select(g => g.Id)));
+                .ForMember(x => x.Groups, b => b.MapFrom(c => c.ReportGroupReport.Select(g => g.ReportGroupId)));
             CreateMap<ReportStore, ReportStoreViewModel>()
                 .ForMember(x => x.AccessLevelTitle, b => b.MapFrom(c => c.AccessLevel.Title));
 

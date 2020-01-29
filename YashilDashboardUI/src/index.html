@@ -7,14 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script src="env.js"></script>
-  <link rel="stylesheet" href="assets/stimulsoft/css/stimulsoft.viewer.office2013.lightgraygreen.css">
+  <link rel="stylesheet" href="assets/stimulsoft/css/stimulsoft.designer.office2013.whiteblue.css">
+  <link rel="stylesheet" href="assets/stimulsoft/css/stimulsoft.viewer.office2013.whiteblue.css">
 
 </head>
 <body>
 <ysh-root></ysh-root>
 </body>
-
+<script type="text/javascript">
+    function getCustomHeaders() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        return `Bearer ${currentUser.token}`;
+    }
+</script>
 <script src="assets/stimulsoft/scripts/stimulsoft.reports.js"></script>
 <script src="assets/stimulsoft/scripts/stimulsoft.viewer.js"></script>
-
+<script src="assets/stimulsoft/scripts/stimulsoft.designer.js"></script>
 </html>

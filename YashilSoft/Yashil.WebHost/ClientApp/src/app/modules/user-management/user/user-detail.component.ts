@@ -14,21 +14,33 @@ export class UserDetailComponent extends BaseEdit implements OnInit {
     constructor(private genericDataService: GenericDataService) {
         super(genericDataService);
         this.entityName = 'user';
-        this.validateLogin = this.validateLogin.bind(this);
+        this.validateUserName = this.validateUserName.bind(this);
+        this.validateNationalCode = this.validateNationalCode.bind(this);
     }
 
     passwordComparison = () => {
         return this.entity.passwordStr;
     };
+
     ngOnInit() {
         super.ngOnInit();
         this.organizationDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'organization');
         this.accessLevelDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'accessLevel');
     }
-    validateLogin(params) {
+
+    validateUserName(params) {
         this.genericDataService.getEntitiesWithAction('user', 'CheckUserName?userName=' + params.value, null)
             .subscribe(response => {
                 params.rule.isValid = !response;
+                params.validator.validate();
+            });
+        return false;
+    }
+
+    validateNationalCode(params) {
+        this.genericDataService.getEntitiesWithAction('user', 'CheckNationalCode?nationalCode=' + params.value, null)
+            .subscribe(response => {
+                params.rule.isValid = response;
                 params.validator.validate();
             });
         return false;

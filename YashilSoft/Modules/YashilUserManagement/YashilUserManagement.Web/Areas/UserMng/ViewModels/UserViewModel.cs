@@ -25,7 +25,7 @@ namespace YashilUserManagement.Web.Areas.UserMng.ViewModels
 
         public bool IsActive { get; set; }
 
-        public int? MobileNumber { get; set; }
+        public string MobileNumber { get; set; }
 
         public int? OrganizationId { get; set; }
         public string OrganizationTitle { get; set; }
@@ -59,7 +59,7 @@ namespace YashilUserManagement.Web.Areas.UserMng.ViewModels
 
         public bool IsActive { get; set; }
 
-        public int? MobileNumber { get; set; }
+        public string MobileNumber { get; set; }
 
         public int? OrganizationId { get; set; }
         public string OrganizationTitle { get; set; }
@@ -87,9 +87,10 @@ namespace YashilUserManagement.Web.Areas.UserMng.ViewModels
         [StringLength(300)] public string Email { get; set; }
 
         [Required] public bool? IsActive { get; set; }
-        public int? MobileNumber { get; set; }
-        public int? OrganizationId { get; set; }
+        [StringLength(20)] public string MobileNumber { get; set; }
+        public int OrganizationId { get; set; }
         public string Address { get; set; }
+        public int AccessLevelId { get; set; }
         public string PasswordStr { get; set; }
     }
 
