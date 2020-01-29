@@ -35,6 +35,10 @@
     <AdapterVistaDBConnection> VistaDB داده از ارتباط</AdapterVistaDBConnection>
   </Adapters>
   <Buttons>
+    <Reset>پاک کردن</Reset>
+    <ResetForm>پاک کردن</ResetForm>
+    <Clear>پاک کردن</Clear>
+    <Submit>تایید</Submit>
     <Add>جمع</Add>
     <AddAllColumns>جمع همه ستون ها </AddAllColumns>
     <Build>ساختن</Build>
@@ -680,6 +684,8 @@
     <Width>عرض:</Width>
   </FormPageSetup>
   <FormViewer>
+    <Reset>&amp;پاک کردن</Reset>
+    <cust_pm_reset>پاک کردن</cust_pm_reset>
     <Bookmarks>نشانواره ها</Bookmarks>
     <Close>بستن</Close>
     <CollapseAll>خرابی همه</CollapseAll>
@@ -1782,6 +1788,7 @@
     <ResetDataSource>پاک کردن منبع داده</ResetDataSource>
     <ResetPageNumber>پاک کردن شماره صفحه</ResetPageNumber>
     <Resize>دوباره اندازه گیری</Resize>
+    <Submit>تایید</Submit>
     <Restrictions>محدودیت ها</Restrictions>
     <ReturnValue>مقدار بارگشتی</ReturnValue>
     <ReverseHor>معکوس افقی</ReverseHor>
