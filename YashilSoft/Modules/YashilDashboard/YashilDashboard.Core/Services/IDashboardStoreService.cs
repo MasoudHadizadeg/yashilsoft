@@ -11,7 +11,7 @@ namespace YashilDashboard.Core.Services
     {
         string GetDashboardDesigner(int dashboardId);
         string GetDashboardViewer( int dashboardId);
-        Task UpdateDashboardStoreWithConnectionStringAsync(DashboardStore entity, List<DashboardConnectionString> dashboardConnectionStrings, List<string> getModifiedProperties);
+        Task UpdateDashboardStoreWithConnectionStringAsync(DashboardStore entity, List<DashboardConnectionString> dashboardConnectionStrings);
         /// <summary>
         /// Get Dashboard Including ConnectionString
         /// </summary>

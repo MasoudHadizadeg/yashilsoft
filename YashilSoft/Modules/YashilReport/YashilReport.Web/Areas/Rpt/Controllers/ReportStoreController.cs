@@ -70,7 +70,8 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
                 ModificationDate = DateTime.Now,
                 ReportFile = report.SaveToByteArray()
             };
-            await _reportStoreService.UpdateAsync(reportStore, data.ReportId, new List<string> {"ReportFile"}, true);
+            await _reportStoreService.UpdateAsync(reportStore, data.ReportId, new List<string> {"ReportFile"}, true, true);
+
             return true;
         }
 
@@ -100,7 +101,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         }
 
         protected override async Task UpdateAsync(ReportStore entity, ReportStoreEditModel editModel, int entityId,
-            List<string> notModifiedProperties)
+            List<string> props, bool modifyProps = true)
         {
             var reportConnectionStrings = editModel.ConnectionStringIds.Select(conStringId =>
                 new ReportConnectionString
@@ -111,8 +112,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
                     CreationDate = DateTime.Now
                 }).ToList();
 
-            await _reportStoreService.UpdateReportStoreWithConnectionStringAsync(entity, reportConnectionStrings,
-                GetNotModifiedProperties(entity));
+            await _reportStoreService.UpdateReportStoreWithConnectionStringAsync(entity, reportConnectionStrings, null);
         }
 
         protected override async Task<ReportStoreEditModel> GetEntityForEdit(int id)

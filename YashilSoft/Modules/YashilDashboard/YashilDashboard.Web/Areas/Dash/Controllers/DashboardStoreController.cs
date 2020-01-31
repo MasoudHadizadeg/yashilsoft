@@ -77,10 +77,9 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
                 });
             }
         }
+        
 
-        protected override async Task UpdateAsync(DashboardStore entity, DashboardStoreEditModel editModel,
-            int entityId,
-            List<string> notModifiedProperties)
+        protected override async Task UpdateAsync(DashboardStore entity, DashboardStoreEditModel editModel, int entityId, List<string> props, bool modifyProps)
         {
             var dashboardConnectionStrings = editModel.ConnectionStringIds.Select(conStringId =>
                 new DashboardConnectionString
@@ -91,9 +90,7 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
                     CreationDate = DateTime.Now
                 }).ToList();
 
-            await _dashboardStoreService.UpdateDashboardStoreWithConnectionStringAsync(entity,
-                dashboardConnectionStrings,
-                GetNotModifiedProperties(entity));
+            await _dashboardStoreService.UpdateDashboardStoreWithConnectionStringAsync(entity, dashboardConnectionStrings);
         }
 
         protected override async Task<DashboardStoreEditModel> GetEntityForEdit(int id)

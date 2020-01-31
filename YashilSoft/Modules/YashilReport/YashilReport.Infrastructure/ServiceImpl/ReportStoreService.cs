@@ -23,6 +23,7 @@ namespace YashilReport.Infrastructure.ServiceImpl
         private readonly IYashilConnectionStringService _connectionStringService;
         private readonly IReportConnectionStringService _reportConnectionStringService;
         private readonly IUserPrincipal _userPrincipal;
+
         public ReportStoreService(IUnitOfWork unitOfWork, IReportStoreRepository reportStoreRepository,
             IWebHostEnvironment webHostEnvironment, IYashilConnectionStringService yashilConnectionStringService,
             IReportConnectionStringService reportConnectionStringService, IUserPrincipal userPrincipal) :
@@ -50,14 +51,15 @@ namespace YashilReport.Infrastructure.ServiceImpl
             report.Load(reportStore.ReportFile);
 
             var reportConnectionStrings = _connectionStringService.GetByReportId(reportId).Select(x =>
-                new { x.Title, x.ConnectionString, DataProviderTitle = x.DataProvider.Title }).ToList();
+                new {x.Title, x.ConnectionString, DataProviderTitle = x.DataProvider.Title}).ToList();
             foreach (StiDatabase db in report.Dictionary.Databases)
             {
                 // TODO: Add Common Databases
                 var connection = reportConnectionStrings.Find(x => x.Title == db.Name);
                 if (connection.DataProviderTitle == "MS SQL")
                 {
-                    ((StiSqlDatabase)db).ConnectionString = _connectionStringService.Decrypt(connection.ConnectionString);
+                    ((StiSqlDatabase) db).ConnectionString =
+                        _connectionStringService.Decrypt(connection.ConnectionString);
                 }
             }
 
@@ -103,12 +105,12 @@ namespace YashilReport.Infrastructure.ServiceImpl
 
         public async Task UpdateReportStoreWithConnectionStringAsync(ReportStore entity,
             List<ReportConnectionString> reportConnectionStrings,
-            List<string> notModifiedProperties)
+            List<string> props)
         {
             DeleteContentionStrings(entity.Id);
             var report = AddConnectionStringToReport(entity.Id, reportConnectionStrings);
             entity.ReportFile = report.SaveToByteArray();
-            await UpdateAsync(entity, entity.Id, notModifiedProperties, true);
+            await UpdateAsync(entity, entity.Id, props, false);
         }
 
         public Result HandleReport(CommandJson command)
@@ -130,7 +132,9 @@ namespace YashilReport.Infrastructure.ServiceImpl
         public override async Task<ReportStore> AddAsync(ReportStore reportStore, bool saveAfterAdd = false)
         {
             var report = new StiReport();
-            var connectionStrings =_connectionStringService.FindByIds(reportStore.ReportConnectionString.Select(x => x.ConnectionStringId));
+            var connectionStrings =
+                _connectionStringService.FindByIds(
+                    reportStore.ReportConnectionString.Select(x => x.ConnectionStringId));
             foreach (var connection in connectionStrings)
             {
                 AddDatabaseToReport(report, connection);
@@ -165,6 +169,5 @@ namespace YashilReport.Infrastructure.ServiceImpl
                     connection.Title));
             }
         }
-
     }
 }

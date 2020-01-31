@@ -53,12 +53,11 @@ namespace YashilBaseInfo.Infrastructure.ServiceImpl
         }
 
         public override Task<ValueTask<YashilConnectionString>?> UpdateAsync(
-            YashilConnectionString yashilConnectionString, object key, List<string> modifiedProperties,
-            bool saveAfterUpdate = false)
+            YashilConnectionString yashilConnectionString, object key, bool saveAfterUpdate = false)
         {
             yashilConnectionString.ConnectionString =
                 CryptographyHelper.AesEncrypt(yashilConnectionString.ConnectionString);
-            return base.UpdateAsync(yashilConnectionString, key, modifiedProperties, saveAfterUpdate);
+            return base.UpdateAsync(yashilConnectionString, key, saveAfterUpdate);
         }
 
         public override Task<YashilConnectionString> AddAsync(YashilConnectionString yashilConnectionString,

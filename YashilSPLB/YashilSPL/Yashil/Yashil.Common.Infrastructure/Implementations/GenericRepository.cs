@@ -60,14 +60,14 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         #region private Select Methods For Repository Classes
 
-        private  T Find(Expression<Func<T, bool>> match, bool readOnly = false)
+        private T Find(Expression<Func<T, bool>> match, bool readOnly = false)
         {
             return readOnly
                 ? _context.Set<T>().AsNoTracking().SingleOrDefault(match)
                 : _context.Set<T>().SingleOrDefault(match);
         }
 
-        private  async Task<T> FindAsync(Expression<Func<T, bool>> match, bool readOnly = false)
+        private async Task<T> FindAsync(Expression<Func<T, bool>> match, bool readOnly = false)
         {
             return readOnly
                 ? await _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(match)
@@ -109,7 +109,7 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             t.CreateBy = _userPrincipal.Id;
             t.CreationDate = DateTime.Now;
-            
+
             _context.Set<T>().Add(t);
             return t;
         }
@@ -143,7 +143,12 @@ namespace Yashil.Common.Infrastructure.Implementations
             }
         }
 
-        public virtual T Update(T t, object key, List<string> notModifiedProps)
+        public virtual T Update(T t, object key)
+        {
+            return Update(t, key, null, false);
+        }
+
+        public virtual T Update(T t, object key, List<string> props, bool modifyProps = true)
         {
             if (t == null)
                 return null;
@@ -157,11 +162,25 @@ namespace Yashil.Common.Infrastructure.Implementations
                 entityEntry.Property("CreationDate").IsModified = false;
                 entityEntry.Property("CreateBy").IsModified = false;
 
-                if (notModifiedProps != null && notModifiedProps.Count > 0)
+                var creatorOrganizationId = entityEntry.Property("CreatorOrganizationId");
+                if (creatorOrganizationId != null)
                 {
-                    var notModifiedProperties = entityEntry.Properties
-                        .Where(m => m.IsModified &&
-                                    notModifiedProps.Contains(m.Metadata.Name))
+                    creatorOrganizationId.IsModified = false;
+                }
+
+                var applicationId = entityEntry.Property("ApplicationId");
+                if (applicationId != null)
+                {
+                    applicationId.IsModified = false;
+                }
+
+                if (props != null && props.Count > 0)
+                {
+                    var notModifiedProperties = entityEntry.Properties.Where(m => m.IsModified &&
+                                                                                  (modifyProps &&
+                                                                                   !props.Contains(m.Metadata.Name)) ||
+                                                                                  (!modifyProps &&
+                                                                                   props.Contains(m.Metadata.Name)))
                         .ToList();
                     foreach (var notModifiedProperty in notModifiedProperties)
                     {
@@ -173,7 +192,14 @@ namespace Yashil.Common.Infrastructure.Implementations
             return exist;
         }
 
-        public virtual async Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> notModifiedProps)
+        public virtual async Task<ValueTask<T>?> UpdateAsync(T t, object key)
+        {
+            return await UpdateAsync(t, key, null, false);
+        }
+
+
+        public virtual async Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> props,
+            bool modifyProps = true)
         {
             if (t == null)
                 return null;
@@ -187,11 +213,13 @@ namespace Yashil.Common.Infrastructure.Implementations
                 entityEntry.Property("CreationDate").IsModified = false;
                 entityEntry.Property("CreateBy").IsModified = false;
 
-                if (notModifiedProps != null && notModifiedProps.Count > 0)
+                if (props != null && props.Count > 0)
                 {
-                    var notModifiedProperties = entityEntry.Properties
-                        .Where(m => m.IsModified &&
-                                    notModifiedProps.Contains(m.Metadata.Name))
+                    var notModifiedProperties = entityEntry.Properties.Where(m => m.IsModified &&
+                                                                                  (modifyProps &&
+                                                                                   !props.Contains(m.Metadata.Name)) ||
+                                                                                  (!modifyProps &&
+                                                                                   props.Contains(m.Metadata.Name)))
                         .ToList();
                     foreach (var notModifiedProperty in notModifiedProperties)
                     {
@@ -205,7 +233,7 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         #endregion
 
-        public  int Count()
+        public int Count()
         {
             return _context.Set<T>().Count();
         }

@@ -11,8 +11,10 @@ namespace Yashil.Common.Core.Interfaces
         Task Delete(object id, bool saveAfterDelete = false);
         Task<TModel> AddAsync(TModel t, bool saveAfterAdd = false);
         TModel Add(TModel t, bool saveAfterAdd = false);
-        Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, List<string> modifiedProperties, bool saveAfterUpdate = false);
-        TModel Update(TModel t, object key, List<string> modifiedProperties, bool saveAfterUpdate = false);
+        Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, List<string> props,bool modifyProps, bool saveAfterUpdate = false);
+        Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, bool saveAfterUpdate = false);
+        TModel Update(TModel t, object key, List<string> props, bool modifyProps, bool saveAfterUpdate = false);
+        TModel Update(TModel t, object key, bool saveAfterUpdate = false);
         Task<TModel> GetAsync(object id, bool readOnly);
         TModel Get(object id, bool readOnly);
         Task<int> CountAsync();

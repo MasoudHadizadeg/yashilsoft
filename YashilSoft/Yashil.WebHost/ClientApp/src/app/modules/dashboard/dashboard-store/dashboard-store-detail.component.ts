@@ -44,7 +44,7 @@ export class DashboardStoreDetailComponent extends BaseEdit implements OnInit {
             const reader = new FileReader();
             reader.onload = function (e) {
                 that.imgBase64 = that.sanitizer.bypassSecurityTrustResourceUrl(e.target['result']);
-                that.entity.picture = atob(that.imgBase64);
+                that.entity.picture = btoa(e.target['result']);
             }
             reader.readAsDataURL(files[0]);
         }

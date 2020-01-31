@@ -46,15 +46,13 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
             throw new System.NotImplementedException();
         }
 
-        public async Task UpdateDashboardStoreWithConnectionStringAsync(DashboardStore entity,
-            List<DashboardConnectionString> dashboardConnectionStrings,
-            List<string> notModifiedProperties)
+        public async Task UpdateDashboardStoreWithConnectionStringAsync(DashboardStore entity, List<DashboardConnectionString> dashboardConnectionStrings)
         {
             DeleteContentionStrings(entity.Id);
             var dashboard = AddConnectionStringToDashboard(entity.Id, dashboardConnectionStrings);
             entity.DashboardFile = XDocumentHelper.GetBytes(dashboard.SaveToXDocument());
             // entity.DashboardFile= dashboard
-            await UpdateAsync(entity, entity.Id, notModifiedProperties, true);
+            await UpdateAsync(entity, entity.Id, true);
         }
 
         public async Task<DashboardStore> GetEntityForEdit(int dashboardId)

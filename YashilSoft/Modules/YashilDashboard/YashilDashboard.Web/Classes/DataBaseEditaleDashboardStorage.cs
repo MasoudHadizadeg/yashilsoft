@@ -76,7 +76,7 @@ namespace YashilDashboard.Web.Classes
                 ModificationDate = DateTime.Now
             };
 
-            dashboardService.Update(dashboardStore, dashboardStore.Id, new List<string> { "DashboardFile" }, true);
+            dashboardService.Update(dashboardStore, dashboardStore.Id, new List<string> { "DashboardFile" },true, true);
         }
     }
 }

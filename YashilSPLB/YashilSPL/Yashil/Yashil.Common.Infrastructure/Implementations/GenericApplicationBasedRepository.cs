@@ -81,29 +81,5 @@ namespace Yashil.Common.Infrastructure.Implementations
             throw new NotImplementedException();
         }
 
-        public override T Update(T t, object key, List<string> notModifiedProps)
-        {
-            SetDefaultNotModifiedProps(notModifiedProps);
-            return base.Update(t, key, notModifiedProps);
-        }
-
-        public override Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> notModifiedProps)
-        {
-            SetDefaultNotModifiedProps(notModifiedProps);
-            return base.UpdateAsync(t, key, notModifiedProps);
-        }
-
-        private void SetDefaultNotModifiedProps(List<string> notModifiedProps)
-        {
-            if (!notModifiedProps.Contains("CreatorOrganizationId"))
-            {
-                notModifiedProps.Add("CreatorOrganizationId");
-            }
-            if (!notModifiedProps.Contains("ApplicationId"))
-            {
-                notModifiedProps.Add("ApplicationId");
-            }
-
-        }
     }
 }

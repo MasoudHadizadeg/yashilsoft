@@ -142,8 +142,9 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
                 entity.ModificationDate = DateTime.Now;
 
                 CustomMapBeforeUpdate(editModel, entity);
-                var notModifiedProperties = GetNotModifiedProperties(entity);
-                await UpdateAsync(entity, editModel, entity.Id, notModifiedProperties);
+
+                var modifyProps = GetPropertiesForApplyOrIgnoreUpdate(entity, out var props);
+                await UpdateAsync(entity, editModel, entity.Id, props, modifyProps);
 
                 AfterUpdate(editModel, entity);
             }
@@ -155,6 +156,16 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             }
 
             return new HttpResponseMessage(HttpStatusCode.OK);
+        }
+
+        /// <summary>
+        ///  لیستی از ویژگی های موجودیت برای بروز رسانی یا عدم بروز رسانی.هنگام فراخوانی متد بروز رسانی سرویس از طریق پارامتر ورودی نوع آن را مشخص کنید 
+        /// </summary>
+        [NonAction]
+        protected virtual bool GetPropertiesForApplyOrIgnoreUpdate(TModel entity, out List<string> props)
+        {
+            props = new List<string>();
+            return true;
         }
 
 
@@ -236,15 +247,9 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
 
         [NonAction]
         protected virtual async Task UpdateAsync(TModel entity, TEditModel editModel, TK entityId,
-            List<string> notModifiedProperties)
+            List<string> props, bool modifyProps = true)
         {
-            await _genericService.UpdateAsync(entity, entity.Id, notModifiedProperties, true);
-        }
-
-        [NonAction]
-        protected virtual List<string> GetNotModifiedProperties(TModel entity)
-        {
-            return new List<string>();
+            await _genericService.UpdateAsync(entity, entity.Id, props, modifyProps, true);
         }
     }
 }

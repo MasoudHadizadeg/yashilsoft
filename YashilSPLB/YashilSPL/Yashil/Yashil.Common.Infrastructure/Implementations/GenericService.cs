@@ -34,7 +34,7 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         public async Task Delete(object id, bool saveAfterDelete = false)
         {
-            _repository.Delete(id,false);
+            _repository.Delete(id, false);
             if (saveAfterDelete)
             {
                 await _unitOfWork.CommitAsync();
@@ -63,10 +63,14 @@ namespace Yashil.Common.Infrastructure.Implementations
             return addedEntity;
         }
 
-        public virtual async Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, List<string> notModifiedProps,
-            bool saveAfterUpdate = false)
+        public virtual async Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, bool saveAfterUpdate = false)
         {
-            var updateAsync = await _repository.UpdateAsync(t, key, notModifiedProps);
+            return await UpdateAsync(t, key, null, false, saveAfterUpdate);
+        }
+        public virtual async Task<ValueTask<TModel>?> UpdateAsync(TModel t, object key, List<string> props,
+            bool modifyProps, bool saveAfterUpdate = false)
+        {
+            var updateAsync = await _repository.UpdateAsync(t, key, props, modifyProps);
             if (saveAfterUpdate)
             {
                 await _unitOfWork.CommitAsync();
@@ -74,10 +78,14 @@ namespace Yashil.Common.Infrastructure.Implementations
 
             return updateAsync;
         }
-
-        public TModel Update(TModel t, object key, List<string> modifiedProperties, bool saveAfterUpdate = false)
+        public TModel Update(TModel t, object key, bool saveAfterUpdate = false)
         {
-            var updateAsync = _repository.Update(t, key, modifiedProperties);
+            return Update(t, key, null, true, saveAfterUpdate);
+        }
+        public TModel Update(TModel t, object key, List<string> props, bool modifyProps,
+            bool saveAfterUpdate = false)
+        {
+            var updateAsync = _repository.Update(t, key, props, modifyProps);
             if (saveAfterUpdate)
             {
                 _unitOfWork.Commit();
@@ -117,7 +125,6 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             return await _unitOfWork.CommitAsync();
         }
-
         public IQueryable<TModel> GetAll(bool readOnly)
         {
             return _repository.GetAll(readOnly);

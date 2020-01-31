@@ -14,13 +14,23 @@ namespace Yashil.Common.Core.Interfaces
 
         Task<T> AddAsync(T t);
         T Add(T t);
-        Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> modifiedProperties);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="key"></param>
+        /// <param name="props"></param>
+        /// <param name="modifyProps"> فقط ویژگی های پاس داده شده ویرایش شود؟ </param>
+        /// <returns></returns>
+        Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> props, bool modifyProps = true);
+        Task<ValueTask<T>?> UpdateAsync(T t, object key);
+        T Update(T t, object key, List<string> props, bool modifyProps = true);
+        T Update(T t, object key);
+
         T Get(object id, bool readOnly = false);
         IQueryable<T> GetAll(bool readOnly = false);
         IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties);
         ValueTask<T> GetAsync(object id, bool readOnly = true);
         Task<int> CountAsync();
-
-        T Update(T t, object key, List<string> notModifiedProps);
     }
 }

@@ -650,7 +650,7 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
-      "Yashil.Common.Core/1.1.7": {
+      "Yashil.Common.Core/1.2.4": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -2198,7 +2198,7 @@
         "system.threading.tasks.nuspec"
       ]
     },
-    "Yashil.Common.Core/1.1.7": {
+    "Yashil.Common.Core/1.2.4": {
       "type": "project",
       "path": "../Yashi.Common.Core/Yashil.Common.Core.csproj",
       "msbuildProject": "../Yashi.Common.Core/Yashil.Common.Core.csproj"
@@ -2214,7 +2214,7 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.0",
       "Microsoft.AspNetCore.Mvc.Abstractions >= 2.2.0",
       "System.IdentityModel.Tokens.Jwt >= 5.6.0",
-      "Yashil.Common.Core >= 1.1.7",
+      "Yashil.Common.Core >= 1.2.4",
       "Yashil.Common.SharedKernel >= 1.0.3"
     ]
   },
