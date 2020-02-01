@@ -2,7 +2,7 @@
   window.__env = window.__env || {};
 
   // API url
-  window.__env.apiUrl = 'https://localhost:44370';
+  window.__env.apiUrl = 'https://localhost:5001';
   window.__env.mode = 'Report';// Dashboard Or Report
 
 
