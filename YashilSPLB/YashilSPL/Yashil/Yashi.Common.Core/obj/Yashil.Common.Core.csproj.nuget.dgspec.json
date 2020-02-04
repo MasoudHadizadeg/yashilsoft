@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj": {}
+    "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj": {}
   },
   "projects": {
-    "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj": {
+    "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj": {
       "version": "1.2.4",
       "restore": {
-        "projectUniqueName": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj",
+        "projectUniqueName": "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj",
         "projectName": "Yashil.Common.Core",
-        "projectPath": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj",
-        "packagesPath": "C:\\Users\\masoud\\.nuget\\packages\\",
-        "outputPath": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\obj\\",
+        "projectPath": "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj",
+        "packagesPath": "C:\\Users\\Hadizadeh\\.nuget\\packages\\",
+        "outputPath": "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\masoud\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
+          "C:\\Users\\Hadizadeh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,12 +22,9 @@
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\masoud\\.nuget\\packages": {},
-          "D:\\Works\\YashilPackageSource": {},
-          "D:\\programmingtools\\Stimulsoft\\Stimulsoft Reports AIO 2019.4.2\\Nuget Patched Packages": {},
+          "http://192.168.25.101:8086/Feeds/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -72,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

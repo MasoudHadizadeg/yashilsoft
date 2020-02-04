@@ -12,7 +12,7 @@ namespace Yashil.Common.SharedKernel.Helpers
             if (string.IsNullOrWhiteSpace(password))
                 throw new ArgumentException("Value cannot be empty or whitespace only string.", nameof(password));
 
-            using var hmac = new System.Security.Cryptography.HMACSHA512();
+            var hmac = new System.Security.Cryptography.HMACSHA512();
             passwordSalt = hmac.Key;
             passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
         }

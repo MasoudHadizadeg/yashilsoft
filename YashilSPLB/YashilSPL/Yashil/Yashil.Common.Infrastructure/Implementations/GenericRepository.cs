@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 
@@ -159,20 +160,7 @@ namespace Yashil.Common.Infrastructure.Implementations
                 var entityEntry = _context.Entry(existResult);
                 entityEntry.CurrentValues.SetValues(t);
 
-                entityEntry.Property("CreationDate").IsModified = false;
-                entityEntry.Property("CreateBy").IsModified = false;
-
-                var creatorOrganizationId = entityEntry.Property("CreatorOrganizationId");
-                if (creatorOrganizationId != null)
-                {
-                    creatorOrganizationId.IsModified = false;
-                }
-
-                var applicationId = entityEntry.Property("ApplicationId");
-                if (applicationId != null)
-                {
-                    applicationId.IsModified = false;
-                }
+                SetDefaultReadOnlyProps(entityEntry);
 
                 if (props != null && props.Count > 0)
                 {
@@ -190,6 +178,24 @@ namespace Yashil.Common.Infrastructure.Implementations
             }
 
             return exist;
+        }
+
+        private void SetDefaultReadOnlyProps(EntityEntry<T> entityEntry)
+        {
+            entityEntry.Property("CreationDate").IsModified = false;
+            entityEntry.Property("CreateBy").IsModified = false;
+
+            var creatorOrganizationId = entityEntry.Property("CreatorOrganizationId");
+            if (creatorOrganizationId != null)
+            {
+                creatorOrganizationId.IsModified = false;
+            }
+
+            var applicationId = entityEntry.Property("ApplicationId");
+            if (applicationId != null)
+            {
+                applicationId.IsModified = false;
+            }
         }
 
         public virtual async Task<ValueTask<T>?> UpdateAsync(T t, object key)
@@ -210,8 +216,7 @@ namespace Yashil.Common.Infrastructure.Implementations
                 var entityEntry = _context.Entry(existResult);
                 entityEntry.CurrentValues.SetValues(t);
 
-                entityEntry.Property("CreationDate").IsModified = false;
-                entityEntry.Property("CreateBy").IsModified = false;
+                SetDefaultReadOnlyProps(entityEntry);
 
                 if (props != null && props.Count > 0)
                 {
@@ -219,8 +224,7 @@ namespace Yashil.Common.Infrastructure.Implementations
                                                                                   (modifyProps &&
                                                                                    !props.Contains(m.Metadata.Name)) ||
                                                                                   (!modifyProps &&
-                                                                                   props.Contains(m.Metadata.Name)))
-                        .ToList();
+                                                                                   props.Contains(m.Metadata.Name))).ToList();
                     foreach (var notModifiedProperty in notModifiedProperties)
                     {
                         entityEntry.Property(notModifiedProperty.Metadata.Name).IsModified = false;

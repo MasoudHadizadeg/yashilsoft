@@ -50,6 +50,7 @@ namespace SimplCommerce.MSBuildTasks
 
         private bool CopyModule(Module module)
         {
+            Log.LogMessage(MessageImportance.High, $"Copied module  {module.Id} Start ...");
             if (module.Id == "Yashil.Runtime")
             {
                 Log.LogMessage(module.Id);
@@ -85,8 +86,24 @@ namespace SimplCommerce.MSBuildTasks
                 //var destinationWwwroot = Path.Combine(ProjectDir, "wwwroot", "modules", module.Id.Split('.').Last().ToLower());
                 var destinationWwwroot = Path.Combine(ProjectDir, "wwwroot");
 
-                CreateOrCleanDirectory(destinationWwwroot);
-                CreateOrCleanDirectory(destination);
+                try
+                {
+                    CreateOrCleanDirectory(destinationWwwroot);
+                }
+                catch (System.Exception e)
+                {
+                    Log.LogMessage(MessageImportance.High, $"Exception  {module.Id} *** >> CreateOrCleanDirectory(destinationWwwroot)  ");
+                }
+
+                try
+                {
+                    CreateOrCleanDirectory(destination);
+                }
+                catch (System.Exception e)
+                {
+                    Log.LogMessage(MessageImportance.High, $"Exception  {module.Id} *** >> CreateOrCleanDirectory(destination);  ");
+                }
+
 
                 File.Copy(Path.Combine(sourceRoot, moduleFileName),
                     Path.Combine(destination, moduleFileName), true);
@@ -118,23 +135,51 @@ namespace SimplCommerce.MSBuildTasks
 
         private void CreateOrCleanDirectory(string path)
         {
+
             if (Directory.Exists(path))
             {
                 var di = new DirectoryInfo(path);
                 foreach (var file in di.GetFiles())
                 {
-                    file.Delete();
+                    try
+                    {
+                        file.Delete();
+                    }
+                    catch (System.Exception)
+                    {
+                        Log.LogMessage(MessageImportance.High, $"Exception file.Delete(); {path}");
+                    }
+
                 }
 
                 foreach (var dir in di.GetDirectories())
                 {
-                    dir.Delete(true);
+                    try
+                    {
+                        dir.Delete(true);
+                    }
+                    catch (System.Exception)
+                    {
+                        Log.LogMessage(MessageImportance.High, $"Exception dir.Delete(true); {path}");
+                    }
+
                 }
             }
             else
             {
-                Directory.CreateDirectory(path);
+                try
+                {
+                    Directory.CreateDirectory(path);
+                }
+                catch (System.Exception)
+                {
+
+                    Log.LogMessage(MessageImportance.High, $"Exception Directory.CreateDirectory(path);  {path}");
+                }  
             }
+
+
+
         }
 
         private void CopyDirectory(string sourcePath, string targetPath)

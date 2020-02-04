@@ -14,3 +14,11 @@ D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Re
 D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.dll
 D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.pdb
 D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.csprojAssemblyReference.cache
+E:\Works\YashilSpl\yashilsoft\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\bin\Release\netcoreapp3.1\Yashil.Common.SharedKernel.deps.json
+E:\Works\YashilSpl\yashilsoft\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\bin\Release\netcoreapp3.1\Yashil.Common.SharedKernel.dll
+E:\Works\YashilSpl\yashilsoft\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\bin\Release\netcoreapp3.1\Yashil.Common.SharedKernel.pdb
+E:\Works\YashilSpl\yashilsoft\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.AssemblyInfoInputs.cache
+E:\Works\YashilSpl\yashilsoft\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.AssemblyInfo.cs
+E:\Works\YashilSpl\yashilsoft\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.dll
+E:\Works\YashilSpl\yashilsoft\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.pdb
+E:\Works\YashilSpl\yashilsoft\YashilSPLB\YashilSPL\Yashil\Yashil.Common.SharedKernel\obj\Release\netcoreapp3.1\Yashil.Common.SharedKernel.csprojAssemblyReference.cache

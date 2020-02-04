@@ -4,6 +4,6 @@ namespace YashilUserManagement.Core.Interfaces
 {
     public interface IWorkContext
     {
-        public ClaimsPrincipal CurrentUser { get; set; }
+        ClaimsPrincipal CurrentUser { get; set; }
     }
 }

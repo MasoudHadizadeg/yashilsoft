@@ -128,7 +128,7 @@
   .sidebar-content {
     position: relative;
     height: calc(100vh - 90px);
-    overflow: auto;
+    overflow: hidden;
     z-index: 4;
   }
 
