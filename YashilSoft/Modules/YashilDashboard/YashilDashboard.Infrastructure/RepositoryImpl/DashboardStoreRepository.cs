@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -11,7 +12,8 @@ using YashilDashboard.Core.Repositories;
 
 namespace YashilDashboard.Infrastructure.RepositoryImpl
 {
-    public class DashboardStoreRepository : GenericApplicationBasedRepository<DashboardStore, int>, IDashboardStoreRepository
+    public class DashboardStoreRepository : GenericApplicationBasedRepository<DashboardStore, int>,
+        IDashboardStoreRepository
     {
         private readonly YashilAppDbContext _context;
 
@@ -47,6 +49,17 @@ namespace YashilDashboard.Infrastructure.RepositoryImpl
         public IQueryable<DashboardStore> GetUserDashboardList()
         {
             return _context.DashboardStore.Where(CheckDashboardAccess());
+        }
+
+        public IQueryable<DashboardStore> GetDashboardStoresAssignedToGroupAsync(int groupId)
+        {
+            return GetUserDashboardList().Where(x => x.DashboardGroupDashboard.Any(d => d.DashboardGroupId == groupId));
+        }
+
+        public IQueryable<DashboardStore> GetDashboardStoresNotAssignedToGroupAsync(int groupId)
+        {
+            var groupedDashboards = _context.DashboardGroupDashboard.Select(x => x.DashboardStoreId);
+            return GetUserDashboardList().Where(x => !groupedDashboards.Contains(x.Id));
         }
     }
 }

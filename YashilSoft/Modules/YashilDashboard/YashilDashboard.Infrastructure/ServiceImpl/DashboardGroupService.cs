@@ -16,10 +16,11 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
         private readonly IDashboardGroupRepository _dashboardGroupRepository;
         private readonly ClaimsPrincipal _claimsPrincipal;
 
-        public DashboardGroupService(IUnitOfWork unitOfWork, IDashboardGroupRepository dashboardGroupRepository, IUserPrincipal userPrincipal) : base(unitOfWork, dashboardGroupRepository, userPrincipal)
+        public DashboardGroupService(IUnitOfWork unitOfWork, IDashboardGroupRepository dashboardGroupRepository, IUserPrincipal userPrincipal, ClaimsPrincipal claimsPrincipal) : base(unitOfWork, dashboardGroupRepository, userPrincipal)
         {
             _unitOfWork = unitOfWork;
             _dashboardGroupRepository = dashboardGroupRepository;
+            _claimsPrincipal = claimsPrincipal;
         }
 
         public IQueryable<DashboardGroup> GetDashboardGroupList()

@@ -10,15 +10,19 @@ import {CustomDevDataSource} from '../../../classes/custom-dev-data-source';
 export class AssignableListComponent implements OnInit {
     itemDataSource: any;
     @Input()
-    selectedItemId: number;
+    selectedGroupItemId: number;
     @Input()
-    itemEntityName: string;
+    groupEntityName: string;
     @Input()
-    itemEntityLabel: string;
+    groupEntityLabel: string;
     @Input()
     columns: any[] = [];
     @Input()
     assignableListName: string;
+    @Input()
+    getAssignedMethodName: string;
+    @Input()
+    getNotAssignedMethodName: string;
     assignedItemDataSource: any = {};
     notAssignedItemDatasource: any = {};
     httpClient: HttpClient
@@ -34,9 +38,22 @@ export class AssignableListComponent implements OnInit {
                 dataField: 'title'
             });
         }
-        this.selectedItemId = 2016;
-        this.itemDataSource = this.genericDataService.createCustomDatasourceForSelect('id', this.itemEntityName);
-        this.assignedItemDataSource = new CustomDevDataSource(this.httpClient).getCustomDataSourceAssignedList(this.assignableListName, [], this.selectedItemId);
-        this.notAssignedItemDatasource = new CustomDevDataSource(this.httpClient).getCustomDataSourceNotAssignedList(this.assignableListName, [], this.selectedItemId);
+        this.itemDataSource = this.genericDataService.createCustomDatasourceForSelect('id', this.groupEntityName);
+    }
+
+    bindLists() {
+        if (!this.getAssignedMethodName) {
+            this.getAssignedMethodName = `${this.assignableListName}/Get${this.assignableListName}sAssignedTo${this.groupEntityName}Async?id=${this.selectedGroupItemId}`;
+        }
+        if (!this.getNotAssignedMethodName) {
+            this.getNotAssignedMethodName = `${this.assignableListName}/Get${this.assignableListName}sNotAssignedTo${this.groupEntityName}Async?id=${this.selectedGroupItemId}`;
+        }
+        this.assignedItemDataSource = new CustomDevDataSource(this.httpClient).getCustomDataSourceWithCustomListUrl(this.getAssignedMethodName);
+        this.notAssignedItemDatasource = new CustomDevDataSource(this.httpClient).getCustomDataSourceWithCustomListUrl(this.getNotAssignedMethodName);
+    }
+
+    selectedGroupItemChanged(data) {
+        this.selectedGroupItemId = data.value;
+        this.bindLists();
     }
 }

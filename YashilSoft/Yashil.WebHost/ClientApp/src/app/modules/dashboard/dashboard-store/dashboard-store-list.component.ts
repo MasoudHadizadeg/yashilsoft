@@ -15,14 +15,10 @@ export class DashboardStoreListComponent {
     constructor(private router: Router) {
         this.DesignDashboard = this.DesignDashboard.bind(this);
         this.ViewDashboard = this.ViewDashboard.bind(this);
-
-        this.columns.push({
-            caption: 'کد',
-            dataField: 'code'
-        });
         this.columns.push({
             caption: 'عنوان',
-            dataField: 'title'
+            dataField: 'title',
+            width: '80%'
         });
         this.columns.push({
             caption: 'سطح دسترسی',

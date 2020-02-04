@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Yashil.Common.Core.Interfaces;
@@ -10,5 +11,7 @@ namespace YashilDashboard.Core.Repositories
         void DeleteContentionStrings(int dashboardId);
         Task<DashboardStore> GetForEditAsync(int dashboardId, bool readOnly = false);
         IQueryable<DashboardStore> GetUserDashboardList();
+        IQueryable<DashboardStore> GetDashboardStoresAssignedToGroupAsync(int groupId);
+        IQueryable<DashboardStore> GetDashboardStoresNotAssignedToGroupAsync(int groupId);
     }
 }      

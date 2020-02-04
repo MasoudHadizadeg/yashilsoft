@@ -20,6 +20,9 @@ namespace YashilDashboard.Core.Services
         Task<DashboardStore> GetEntityForEdit(int dashboardId);
 
         IQueryable<DashboardStore> GetDashboardList();
+        IQueryable<DashboardStore> GetDashboardStoresAssignedToGroupAsync(int groupId);
+        IQueryable<DashboardStore> GetDashboardStoresNotAssignedToGroupAsync(int groupId);
+        Task<bool> AssignSelectedItemsToDashboardGroup(List<int> selectedDashboardStores, int dashboardGroupId, bool assign);
     }
 }      
  

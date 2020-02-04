@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Data.ResponseModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.CustomViewModels;
 using Yashil.Core.Entities;
@@ -77,9 +80,10 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
                 });
             }
         }
-        
 
-        protected override async Task UpdateAsync(DashboardStore entity, DashboardStoreEditModel editModel, int entityId, List<string> props, bool modifyProps)
+
+        protected override async Task UpdateAsync(DashboardStore entity, DashboardStoreEditModel editModel,
+            int entityId, List<string> props, bool modifyProps)
         {
             var dashboardConnectionStrings = editModel.ConnectionStringIds.Select(conStringId =>
                 new DashboardConnectionString
@@ -90,7 +94,8 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
                     CreationDate = DateTime.Now
                 }).ToList();
 
-            await _dashboardStoreService.UpdateDashboardStoreWithConnectionStringAsync(entity, dashboardConnectionStrings);
+            await _dashboardStoreService.UpdateDashboardStoreWithConnectionStringAsync(entity,
+                dashboardConnectionStrings);
         }
 
         protected override async Task<DashboardStoreEditModel> GetEntityForEdit(int id)
@@ -105,6 +110,42 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
         {
             return await _dashboardStoreService.GetDashboardList()
                 .ProjectTo<StoreCustomViewModel>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="loadOptions"></param>
+        /// <param name="id">Group Id</param>
+        /// <returns></returns>
+        [HttpGet("GetDashboardStoresAssignedToDashboardGroupAsync")]
+        public async Task<LoadResult> GetDashboardStoresAssignedToDashboardGroupAsync(
+            CustomDataSourceLoadOptions loadOptions, int id)
+        {
+            IQueryable<DashboardStore> entities = _dashboardStoreService.GetDashboardStoresAssignedToGroupAsync(id);
+            return await DataSourceLoader.LoadAsync(
+                entities.ProjectTo<DashboardStoreSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="loadOptions"></param>
+        /// <param name="id">Group Id</param>
+        /// <returns></returns>
+        [HttpGet("GetDashboardStoresNotAssignedToDashboardGroupAsync")]
+        public async Task<LoadResult> GetDashboardStoresNotAssignedToDashboardGroupAsync(
+            CustomDataSourceLoadOptions loadOptions, int id)
+        {
+            IQueryable<DashboardStore> entities = _dashboardStoreService.GetDashboardStoresNotAssignedToGroupAsync(id);
+            return await DataSourceLoader.LoadAsync(
+                entities.ProjectTo<DashboardStoreSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+
+        [HttpPost("AssignSelectedItemsToDashboardGroup")]
+        public async Task<bool> AssignSelectedItemsToDashboardGroup(List<int> selectedDashboardStores,int dashboardGroupId, bool assign = true)
+        {
+            return await _dashboardStoreService.AssignSelectedItemsToDashboardGroup(selectedDashboardStores, dashboardGroupId, assign);
         }
     }
 }

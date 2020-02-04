@@ -20,6 +20,7 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IDashboardStoreRepository _dashboardStoreRepository;
+        private readonly IDashboardGroupDashboardRepository _dashboardGroupDashboardRepository;
         private readonly IYashilConnectionStringService _connectionStringService;
         private readonly IDashboardConnectionStringService _dashboardConnectionStringService;
         private readonly ClaimsPrincipal _claimsPrincipal;
@@ -27,13 +28,15 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
         public DashboardStoreService(IUnitOfWork unitOfWork, IDashboardStoreRepository dashboardStoreRepository,
             IYashilConnectionStringService connectionStringService,
             IDashboardConnectionStringService dashboardConnectionStringService, ClaimsPrincipal claimsPrincipal,
-            IUserPrincipal userPrincipal) : base(unitOfWork, dashboardStoreRepository, userPrincipal)
+            IUserPrincipal userPrincipal, IDashboardGroupDashboardRepository dashboardGroupDashboardRepository) : base(
+            unitOfWork, dashboardStoreRepository, userPrincipal)
         {
             _unitOfWork = unitOfWork;
             _dashboardStoreRepository = dashboardStoreRepository;
             _connectionStringService = connectionStringService;
             _dashboardConnectionStringService = dashboardConnectionStringService;
             _claimsPrincipal = claimsPrincipal;
+            _dashboardGroupDashboardRepository = dashboardGroupDashboardRepository;
         }
 
         public string GetDashboardDesigner(int dashboardId)
@@ -46,7 +49,8 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
             throw new System.NotImplementedException();
         }
 
-        public async Task UpdateDashboardStoreWithConnectionStringAsync(DashboardStore entity, List<DashboardConnectionString> dashboardConnectionStrings)
+        public async Task UpdateDashboardStoreWithConnectionStringAsync(DashboardStore entity,
+            List<DashboardConnectionString> dashboardConnectionStrings)
         {
             DeleteContentionStrings(entity.Id);
             var dashboard = AddConnectionStringToDashboard(entity.Id, dashboardConnectionStrings);
@@ -64,6 +68,25 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
         {
             var currentUserId = Convert.ToInt32(this._claimsPrincipal.Identity.Name);
             return _dashboardStoreRepository.GetUserDashboardList();
+        }
+
+        public IQueryable<DashboardStore> GetDashboardStoresAssignedToGroupAsync(int groupId)
+        {
+            return _dashboardStoreRepository.GetDashboardStoresAssignedToGroupAsync(groupId);
+        }
+
+        public IQueryable<DashboardStore> GetDashboardStoresNotAssignedToGroupAsync(int groupId)
+        {
+            return _dashboardStoreRepository.GetDashboardStoresNotAssignedToGroupAsync(groupId);
+        }
+
+        public async Task<bool> AssignSelectedItemsToDashboardGroup(List<int> selectedDashboardStores,
+            int dashboardGroupId, bool assign)
+        {
+            await _dashboardGroupDashboardRepository.AssignSelectedItemsToDashboardGroup(selectedDashboardStores,
+                dashboardGroupId, assign);
+            await SaveChangeAsync();
+            return true;
         }
 
         private Dashboard AddConnectionStringToDashboard(int dashboardId,

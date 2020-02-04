@@ -116,6 +116,10 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         public virtual async Task<T> AddAsync(T t)
         {
+
+            t.CreateBy = _userPrincipal.Id;
+            t.CreationDate = DateTime.Now;
+
             await _context.Set<T>().AddAsync(t);
             return t;
         }

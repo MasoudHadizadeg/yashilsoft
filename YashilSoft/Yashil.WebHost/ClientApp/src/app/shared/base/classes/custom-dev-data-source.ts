@@ -5,13 +5,17 @@ import {Inject, Input} from '@angular/core';
 export class CustomDevDataSource {
     @Input()
     allowDeleteInForm = true;
-    private httpClient: HttpClient;
     rowKey = 'id';
     // This Property Used For Set Tree List RowKeys
     selectedRowKeys: any[] = [];
+    private httpClient: HttpClient;
 
     constructor(@Inject(HttpClient) httpClient: HttpClient) {
         this.httpClient = httpClient;
+    }
+
+    getCustomDataSourceWithCustomListUrl(customListUrl: string) {
+        return this.getCustomDataSource(null, [], customListUrl);
     }
 
     getCustomDataSourceAssignedList(entityName, pageFilters: any[], selectedId: number) {
