@@ -1,9 +1,0 @@
-D:\Works\YashilSPL\YashilSoft\Yashil\Yashil.Common.SharedKernel\bin\Debug\netcoreapp3.0\Yashil.Common.SharedKernel.deps.json
-D:\Works\YashilSPL\YashilSoft\Yashil\Yashil.Common.SharedKernel\bin\Debug\netcoreapp3.0\Yashil.Common.SharedKernel.runtimeconfig.json
-D:\Works\YashilSPL\YashilSoft\Yashil\Yashil.Common.SharedKernel\bin\Debug\netcoreapp3.0\Yashil.Common.SharedKernel.runtimeconfig.dev.json
-D:\Works\YashilSPL\YashilSoft\Yashil\Yashil.Common.SharedKernel\bin\Debug\netcoreapp3.0\Yashil.Common.SharedKernel.dll
-D:\Works\YashilSPL\YashilSoft\Yashil\Yashil.Common.SharedKernel\bin\Debug\netcoreapp3.0\Yashil.Common.SharedKernel.pdb
-D:\Works\YashilSPL\YashilSoft\Yashil\Yashil.Common.SharedKernel\obj\Debug\netcoreapp3.0\Yashil.Common.SharedKernel.AssemblyInfoInputs.cache
-D:\Works\YashilSPL\YashilSoft\Yashil\Yashil.Common.SharedKernel\obj\Debug\netcoreapp3.0\Yashil.Common.SharedKernel.AssemblyInfo.cs
-D:\Works\YashilSPL\YashilSoft\Yashil\Yashil.Common.SharedKernel\obj\Debug\netcoreapp3.0\Yashil.Common.SharedKernel.dll
-D:\Works\YashilSPL\YashilSoft\Yashil\Yashil.Common.SharedKernel\obj\Debug\netcoreapp3.0\Yashil.Common.SharedKernel.pdb

@@ -1,1 +1,0 @@
-nuget push -Source http://192.168.25.101:8086/Feeds/nuget  -ApiKey 123456 *.nupkg
