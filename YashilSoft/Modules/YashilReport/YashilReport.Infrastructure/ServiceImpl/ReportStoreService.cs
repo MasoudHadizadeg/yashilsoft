@@ -51,14 +51,14 @@ namespace YashilReport.Infrastructure.ServiceImpl
             report.Load(reportStore.ReportFile);
 
             var reportConnectionStrings = _connectionStringService.GetByReportId(reportId).Select(x =>
-                new {x.Title, x.ConnectionString, DataProviderTitle = x.DataProvider.Title}).ToList();
+                new { x.Title, x.ConnectionString, DataProviderTitle = x.DataProvider.Title }).ToList();
             foreach (StiDatabase db in report.Dictionary.Databases)
             {
                 // TODO: Add Common Databases
                 var connection = reportConnectionStrings.Find(x => x.Title == db.Name);
                 if (connection.DataProviderTitle == "MS SQL")
                 {
-                    ((StiSqlDatabase) db).ConnectionString =
+                    ((StiSqlDatabase)db).ConnectionString =
                         _connectionStringService.Decrypt(connection.ConnectionString);
                 }
             }
@@ -110,7 +110,8 @@ namespace YashilReport.Infrastructure.ServiceImpl
             DeleteContentionStrings(entity.Id);
             var report = AddConnectionStringToReport(entity.Id, reportConnectionStrings);
             entity.ReportFile = report.SaveToByteArray();
-            await UpdateAsync(entity, entity.Id, props, false);
+            await UpdateAsync(entity, entity.Id, true);
+
         }
 
         public Result HandleReport(CommandJson command)

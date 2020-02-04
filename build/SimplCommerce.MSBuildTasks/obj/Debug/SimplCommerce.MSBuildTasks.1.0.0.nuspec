@@ -17,7 +17,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="D:\Works\YashilSPL\build\SimplCommerce.MSBuildTasks\bin\Debug\net46\SimplCommerce.MSBuildTasks.dll" target="lib\net46\SimplCommerce.MSBuildTasks.dll" />
-    <file src="D:\Works\YashilSPL\build\SimplCommerce.MSBuildTasks\bin\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.dll" target="lib\netcoreapp2.0\SimplCommerce.MSBuildTasks.dll" />
+    <file src="E:\Works\YashilSpl\yashilsoft\build\SimplCommerce.MSBuildTasks\bin\Debug\net46\SimplCommerce.MSBuildTasks.dll" target="lib\net46\SimplCommerce.MSBuildTasks.dll" />
+    <file src="E:\Works\YashilSpl\yashilsoft\build\SimplCommerce.MSBuildTasks\bin\Debug\netcoreapp2.0\SimplCommerce.MSBuildTasks.dll" target="lib\netcoreapp2.0\SimplCommerce.MSBuildTasks.dll" />
   </files>
 </package>

@@ -23,6 +23,6 @@
     </frameworkReferences>
   </metadata>
   <files>
-    <file src="D:\Works\YashilSPL\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\bin\Release\netcoreapp3.1\Yashil.Runtime.dll" target="lib\netcoreapp3.1\Yashil.Runtime.dll" />
+    <file src="E:\Works\YashilSpl\yashilsoft\YashilSPLB\YashilSPL\Yashil\Yashil.Runtime\bin\Release\netcoreapp3.1\Yashil.Runtime.dll" target="lib\netcoreapp3.1\Yashil.Runtime.dll" />
   </files>
 </package>

@@ -3,10 +3,8 @@
         <app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
             <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
-                <dxi-item [label]="{text: 'عنوان'}" dataField="title">
+                <dxi-item  colSpan="2" [label]="{text: 'عنوان'}" dataField="title">
                     <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
-                </dxi-item>
-                <dxi-item [label]="{text: 'کلاس'}" dataField="cssClass">
                 </dxi-item>
                 <dxi-item dataField="color" editorType="dxColorBox" [label]="{text: 'رنگ'}">
                     <dxi-validation-rule type="required" message="رنگ"></dxi-validation-rule>

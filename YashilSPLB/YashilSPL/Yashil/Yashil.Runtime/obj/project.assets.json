@@ -2219,24 +2219,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\masoud\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Hadizadeh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Runtime\\Yashil.Runtime.csproj",
+      "projectUniqueName": "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Runtime\\Yashil.Runtime.csproj",
       "projectName": "Yashil.Runtime",
-      "projectPath": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Runtime\\Yashil.Runtime.csproj",
-      "packagesPath": "C:\\Users\\masoud\\.nuget\\packages\\",
-      "outputPath": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Runtime\\obj\\",
+      "projectPath": "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Runtime\\Yashil.Runtime.csproj",
+      "packagesPath": "C:\\Users\\Hadizadeh\\.nuget\\packages\\",
+      "outputPath": "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Runtime\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\masoud\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
+        "C:\\Users\\Hadizadeh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2244,22 +2239,19 @@
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\masoud\\.nuget\\packages": {},
-        "D:\\Works\\YashilPackageSource": {},
-        "D:\\programmingtools\\Stimulsoft\\Stimulsoft Reports AIO 2019.4.2\\Nuget Patched Packages": {},
+        "http://192.168.25.101:8086/Feeds/nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj": {
-              "projectPath": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj"
+            "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj": {
+              "projectPath": "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashi.Common.Core\\Yashil.Common.Core.csproj"
             },
-            "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Common.SharedKernel\\Yashil.Common.SharedKernel.csproj": {
-              "projectPath": "D:\\Works\\YashilSPL\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Common.SharedKernel\\Yashil.Common.SharedKernel.csproj"
+            "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Common.SharedKernel\\Yashil.Common.SharedKernel.csproj": {
+              "projectPath": "E:\\Works\\YashilSpl\\yashilsoft\\YashilSPLB\\YashilSPL\\Yashil\\Yashil.Common.SharedKernel\\Yashil.Common.SharedKernel.csproj"
             }
           }
         }
@@ -2304,7 +2296,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

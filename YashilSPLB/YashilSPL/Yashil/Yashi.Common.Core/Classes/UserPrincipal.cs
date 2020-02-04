@@ -6,9 +6,9 @@ namespace Yashil.Common.Core.Classes
 {
     public interface IUserPrincipal
     {
-        public int Id { get; set; }
-        public int OrganizationId { get; set; }
-        public int ApplicationId { get; set; }
+        int Id { get; set; }
+        int OrganizationId { get; set; }
+        int ApplicationId { get; set; }
     }
 
     public class UserPrincipal : IUserPrincipal

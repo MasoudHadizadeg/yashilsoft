@@ -65,7 +65,7 @@ namespace Yashil.WebHost
                         builder.WithOrigins(allowedOrigins)
                             .AllowAnyMethod()
                             .AllowAnyHeader()
-                        //    .AllowCredentials()
+                            .AllowCredentials()
                         );
             });
 

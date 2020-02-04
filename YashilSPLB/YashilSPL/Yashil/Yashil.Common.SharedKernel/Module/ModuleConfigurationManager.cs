@@ -12,7 +12,7 @@ namespace Yashil.Common.SharedKernel.Module
         public IEnumerable<ModuleInfo> GetModules()
         {
             var modulesPath = Path.Combine(GlobalConfiguration.ContentRootPath, ModulesFilename);
-            using var reader = new StreamReader(modulesPath);
+            var reader = new StreamReader(modulesPath);
             string content = reader.ReadToEnd();
             dynamic modulesData = JsonConvert.DeserializeObject(content);
             foreach (dynamic module in modulesData)
