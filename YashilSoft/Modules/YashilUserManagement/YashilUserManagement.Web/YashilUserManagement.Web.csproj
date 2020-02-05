@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Yashil.Common.Web.Infrastructure" Version="1.2.2" />
+    <PackageReference Include="Yashil.Common.Web.Infrastructure" Version="1.3.2" />
   </ItemGroup> 
 
   <ItemGroup>

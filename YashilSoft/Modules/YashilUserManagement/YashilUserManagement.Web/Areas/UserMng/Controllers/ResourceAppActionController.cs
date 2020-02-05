@@ -7,7 +7,7 @@ using  YashilUserManagement.Web.Areas.UserMng.ViewModels;
 
 namespace YashilUserManagement.Web.Areas.UserMng.Controllers
 {
-	public class ResourceAppActionController : BaseController<ResourceAppAction ,int,ResourceAppActionListViewModel, ResourceAppActionViewModel, ResourceAppActionEditModel,ResourceAppActionSimpleViewModel>
+	public class ResourceAppActionController : BaseController<ResourceAppAction ,int,ResourceAppActionListViewModel,  ResourceAppActionEditModel,ResourceAppActionSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IResourceAppActionService _resourceAppActionService;

@@ -7,7 +7,7 @@ using  YashilDashboard.Web.Areas.Dash.ViewModels;
 
 namespace YashilDashboard.Web.Areas.Dash.Controllers
 {
-	public class DashboardGroupDashboardController : BaseController<DashboardGroupDashboard ,int,DashboardGroupDashboardListViewModel, DashboardGroupDashboardViewModel, DashboardGroupDashboardEditModel,DashboardGroupDashboardSimpleViewModel>
+	public class DashboardGroupDashboardController : BaseController<DashboardGroupDashboard ,int,DashboardGroupDashboardListViewModel,  DashboardGroupDashboardEditModel,DashboardGroupDashboardSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IDashboardGroupDashboardService _dashboardGroupDashboardService;

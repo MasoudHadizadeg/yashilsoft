@@ -1,13 +1,18 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {GenericDataService} from '../../../services/generic-data.service';
 import {CustomDevDataSource} from '../../../classes/custom-dev-data-source';
+import {DxDataGridComponent} from 'devextreme-angular/ui/data-grid';
+import DevExpress from 'devextreme';
+import query = DevExpress.data.query;
+import array from 'devextreme/ui/file_manager/file_provider/array';
 
 @Component({
     selector: 'app-assignable-list',
     templateUrl: 'assignable-list.component.html'
 })
 export class AssignableListComponent implements OnInit {
+    @ViewChild('notSelectedItems', {static: false}) notSelectedItemsDataGrid: DxDataGridComponent;
     itemDataSource: any;
     @Input()
     selectedGroupItemId: number;
@@ -55,5 +60,15 @@ export class AssignableListComponent implements OnInit {
     selectedGroupItemChanged(data) {
         this.selectedGroupItemId = data.value;
         this.bindLists();
+    }
+
+    calculateStatistics() {
+        this.notSelectedItemsDataGrid.instance.getSelectedRowsData().then((rowData) => {
+            // const commonDuration = 0;
+            // let selectedItems = new array();
+            // for (let i = 0; i < rowData.length; i++) {
+            //     rowData[i]
+            // }
+        });
     }
 }

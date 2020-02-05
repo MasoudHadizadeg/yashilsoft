@@ -7,7 +7,7 @@ using  YashilReport.Web.Areas.Rpt.ViewModels;
 
 namespace YashilReport.Web.Areas.Rpt.Controllers
 {
-	public class ReportConnectionStringController : BaseController<ReportConnectionString ,int,ReportConnectionStringListViewModel, ReportConnectionStringViewModel, ReportConnectionStringEditModel,ReportConnectionStringSimpleViewModel>
+	public class ReportConnectionStringController : BaseController<ReportConnectionString ,int,ReportConnectionStringListViewModel,  ReportConnectionStringEditModel,ReportConnectionStringSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IReportConnectionStringService _reportConnectionStringService;

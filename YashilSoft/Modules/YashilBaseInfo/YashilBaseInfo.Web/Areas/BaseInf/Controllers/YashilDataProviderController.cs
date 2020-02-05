@@ -7,7 +7,7 @@ using  YashilBaseInfo.Web.Areas.BaseInf.ViewModels;
 
 namespace YashilBaseInfo.Web.Areas.BaseInf.Controllers
 {
-	public class YashilDataProviderController : BaseController<YashilDataProvider ,int,YashilDataProviderListViewModel, YashilDataProviderViewModel, YashilDataProviderEditModel,YashilDataProviderSimpleViewModel>
+	public class YashilDataProviderController : BaseController<YashilDataProvider ,int,YashilDataProviderListViewModel, YashilDataProviderEditModel,YashilDataProviderSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IYashilDataProviderService _yashilDataProviderService;

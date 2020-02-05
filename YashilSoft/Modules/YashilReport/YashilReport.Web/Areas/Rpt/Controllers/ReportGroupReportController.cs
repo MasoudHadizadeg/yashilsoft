@@ -7,7 +7,7 @@ using  YashilReport.Web.Areas.Rpt.ViewModels;
 
 namespace YashilReport.Web.Areas.Rpt.Controllers
 {
-	public class ReportGroupReportController : BaseController<ReportGroupReport ,int,ReportGroupReportListViewModel, ReportGroupReportViewModel, ReportGroupReportEditModel,ReportGroupReportSimpleViewModel>
+	public class ReportGroupReportController : BaseController<ReportGroupReport ,int,ReportGroupReportListViewModel,  ReportGroupReportEditModel,ReportGroupReportSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IReportGroupReportService _reportGroupReportService;

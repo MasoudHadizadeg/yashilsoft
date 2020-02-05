@@ -16,7 +16,7 @@ using Yashil.Common.Core.Classes;
 namespace YashilDashboard.Web.Areas.Dash.Controllers
 {
     public class DashboardGroupController : BaseController<DashboardGroup, int, DashboardGroupListViewModel,
-        DashboardGroupViewModel, DashboardGroupEditModel, DashboardGroupSimpleViewModel>
+         DashboardGroupEditModel, DashboardGroupSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IDashboardGroupService _dashboardGroupService;

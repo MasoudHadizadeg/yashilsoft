@@ -7,7 +7,7 @@ using  YashilDashboard.Web.Areas.Dash.ViewModels;
 
 namespace YashilDashboard.Web.Areas.Dash.Controllers
 {
-	public class DashboardConnectionStringController : BaseController<DashboardConnectionString ,int,DashboardConnectionStringListViewModel, DashboardConnectionStringViewModel, DashboardConnectionStringEditModel,DashboardConnectionStringSimpleViewModel>
+	public class DashboardConnectionStringController : BaseController<DashboardConnectionString ,int,DashboardConnectionStringListViewModel,  DashboardConnectionStringEditModel,DashboardConnectionStringSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IDashboardConnectionStringService _dashboardConnectionStringService;

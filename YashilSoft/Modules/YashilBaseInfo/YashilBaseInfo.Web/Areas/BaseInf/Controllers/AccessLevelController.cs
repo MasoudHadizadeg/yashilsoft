@@ -7,7 +7,7 @@ using  YashilBaseInfo.Web.Areas.BaseInf.ViewModels;
 
 namespace YashilBaseInfo.Web.Areas.BaseInf.Controllers
 {
-	public class AccessLevelController : BaseController<AccessLevel ,int,AccessLevelListViewModel, AccessLevelViewModel, AccessLevelEditModel,AccessLevelSimpleViewModel>
+	public class AccessLevelController : BaseController<AccessLevel ,int,AccessLevelListViewModel,  AccessLevelEditModel,AccessLevelSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IAccessLevelService _accessLevelService;

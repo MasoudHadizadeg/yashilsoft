@@ -7,7 +7,7 @@ using  YashilUserManagement.Web.Areas.UserMng.ViewModels;
 
 namespace YashilUserManagement.Web.Areas.UserMng.Controllers
 {
-	public class ApplicationController : BaseController<Application ,int,ApplicationListViewModel, ApplicationViewModel, ApplicationEditModel,ApplicationSimpleViewModel>
+	public class ApplicationController : BaseController<Application ,int,ApplicationListViewModel,  ApplicationEditModel,ApplicationSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IApplicationService _applicationService;

@@ -18,7 +18,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class BaseController<TModel, TK, TListViewModel, TViewModel, TEditModel, TSelectViewModel> : ControllerBase
+    public class BaseController<TModel, TK, TListViewModel, TEditModel, TSelectViewModel> : ControllerBase
         where TModel : class, IBaseEntity<TK>
     {
         private readonly IGenericService<TModel> _genericService;
@@ -47,7 +47,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
         public async Task<LoadResult> GetEntities(CustomDataSourceLoadOptions loadOptions)
         {
             var entities = _genericService.GetAll(true);
-            return await DataSourceLoader.LoadAsync(entities.ProjectTo<TViewModel>(_mapper.ConfigurationProvider),
+            return await DataSourceLoader.LoadAsync(entities.ProjectTo<TListViewModel>(_mapper.ConfigurationProvider),
                 loadOptions);
         }
 

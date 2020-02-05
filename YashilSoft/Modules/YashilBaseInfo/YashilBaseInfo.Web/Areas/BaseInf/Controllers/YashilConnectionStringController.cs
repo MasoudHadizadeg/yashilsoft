@@ -7,7 +7,7 @@ using YashilBaseInfo.Web.Areas.BaseInf.ViewModels;
 namespace YashilBaseInfo.Web.Areas.BaseInf.Controllers
 {
     public class YashilConnectionStringController : BaseController<YashilConnectionString, int,
-        YashilConnectionStringListViewModel, YashilConnectionStringViewModel, YashilConnectionStringEditModel,
+        YashilConnectionStringListViewModel,  YashilConnectionStringEditModel,
         YashilConnectionStringSimpleViewModel>
     {
         private readonly IMapper _mapper;

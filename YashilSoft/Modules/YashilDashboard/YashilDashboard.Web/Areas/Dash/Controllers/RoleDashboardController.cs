@@ -7,7 +7,7 @@ using  YashilDashboard.Web.Areas.Dash.ViewModels;
 
 namespace YashilDashboard.Web.Areas.Dash.Controllers
 {
-	public class RoleDashboardController : BaseController<RoleDashboard ,int,RoleDashboardListViewModel, RoleDashboardViewModel, RoleDashboardEditModel,RoleDashboardSimpleViewModel>
+	public class RoleDashboardController : BaseController<RoleDashboard ,int,RoleDashboardListViewModel,  RoleDashboardEditModel,RoleDashboardSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IRoleDashboardService _roleDashboardService;

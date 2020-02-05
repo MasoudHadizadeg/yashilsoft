@@ -7,7 +7,7 @@ using  YashilDashboard.Web.Areas.Dash.ViewModels;
 
 namespace YashilDashboard.Web.Areas.Dash.Controllers
 {
-	public class UserDashboardController : BaseController<UserDashboard ,int,UserDashboardListViewModel, UserDashboardViewModel, UserDashboardEditModel,UserDashboardSimpleViewModel>
+	public class UserDashboardController : BaseController<UserDashboard ,int,UserDashboardListViewModel,  UserDashboardEditModel,UserDashboardSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IUserDashboardService _userDashboardService;

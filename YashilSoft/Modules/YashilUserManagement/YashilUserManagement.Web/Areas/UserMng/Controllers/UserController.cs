@@ -12,7 +12,7 @@ using YashilUserManagement.Web.Areas.UserMng.ViewModels;
 
 namespace YashilUserManagement.Web.Areas.UserMng.Controllers
 {
-    public class UserController : BaseController<User, int, UserListViewModel, UserViewModel, UserEditModel,
+    public class UserController : BaseController<User, int, UserListViewModel,  UserEditModel,
         UserSimpleViewModel>
     {
         private readonly IMapper _mapper;

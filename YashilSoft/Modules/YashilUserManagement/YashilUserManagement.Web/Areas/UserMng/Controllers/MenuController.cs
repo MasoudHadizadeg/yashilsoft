@@ -13,7 +13,7 @@ using  YashilUserManagement.Web.Areas.UserMng.ViewModels;
 
 namespace YashilUserManagement.Web.Areas.UserMng.Controllers
 {
-	public class MenuController : BaseController<Menu ,int,MenuListViewModel, MenuViewModel, MenuEditModel,MenuSimpleViewModel>
+	public class MenuController : BaseController<Menu ,int,MenuListViewModel,  MenuEditModel,MenuSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IMenuService _menuService;

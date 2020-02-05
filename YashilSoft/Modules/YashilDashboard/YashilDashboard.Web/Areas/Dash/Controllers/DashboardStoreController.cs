@@ -18,7 +18,7 @@ using YashilDashboard.Web.Areas.Dash.ViewModels;
 namespace YashilDashboard.Web.Areas.Dash.Controllers
 {
     public class DashboardStoreController : BaseController<DashboardStore, int, DashboardStoreListViewModel,
-        DashboardStoreViewModel, DashboardStoreEditModel, DashboardStoreSimpleViewModel>
+         DashboardStoreEditModel, DashboardStoreSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IDashboardStoreService _dashboardStoreService;

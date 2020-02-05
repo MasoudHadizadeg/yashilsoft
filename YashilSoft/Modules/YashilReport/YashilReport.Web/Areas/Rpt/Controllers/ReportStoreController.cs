@@ -18,8 +18,7 @@ using YashilReport.Web.Areas.Rpt.ViewModels;
 
 namespace YashilReport.Web.Areas.Rpt.Controllers
 {
-    public class ReportStoreController : BaseController<ReportStore, int, ReportStoreListViewModel, ReportStoreViewModel
-        , ReportStoreEditModel, ReportStoreSimpleViewModel>
+    public class ReportStoreController : BaseController<ReportStore, int, ReportStoreListViewModel,ReportStoreEditModel, ReportStoreSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IReportStoreService _reportStoreService;

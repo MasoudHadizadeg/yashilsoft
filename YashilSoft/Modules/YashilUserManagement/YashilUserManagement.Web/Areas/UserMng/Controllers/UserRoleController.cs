@@ -7,7 +7,7 @@ using  YashilUserManagement.Web.Areas.UserMng.ViewModels;
 
 namespace YashilUserManagement.Web.Areas.UserMng.Controllers
 {
-	public class UserRoleController : BaseController<UserRole ,int,UserRoleListViewModel, UserRoleViewModel, UserRoleEditModel,UserRoleSimpleViewModel>
+	public class UserRoleController : BaseController<UserRole ,int,UserRoleListViewModel,  UserRoleEditModel,UserRoleSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IUserRoleService _userRoleService;
