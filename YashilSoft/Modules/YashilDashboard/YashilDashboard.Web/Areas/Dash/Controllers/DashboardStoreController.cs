@@ -18,7 +18,7 @@ using YashilDashboard.Web.Areas.Dash.ViewModels;
 namespace YashilDashboard.Web.Areas.Dash.Controllers
 {
     public class DashboardStoreController : BaseController<DashboardStore, int, DashboardStoreListViewModel,
-         DashboardStoreEditModel, DashboardStoreSimpleViewModel>
+        DashboardStoreEditModel, DashboardStoreSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IDashboardStoreService _dashboardStoreService;
@@ -142,10 +142,16 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
                 entities.ProjectTo<DashboardStoreSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("AssignSelectedItemsToDashboardGroup")]
-        public async Task<bool> AssignSelectedItemsToDashboardGroup(List<int> selectedDashboardStores,int dashboardGroupId, bool assign = true)
+        public async Task<bool> AssignSelectedItemsToDashboardGroup(AssignableListEditModel assignableListEditModel)
         {
-            return await _dashboardStoreService.AssignSelectedItemsToDashboardGroup(selectedDashboardStores, dashboardGroupId, assign);
+            return await _dashboardStoreService.AssignSelectedItemsToDashboardGroup(
+                new List<int>(assignableListEditModel.SelectedItems), assignableListEditModel.GroupId,
+                assignableListEditModel.Assign);
         }
     }
 }

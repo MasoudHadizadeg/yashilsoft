@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -25,17 +26,22 @@ namespace YashilDashboard.Infrastructure.RepositoryImpl
         public async Task AssignSelectedItemsToDashboardGroup(List<int> selectedDashboardStores, int dashboardGroupId,
             bool assign)
         {
-            List<DashboardGroupDashboard> dashboardGroupDashboards = new List<DashboardGroupDashboard>();
-            foreach (var selectedDashboardStore in selectedDashboardStores)
+            if (!assign)
             {
-                var dashboardGroupDashboard = new DashboardGroupDashboard()
+                DbSet.RemoveRange(DbSet.Where(x => selectedDashboardStores.Contains(x.DashboardStoreId) && x.DashboardGroupId == dashboardGroupId));
+            }
+            else
+            {
+                foreach (var dashboardGroupDashboard in selectedDashboardStores.Select(selectedDashboardStore => new DashboardGroupDashboard
                 {
                     CreateBy = _userPrincipal.Id,
                     CreationDate = DateTime.Now,
                     DashboardStoreId = selectedDashboardStore,
                     DashboardGroupId = dashboardGroupId
-                };
-                await AddAsync(dashboardGroupDashboard);
+                }))
+                {
+                    await AddAsync(dashboardGroupDashboard);
+                }
             }
         }
     }

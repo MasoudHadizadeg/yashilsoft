@@ -12,7 +12,7 @@ import array from 'devextreme/ui/file_manager/file_provider/array';
     templateUrl: 'assignable-list.component.html'
 })
 export class AssignableListComponent implements OnInit {
-    @ViewChild('notSelectedItems', {static: false}) notSelectedItemsDataGrid: DxDataGridComponent;
+    @ViewChild('notSelectedItemsGrid', {static: false}) notSelectedItemsDataGrid: DxDataGridComponent;
     itemDataSource: any;
     @Input()
     selectedGroupItemId: number;
@@ -47,14 +47,11 @@ export class AssignableListComponent implements OnInit {
     }
 
     bindLists() {
-        if (!this.getAssignedMethodName) {
-            this.getAssignedMethodName = `${this.assignableListName}/Get${this.assignableListName}sAssignedTo${this.groupEntityName}Async?id=${this.selectedGroupItemId}`;
-        }
-        if (!this.getNotAssignedMethodName) {
-            this.getNotAssignedMethodName = `${this.assignableListName}/Get${this.assignableListName}sNotAssignedTo${this.groupEntityName}Async?id=${this.selectedGroupItemId}`;
-        }
-        this.assignedItemDataSource = new CustomDevDataSource(this.httpClient).getCustomDataSourceWithCustomListUrl(this.getAssignedMethodName);
-        this.notAssignedItemDatasource = new CustomDevDataSource(this.httpClient).getCustomDataSourceWithCustomListUrl(this.getNotAssignedMethodName);
+
+        const getAssignedMethod = `${this.assignableListName}/Get${this.assignableListName}sAssignedTo${this.groupEntityName}Async?id=${this.selectedGroupItemId}`;
+        const getNotAssignedMethod = `${this.assignableListName}/Get${this.assignableListName}sNotAssignedTo${this.groupEntityName}Async?id=${this.selectedGroupItemId}`;
+        this.assignedItemDataSource = new CustomDevDataSource(this.httpClient).getCustomDataSourceWithCustomListUrl(getAssignedMethod);
+        this.notAssignedItemDatasource = new CustomDevDataSource(this.httpClient).getCustomDataSourceWithCustomListUrl(getNotAssignedMethod);
     }
 
     selectedGroupItemChanged(data) {
@@ -62,13 +59,14 @@ export class AssignableListComponent implements OnInit {
         this.bindLists();
     }
 
-    calculateStatistics() {
-        this.notSelectedItemsDataGrid.instance.getSelectedRowsData().then((rowData) => {
-            // const commonDuration = 0;
-            // let selectedItems = new array();
-            // for (let i = 0; i < rowData.length; i++) {
-            //     rowData[i]
-            // }
+    assignItemsToGroup(assign: boolean) {
+        const selectedRowKeys = this.notSelectedItemsDataGrid.instance.getSelectedRowKeys();
+        this.genericDataService.postEntityByUrl(`api/${this.assignableListName}/AssignSelectedItemsTo${this.groupEntityName}`, {
+            selectedItems: selectedRowKeys,
+            groupId: this.selectedGroupItemId,
+            assign: assign
+        }).subscribe(() => {
+            //alert('گزارش با موفقیت ذخیره شد');
         });
     }
 }
