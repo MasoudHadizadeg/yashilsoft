@@ -83,8 +83,7 @@ namespace YashilDashboard.Infrastructure.ServiceImpl
         public async Task<bool> AssignSelectedItemsToDashboardGroup(List<int> selectedDashboardStores,
             int dashboardGroupId, bool assign)
         {
-            await _dashboardGroupDashboardRepository.AssignSelectedItemsToDashboardGroup(selectedDashboardStores,
-                dashboardGroupId, assign);
+            await _dashboardGroupDashboardRepository.AssignSelectedItemsToDashboardGroup(selectedDashboardStores,dashboardGroupId, assign);
             await SaveChangeAsync();
             return true;
         }

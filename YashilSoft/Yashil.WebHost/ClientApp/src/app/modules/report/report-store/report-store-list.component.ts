@@ -20,16 +20,9 @@ export class ReportStoreListComponent {
             dataField: 'title'
         });
         this.columns.push({
-            caption: 'کلید گزارش',
-            dataField: 'reportKey'
-        });
-        this.columns.push({
-            caption: 'ماژول',
-            dataField: 'moduleKey'
-        });
-        this.columns.push({
             caption: 'سطح دسترسی',
-            dataField: 'accessLevelTitle'
+            dataField: 'accessLevelTitle',
+            width: '100px'
         });
         this.columns.push({
             caption: 'نمایش/طراحی  گزارش',

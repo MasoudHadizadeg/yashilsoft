@@ -2,7 +2,7 @@
     <dx-scroll-view [height]="formHeight" rtlEnabled="true">
         <form autocomplete="off" (ngSubmit)="onFormSubmit($event)" #detailFormww="ngForm" class="m-lg-1 m-md-1"
               enctype="multipart/form-data">
-            <div id="form-container" style="text-align: right">
+            <div id="form-container" style="text-align: right" [ngClass]="{'dx-rtl': true}">
                 <ng-content></ng-content>
                 <div class="dx-fieldset">
                     <dx-button

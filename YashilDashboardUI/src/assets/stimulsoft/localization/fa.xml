@@ -247,7 +247,7 @@
     <CollapseToDefinitions>خراب شدن تعاریف</CollapseToDefinitions>
     <Column>ستون:{0}</Column>
     <EntireScope>&amp;کل میدان دید</EntireScope>
-    <Find>&amp;پیدا کردن</Find>
+    <Find>&amp;جستجو</Find>
     <FindNext>&amp;بعدی را پیدا کن</FindNext>
     <FindWhat>پیدا کن چه چیز را:</FindWhat>
     <FromCursor>از نشانه رو</FromCursor>
@@ -269,7 +269,7 @@
     <SelectionOnly>فقط &amp;انتخاب</SelectionOnly>
     <ShowLineNumbers>نمایش اعداد خطوط</ShowLineNumbers>
     <StopOutlining>متوقف کن&amp;خلاصه کردن</StopOutlining>
-    <titleFind>پیدا کردن</titleFind>
+    <titleFind>جستجو</titleFind>
     <titleGotoLine>برو به خط</titleGotoLine>
     <titleReplace>جایگزین</titleReplace>
     <ToggleAllOutlining>همه را به صرفصل خلاصه کن</ToggleAllOutlining>
@@ -284,7 +284,7 @@
     <FieldRequire>میدان {0} نیاز به پر کردن داشت</FieldRequire>
     <FileNotFound>پیدا نشد "{0}" فایل.</FileNotFound>
     <IdentifierIsNotValid>مشخصه {0} پیدا نشد.</IdentifierIsNotValid>
-    <ImpossibleFindDataSource>پیدا کردن منبع داده امکان پذیر نیست</ImpossibleFindDataSource>
+    <ImpossibleFindDataSource>جستجو منبع داده امکان پذیر نیست</ImpossibleFindDataSource>
     <NameExists> .هم اکنون یک مولفه با نام'{0}'وجود دارد مولفه ها باید نام های واحد داشته باشند.و نام ها باید حساس به متن باشند</NameExists>
     <NoServices>سرویس ها در'{0}'پیدا نشد</NoServices>
     <NotAssign>منبع داده مشخص نشده است</NotAssign>
@@ -719,7 +719,7 @@
     <titlePageSettings>تنظیمات صفحه</titlePageSettings>
     <Toolbar>میله ابزار</Toolbar>
     <ToolEditor>ویرایشگر ابزار</ToolEditor>
-    <ToolFind>پیدا کردن ابزار</ToolFind>
+    <ToolFind>جستجو ابزار</ToolFind>
     <ToolHand>دست ابزار</ToolHand>
     <ToolSelect>انتخاب ابزار</ToolSelect>
     <VerScrollBar>میله پیمایش عمودی</VerScrollBar>
@@ -736,14 +736,14 @@
   </FormViewer>
   <FormViewerFind>
     <Close>بستن</Close>
-    <FindNext>پیدا کردن بعدی</FindNext>
-    <FindWhat>کدام را پیدا کن:</FindWhat>
-    <title>پیدا کردن</title>
+    <FindNext>جستجو بعدی</FindNext>
+    <FindWhat>جستجو:</FindWhat>
+    <title>جستجو</title>
   </FormViewerFind>
   <FormReportSetup>
     <ReportChanged>تغییر گزارش:</ReportChanged>
     <ReportCreated>ایجاد گزارش:</ReportCreated>
-    <title>برپا کردن گزارش</title>
+    <title>بارگذاری گزارش</title>
   </FormReportSetup>
   <FormRichTextEditor>
     <Bullets>گلوله</Bullets>
@@ -842,7 +842,7 @@
     <menuFilePageNew>صفحه جدید</menuFilePageNew>
     <menuFilePageOpen>باز کردن صفحه...</menuFilePageOpen>
     <menuFilePageSaveAs>دخیره صفحه به نام...</menuFilePageSaveAs>
-    <menuFilePageSetup>برپا کردن صفحه</menuFilePageSetup>
+    <menuFilePageSetup>بارگذاری صفحه</menuFilePageSetup>
     <menuFileReportNew>گزارش جدید</menuFileReportNew>
     <menuFileReportOpen>باز کردن گزارش</menuFileReportOpen>
     <menuFileReportPreview>پیش نمایش</menuFileReportPreview>
