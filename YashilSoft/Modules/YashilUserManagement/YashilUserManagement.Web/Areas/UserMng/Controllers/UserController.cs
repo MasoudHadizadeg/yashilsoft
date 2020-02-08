@@ -12,7 +12,7 @@ using YashilUserManagement.Web.Areas.UserMng.ViewModels;
 
 namespace YashilUserManagement.Web.Areas.UserMng.Controllers
 {
-    public class UserController : BaseController<User, int, UserListViewModel,  UserEditModel,
+    public class UserController : BaseController<User, int, UserListViewModel, UserEditModel,
         UserSimpleViewModel>
     {
         private readonly IMapper _mapper;
@@ -27,7 +27,8 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
         protected override void CustomMapBeforeInsert(UserEditModel editModel, User entity)
         {
             entity.Password = Encoding.UTF8.GetBytes(editModel.PasswordStr);
-            CryptographyHelper.CreatePasswordHash(editModel.PasswordStr, out var passwordHash, out var passwordSalt);
+            CryptographyHelper.CreatePasswordHash(editModel.PasswordStr + editModel.UserName, out var passwordHash,
+                out var passwordSalt);
 
             entity.Password = passwordHash;
             entity.PasswordSalt = passwordSalt;
