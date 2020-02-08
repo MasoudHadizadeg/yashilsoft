@@ -1,8 +1,8 @@
-<div class="row mb-2" dir="rtl">
+<div class="row mb-2" [ngClass]="{'dx-rtl': true}">
     <div class="col-1">
-        عنوان :
+        {{groupEntityLabel}} :
     </div>
-    <div class="col-4">
+    <div class="col-4" [ngClass]="{'dx-rtl': true}" >
         <dx-lookup
                 [dataSource]="itemDataSource"
                 [closeOnOutsideClick]="true"
@@ -20,13 +20,12 @@
     <div class="col-5">
         <div style="text-align: right;background: #8689c8;" class="p-1">
             <span style="color: white">
-                آیتم های گروه بندی نشده
+                {{assignableListLabel}} های گروه بندی نشده
             </span>
         </div>
         <dx-data-grid #notSelectedItemsGrid
                       width="100%"
-                      chec
-                      [dataSource]="notAssignedItemDatasource"
+                      [dataSource]="notAssignedItemDataSource"
                       [showBorders]="true"
                       [rtlEnabled]="true"
                       [rowAlternationEnabled]="true"
@@ -51,22 +50,14 @@
                     [visible]="true"></dxo-header-filter>
         </dx-data-grid>
     </div>
-    <div class="col-2 center">
-        <div class="text-center">
+    <div class="col-2 center" style="margin-top: 100px">
+        <div class="text-center align-middle">
             <div class="pb-1">
-                <dx-button icon="chevronleft" (onClick)="assignItemsToGroup(true)">
-                </dx-button>
-            </div>
-            <div class="pb-1">
-                <dx-button icon="chevrondoubleleft">
-                </dx-button>
-            </div>
-            <div class="pb-1 bt-2">
-                <dx-button icon="chevronleft">
+                <dx-button icon="chevronleft" (onClick)="assignItemsToGroup()">
                 </dx-button>
             </div>
             <div>
-                <dx-button icon="chevrondoubleright" (onClick)="assignItemsToGroup(false)">
+                <dx-button icon="chevronright" (onClick)="removeAssignItemsFromGroup()">
                 </dx-button>
             </div>
         </div>
@@ -75,11 +66,11 @@
 
         <div style="text-align: right;background: #8689c8;" class="p-1">
             <span style="color: white">
-                آیتم های موجود در گروه
+                 {{assignableListLabel}}های موجود در  {{groupEntityLabel}}
             </span>
         </div>
-        <dx-data-grid id="selectedItems"
-                      width="100%"
+        <dx-data-grid width="100%"
+                      #selectedItemsGrid
                       [dataSource]="assignedItemDataSource"
                       [showBorders]="true"
                       [rtlEnabled]="true"
@@ -87,13 +78,11 @@
                       [height]="300"
                       [columns]="columns"
                       [wordWrapEnabled]="true"
-                      [remoteOperations]="true"
-        >
+                      [remoteOperations]="true">
             <dxo-selection
                     selectAllMode="allPages"
                     showCheckBoxesMode="onClick"
-                    mode="multiple"
-            ></dxo-selection>
+                    mode="multiple"></dxo-selection>
 
             <dxo-summary>
                 <dxi-group-item

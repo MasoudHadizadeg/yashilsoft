@@ -112,12 +112,7 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
                 .ProjectTo<StoreCustomViewModel>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="loadOptions"></param>
-        /// <param name="id">Group Id</param>
-        /// <returns></returns>
+       
         [HttpGet("GetDashboardStoresAssignedToDashboardGroupAsync")]
         public async Task<LoadResult> GetDashboardStoresAssignedToDashboardGroupAsync(
             CustomDataSourceLoadOptions loadOptions, int id)
@@ -127,12 +122,6 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
                 entities.ProjectTo<DashboardStoreSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="loadOptions"></param>
-        /// <param name="id">Group Id</param>
-        /// <returns></returns>
         [HttpGet("GetDashboardStoresNotAssignedToDashboardGroupAsync")]
         public async Task<LoadResult> GetDashboardStoresNotAssignedToDashboardGroupAsync(
             CustomDataSourceLoadOptions loadOptions, int id)
@@ -142,10 +131,6 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
                 entities.ProjectTo<DashboardStoreSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         [HttpPost("AssignSelectedItemsToDashboardGroup")]
         public async Task<bool> AssignSelectedItemsToDashboardGroup(AssignableListEditModel assignableListEditModel)
         {

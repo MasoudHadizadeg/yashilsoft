@@ -1,9 +1,9 @@
-<div class="row" dir="rtl">
+<div class="row" [ngClass]="{'dx-rtl': true}">
     <div class="col-8">
         <app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
             <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
-                <dxi-item  colSpan="2" [label]="{text: 'عنوان'}" dataField="title">
+                <dxi-item colSpan="2" [label]="{text: 'عنوان'}" dataField="title">
                     <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
                 </dxi-item>
                 <dxi-item dataField="color" editorType="dxColorBox" [label]="{text: 'رنگ'}">
@@ -15,7 +15,7 @@
                 <dxi-item [label]="{text: 'ماژول'}" dataField="moduleKey">
                 </dxi-item>
                 <dxi-item dataField="accessLevelId" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"
-                          [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: accessLevelDataSource,displayExpr:'title',valueExpr:'id' }">
+                          [editorOptions]="{rtlEnabled:true, closeOnOutsideClick:true,showPopupTitle:false, dataSource: accessLevelDataSource,displayExpr:'title',valueExpr:'id' }">
                     <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
                 </dxi-item>
                 <dxi-item dataField="ConnectionStringIds"

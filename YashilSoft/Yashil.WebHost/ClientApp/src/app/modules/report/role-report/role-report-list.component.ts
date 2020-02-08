@@ -14,7 +14,8 @@ export class RoleReportListComponent {
     constructor() {
         this.columns.push({
             caption: 'نقش',
-            dataField: 'roleTitle'
+            dataField: 'roleTitle',
+            groupIndex: 1
         });
         this.columns.push({
             caption: 'گزارش',
