@@ -5,7 +5,8 @@ import {GenericDataService} from '../../../shared/base/services/generic-data.ser
 
 @Component({
     selector: 'app-user-detail',
-    templateUrl: './user-detail.component.html'
+    templateUrl: './user-detail.component.html',
+    styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent extends BaseEdit implements OnInit {
     organizationDataSource: any;
