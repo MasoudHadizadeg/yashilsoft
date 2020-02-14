@@ -20,9 +20,6 @@ namespace YashilDms.Web.Areas.Dms
                 CreateMap<DocFormat, DocFormatListViewModel>()
 						;
 
-				CreateMap<DocFormat, DocFormatViewModel>()
-						;
-
 				CreateMap<DocFormatEditModel, DocFormat>();
 
                 CreateMap<DocFormat, DocFormatSimpleViewModel>();
@@ -34,10 +31,6 @@ namespace YashilDms.Web.Areas.Dms
 				;
 
                 CreateMap<DocumentCategory, DocumentCategoryListViewModel>()
-											.ForMember(x => x.AppEntityTitle, 
-					b => b.MapFrom(c => c.AppEntity.Title));
-
-				CreateMap<DocumentCategory, DocumentCategoryViewModel>()
 											.ForMember(x => x.AppEntityTitle, 
 					b => b.MapFrom(c => c.AppEntity.Title));
 
@@ -58,11 +51,6 @@ namespace YashilDms.Web.Areas.Dms
 					b => b.MapFrom(c => c.DocType.Title))					.ForMember(x => x.DocumentCategoryTitle, 
 					b => b.MapFrom(c => c.DocumentCategory.Title));
 
-				CreateMap<AppDocument, AppDocumentViewModel>()
-											.ForMember(x => x.DocTypeTitle, 
-					b => b.MapFrom(c => c.DocType.Title))					.ForMember(x => x.DocumentCategoryTitle, 
-					b => b.MapFrom(c => c.DocumentCategory.Title));
-
 				CreateMap<AppDocumentEditModel, AppDocument>();
 
                 CreateMap<AppDocument, AppDocumentSimpleViewModel>();
@@ -76,11 +64,6 @@ namespace YashilDms.Web.Areas.Dms
 				;
 
                 CreateMap<DocType, DocTypeListViewModel>()
-											.ForMember(x => x.AppEntityTitle, 
-					b => b.MapFrom(c => c.AppEntity.Title))					.ForMember(x => x.DocFormatTitle, 
-					b => b.MapFrom(c => c.DocFormat.Title));
-
-				CreateMap<DocType, DocTypeViewModel>()
 											.ForMember(x => x.AppEntityTitle, 
 					b => b.MapFrom(c => c.AppEntity.Title))					.ForMember(x => x.DocFormatTitle, 
 					b => b.MapFrom(c => c.DocFormat.Title));

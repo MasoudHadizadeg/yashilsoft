@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,18 +14,18 @@ namespace YashilBaseInfo.Web
     {
         public void OnStartup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
-
         }
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-	                         services.AddScoped<IYashilDataProviderRepository, YashilDataProviderRepository>();
-                 services.AddScoped<IYashilDataProviderService, YashilDataProviderService>();
-                              services.AddScoped<IYashilConnectionStringRepository, YashilConnectionStringRepository>();
-                 services.AddScoped<IYashilConnectionStringService, YashilConnectionStringService>();
-                              services.AddScoped<IAccessLevelRepository, AccessLevelRepository>();
-                 services.AddScoped<IAccessLevelService, AccessLevelService>();
-                     
+            services.AddScoped<IAppEntityRepository, AppEntityRepository>();
+            services.AddScoped<IAppEntityService, AppEntityService>();
+            services.AddScoped<IYashilDataProviderRepository, YashilDataProviderRepository>();
+            services.AddScoped<IYashilDataProviderService, YashilDataProviderService>();
+            services.AddScoped<IYashilConnectionStringRepository, YashilConnectionStringRepository>();
+            services.AddScoped<IYashilConnectionStringService, YashilConnectionStringService>();
+            services.AddScoped<IAccessLevelRepository, AccessLevelRepository>();
+            services.AddScoped<IAccessLevelService, AccessLevelService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

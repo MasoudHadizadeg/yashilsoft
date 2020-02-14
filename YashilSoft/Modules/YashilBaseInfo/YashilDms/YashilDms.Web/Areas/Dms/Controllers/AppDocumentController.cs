@@ -7,7 +7,7 @@ using  YashilDms.Web.Areas.Dms.ViewModels;
 
 namespace YashilDms.Web.Areas.Dms.Controllers
 {
-	public class AppDocumentController : BaseController<AppDocument ,int,AppDocumentListViewModel, AppDocumentViewModel, AppDocumentEditModel,AppDocumentSimpleViewModel>
+	public class AppDocumentController : BaseController<AppDocument ,int,AppDocumentListViewModel, AppDocumentEditModel,AppDocumentSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IAppDocumentService _appDocumentService;

@@ -31,8 +31,6 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
 		
         public string Description { get; set; }
 		
-        public int CreatorOrganizationId { get; set; }
-		
     }
 
 
@@ -81,11 +79,6 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
 				
 
         public string Description { get; set; }
-				
-					[Range(0,int.MaxValue)]
-										 [Required] 
-				
-        public int CreatorOrganizationId { get; set; }
 				
     }
 

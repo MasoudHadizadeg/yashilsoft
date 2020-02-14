@@ -18,15 +18,12 @@ export class DocTypeListComponent {
         });
         this.columns.push({
             caption: 'موجودیت',
-            dataField: 'appEntityTitle'
+            dataField: 'appEntityTitle',
+            groupIndex: 1
         });
         this.columns.push({
             caption: 'ترتیب نمایش',
             dataField: 'displayOrder'
-        });
-        this.columns.push({
-            caption: 'آیا فایل روی دیسک ذخیره شود؟',
-            dataField: 'saveToDisk'
         });
         this.columns.push({
             caption: 'حداکثر اندازه',
@@ -45,24 +42,12 @@ export class DocTypeListComponent {
             dataField: 'isImage'
         });
         this.columns.push({
-            caption: 'آیا تصویر کراپ شود؟',
-            dataField: 'cropImage'
-        });
-        this.columns.push({
-            caption: 'نسبت تصویر',
-            dataField: 'aspectRatio'
-        });
-        this.columns.push({
             caption: 'آیا عنوان اجبرای است؟',
             dataField: 'isTitleRequired'
         });
         this.columns.push({
             caption: 'آیا نیاز به دسته بندی سند وجود دارد؟',
             dataField: 'isCetegorized'
-        });
-        this.columns.push({
-            caption: 'سازمان ایجاد کننده',
-            dataField: 'creatorOrganizationId'
         });
 
     }

@@ -47,14 +47,14 @@ namespace CodeGeneratorGreen
                 new ModuleInfo
                 {
                     ClassNamespace = "YashilReport", AngularModuleName = "Report", AreaName = "Rpt",
-                    XmlFileName = "Data_Rpt", GenerateProjectFiles = false, GenerateControllers = false,
-                    GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
+                    XmlFileName = "Data_Rpt", GenerateProjectFiles = true, GenerateControllers = true,
+                    GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
                 },
                 new ModuleInfo
                 {
                     ClassNamespace = "YashilBaseInfo", AngularModuleName = "BaseInfo", AreaName = "BaseInf",
-                    XmlFileName = "Data_base", GenerateProjectFiles = false, GenerateControllers = false,
-                    GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
+                    XmlFileName = "Data_base", GenerateProjectFiles = true, GenerateControllers = true,
+                    GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
                 },
                 new ModuleInfo
                 {

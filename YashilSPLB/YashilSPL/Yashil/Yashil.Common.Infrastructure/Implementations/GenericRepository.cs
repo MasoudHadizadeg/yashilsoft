@@ -208,8 +208,7 @@ namespace Yashil.Common.Infrastructure.Implementations
         }
 
 
-        public virtual async Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> props,
-            bool modifyProps = true)
+        public virtual async Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> props, bool modifyProps = true)
         {
             if (t == null)
                 return null;

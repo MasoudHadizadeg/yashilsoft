@@ -1,4 +1,3 @@
-
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 using AutoMapper;
@@ -6,58 +5,64 @@ using YashilBaseInfo.Web.Areas.BaseInf.ViewModels;
 
 namespace YashilBaseInfo.Web.Areas.BaseInf
 {
+    public class YashilBaseInfoProfile : Profile, IOrderedMapperProfile
+    {
+        public int Order => 1;
 
-	public class YashilBaseInfoProfile : Profile,IOrderedMapperProfile
-		{
-             public int Order => 1;
-			 public YashilBaseInfoProfile()
-				{	
-					
-				CreateMap<YashilConnectionString, YashilConnectionStringEditModel>()
-									.ForMember(x => x.DataProviderTitle, 
-					b => b.MapFrom(c => c.DataProvider.Title))
-				;
+        public YashilBaseInfoProfile()
+        {
+            CreateMap<AppEntity, AppEntityEditModel>();
 
-                CreateMap<YashilConnectionString, YashilConnectionStringListViewModel>()
-											.ForMember(x => x.DataProviderTitle, 
-					b => b.MapFrom(c => c.DataProvider.Title));
+            CreateMap<AppEntity, AppEntityListViewModel>();
 
-				CreateMap<YashilConnectionString, YashilConnectionStringViewModel>()
-											.ForMember(x => x.DataProviderTitle, 
-					b => b.MapFrom(c => c.DataProvider.Title));
+            CreateMap<AppEntityEditModel, AppEntity>();
 
-				CreateMap<YashilConnectionStringEditModel, YashilConnectionString>();
+            CreateMap<AppEntity, AppEntitySimpleViewModel>();
 
-                CreateMap<YashilConnectionString, YashilConnectionStringSimpleViewModel>();
-	   
-					
-				CreateMap<AccessLevel, AccessLevelEditModel>()
-				;
+            CreateMap<YashilConnectionString, YashilConnectionStringEditModel>()
+                .ForMember(x => x.DataProviderTitle,
+                    b => b.MapFrom(c => c.DataProvider.Title))
+                ;
 
-                CreateMap<AccessLevel, AccessLevelListViewModel>()
-						;
+            CreateMap<YashilConnectionString, YashilConnectionStringListViewModel>()
+                .ForMember(x => x.DataProviderTitle,
+                    b => b.MapFrom(c => c.DataProvider.Title));
 
-				CreateMap<AccessLevel, AccessLevelViewModel>()
-						;
+            CreateMap<YashilConnectionString, YashilConnectionStringViewModel>()
+                .ForMember(x => x.DataProviderTitle,
+                    b => b.MapFrom(c => c.DataProvider.Title));
 
-				CreateMap<AccessLevelEditModel, AccessLevel>();
+            CreateMap<YashilConnectionStringEditModel, YashilConnectionString>();
 
-                CreateMap<AccessLevel, AccessLevelSimpleViewModel>();
-	   
-					
-				CreateMap<YashilDataProvider, YashilDataProviderEditModel>()
-				;
+            CreateMap<YashilConnectionString, YashilConnectionStringSimpleViewModel>();
 
-                CreateMap<YashilDataProvider, YashilDataProviderListViewModel>()
-						;
 
-				CreateMap<YashilDataProvider, YashilDataProviderViewModel>()
-						;
+            CreateMap<AccessLevel, AccessLevelEditModel>()
+                ;
 
-				CreateMap<YashilDataProviderEditModel, YashilDataProvider>();
+            CreateMap<AccessLevel, AccessLevelListViewModel>()
+                ;
 
-                CreateMap<YashilDataProvider, YashilDataProviderSimpleViewModel>();
-	   
-			}
-	}
+            CreateMap<AccessLevel, AccessLevelViewModel>()
+                ;
+
+            CreateMap<AccessLevelEditModel, AccessLevel>();
+
+            CreateMap<AccessLevel, AccessLevelSimpleViewModel>();
+
+
+            CreateMap<YashilDataProvider, YashilDataProviderEditModel>()
+                ;
+
+            CreateMap<YashilDataProvider, YashilDataProviderListViewModel>()
+                ;
+
+            CreateMap<YashilDataProvider, YashilDataProviderViewModel>()
+                ;
+
+            CreateMap<YashilDataProviderEditModel, YashilDataProvider>();
+
+            CreateMap<YashilDataProvider, YashilDataProviderSimpleViewModel>();
+        }
+    }
 }

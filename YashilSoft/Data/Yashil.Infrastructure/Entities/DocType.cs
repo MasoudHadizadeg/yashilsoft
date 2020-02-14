@@ -23,7 +23,7 @@ namespace Yashil.Infrastructure.Entities
         public bool CropImage { get; set; }
         public double AspectRatio { get; set; }
         public bool? IsTitleRequired { get; set; }
-        public bool? IsCetegorized { get; set; }
+        public bool? IsCategorized { get; set; }
         public int CreatorOrganizationId { get; set; }
         public int CreateBy { get; set; }
         public int? ModifyBy { get; set; }

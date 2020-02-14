@@ -29,8 +29,6 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
 		
         public bool IsActive { get; set; }
 		
-        public int CreatorOrganizationId { get; set; }
-		
     }
 
 
@@ -72,11 +70,6 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
 					 [Required] 
 				
         public bool IsActive { get; set; }
-				
-					[Range(0,int.MaxValue)]
-										 [Required] 
-				
-        public int CreatorOrganizationId { get; set; }
 				
     }
 

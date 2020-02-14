@@ -2,64 +2,47 @@
     <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
         <dxi-item [label]="{text: 'عنوان'}" dataField="title">
-
             <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
-
-        </dxi-item>
-        <dxi-item [label]="{text: 'توضیحات'}" dataField="description" editorType='dxTextArea'>
-
-
         </dxi-item>
 
         <dxi-item dataField="appEntityId" editorType="dxLookup" [label]="{text: 'موجودیت'}"
                   [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: appEntityDataSource,displayExpr:'title',valueExpr:'id' }">
-
             <dxi-validation-rule type="required" message="موجودیت اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
+
         <dxi-item [label]="{text: 'ترتیب نمایش'}" dataField="displayOrder" editorType='dxNumberBox'>
-
-
         </dxi-item>
+
         <dxi-item [label]="{text: 'آیا فایل روی دیسک ذخیره شود؟'}" dataField="saveToDisk" editorType='dxCheckBox'>
-
-
         </dxi-item>
+
         <dxi-item [label]="{text: 'حداکثر اندازه'}" dataField="maxSize" editorType='dxNumberBox'>
-
             <dxi-validation-rule type="required" message="حداکثر اندازه اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
+
         <dxi-item [label]="{text: 'حداکثر تعداد'}" dataField="maxCount" editorType='dxNumberBox'>
-
             <dxi-validation-rule type="required" message="حداکثر تعداد اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
 
         <dxi-item dataField="docFormatId" editorType="dxLookup" [label]="{text: 'فرمت سند'}"
                   [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: docFormatDataSource,displayExpr:'title',valueExpr:'id' }">
-
             <dxi-validation-rule type="required" message="فرمت سند اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
 
+        <dxi-item  [label]="{text: 'آیا فایل تصویر است؟'}" dataField="isImage" editorType='dxCheckBox'>
         </dxi-item>
-        <dxi-item [label]="{text: 'آیا فایل تصویر است؟'}" dataField="isImage" editorType='dxCheckBox'>
-        </dxi-item>
-        <dxi-item *ngIf="entity.isImage" [label]="{text: 'آیا تصویر کراپ شود؟'}" dataField="cropImage" editorType='dxCheckBox'>
-        </dxi-item>
-        <dxi-item *ngIf="entity.isImage"  [label]="{text: 'نسبت تصویر'}" dataField="aspectRatio">
-            <dxi-validation-rule type="required" message="نسبت تصویر اجباری می باشد"></dxi-validation-rule>
-        </dxi-item>
-        <dxi-item [label]="{text: 'آیا عنوان اجبرای است؟'}" dataField="isTitleRequired" editorType='dxCheckBox'>
 
-
+        <dxi-item *ngIf="entity.isImage"[label]="{text: 'آیا تصویر کراپ شود؟'}" dataField="cropImage" editorType='dxCheckBox'>
         </dxi-item>
-        <dxi-item [label]="{text: 'آیا نیاز به دسته بندی سند وجود دارد؟'}" dataField="isCetegorized"
+
+        <dxi-item *ngIf="entity.isImage" [label]="{text: 'آیا عنوان اجبرای است؟'}" dataField="isTitleRequired" editorType='dxCheckBox'>
+        </dxi-item>
+
+        <dxi-item [label]="{text: 'آیا نیاز به دسته بندی سند وجود دارد؟'}" dataField="isCategorized"
                   editorType='dxCheckBox'>
         </dxi-item>
-        <dxi-item [label]="{text: 'سازمان ایجاد کننده'}" dataField="creatorOrganizationId" editorType='dxNumberBox'>
 
-            <dxi-validation-rule type="required" message="سازمان ایجاد کننده اجباری می باشد"></dxi-validation-rule>
-
+        <dxi-item colSpan="2" [label]="{text: 'توضیحات'}" dataField="description" editorType='dxTextArea'>
         </dxi-item>
     </dx-form>
 </app-base-edit-form>

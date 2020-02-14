@@ -733,7 +733,7 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.DocFormatId).HasComment("فرمت سند");
 
-                entity.Property(e => e.IsCetegorized)
+                entity.Property(e => e.IsCategorized)
                     .IsRequired()
                     .HasDefaultValueSql("((1))")
                     .HasComment("آیا نیاز به دسته بندی سند وجود دارد؟");

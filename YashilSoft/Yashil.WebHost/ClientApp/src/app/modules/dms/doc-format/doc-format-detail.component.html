@@ -2,13 +2,14 @@
     <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
         <dxi-item [label]="{text: 'عنوان'}" dataField="title">
+
             <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
-        </dxi-item>
-        <dxi-item [label]="{text: 'توضیحات'}" dataField="description" editorType='dxTextArea'>
-
 
         </dxi-item>
-        <dxi-item [editorOptions]="{rtlEnabled:false}" cssClass="text-align-left" [label]="{text: 'فرمت های قابل قبول'}" dataField="extensions">
+        <dxi-item cssClass="text-align-left" [label]="{text: 'فرمت های قابل قبول'}" dataField="extensions">
         </dxi-item>
+        <dxi-item colSpan="2" [label]="{text: 'توضیحات'}" dataField="description" editorType='dxTextArea'>
+        </dxi-item>
+
     </dx-form>
 </app-base-edit-form>

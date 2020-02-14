@@ -7,7 +7,7 @@ using  YashilDms.Web.Areas.Dms.ViewModels;
 
 namespace YashilDms.Web.Areas.Dms.Controllers
 {
-	public class DocumentCategoryController : BaseController<DocumentCategory ,int,DocumentCategoryListViewModel, DocumentCategoryViewModel, DocumentCategoryEditModel,DocumentCategorySimpleViewModel>
+	public class DocumentCategoryController : BaseController<DocumentCategory ,int,DocumentCategoryListViewModel, DocumentCategoryEditModel,DocumentCategorySimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IDocumentCategoryService _documentCategoryService;

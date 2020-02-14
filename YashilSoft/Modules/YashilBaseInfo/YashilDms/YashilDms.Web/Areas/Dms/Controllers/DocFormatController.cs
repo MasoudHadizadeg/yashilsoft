@@ -7,7 +7,7 @@ using  YashilDms.Web.Areas.Dms.ViewModels;
 
 namespace YashilDms.Web.Areas.Dms.Controllers
 {
-	public class DocFormatController : BaseController<DocFormat ,int,DocFormatListViewModel, DocFormatViewModel, DocFormatEditModel,DocFormatSimpleViewModel>
+	public class DocFormatController : BaseController<DocFormat ,int,DocFormatListViewModel, DocFormatEditModel,DocFormatSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IDocFormatService _docFormatService;

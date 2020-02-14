@@ -5,6 +5,8 @@ import {YashilConnectionStringListComponent} from './yashil-connection-string/ya
 import {AccessLevelDetailComponent} from './access-level/access-level-detail.component';
 import {AccessLevelListComponent} from './access-level/access-level-list.component';
 import {Provider} from '@angular/core';
+import {AppEntityDetailComponent} from './app-entity/app-entity-detail.component';
+import {AppEntityListComponent} from './app-entity/app-entity-list.component';
 
 export const COMPONENTS: Provider[] = [
 
@@ -13,5 +15,7 @@ export const COMPONENTS: Provider[] = [
     YashilConnectionStringListComponent,
     YashilConnectionStringDetailComponent,
     AccessLevelListComponent,
-    AccessLevelDetailComponent
+    AccessLevelDetailComponent,
+    AppEntityDetailComponent,
+    AppEntityListComponent
 ];

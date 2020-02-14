@@ -35,10 +35,6 @@
 					caption: 'فعال بودن',
 					dataField: 'isActive'
 					});
-							this.columns.push({ 
-					caption: 'سازمان ایجاد کننده سند',
-					dataField: 'creatorOrganizationId'
-					});
 							
 				}
 		}

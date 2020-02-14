@@ -24,10 +24,16 @@ namespace CodeGeneratorGreen.Classes
         public List<string> skipedTables = new List<string> {"report-backup", "sysdiagrams", "TableDesc"};
 
         public List<string> skipedColumns = new List<string>
-            {"CreateBy", "ModifyBy", "CreationDate","Deleted", "ModificationDate", "ApplicationId"};
+        {
+            "CreateBy", "ModifyBy", "CreationDate", "Deleted", "ModificationDate", "ApplicationId",
+            "CreatorOrganizationId"
+        };
 
         public List<string> skipedColumnInAngularList = new List<string>
-            {"Id","Password","PasswordSalt","Deleted","Description","AccessLevel", "CreateBy", "ModifyBy", "CreationDate", "ModificationDate", "ApplicationId"};
+        {
+            "Id", "Password", "PasswordSalt", "Deleted", "Description", "AccessLevel", "CreateBy", "ModifyBy",
+            "CreationDate", "ModificationDate", "ApplicationId", "CreatorOrganizationId"
+        };
 
         public List<string> SimpleViewModelColumns = new List<string>
             {"Id", "ParentId", "Title"};
@@ -66,8 +72,10 @@ namespace CodeGeneratorGreen.Classes
 
         public string InfrastructureModuleRootPath =>
             $"Files/Modules/{ClassNamespace}/{ClassNamespace}.{Infrastructure}";
+
         public string RepositoryFilePath =>
             $"{InfrastructureModuleRootPath}/{RepositoryImpl}";
+
         public string ServiceFilePath =>
             $"{InfrastructureModuleRootPath}/{ServiceImpl}";
 
