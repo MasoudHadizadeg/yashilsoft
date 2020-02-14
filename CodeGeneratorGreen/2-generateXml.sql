@@ -1,6 +1,6 @@
 
 
-EXEC INSERT_TableDesc
+EXEC INSERT_AppEntity
 
 
 SELECT s.name                           AS '@schema',
@@ -23,9 +23,9 @@ SELECT s.name                           AS '@schema',
                   )              AS '@referencedColumnName',
                   CASE 
                        WHEN fkc.constraint_column_id IS NOT NULL THEN (
-                                SELECT td.TitleColumn
-                                FROM   TableDesc td
-                                WHERE  td.TableName = (
+                                SELECT td.TitlePropertyName
+                                FROM base.AppEntity  td
+                                WHERE  td.Title = (
                                            SELECT t.name
                                            FROM   sys.tables AS t
                                            WHERE  t.[object_id] = fkc.referenced_object_id
@@ -34,9 +34,9 @@ SELECT s.name                           AS '@schema',
                   END            AS '@referencedObjectTitleColumn',
                   CASE 
                        WHEN fkc.constraint_column_id IS NOT NULL THEN (
-                                SELECT td.IsLargTable
-                                FROM   TableDesc td
-                                WHERE  td.TableName = (
+                                SELECT td.IsLarge
+                                FROM   base.AppEntity td
+                                WHERE  td.Title = (
                                            SELECT t.name
                                            FROM   sys.tables AS t
                                            WHERE  t.[object_id] = fkc.referenced_object_id
@@ -78,6 +78,6 @@ SELECT s.name                           AS '@schema',
        )
 FROM   sys.schemas                      AS s
        INNER JOIN sys.tables            AS t
-            ON  s.schema_id = t.schema_id AND t.name NOT IN ('sysdiagrams','TableDesc') and s.name='um'
+            ON  s.schema_id = t.schema_id AND t.name NOT IN ('sysdiagrams','TableDesc') and s.name='dms'
                 FOR XML PATH('Table'),
        ROOT('Tables')

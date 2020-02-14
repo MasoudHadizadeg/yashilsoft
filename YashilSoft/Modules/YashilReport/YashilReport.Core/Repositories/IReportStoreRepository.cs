@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Yashil.Common.Core.Interfaces;
@@ -10,5 +11,9 @@ namespace YashilReport.Core.Repositories
         void DeleteContentionStrings(int reportId);
         Task<ReportStore> GetForEditAsync(int reportId, bool readOnly = true);
         IQueryable<ReportStore> GetUserReportList();
+        IQueryable<ReportStore> GetReportStoresAssignedToGroupAsync(int groupId);
+        IQueryable<ReportStore> GetReportStoresNotAssignedToGroupAsync( int groupId);
+        IQueryable<ReportStore> GetReportStoresAssignedToRoleAsync(int id);
+        IQueryable<ReportStore> GetReportStoresNotAssignedToRoleAsync(int id);
     }
 }      

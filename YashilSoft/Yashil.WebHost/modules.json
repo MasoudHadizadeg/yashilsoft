@@ -5,6 +5,11 @@
     "subFolder": "YashilBaseInfo"
   },
   {
+    "id": "YashilDms.Web",
+    "version": "1.0.0",
+    "subFolder": "YashilDms"
+  },
+  {
     "id": "YashilUserManagement.Web",
     "version": "1.0.0",
     "subFolder": "YashilUserManagement"

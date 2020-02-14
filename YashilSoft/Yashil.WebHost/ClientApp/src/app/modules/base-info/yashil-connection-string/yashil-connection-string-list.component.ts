@@ -17,10 +17,12 @@ export class YashilConnectionStringListComponent {
             dataField: 'title'
         });
         this.columns.push({
+            width: '200px',
             caption: 'تامین کننده داده',
             dataField: 'dataProviderTitle'
         });
         this.columns.push({
+            width: '100px',
             caption: 'فعال بودن',
             dataField: 'isActive'
         });

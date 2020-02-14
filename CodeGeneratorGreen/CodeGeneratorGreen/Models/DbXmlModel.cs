@@ -86,6 +86,8 @@ namespace CodeGeneratorGreen.Models
         public string TableDesc { get; set; }
 
         public string TablePersianName => TableDesc ?? "";
+
+        public bool IsApplicationBased => Columns.Any(x => x.Name == "ApplicationId");
     }
 
     [XmlRoot(ElementName = "Tables")]

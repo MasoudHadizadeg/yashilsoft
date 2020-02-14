@@ -16,7 +16,7 @@ using  <#= ApplicationInfo.Instance.ClassNamespace #>.Web.Areas.<#= ApplicationI
 
 namespace <#= ApplicationInfo.Instance.ControllerNamespace #>
 {
-	public class <#=table.Name#>Controller : BaseController<<#=table.Name#> ,int,<#=table.Name#>ListViewModel, <#=table.Name#>ViewModel, <#=table.Name#>EditModel,<#=table.Name#>SimpleViewModel>
+	public class <#=table.Name#>Controller : BaseController<<#=table.Name#> ,int,<#=table.Name#>ListViewModel, <#=table.Name#>EditModel,<#=table.Name#>SimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly I<#=table.Name#>Service _<#=lowerTableName#>Service;

@@ -2,10 +2,12 @@
  * Code formatted by SoftTree SQL Assistant © v9.1.276
  * Time: 10/29/2019 9:54:08 PM
  ************************************************************/
-CREATE PROCEDURE INSERT_TableDesc
+ 
+ 
+ALTER PROCEDURE INSERT_AppEntity
 AS
-
-SELECT t.name             TableName,
+-- DROP TABLE IF EXISTS #t
+SELECT t.name             Title,
        t.[object_id],
        (
            SELECT TOP(1) c.name
@@ -27,25 +29,29 @@ SELECT t.name             TableName,
                   )
        )                  TitleColumn,
        CAST(1 AS BIT)  AS IsLargTable
-INTO   #t
+ INTO   #t
 FROM   sys.tables AS t
 WHERE  t.[type] = 'U'
 
 
-INSERT INTO TableDesc
+INSERT INTO base.AppEntity 
   (
-    TableName,
-    [object_id],
-    TitleColumn,
-    IsLargTable
+    Title,
+    ObjectId,
+    TitlePropertyName,
+    IsLarge,
+    CreateBy,
+    CreationDate
   )
-SELECT TableName,
+SELECT title,
        [object_id],
        TitleColumn,
-       IsLargTable
+       IsLargTable,
+       1,
+       GETDATE()
 FROM   #t t
-WHERE  t.TableName NOT IN (SELECT TableName
-                           FROM   TableDesc)
+WHERE  t.title NOT IN (SELECT title
+                           FROM   base.AppEntity)
                            
-DELETE FROM TableDesc WHERE TableName NOT IN (SELECT TableName
+DELETE FROM base.AppEntity WHERE Title NOT IN (SELECT Title
 											  FROM   #t) 

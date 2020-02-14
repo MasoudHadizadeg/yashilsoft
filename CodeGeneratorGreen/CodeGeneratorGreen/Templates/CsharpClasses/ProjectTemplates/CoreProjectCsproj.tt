@@ -5,19 +5,18 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <ApplicationIcon />
     <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Yashil.Core\Yashil.Core.csproj" />
-    <ProjectReference Include="..\..\..\Yashil\Yashi.Common.Core\Yashil.Common.Core.csproj" />
   </ItemGroup>
 
 </Project>
+

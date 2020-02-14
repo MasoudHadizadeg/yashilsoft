@@ -21,7 +21,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.ProjectTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\ProjectTemplates\InfrastructureCsprojTemplate.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\ProjectTemplates\InfrastructureCsprojTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class InfrastructureCsprojTemplate : InfrastructureCsprojTemplateBase
     {
@@ -35,34 +35,28 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.ProjectTemplates
 <Project Sdk=""Microsoft.NET.Sdk"">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include=""EntityFrameworkCore.Scaffolding.Handlebars"" Version=""3.5.0"" />
-    <PackageReference Include=""Microsoft.EntityFrameworkCore.Design"" Version=""3.0.0"">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include=""Microsoft.EntityFrameworkCore.SqlServer"" Version=""3.0.0"" />
+    <PackageReference Include=""Yashil.Common.SharedKernel"" Version=""1.0.3"" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include=""..\..\..\Data\Yashil.Infrastructure\Yashil.Infrastructure.csproj"" />
-    <ProjectReference Include=""..\..\..\Yashil\Yashil.Common.Infrastructure\Yashil.Common.Infrastructure.csproj"" />
-    <ProjectReference Include=""..\..\..\Yashil\Yashil.Common.SharedKernel\Yashil.Common.SharedKernel.csproj"" />
+    <ProjectReference Include=""..\..\YashilBaseInfo\YashilBaseInfo.Core\YashilBaseInfo.Core.csproj"" />
     <ProjectReference Include=""..\");
             
-            #line 30 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\ProjectTemplates\InfrastructureCsprojTemplate.tt"
+            #line 24 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\ProjectTemplates\InfrastructureCsprojTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Core\\");
             
-            #line 30 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\ProjectTemplates\InfrastructureCsprojTemplate.tt"
+            #line 24 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\ProjectTemplates\InfrastructureCsprojTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
@@ -76,8 +70,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.ProjectTemplates
     </Reference>
   </ItemGroup>
 
-</Project>
-");
+</Project>");
             return this.GenerationEnvironment.ToString();
         }
     }

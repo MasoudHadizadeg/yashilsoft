@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -48,10 +49,30 @@ namespace YashilReport.Infrastructure.RepositoryImpl
         {
             return _context.ReportStore.Where(CheckReportAccess());
         }
+        /// <summary>
+        /// large
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
+        public IQueryable<ReportStore> GetReportStoresAssignedToGroupAsync(int groupId)
+        {
+            return GetUserReportList().Where(x => x.ReportGroupReport.Any(d => d.ReportGroupId == groupId));
+        }
 
-//        public override ReportStore Get(object id, bool readOnly = false)
-//        {
-//            return _context.ReportStore.Where(CheckReportAccess()).FirstOrDefault(x => x.Id == (int) id);
-//        }
+        public IQueryable<ReportStore> GetReportStoresNotAssignedToGroupAsync(int groupId)
+        {
+            var groupedReports = _context.ReportGroupReport.Select(x => x.ReportStoreId);
+            return GetUserReportList().Where(x => !groupedReports.Contains(x.Id));
+        }
+
+        public IQueryable<ReportStore> GetReportStoresAssignedToRoleAsync(int roleId)
+        {
+            return GetUserReportList().Where(x => x.RoleReport.Any(d => d.RoleId == roleId));
+        }
+
+        public IQueryable<ReportStore> GetReportStoresNotAssignedToRoleAsync(int roleId)
+        {
+            return GetUserReportList().Where(x => x.RoleReport.All(d => d.RoleId != roleId));
+        }
     }
 }

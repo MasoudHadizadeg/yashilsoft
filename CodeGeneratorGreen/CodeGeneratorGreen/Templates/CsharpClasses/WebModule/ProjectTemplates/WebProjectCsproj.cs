@@ -21,7 +21,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule.ProjectTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ProjectTemplates\WebProjectCsproj.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ProjectTemplates\WebProjectCsproj.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class WebProjectCsproj : WebProjectCsprojBase
     {
@@ -31,50 +31,49 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule.ProjectTemplates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write(@"
-<Project Sdk=""Microsoft.NET.Sdk.Web"">
+            this.Write(@"<Project Sdk=""Microsoft.NET.Sdk.Web"">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include=""AutoMapper.Extensions.Microsoft.DependencyInjection"" Version=""7.0.0"" />
+    <PackageReference Include=""Yashil.Common.SharedKernel"" Version=""1.0.3"" />
+    <PackageReference Include=""Yashil.Common.Web.Infrastructure"" Version=""1.3.2"" />
   </ItemGroup> 
 
   <ItemGroup>
     <ProjectReference Include=""..\..\..\Data\Yashil.Core\Yashil.Core.csproj"" />
-    <ProjectReference Include=""..\..\..\Yashil\Yashil.Common.SharedKernel\Yashil.Common.SharedKernel.csproj"" />
-    <ProjectReference Include=""..\..\..\Yashil\Yashil.Common.Web.Infrastructure\Yashil.Common.Web.Infrastructure.csproj"" />
     <ProjectReference Include=""..\");
             
-            #line 23 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ProjectTemplates\WebProjectCsproj.tt"
+            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ProjectTemplates\WebProjectCsproj.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Core\\");
             
-            #line 23 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ProjectTemplates\WebProjectCsproj.tt"
+            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ProjectTemplates\WebProjectCsproj.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Core.csproj\" />\r\n    <ProjectReference Include=\"..\\");
             
-            #line 24 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ProjectTemplates\WebProjectCsproj.tt"
+            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ProjectTemplates\WebProjectCsproj.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Infrastructure\\");
             
-            #line 24 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ProjectTemplates\WebProjectCsproj.tt"
+            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ProjectTemplates\WebProjectCsproj.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
-            this.Write(".Infrastructure.csproj\" />\r\n  </ItemGroup>\r\n\r\n</Project>\r\n");
+            this.Write(".Infrastructure.csproj\" />\r\n  </ItemGroup>\r\n\r\n</Project>\r\n\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

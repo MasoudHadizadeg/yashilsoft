@@ -45,9 +45,9 @@
 
     <div *dxTemplate="let data of 'cellTemplate'">
         <dx-button class="smallIcon" icon="edit" (onClick)="editEntity(data.data.id)"
-                   *ngIf="allowEditRecord(data.data) && allowEditInForm"></dx-button>
+                   *ngIf="allowEditRecord(data.data)===true && allowEditInForm===true"></dx-button>
         <dx-button style="margin-right: 3px" class="smallIcon" icon="btnTrash" icon="trash"
-                   *ngIf="allowDeleteRecord(data.data)"
+                   *ngIf="allowDeleteRecord(data.data)===true"
                    (onClick)="delete(data.data.id)"></dx-button>
     </div>
     <div *dxTemplate="let data of 'base64ImgTemplate'">
@@ -96,8 +96,10 @@
             [showPageSizeSelector]="true"
             [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
     <div *dxTemplate="let data of 'cellTemplate'">
-        <dx-button class="smallIcon" icon="edit" (onClick)="editEntity(data.data.id)"></dx-button>
+        <dx-button class="smallIcon" icon="edit" (onClick)="editEntity(data.data.id)"
+                   *ngIf="allowEditRecord(data.data)===true && allowEditInForm===true"></dx-button>
         <dx-button style="margin-right: 3px" class="smallIcon" icon="btnTrash" icon="trash"
+                   *ngIf="allowDeleteRecord(data.data)===true"
                    (onClick)="delete(data.data.id)"></dx-button>
     </div>
 </dx-tree-list>

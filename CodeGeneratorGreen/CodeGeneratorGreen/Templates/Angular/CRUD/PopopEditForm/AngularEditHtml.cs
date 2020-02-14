@@ -111,8 +111,8 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
             
             #line default
             #line hidden
-            this.Write("\'}\"  \r\n\t\t\t\t\t[editorOptions]=\"{closeOnOutsideClick:true,showPopupTitle:false, data" +
-                    "Source: ");
+            this.Write("\'}\"  \r\n\t\t\t\t\t[editorOptions]=\"{rtlEnabled:true,closeOnOutsideClick:true,showPopupT" +
+                    "itle:false, dataSource: ");
             
             #line 54 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower.Replace("Id", "")));

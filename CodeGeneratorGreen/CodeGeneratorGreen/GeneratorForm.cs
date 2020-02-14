@@ -55,6 +55,12 @@ namespace CodeGeneratorGreen
                     ClassNamespace = "YashilBaseInfo", AngularModuleName = "BaseInfo", AreaName = "BaseInf",
                     XmlFileName = "Data_base", GenerateProjectFiles = false, GenerateControllers = false,
                     GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
+                },
+                new ModuleInfo
+                {
+                    ClassNamespace = "YashilDms", AngularModuleName = "Dms", AreaName = "Dms",
+                    XmlFileName = "Data_dms", GenerateProjectFiles = true, GenerateControllers = true,
+                    GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
                 }
             };
 

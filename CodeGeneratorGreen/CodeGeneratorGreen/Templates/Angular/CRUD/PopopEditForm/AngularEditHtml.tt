@@ -51,7 +51,7 @@
 					{
 						#>
 					<dxi-item dataField="<#=colNameFirstCharLower #>" editorType="dxLookup" [label]="{text: '<#=colCaption #>'}"  
-					[editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: <#=colNameFirstCharLower.Replace("Id", "") #>DataSource,displayExpr:'<#=label #>',valueExpr:'id' }">
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: <#=colNameFirstCharLower.Replace("Id", "") #>DataSource,displayExpr:'<#=label #>',valueExpr:'id' }">
 
 				<#
 					}

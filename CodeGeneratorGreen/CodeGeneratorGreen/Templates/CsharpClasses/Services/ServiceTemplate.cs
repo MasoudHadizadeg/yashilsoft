@@ -17,7 +17,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Services
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class ServiceTemplate : ServiceTemplateBase
     {
@@ -29,7 +29,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Services
         {
             this.Write("\t\t\t");
             
-            #line 4 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 4 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
 
 			var table = SqlToCsharpHelper.table;
 			string repositoryProp = table.Name.FirstCharacterToLower()+"Repository";
@@ -37,45 +37,46 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Services
             
             #line default
             #line hidden
-            this.Write("\r\nusing Yashil.Common.Core.Interfaces;\r\nusing Yashil.Common.Infrastructure.Implem" +
-                    "entations;\r\nusing Yashil.Core.Entities;\r\nusing ");
+            this.Write("using Yashil.Common.Core.Classes;\r\nusing Yashil.Common.Core.Interfaces;\r\nusing Ya" +
+                    "shil.Common.Infrastructure.Implementations;\r\nusing Yashil.Core.Entities;\r\nusing " +
+                    "");
             
-            #line 12 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 12 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Core.Repositories;\r\nusing ");
             
-            #line 13 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 13 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Core.Services;\r\n\r\nnamespace ");
             
-            #line 15 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 15 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ServiceNamespace));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\tpublic class ");
             
-            #line 17 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 17 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Service : GenericService<");
             
-            #line 17 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 17 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(",int>, I");
             
-            #line 17 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 17 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
@@ -83,61 +84,61 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Services
             this.Write("Service\r\n    {\r\n\t\tprivate readonly IUnitOfWork _unitOfWork;\r\n        private read" +
                     "only I");
             
-            #line 20 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 20 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Repository _");
             
-            #line 20 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 20 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(repositoryProp));
             
             #line default
             #line hidden
-            this.Write(";\r\n       \r\n\t\tpublic ");
+            this.Write(";\r\n\t\tprivate readonly IUserPrincipal _userPrincipal;\r\n       \r\n\t\tpublic ");
             
-            #line 22 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Service (IUnitOfWork unitOfWork, I");
             
-            #line 22 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Repository ");
             
-            #line 22 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(repositoryProp));
             
             #line default
             #line hidden
-            this.Write(") : base(unitOfWork, ");
+            this.Write(", IUserPrincipal userPrincipal)\r\n\t\t\t: base(unitOfWork, ");
             
-            #line 22 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 24 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(repositoryProp));
             
             #line default
             #line hidden
-            this.Write(")\r\n        {\r\n\t\t\t_unitOfWork = unitOfWork;\r\n\t\t\t_");
+            this.Write(",userPrincipal)\r\n        {\r\n\t\t\t_unitOfWork = unitOfWork;\r\n\t\t\t_");
             
-            #line 25 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 27 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(repositoryProp));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 25 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
+            #line 27 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\ServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(repositoryProp));
             
             #line default
             #line hidden
-            this.Write(";\r\n        }\r\n    }\r\n}      \r\n ");
+            this.Write(";\r\n\t\t\t_userPrincipal = userPrincipal;\r\n        }\r\n    }\r\n}      \r\n ");
             return this.GenerationEnvironment.ToString();
         }
     }

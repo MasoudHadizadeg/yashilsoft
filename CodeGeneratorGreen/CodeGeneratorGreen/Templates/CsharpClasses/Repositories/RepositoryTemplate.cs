@@ -16,7 +16,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class RepositoryTemplate : RepositoryTemplateBase
     {
@@ -28,66 +28,78 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
         {
             this.Write("\t\t\t");
             
-            #line 3 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 3 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
 
 			var table = SqlToCsharpHelper.table;
+            var repName="GenericRepository";
+            if(table.IsApplicationBased){
+                repName="GenericApplicationBasedRepository";
+            }
 			
             
             #line default
             #line hidden
-            this.Write("\r\nusing Yashil.Common.Infrastructure.Implementations;\r\nusing Yashil.Core.Entities" +
-                    ";\r\nusing Yashil.Infrastructure.Data; \r\nusing ");
+            this.Write("using Yashil.Common.Core.Classes;\r\nusing Yashil.Common.Infrastructure.Implementat" +
+                    "ions;\r\nusing Yashil.Core.Entities;\r\nusing Yashil.Infrastructure.Data; \r\nusing ");
             
-            #line 10 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 14 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Core.Repositories;\r\n\r\nnamespace ");
             
-            #line 12 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 16 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.RepositoryNamespace));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\tpublic class ");
             
-            #line 14 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
-            this.Write("Repository : GenericRepository<");
+            this.Write("Repository : ");
             
-            #line 14 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(repName));
+            
+            #line default
+            #line hidden
+            this.Write("<");
+            
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(",int>, I");
             
-            #line 14 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
-            this.Write("Repository\r\n    {\r\n        private readonly YashilAppDbContext _context;\r\n\t\tpubli" +
-                    "c ");
+            this.Write("Repository\r\n    {\r\n        private readonly YashilAppDbContext _context;\r\n       " +
+                    " private readonly IUserPrincipal _userPrincipal;\r\n\t\tpublic ");
             
-            #line 17 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Repository (");
             
-            #line 17 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.DbContextName));
             
             #line default
             #line hidden
-            this.Write(" context) : base(context)\r\n            {\r\n                _context = context;\r\n  " +
-                    "          }\r\n    }\r\n}      \r\n");
+            this.Write(" context, IUserPrincipal userPrincipal) : base(context,userPrincipal)\r\n          " +
+                    "  {\r\n                _context = context;\r\n                _userPrincipal = userP" +
+                    "rincipal;\r\n            }\r\n    }\r\n}      \r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

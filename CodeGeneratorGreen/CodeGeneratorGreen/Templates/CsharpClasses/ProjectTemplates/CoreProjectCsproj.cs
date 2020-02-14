@@ -21,7 +21,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.ProjectTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\ProjectTemplates\CoreProjectCsproj.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\ProjectTemplates\CoreProjectCsproj.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class CoreProjectCsproj : CoreProjectCsprojBase
     {
@@ -31,22 +31,21 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.ProjectTemplates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write(@"
-<Project Sdk=""Microsoft.NET.Sdk"">
+            this.Write(@"<Project Sdk=""Microsoft.NET.Sdk"">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <ApplicationIcon />
     <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include=""..\..\..\Data\Yashil.Core\Yashil.Core.csproj"" />
-    <ProjectReference Include=""..\..\..\Yashil\Yashi.Common.Core\Yashil.Common.Core.csproj"" />
   </ItemGroup>
 
 </Project>
+
 ");
             return this.GenerationEnvironment.ToString();
         }

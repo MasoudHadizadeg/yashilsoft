@@ -5,10 +5,13 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Data.ResponseModel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Stimulsoft.Report;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.CustomViewModels;
 using Yashil.Core.Entities;
@@ -18,7 +21,8 @@ using YashilReport.Web.Areas.Rpt.ViewModels;
 
 namespace YashilReport.Web.Areas.Rpt.Controllers
 {
-    public class ReportStoreController : BaseController<ReportStore, int, ReportStoreListViewModel,ReportStoreEditModel, ReportStoreSimpleViewModel>
+    public class ReportStoreController : BaseController<ReportStore, int, ReportStoreListViewModel, ReportStoreEditModel
+        , ReportStoreSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IReportStoreService _reportStoreService;
@@ -69,7 +73,8 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
                 ModificationDate = DateTime.Now,
                 ReportFile = report.SaveToByteArray()
             };
-            await _reportStoreService.UpdateAsync(reportStore, data.ReportId, new List<string> {"ReportFile"}, true, true);
+            await _reportStoreService.UpdateAsync(reportStore, data.ReportId, new List<string> {"ReportFile"}, true,
+                true);
 
             return true;
         }
@@ -125,6 +130,60 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         {
             return await _reportStoreService.GetReportList()
                 .ProjectTo<StoreCustomViewModel>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+        [HttpGet("GetReportStoresAssignedToReportGroupAsync")]
+        public async Task<LoadResult> GetReportStoresAssignedToReportGroupAsync(
+            CustomDataSourceLoadOptions loadOptions, int id)
+        {
+            IQueryable<ReportStore> entities = _reportStoreService.GetReportStoresAssignedToGroupAsync(id);
+            return await DataSourceLoader.LoadAsync(
+                entities.ProjectTo<ReportStoreSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+
+        [HttpGet("GetReportStoresNotAssignedToReportGroupAsync")]
+        public async Task<LoadResult> GetReportStoresNotAssignedToReportGroupAsync(
+            CustomDataSourceLoadOptions loadOptions, int id)
+        {
+            IQueryable<ReportStore> entities = _reportStoreService.GetReportStoresNotAssignedToGroupAsync(id);
+            return await DataSourceLoader.LoadAsync(
+                entities.ProjectTo<ReportStoreSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+
+        [HttpPost("AssignSelectedItemsToReportGroup")]
+        public async Task<bool> AssignSelectedItemsToReportGroup(AssignableListEditModel assignableListEditModel)
+        {
+            return await _reportStoreService.AssignSelectedItemsToReportGroup(
+                new List<int>(assignableListEditModel.SelectedItems), assignableListEditModel.GroupId,
+                assignableListEditModel.Assign);
+        }
+
+
+
+        [HttpGet("GetReportStoresAssignedToRoleAsync")]
+        public async Task<LoadResult> GetReportStoresAssignedToRoleAsync(
+            CustomDataSourceLoadOptions loadOptions, int id)
+        {
+            IQueryable<ReportStore> entities = _reportStoreService.GetReportStoresAssignedToRoleAsync(id);
+            return await DataSourceLoader.LoadAsync(
+                entities.ProjectTo<ReportStoreSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+
+        [HttpGet("GetReportStoresNotAssignedToRoleAsync")]
+        public async Task<LoadResult> GetReportStoresNotAssignedToRoleAsync(
+            CustomDataSourceLoadOptions loadOptions, int id)
+        {
+            IQueryable<ReportStore> entities = _reportStoreService.GetReportStoresNotAssignedToRoleAsync(id);
+            return await DataSourceLoader.LoadAsync(
+                entities.ProjectTo<ReportStoreSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+
+        [HttpPost("AssignSelectedItemsToRole")]
+        public async Task<bool> AssignSelectedItemsToRole(AssignableListEditModel assignableListEditModel)
+        {
+            return await _reportStoreService.AssignSelectedReportSoresToRole(
+                new List<int>(assignableListEditModel.SelectedItems), assignableListEditModel.GroupId,
+                assignableListEditModel.Assign);
         }
     }
 }

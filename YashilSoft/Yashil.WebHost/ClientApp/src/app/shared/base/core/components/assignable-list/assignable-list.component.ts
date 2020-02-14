@@ -16,6 +16,7 @@ export class AssignableListComponent implements OnInit {
     itemDataSource: any;
     @Input()
     selectedGroupItemId: number;
+    selectedGroupItemTitle: string;
     /**
      * @param groupEntityName  The Name Of Entity For Group By.
      */
@@ -76,6 +77,7 @@ export class AssignableListComponent implements OnInit {
      */
     selectedGroupItemChanged(data) {
         this.selectedGroupItemId = data.value;
+        this.selectedGroupItemTitle = data.text;
         this.bindLists();
     }
 

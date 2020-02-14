@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using EntityFrameworkCore.Scaffolding.Handlebars;
 using HandlebarsDotNet;
+using Microsoft.EntityFrameworkCore.Scaffolding.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
 /*
@@ -19,21 +20,19 @@ namespace Yashil.Core
             services.AddHandlebarsScaffolding(op =>
             {
                 // Exclude some tables
-                op.ExcludedTables = GetExcludedTables();
+              op.ExcludedTables = GetExcludedTables();
             });
             var options = GetReverseEngineerOptions();
             services.AddHandlebarsScaffolding(options);
-
+            services.AddSingleton<ICSharpEntityTypeGenerator, YashilCSharpEntityTypeGenerator>();
             var myHelper = (helperName: "my-helper",
                 helperFunction: (Action<TextWriter, Dictionary<string, object>, object[]>) MyHbsHelper);
 
             // Add optional Handlebars helpers
             services.AddHandlebarsHelpers(myHelper);
 
-            Handlebars.RegisterHelper("handleNewLines", (output, context, arguments) =>
-            {
-                
-            });
+             
+            Handlebars.RegisterHelper("handleNewLines", (output, context, arguments) => { });
         }
 
         protected virtual ReverseEngineerOptions GetReverseEngineerOptions()
@@ -43,7 +42,7 @@ namespace Yashil.Core
 
         protected virtual List<string> GetExcludedTables()
         {
-            return new List<string> {"TableDesc", "Schemas"};
+            return new List<string> {"Schemas"};
         }
 
         void MyHbsHelper(TextWriter writer, Dictionary<string, object> context, object[] parameters)

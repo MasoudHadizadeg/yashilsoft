@@ -46,4 +46,11 @@ export class UserDetailComponent extends BaseEdit implements OnInit {
             });
         return false;
     }
+
+    afterLoadData(res: any): any {
+        if (!this.selectedEntityId) {
+            this.entity.isActive = true;
+        }
+        return super.afterLoadData(res);
+    }
 }

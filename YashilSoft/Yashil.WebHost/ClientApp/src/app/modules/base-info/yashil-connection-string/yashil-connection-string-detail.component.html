@@ -9,16 +9,16 @@
                   [editorOptions]="{ onSelectionChanged: setConnectionString,closeOnOutsideClick:true,showPopupTitle:false, dataSource: dataProviderDataSource,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="تامین کننده داده اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item
-                [label]="{text: 'رشته اتصال'}"
-                dataField="connectionString"
-                alignment="left"
-                location="left"
-
-                editorType='dxTextArea'>
+        <dxi-item cssClass="text-align-left"
+                  [label]="{text: 'رشته اتصال'}"
+                  dataField="connectionString"
+                  alignment="left"
+                  location="left"
+                  colSpan="2"
+                  editorType='dxTextArea'>
             <dxi-validation-rule type="required" message="رشته اتصال اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item   [label]="{text: 'توضیح'}" dataField="description" editorType='dxTextArea'
+        <dxi-item colSpan="2" [label]="{text: 'توضیح'}" dataField="description" editorType='dxTextArea'
                   [editorOptions]="{rtlEnabled:false}">
         </dxi-item>
         <dxi-item [label]="{text: 'فعال بودن'}" dataField="isActive" editorType='dxCheckBox'>

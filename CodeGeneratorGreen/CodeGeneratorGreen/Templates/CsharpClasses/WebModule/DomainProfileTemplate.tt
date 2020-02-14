@@ -45,15 +45,6 @@ namespace <#=ApplicationInfo.Instance.ClassNamespace #>.Web.Areas.<#=Application
 					b => b.MapFrom(c => c.<#= foreignColumn.Name.Replace("Id", "") #>.<#=foreignColumn.ReferencedObjectTitleColumn #>))<#
 				} #>;
 
-				CreateMap<<#=table.Name #>, <#=table.Name #>ViewModel>()
-						<#
-				foreach (var foreignColumn in foreignColumns.Where(x => x.Name != "CreateBy" && x.Name != "ModifyBy"))
-				{
-					#>
-					.ForMember(x => x.<#= foreignColumn.Name.Replace("Id", "") #>Title, 
-					b => b.MapFrom(c => c.<#= foreignColumn.Name.Replace("Id", "") #>.<#=foreignColumn.ReferencedObjectTitleColumn #>))<#
-				} #>;
-
 				CreateMap<<#=table.Name #>EditModel, <#=table.Name #>>();
 
                 CreateMap<<#=table.Name #>, <#=table.Name #>SimpleViewModel>();

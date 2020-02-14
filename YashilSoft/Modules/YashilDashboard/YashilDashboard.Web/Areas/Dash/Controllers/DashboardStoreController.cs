@@ -134,8 +134,7 @@ namespace YashilDashboard.Web.Areas.Dash.Controllers
         [HttpPost("AssignSelectedItemsToDashboardGroup")]
         public async Task<bool> AssignSelectedItemsToDashboardGroup(AssignableListEditModel assignableListEditModel)
         {
-            return await _dashboardStoreService.AssignSelectedItemsToDashboardGroup(
-                new List<int>(assignableListEditModel.SelectedItems), assignableListEditModel.GroupId,
+            return await _dashboardStoreService.AssignSelectedItemsToDashboardGroup(new List<int>(assignableListEditModel.SelectedItems), assignableListEditModel.GroupId,
                 assignableListEditModel.Assign);
         }
     }

@@ -18,6 +18,10 @@
       },
       {
          "HasPrimaryKey": true,
+         "Name": "[base].[AppEntity]"
+      },
+      {
+         "HasPrimaryKey": true,
          "Name": "[base].[YashilConnectionString]"
       },
       {
@@ -47,6 +51,22 @@
       {
          "HasPrimaryKey": true,
          "Name": "[dash].[UserDashboard]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dms].[AppDocument]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dms].[DocFormat]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dms].[DocType]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dms].[DocumentCategory]"
       },
       {
          "HasPrimaryKey": true,

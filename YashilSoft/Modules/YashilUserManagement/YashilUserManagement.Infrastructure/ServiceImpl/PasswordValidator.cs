@@ -33,13 +33,9 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
                         new Claim(ClaimTypes.Name, user.Id.ToString()),
                         new Claim(YashilClaimTypes.ApplicationId, user.ApplicationId.ToString()),
                         new Claim(YashilClaimTypes.IsAdmin, isAdmin.ToString()),
-                        new Claim(ClaimTypes.Surname, $"{user.FirstName} {user.LastName}")
+                        new Claim(ClaimTypes.Surname, $"{user.FirstName} {user.LastName}"),
+                        new Claim(YashilClaimTypes.OrganizationId, user.OrganizationId.ToString())
                     });
-                    if (user.OrganizationId.HasValue)
-                    {
-                        claimsIdentity.AddClaim(new Claim(YashilClaimTypes.OrganizationId,
-                            user.OrganizationId.ToString()));
-                    }
 
                     return new UserValidationResaultViewModel<int>
                     {

@@ -1,9 +1,13 @@
 ﻿/************************************************************
- * Code formatted by SoftTree SQL Assistant © v11.0.35
- * Time: 11/09/1398 11:03:24 ق.ظ
+ * Code formatted by SoftTree SQL Assistant © v9.1.276
+ * Time: 2/14/2020 8:25:58 PM
  ************************************************************/
 
-TRUNCATE TABLE um.Menu
+
+DROP TABLE 
+IF EXISTS #t
+    TRUNCATE TABLE um.Menu
+
 TRUNCATE TABLE Schemas 
 
 INSERT INTO Schemas
@@ -20,12 +24,16 @@ INSERT INTO um.Menu
     [Path],
     Title,
     CreateBy,
-    CreationDate
+    CreationDate,
+    ApplicationId,
+    CreatorOrganizationId
   )
 SELECT '',
        s.name,
        7,
-       GETDATE()
+       GETDATE(),
+       1,
+       1
 FROM   Schemas s
 
 SELECT CASE 
@@ -36,9 +44,9 @@ SELECT CASE
        )              PATH,
        CAST(ISNULL(dbo.getTableDesc(t.[object_id]), '') AS NVARCHAR) title,
        'ft-users'     icon,
-       7 CreateBy,
-       GETDATE() CreationDate,
-       sdm.id ParentId
+       7              CreateBy,
+       GETDATE()      CreationDate,
+       sdm.id         ParentId
 INTO   #t
 FROM   sys.schemas AS s
        INNER JOIN sys.tables AS t
@@ -51,11 +59,10 @@ WHERE  t.name NOT IN ('sysdiagrams', 'report-backup', 'tableDesc', 'Schemas')
 
 
 UPDATE um.Menu
-SET
-	Title = t.Title
-FROM um.Menu  
-INNER JOIN  #t t
-ON um.Menu.[Path]= t.path
+SET    Title = t.Title
+FROM   um.Menu
+       INNER JOIN #t t
+            ON  um.Menu.[Path] = t.path
 
 INSERT INTO um.Menu
   (
@@ -65,6 +72,16 @@ INSERT INTO um.Menu
     Icon,
     CreateBy,
     CreationDate,
-    ParentId
+    ParentId,
+    ApplicationId,
+    CreatorOrganizationId
   )
-  SELECT * FROM #T
+SELECT [Path],
+       Title,
+       Icon,
+       CreateBy,
+       CreationDate,
+       ParentId,
+       1  ApplicationId,
+       1  CreatorOrganizationId
+FROM   #T t

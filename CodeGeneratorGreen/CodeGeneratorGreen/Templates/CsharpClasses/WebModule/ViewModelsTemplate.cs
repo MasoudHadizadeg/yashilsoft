@@ -39,17 +39,17 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             
             #line default
             #line hidden
-            this.Write("using System.ComponentModel.DataAnnotations;\r\nusing Yashil.Common.Core.Interfaces" +
-                    ";\r\nnamespace ");
+            this.Write("using System;\r\nusing System.ComponentModel.DataAnnotations;\r\nusing Yashil.Common." +
+                    "Core.Interfaces;\r\nnamespace ");
             
-            #line 13 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 14 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ViewModelNamespace));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\r\n        public class ");
             
-            #line 16 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 17 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
@@ -57,7 +57,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             this.Write("ListViewModel:IBaseViewModel\r\n    {\r\n\t\tpublic int ViewModelId\r\n\t        {\r\n\t     " +
                     "       get => Id;\r\n\t            set => Id = value;\r\n\t        }\r\n");
             
-            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 24 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 			// Keep count so we don't whitespace the last property/column
 			int i = 0;
@@ -85,104 +85,21 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("        public ");
             
-            #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 46 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyType));
             
             #line default
             #line hidden
             this.Write(" ");
-            
-            #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
-            
-            #line default
-            #line hidden
-            this.Write(" { get; set; }\r\n\t\t");
             
             #line 46 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
- if (col.IsForeignKey)
-				{
-					
-            
-            #line default
-            #line hidden
-            this.Write("\t\tpublic string ");
-            
-            #line 49 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name.Replace("Id", "")));
-            
-            #line default
-            #line hidden
-            this.Write("Title { get; set; }\t\r\n\t\t");
-            
-            #line 50 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
-
-				} 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 53 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
-
-			}
-
-            
-            #line default
-            #line hidden
-            this.Write("    }\r\n\r\n\r\n    public class ");
-            
-            #line 59 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
-            
-            #line default
-            #line hidden
-            this.Write("ViewModel:IBaseViewModel\r\n    {\r\n\t\tpublic int ViewModelId\r\n\t        {\r\n\t         " +
-                    "   get => Id;\r\n\t            set => Id = value;\r\n\t        }\r\n");
-            
-            #line 66 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
-
-			// Keep count so we don't whitespace the last property/column
-			i = 0;
-			// Iterate all columns
-			foreach (Column col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
-			{
-				i++;
-				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
-				// If we can't map it, skip it
-				if (string.IsNullOrWhiteSpace(propertyType))
-				{
-					// Skip
-					continue;
-				}
-
-				// Handle nullable columns by making the type nullable
-				if (col.AllowNull && (propertyType != "string" && propertyType != "byte[]"))
-				{
-					propertyType += "?";
-				}
-
-
-            
-            #line default
-            #line hidden
-            this.Write("        public ");
-            
-            #line 88 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(propertyType));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 88 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
             
             #line default
             #line hidden
             this.Write(" { get; set; }\r\n\t\t");
             
-            #line 89 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 47 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
  if (col.IsForeignKey)
 				{
 					
@@ -191,14 +108,14 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\t\tpublic string ");
             
-            #line 92 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 50 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(col.Name.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write("Title { get; set; }\t\r\n\t\t");
             
-            #line 93 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 51 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 				} 
             
@@ -206,7 +123,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\r\n");
             
-            #line 96 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 54 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 			}
 
@@ -215,7 +132,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("    }\r\n\r\n\r\n\t    public class ");
             
-            #line 102 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 60 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
@@ -224,7 +141,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
                     "  {\r\n\t                get => Id;\r\n\t                set => Id = value;\r\n\t        " +
                     "    }\r\n");
             
-            #line 109 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 67 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 			// Keep count so we don't whitespace the last property/column
 			var columnCount = table.Columns.Count;
@@ -255,7 +172,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\t\t\t\t\t[Range(0,int.MaxValue)]\r\n\t\t\t\t\t");
             
-            #line 135 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 93 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 				}
 				if (propertyType == "string" && col.MaxLength!="-1")
@@ -266,14 +183,14 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\t\t\t\t\t[StringLength(");
             
-            #line 140 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 98 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(col.MaxLength));
             
             #line default
             #line hidden
             this.Write(")]\r\n\t\t\t\t\t");
             
-            #line 141 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 99 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 				}
 				if (!col.AllowNull && col.IsPrimaryKey != "1")
@@ -284,7 +201,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\t\t\t\t\t [Required] \r\n\t\t\t\t");
             
-            #line 147 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 105 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 				}
 				
@@ -293,21 +210,21 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\r\n        public ");
             
-            #line 151 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 109 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyType));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 151 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 109 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
             
             #line default
             #line hidden
             this.Write(" { get; set; }\r\n\t\t");
             
-            #line 152 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 110 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
  if (col.IsForeignKey)
 				{
 					
@@ -316,14 +233,14 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\t\tpublic string ");
             
-            #line 155 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 113 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(col.Name.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write("Title { get; set; }\t\r\n\t\t");
             
-            #line 156 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 114 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 				} 
             
@@ -331,7 +248,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\t\t\r\n");
             
-            #line 159 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 117 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 				// Do we insert the space?
 				if (i != columnCount)
@@ -341,7 +258,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line default
             #line hidden
             
-            #line 164 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 122 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 				}
 
@@ -349,7 +266,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line default
             #line hidden
             
-            #line 167 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 125 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 			}
 
@@ -358,7 +275,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("    }\r\n\r\n  \r\n\r\n\r\n\r\npublic class ");
             
-            #line 176 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 134 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
@@ -367,7 +284,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
                     "        {\r\n\t                get => Id;\r\n\t                set => Id = value;\r\n\t  " +
                     "          }\r\n");
             
-            #line 183 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 141 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 			// Keep count so we don't whitespace the last property/column
 			columnCount = table.Columns.Count;
@@ -390,21 +307,21 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("        public ");
             
-            #line 200 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 158 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyType));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 200 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 158 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
             
             #line default
             #line hidden
             this.Write(" { get; set; }\r\n\r\n\t\t\t");
             
-            #line 202 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 160 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 			}
 			
@@ -416,7 +333,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\t\t\t\tpublic string Title { get; set; }\r\n\t\t\t");
             
-            #line 209 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
+            #line 167 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
 
 			} 
             

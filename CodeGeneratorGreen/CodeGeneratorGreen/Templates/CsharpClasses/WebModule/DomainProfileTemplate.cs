@@ -21,7 +21,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class DomainProfileTemplate : DomainProfileTemplateBase
     {
@@ -34,35 +34,35 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             this.Write("\r\nusing Yashil.Common.Core.Interfaces;\r\nusing Yashil.Core.Entities;\r\nusing AutoMa" +
                     "pper; \r\nusing Yashil.Core.Entities;\r\nusing ");
             
-            #line 13 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 13 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Web.Areas.");
             
-            #line 13 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 13 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.AreaName));
             
             #line default
             #line hidden
             this.Write(".ViewModels;\r\n\r\nnamespace ");
             
-            #line 15 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 15 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Web.Areas.");
             
-            #line 15 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 15 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.AreaName));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\r\n\tpublic class ");
             
-            #line 18 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
@@ -70,14 +70,14 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             this.Write("Profile : Profile,IOrderedMapperProfile\r\n\t\t{\r\n             public int Order => 1;" +
                     "\r\n\t\t\t public ");
             
-            #line 21 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 21 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write("Profile()\r\n\t\t\t\t{\t\r\n\t");
             
-            #line 23 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
 
 			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
 			{
@@ -88,21 +88,21 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\t\t\t\t\r\n\t\t\t\tCreateMap<");
             
-            #line 29 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 29 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 29 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 29 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("EditModel>()\r\n\t\t\t\t");
             
-            #line 30 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 30 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
 
 				foreach (var foreignColumn in foreignColumns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
 				{
@@ -112,28 +112,28 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\t\t\t\t\t.ForMember(x => x.");
             
-            #line 34 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 34 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write("Title, \r\n\t\t\t\t\tb => b.MapFrom(c => c.");
             
-            #line 35 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 35 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 35 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 35 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.ReferencedObjectTitleColumn));
             
             #line default
             #line hidden
             this.Write("))\r\n\t\t\t\t");
             
-            #line 36 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 36 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
 
 				} 
             
@@ -141,21 +141,21 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write(";\r\n\r\n                CreateMap<");
             
-            #line 39 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 39 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 39 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 39 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("ListViewModel>()\r\n\t\t\t\t\t\t");
             
-            #line 40 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 40 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
 
 				foreach (var foreignColumn in foreignColumns.Where(x => x.Name != "CreateBy" && x.Name != "ModifyBy"))
 				{
@@ -165,28 +165,28 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write("\t\t\t\t\t.ForMember(x => x.");
             
-            #line 44 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 44 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write("Title, \r\n\t\t\t\t\tb => b.MapFrom(c => c.");
             
-            #line 45 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 45 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.ReferencedObjectTitleColumn));
             
             #line default
             #line hidden
             this.Write("))");
             
-            #line 45 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
 
 				} 
             
@@ -194,88 +194,35 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line hidden
             this.Write(";\r\n\r\n\t\t\t\tCreateMap<");
             
-            #line 48 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
-            
-            #line default
-            #line hidden
-            this.Write(", ");
-            
-            #line 48 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
-            
-            #line default
-            #line hidden
-            this.Write("ViewModel>()\r\n\t\t\t\t\t\t");
-            
-            #line 49 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
-
-				foreach (var foreignColumn in foreignColumns.Where(x => x.Name != "CreateBy" && x.Name != "ModifyBy"))
-				{
-					
-            
-            #line default
-            #line hidden
-            this.Write("\t\t\t\t\t.ForMember(x => x.");
-            
-            #line 53 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
-            
-            #line default
-            #line hidden
-            this.Write("Title, \r\n\t\t\t\t\tb => b.MapFrom(c => c.");
-            
-            #line 54 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
-            
-            #line default
-            #line hidden
-            this.Write(".");
-            
-            #line 54 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.ReferencedObjectTitleColumn));
-            
-            #line default
-            #line hidden
-            this.Write("))");
-            
-            #line 54 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
-
-				} 
-            
-            #line default
-            #line hidden
-            this.Write(";\r\n\r\n\t\t\t\tCreateMap<");
-            
-            #line 57 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 48 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("EditModel, ");
             
-            #line 57 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 48 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(">();\r\n\r\n                CreateMap<");
             
-            #line 59 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 50 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 59 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 50 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("SimpleViewModel>();\r\n\t   \r\n\t");
             
-            #line 61 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 52 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
 
 			} 
             

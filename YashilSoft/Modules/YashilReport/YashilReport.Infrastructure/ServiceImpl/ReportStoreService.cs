@@ -20,13 +20,15 @@ namespace YashilReport.Infrastructure.ServiceImpl
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IReportStoreRepository _reportStoreRepository;
+        private readonly IReportGroupReportRepository _reportGroupReportRepository;
         private readonly IYashilConnectionStringService _connectionStringService;
         private readonly IReportConnectionStringService _reportConnectionStringService;
+        private readonly IRoleReportRepository _roleReportRepository;
         private readonly IUserPrincipal _userPrincipal;
 
         public ReportStoreService(IUnitOfWork unitOfWork, IReportStoreRepository reportStoreRepository,
             IWebHostEnvironment webHostEnvironment, IYashilConnectionStringService yashilConnectionStringService,
-            IReportConnectionStringService reportConnectionStringService, IUserPrincipal userPrincipal) :
+            IReportConnectionStringService reportConnectionStringService, IUserPrincipal userPrincipal, IReportGroupReportRepository reportGroupReportRepository, IRoleReportRepository roleReportRepository) :
             base(unitOfWork, reportStoreRepository, userPrincipal)
         {
             _unitOfWork = unitOfWork;
@@ -34,6 +36,8 @@ namespace YashilReport.Infrastructure.ServiceImpl
             _connectionStringService = yashilConnectionStringService;
             _reportConnectionStringService = reportConnectionStringService;
             _userPrincipal = userPrincipal;
+            _reportGroupReportRepository = reportGroupReportRepository;
+            _roleReportRepository = roleReportRepository;
         }
 
         public string GetReportDesigner(int reportId)
@@ -128,6 +132,40 @@ namespace YashilReport.Infrastructure.ServiceImpl
         public IQueryable<ReportStore> GetReportList()
         {
             return _reportStoreRepository.GetUserReportList();
+        }
+
+        public IQueryable<ReportStore> GetReportStoresAssignedToGroupAsync(int groupId)
+        {
+            return _reportStoreRepository.GetReportStoresAssignedToGroupAsync(groupId);
+        }
+
+        public IQueryable<ReportStore> GetReportStoresNotAssignedToGroupAsync(int groupId)
+        {
+            return _reportStoreRepository.GetReportStoresNotAssignedToGroupAsync(groupId);
+        }
+
+        public async Task<bool> AssignSelectedItemsToReportGroup(List<int> selectedReports, int groupId, bool assign)
+        {
+            await _reportGroupReportRepository.AssignSelectedItemsToReportGroup(selectedReports,groupId,assign);
+            await SaveChangeAsync();
+            return true;
+        }
+
+        public IQueryable<ReportStore> GetReportStoresAssignedToRoleAsync(int id)
+        {
+            return _reportStoreRepository.GetReportStoresAssignedToRoleAsync(id);
+        }
+
+        public IQueryable<ReportStore> GetReportStoresNotAssignedToRoleAsync(int id)
+        {
+            return _reportStoreRepository.GetReportStoresNotAssignedToRoleAsync(id);
+        }
+
+        public async Task<bool> AssignSelectedReportSoresToRole(List<int> selectedReports, int groupId, bool assign)
+        {
+            await _roleReportRepository.AssignSelectedReportSoresToRole(selectedReports, groupId, assign);
+            await SaveChangeAsync();
+            return true;
         }
 
         public override async Task<ReportStore> AddAsync(ReportStore reportStore, bool saveAfterAdd = false)
