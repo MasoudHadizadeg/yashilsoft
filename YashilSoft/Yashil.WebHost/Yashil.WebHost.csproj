@@ -46,8 +46,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
-    <PackageReference Include="Yashil.Common.Core" Version="1.3.1" />
-    <PackageReference Include="Yashil.Runtime" Version="1.3.1" />
+    <PackageReference Include="Yashil.Common.Core" Version="1.4.4" />
+    <PackageReference Include="Yashil.Runtime" Version="1.4.4" />
   </ItemGroup>
   <Target Name="CopyModule" AfterTargets="Build">
     <CopyModuleTask ProjectDir="$(ProjectDir)" TargetFramework="netcoreapp3.0" BuildConfiguration="$(ConfigurationName)" />
