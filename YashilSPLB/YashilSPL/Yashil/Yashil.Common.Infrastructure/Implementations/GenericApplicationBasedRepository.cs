@@ -67,7 +67,15 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         public override IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties)
         {
-            return base.GetAllIncluding(includeProperties).Where(x => x.ApplicationId == _userPrincipal.ApplicationId);
+            return base.GetAllIncluding(includeProperties).Where(ApplicationBasedDefaultFilter());
+        }
+        /// <summary>
+        /// Add ApplicationId Property Filter With User Application Id
+        /// </summary>
+        /// <returns></returns>
+        protected Expression<Func<T, bool>> ApplicationBasedDefaultFilter()
+        {
+            return x => x.ApplicationId == _userPrincipal.ApplicationId;
         }
 
         public override IQueryable<T> GetAll(bool readOnly = false)
@@ -80,6 +88,5 @@ namespace Yashil.Common.Infrastructure.Implementations
             //TODO :Implement This method
             throw new NotImplementedException();
         }
-
     }
 }

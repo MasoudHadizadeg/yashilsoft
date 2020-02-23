@@ -23,4 +23,13 @@ export class DocTypeDetailComponent extends BaseEdit implements OnInit {
         this.appEntityDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'appEntity');
         this.docFormatDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'docFormat');
     }
+
+    loadEntityData() {
+        if (!this.entity.id) {
+            this.entity.maxCount = 1;
+            this.entity.maxSize = 1024;
+        }
+        super.loadEntityData();
+    }
+
 }

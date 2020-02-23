@@ -16,6 +16,7 @@ namespace Yashil.Infrastructure.Entities
         public int ObjectId { get; set; }
         public string TitlePropertyName { get; set; }
         public bool? IsLarge { get; set; }
+        public bool IsVirtualEntity { get; set; }
         public string Description { get; set; }
         public int CreateBy { get; set; }
         public int? ModifyBy { get; set; }
@@ -27,6 +28,8 @@ namespace Yashil.Infrastructure.Entities
         public string EnglishTitle { get; set; }
         public string ApplicationBased { get; set; }
 
+        public virtual DocFormat CreateByNavigation { get; set; }
+        public virtual DocFormat ModifyByNavigation { get; set; }
         public virtual ICollection<DocType> DocType { get; set; }
         public virtual ICollection<DocumentCategory> DocumentCategory { get; set; }
     }

@@ -31,6 +31,7 @@ namespace Yashil.Core.Entities
         public int ApplicationId { get; set; }
         public int CreatorOrganizationId { get; set; }
 
+        public virtual Application Application { get; set; }
         public virtual User CreateByNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual Menu Parent { get; set; }

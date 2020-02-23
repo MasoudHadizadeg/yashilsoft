@@ -1,4 +1,5 @@
 export enum Entity {
+    docType = 'DocType',
     YashilConnectionString = 'YashilConnectionString',
     Post = 'Post',
     ItemDocType = 'ItemDocType',

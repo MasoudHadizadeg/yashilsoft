@@ -1,0 +1,40 @@
+<div class="card" style="margin-bottom: 5px">
+    <div class="card-header" style="text-align: right; padding: 6px !important;">{{doc.docType.title}}</div>
+    <div class="card-body" style="padding: 2px !important;height: 100px">
+        <dx-file-uploader rtlEnabled="true"
+                          labelText=""
+                          [multiple]="false"
+                          accept="image/*"
+                          [uploadHeaders]="authorizationHeader"
+                          [uploadUrl]="uploadUri"
+                          maxFileSize="50000"
+                          (valueChange)="showImage($event)"
+                          uploadMode="instantly"
+                          (onUploadStarted)="uploadStarted($event)"
+                          [title]="doc.docType.title">
+        </dx-file-uploader>
+    </div>
+    <div class="card-body" style="height: 180px; padding: 2px !important;">
+        <div style="text-align: center;">
+            <img [src]="imgBase64" *ngIf="imgBase64" style="max-height: 150px;" class="center">
+        </div>
+    </div>
+    <div class="card-footer" style="text-align: right; padding: 6px !important;font-size: 12px; height: 30px">
+        <a (click)="showLargImage=true" *ngIf="imgBase64">نمایش در ابعاد بزرگ</a>
+    </div>
+</div>
+
+<dx-popup
+        class="popup"
+        [fullScreen]="true"
+        [showTitle]="true"
+        title=""
+        [dragEnabled]="false"
+        [closeOnOutsideClick]="true"
+        [(visible)]="showLargImage"
+        (onHidden)="showLargImage=false"
+        [deferRendering]="false">
+    <div *dxTemplate="let data = model of 'content'" style="text-align: center">
+        <img [src]="imgBase64" *ngIf="imgBase64" style="max-height: 100%; text-align: center" class="center">
+    </div>
+</dx-popup>

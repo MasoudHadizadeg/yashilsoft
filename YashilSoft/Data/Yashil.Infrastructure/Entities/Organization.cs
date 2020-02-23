@@ -9,8 +9,11 @@ namespace Yashil.Infrastructure.Entities
         {
             AccessLevel = new HashSet<AccessLevel>();
             AppConfig = new HashSet<AppConfig>();
+            AppDocument = new HashSet<AppDocument>();
             DashboardGroup = new HashSet<DashboardGroup>();
             DashboardStore = new HashSet<DashboardStore>();
+            DocType = new HashSet<DocType>();
+            DocumentCategory = new HashSet<DocumentCategory>();
             InverseParent = new HashSet<Organization>();
             ReportGroup = new HashSet<ReportGroup>();
             ReportStore = new HashSet<ReportStore>();
@@ -43,8 +46,11 @@ namespace Yashil.Infrastructure.Entities
         public virtual Organization Parent { get; set; }
         public virtual ICollection<AccessLevel> AccessLevel { get; set; }
         public virtual ICollection<AppConfig> AppConfig { get; set; }
+        public virtual ICollection<AppDocument> AppDocument { get; set; }
         public virtual ICollection<DashboardGroup> DashboardGroup { get; set; }
         public virtual ICollection<DashboardStore> DashboardStore { get; set; }
+        public virtual ICollection<DocType> DocType { get; set; }
+        public virtual ICollection<DocumentCategory> DocumentCategory { get; set; }
         public virtual ICollection<Organization> InverseParent { get; set; }
         public virtual ICollection<ReportGroup> ReportGroup { get; set; }
         public virtual ICollection<ReportStore> ReportStore { get; set; }

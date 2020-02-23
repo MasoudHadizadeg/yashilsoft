@@ -16,6 +16,7 @@ namespace Yashil.Core.Entities
             DocType = new HashSet<DocType>();
             DocumentCategory = new HashSet<DocumentCategory>();
             InverseParent = new HashSet<Application>();
+            Menu = new HashSet<Menu>();
             Organization = new HashSet<Organization>();
             ReportGroup = new HashSet<ReportGroup>();
             ReportStore = new HashSet<ReportStore>();
@@ -48,6 +49,7 @@ namespace Yashil.Core.Entities
         public virtual ICollection<DocType> DocType { get; set; }
         public virtual ICollection<DocumentCategory> DocumentCategory { get; set; }
         public virtual ICollection<Application> InverseParent { get; set; }
+        public virtual ICollection<Menu> Menu { get; set; }
         public virtual ICollection<Organization> Organization { get; set; }
         public virtual ICollection<ReportGroup> ReportGroup { get; set; }
         public virtual ICollection<ReportStore> ReportStore { get; set; }

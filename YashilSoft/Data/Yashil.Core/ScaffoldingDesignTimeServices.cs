@@ -2,7 +2,6 @@ using System;
 using Microsoft.EntityFrameworkCore.Design;
 using System.Collections.Generic;
 using System.IO;
-using EntityFrameworkCore.Scaffolding.Handlebars;
 using HandlebarsDotNet;
 using Microsoft.EntityFrameworkCore.Scaffolding.Internal;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +19,7 @@ namespace Yashil.Core
             services.AddHandlebarsScaffolding(op =>
             {
                 // Exclude some tables
-              op.ExcludedTables = GetExcludedTables();
+                op.ExcludedTables = GetExcludedTables();
             });
             var options = GetReverseEngineerOptions();
             services.AddHandlebarsScaffolding(options);
@@ -31,7 +30,7 @@ namespace Yashil.Core
             // Add optional Handlebars helpers
             services.AddHandlebarsHelpers(myHelper);
 
-             
+
             Handlebars.RegisterHelper("handleNewLines", (output, context, arguments) => { });
         }
 

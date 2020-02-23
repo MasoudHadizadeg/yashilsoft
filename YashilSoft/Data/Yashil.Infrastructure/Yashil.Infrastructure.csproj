@@ -15,7 +15,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Yashil.Common.Infrastructure" Version="1.2.5" />
+    <PackageReference Include="Yashil.Common.Infrastructure" Version="1.3.2" />
   </ItemGroup>
 
 </Project>

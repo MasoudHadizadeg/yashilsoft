@@ -11,6 +11,7 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 import {MessageService} from '../../shared/base/messages/message.service';
 import {ENTRYCOMPONENTS} from './entryIndex';
 import {DmsRoutingModule} from './dms-routing.module';
+import {DxTextBoxModule} from 'devextreme-angular';
 
 @NgModule({
     declarations: [COMPONENTS],
@@ -24,7 +25,8 @@ import {DmsRoutingModule} from './dms-routing.module';
         DpDatePickerModule,
         SharedModule,
         AngularSplitModule.forRoot(),
-        ImageCropperModule
+        ImageCropperModule,
+        DxTextBoxModule
     ],
     providers: [
         MessageService,

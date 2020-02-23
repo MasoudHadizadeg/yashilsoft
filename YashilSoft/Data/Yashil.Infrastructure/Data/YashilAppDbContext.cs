@@ -246,6 +246,11 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.DocumentFile).HasComment("سند");
 
+                entity.Property(e => e.Extension)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ModificationDate)
                     .HasColumnType("datetime")
                     .HasComment("زمان تغییر");
@@ -275,6 +280,12 @@ namespace Yashil.Infrastructure.Data
                     .HasForeignKey(d => d.CreateBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AppDocument_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.AppDocument)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AppDocument_Organization");
 
                 entity.HasOne(d => d.DocType)
                     .WithMany(p => p.AppDocument)
@@ -322,6 +333,8 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.IsLarge).HasComment("با تعداد رکوردهای بزرگتر از 1000");
 
+                entity.Property(e => e.IsVirtualEntity).HasComment("جدول مجازی-نتیجه شکست یک جدول  واقعی");
+
                 entity.Property(e => e.ModificationDate)
                     .HasColumnType("datetime")
                     .HasComment("زمان تغییر");
@@ -344,6 +357,17 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.TitlePropertyName)
                     .HasMaxLength(300)
                     .HasComment("عنوان ستون نمایشی");
+
+                entity.HasOne(d => d.CreateByNavigation)
+                    .WithMany(p => p.AppEntityCreateByNavigation)
+                    .HasForeignKey(d => d.CreateBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AppEntity_DocFormat");
+
+                entity.HasOne(d => d.ModifyByNavigation)
+                    .WithMany(p => p.AppEntityModifyByNavigation)
+                    .HasForeignKey(d => d.ModifyBy)
+                    .HasConstraintName("FK_AppEntity_DocFormat1");
             });
 
             modelBuilder.Entity<Application>(entity =>
@@ -784,6 +808,12 @@ namespace Yashil.Infrastructure.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocType_User");
 
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.DocType)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DocType_Organization");
+
                 entity.HasOne(d => d.DocFormat)
                     .WithMany(p => p.DocType)
                     .HasForeignKey(d => d.DocFormatId)
@@ -858,6 +888,12 @@ namespace Yashil.Infrastructure.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentCategory_User");
 
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.DocumentCategory)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DocumentCategory_Organization");
+
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.DocumentCategoryModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
@@ -929,6 +965,12 @@ namespace Yashil.Infrastructure.Data
                     .IsRequired()
                     .HasMaxLength(300)
                     .HasComment("عنوان");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.Menu)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Menu_Application");
 
                 entity.HasOne(d => d.CreateByNavigation)
                     .WithMany(p => p.MenuCreateByNavigation)

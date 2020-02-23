@@ -31,6 +31,7 @@ namespace Yashil.Core.Entities
         public virtual AppEntity AppEntity { get; set; }
         public virtual Application Application { get; set; }
         public virtual User CreateByNavigation { get; set; }
+        public virtual Organization CreatorOrganization { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual DocumentCategory Parent { get; set; }
         public virtual ICollection<AppDocument> AppDocument { get; set; }

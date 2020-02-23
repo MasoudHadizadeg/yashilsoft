@@ -16,6 +16,7 @@ namespace Yashil.Core.Entities
         public string ShortDescription { get; set; }
         public int? DisplayOrder { get; set; }
         public string Description { get; set; }
+        public string Extension { get; set; }
         public int CreateBy { get; set; }
         public int? ModifyBy { get; set; }
         public DateTime CreationDate { get; set; }
@@ -26,6 +27,7 @@ namespace Yashil.Core.Entities
 
         public virtual Application Application { get; set; }
         public virtual User CreateByNavigation { get; set; }
+        public virtual Organization CreatorOrganization { get; set; }
         public virtual DocType DocType { get; set; }
         public virtual DocumentCategory DocumentCategory { get; set; }
         public virtual User ModifyByNavigation { get; set; }

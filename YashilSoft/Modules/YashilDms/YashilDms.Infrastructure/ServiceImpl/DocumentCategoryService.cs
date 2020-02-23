@@ -20,6 +20,11 @@ namespace YashilDms.Infrastructure.ServiceImpl
 			_documentCategoryRepository = documentCategoryRepository;
 			_userPrincipal = userPrincipal;
         }
+
+        public DocumentCategory GetDocumentDefaultCategory(int appEntityId, int objectId)
+        {
+            return _documentCategoryRepository.GetDocumentDefaultCategory(appEntityId, objectId);
+        }
     }
 }      
  

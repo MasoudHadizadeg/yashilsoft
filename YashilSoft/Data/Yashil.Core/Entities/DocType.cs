@@ -16,7 +16,7 @@ namespace Yashil.Core.Entities
         public string Description { get; set; }
         public int AppEntityId { get; set; }
         public int? DisplayOrder { get; set; }
-        public bool? SaveToDisk { get; set; }
+        public bool SaveToDisk { get; set; }
         public int MaxSize { get; set; }
         public int MaxCount { get; set; }
         public int DocFormatId { get; set; }
@@ -36,6 +36,7 @@ namespace Yashil.Core.Entities
         public virtual AppEntity AppEntity { get; set; }
         public virtual Application Application { get; set; }
         public virtual User CreateByNavigation { get; set; }
+        public virtual Organization CreatorOrganization { get; set; }
         public virtual DocFormat DocFormat { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual ICollection<AppDocument> AppDocument { get; set; }

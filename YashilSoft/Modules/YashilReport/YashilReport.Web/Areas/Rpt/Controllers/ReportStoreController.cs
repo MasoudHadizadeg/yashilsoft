@@ -158,8 +158,6 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
                 assignableListEditModel.Assign);
         }
 
-
-
         [HttpGet("GetReportStoresAssignedToRoleAsync")]
         public async Task<LoadResult> GetReportStoresAssignedToRoleAsync(
             CustomDataSourceLoadOptions loadOptions, int id)

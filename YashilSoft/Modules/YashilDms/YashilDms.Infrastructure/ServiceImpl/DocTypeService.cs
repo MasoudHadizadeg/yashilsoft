@@ -1,4 +1,5 @@
-			using Yashil.Common.Core.Classes;
+			using System.Linq;
+            using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -19,6 +20,11 @@ namespace YashilDms.Infrastructure.ServiceImpl
 			_unitOfWork = unitOfWork;
 			_docTypeRepository = docTypeRepository;
 			_userPrincipal = userPrincipal;
+        }
+
+        public IQueryable<DocType> GetEntityDocTypes(int entityId)
+        {
+            return _docTypeRepository.GetEntityDocTypes(entityId);
         }
     }
 }      

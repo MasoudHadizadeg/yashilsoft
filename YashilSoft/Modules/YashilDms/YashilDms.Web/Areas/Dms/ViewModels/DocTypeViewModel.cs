@@ -54,14 +54,12 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
 
         public int Id { get; set; }
 
-        [StringLength(100)] [Required] 
-        public string Title { get; set; }
+        [StringLength(100)] [Required] public string Title { get; set; }
 
 
         public string Description { get; set; }
 
-        [Range(0, int.MaxValue)] [Required]
-        public int AppEntityId { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int AppEntityId { get; set; }
         public string AppEntityTitle { get; set; }
 
 
@@ -84,6 +82,29 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
         [Required] public bool IsTitleRequired { get; set; }
 
         [Required] public bool IsCategorized { get; set; }
+    }
+
+    public class DocTypeCustomViewModel
+    {
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+        public int AppEntityId { get; set; }
+        public int? DisplayOrder { get; set; }
+        public int MaxSize { get; set; }
+
+        public int MaxCount { get; set; }
+
+        public int DocFormatId { get; set; }
+
+
+        public bool IsImage { get; set; }
+
+        public bool CropImage { get; set; }
+
+        public bool IsTitleRequired { get; set; }
+
+        public bool IsCategorized { get; set; }
     }
 
 

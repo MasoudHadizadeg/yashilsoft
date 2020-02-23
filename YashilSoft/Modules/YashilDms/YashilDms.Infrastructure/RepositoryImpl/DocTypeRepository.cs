@@ -1,4 +1,5 @@
-			using Yashil.Common.Core.Classes;
+			using System.Linq;
+            using Yashil.Common.Core.Classes;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
 using Yashil.Infrastructure.Data; 
@@ -15,5 +16,10 @@ namespace YashilDms.Infrastructure.RepositoryImpl
                 _context = context;
                 _userPrincipal = userPrincipal;
             }
+
+        public IQueryable<DocType> GetEntityDocTypes(int entityId)
+        {
+            return DbSet.Where(x => x.AppEntityId == entityId).Where(ApplicationBasedDefaultFilter());
+        }
     }
 }      
