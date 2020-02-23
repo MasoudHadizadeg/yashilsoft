@@ -40,9 +40,8 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
         {
             if (!string.IsNullOrEmpty(editModel.PasswordStr))
             {
-                entity.Password = Encoding.UTF8.GetBytes(editModel.PasswordStr);
-                CryptographyHelper.CreatePasswordHash(editModel.PasswordStr, out var passwordHash,
-                    out var passwordSalt);
+                // entity.Password = Encoding.UTF8.GetBytes(editModel.PasswordStr+ editModel.UserName);
+                CryptographyHelper.CreatePasswordHash(editModel.PasswordStr + editModel.UserName, out var passwordHash,out var passwordSalt);
                 entity.Password = passwordHash;
                 entity.PasswordSalt = passwordSalt;
             }
@@ -50,22 +49,11 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
             base.CustomMapBeforeUpdate(editModel, entity);
         }
 
-        // protected override List<string> GetNotModifiedProperties(User entity)
-        // {
-        //     var notModifiedProperties = new List<string>();
-        //     if (entity.Password == null)
-        //     {
-        //         notModifiedProperties.Add("Password");
-        //         notModifiedProperties.Add("PasswordSalt");
-        //     }
-        //
-        //     if (entity.Id != 0)
-        //     {
-        //         notModifiedProperties.Add("UserName");
-        //     }
-        //
-        //     return entity.Password == null ? new List<string>(notModifiedProperties) : null;
-        // }
+        protected override bool GetPropertiesForApplyOrIgnoreUpdate(User entity, out List<string> props)
+        {
+            props = new List<string> {"NationalCode"};
+            return false;
+        }
 
         [HttpGet("CheckUserName")]
         public object CheckUserName(string userName)

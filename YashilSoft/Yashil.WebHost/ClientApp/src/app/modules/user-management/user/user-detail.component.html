@@ -19,9 +19,9 @@
         <dxi-item [label]="{text: 'نام خانوادگی'}" dataField="lastName">
             <dxi-validation-rule type="required" message="نام خانوادگی اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item [label]="{text: 'کد ملی'}" dataField="nationalCode">
+        <dxi-item [label]="{text: 'کد ملی'}" dataField="nationalCode" [editorOptions]="{ disabled: entity.id }">
             <dxi-validation-rule type="required" message="کد ملی اجباری می باشد"></dxi-validation-rule>
-            <dxi-validation-rule type="custom" [validationCallback]="validateNationalCode"
+            <dxi-validation-rule *ngIf="!entity.id" type="custom" [validationCallback]="validateNationalCode"
                                  message="کد ملی وارد شده صحیح نمی باشد"></dxi-validation-rule>
         </dxi-item>
 
