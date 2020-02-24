@@ -41,7 +41,7 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
             if (!string.IsNullOrEmpty(editModel.PasswordStr))
             {
                 // entity.Password = Encoding.UTF8.GetBytes(editModel.PasswordStr+ editModel.UserName);
-                CryptographyHelper.CreatePasswordHash(editModel.PasswordStr + editModel.UserName, out var passwordHash,out var passwordSalt);
+                CryptographyHelper.CreatePasswordHash(editModel.PasswordStr + editModel.UserName, out var passwordHash, out var passwordSalt);
                 entity.Password = passwordHash;
                 entity.PasswordSalt = passwordSalt;
             }
@@ -49,9 +49,15 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
             base.CustomMapBeforeUpdate(editModel, entity);
         }
 
-        protected override bool GetPropertiesForApplyOrIgnoreUpdate(User entity, out List<string> props)
+        protected override bool GetPropertiesForApplyOrIgnoreUpdate(User entity, UserEditModel editModel, out List<string> props)
         {
-            props = new List<string> {"NationalCode"};
+            props = new List<string> { "NationalCode", "UserName" };
+            if (string.IsNullOrEmpty(editModel.PasswordStr))
+            {
+                props.Add("PasswordSalt");
+                props.Add("Password");
+            }
+
             return false;
         }
 
@@ -65,6 +71,12 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
         public object CheckNationalCode(string nationalCode)
         {
             return nationalCode.IsValidNationalCode();
+        }
+
+        [HttpGet("GetCurrentUserInfo")]
+        public UserSimpleViewModel GetCurrentUserInfo()
+        {
+            return _mapper.Map<UserSimpleViewModel>(_userService.GetCurrentUserInfo());
         }
     }
 }

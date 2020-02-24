@@ -31,5 +31,10 @@ namespace YashilUserManagement.Infrastructure.RepositoryImpl
         {
             return !DbSet.Any(x => x.UserName == userName && x.ApplicationId == _userPrincipal.ApplicationId);
         }
+
+        public User GetCurrentUserInfo()
+        {
+            return DbSet.Find(_userPrincipal.Id);
+        }
     }
 }

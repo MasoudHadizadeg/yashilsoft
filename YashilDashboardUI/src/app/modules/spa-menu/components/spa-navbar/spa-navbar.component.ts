@@ -1,11 +1,8 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {FakeModel} from '../../models/FakeModel';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ScrollAfterRouteChange} from '../../../../shared/helper/ScrollFunction';
+import {ActivatedRoute} from '@angular/router';
 import {interval} from 'rxjs';
 import {SliderFunction} from '../../../../shared/helper/SliderFunction';
-import {GenericDataService} from 'yashil-core';
-import {EnvService} from '../../../../shared/services/env.service';
 
 @Component({
   selector: 'ysh-spa-navbar',
@@ -23,7 +20,7 @@ export class SpaNavbarComponent implements OnInit, AfterViewInit {
   animationState;
   animationTime = 6;
 
-  constructor(private router: ActivatedRoute) {
+  constructor() {
   }
 
   ngOnInit() {

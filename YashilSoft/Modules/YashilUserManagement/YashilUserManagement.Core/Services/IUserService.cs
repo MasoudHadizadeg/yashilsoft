@@ -11,5 +11,6 @@ namespace YashilUserManagement.Core.Services
         void SetUserPass(string userUserName, byte[] passwordHash, byte[] passwordSalt);
         bool IsAdmin(int id);
         bool CheckExistsUserName(string userName);
+        User GetCurrentUserInfo();
     }
 }      

@@ -38,6 +38,11 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
             return _userRepository.CheckExistsUserName(userName);
         }
 
+        public User GetCurrentUserInfo()
+        {
+            return _userRepository.GetCurrentUserInfo();
+        }
+
         public void SetUserPass(string userUserName, byte[] passwordHash, byte[] passwordSalt)
         {
             var user = _userRepository.GetUserByUserName(userUserName).Result;

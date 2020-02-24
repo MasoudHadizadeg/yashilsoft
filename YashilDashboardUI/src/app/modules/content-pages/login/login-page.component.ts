@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {first} from 'rxjs/operators';
-import {AuthenticationService, User, YashilComponent} from 'yashil-core';
+import {AuthenticationService, GenericDataService, User, YashilComponent} from 'yashil-core';
 import {EnvService} from '../../../shared/services/env.service';
+import {ReportDataService} from '../../spa-menu/services/report-data.service';
 
 @Component({
   selector: 'ysh-login-page',
@@ -20,6 +21,7 @@ export class LoginPageComponent extends YashilComponent implements OnInit {
   userLogin: User;
 
   constructor(
+    private reportDataService: ReportDataService,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService, private env: EnvService) {
@@ -29,6 +31,7 @@ export class LoginPageComponent extends YashilComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.reportDataService.clear();
     // reset login status
     this.authenticationService.logout();
 

@@ -143,7 +143,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
 
                 CustomMapBeforeUpdate(editModel, entity);
 
-                var modifyProps = GetPropertiesForApplyOrIgnoreUpdate(entity, out var props);
+                var modifyProps = GetPropertiesForApplyOrIgnoreUpdate(entity, editModel, out var props);
                 await UpdateAsync(entity, editModel, entity.Id, props, modifyProps);
 
                 AfterUpdate(editModel, entity);
@@ -161,8 +161,12 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
         /// <summary>
         ///  لیستی از ویژگی های موجودیت برای بروز رسانی یا عدم بروز رسانی.هنگام فراخوانی متد بروز رسانی سرویس از طریق پارامتر ورودی نوع آن را مشخص کنید 
         /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="editModel"></param>
+        /// <param name="props"></param>
+        /// <returns>در صورتی که می خواهید  لیست ویژگی ها بروز نشود مقدار نادرست و در غیر این صورت مقدار درست را برگردانید</returns>
         [NonAction]
-        protected virtual bool GetPropertiesForApplyOrIgnoreUpdate(TModel entity, out List<string> props)
+        protected virtual bool GetPropertiesForApplyOrIgnoreUpdate(TModel entity,TEditModel editModel, out List<string> props)
         {
             props = new List<string>();
             return true;

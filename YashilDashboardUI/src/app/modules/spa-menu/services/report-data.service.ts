@@ -9,4 +9,9 @@ export class ReportDataService {
 
   constructor() {
   }
+
+  clear() {
+    this.groups = null;
+    this.groupItems = null;
+  }
 }
