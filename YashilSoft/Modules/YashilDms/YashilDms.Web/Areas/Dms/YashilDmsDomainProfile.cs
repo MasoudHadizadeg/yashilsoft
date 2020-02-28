@@ -51,13 +51,13 @@ namespace YashilDms.Web.Areas.Dms
             CreateMap<AppDocument, AppDocumentSimpleViewModel>();
 
 
-            CreateMap<DocType, DocTypeCustomViewModel>();
+            CreateMap<DocType, DocTypeCustomViewModel>()
+                .ForMember(x => x.AppEntityTitle, b => b.MapFrom(c => c.AppEntity.Title))
+                .ForMember(x => x.DocFormatTitle, b => b.MapFrom(c => c.DocFormat.Title));
+
             CreateMap<DocType, DocTypeEditModel>()
-                .ForMember(x => x.AppEntityTitle,
-                    b => b.MapFrom(c => c.AppEntity.Title))
-                .ForMember(x => x.DocFormatTitle,
-                    b => b.MapFrom(c => c.DocFormat.Title))
-                ;
+                .ForMember(x => x.AppEntityTitle, b => b.MapFrom(c => c.AppEntity.Title))
+                .ForMember(x => x.DocFormatTitle, b => b.MapFrom(c => c.DocFormat.Title));
 
             CreateMap<DocType, DocTypeListViewModel>()
                 .ForMember(x => x.AppEntityTitle,

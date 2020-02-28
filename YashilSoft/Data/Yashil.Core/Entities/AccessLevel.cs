@@ -8,8 +8,20 @@ namespace Yashil.Core.Entities
     {
         public AccessLevel()
         {
+            CommonBaseData = new HashSet<CommonBaseData>();
+            CommonBaseType = new HashSet<CommonBaseType>();
+            Course = new HashSet<Course>();
+            CourseCategory = new HashSet<CourseCategory>();
+            CoursesPlanning = new HashSet<CoursesPlanning>();
+            CoursesPlanningStudent = new HashSet<CoursesPlanningStudent>();
             DashboardStore = new HashSet<DashboardStore>();
+            EducationalCenter = new HashSet<EducationalCenter>();
+            Hr = new HashSet<Hr>();
+            Person = new HashSet<Person>();
+            Post = new HashSet<Post>();
             ReportStore = new HashSet<ReportStore>();
+            Representation = new HashSet<Representation>();
+            RepresentationPerson = new HashSet<RepresentationPerson>();
             User = new HashSet<User>();
         }
 
@@ -28,8 +40,20 @@ namespace Yashil.Core.Entities
         public virtual User CreateByNavigation { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
         public virtual User ModifyByNavigation { get; set; }
+        public virtual ICollection<CommonBaseData> CommonBaseData { get; set; }
+        public virtual ICollection<CommonBaseType> CommonBaseType { get; set; }
+        public virtual ICollection<Course> Course { get; set; }
+        public virtual ICollection<CourseCategory> CourseCategory { get; set; }
+        public virtual ICollection<CoursesPlanning> CoursesPlanning { get; set; }
+        public virtual ICollection<CoursesPlanningStudent> CoursesPlanningStudent { get; set; }
         public virtual ICollection<DashboardStore> DashboardStore { get; set; }
+        public virtual ICollection<EducationalCenter> EducationalCenter { get; set; }
+        public virtual ICollection<Hr> Hr { get; set; }
+        public virtual ICollection<Person> Person { get; set; }
+        public virtual ICollection<Post> Post { get; set; }
         public virtual ICollection<ReportStore> ReportStore { get; set; }
+        public virtual ICollection<Representation> Representation { get; set; }
+        public virtual ICollection<RepresentationPerson> RepresentationPerson { get; set; }
         public virtual ICollection<User> User { get; set; }
     }
     }

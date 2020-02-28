@@ -89,6 +89,8 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
         public int Id { get; set; }
 
         public string Title { get; set; }
+        public string AppEntityTitle { get; set; }
+
         public int AppEntityId { get; set; }
         public int? DisplayOrder { get; set; }
         public int MaxSize { get; set; }
@@ -105,6 +107,7 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
         public bool IsTitleRequired { get; set; }
 
         public bool IsCategorized { get; set; }
+        public string DocFormatTitle { get; set; }
     }
 
 

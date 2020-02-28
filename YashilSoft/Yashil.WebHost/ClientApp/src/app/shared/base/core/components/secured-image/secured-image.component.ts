@@ -3,14 +3,19 @@ import {Component, Input} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs-compat/add/operator/switchMap';
 import 'rxjs-compat/add/operator/map';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
     selector: 'app-secured-image',
     template: `
-        <img [src]="imageData"/>
+        <img [src]="imageData" [style]="style" [class]="class"/>
     `
 })
 export class SecuredImageComponent {
+    @Input()
+    public class: string;
+    @Input()
+    public style: string;
     // This code block just creates an rxjs stream from the src
     imageData: any;
     // <img [src]="dataUrl$|async" />
@@ -41,7 +46,7 @@ export class SecuredImageComponent {
     // new resource would be loaded
 
     // we need HttpClient to load the image
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
     }
 
     // private loadImage(url: string): Observable<any> {
@@ -59,7 +64,7 @@ export class SecuredImageComponent {
     createImageFromBlob(image: Blob) {
         const reader = new FileReader();
         reader.addEventListener('load', () => {
-            this.imageData = reader.result;
+            this.imageData = this.sanitizer.bypassSecurityTrustResourceUrl(reader.result.toString());
         }, false);
 
         if (image) {

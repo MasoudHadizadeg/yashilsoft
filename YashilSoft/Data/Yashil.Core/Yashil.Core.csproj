@@ -18,7 +18,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
-    <PackageReference Include="Yashil.Common.Core" Version="1.4.4" />
+    <PackageReference Include="Yashil.Common.Core" Version="1.5.1" />
   </ItemGroup>
 
 </Project>

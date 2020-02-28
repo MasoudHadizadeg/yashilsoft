@@ -1,4 +1,5 @@
-			using Yashil.Common.Core.Classes;
+			using System.Linq;
+            using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -24,6 +25,11 @@ namespace YashilDms.Infrastructure.ServiceImpl
         public DocumentCategory GetDocumentDefaultCategory(int appEntityId, int objectId)
         {
             return _documentCategoryRepository.GetDocumentDefaultCategory(appEntityId, objectId);
+        }
+
+        public IQueryable<DocumentCategory> GetAll(int appEntityId, int objectId)
+        {
+            return _documentCategoryRepository.GetAll(appEntityId, objectId);
         }
     }
 }      

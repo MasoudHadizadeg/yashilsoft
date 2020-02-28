@@ -1,40 +1,41 @@
-			
-		import { Component, OnInit } from '@angular/core';
-		import {DocumentCategoryDetailComponent} from './document-category-detail.component';
-		@Component({
-		  selector: 'app-document-category-list',
-		  templateUrl: './document-category-list.component.html'
-		})
-		export class DocumentCategoryListComponent {
-		  selectedItemId: number;
-		  columns: any[] = [];
-		  entityName = 'documentCategory';
-		  detailComponent = DocumentCategoryDetailComponent;
-		  constructor() {
-							this.columns.push({ 
-					caption: 'عنوان',
-					dataField: 'title'
-					});
-							this.columns.push({ 
-					caption: 'کد پدر',
-					dataField: 'parentTitle'
-					});
-							this.columns.push({ 
-					caption: 'موجودیت',
-					dataField: 'appEntityTitle'
-					});
-							this.columns.push({ 
-					caption: 'کد مالک',
-					dataField: 'objectId'
-					});
-							this.columns.push({ 
-					caption: 'ترتیب نمایش',
-					dataField: 'displayOrder'
-					});
-							this.columns.push({ 
-					caption: 'فعال بودن',
-					dataField: 'isActive'
-					});
-							
-				}
-		}
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {DocumentCategoryDetailComponent} from './document-category-detail.component';
+
+@Component({
+    selector: 'app-document-category-list',
+    templateUrl: './document-category-list.component.html'
+})
+export class DocumentCategoryListComponent implements OnInit {
+    @Output()
+    public selectedRowChanged: EventEmitter<any> = new EventEmitter<any>();
+    @Input()
+    appEntityId: number;
+    @Input()
+    objectId: number;
+    selectedItemId: number;
+    columns: any[] = [];
+    entityName = 'documentCategory';
+    detailComponent = DocumentCategoryDetailComponent;
+    customListUrl: string;
+    baseListUrl = 'documentCategory/GetEntitiesCustom?';
+    additionalData: any;
+
+    constructor() {
+        this.columns.push({
+            caption: 'عنوان',
+            dataField: 'title'
+        });
+    }
+
+    ngOnInit(): void {
+        this.customListUrl = `${this.baseListUrl}appEntityId=${this.appEntityId}&objectId=${this.objectId}`;
+        this.additionalData = {appEntityId: this.appEntityId, objectId: this.objectId, parentId: null};
+    }
+
+    selectedItemChanged(item: any) {
+        this.selectedItemId = item.id;
+        this.selectedRowChanged.emit(item);
+        this.additionalData.parentId = item.id;
+    }
+}
+

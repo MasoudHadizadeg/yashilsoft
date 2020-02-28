@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.4.4" />
+    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.5.1" />
   </ItemGroup>
 
   <ItemGroup>

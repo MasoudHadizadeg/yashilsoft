@@ -16,6 +16,7 @@ namespace Yashil.Infrastructure.Entities
         public int? DisplayOrder { get; set; }
         public string Description { get; set; }
         public string Extension { get; set; }
+        public string ContentType { get; set; }
         public int CreateBy { get; set; }
         public int? ModifyBy { get; set; }
         public DateTime CreationDate { get; set; }

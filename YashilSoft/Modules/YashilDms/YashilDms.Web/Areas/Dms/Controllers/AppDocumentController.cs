@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -35,13 +37,13 @@ namespace YashilDms.Web.Areas.Dms.Controllers
         /// <param name="objectId"></param>
         /// <returns></returns>
         [HttpGet("GetObjectDocuments")]
-        public DocumentUploadViewModel GetObjectDocuments(int entityId, int objectId)
+        public DocumentUploadViewModel GetObjectDocuments(int entityId, int objectId,int docCategoryId)
         {
             var documentUploadViewModel = new DocumentUploadViewModel();
             var docTypes = _docTypeService.GetEntityDocTypes(entityId);
             documentUploadViewModel.DocTypes = _mapper.ProjectTo<DocTypeCustomViewModel>(docTypes, _mapper.ConfigurationProvider).ToList();
 
-            var docs = _appDocumentService.GetObjectDocuments(entityId, objectId);
+            var docs = _appDocumentService.GetObjectDocuments(entityId, objectId, docCategoryId);
             documentUploadViewModel.Docs =
                 _mapper.ProjectTo<AppDocumentListViewModel>(docs, _mapper.ConfigurationProvider).ToList();
             return documentUploadViewModel;
@@ -68,6 +70,24 @@ namespace YashilDms.Web.Areas.Dms.Controllers
             }
 
             return new EmptyResult();
+        }
+
+        //
+        // [HttpGet("GetImage")]
+        // public HttpResponseMessage GetImage(int appDocumentId)
+        // {
+        //     var appDoc = _appDocumentService.Get(appDocumentId,true);
+        //     MemoryStream ms = new MemoryStream(appDoc.DocumentFile);
+        //     HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK) {Content = new StreamContent(ms)};
+        //     response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(appDoc.ContentType);
+        //     return response;
+        // }
+        [HttpGet("GetFile")]
+        public FileContentResult GetFile(int appDocumentId)
+        {
+            var appDoc = _appDocumentService.GetFile(appDocumentId);
+            return File(appDoc.DocumentFile, appDoc.ContentType);
+            //return appDoc.DocumentFile;
         }
     }
 }

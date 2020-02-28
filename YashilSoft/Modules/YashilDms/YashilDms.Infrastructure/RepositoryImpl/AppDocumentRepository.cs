@@ -1,4 +1,5 @@
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Yashil.Common.Core.Classes;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -19,9 +20,23 @@ namespace YashilDms.Infrastructure.RepositoryImpl
             _userPrincipal = userPrincipal;
         }
 
-        public IQueryable<AppDocument> GetObjectDocuments(int entityId, int objectId)
+        public IQueryable<AppDocument> GetObjectDocuments(int entityId, int objectId, int docCategoryId)
         {
-            return DbSet.Where(x => x.DocType.AppEntityId == entityId && x.ObjectId == objectId).Where(ApplicationBasedDefaultFilter());
+            return DbSet
+                .Where(x => x.DocType.AppEntityId == entityId && x.ObjectId == objectId &&
+                            x.DocumentCategoryId == docCategoryId).Where(ApplicationBasedDefaultFilter());
+        }
+
+        public override AppDocument Get(object id, bool readOnly = false)
+        {
+            if (readOnly)
+            {
+                return DbSet.AsNoTracking().Include(x => x.DocType).FirstOrDefault(x => x.Id == (int) id);
+            }
+            else
+            {
+                return DbSet.Include(x => x.DocType).FirstOrDefault(x => x.Id == (int) id);
+            }
         }
     }
 }

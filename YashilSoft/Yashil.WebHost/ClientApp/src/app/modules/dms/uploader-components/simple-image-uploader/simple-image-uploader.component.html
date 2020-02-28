@@ -1,5 +1,7 @@
 <div class="card" style="margin-bottom: 5px">
-    <div class="card-header" style="text-align: right; padding: 6px !important;">{{doc.docType.title}}</div>
+    <div class="card-header" style="text-align: right; padding: 6px !important;">{{doc.docType.title}}
+        <dx-button class="mediumIcon" icon="plus" (onClick)="addFile()" *ngIf="doc.docType.maxCount===-1 || doc.docType.maxCount >1 ">
+    </dx-button></div>
     <div class="card-body" style="padding: 2px !important;height: 100px">
         <dx-file-uploader rtlEnabled="true"
                           labelText=""
@@ -17,18 +19,25 @@
     <div class="card-body" style="height: 180px; padding: 2px !important;">
         <div style="text-align: center;">
             <img [src]="imgBase64" *ngIf="imgBase64" style="max-height: 150px;" class="center">
+            <app-secured-image *ngIf="doc.id && !imgBase64" [class]="'center simpleImageUploader'"
+                               base64ImgUrl="api/appDocument/GetFile?appDocumentId={{doc.id}}"></app-secured-image>
         </div>
     </div>
-    <div class="card-footer" style="text-align: right; padding: 6px !important;font-size: 12px; height: 30px">
-        <a (click)="showLargImage=true" *ngIf="imgBase64">نمایش در ابعاد بزرگ</a>
+    <div class="card-footer" style="text-align: right; padding: 6px !important;font-size: 12px; height: 30px;">
+        <div style="width: 50%">
+            <a (click)="showLargImage=true" *ngIf="imgBase64 || doc.id">نمایش در ابعاد بزرگ</a>
+        </div>
+        <div style="width: 50%">
+        </div>
     </div>
 </div>
 
 <dx-popup
         class="popup"
+        [rtlEnabled]="true"
         [fullScreen]="true"
         [showTitle]="true"
-        title=""
+        [title]="doc.title"
         [dragEnabled]="false"
         [closeOnOutsideClick]="true"
         [(visible)]="showLargImage"
@@ -36,5 +45,7 @@
         [deferRendering]="false">
     <div *dxTemplate="let data = model of 'content'" style="text-align: center">
         <img [src]="imgBase64" *ngIf="imgBase64" style="max-height: 100%; text-align: center" class="center">
+        <app-secured-image *ngIf="doc.id && !imgBase64" [class]="'center simpleImageUploaderFullScreen'"
+                           base64ImgUrl="api/appDocument/getFile?appDocumentId={{doc.id}}"></app-secured-image>
     </div>
 </dx-popup>

@@ -12,9 +12,11 @@ namespace YashilDms.Core.Services
         /// </summary>
         /// <param name="entityId">کد جدول، این کد ممکن است مجازی باشد</param>
         /// <param name="objectId">کد رکورد مربوط به جدول</param>
+        /// <param name="docCategoryId"></param>
         /// <returns></returns>
-        IQueryable<AppDocument> GetObjectDocuments(int entityId, int objectId);
+        IQueryable<AppDocument> GetObjectDocuments(int entityId, int objectId, int docCategoryId);
 
         bool SaveDocument(int? docCategoryId, int appEntityId, int docTypeId, int? docId, int objectId, IFormFile file);
+        AppDocument GetFile(int appDocumentId);
     }
 }

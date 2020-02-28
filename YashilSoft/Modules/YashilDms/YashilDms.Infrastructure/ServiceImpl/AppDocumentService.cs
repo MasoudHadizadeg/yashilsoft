@@ -40,9 +40,9 @@ namespace YashilDms.Infrastructure.ServiceImpl
             }
         }
 
-        public IQueryable<AppDocument> GetObjectDocuments(int entityId, int objectId)
+        public IQueryable<AppDocument> GetObjectDocuments(int entityId, int objectId, int docCategoryId)
         {
-            return _appDocumentRepository.GetObjectDocuments(entityId, objectId);
+            return _appDocumentRepository.GetObjectDocuments(entityId, objectId, docCategoryId);
         }
 
         public bool SaveDocument(int? docCategoryId, int appEntityId, int docTypeId, int? docId, int objectId,
@@ -73,7 +73,8 @@ namespace YashilDms.Infrastructure.ServiceImpl
                     Title = docType.Title,
                     OrginalName = file.FileName,
                     Extension = extension,
-                    DocumentCategoryId = docCategoryId.Value
+                    DocumentCategoryId = docCategoryId.Value,
+                    ContentType = file.ContentType
                 };
                 Add(appDocument, true);
             }
@@ -84,12 +85,19 @@ namespace YashilDms.Infrastructure.ServiceImpl
                 appDocument.OrginalName = file.FileName;
                 appDocument.Extension = extension;
                 appDocument.DocumentCategoryId = docCategoryId.Value;
+                appDocument.ContentType = file.ContentType;
             }
 
             if (docType.SaveToDisk)
             {
-                using var fileStream =
-                    File.Create(Path.Combine(_physicalDocsFilePath, docTypeId.ToString(), appDocument.Id.ToString()));
+                var directory = Path.Combine(_physicalDocsFilePath, docTypeId.ToString());
+                var filePath = Path.Combine(directory, appDocument.Id.ToString());
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+                using var fileStream = File.Create(filePath);
+
                 file.CopyTo(fileStream);
                 fileStream.Close();
                 fileStream.Dispose();
@@ -98,7 +106,7 @@ namespace YashilDms.Infrastructure.ServiceImpl
             {
                 using var ms = new MemoryStream();
                 file.CopyTo(ms);
-                appDocument.DocumentFile = ms.ToArray();
+                appDocument.DocumentFile = ms.GetBuffer();
                 ms.Close();
                 ms.Dispose();
             }
@@ -106,6 +114,21 @@ namespace YashilDms.Infrastructure.ServiceImpl
             Update(appDocument, appDocument.Id, true);
 
             return true;
+        }
+
+        public AppDocument GetFile(int appDocumentId)
+        {
+            var appDocument = _appDocumentRepository.Get(appDocumentId, true);
+            if (appDocument.DocType.SaveToDisk)
+            {
+                var directory = Path.Combine(_physicalDocsFilePath, appDocument.DocType.Id.ToString());
+                var filePath = Path.Combine(directory, appDocument.Id.ToString());
+                if (File.Exists(filePath))
+                {
+                    appDocument.DocumentFile= File.ReadAllBytes(filePath);
+                }
+            }
+            return appDocument;
         }
     }
 }

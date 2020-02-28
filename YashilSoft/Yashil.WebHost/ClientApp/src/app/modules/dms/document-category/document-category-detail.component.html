@@ -4,20 +4,9 @@
         <dxi-item [label]="{text: 'عنوان'}" dataField="title">
             <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
-
         <dxi-item dataField="parentId" editorType="dxLookup" [label]="{text: 'کد پدر'}"
                   [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: parentDataSource,displayExpr:'title',valueExpr:'id' }">
         </dxi-item>
-
-        <dxi-item dataField="appEntityId" editorType="dxLookup" [label]="{text: 'موجودیت'}"
-                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: appEntityDataSource,displayExpr:'title',valueExpr:'id' }">
-            <dxi-validation-rule type="required" message="موجودیت اجباری می باشد"></dxi-validation-rule>
-        </dxi-item>
-        <dxi-item editorType='dxNumberBox' [label]="{text: 'کد مالک'}" dataField="objectId">
-            <dxi-validation-rule type="required"  message="کد مالک اجباری می باشد"></dxi-validation-rule>
-        </dxi-item>
-
-
         <dxi-item [label]="{text: 'ترتیب نمایش'}" dataField="displayOrder" editorType='dxNumberBox'>
         </dxi-item>
 

@@ -32,6 +32,7 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     selectedItemId: number;
     allowEditSelectedRow: boolean;
     allowDeleteSelectedRow: boolean;
+
     @Input()
     showFilterButton = true;
     @Input()
@@ -42,7 +43,6 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     allowInsertInForm = true;
     @Input()
     allowEditInForm = true;
-    @Input()
     @Input()
     allowPaging = true;
     @Input()
@@ -61,13 +61,13 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     @Input()
     columnHidingEnabled: boolean;
 
-    @Input()
-    set rootValue(val) {
-        this._rootValue = val;
-        if (val !== undefined) {
-            this.bindDataSource();
-        }
-    }
+    // @Input()
+    // set rootValue(val) {
+    //     this._rootValue = val;
+    //     if (val !== undefined) {
+    //         this.bindDataSource();
+    //     }
+    // }
 
     get rootValue() {
         return this._rootValue;
@@ -88,7 +88,7 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     @Output()
     beforeAddClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output()
-    selectedRowChanged: EventEmitter<any> = new EventEmitter<any>();
+    public selectedRowChanged: EventEmitter<any> = new EventEmitter<any>();
     @Output()
     recordInitialized: EventEmitter<any> = new EventEmitter<any>();
     @Input()
@@ -131,13 +131,13 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     @Input()
     editType: FormEditType = FormEditType.CustomModal;
 
-    @Input()
-    public set filters(val: any[]) {
-        if (val) {
-            this.customFilters = val;
-            this.bindDataSource();
-        }
-    }
+    // @Input()
+    // public set filters(val: any[]) {
+    //     if (val) {
+    //         this.customFilters = val;
+    //         this.bindDataSource();
+    //     }
+    // }
 
     public get filters(): any[] {
         return this.customFilters;
@@ -356,7 +356,7 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
         /*
       * If Is For Tree bind To Data Source After Root Value Set
       * */
-        if (!this.isForTree && !this.loadAfterSetFilter) {
+        if (this.isForTree && !this.loadAfterSetFilter) {
             this.bindDataSource();
         }
     }

@@ -12,11 +12,13 @@ import {MessageService} from '../../shared/base/messages/message.service';
 import {ENTRYCOMPONENTS} from './entryIndex';
 import {DmsRoutingModule} from './dms-routing.module';
 import {DxTextBoxModule} from 'devextreme-angular';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 @NgModule({
     declarations: [COMPONENTS],
     entryComponents: [ENTRYCOMPONENTS],
     imports: [
+        PdfViewerModule,
         CommonModule,
         DmsRoutingModule,
         ReactiveFormsModule,

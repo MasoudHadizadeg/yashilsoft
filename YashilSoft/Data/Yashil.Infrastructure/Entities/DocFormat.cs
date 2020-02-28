@@ -21,6 +21,7 @@ namespace Yashil.Infrastructure.Entities
         public DateTime CreationDate { get; set; }
         public DateTime? ModificationDate { get; set; }
         public bool Deleted { get; set; }
+        public bool? AllowEdit { get; set; }
 
         public virtual User CreateByNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }

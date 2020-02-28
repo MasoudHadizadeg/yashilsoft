@@ -1,19 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {BaseEdit} from '../../../shared/base/classes/base-edit';
-import {GenericDataService} from '../../../shared/base/services/generic-data.service';
-import {Entity} from '../../../shared/base/base-data/entity.enum';
+import {BaseEdit} from '../../../../shared/base/classes/base-edit';
+import {GenericDataService} from '../../../../shared/base/services/generic-data.service';
 import {DomSanitizer} from '@angular/platform-browser';
-import ArrayStore from 'devextreme/data/array_store';
-
+import {PDFSource} from 'pdfjs-dist';
+import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-simple-image-uploader',
-    templateUrl: './simple-image-uploader.component.html'
+    selector: 'app-pdf-uploader',
+    templateUrl: './simple-pdf-uploader.component.html'
 })
-export class SimpleImageUploaderComponent extends BaseEdit implements OnInit {
-    accessLevelDataSource: any;
-    connectionStrings: any;
-    imgBase64: any;
+export class SimplePdfUploaderComponent extends BaseEdit implements OnInit {
+    localPdfFileSource: any;
     showLargImage: boolean;
     @Input()
     doc: any = {};
@@ -25,28 +22,32 @@ export class SimpleImageUploaderComponent extends BaseEdit implements OnInit {
     currentUser: any;
     authorizationHeader: any;
     uploadUri: string;
+    pdfSource: PDFSource;
 
-    constructor(private genericDataService: GenericDataService, private sanitizer: DomSanitizer) {
+    constructor(private genericDataService: GenericDataService, private router: Router) {
         super(genericDataService);
         this.entityName = 'reportStore';
-        this.connectionStrings = new ArrayStore();
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.authorizationHeader = {
             Authorization: `Bearer ${this.currentUser.token}`
         };
     }
 
+    showPdf(files) {
+        const that = this;
+        if (files && files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e: any) {
+                that.pdfSource = e.target.result;
+            }
+            reader.readAsArrayBuffer(files[0]);
+        }
+    }
+
     // (int? docCategoryId, int appEntityId, int docTypeId, int? docId, int objectId)
     ngOnInit() {
         super.ngOnInit();
         this.showLargImage = false;
-        this.accessLevelDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'accessLevel');
-        this._genericDataService.getEntitiesByEntityNameForSelect(Entity.YashilConnectionString).subscribe(res =>
-            this.connectionStrings = new ArrayStore({
-                data: res['data'],
-                key: 'id'
-            })
-        );
         this.uploadUri = 'api/AppDocument/UploadFile';
         if (this.docCategoryId) {
             this.updateQueryStringParameter('docCategoryId', this.docCategoryId);
@@ -57,23 +58,12 @@ export class SimpleImageUploaderComponent extends BaseEdit implements OnInit {
         this.updateQueryStringParameter('appEntityId', this.doc.docType.appEntityId);
         this.updateQueryStringParameter('docTypeId', this.doc.docType.id);
         this.updateQueryStringParameter('objectId', this.doc.objectId);
-    }
-
-    afterLoadData(res: any): any {
-        if (res.picture) {
-            this.imgBase64 = this.sanitizer.bypassSecurityTrustResourceUrl(atob(res.picture));
-        }
-    }
-
-    showImage(files) {
-        const that = this;
-        if (files && files[0]) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                that.imgBase64 = that.sanitizer.bypassSecurityTrustResourceUrl(e.target['result']);
-                that.entity.picture = btoa(e.target['result']);
-            }
-            reader.readAsDataURL(files[0]);
+        if (this.doc && this.doc.id) {
+            this.pdfSource = {
+                url: `${window.location.origin}/api/appDocument/GetFile?appDocumentId=${this.doc.id}`,
+                withCredentials: true,
+                httpHeaders: this.authorizationHeader
+            };
         }
     }
 

@@ -4,7 +4,8 @@ import {AppDocumentDetailComponent} from './app-document/app-document-detail.com
 import {DocTypeDetailComponent} from './doc-type/doc-type-detail.component';
 import {Provider} from '@angular/core';
 import {EntityDocumentUploadComponent} from './entity-document/entity-document-upload.component';
-import {SimpleImageUploaderComponent} from './simple-image-uploader/simple-image-uploader.component';
+import {SimpleImageUploaderComponent} from './uploader-components/simple-image-uploader/simple-image-uploader.component';
+import {SimplePdfUploaderComponent} from './uploader-components/simple-pdf-uploader/simple-pdf-uploader.component';
 
 export const ENTRYCOMPONENTS: Provider[] = [
     DocFormatDetailComponent,
@@ -12,5 +13,6 @@ export const ENTRYCOMPONENTS: Provider[] = [
     AppDocumentDetailComponent,
     DocTypeDetailComponent,
     EntityDocumentUploadComponent,
-    SimpleImageUploaderComponent
+    SimpleImageUploaderComponent,
+    SimplePdfUploaderComponent
 ];

@@ -26,5 +26,10 @@ namespace YashilDms.Infrastructure.RepositoryImpl
                 .OrderBy(x => x.Id)
                 .FirstOrDefault();
         }
+
+        public IQueryable<DocumentCategory> GetAll(int appEntityId, int objectId)
+        {
+            return GetAll(true).Where(x => x.AppEntityId == appEntityId && x.ObjectId == objectId);
+        }
     }
 }

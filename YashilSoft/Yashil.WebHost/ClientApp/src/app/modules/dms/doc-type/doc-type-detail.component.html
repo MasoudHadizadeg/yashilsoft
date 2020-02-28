@@ -5,7 +5,7 @@
             <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
         <dxi-item dataField="docFormatId" editorType="dxLookup" [label]="{text: 'فرمت سند'}"
-                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: docFormatDataSource,displayExpr:'title',valueExpr:'id' }">
+                  [editorOptions]="{onValueChanged:selectedDocTypeChange, rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: docFormatDataSource,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="فرمت سند اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
         <dxi-item dataField="appEntityId" editorType="dxLookup" [label]="{text: 'موجودیت'}"
@@ -22,9 +22,6 @@
 
         <dxi-item [label]="{text: 'حداکثر تعداد'}" dataField="maxCount" editorType='dxNumberBox'>
             <dxi-validation-rule type="required" message="حداکثر تعداد اجباری می باشد"></dxi-validation-rule>
-        </dxi-item>
-
-        <dxi-item [label]="{text: 'فایل تصویر است؟'}" dataField="isImage" editorType='dxCheckBox'>
         </dxi-item>
 
         <dxi-item *ngIf="entity.isImage" [label]="{text: 'تصویر کراپ شود؟'}" dataField="cropImage"

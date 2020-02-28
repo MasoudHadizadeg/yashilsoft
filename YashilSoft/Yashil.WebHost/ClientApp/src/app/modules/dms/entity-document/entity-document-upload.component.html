@@ -1,5 +1,22 @@
 <div class="row">
-    <div class="col-4" id="fileuploader-container" *ngFor="let item of docs  let i = index">
-        <app-simple-image-uploader  [doc]="item" ></app-simple-image-uploader>
+    <div class="col-3">
+        <app-document-category-list [appEntityId]="appEntityId" [objectId]="objectId" (selectedRowChanged)="selectedDocumentCategoryChanged($event)" ></app-document-category-list>
+    </div>
+    <div class="col-9">
+        <div class="row">
+            <div class="col-4" id="fileuploader-container" *ngFor="let item of docs  let i = index"
+                 [ngSwitch]="item.docType.docFormatId">
+                <app-pdf-uploader (addDocEvent)="addDoc($event)" *ngSwitchCase="fileFormat.Pdf"
+                                  [doc]="item" [docCategoryId]="docCategoryId"></app-pdf-uploader>
+                <app-simple-image-uploader (addDocEvent)="addDoc($event)" *ngSwitchCase="fileFormat.Picture"
+                                           [doc]="item" [docCategoryId]="docCategoryId"></app-simple-image-uploader>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+
+
+

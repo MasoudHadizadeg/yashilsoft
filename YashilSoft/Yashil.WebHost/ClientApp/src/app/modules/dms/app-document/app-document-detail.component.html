@@ -1,49 +1,37 @@
+<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
-			<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
-<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+        <dxi-item dataField="docTypeId" editorType="dxLookup" [label]="{text: 'نوع سند'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: docTypeDataSource,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="نوع سند اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
 
-									
-									<dxi-item dataField="docTypeId" editorType="dxLookup" [label]="{text: 'نوع سند'}"  
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: docTypeDataSource,displayExpr:'title',valueExpr:'id' }">
+        <dxi-item [label]="{text: 'عنوان'}" dataField="title">
+        </dxi-item>
 
-																				<dxi-validation-rule  type="required" message="نوع سند اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									<dxi-item [label]="{text: 'عنوان'}"  dataField="title" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'نام واقعی سند'}"  dataField="orginalName" >
-												
-										
-				</dxi-item>
-									
-									<dxi-item dataField="documentCategoryId" editorType="dxLookup" [label]="{text: 'گروه سند'}"  
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: documentCategoryDataSource,displayExpr:'title',valueExpr:'id' }">
+        <dxi-item [label]="{text: 'نام واقعی سند'}" dataField="orginalName">
+        </dxi-item>
 
-																				<dxi-validation-rule  type="required" message="گروه سند اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									<dxi-item [label]="{text: 'کد مالک سند'}"  dataField="objectId" >
-												
-																<dxi-validation-rule  type="required" message="کد مالک سند اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									<dxi-item [label]="{text: 'سند'}"  dataField="documentFile" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'توضیح کوتاه'}"  dataField="shortDescription" editorType='dxTextArea'>
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'ترتیب نمایش'}"  dataField="displayOrder" editorType='dxNumberBox'>
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'توضیح کامل'}"  dataField="description" editorType='dxTextArea'>
-												
-										
-				</dxi-item>
-</dx-form>
+        <dxi-item dataField="documentCategoryId" editorType="dxLookup" [label]="{text: 'گروه سند'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: documentCategoryDataSource,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="گروه سند اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item [label]="{text: 'کد مالک سند'}" dataField="objectId">
+            <dxi-validation-rule type="required" message="کد مالک سند اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item [label]="{text: 'سند'}" dataField="documentFile">
+        </dxi-item>
+
+        <dxi-item [label]="{text: 'توضیح کوتاه'}" dataField="shortDescription" editorType='dxTextArea'>
+        </dxi-item>
+
+        <dxi-item [label]="{text: 'ترتیب نمایش'}" dataField="displayOrder" editorType='dxNumberBox'>
+        </dxi-item>
+
+        <dxi-item [label]="{text: 'توضیح کامل'}" dataField="description" editorType='dxTextArea'>
+        </dxi-item>
+
+    </dx-form>
 </app-base-edit-form>
