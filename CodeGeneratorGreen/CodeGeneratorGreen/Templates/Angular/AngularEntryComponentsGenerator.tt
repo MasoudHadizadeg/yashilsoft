@@ -8,7 +8,11 @@
 			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
 			{
 				string angularFriendlyName = table.Name.ToAngularFrendlyName();
-				#>
+				if(table.GenerateTabForDescColumn){
+			#>	
+				import {<#=table.Name#>DetailTabBasedComponent} from './<#=angularFriendlyName#>/<#=angularFriendlyName#>-detail-tab-based.component';
+			<#}#>
+				
 				import {<#=table.Name #>DetailComponent} from './<#=angularFriendlyName #>/<#=angularFriendlyName #>-detail.component';
 				<#
 			}
@@ -22,7 +26,10 @@
 			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
 			{
 				i++;
-				#>
+		if(table.GenerateTabForDescColumn){
+			#>
+		<#=table.Name #>DetailTabBasedComponent,
+			<#}#>
 		  <#=table.Name #>DetailComponent <# if (i <= tablesCount)
 				{
 					#>,<#

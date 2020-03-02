@@ -13,7 +13,11 @@ import {Routes} from '@angular/router';
 			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
 			{
 				string angularFriendlyName = table.Name.ToAngularFrendlyName();
-				#>
+				if(table.GenerateTabForDescColumn){
+				#>	
+				import {<#=table.Name#>DetailTabBasedComponent} from './<#=angularFriendlyName#>/<#=angularFriendlyName#>-detail-tab-based.component';
+				<#}#>
+				
 				import {<#=table.Name#>DetailComponent} from './<#=angularFriendlyName#>/<#=angularFriendlyName#>-detail.component';
 				import {<#=table.Name#>ListComponent} from './<#=angularFriendlyName#>/<#=angularFriendlyName#>-list.component';
 				<#
@@ -21,8 +25,7 @@ import {Routes} from '@angular/router';
 
 			#>
 			import {Provider} from '@angular/core';
-			 
-				export const COMPONENTS:Provider[]=[
+			export const COMPONENTS:Provider[]=[
 				 
 	<#
 			var tablesCount = SqlToCsharpHelper.dbTables.TableList.Count();
@@ -30,8 +33,12 @@ import {Routes} from '@angular/router';
 			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
 			{
 				i++;
-				#>
+			if(table.GenerateTabForDescColumn){
+			#>	
+				<#=table.Name #>DetailTabBasedComponent,
+			<#}#>
 		  <#=table.Name #>ListComponent,
+		
 		  <#=table.Name #>DetailComponent <# if (i <= tablesCount){#>,<#} #>
 		  
 	<#} #>

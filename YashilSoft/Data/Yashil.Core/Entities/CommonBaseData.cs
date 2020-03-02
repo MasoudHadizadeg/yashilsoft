@@ -32,6 +32,7 @@ namespace Yashil.Core.Entities
         public int Value { get; set; }
         public string ExtendedProps { get; set; }
         public int CommonBaseTypeId { get; set; }
+        public bool IsSystemProp { get; set; }
         public string Description { get; set; }
         public int CreateBy { get; set; }
         public int? ModifyBy { get; set; }
@@ -41,7 +42,6 @@ namespace Yashil.Core.Entities
         public int AccessLevelId { get; set; }
         public bool Deleted { get; set; }
         public int CreatorOrganizationId { get; set; }
-        public bool IsSystemProp { get; set; }
 
         public virtual AccessLevel AccessLevel { get; set; }
         public virtual Application Application { get; set; }

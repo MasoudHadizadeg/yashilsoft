@@ -88,7 +88,7 @@ namespace Yashil.WebHost
                 options.UseSqlServer(connectionString));
             services.AddScoped<IUnitOfWork, UnitOfWork<YashilAppDbContext>>();
 
-            List<IOrderedMapperProfile> orderedMapperProfiles = new List<IOrderedMapperProfile>();
+            var orderedMapperProfiles = new List<IOrderedMapperProfile>();
             foreach (var module in GlobalConfiguration.Modules)
             {
                 var moduleInitializerType = module.Assembly.GetTypes()

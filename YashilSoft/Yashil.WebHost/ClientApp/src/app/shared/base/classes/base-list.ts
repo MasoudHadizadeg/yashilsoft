@@ -356,7 +356,7 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
         /*
       * If Is For Tree bind To Data Source After Root Value Set
       * */
-        if (this.isForTree && !this.loadAfterSetFilter) {
+        if (!this.loadAfterSetFilter) {
             this.bindDataSource();
         }
     }

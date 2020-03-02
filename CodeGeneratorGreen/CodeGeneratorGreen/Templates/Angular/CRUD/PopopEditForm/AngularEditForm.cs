@@ -20,7 +20,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class AngularEditForm : AngularEditFormBase
     {
@@ -32,7 +32,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
         {
             this.Write("\t");
             
-            #line 7 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 7 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
 
 			var table = SqlToCsharpHelper.table;
 			string angularFriendlyName = table.Name.ToAngularFrendlyName();
@@ -67,28 +67,28 @@ import {createStore} from 'devextreme-aspnet-data-nojquery';
 @Component({
   selector: 'app-");
             
-            #line 35 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 35 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
             
             #line default
             #line hidden
             this.Write("-detail\',\r\n  templateUrl: \'./");
             
-            #line 36 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 36 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
             
             #line default
             #line hidden
             this.Write("-detail.component.html\'\r\n})\r\nexport class ");
             
-            #line 38 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 38 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("DetailComponent extends BaseEdit implements OnInit {\r\n\t");
             
-            #line 39 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 39 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
 
 			
 			string foreignKeyVar;
@@ -96,7 +96,24 @@ import {createStore} from 'devextreme-aspnet-data-nojquery';
 			{
 				foreignKeyVar = col.Name.FirstCharacterToLower().Replace("Id", "");
 				var isLarge = col.ReferencedObjectIsLarge; //:TODO SqlToCsharpHelper.FTableIsLarg(server.Databases[sqlDatabase],table,col);
-				if (isLarge)
+		        if(col.ReferencedObject=="CommonBaseData"){
+				
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t\t\t");
+            
+            #line 48 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(foreignKeyVar));
+            
+            #line default
+            #line hidden
+            this.Write("s: any;\r\n");
+            
+            #line 49 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+
+				}
+				else if (isLarge)
 				{
 					
             
@@ -104,14 +121,14 @@ import {createStore} from 'devextreme-aspnet-data-nojquery';
             #line hidden
             this.Write("\t ");
             
-            #line 49 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 54 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignKeyVar));
             
             #line default
             #line hidden
             this.Write("DataSource:any;\r\n\t ");
             
-            #line 50 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 55 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
 
 				}
 				else
@@ -122,14 +139,14 @@ import {createStore} from 'devextreme-aspnet-data-nojquery';
             #line hidden
             this.Write("\t\t");
             
-            #line 55 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 60 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignKeyVar));
             
             #line default
             #line hidden
             this.Write("s: any[] = [];\r\n\t");
             
-            #line 56 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 61 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
 
 				}
 			}
@@ -140,22 +157,47 @@ import {createStore} from 'devextreme-aspnet-data-nojquery';
             this.Write("  constructor(private genericDataService: GenericDataService) {\r\n    super(generi" +
                     "cDataService);\r\n    this.entityName = \'");
             
-            #line 62 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 67 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(firstCharacterLower));
             
             #line default
             #line hidden
             this.Write("\';\r\n  }\r\n\r\n  ngOnInit() {\r\n    super.ngOnInit();\r\n\t\t");
             
-            #line 67 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 72 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
 foreach (var col in foreignKeys)
 			{
 				var refTable = col.ReferencedObject;
 				var isLarge = col.ReferencedObjectIsLarge; //:TODO FTableIsLarg(server.Databases[sqlDatabase], table, col);
 
 				foreignKeyVar = col.Name.FirstCharacterToLower().Replace("Id", "");
+				var foreignKeyVarNormal = col.Name.Replace("Id", "");
+				
+				if (col.ReferencedObject=="CommonBaseData"){
+				
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t\t\tthis._genericDataService.getCommonBaseDataForSelect(\'");
+            
+            #line 82 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(foreignKeyVarNormal));
+            
+            #line default
+            #line hidden
+            this.Write("\').subscribe(res => this.");
+            
+            #line 82 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(foreignKeyVar));
+            
+            #line default
+            #line hidden
+            this.Write("s = res);\r\n\t\t\t\t");
+            
+            #line 83 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
 
-				if (isLarge)
+				}
+				else if (isLarge)
 				{
 					
             
@@ -163,21 +205,21 @@ foreach (var col in foreignKeys)
             #line hidden
             this.Write("\t\t\t\t\tthis.");
             
-            #line 77 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 88 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignKeyVar));
             
             #line default
             #line hidden
             this.Write("DataSource = this._genericDataService.createCustomDatasourceForSelect(\'id\', \'");
             
-            #line 77 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 88 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(refTable.FirstCharacterToLower()));
             
             #line default
             #line hidden
             this.Write("\');\r\n\t\t\t\t");
             
-            #line 78 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 89 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
 
 				}
 				else
@@ -188,21 +230,21 @@ foreach (var col in foreignKeys)
             #line hidden
             this.Write("\t\t\tthis._genericDataService.getEntitiesByEntityName(Entity.");
             
-            #line 83 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 94 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(refTable));
             
             #line default
             #line hidden
             this.Write(").subscribe(res => this.");
             
-            #line 83 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 94 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignKeyVar));
             
             #line default
             #line hidden
             this.Write("s = res);\r\n\t\t");
             
-            #line 84 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
+            #line 95 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
 
 				}
 			} 

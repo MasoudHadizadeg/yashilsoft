@@ -1,4 +1,3 @@
-import {Routes} from '@angular/router';
 import {DocFormatDetailComponent} from './doc-format/doc-format-detail.component';
 import {DocFormatListComponent} from './doc-format/doc-format-list.component';
 import {DocumentCategoryDetailComponent} from './document-category/document-category-detail.component';

@@ -14,7 +14,7 @@ using Yashil.Common.Core.Interfaces;
 namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
 {
 
-        public class <#= table.Name #>ListViewModel:IBaseViewModel
+   public class <#= table.Name #>ListViewModel:IBaseViewModel
     {
 		public int ViewModelId
 	        {
@@ -30,7 +30,7 @@ namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
 				i++;
 				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
 				// If we can't map it, skip it
-				if (string.IsNullOrWhiteSpace(propertyType) || propertyType == "byte[]")
+				if (string.IsNullOrWhiteSpace(propertyType) || propertyType == "byte[]" || (propertyType == "string" &&  col.MaxLength=="-1"))
 				{
 					// Skip
 					continue;

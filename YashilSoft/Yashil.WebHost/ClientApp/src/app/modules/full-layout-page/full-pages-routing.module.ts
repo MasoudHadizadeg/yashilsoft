@@ -14,7 +14,8 @@ const routes: Routes = [
             {path: 'dash', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule)},
             {path: 'rpt', loadChildren: () => import('../report/report.module').then(m => m.ReportModule)},
             {path: 'base', loadChildren: () => import('../base-info/base-info.module').then(m => m.BaseInfoModule)},
-            {path: 'dms', loadChildren: () => import('../dms/dms.module').then(m => m.DmsModule)}
+            {path: 'dms', loadChildren: () => import('../dms/dms.module').then(m => m.DmsModule)},
+            {path: 'tms', loadChildren: () => import('../tms/tms.module').then(m => m.TmsModule)}
         ]
     }
 ];

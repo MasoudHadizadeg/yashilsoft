@@ -35,7 +35,7 @@ import {DxTileViewModule} from 'devextreme-angular/ui/tile-view';
 import {DxListModule} from 'devextreme-angular/ui/list'
 import {DxValidatorModule} from 'devextreme-angular/ui/validator'
 import {DxValidationSummaryModule} from 'devextreme-angular/ui/validation-summary';
-
+import {DxHtmlEditorModule} from 'devextreme-angular/ui/html-editor';
 import {MessagesComponent} from './base/messages/messages.component';
 import {SecuredImageComponent} from './base/core/components/secured-image/secured-image.component';
 import {Base64imageDirective} from './directives/base64image.directive';
@@ -98,7 +98,8 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
         DxValidationSummaryModule,
         Base64imageDirective,
         DetailComponentDirective,
-        DxListModule
+        DxListModule,
+        DxHtmlEditorModule
     ],
     imports: [
         NgScrollbarModule,

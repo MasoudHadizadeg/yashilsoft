@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Yashil.Common.SharedKernel" Version="1.5.1" />
-    <PackageReference Include="Yashil.Common.Web.Infrastructure" Version="1.5.1" />
+    <PackageReference Include="Yashil.Common.Web.Infrastructure" Version="1.5.2" />
   </ItemGroup> 
 
   <ItemGroup>

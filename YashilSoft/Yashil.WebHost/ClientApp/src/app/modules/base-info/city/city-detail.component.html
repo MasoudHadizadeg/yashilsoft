@@ -1,0 +1,50 @@
+
+			<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+
+									<dxi-item [label]="{text: 'کد'}"  dataField="code" >
+												
+										
+				</dxi-item>
+									
+									<dxi-item dataField="parentId" editorType="dxLookup" [label]="{text: 'ParentId'}"  
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: parentDataSource,displayExpr:'title',valueExpr:'id' }">
+
+														
+				</dxi-item>
+									<dxi-item [label]="{text: 'عرض جغرافیایی'}"  dataField="latitude" >
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'طول جغرافیایی'}"  dataField="longitude" >
+												
+										
+				</dxi-item>
+									
+									<dxi-item dataField="customCategory" editorType="dxLookup" [label]="{text: 'تقسیم بندی سفارشی'}"  
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: customCategoryDataSource,displayExpr:'title',valueExpr:'id' }">
+
+														
+				</dxi-item>
+									
+									<dxi-item dataField="countryDivisionType" editorType="dxLookup" [label]="{text: 'تقسیمات کشوری'}"  
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: countryDivisionTypeDataSource,displayExpr:'title',valueExpr:'id' }">
+
+																				<dxi-validation-rule  type="required" message="تقسیمات کشوری اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'مرکز استان'}"  dataField="provinceCenter" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'عنوان'}"  dataField="title" >
+												
+																<dxi-validation-rule  type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'توضیحات'}"  dataField="description" editorType='dxTextArea'>
+												
+										
+				</dxi-item>
+</dx-form>
+</app-base-edit-form>

@@ -1,0 +1,53 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+<#@ import namespace="System.Linq" #>
+
+	<#
+	var table = SqlToCsharpHelper.table;
+        string angularFriendlyName = table.Name.ToAngularFrendlyName();
+    string firstCharacterLower = table.Name.FirstCharacterToLower();
+	#>
+
+
+<dx-tab-panel
+    #tabPanel
+    rtlEnabled="true"
+    [dataSource]="tabs"
+    [selectedIndex]="0"
+    [loop]="false"
+    [animationEnabled]="false"
+    [swipeEnabled]="false">
+    <div *dxTemplate="let company of '<#=firstCharacterLower#>'" class="tab-content-edit-form">
+						<app-<#=angularFriendlyName#>-detail [selectedEntityId]="selectedEntityId" entityName="<#=firstCharacterLower#>" 
+											></app-<#=angularFriendlyName#>-detail>
+					</div>
+<#
+			// Keep count so we don't whitespace the last property/column
+			int i = 1;
+           
+			// Iterate all columns
+           foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
+            {
+                string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
+                string colNameFirstCharLower = col.Name.FirstCharacterToLower();
+                // If we can't map it, skip it
+	            if(propertyType != "string" ||  col.MaxLength!="-1")
+                {
+                    // Skip
+                    continue;
+                }
+                i++;
+                var colCaption = string.IsNullOrEmpty(col.ColDesc) ? col.Name : col.ColDesc.Replace("*", "");
+
+				#>
+					<div *dxTemplate="let company of '<#=colNameFirstCharLower#>'" class="tab-content-edit-form">
+						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="<#=firstCharacterLower#>" propertyName="<#=colNameFirstCharLower#>"
+											propertyLabel="<#=colCaption #>"></app-content-editor>
+					</div>
+				<#
+			 }
+				
+			
+#>
+</dx-tab-panel>

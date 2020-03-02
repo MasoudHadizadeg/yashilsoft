@@ -1,12 +1,13 @@
 import * as moment from 'jalali-moment';
-import {EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Input, OnInit, Output, ViewChild} from '@angular/core';
 import {GenericDataService} from '../services/generic-data.service';
 import {DxFormComponent} from 'devextreme-angular/ui/form';
 import notify from 'devextreme/ui/notify';
 import {catchError} from 'rxjs/operators';
 import {BaseEditFormComponent} from '../base-edit-form/base-edit-form.component';
+import {Editable} from './editable';
 
-export class BaseEdit implements OnInit {
+export class BaseEdit extends Editable implements OnInit {
     // tslint:disable-next-line:variable-name
     _genericDataService: GenericDataService;
     closeAfterSave = true;
@@ -15,17 +16,6 @@ export class BaseEdit implements OnInit {
     keyExpr: string;
     displayExpr: string;
     parentIdExpr: string;
-    _additionalData: any;
-    showCloseButton: boolean;
-
-    @Input()
-    public set additionalData(value: any) {
-        this._additionalData = value;
-    }
-
-    public get additionalData(): any {
-        return this._additionalData;
-    }
 
     @Input()
     public set entityParentId(value: number) {
@@ -37,8 +27,6 @@ export class BaseEdit implements OnInit {
         return this._entityParentId;
     }
 
-    @Output()
-    closeFormClick = new EventEmitter<boolean>();
     buttonOptions: any = {
         text: 'Register',
         type: 'success',
@@ -49,8 +37,7 @@ export class BaseEdit implements OnInit {
         dir: 'rtl',
         locale: moment.locale('fa')
     };
-    public dataSelectedEntityId: number;
-    // public _entityParentId: number;
+
     private dataFilters: any = [];
 
     @Input()
@@ -67,41 +54,15 @@ export class BaseEdit implements OnInit {
 
     entity: any = {};
 
-    dataEntityName: string;
-
-    public set entityName(value: string) {
-        this.dataEntityName = value;
-    }
-
-    public get entityName(): string {
-        return this.dataEntityName;
-    }
-
-    // @ViewChild('detailForm') detailForm;
     @ViewChild(DxFormComponent, {static: true}) detailForm: DxFormComponent
     @ViewChild(BaseEditFormComponent, {static: true}) baseEditFormComponent: BaseEditFormComponent
-
-    // @ViewChild('baseEditForm') baseEditForm;
-    @Input() isNew: boolean;
-
-    @Input()
-    public set selectedEntityId(value: number) {
-        this.dataSelectedEntityId = value;
-        if (!value) {
-            this.entity = {};
-        }
-        this.loadEntityData();
-    }
-
-    public get selectedEntityId(): number {
-        return this.dataSelectedEntityId;
-    }
 
     public onCloseFormClick(e) {
         this.closeFormClick.next(true);
     }
 
     constructor(genericDataService: GenericDataService) {
+        super();
         this._genericDataService = genericDataService;
     }
 
@@ -157,7 +118,6 @@ export class BaseEdit implements OnInit {
                 return '';
             })).subscribe(
                 msg => {
-                    this.entity = {};
                     notify({
                         message: 'تغییرات  با موفقیت ذخیره شد',
                         position: {
@@ -203,13 +163,13 @@ export class BaseEdit implements OnInit {
 
     private closeForm() {
         this.selectedEntityId = null;
-        this.entity = {};
         if (this.closeAfterSave) {
             this.closeFormClick.emit(true);
         }
     }
 
     ngOnInit(): void {
+        this.loadEntityData()
     }
 
     public afterLoadData(res: any): any {

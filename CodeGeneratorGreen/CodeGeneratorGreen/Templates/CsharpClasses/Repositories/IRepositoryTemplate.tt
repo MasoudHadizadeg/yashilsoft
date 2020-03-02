@@ -1,5 +1,11 @@
 ﻿<#@ template language="C#" #>
-<#@ import namespace="Classes" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="CodeGeneratorGreen.Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
 			<#
 			var table = SqlToCsharpHelper.table;
 			#>
@@ -11,5 +17,23 @@ namespace <#= ApplicationInfo.Instance.IRepositoryNamespace #>
 {
 	public interface I<#= table.Name #>Repository : IGenericRepository<<#= table.Name #>>
     {
+    <#
+		foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
+			{
+				 string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
+                string colNameFirstCharLower = col.Name.FirstCharacterToLower();
+                // If we can't map it, skip it
+	            if(propertyType != "string" ||  col.MaxLength!="-1")
+                {
+					
+                    // Skip
+                    continue;
+                }
+		#>
+			string Get<#=col.Name#>(int id);		
+<#
+			}
+	#>	
     }
 }      
+ 

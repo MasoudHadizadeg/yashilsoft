@@ -207,6 +207,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AngularEntryComponentsGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AngularEditWithTabularDescEditTs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditHtml.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AngularEditWithTabularDescEditHtml.tt</DependentUpon>
+    </Compile>
     <Compile Include="Templates\Angular\SidebarRoutesconfigTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -355,6 +365,14 @@
     <Content Include="Templates\Angular\AngularEntryComponentsGenerator.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>AngularEntryComponentsGenerator1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AngularEditWithTabularDescEditTs.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditHtml.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AngularEditWithTabularDescEditHtml.cs</LastGenOutput>
     </Content>
     <Content Include="Templates\Angular\SidebarRoutesconfigTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

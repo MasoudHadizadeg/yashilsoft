@@ -105,124 +105,170 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             #line 30 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
 
 				foreach (var foreignColumn in foreignColumns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
-				{
+        {
+            if(foreignColumn.ReferencedObject!="CommonBaseData")
+            {
 					
             
             #line default
             #line hidden
             this.Write("\t\t\t\t\t.ForMember(x => x.");
             
-            #line 34 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 36 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write("Title, \r\n\t\t\t\t\tb => b.MapFrom(c => c.");
             
-            #line 35 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 37 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 35 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 37 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.ReferencedObjectTitleColumn));
             
             #line default
             #line hidden
-            this.Write("))\r\n\t\t\t\t");
+            this.Write("))\r\n\t\t\t");
             
-            #line 36 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
-
-				} 
+            #line 38 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+}
+            else{
             
             #line default
             #line hidden
-            this.Write(";\r\n\r\n                CreateMap<");
+            this.Write(".ForMember(x => x.");
             
             #line 39 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
+            
+            #line default
+            #line hidden
+            this.Write("Title, b => b.MapFrom(c => c.");
+            
+            #line 39 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
+            
+            #line default
+            #line hidden
+            this.Write("Navigation.Title))");
+            
+            #line 39 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+}}
+            
+            #line default
+            #line hidden
+            this.Write(";\t\t\t\r\n\t\t\t\t\r\n\r\n                CreateMap<");
+            
+            #line 42 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 39 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 42 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
-            this.Write("ListViewModel>()\r\n\t\t\t\t\t\t");
+            this.Write("ListViewModel>()\r\n\t\t\t\t");
             
-            #line 40 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 43 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
 
-				foreach (var foreignColumn in foreignColumns.Where(x => x.Name != "CreateBy" && x.Name != "ModifyBy"))
-				{
+				foreach (var foreignColumn in foreignColumns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
+        {
+            if(foreignColumn.ReferencedObject!="CommonBaseData")
+            {
 					
             
             #line default
             #line hidden
             this.Write("\t\t\t\t\t.ForMember(x => x.");
             
-            #line 44 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 49 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write("Title, \r\n\t\t\t\t\tb => b.MapFrom(c => c.");
             
-            #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 50 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 50 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.ReferencedObjectTitleColumn));
             
             #line default
             #line hidden
-            this.Write("))");
+            this.Write("))\r\n\t\t\t");
             
-            #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
-
-				} 
+            #line 51 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+}
+            else{
             
             #line default
             #line hidden
-            this.Write(";\r\n\r\n\t\t\t\tCreateMap<");
+            this.Write(".ForMember(x => x.");
             
-            #line 48 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 52 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
+            
+            #line default
+            #line hidden
+            this.Write("Title, b => b.MapFrom(c => c.");
+            
+            #line 52 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(foreignColumn.Name.Replace("Id", "")));
+            
+            #line default
+            #line hidden
+            this.Write("Navigation.Title))");
+            
+            #line 52 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+}}
+            
+            #line default
+            #line hidden
+            this.Write(";\t\t\t\r\n\t\t\t\tCreateMap<");
+            
+            #line 53 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("EditModel, ");
             
-            #line 48 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 53 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(">();\r\n\r\n                CreateMap<");
             
-            #line 50 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 55 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 50 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 55 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("SimpleViewModel>();\r\n\t   \r\n\t");
             
-            #line 52 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
+            #line 57 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\DomainProfileTemplate.tt"
 
 			} 
             

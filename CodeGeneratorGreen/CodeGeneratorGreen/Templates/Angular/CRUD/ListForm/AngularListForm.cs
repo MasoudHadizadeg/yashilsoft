@@ -21,7 +21,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.ListForm
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class AngularListForm : AngularListFormBase
     {
@@ -33,7 +33,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.ListForm
         {
             this.Write("\t\t\t");
             
-            #line 9 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 9 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
 
 			var table = SqlToCsharpHelper.table;
 			string angularFriendlyName = table.Name.ToAngularFrendlyName();
@@ -44,35 +44,65 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.ListForm
             #line hidden
             this.Write("\r\n\t\timport { Component, OnInit } from \'@angular/core\';\r\n\t\timport {");
             
-            #line 16 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 16 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("DetailComponent} from \'./");
             
-            #line 16 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 16 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
             
             #line default
             #line hidden
-            this.Write("-detail.component\';\r\n\t\t@Component({\r\n\t\t  selector: \'app-");
+            this.Write("-detail.component\';\r\n\t\t");
             
-            #line 18 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 17 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+
+		if(table.GenerateTabForDescColumn){
+		
+            
+            #line default
+            #line hidden
+            this.Write("\t\timport {");
+            
+            #line 20 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
+            
+            #line default
+            #line hidden
+            this.Write("DetailTabBasedComponent} from \'./");
+            
+            #line 20 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
+            
+            #line default
+            #line hidden
+            this.Write("-detail-tab-based.component\';\r\n\t\t");
+            
+            #line 21 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+} 
+            
+            #line default
+            #line hidden
+            this.Write("\t\r\n\t\t\r\n\r\n\t\t@Component({\r\n\t\t  selector: \'app-");
+            
+            #line 25 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
             
             #line default
             #line hidden
             this.Write("-list\',\r\n\t\t  templateUrl: \'./");
             
-            #line 19 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 26 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
             
             #line default
             #line hidden
             this.Write("-list.component.html\'\r\n\t\t})\r\n\t\texport class ");
             
-            #line 21 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 28 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
@@ -80,27 +110,56 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.ListForm
             this.Write("ListComponent {\r\n\t\t  selectedItemId: number;\r\n\t\t  columns: any[] = [];\r\n\t\t  entit" +
                     "yName = \'");
             
-            #line 24 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 31 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(firstCharacterLower));
             
             #line default
             #line hidden
-            this.Write("\';\r\n\t\t  detailComponent = ");
+            this.Write("\';\r\n\t\t  detailComponent =");
             
-            #line 25 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 32 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+if(table.GenerateTabForDescColumn){
+            
+            #line default
+            #line hidden
+            this.Write("  ");
+            
+            #line 32 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
-            this.Write("DetailComponent;\r\n\t\t  constructor() {\r\n\t\t\t");
+            this.Write("DetailTabBasedComponent; ");
             
-            #line 27 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 32 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+} else { 
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 32 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
+            
+            #line default
+            #line hidden
+            this.Write("DetailComponent; ");
+            
+            #line 32 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write("\t\t  constructor() {\r\n\t\t\t");
+            
+            #line 34 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
 
 			// Iterate all columns
 
 			
 			foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name)))
 			{
+				
 				var colCaption = col.Name.FirstCharacterToLower();
 
 				// If we can't map it, skip it
@@ -109,7 +168,10 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.ListForm
 					colNamef = colCaption.Replace("Id", "") + "Title";
 				else
 					colNamef = col.Name.FirstCharacterToLower();
-
+				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
+				if((propertyType == "string" &&  col.MaxLength=="-1")){
+							continue;
+					}
 				colCaption = string.IsNullOrEmpty(col.ColDesc) ? col.Name : col.ColDesc.Replace("*", "");
 				
             
@@ -117,21 +179,21 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.ListForm
             #line hidden
             this.Write("\t\t\t\tthis.columns.push({ \r\n\t\t\t\t\tcaption: \'");
             
-            #line 45 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 56 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colCaption));
             
             #line default
             #line hidden
             this.Write("\',\r\n\t\t\t\t\tdataField: \'");
             
-            #line 46 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 57 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNamef));
             
             #line default
             #line hidden
             this.Write("\'\r\n\t\t\t\t\t});\r\n\t\t\t");
             
-            #line 48 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 59 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
 
 			} 
             

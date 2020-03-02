@@ -9,7 +9,12 @@
 // ------------------------------------------------------------------------------
 namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
 {
-    using Classes;
+    using CodeGeneratorGreen.Classes;
+    using CodeGeneratorGreen.Extentions;
+    using CodeGeneratorGreen.Models;
+    using System.Linq;
+    using System.Text;
+    using System.Collections.Generic;
     using System;
     
     /// <summary>
@@ -28,7 +33,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
         {
             this.Write("\t\t\t");
             
-            #line 3 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 9 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
 
 			var table = SqlToCsharpHelper.table;
             var repName="GenericRepository";
@@ -42,42 +47,42 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
             this.Write("using Yashil.Common.Core.Classes;\r\nusing Yashil.Common.Infrastructure.Implementat" +
                     "ions;\r\nusing Yashil.Core.Entities;\r\nusing Yashil.Infrastructure.Data; \r\nusing ");
             
-            #line 14 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 20 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Core.Repositories;\r\n\r\nnamespace ");
             
-            #line 16 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.RepositoryNamespace));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\tpublic class ");
             
-            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 24 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Repository : ");
             
-            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 24 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(repName));
             
             #line default
             #line hidden
             this.Write("<");
             
-            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 24 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(",int>, I");
             
-            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 24 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
@@ -85,21 +90,62 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
             this.Write("Repository\r\n    {\r\n        private readonly YashilAppDbContext _context;\r\n       " +
                     " private readonly IUserPrincipal _userPrincipal;\r\n\t\tpublic ");
             
-            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 28 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Repository (");
             
-            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            #line 28 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.DbContextName));
             
             #line default
             #line hidden
             this.Write(" context, IUserPrincipal userPrincipal) : base(context,userPrincipal)\r\n          " +
                     "  {\r\n                _context = context;\r\n                _userPrincipal = userP" +
-                    "rincipal;\r\n            }\r\n    }\r\n}      \r\n");
+                    "rincipal;\r\n            }\r\n    ");
+            
+            #line 33 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+
+		foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
+			{
+				 string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
+                string colNameFirstCharLower = col.Name.FirstCharacterToLower();
+                // If we can't map it, skip it
+	            if(propertyType != "string" ||  col.MaxLength!="-1")
+                {
+                    // Skip
+                    continue;
+                }
+		
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t  public string Get");
+            
+            #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
+            
+            #line default
+            #line hidden
+            this.Write("(int id)\r\n\t\t\t\t{\r\n\t\t\t\t\treturn DbSet.Where(x => x.Id == id).Select(x => x.");
+            
+            #line 47 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
+            
+            #line default
+            #line hidden
+            this.Write(").FirstOrDefault();\r\n\t\t\t\t}\t\r\n");
+            
+            #line 49 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+
+			}
+	
+            
+            #line default
+            #line hidden
+            this.Write("\t\r\n    }\r\n}      \r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

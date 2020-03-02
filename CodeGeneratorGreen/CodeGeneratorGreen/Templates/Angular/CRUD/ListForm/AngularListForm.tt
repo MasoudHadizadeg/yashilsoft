@@ -14,6 +14,13 @@
 
 		import { Component, OnInit } from '@angular/core';
 		import {<#=table.Name #>DetailComponent} from './<#=angularFriendlyName #>-detail.component';
+		<#
+		if(table.GenerateTabForDescColumn){
+		#>
+		import {<#=table.Name #>DetailTabBasedComponent} from './<#=angularFriendlyName #>-detail-tab-based.component';
+		<#} #>	
+		
+
 		@Component({
 		  selector: 'app-<#=angularFriendlyName #>-list',
 		  templateUrl: './<#=angularFriendlyName #>-list.component.html'
@@ -22,7 +29,7 @@
 		  selectedItemId: number;
 		  columns: any[] = [];
 		  entityName = '<#=firstCharacterLower #>';
-		  detailComponent = <#=table.Name #>DetailComponent;
+		  detailComponent =<#if(table.GenerateTabForDescColumn){#>  <#=table.Name #>DetailTabBasedComponent; <#} else { #> <#=table.Name #>DetailComponent; <#}#>
 		  constructor() {
 			<#
 			// Iterate all columns
@@ -30,6 +37,7 @@
 			
 			foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name)))
 			{
+				
 				var colCaption = col.Name.FirstCharacterToLower();
 
 				// If we can't map it, skip it
@@ -38,7 +46,10 @@
 					colNamef = colCaption.Replace("Id", "") + "Title";
 				else
 					colNamef = col.Name.FirstCharacterToLower();
-
+				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
+				if((propertyType == "string" &&  col.MaxLength=="-1")){
+							continue;
+					}
 				colCaption = string.IsNullOrEmpty(col.ColDesc) ? col.Name : col.ColDesc.Replace("*", "");
 				#>
 				this.columns.push({ 

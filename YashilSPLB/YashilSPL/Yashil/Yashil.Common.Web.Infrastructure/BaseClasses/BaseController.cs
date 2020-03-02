@@ -123,7 +123,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             }
 
             AfterInsert(editModel, entity);
-            return Accepted();
+            return Accepted(entity.Id);
         }
 
         [HttpPut]

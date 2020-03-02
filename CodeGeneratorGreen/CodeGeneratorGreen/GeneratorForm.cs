@@ -8,6 +8,7 @@ using CodeGeneratorGreen.Models;
 using CodeGeneratorGreen.Templates.Angular;
 using CodeGeneratorGreen.Templates.Angular.CRUD.ListForm;
 using CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm;
+using CodeGeneratorGreen.Templates.Angular.CRUD.TabularEditForm;
 using CodeGeneratorGreen.Templates.CsharpClasses.ProjectTemplates;
 using CodeGeneratorGreen.Templates.CsharpClasses.Repositories;
 using CodeGeneratorGreen.Templates.CsharpClasses.Services;
@@ -32,34 +33,40 @@ namespace CodeGeneratorGreen
 
             var moduleInfos = new List<ModuleInfo>
             {
+                 new ModuleInfo
+                 {
+                     ClassNamespace = "YashilDashboard", AngularModuleName = "Dashboard", AreaName = "Dash",
+                     XmlFileName = "Data_Dash", GenerateProjectFiles = false, GenerateControllers = false,
+                     GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
+                 },
+                 new ModuleInfo
+                 {
+                     ClassNamespace = "YashilUserManagement", AngularModuleName = "UserManagement", AreaName = "UserMng",
+                     XmlFileName = "Data_user", GenerateProjectFiles = false, GenerateControllers = false,
+                     GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
+                 },
+                 new ModuleInfo
+                 {
+                     ClassNamespace = "YashilReport", AngularModuleName = "Report", AreaName = "Rpt",
+                     XmlFileName = "Data_Rpt", GenerateProjectFiles = true, GenerateControllers = true,
+                     GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
+                 },
+                 new ModuleInfo
+                 {
+                     ClassNamespace = "YashilBaseInfo", AngularModuleName = "BaseInfo", AreaName = "BaseInf",
+                     XmlFileName = "Data_base", GenerateProjectFiles = true, GenerateControllers = true,
+                     GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
+                 },
+                 new ModuleInfo
+                 {
+                     ClassNamespace = "YashilDms", AngularModuleName = "Dms", AreaName = "Dms",
+                     XmlFileName = "Data_dms", GenerateProjectFiles = true, GenerateControllers = true,
+                     GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
+                 },
                 new ModuleInfo
                 {
-                    ClassNamespace = "YashilDashboard", AngularModuleName = "Dashboard", AreaName = "Dash",
-                    XmlFileName = "Data_Dash", GenerateProjectFiles = false, GenerateControllers = false,
-                    GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
-                },
-                new ModuleInfo
-                {
-                    ClassNamespace = "YashilUserManagement", AngularModuleName = "UserManagement", AreaName = "UserMng",
-                    XmlFileName = "Data_user", GenerateProjectFiles = false, GenerateControllers = false,
-                    GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
-                },
-                new ModuleInfo
-                {
-                    ClassNamespace = "YashilReport", AngularModuleName = "Report", AreaName = "Rpt",
-                    XmlFileName = "Data_Rpt", GenerateProjectFiles = true, GenerateControllers = true,
-                    GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
-                },
-                new ModuleInfo
-                {
-                    ClassNamespace = "YashilBaseInfo", AngularModuleName = "BaseInfo", AreaName = "BaseInf",
-                    XmlFileName = "Data_base", GenerateProjectFiles = true, GenerateControllers = true,
-                    GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
-                },
-                new ModuleInfo
-                {
-                    ClassNamespace = "YashilDms", AngularModuleName = "Dms", AreaName = "Dms",
-                    XmlFileName = "Data_dms", GenerateProjectFiles = true, GenerateControllers = true,
+                    ClassNamespace = "YashilTms", AngularModuleName = "Tms", AreaName = "Tms",
+                    XmlFileName = "Data_tms", GenerateProjectFiles = true, GenerateControllers = true,
                     GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
                 }
             };
@@ -78,6 +85,12 @@ namespace CodeGeneratorGreen
                 foreach (var table in tables.TableList)
                 {
                     SqlToCsharpHelper.table = table;
+                    if (table.GenerateTabForDescColumn)
+                    {
+                        GenerateAngularTabularEditHtmlForm(table);
+                        GenerateAngularTabularEditForm(table);
+
+                    }
                     GenerateAngularListForm(table);
                     GenerateAngularListHtml(table);
                     GenerateAngularEditForm(table);
@@ -356,7 +369,37 @@ namespace CodeGeneratorGreen
                 $"{path}/{table.Name.ToAngularFrendlyName()}-detail.component.html",
                 pageContent);
         }
+        private void GenerateAngularTabularEditHtmlForm(Table table)
+        {
+            var angularTabularEditFormDesc = new AngularEditWithTabularDescEditHtml();
+            var pageContent = angularTabularEditFormDesc.TransformText();
+            var path =
+                $"Files/{ApplicationInfo.Instance.AngularModuleRootPath}/{table.Name.ToAngularFrendlyName()}";
 
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            File.WriteAllText(
+                $"{path}/{table.Name.ToAngularFrendlyName()}-detail-tab-based.component.html",
+                pageContent);
+        }
+        private void GenerateAngularTabularEditForm(Table table)
+        {
+            var angularEditForm = new AngularEditWithTabularDescEditTs();
+            var pageContent = angularEditForm.TransformText();
+            var path =
+                $"Files/{ApplicationInfo.Instance.AngularModuleRootPath}/{table.Name.ToAngularFrendlyName()}";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            File.WriteAllText(
+                $"{path}/{table.Name.ToAngularFrendlyName()}-detail-tab-based.component.ts",
+                pageContent);
+        }
         private void GenerateAngularEditForm(Table table)
         {
             var angularEditForm = new AngularEditForm();

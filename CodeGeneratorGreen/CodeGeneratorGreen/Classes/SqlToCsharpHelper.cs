@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using CodeGeneratorGreen.Models;
+using DevExpress.Printing.Native.PrintEditor;
 
 namespace CodeGeneratorGreen.Classes
 {
@@ -9,6 +10,7 @@ namespace CodeGeneratorGreen.Classes
     {
         public static Tables dbTables;
         public static Table table { get; set; }
+
         public static string GetNetDataType(string sqlDataTypeName)
         {
             switch (sqlDataTypeName.ToLower())
@@ -53,7 +55,11 @@ namespace CodeGeneratorGreen.Classes
             }
         }
 
-       
-
+        public static bool IsPropertyNumer(string sqlDataTypeName)
+        {
+            var dataType = sqlDataTypeName.ToLower();
+            return dataType == "bigint" || dataType == "decimal" || dataType == "float" || dataType == "int" ||
+                   dataType == "real" || dataType == "smallint" || dataType == "tinyint";
+        }
     }
 }

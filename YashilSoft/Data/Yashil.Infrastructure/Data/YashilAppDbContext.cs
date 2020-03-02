@@ -549,6 +549,8 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Description).HasComment("توضیحات");
 
+                entity.Property(e => e.IsSystemProp).HasComment("سیستمی");
+
                 entity.Property(e => e.ModificationDate)
                     .HasColumnType("datetime")
                     .HasComment("زمان تغییر");
@@ -698,7 +700,7 @@ namespace Yashil.Infrastructure.Data
                     .HasMaxLength(150)
                     .HasComment("کد");
 
-                entity.Property(e => e.CourseCategory).HasComment("گروه آموزشی");
+                entity.Property(e => e.CourseCategoryId).HasComment("گروه آموزشی");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
 
@@ -758,9 +760,9 @@ namespace Yashil.Infrastructure.Data
                     .HasForeignKey(d => d.CertificateType)
                     .HasConstraintName("FK_Course_CommonBaseData1");
 
-                entity.HasOne(d => d.CourseCategoryNavigation)
+                entity.HasOne(d => d.CourseCategory)
                     .WithMany(p => p.Course)
-                    .HasForeignKey(d => d.CourseCategory)
+                    .HasForeignKey(d => d.CourseCategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Course_CourseCategory");
 
@@ -930,6 +932,8 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
 
+                entity.Property(e => e.Organizational).HasComment("دوره سازمانی");
+
                 entity.Property(e => e.Price).HasComment("قیمت دوره");
 
                 entity.Property(e => e.RepresentationId).HasComment("نمایندگی");
@@ -941,11 +945,6 @@ namespace Yashil.Infrastructure.Data
                     .HasComment("روش اجرای دوره");
 
                 entity.Property(e => e.StartDate).HasComment("تاریخ شروع");
-
-                entity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasMaxLength(300)
-                    .HasComment("عنوان");
 
                 entity.HasOne(d => d.AccessLevel)
                     .WithMany(p => p.CoursesPlanning)

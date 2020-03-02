@@ -20,7 +20,7 @@ namespace CodeGeneratorGreen.Templates.Angular
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\CodeGenerator\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class AngularEntityEnum : AngularEntityEnumBase
     {
@@ -32,7 +32,7 @@ namespace CodeGeneratorGreen.Templates.Angular
         {
             this.Write("\r\n\r\n\texport enum Entity {\r\n\t");
             
-            #line 11 "D:\Works\CodeGenerator\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
+            #line 11 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
 
 			var tablesCount = SqlToCsharpHelper.dbTables.TableList.Count();
 			var i = 1;
@@ -45,35 +45,35 @@ namespace CodeGeneratorGreen.Templates.Angular
             #line hidden
             this.Write("\t\t  ");
             
-            #line 18 "D:\Works\CodeGenerator\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(" = \'");
             
-            #line 18 "D:\Works\CodeGenerator\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("\' ");
             
-            #line 18 "D:\Works\CodeGenerator\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
  if (i <= tablesCount){ 
             
             #line default
             #line hidden
             this.Write(",");
             
-            #line 18 "D:\Works\CodeGenerator\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
 }
             
             #line default
             #line hidden
             this.Write("\t\t  \r\n\t");
             
-            #line 20 "D:\Works\CodeGenerator\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
+            #line 20 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
 
 			} 
             

@@ -47,7 +47,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             
             #line default
             #line hidden
-            this.Write("\r\n{\r\n\r\n        public class ");
+            this.Write("\r\n{\r\n\r\n   public class ");
             
             #line 17 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ViewModelsTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
@@ -67,7 +67,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
 				i++;
 				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
 				// If we can't map it, skip it
-				if (string.IsNullOrWhiteSpace(propertyType) || propertyType == "byte[]")
+				if (string.IsNullOrWhiteSpace(propertyType) || propertyType == "byte[]" || (propertyType == "string" &&  col.MaxLength=="-1"))
 				{
 					// Skip
 					continue;

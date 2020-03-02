@@ -14,11 +14,11 @@ namespace Yashil.Core.Entities
         public int Id { get; set; }
         public string Code { get; set; }
         public int RepresentationId { get; set; }
+        public bool Organizational { get; set; }
         public int CourceStatus { get; set; }
         public int? RepresentationPerson { get; set; }
         public int? Price { get; set; }
         public int CourseId { get; set; }
-        public string Title { get; set; }
         public int? AgeCategory { get; set; }
         public int ImplementaionType { get; set; }
         public int CourceType { get; set; }

@@ -33,6 +33,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
             #line 6 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 
 			var table = SqlToCsharpHelper.table;
+	string firstCharacterLower = table.Name.FirstCharacterToLower();
 			
             
             #line default
@@ -41,7 +42,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
                     "ormClick($event)\">\r\n<dx-form id=\"form\"  [colCount]=\"2\" #detailForm [formData]=\"e" +
                     "ntity\">\r\n\r\n");
             
-            #line 12 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 13 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 
 			// Keep count so we don't whitespace the last property/column
 			int i = 0;
@@ -53,7 +54,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
 				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
 				string colNameFirstCharLower = col.Name.FirstCharacterToLower();
 				// If we can't map it, skip it
-				if (string.IsNullOrWhiteSpace(propertyType) || col.Name == "Id")
+				if (string.IsNullOrWhiteSpace(propertyType) || col.Name == "Id" || (table.GenerateTabForDescColumn && propertyType == "string" &&  col.MaxLength=="-1"))
 				{
 					// Skip
 					continue;
@@ -66,7 +67,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
                 if(propertyType == "bool" ){
                         editorType =  "editorType='dxCheckBox'" ;
                 }
-                else  if(propertyType == "int" ){
+                else  if(SqlToCsharpHelper.IsPropertyNumer(propertyType)){
                         editorType =  "editorType='dxNumberBox'" ;
                 }
                 else  if(propertyType == "string" &&  col.MaxLength=="-1"){
@@ -80,18 +81,18 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
             #line hidden
             this.Write("\t\t\t\t");
             
-            #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 46 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
  if (col.IsForeignKey)
 				{
-					var label = col.ReferencedObjectTitleColumn.FirstCharacterToLower();
+					var label =col.ReferencedObjectTitleColumn==null? "title" :col.ReferencedObjectTitleColumn.FirstCharacterToLower();
 					
             
             #line default
             #line hidden
             this.Write("\t\t\t\t\t\r\n\t\t\t\t");
             
-            #line 50 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
-	if (fTableIsLarge)
+            #line 51 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+	if (fTableIsLarge && col.ReferencedObject!="CommonBaseData")
 					{
 						
             
@@ -99,36 +100,36 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
             #line hidden
             this.Write("\t\t\t\t\t<dxi-item dataField=\"");
             
-            #line 53 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 54 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower));
             
             #line default
             #line hidden
             this.Write("\" editorType=\"dxLookup\" [label]=\"{text: \'");
             
-            #line 53 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 54 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colCaption));
             
             #line default
             #line hidden
-            this.Write("\'}\"  \r\n\t\t\t\t\t[editorOptions]=\"{rtlEnabled:true,closeOnOutsideClick:true,showPopupT" +
-                    "itle:false, dataSource: ");
+            this.Write("\'}\"\r\n\t\t\t\t\t[editorOptions]=\"{rtlEnabled:true,closeOnOutsideClick:true,showPopupTit" +
+                    "le:false, dataSource: ");
             
-            #line 54 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 55 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write("DataSource,displayExpr:\'");
             
-            #line 54 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 55 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(label));
             
             #line default
             #line hidden
             this.Write("\',valueExpr:\'id\' }\">\r\n\r\n\t\t\t\t");
             
-            #line 56 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 57 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 
 					}
 					else
@@ -139,35 +140,35 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
             #line hidden
             this.Write("\t\t\t\t\t<dxi-item dataField=\"");
             
-            #line 61 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 62 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower));
             
             #line default
             #line hidden
             this.Write("\" editorType=\"dxSelectBox\" [label]=\"{text: \'");
             
-            #line 61 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 62 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colCaption));
             
             #line default
             #line hidden
             this.Write("\'}\"  \r\n\t\t\t\t\t[editorOptions]=\"{ items: ");
             
-            #line 62 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 63 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower.Replace("Id", "")));
             
             #line default
             #line hidden
             this.Write("s,displayExpr:\'");
             
-            #line 62 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 63 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(label));
             
             #line default
             #line hidden
             this.Write("\',valueExpr:\'id\' }\">\r\n\t\t\t\t\t");
             
-            #line 63 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 64 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 
 					} 
             
@@ -175,7 +176,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
             #line hidden
             this.Write("\t\t\t\t");
             
-            #line 65 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 66 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 
 				}
 				else
@@ -186,28 +187,28 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.PopopEditForm
             #line hidden
             this.Write("\t\t\t\t\t<dxi-item [label]=\"{text: \'");
             
-            #line 70 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 71 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colCaption));
             
             #line default
             #line hidden
             this.Write("\'}\"  dataField=\"");
             
-            #line 70 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 71 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower));
             
             #line default
             #line hidden
             this.Write("\" ");
             
-            #line 70 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 71 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(editorType));
             
             #line default
             #line hidden
             this.Write(">\r\n\t\t\t\t\t\t");
             
-            #line 71 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 72 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 if (col.Name.Contains("Date"))
 					{
 						
@@ -217,14 +218,14 @@ if (col.Name.Contains("Date"))
             this.Write("\t\t\t\t\t\t\t<dp-date-picker\r\n\t\t\t\t\t\t\t[config]=\"datePickerConfig\"\r\n\t\t\t\t\t\t\tdir=\"rtl\"\r\n\t\t\t" +
                     "\t\t\t\tmode=\"day\"\r\n\t\t\t\t\t\t\tplaceholder=\"");
             
-            #line 78 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 79 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colCaption));
             
             #line default
             #line hidden
             this.Write("\"\r\n\t\t\t\t\t\t\ttheme=\"dp-material\"\r\n\t\t\t\t\t\t\t");
             
-            #line 80 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 81 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 if (propertyType == "bool")
 						{
 							
@@ -233,21 +234,21 @@ if (propertyType == "bool")
             #line hidden
             this.Write("\t\t\t\t\t\t\t[ngModel]=\"entity.");
             
-            #line 83 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 84 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower));
             
             #line default
             #line hidden
             this.Write(" | intToDateTime\" (ngModelChange)=\"entity.");
             
-            #line 83 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 84 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower));
             
             #line default
             #line hidden
             this.Write("=convertDateToInt($event)\">\r\n\t\t\t\t\t\t\t");
             
-            #line 84 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 85 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 
 						}
 						else
@@ -258,21 +259,21 @@ if (propertyType == "bool")
             #line hidden
             this.Write("\t\t\t\t\t\t\t[ngModel]=\"entity.");
             
-            #line 89 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 90 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower));
             
             #line default
             #line hidden
             this.Write("\" (ngModelChange)=\"entity.");
             
-            #line 89 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 90 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower));
             
             #line default
             #line hidden
             this.Write("=convertDateToStrint($event)\">\r\n\t\t\t\t\t\t\t");
             
-            #line 90 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 91 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 
 						} 
             
@@ -280,7 +281,7 @@ if (propertyType == "bool")
             #line hidden
             this.Write("\t\t\t\t\t\t\t</dp-date-picker>\r\n\t\t\t\t\t\t");
             
-            #line 93 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 94 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 
 					} 
             
@@ -288,7 +289,7 @@ if (propertyType == "bool")
             #line hidden
             this.Write("\t\t\t\t\t\t\r\n\t\t\t\t");
             
-            #line 96 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 97 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 
 				} 
             
@@ -296,7 +297,7 @@ if (propertyType == "bool")
             #line hidden
             this.Write("\t\t\t\t\t");
             
-            #line 98 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 99 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 if (!col.AllowNull && propertyType != "bool")
 				{
 					
@@ -305,14 +306,14 @@ if (!col.AllowNull && propertyType != "bool")
             #line hidden
             this.Write("\t\t\t\t\t\t\t<dxi-validation-rule  type=\"required\" message=\"");
             
-            #line 101 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 102 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colCaption));
             
             #line default
             #line hidden
             this.Write(" اجباری می باشد\"></dxi-validation-rule>\r\n\t\t\t\t\t\t");
             
-            #line 102 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 103 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 
 				} 
             
@@ -320,7 +321,7 @@ if (!col.AllowNull && propertyType != "bool")
             #line hidden
             this.Write("\t\r\n\t\t\t\t</dxi-item>\r\n");
             
-            #line 105 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
+            #line 106 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 
 			}
 

@@ -1,10 +1,15 @@
 ﻿<#@ template language="C#" #>
-<#@ import namespace="Classes" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="CodeGeneratorGreen.Classes" #>
 <#@ import namespace="CodeGeneratorGreen.Extentions" #>
-			<#
-			var table = SqlToCsharpHelper.table;
-			string repositoryProp = table.Name.FirstCharacterToLower()+"Repository";
-			#>
+<#@ import namespace="CodeGeneratorGreen.Models" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+	<#
+	var table = SqlToCsharpHelper.table;
+	string repositoryProp = table.Name.FirstCharacterToLower()+"Repository";
+	#>
 using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
@@ -27,6 +32,25 @@ namespace <#= ApplicationInfo.Instance.ServiceNamespace #>
 			_<#=repositoryProp#> = <#=repositoryProp#>;
 			_userPrincipal = userPrincipal;
         }
+<#
+		foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
+			{
+				 string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
+                string colNameFirstCharLower = col.Name.FirstCharacterToLower();
+                // If we can't map it, skip it
+	            if(propertyType != "string" ||  col.MaxLength!="-1")
+                {
+                    // Skip
+                    continue;
+                }
+		#>
+			  public string Get<#= col.Name #>(int id)
+				{
+					return _<#=repositoryProp#>.Get<#= col.Name #>(id);
+				}	
+<#
+			}
+	#>	
     }
 }      
  

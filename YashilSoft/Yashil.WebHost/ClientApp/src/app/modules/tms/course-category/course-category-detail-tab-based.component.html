@@ -1,0 +1,20 @@
+
+	
+
+<dx-tab-panel
+    #tabPanel
+    rtlEnabled="true"
+    [dataSource]="tabs"
+    [selectedIndex]="0"
+    [loop]="false"
+    [animationEnabled]="false"
+    [swipeEnabled]="false">
+    <div *dxTemplate="let company of 'courseCategory'" class="tab-content-edit-form">
+						<app-courseCategory-detail [selectedEntityId]="selectedEntityId" entityName="courseCategory" 
+											></app-courseCategory-detail>
+					</div>
+					<div *dxTemplate="let company of 'description'" class="tab-content-edit-form">
+						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="courseCategory" propertyName="description"
+											propertyLabel="توضیحات"></app-content-editor>
+					</div>
+				</dx-tab-panel>

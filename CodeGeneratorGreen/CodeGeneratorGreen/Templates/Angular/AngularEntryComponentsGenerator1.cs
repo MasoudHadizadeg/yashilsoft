@@ -19,7 +19,7 @@ namespace CodeGeneratorGreen.Templates.Angular
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class AngularEntryComponentsGenerator : AngularEntryComponentsGeneratorBase
     {
@@ -31,39 +31,68 @@ namespace CodeGeneratorGreen.Templates.Angular
         {
             this.Write("\r\n");
             
-            #line 7 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            #line 7 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
 
 			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
 			{
 				string angularFriendlyName = table.Name.ToAngularFrendlyName();
-				
+				if(table.GenerateTabForDescColumn){
+			
             
             #line default
             #line hidden
-            this.Write("\t\t\t\timport {");
+            this.Write("\t\r\n\t\t\t\timport {");
             
-            #line 12 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            #line 13 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
-            this.Write("DetailComponent} from \'./");
+            this.Write("DetailTabBasedComponent} from \'./");
             
-            #line 12 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            #line 13 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
             
             #line default
             #line hidden
             this.Write("/");
             
-            #line 12 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            #line 13 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
+            
+            #line default
+            #line hidden
+            this.Write("-detail-tab-based.component\';\r\n\t\t\t");
+            
+            #line 14 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t\t\r\n\t\t\t\timport {");
+            
+            #line 16 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
+            
+            #line default
+            #line hidden
+            this.Write("DetailComponent} from \'./");
+            
+            #line 16 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
+            
+            #line default
+            #line hidden
+            this.Write("/");
+            
+            #line 16 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
             
             #line default
             #line hidden
             this.Write("-detail.component\';\r\n\t\t\t\t");
             
-            #line 13 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            #line 17 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
 
 			}
 
@@ -74,27 +103,42 @@ namespace CodeGeneratorGreen.Templates.Angular
             this.Write("\t\t\timport {Provider} from \'@angular/core\';\r\n\t\t\t\texport const ENTRYCOMPONENTS:Prov" +
                     "ider[]=[\r\n\t");
             
-            #line 19 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
 
 			var tablesCount = SqlToCsharpHelper.dbTables.TableList.Count();
 			var i = 1;
 			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
 			{
 				i++;
-				
+		if(table.GenerateTabForDescColumn){
+			
+            
+            #line default
+            #line hidden
+            this.Write("\t\t");
+            
+            #line 31 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
+            
+            #line default
+            #line hidden
+            this.Write("DetailTabBasedComponent,\r\n\t\t\t");
+            
+            #line 32 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+}
             
             #line default
             #line hidden
             this.Write("\t\t  ");
             
-            #line 26 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            #line 33 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("DetailComponent ");
             
-            #line 26 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            #line 33 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
  if (i <= tablesCount)
 				{
 					
@@ -103,7 +147,7 @@ namespace CodeGeneratorGreen.Templates.Angular
             #line hidden
             this.Write(",");
             
-            #line 28 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            #line 35 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
 
 				} 
             
@@ -111,7 +155,7 @@ namespace CodeGeneratorGreen.Templates.Angular
             #line hidden
             this.Write("\t\t  \r\n\t");
             
-            #line 31 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
+            #line 38 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntryComponentsGenerator.tt"
 
 			} 
             

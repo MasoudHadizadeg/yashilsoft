@@ -1,0 +1,40 @@
+
+			<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+
+									<dxi-item [label]="{text: 'کد'}"  dataField="code" >
+												
+										
+				</dxi-item>
+									
+									<dxi-item dataField="coursesPlanningId" editorType="dxLookup" [label]="{text: 'دوره'}"
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: coursesPlanningDataSource,displayExpr:'title',valueExpr:'id' }">
+
+																				<dxi-validation-rule  type="required" message="دوره اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+									
+									<dxi-item dataField="personId" editorType="dxLookup" [label]="{text: 'دانشجو'}"
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: personDataSource,displayExpr:'name',valueExpr:'id' }">
+
+																				<dxi-validation-rule  type="required" message="دانشجو اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'نمره'}"  dataField="score" >
+												
+																<dxi-validation-rule  type="required" message="نمره اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'توضیحات'}"  dataField="description" editorType='dxTextArea'>
+												
+										
+				</dxi-item>
+									
+									<dxi-item dataField="accessLevelId" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: accessLevelDataSource,displayExpr:'title',valueExpr:'id' }">
+
+																				<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+</dx-form>
+</app-base-edit-form>

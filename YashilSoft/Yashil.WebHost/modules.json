@@ -10,6 +10,11 @@
     "subFolder": "YashilDms"
   },
   {
+    "id": "YashilTms.Web",
+    "version": "1.0.0",
+    "subFolder": "YashilTms"
+  },
+  {
     "id": "YashilUserManagement.Web",
     "version": "1.0.0",
     "subFolder": "YashilUserManagement"

@@ -15,4 +15,29 @@ export class CachedDataService {
         }
         return this.claimData;
     }
+
+    setData(key: string, value: any, isJson = true) {
+        if (isJson && isJson === true) {
+            localStorage.setItem(key, JSON.stringify(value));
+        } else {
+            localStorage.setItem(key, value);
+        }
+    }
+
+    getData(key: string, parseJson = true): any {
+        const data = localStorage.getItem(key);
+        if (parseJson === true && data) {
+            return JSON.parse(data);
+        } else {
+            return data;
+        }
+    }
+
+    clear(key: string) {
+        localStorage.removeItem(key);
+    }
+
+    clearAll() {
+        localStorage.clear();
+    }
 }

@@ -21,7 +21,7 @@ namespace CodeGeneratorGreen.Templates.Angular
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class AngularIndexFileGenerator : AngularIndexFileGeneratorBase
     {
@@ -33,60 +33,89 @@ namespace CodeGeneratorGreen.Templates.Angular
         {
             this.Write("\r\n\r\nimport {Routes} from \'@angular/router\';\r\n");
             
-            #line 12 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 12 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
 
 			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
 			{
 				string angularFriendlyName = table.Name.ToAngularFrendlyName();
+				if(table.GenerateTabForDescColumn){
 				
             
             #line default
             #line hidden
-            this.Write("\t\t\t\timport {");
+            this.Write("\t\r\n\t\t\t\timport {");
             
-            #line 17 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
+            
+            #line default
+            #line hidden
+            this.Write("DetailTabBasedComponent} from \'./");
+            
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
+            
+            #line default
+            #line hidden
+            this.Write("/");
+            
+            #line 18 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
+            
+            #line default
+            #line hidden
+            this.Write("-detail-tab-based.component\';\r\n\t\t\t\t");
+            
+            #line 19 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t\t\r\n\t\t\t\timport {");
+            
+            #line 21 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("DetailComponent} from \'./");
             
-            #line 17 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 21 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
             
             #line default
             #line hidden
             this.Write("/");
             
-            #line 17 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 21 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
             
             #line default
             #line hidden
             this.Write("-detail.component\';\r\n\t\t\t\timport {");
             
-            #line 18 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("ListComponent} from \'./");
             
-            #line 18 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
             
             #line default
             #line hidden
             this.Write("/");
             
-            #line 18 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(angularFriendlyName));
             
             #line default
             #line hidden
             this.Write("-list.component\';\r\n\t\t\t\t");
             
-            #line 19 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
 
 			}
 
@@ -94,51 +123,66 @@ namespace CodeGeneratorGreen.Templates.Angular
             
             #line default
             #line hidden
-            this.Write("\t\t\timport {Provider} from \'@angular/core\';\r\n\t\t\t \r\n\t\t\t\texport const COMPONENTS:Pro" +
-                    "vider[]=[\r\n\t\t\t\t \r\n\t");
+            this.Write("\t\t\timport {Provider} from \'@angular/core\';\r\n\t\t\texport const COMPONENTS:Provider[]" +
+                    "=[\r\n\t\t\t\t \r\n\t");
             
-            #line 27 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 30 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
 
 			var tablesCount = SqlToCsharpHelper.dbTables.TableList.Count();
 			var i = 1;
 			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
 			{
 				i++;
-				
+			if(table.GenerateTabForDescColumn){
+			
+            
+            #line default
+            #line hidden
+            this.Write("\t\r\n\t\t\t\t");
+            
+            #line 38 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
+            
+            #line default
+            #line hidden
+            this.Write("DetailTabBasedComponent,\r\n\t\t\t");
+            
+            #line 39 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+}
             
             #line default
             #line hidden
             this.Write("\t\t  ");
             
-            #line 34 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 40 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
-            this.Write("ListComponent,\r\n\t\t  ");
+            this.Write("ListComponent,\r\n\t\t\r\n\t\t  ");
             
-            #line 35 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 42 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("DetailComponent ");
             
-            #line 35 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 42 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
  if (i <= tablesCount){
             
             #line default
             #line hidden
             this.Write(",");
             
-            #line 35 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 42 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
 } 
             
             #line default
             #line hidden
             this.Write("\t\t  \r\n\t");
             
-            #line 37 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
+            #line 44 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularIndexFileGenerator.tt"
 } 
             
             #line default

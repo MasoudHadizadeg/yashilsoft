@@ -14,7 +14,7 @@ namespace Yashil.Core.Entities
         public int Id { get; set; }
         public string Code { get; set; }
         public string Title { get; set; }
-        public int CourseCategory { get; set; }
+        public int CourseCategoryId { get; set; }
         public int EducationalCenterId { get; set; }
         public string Description { get; set; }
         public string Topic { get; set; }
@@ -39,7 +39,7 @@ namespace Yashil.Core.Entities
         public virtual AccessLevel AccessLevel { get; set; }
         public virtual Application Application { get; set; }
         public virtual CommonBaseData CertificateTypeNavigation { get; set; }
-        public virtual CourseCategory CourseCategoryNavigation { get; set; }
+        public virtual CourseCategory CourseCategory { get; set; }
         public virtual User CreateByNavigation { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
         public virtual EducationalCenter EducationalCenter { get; set; }

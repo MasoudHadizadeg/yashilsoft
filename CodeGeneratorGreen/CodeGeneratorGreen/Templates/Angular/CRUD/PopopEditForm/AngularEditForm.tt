@@ -43,7 +43,12 @@ export class <#=table.Name #>DetailComponent extends BaseEdit implements OnInit 
 			{
 				foreignKeyVar = col.Name.FirstCharacterToLower().Replace("Id", "");
 				var isLarge = col.ReferencedObjectIsLarge; //:TODO SqlToCsharpHelper.FTableIsLarg(server.Databases[sqlDatabase],table,col);
-				if (isLarge)
+		        if(col.ReferencedObject=="CommonBaseData"){
+				#>
+					<#= foreignKeyVar #>s: any;
+<#
+				}
+				else if (isLarge)
 				{
 					#>
 	 <#= foreignKeyVar #>DataSource:any;
@@ -70,8 +75,14 @@ export class <#=table.Name #>DetailComponent extends BaseEdit implements OnInit 
 				var isLarge = col.ReferencedObjectIsLarge; //:TODO FTableIsLarg(server.Databases[sqlDatabase], table, col);
 
 				foreignKeyVar = col.Name.FirstCharacterToLower().Replace("Id", "");
-
-				if (isLarge)
+				var foreignKeyVarNormal = col.Name.Replace("Id", "");
+				
+				if (col.ReferencedObject=="CommonBaseData"){
+				#>
+					this._genericDataService.getCommonBaseDataForSelect('<#=foreignKeyVarNormal #>').subscribe(res => this.<#=foreignKeyVar #>s = res);
+				<#
+				}
+				else if (isLarge)
 				{
 					#>
 					this.<#=foreignKeyVar #>DataSource = this._genericDataService.createCustomDatasourceForSelect('id', '<#=refTable.FirstCharacterToLower()#>');

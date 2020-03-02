@@ -5,6 +5,7 @@
 
 			<#
 			var table = SqlToCsharpHelper.table;
+	string firstCharacterLower = table.Name.FirstCharacterToLower();
 			#>
 <app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
 <dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
@@ -20,7 +21,7 @@
 				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
 				string colNameFirstCharLower = col.Name.FirstCharacterToLower();
 				// If we can't map it, skip it
-				if (string.IsNullOrWhiteSpace(propertyType) || col.Name == "Id")
+				if (string.IsNullOrWhiteSpace(propertyType) || col.Name == "Id" || (table.GenerateTabForDescColumn && propertyType == "string" &&  col.MaxLength=="-1"))
 				{
 					// Skip
 					continue;
@@ -33,7 +34,7 @@
                 if(propertyType == "bool" ){
                         editorType =  "editorType='dxCheckBox'" ;
                 }
-                else  if(propertyType == "int" ){
+                else  if(SqlToCsharpHelper.IsPropertyNumer(propertyType)){
                         editorType =  "editorType='dxNumberBox'" ;
                 }
                 else  if(propertyType == "string" &&  col.MaxLength=="-1"){
@@ -44,13 +45,13 @@
 				#>
 				<# if (col.IsForeignKey)
 				{
-					var label = col.ReferencedObjectTitleColumn.FirstCharacterToLower();
+					var label =col.ReferencedObjectTitleColumn==null? "title" :col.ReferencedObjectTitleColumn.FirstCharacterToLower();
 					#>
 					
-				<#	if (fTableIsLarge)
+				<#	if (fTableIsLarge && col.ReferencedObject!="CommonBaseData")
 					{
 						#>
-					<dxi-item dataField="<#=colNameFirstCharLower #>" editorType="dxLookup" [label]="{text: '<#=colCaption #>'}"  
+					<dxi-item dataField="<#=colNameFirstCharLower #>" editorType="dxLookup" [label]="{text: '<#=colCaption #>'}"
 					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: <#=colNameFirstCharLower.Replace("Id", "") #>DataSource,displayExpr:'<#=label #>',valueExpr:'id' }">
 
 				<#

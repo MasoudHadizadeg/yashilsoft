@@ -1,0 +1,30 @@
+
+			<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+
+									<dxi-item [label]="{text: 'کد'}"  dataField="code" >
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'عنوان'}"  dataField="title" >
+												
+																<dxi-validation-rule  type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'آدرس'}"  dataField="address" >
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'نوع مجوز تاسیس'}"  dataField="establishedLicenseType" editorType='dxNumberBox'>
+												
+										
+				</dxi-item>
+									
+									<dxi-item dataField="accessLevelId" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: accessLevelDataSource,displayExpr:'title',valueExpr:'id' }">
+
+																				<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+</dx-form>
+</app-base-edit-form>

@@ -9,10 +9,13 @@ export const CONTENT_ROUTES: Routes = [
     {
         path: 'rpt',
         loadChildren: () => import('../../modules/stimulsoft-report/stimulsoft-report.module').then(m => m.StimulsoftReportModule)
-    }
-    ,
+    },
     {
         path: 'dash',
         loadChildren: () => import('../../modules/dev-dashboard/dev-dashboard.module').then(m => m.DevDashboardModule)
+    },
+    {
+        path: 'tms',
+        loadChildren: () => import('../../modules/tms/tms.module').then(m => m.TmsModule)
     }
 ];
