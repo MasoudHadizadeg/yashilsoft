@@ -6,6 +6,8 @@ namespace YashilTms.Core.Services
 {
 	public interface IRepresentationPersonService : IGenericService<RepresentationPerson>
     {
+			string GetDescription(int id);		
+	
     }
 }      
  

@@ -6,6 +6,8 @@ namespace YashilBaseInfo.Core.Services
 {
 	public interface IAccessLevelService : IGenericService<AccessLevel>
     {
+			string GetDescription(int id);		
+	
     }
 }      
  

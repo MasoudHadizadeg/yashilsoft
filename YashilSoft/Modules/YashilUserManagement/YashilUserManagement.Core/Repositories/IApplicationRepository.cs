@@ -6,5 +6,9 @@ namespace YashilUserManagement.Core.Repositories
 {
 	public interface IApplicationRepository : IGenericRepository<Application>
     {
+    			string GetDescription(int id);		
+			string GetAdditionalInfo(int id);		
+	
     }
 }      
+ 

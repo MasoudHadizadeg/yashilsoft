@@ -92,6 +92,8 @@ namespace YashilUserManagement.Web.Areas.UserMng.ViewModels
         public string Address { get; set; }
         public int AccessLevelId { get; set; }
         public string PasswordStr { get; set; }
+        public string OrganizationTitle { get; set; }
+        public string AccessLevelTitle { get; set; }
     }
 
 

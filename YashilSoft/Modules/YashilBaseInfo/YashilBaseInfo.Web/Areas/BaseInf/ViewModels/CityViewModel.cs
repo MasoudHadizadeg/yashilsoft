@@ -4,7 +4,7 @@ using Yashil.Common.Core.Interfaces;
 namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
 {
 
-        public class CityListViewModel:IBaseViewModel
+   public class CityListViewModel:IBaseViewModel
     {
 		public int ViewModelId
 	        {
@@ -31,8 +31,6 @@ namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
         public bool? ProvinceCenter { get; set; }
 		
         public string Title { get; set; }
-		
-        public string Description { get; set; }
 		
     }
 

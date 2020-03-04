@@ -23,7 +23,8 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
         public int CourceStatus { get; set; }
 				public string CourceStatusTitle { get; set; }	
 		
-        public int? RepresentationPerson { get; set; }
+        public int? RepresentationPersonId { get; set; }
+				public string RepresentationPersonTitle { get; set; }	
 		
         public int? Price { get; set; }
 		
@@ -31,6 +32,7 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 				public string CourseTitle { get; set; }	
 		
         public int? AgeCategory { get; set; }
+				public string AgeCategoryTitle { get; set; }	
 		
         public int ImplementaionType { get; set; }
 				public string ImplementaionTypeTitle { get; set; }	
@@ -39,6 +41,7 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 				public string CourceTypeTitle { get; set; }	
 		
         public int RunType { get; set; }
+				public string RunTypeTitle { get; set; }	
 		
         public int StartDate { get; set; }
 		
@@ -84,7 +87,8 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 				public string CourceStatusTitle { get; set; }	
 				
 
-        public int? RepresentationPerson { get; set; }
+        public int? RepresentationPersonId { get; set; }
+				public string RepresentationPersonTitle { get; set; }	
 				
 
         public int? Price { get; set; }
@@ -97,6 +101,7 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 				
 
         public int? AgeCategory { get; set; }
+				public string AgeCategoryTitle { get; set; }	
 				
 					[Range(0,int.MaxValue)]
 										 [Required] 
@@ -114,6 +119,7 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 										 [Required] 
 				
         public int RunType { get; set; }
+				public string RunTypeTitle { get; set; }	
 				
 					[Range(0,int.MaxValue)]
 										 [Required] 

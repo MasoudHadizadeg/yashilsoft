@@ -11,6 +11,9 @@ namespace Yashil.Core.Entities
             AccessLevel = new HashSet<AccessLevel>();
             AppConfig = new HashSet<AppConfig>();
             AppDocument = new HashSet<AppDocument>();
+            AppEntityAttribute = new HashSet<AppEntityAttribute>();
+            AppEntityAttributeMapping = new HashSet<AppEntityAttributeMapping>();
+            AppEntityAttributeValue = new HashSet<AppEntityAttributeValue>();
             CommonBaseData = new HashSet<CommonBaseData>();
             CommonBaseType = new HashSet<CommonBaseType>();
             Course = new HashSet<Course>();
@@ -22,7 +25,6 @@ namespace Yashil.Core.Entities
             DocType = new HashSet<DocType>();
             DocumentCategory = new HashSet<DocumentCategory>();
             EducationalCenter = new HashSet<EducationalCenter>();
-            Hr = new HashSet<Hr>();
             InverseParent = new HashSet<Organization>();
             Person = new HashSet<Person>();
             Post = new HashSet<Post>();
@@ -60,6 +62,9 @@ namespace Yashil.Core.Entities
         public virtual ICollection<AccessLevel> AccessLevel { get; set; }
         public virtual ICollection<AppConfig> AppConfig { get; set; }
         public virtual ICollection<AppDocument> AppDocument { get; set; }
+        public virtual ICollection<AppEntityAttribute> AppEntityAttribute { get; set; }
+        public virtual ICollection<AppEntityAttributeMapping> AppEntityAttributeMapping { get; set; }
+        public virtual ICollection<AppEntityAttributeValue> AppEntityAttributeValue { get; set; }
         public virtual ICollection<CommonBaseData> CommonBaseData { get; set; }
         public virtual ICollection<CommonBaseType> CommonBaseType { get; set; }
         public virtual ICollection<Course> Course { get; set; }
@@ -71,7 +76,6 @@ namespace Yashil.Core.Entities
         public virtual ICollection<DocType> DocType { get; set; }
         public virtual ICollection<DocumentCategory> DocumentCategory { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenter { get; set; }
-        public virtual ICollection<Hr> Hr { get; set; }
         public virtual ICollection<Organization> InverseParent { get; set; }
         public virtual ICollection<Person> Person { get; set; }
         public virtual ICollection<Post> Post { get; set; }

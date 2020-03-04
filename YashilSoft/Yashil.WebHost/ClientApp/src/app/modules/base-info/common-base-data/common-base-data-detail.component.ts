@@ -12,18 +12,18 @@ import {createStore} from 'devextreme-aspnet-data-nojquery';
   templateUrl: './common-base-data-detail.component.html'
 })
 export class CommonBaseDataDetailComponent extends BaseEdit implements OnInit {
-		 parentDataSource:any;
-	 	 commonBaseTypeDataSource:any;
-	 	 accessLevelDataSource:any;
-	   constructor(private genericDataService: GenericDataService) {
+						parents: any;
+	 commonBaseTypeDataSource:any;
+	 		accessLevels: any[] = [];
+	  constructor(private genericDataService: GenericDataService) {
     super(genericDataService);
     this.entityName = 'commonBaseData';
   }
 
   ngOnInit() {
     super.ngOnInit();
-							this.parentDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'commonBaseData');
+							this._genericDataService.getCommonBaseDataForSelect('Parent').subscribe(res => this.parents = res);
 									this.commonBaseTypeDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'commonBaseType');
-									this.accessLevelDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'accessLevel');
-				  }      
+							this._genericDataService.getEntitiesByEntityName(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
+		  }      
 }

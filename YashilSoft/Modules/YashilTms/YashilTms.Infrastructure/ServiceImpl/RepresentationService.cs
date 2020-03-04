@@ -1,4 +1,4 @@
-			using Yashil.Common.Core.Classes;
+	using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -20,6 +20,23 @@ namespace YashilTms.Infrastructure.ServiceImpl
 			_representationRepository = representationRepository;
 			_userPrincipal = userPrincipal;
         }
+			  public string GetAbout(int id)
+				{
+					return _representationRepository.GetAbout(id);
+				}	
+			  public string GetGoal(int id)
+				{
+					return _representationRepository.GetGoal(id);
+				}	
+			  public string GetDescription(int id)
+				{
+					return _representationRepository.GetDescription(id);
+				}	
+			  public string GetAbility(int id)
+				{
+					return _representationRepository.GetAbility(id);
+				}	
+	
     }
 }      
  

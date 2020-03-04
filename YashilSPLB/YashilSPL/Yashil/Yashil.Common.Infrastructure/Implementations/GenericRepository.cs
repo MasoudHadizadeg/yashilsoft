@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Yashil.Common.Core.Classes;
+using Yashil.Common.Core.Dtos;
 using Yashil.Common.Core.Interfaces;
 
 namespace Yashil.Common.Infrastructure.Implementations
 {
-    public abstract class GenericRepository<T, TR> : IGenericRepository<T>
+    public abstract class GenericRepository<T, TR> : IGenericRepository<T,TR>
         where T : class, IBaseEntity<TR> where TR : IEquatable<TR>
     {
         private readonly DbContext _context;
@@ -249,5 +250,23 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             return await _context.Set<T>().CountAsync();
         }
+
+        public string GetEntityDescriptionByPropName(TR key, string propName)
+        {
+
+            var property = typeof(T).GetProperty(propName);
+            if (property != null)
+            {
+                return DbSet.Where(x => x.Id.Equals(key)).Select(x => EF.Property<string>(x, "Topic")).FirstOrDefault();
+            }
+
+            return null;
+
+        }
+        // var propertyInfo = DbSet.GetType().GetProperty("Topic");
+
+        //return DbSet.Where(x => x.Id == id).Select(x => x.Topic).FirstOrDefault();
+
+
     }
 }

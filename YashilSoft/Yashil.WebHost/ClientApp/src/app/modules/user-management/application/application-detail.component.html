@@ -22,5 +22,10 @@
 												
 										
 				</dxi-item>
+									
+									<dxi-item dataField="parentId" editorType="dxSelectBox" [label]="{text: 'ParentId'}"  
+					[editorOptions]="{ items: parents,displayExpr:'title',valueExpr:'id' }">
+															
+				</dxi-item>
 </dx-form>
 </app-base-edit-form>

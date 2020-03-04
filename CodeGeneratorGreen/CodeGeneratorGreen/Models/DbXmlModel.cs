@@ -88,8 +88,8 @@ namespace CodeGeneratorGreen.Models
         public string TablePersianName => TableDesc ?? "";
 
         public bool IsApplicationBased => Columns.Any(x => x.Name == "ApplicationId");
-        [XmlAttribute(AttributeName = "generateTabForDescColumn")]
-        public bool GenerateTabForDescColumn { get; set; }
+        [XmlAttribute(AttributeName = "generateTabForDescColumn")] public bool GenerateTabForDescColumn { get; set; }
+        [XmlAttribute(AttributeName = "hasAttachmenet")] public bool HasAttachmenet { get; set; }
     }
 
     [XmlRoot(ElementName = "Tables")]

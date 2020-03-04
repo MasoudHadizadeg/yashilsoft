@@ -11,6 +11,7 @@ using DevExtreme.AspNet.Data.ResponseModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Yashil.Common.Core.Classes;
+using Yashil.Common.Core.Dtos;
 using Yashil.Common.Core.Interfaces;
 
 namespace Yashil.Common.Web.Infrastructure.BaseClasses
@@ -51,6 +52,8 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
                 loadOptions);
         }
 
+
+
         [HttpGet("GetForSelect")]
         public Task<LoadResult> GetForSelect(CustomDataSourceLoadOptions loadOptions)
         {
@@ -69,6 +72,26 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        [HttpGet("GetEntityDescription")]
+        public async Task<DescriptionEditModel> GetEntityDescription([FromRoute] TK id,string propName)
+        {
+            try
+            {
+                return await GetEntityDescriptionByPropName(id, propName);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        private async Task<DescriptionEditModel> GetEntityDescriptionByPropName(TK id, string propName)
+        {
+            var entity = await _genericService.GetEntityDescriptionByPropName(id, propName);
+            return _mapper.Map<DescriptionEditModel>(entity);
         }
 
         protected virtual async Task<TEditModel> GetEntityForEdit(TK id)
@@ -255,5 +278,6 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
         {
             await _genericService.UpdateAsync(entity, entity.Id, props, modifyProps, true);
         }
+
     }
 }

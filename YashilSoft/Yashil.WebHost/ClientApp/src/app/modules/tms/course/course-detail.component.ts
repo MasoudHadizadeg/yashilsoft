@@ -17,8 +17,8 @@ export class CourseDetailComponent extends BaseEdit implements OnInit {
 	 					skillTypes: any;
 					certificateTypes: any;
 					evaluationMethods: any;
-	 accessLevelDataSource:any;
-	   constructor(private genericDataService: GenericDataService) {
+		accessLevels: any[] = [];
+	  constructor(private genericDataService: GenericDataService) {
     super(genericDataService);
     this.entityName = 'course';
   }
@@ -30,6 +30,6 @@ export class CourseDetailComponent extends BaseEdit implements OnInit {
 									this._genericDataService.getCommonBaseDataForSelect('SkillType').subscribe(res => this.skillTypes = res);
 									this._genericDataService.getCommonBaseDataForSelect('CertificateType').subscribe(res => this.certificateTypes = res);
 									this._genericDataService.getCommonBaseDataForSelect('EvaluationMethod').subscribe(res => this.evaluationMethods = res);
-									this.accessLevelDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'accessLevel');
-				  }      
+							this._genericDataService.getEntitiesByEntityName(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
+		  }      
 }

@@ -6,6 +6,8 @@ namespace YashilBaseInfo.Core.Services
 {
 	public interface ICommonBaseTypeService : IGenericService<CommonBaseType>
     {
+			string GetDescription(int id);		
+	
     }
 }      
  

@@ -1,6 +1,9 @@
 			
 		import { Component, OnInit } from '@angular/core';
 		import {CommonBaseDataDetailComponent} from './common-base-data-detail.component';
+			
+		
+
 		@Component({
 		  selector: 'app-common-base-data-list',
 		  templateUrl: './common-base-data-list.component.html'
@@ -9,8 +12,7 @@
 		  selectedItemId: number;
 		  columns: any[] = [];
 		  entityName = 'commonBaseData';
-		  detailComponent = CommonBaseDataDetailComponent;
-		  constructor() {
+		  detailComponent = CommonBaseDataDetailComponent; 		  constructor() {
 							this.columns.push({ 
 					caption: 'کد',
 					dataField: 'code'
@@ -28,20 +30,16 @@
 					dataField: 'value'
 					});
 							this.columns.push({ 
-					caption: 'ExtendedProps',
-					dataField: 'extendedProps'
-					});
-							this.columns.push({ 
 					caption: 'نوع اطلاعات پايه',
 					dataField: 'commonBaseTypeTitle'
 					});
 							this.columns.push({ 
-					caption: 'سطح دسترسی',
-					dataField: 'accessLevelTitle'
+					caption: 'سیستمی',
+					dataField: 'isSystemProp'
 					});
 							this.columns.push({ 
-					caption: 'IsSystemProp',
-					dataField: 'isSystemProp'
+					caption: 'سطح دسترسی',
+					dataField: 'accessLevelTitle'
 					});
 							
 				}

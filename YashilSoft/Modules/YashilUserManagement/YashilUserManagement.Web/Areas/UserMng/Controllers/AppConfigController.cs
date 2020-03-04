@@ -7,7 +7,7 @@ using  YashilUserManagement.Web.Areas.UserMng.ViewModels;
 
 namespace YashilUserManagement.Web.Areas.UserMng.Controllers
 {
-	public class AppConfigController : BaseController<AppConfig ,int,AppConfigListViewModel,  AppConfigEditModel,AppConfigSimpleViewModel>
+	public class AppConfigController : BaseController<AppConfig ,int,AppConfigListViewModel, AppConfigEditModel,AppConfigSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IAppConfigService _appConfigService;

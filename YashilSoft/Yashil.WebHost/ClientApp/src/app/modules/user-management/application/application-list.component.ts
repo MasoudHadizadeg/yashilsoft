@@ -1,6 +1,9 @@
 			
 		import { Component, OnInit } from '@angular/core';
 		import {ApplicationDetailComponent} from './application-detail.component';
+			
+		
+
 		@Component({
 		  selector: 'app-application-list',
 		  templateUrl: './application-list.component.html'
@@ -9,8 +12,7 @@
 		  selectedItemId: number;
 		  columns: any[] = [];
 		  entityName = 'application';
-		  detailComponent = ApplicationDetailComponent;
-		  constructor() {
+		  detailComponent = ApplicationDetailComponent; 		  constructor() {
 							this.columns.push({ 
 					caption: 'عنوان',
 					dataField: 'title'
@@ -24,8 +26,8 @@
 					dataField: 'secretKey'
 					});
 							this.columns.push({ 
-					caption: 'اطلاعات تکمیلی',
-					dataField: 'additionalInfo'
+					caption: 'ParentId',
+					dataField: 'parentTitle'
 					});
 							
 				}

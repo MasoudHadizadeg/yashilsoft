@@ -13,6 +13,7 @@
                 repName="GenericApplicationBasedRepository";
             }
 			#>
+using System.Linq;
 using Yashil.Common.Core.Classes;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -44,7 +45,7 @@ namespace <#= ApplicationInfo.Instance.RepositoryNamespace #>
 		#>
 			  public string Get<#= col.Name #>(int id)
 				{
-					return DbSet.Where(x => x.Id == id).Select(x => x.<#= col.Name #>).FirstOrDefault();
+					return DbSet.Where(ApplicationBasedDefaultFilter()).Where(x => x.Id == id).Select(x => x.<#= col.Name #>).FirstOrDefault();
 				}	
 <#
 			}

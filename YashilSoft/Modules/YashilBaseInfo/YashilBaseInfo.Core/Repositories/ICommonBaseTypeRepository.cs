@@ -6,5 +6,8 @@ namespace YashilBaseInfo.Core.Repositories
 {
 	public interface ICommonBaseTypeRepository : IGenericRepository<CommonBaseType>
     {
+    			string GetDescription(int id);		
+	
     }
 }      
+ 

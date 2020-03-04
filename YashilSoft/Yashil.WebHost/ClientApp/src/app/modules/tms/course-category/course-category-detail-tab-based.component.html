@@ -10,8 +10,8 @@
     [animationEnabled]="false"
     [swipeEnabled]="false">
     <div *dxTemplate="let company of 'courseCategory'" class="tab-content-edit-form">
-						<app-courseCategory-detail [selectedEntityId]="selectedEntityId" entityName="courseCategory" 
-											></app-courseCategory-detail>
+						<app-course-category-detail [selectedEntityId]="selectedEntityId" entityName="courseCategory" 
+											></app-course-category-detail>
 					</div>
 					<div *dxTemplate="let company of 'description'" class="tab-content-edit-form">
 						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="courseCategory" propertyName="description"

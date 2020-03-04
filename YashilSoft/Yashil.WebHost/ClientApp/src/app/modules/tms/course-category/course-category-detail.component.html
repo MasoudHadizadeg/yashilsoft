@@ -24,15 +24,10 @@
 																				<dxi-validation-rule  type="required" message="مرکز آموزشی اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
-									<dxi-item [label]="{text: 'توضیحات'}"  dataField="description" editorType='dxTextArea'>
-												
-										
-				</dxi-item>
 									
-									<dxi-item dataField="accessLevelId" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: accessLevelDataSource,displayExpr:'title',valueExpr:'id' }">
-
-																				<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
+									<dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"  
+					[editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
+																					<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
 </dx-form>

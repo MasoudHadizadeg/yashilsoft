@@ -4,7 +4,7 @@ using Yashil.Common.Core.Interfaces;
 namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
 {
 
-        public class CommonBaseDataListViewModel:IBaseViewModel
+   public class CommonBaseDataListViewModel:IBaseViewModel
     {
 		public int ViewModelId
 	        {
@@ -22,17 +22,13 @@ namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
 		
         public int Value { get; set; }
 		
-        public string ExtendedProps { get; set; }
-		
         public int CommonBaseTypeId { get; set; }
 				public string CommonBaseTypeTitle { get; set; }	
 		
-        public string Description { get; set; }
+        public bool IsSystemProp { get; set; }
 		
         public int AccessLevelId { get; set; }
 				public string AccessLevelTitle { get; set; }	
-		
-        public bool IsSystemProp { get; set; }
 		
     }
 
@@ -74,6 +70,10 @@ namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
         public int CommonBaseTypeId { get; set; }
 				public string CommonBaseTypeTitle { get; set; }	
 				
+					 [Required] 
+				
+        public bool IsSystemProp { get; set; }
+				
 
         public string Description { get; set; }
 				
@@ -82,10 +82,6 @@ namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
 				
         public int AccessLevelId { get; set; }
 				public string AccessLevelTitle { get; set; }	
-				
-					 [Required] 
-				
-        public bool IsSystemProp { get; set; }
 				
     }
 

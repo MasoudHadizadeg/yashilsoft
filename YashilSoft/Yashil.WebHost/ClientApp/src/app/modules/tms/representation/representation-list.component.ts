@@ -52,19 +52,15 @@
 					});
 							this.columns.push({ 
 					caption: 'نوع مالکیت',
-					dataField: 'ownershipType'
+					dataField: 'ownershipTypeTitle'
 					});
 							this.columns.push({ 
 					caption: 'نوع مجوز تاسیس',
-					dataField: 'establishedLicenseType'
+					dataField: 'establishedLicenseTypeTitle'
 					});
 							this.columns.push({ 
 					caption: 'متراژ',
 					dataField: 'area'
-					});
-							this.columns.push({ 
-					caption: 'نوع مالکیت',
-					dataField: 'ownershipTypeTitle'
 					});
 							this.columns.push({ 
 					caption: 'کد پستی',

@@ -23,9 +23,11 @@
 																					<dxi-validation-rule  type="required" message="وضعیت دوره اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
-									<dxi-item [label]="{text: 'مدرس'}"  dataField="representationPerson" editorType='dxNumberBox'>
-												
-										
+									
+									<dxi-item dataField="representationPersonId" editorType="dxLookup" [label]="{text: 'مدرس'}"
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationPersonDataSource,displayExpr:'title',valueExpr:'id' }">
+
+														
 				</dxi-item>
 									<dxi-item [label]="{text: 'قیمت دوره'}"  dataField="price" editorType='dxNumberBox'>
 												
@@ -38,9 +40,10 @@
 																				<dxi-validation-rule  type="required" message="دوره اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
-									<dxi-item [label]="{text: 'رده سنی'}"  dataField="ageCategory" editorType='dxNumberBox'>
-												
-										
+									
+									<dxi-item dataField="ageCategory" editorType="dxSelectBox" [label]="{text: 'رده سنی'}"  
+					[editorOptions]="{ items: ageCategorys,displayExpr:'title',valueExpr:'id' }">
+															
 				</dxi-item>
 									
 									<dxi-item dataField="implementaionType" editorType="dxSelectBox" [label]="{text: 'نوع برگزاری'}"  
@@ -54,9 +57,10 @@
 																					<dxi-validation-rule  type="required" message="نوع دوره اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
-									<dxi-item [label]="{text: 'روش اجرای دوره'}"  dataField="runType" editorType='dxNumberBox'>
-												
-																<dxi-validation-rule  type="required" message="روش اجرای دوره اجباری می باشد"></dxi-validation-rule>
+									
+									<dxi-item dataField="runType" editorType="dxSelectBox" [label]="{text: 'روش اجرای دوره'}"  
+					[editorOptions]="{ items: runTypes,displayExpr:'title',valueExpr:'id' }">
+																					<dxi-validation-rule  type="required" message="روش اجرای دوره اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
 									<dxi-item [label]="{text: 'تاریخ شروع'}"  dataField="startDate" editorType='dxNumberBox'>
@@ -78,16 +82,15 @@
 																					<dxi-validation-rule  type="required" message="جنسیت اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
-									<dxi-item [label]="{text: 'حداکثر تعداد نفرات قابل پذیرش'}"  dataField="maxCapacity" editorType='dxNumberBox'>
+									<dxi-item [label]="{text: 'حداکثر ظرفیت'}"  dataField="maxCapacity" editorType='dxNumberBox'>
 												
-																<dxi-validation-rule  type="required" message="حداکثر تعداد نفرات قابل پذیرش اجباری می باشد"></dxi-validation-rule>
+																<dxi-validation-rule  type="required" message="حداکثر ظرفیت اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
 									
-									<dxi-item dataField="accessLevelId" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: accessLevelDataSource,displayExpr:'title',valueExpr:'id' }">
-
-																				<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
+									<dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"  
+					[editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
+																					<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
 </dx-form>

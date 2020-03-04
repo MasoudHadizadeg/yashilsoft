@@ -1,4 +1,4 @@
-			using Yashil.Common.Core.Classes;
+	using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -20,6 +20,11 @@ namespace YashilBaseInfo.Infrastructure.ServiceImpl
 			_commonBaseTypeRepository = commonBaseTypeRepository;
 			_userPrincipal = userPrincipal;
         }
+			  public string GetDescription(int id)
+				{
+					return _commonBaseTypeRepository.GetDescription(id);
+				}	
+	
     }
 }      
  

@@ -6,5 +6,8 @@ namespace YashilBaseInfo.Core.Repositories
 {
 	public interface IAccessLevelRepository : IGenericRepository<AccessLevel>
     {
+    			string GetDescription(int id);		
+	
     }
 }      
+ 

@@ -6,6 +6,9 @@ namespace YashilBaseInfo.Core.Services
 {
 	public interface IAppEntityService : IGenericService<AppEntity>
     {
+			string GetDescription(int id);		
+			string GetProps(int id);		
+	
     }
 }      
  

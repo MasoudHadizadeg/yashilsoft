@@ -16,6 +16,12 @@ namespace Yashil.Core.Entities
             AppConfigModifyByNavigation = new HashSet<AppConfig>();
             AppDocumentCreateByNavigation = new HashSet<AppDocument>();
             AppDocumentModifyByNavigation = new HashSet<AppDocument>();
+            AppEntityAttributeCreateByNavigation = new HashSet<AppEntityAttribute>();
+            AppEntityAttributeMappingCreateByNavigation = new HashSet<AppEntityAttributeMapping>();
+            AppEntityAttributeMappingModifyByNavigation = new HashSet<AppEntityAttributeMapping>();
+            AppEntityAttributeModifyByNavigation = new HashSet<AppEntityAttribute>();
+            AppEntityAttributeValueCreateByNavigation = new HashSet<AppEntityAttributeValue>();
+            AppEntityAttributeValueModifyByNavigation = new HashSet<AppEntityAttributeValue>();
             ApplicationCreateByNavigation = new HashSet<Application>();
             ApplicationModifyByNavigation = new HashSet<Application>();
             CityCreateByNavigation = new HashSet<City>();
@@ -46,8 +52,6 @@ namespace Yashil.Core.Entities
             DocumentCategoryModifyByNavigation = new HashSet<DocumentCategory>();
             EducationalCenterCreateByNavigation = new HashSet<EducationalCenter>();
             EducationalCenterModifyByNavigation = new HashSet<EducationalCenter>();
-            HrCreateByNavigation = new HashSet<Hr>();
-            HrModifyByNavigation = new HashSet<Hr>();
             MenuCreateByNavigation = new HashSet<Menu>();
             MenuModifyByNavigation = new HashSet<Menu>();
             OrganizationCreateByNavigation = new HashSet<Organization>();
@@ -120,6 +124,12 @@ namespace Yashil.Core.Entities
         public virtual ICollection<AppConfig> AppConfigModifyByNavigation { get; set; }
         public virtual ICollection<AppDocument> AppDocumentCreateByNavigation { get; set; }
         public virtual ICollection<AppDocument> AppDocumentModifyByNavigation { get; set; }
+        public virtual ICollection<AppEntityAttribute> AppEntityAttributeCreateByNavigation { get; set; }
+        public virtual ICollection<AppEntityAttributeMapping> AppEntityAttributeMappingCreateByNavigation { get; set; }
+        public virtual ICollection<AppEntityAttributeMapping> AppEntityAttributeMappingModifyByNavigation { get; set; }
+        public virtual ICollection<AppEntityAttribute> AppEntityAttributeModifyByNavigation { get; set; }
+        public virtual ICollection<AppEntityAttributeValue> AppEntityAttributeValueCreateByNavigation { get; set; }
+        public virtual ICollection<AppEntityAttributeValue> AppEntityAttributeValueModifyByNavigation { get; set; }
         public virtual ICollection<Application> ApplicationCreateByNavigation { get; set; }
         public virtual ICollection<Application> ApplicationModifyByNavigation { get; set; }
         public virtual ICollection<City> CityCreateByNavigation { get; set; }
@@ -150,8 +160,6 @@ namespace Yashil.Core.Entities
         public virtual ICollection<DocumentCategory> DocumentCategoryModifyByNavigation { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenterCreateByNavigation { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenterModifyByNavigation { get; set; }
-        public virtual ICollection<Hr> HrCreateByNavigation { get; set; }
-        public virtual ICollection<Hr> HrModifyByNavigation { get; set; }
         public virtual ICollection<Menu> MenuCreateByNavigation { get; set; }
         public virtual ICollection<Menu> MenuModifyByNavigation { get; set; }
         public virtual ICollection<Organization> OrganizationCreateByNavigation { get; set; }

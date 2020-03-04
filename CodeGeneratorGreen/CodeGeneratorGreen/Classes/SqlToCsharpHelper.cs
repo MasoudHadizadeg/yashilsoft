@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using CodeGeneratorGreen.Models;
 using DevExpress.Printing.Native.PrintEditor;
@@ -9,6 +11,7 @@ namespace CodeGeneratorGreen.Classes
     public class SqlToCsharpHelper
     {
         public static Tables dbTables;
+        public static List<Table> allTables = new List<Table>();
         public static Table table { get; set; }
 
         public static string GetNetDataType(string sqlDataTypeName)
@@ -60,6 +63,11 @@ namespace CodeGeneratorGreen.Classes
             var dataType = sqlDataTypeName.ToLower();
             return dataType == "bigint" || dataType == "decimal" || dataType == "float" || dataType == "int" ||
                    dataType == "real" || dataType == "smallint" || dataType == "tinyint";
+        }
+
+        public static void Add(Table tbl)
+        {
+            allTables.Add(tbl);
         }
     }
 }

@@ -14,8 +14,8 @@ import {createStore} from 'devextreme-aspnet-data-nojquery';
 export class CourseCategoryDetailComponent extends BaseEdit implements OnInit {
 		 parentDataSource:any;
 	 	 educationalCenterDataSource:any;
-	 	 accessLevelDataSource:any;
-	   constructor(private genericDataService: GenericDataService) {
+	 		accessLevels: any[] = [];
+	  constructor(private genericDataService: GenericDataService) {
     super(genericDataService);
     this.entityName = 'courseCategory';
   }
@@ -24,6 +24,6 @@ export class CourseCategoryDetailComponent extends BaseEdit implements OnInit {
     super.ngOnInit();
 							this.parentDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'courseCategory');
 									this.educationalCenterDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'educationalCenter');
-									this.accessLevelDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'accessLevel');
-				  }      
+							this._genericDataService.getEntitiesByEntityName(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
+		  }      
 }

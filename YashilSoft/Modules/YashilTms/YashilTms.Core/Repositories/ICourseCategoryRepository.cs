@@ -6,5 +6,8 @@ namespace YashilTms.Core.Repositories
 {
 	public interface ICourseCategoryRepository : IGenericRepository<CourseCategory>
     {
+    			string GetDescription(int id);		
+	
     }
 }      
+ 

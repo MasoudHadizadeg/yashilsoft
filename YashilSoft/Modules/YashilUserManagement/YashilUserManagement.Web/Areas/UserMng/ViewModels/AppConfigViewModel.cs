@@ -1,9 +1,10 @@
-			using System.ComponentModel.DataAnnotations;
+			using System;
+using System.ComponentModel.DataAnnotations;
 using Yashil.Common.Core.Interfaces;
 namespace YashilUserManagement.Web.Areas.UserMng.ViewModels
 {
 
-        public class AppConfigListViewModel:IBaseViewModel
+   public class AppConfigListViewModel:IBaseViewModel
     {
 		public int ViewModelId
 	        {
@@ -15,26 +16,6 @@ namespace YashilUserManagement.Web.Areas.UserMng.ViewModels
         public string KeyTitle { get; set; }
 		
         public string Value { get; set; }
-		
-        public string Description { get; set; }
-		
-    }
-
-
-    public class AppConfigViewModel:IBaseViewModel
-    {
-		public int ViewModelId
-	        {
-	            get => Id;
-	            set => Id = value;
-	        }
-        public int Id { get; set; }
-		
-        public string KeyTitle { get; set; }
-		
-        public string Value { get; set; }
-		
-        public string Description { get; set; }
 		
     }
 
@@ -59,8 +40,7 @@ namespace YashilUserManagement.Web.Areas.UserMng.ViewModels
 				
         public string Value { get; set; }
 				
-					
-					
+
         public string Description { get; set; }
 				
     }

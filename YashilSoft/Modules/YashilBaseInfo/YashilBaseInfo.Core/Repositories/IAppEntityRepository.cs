@@ -6,5 +6,9 @@ namespace YashilBaseInfo.Core.Repositories
 {
 	public interface IAppEntityRepository : IGenericRepository<AppEntity>
     {
+    			string GetDescription(int id);		
+			string GetProps(int id);		
+	
     }
 }      
+ 

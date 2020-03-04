@@ -1,5 +1,4 @@
-			using System.Linq;
-            using Yashil.Common.Core.Classes;
+	using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -21,11 +20,15 @@ namespace YashilBaseInfo.Infrastructure.ServiceImpl
 			_commonBaseDataRepository = commonBaseDataRepository;
 			_userPrincipal = userPrincipal;
         }
-
-        public IQueryable<CommonBaseData> GetByKeyName(string keyName)
-        {
-            return _commonBaseDataRepository.GetByKeyName(keyName);
-        }
+			  public string GetExtendedProps(int id)
+				{
+					return _commonBaseDataRepository.GetExtendedProps(id);
+				}	
+			  public string GetDescription(int id)
+				{
+					return _commonBaseDataRepository.GetDescription(id);
+				}	
+	
     }
 }      
  

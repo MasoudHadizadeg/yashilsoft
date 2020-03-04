@@ -6,6 +6,8 @@ namespace YashilUserManagement.Core.Services
 {
 	public interface IAppConfigService : IGenericService<AppConfig>
     {
+			string GetDescription(int id);		
+	
     }
 }      
  

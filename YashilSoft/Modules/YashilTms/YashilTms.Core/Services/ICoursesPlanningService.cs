@@ -6,6 +6,8 @@ namespace YashilTms.Core.Services
 {
 	public interface ICoursesPlanningService : IGenericService<CoursesPlanning>
     {
+			string GetDescription(int id);		
+	
     }
 }      
  

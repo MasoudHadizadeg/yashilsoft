@@ -16,8 +16,8 @@ export class RepresentationPersonDetailComponent extends BaseEdit implements OnI
 	 	 personDataSource:any;
 	 	 postDataSource:any;
 	 					cooperationTypes: any;
-	 accessLevelDataSource:any;
-	   constructor(private genericDataService: GenericDataService) {
+		accessLevels: any[] = [];
+	  constructor(private genericDataService: GenericDataService) {
     super(genericDataService);
     this.entityName = 'representationPerson';
   }
@@ -28,6 +28,6 @@ export class RepresentationPersonDetailComponent extends BaseEdit implements OnI
 									this.personDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'person');
 									this.postDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'post');
 									this._genericDataService.getCommonBaseDataForSelect('CooperationType').subscribe(res => this.cooperationTypes = res);
-									this.accessLevelDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'accessLevel');
-				  }      
+							this._genericDataService.getEntitiesByEntityName(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
+		  }      
 }

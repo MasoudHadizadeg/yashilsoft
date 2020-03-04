@@ -2,7 +2,7 @@
     <dx-form id="form" [colCount]="1" #detailForm [formData]="entity" [showColonAfterLabel]="false">
         <dxi-item [editorOptions]="{ height: 300 }" [dataField]="propertyName" editorType='dxHtmlEditor'>
             <dxo-label [showColon]="false" text=" "></dxo-label>
-            <dx-html-editor height="300" rtlEnabled="true" [(ngModel)]="entity[propertyName]">
+            <dx-html-editor height="300" rtlEnabled="true" [(ngModel)]="entity.description">
                 <dxo-toolbar>
                     <dxi-item formatName="undo"></dxi-item>
                     <dxi-item formatName="redo"></dxi-item>

@@ -34,9 +34,9 @@ namespace CodeGeneratorGreen.Templates.Angular
             
             #line 11 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\AngularEntityEnum.tt"
 
-			var tablesCount = SqlToCsharpHelper.dbTables.TableList.Count();
+			var tablesCount = SqlToCsharpHelper.allTables.Count();
 			var i = 1;
-			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
+			foreach (Table table in SqlToCsharpHelper.allTables)
 			{
 				i++;
 				

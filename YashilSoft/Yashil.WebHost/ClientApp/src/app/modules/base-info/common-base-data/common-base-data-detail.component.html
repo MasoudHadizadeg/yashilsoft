@@ -7,10 +7,9 @@
 										
 				</dxi-item>
 									
-									<dxi-item dataField="parentId" editorType="dxLookup" [label]="{text: 'ParentId'}"  
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: parentDataSource,displayExpr:'title',valueExpr:'id' }">
-
-														
+									<dxi-item dataField="parentId" editorType="dxSelectBox" [label]="{text: 'ParentId'}"  
+					[editorOptions]="{ items: parents,displayExpr:'title',valueExpr:'id' }">
+															
 				</dxi-item>
 									<dxi-item [label]="{text: 'عنوان'}"  dataField="title" >
 												
@@ -27,26 +26,25 @@
 										
 				</dxi-item>
 									
-									<dxi-item dataField="commonBaseTypeId" editorType="dxLookup" [label]="{text: 'نوع اطلاعات پايه'}"  
+									<dxi-item dataField="commonBaseTypeId" editorType="dxLookup" [label]="{text: 'نوع اطلاعات پايه'}"
 					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: commonBaseTypeDataSource,displayExpr:'title',valueExpr:'id' }">
 
 																				<dxi-validation-rule  type="required" message="نوع اطلاعات پايه اجباری می باشد"></dxi-validation-rule>
 							
+				</dxi-item>
+									<dxi-item [label]="{text: 'سیستمی'}"  dataField="isSystemProp" editorType='dxCheckBox'>
+												
+										
 				</dxi-item>
 									<dxi-item [label]="{text: 'توضیحات'}"  dataField="description" editorType='dxTextArea'>
 												
 										
 				</dxi-item>
 									
-									<dxi-item dataField="accessLevelId" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"  
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: accessLevelDataSource,displayExpr:'title',valueExpr:'id' }">
-
-																				<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
+									<dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"  
+					[editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
+																					<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
 							
-				</dxi-item>
-									<dxi-item [label]="{text: 'IsSystemProp'}"  dataField="isSystemProp" editorType='dxCheckBox'>
-												
-										
 				</dxi-item>
 </dx-form>
 </app-base-edit-form>

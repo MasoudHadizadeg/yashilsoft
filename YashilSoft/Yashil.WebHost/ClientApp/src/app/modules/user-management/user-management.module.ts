@@ -16,13 +16,23 @@ import {UserManagementRoutingModule} from './user-management-routing.module';
     declarations: [COMPONENTS],
     entryComponents: [ENTRYCOMPONENTS],
     imports: [
+        CommonModule,
         UserManagementRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
         DpDatePickerModule,
         SharedModule,
         AngularSplitModule.forRoot(),
         ImageCropperModule
     ],
     providers: [
+        MessageService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor, multi: true
+        },
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
     ],
     exports: [COMPONENTS],
 })

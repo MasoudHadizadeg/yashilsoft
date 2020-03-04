@@ -7,7 +7,7 @@
 										
 				</dxi-item>
 									
-									<dxi-item dataField="parentId" editorType="dxLookup" [label]="{text: 'ParentId'}"  
+									<dxi-item dataField="parentId" editorType="dxLookup" [label]="{text: 'ParentId'}"
 					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: parentDataSource,displayExpr:'title',valueExpr:'id' }">
 
 														
@@ -21,16 +21,14 @@
 										
 				</dxi-item>
 									
-									<dxi-item dataField="customCategory" editorType="dxLookup" [label]="{text: 'تقسیم بندی سفارشی'}"  
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: customCategoryDataSource,displayExpr:'title',valueExpr:'id' }">
-
-														
+									<dxi-item dataField="customCategory" editorType="dxSelectBox" [label]="{text: 'تقسیم بندی سفارشی'}"  
+					[editorOptions]="{ items: customCategorys,displayExpr:'title',valueExpr:'id' }">
+															
 				</dxi-item>
 									
-									<dxi-item dataField="countryDivisionType" editorType="dxLookup" [label]="{text: 'تقسیمات کشوری'}"  
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: countryDivisionTypeDataSource,displayExpr:'title',valueExpr:'id' }">
-
-																				<dxi-validation-rule  type="required" message="تقسیمات کشوری اجباری می باشد"></dxi-validation-rule>
+									<dxi-item dataField="countryDivisionType" editorType="dxSelectBox" [label]="{text: 'تقسیمات کشوری'}"  
+					[editorOptions]="{ items: countryDivisionTypes,displayExpr:'title',valueExpr:'id' }">
+																					<dxi-validation-rule  type="required" message="تقسیمات کشوری اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
 									<dxi-item [label]="{text: 'مرکز استان'}"  dataField="provinceCenter" editorType='dxCheckBox'>

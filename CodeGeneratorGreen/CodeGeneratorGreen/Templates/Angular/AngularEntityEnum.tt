@@ -9,9 +9,9 @@
 
 	export enum Entity {
 	<#
-			var tablesCount = SqlToCsharpHelper.dbTables.TableList.Count();
+			var tablesCount = SqlToCsharpHelper.allTables.Count();
 			var i = 1;
-			foreach (Table table in SqlToCsharpHelper.dbTables.TableList)
+			foreach (Table table in SqlToCsharpHelper.allTables)
 			{
 				i++;
 				#>

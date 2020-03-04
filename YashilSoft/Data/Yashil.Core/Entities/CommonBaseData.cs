@@ -8,18 +8,22 @@ namespace Yashil.Core.Entities
     {
         public CommonBaseData()
         {
+            AppEntityAttributeMapping = new HashSet<AppEntityAttributeMapping>();
             CityCountryDivisionTypeNavigation = new HashSet<City>();
             CityCustomCategoryNavigation = new HashSet<City>();
             CourseCertificateTypeNavigation = new HashSet<Course>();
             CourseEvaluationMethodNavigation = new HashSet<Course>();
             CourseSkillTypeNavigation = new HashSet<Course>();
+            CoursesPlanningAgeCategoryNavigation = new HashSet<CoursesPlanning>();
             CoursesPlanningCourceStatusNavigation = new HashSet<CoursesPlanning>();
             CoursesPlanningCourceTypeNavigation = new HashSet<CoursesPlanning>();
             CoursesPlanningCustomGenderNavigation = new HashSet<CoursesPlanning>();
             CoursesPlanningImplementaionTypeNavigation = new HashSet<CoursesPlanning>();
+            CoursesPlanningRunTypeNavigation = new HashSet<CoursesPlanning>();
             InverseParent = new HashSet<CommonBaseData>();
             PersonEducationGradeNavigation = new HashSet<Person>();
             PersonGenderNavigation = new HashSet<Person>();
+            RepresentationEstablishedLicenseTypeNavigation = new HashSet<Representation>();
             RepresentationLicenseTypeNavigation = new HashSet<Representation>();
             RepresentationOwnershipTypeNavigation = new HashSet<Representation>();
             RepresentationPerson = new HashSet<RepresentationPerson>();
@@ -50,18 +54,22 @@ namespace Yashil.Core.Entities
         public virtual Organization CreatorOrganization { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual CommonBaseData Parent { get; set; }
+        public virtual ICollection<AppEntityAttributeMapping> AppEntityAttributeMapping { get; set; }
         public virtual ICollection<City> CityCountryDivisionTypeNavigation { get; set; }
         public virtual ICollection<City> CityCustomCategoryNavigation { get; set; }
         public virtual ICollection<Course> CourseCertificateTypeNavigation { get; set; }
         public virtual ICollection<Course> CourseEvaluationMethodNavigation { get; set; }
         public virtual ICollection<Course> CourseSkillTypeNavigation { get; set; }
+        public virtual ICollection<CoursesPlanning> CoursesPlanningAgeCategoryNavigation { get; set; }
         public virtual ICollection<CoursesPlanning> CoursesPlanningCourceStatusNavigation { get; set; }
         public virtual ICollection<CoursesPlanning> CoursesPlanningCourceTypeNavigation { get; set; }
         public virtual ICollection<CoursesPlanning> CoursesPlanningCustomGenderNavigation { get; set; }
         public virtual ICollection<CoursesPlanning> CoursesPlanningImplementaionTypeNavigation { get; set; }
+        public virtual ICollection<CoursesPlanning> CoursesPlanningRunTypeNavigation { get; set; }
         public virtual ICollection<CommonBaseData> InverseParent { get; set; }
         public virtual ICollection<Person> PersonEducationGradeNavigation { get; set; }
         public virtual ICollection<Person> PersonGenderNavigation { get; set; }
+        public virtual ICollection<Representation> RepresentationEstablishedLicenseTypeNavigation { get; set; }
         public virtual ICollection<Representation> RepresentationLicenseTypeNavigation { get; set; }
         public virtual ICollection<Representation> RepresentationOwnershipTypeNavigation { get; set; }
         public virtual ICollection<RepresentationPerson> RepresentationPerson { get; set; }

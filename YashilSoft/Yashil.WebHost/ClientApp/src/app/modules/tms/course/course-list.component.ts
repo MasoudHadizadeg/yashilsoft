@@ -43,7 +43,7 @@ export class CourseListComponent {
             dataField: 'evaluationMethodTitle'
         });
         this.columns.push({
-            caption: 'مدت دوره',
+            caption: 'مدت دوره(ساعت)',
             dataField: 'duration'
         });
         this.columns.push({

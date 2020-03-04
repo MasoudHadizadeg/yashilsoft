@@ -11,14 +11,11 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 import {MessageService} from '../../shared/base/messages/message.service';
 import {ENTRYCOMPONENTS} from './entryIndex';
 import {DmsRoutingModule} from './dms-routing.module';
-import {DxTextBoxModule} from 'devextreme-angular';
-import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 @NgModule({
     declarations: [COMPONENTS],
     entryComponents: [ENTRYCOMPONENTS],
     imports: [
-        PdfViewerModule,
         CommonModule,
         DmsRoutingModule,
         ReactiveFormsModule,
@@ -27,8 +24,7 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
         DpDatePickerModule,
         SharedModule,
         AngularSplitModule.forRoot(),
-        ImageCropperModule,
-        DxTextBoxModule
+        ImageCropperModule
     ],
     providers: [
         MessageService,

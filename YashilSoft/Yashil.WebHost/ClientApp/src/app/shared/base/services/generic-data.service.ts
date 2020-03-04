@@ -157,8 +157,8 @@ export class GenericDataService {
     }
 
     /** GET entity by id. Will 404 if id not found */
-    getEntity(entityName, id: number): Observable<any> {
-        const url = `${this.baseUrl}/${entityName}/${id}`;
+    getEntity(entityName, id: number, customLoadMethodName: string = null): Observable<any> {
+        const url = customLoadMethodName ? `${this.baseUrl}/${entityName}/${customLoadMethodName}/${id}` : `${this.baseUrl}/${entityName}/${id}`;
         return this.httpClient.get<any>(url).pipe(
             tap(_ => this.log(`fetched entity id=${id}`)),
             catchError(this.handleError<any>(`getEntity id=${id}`))

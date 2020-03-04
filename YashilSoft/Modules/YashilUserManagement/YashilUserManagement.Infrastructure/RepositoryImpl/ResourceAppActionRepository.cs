@@ -1,4 +1,4 @@
-			
+			using System.Linq;
 using Yashil.Common.Core.Classes;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -10,9 +10,12 @@ namespace YashilUserManagement.Infrastructure.RepositoryImpl
 	public class ResourceAppActionRepository : GenericRepository<ResourceAppAction,int>, IResourceAppActionRepository
     {
         private readonly YashilAppDbContext _context;
-		public ResourceAppActionRepository (YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)
+        private readonly IUserPrincipal _userPrincipal;
+		public ResourceAppActionRepository (YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context,userPrincipal)
             {
                 _context = context;
+                _userPrincipal = userPrincipal;
             }
+    	
     }
 }      

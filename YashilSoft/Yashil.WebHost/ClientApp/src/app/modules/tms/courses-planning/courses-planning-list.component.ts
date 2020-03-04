@@ -32,7 +32,7 @@
 					});
 							this.columns.push({ 
 					caption: 'مدرس',
-					dataField: 'representationPerson'
+					dataField: 'representationPersonTitle'
 					});
 							this.columns.push({ 
 					caption: 'قیمت دوره',
@@ -44,7 +44,7 @@
 					});
 							this.columns.push({ 
 					caption: 'رده سنی',
-					dataField: 'ageCategory'
+					dataField: 'ageCategoryTitle'
 					});
 							this.columns.push({ 
 					caption: 'نوع برگزاری',
@@ -56,7 +56,7 @@
 					});
 							this.columns.push({ 
 					caption: 'روش اجرای دوره',
-					dataField: 'runType'
+					dataField: 'runTypeTitle'
 					});
 							this.columns.push({ 
 					caption: 'تاریخ شروع',
@@ -67,7 +67,7 @@
 					dataField: 'customGenderTitle'
 					});
 							this.columns.push({ 
-					caption: 'حداکثر تعداد نفرات قابل پذیرش',
+					caption: 'حداکثر ظرفیت',
 					dataField: 'maxCapacity'
 					});
 							this.columns.push({ 

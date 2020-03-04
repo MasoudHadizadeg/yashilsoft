@@ -8,13 +8,16 @@ namespace Yashil.Core.Entities
     {
         public AppEntity()
         {
+            AppEntityAttributeMapping = new HashSet<AppEntityAttributeMapping>();
             DocType = new HashSet<DocType>();
             DocumentCategory = new HashSet<DocumentCategory>();
         }
 
         public int Id { get; set; }
         public string Title { get; set; }
-        public int ObjectId { get; set; }
+        public bool GenerateTabForDescColumn { get; set; }
+        public bool HasAttachmenet { get; set; }
+        public int? SystemId { get; set; }
         public string TitlePropertyName { get; set; }
         public bool? IsLarge { get; set; }
         public bool IsVirtualEntity { get; set; }
@@ -31,6 +34,7 @@ namespace Yashil.Core.Entities
 
         public virtual DocFormat CreateByNavigation { get; set; }
         public virtual DocFormat ModifyByNavigation { get; set; }
+        public virtual ICollection<AppEntityAttributeMapping> AppEntityAttributeMapping { get; set; }
         public virtual ICollection<DocType> DocType { get; set; }
         public virtual ICollection<DocumentCategory> DocumentCategory { get; set; }
     }

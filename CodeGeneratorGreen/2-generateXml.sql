@@ -1,10 +1,17 @@
+/************************************************************
+ * Code formatted by SoftTree SQL Assistant © v9.1.276
+ * Time: 3/3/2020 11:15:58 AM
+ ************************************************************/
+
 EXEC INSERT_AppEntity
 
 
-SELECT s.name                           AS '@schema',
-       t.name                           AS '@name',
-       t.object_id                      AS '@id',
-       dbo.getTableDesc(t.[object_id])  AS '@tableDesc',
+SELECT s.name                       AS '@schema',
+       t.name                       AS '@name',
+       t.object_id                  AS '@id',
+       ae.GenerateTabForDescColumn  AS '@generateTabForDescColumn',
+       ae.HasAttachmenet            AS '@hasAttachmenet',
+       dbo.getTableDesc(t.[object_id]) AS '@tableDesc',
        (
            SELECT c.name         AS '@name',
                   c.column_id    AS '@id',
@@ -22,7 +29,7 @@ SELECT s.name                           AS '@schema',
                   CASE 
                        WHEN fkc.constraint_column_id IS NOT NULL THEN (
                                 SELECT td.TitlePropertyName
-                                FROM base.AppEntity  td
+                                FROM   base.AppEntity td
                                 WHERE  td.Title = (
                                            SELECT t.name
                                            FROM   sys.tables AS t
@@ -74,8 +81,15 @@ SELECT s.name                           AS '@schema',
            WHERE  c.object_id = t.object_id
                   FOR XML PATH('Column'),TYPE
        )
-FROM   sys.schemas                      AS s
-       INNER JOIN sys.tables            AS t
-            ON  s.schema_id = t.schema_id AND t.name NOT IN ('sysdiagrams','TableDesc') and s.name='base'
+FROM   sys.schemas                  AS s
+       INNER JOIN sys.tables        AS t
+            ON  s.schema_id = t.schema_id
+            AND t.name NOT IN ('sysdiagrams', 'TableDesc')
+            AND s.name = 'base'
+       INNER JOIN base.AppEntity    AS ae
+            ON  t.[object_id] = ae.SystemId
                 FOR XML PATH('Table'),
        ROOT('Tables')
+       
+     
+       

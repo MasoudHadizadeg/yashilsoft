@@ -6,6 +6,8 @@ namespace YashilBaseInfo.Core.Services
 {
 	public interface ICityService : IGenericService<City>
     {
+			string GetDescription(int id);		
+	
     }
 }      
  

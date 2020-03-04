@@ -35,13 +35,12 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 				public string LicenseTypeTitle { get; set; }	
 		
         public int? OwnershipType { get; set; }
+				public string OwnershipTypeTitle { get; set; }	
 		
         public int? EstablishedLicenseType { get; set; }
+				public string EstablishedLicenseTypeTitle { get; set; }	
 		
         public int? Area { get; set; }
-		
-        public int? OwnershipTypeId { get; set; }
-				public string OwnershipTypeTitle { get; set; }	
 		
         public char? PostalCode { get; set; }
 		
@@ -106,16 +105,14 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 				
 
         public int? OwnershipType { get; set; }
+				public string OwnershipTypeTitle { get; set; }	
 				
 
         public int? EstablishedLicenseType { get; set; }
+				public string EstablishedLicenseTypeTitle { get; set; }	
 				
 
         public int? Area { get; set; }
-				
-
-        public int? OwnershipTypeId { get; set; }
-				public string OwnershipTypeTitle { get; set; }	
 				
 
         public char? PostalCode { get; set; }

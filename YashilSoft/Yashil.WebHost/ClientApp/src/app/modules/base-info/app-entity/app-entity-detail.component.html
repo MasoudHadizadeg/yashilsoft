@@ -7,16 +7,27 @@
 																<dxi-validation-rule  type="required" message="عنوان انگلیسی جدول اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
-									<dxi-item [label]="{text: 'کد سیستمی جدول'}"  dataField="objectId" editorType='dxNumberBox'>
+									<dxi-item [label]="{text: 'ایجاد تب برای فیلدهای توضیح'}"  dataField="generateTabForDescColumn" editorType='dxCheckBox'>
 												
-																<dxi-validation-rule  type="required" message="کد سیستمی جدول اجباری می باشد"></dxi-validation-rule>
-							
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'دارای فایل'}"  dataField="hasAttachmenet" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'کد سیستمی جدول'}"  dataField="systemId" editorType='dxNumberBox'>
+												
+										
 				</dxi-item>
 									<dxi-item [label]="{text: 'عنوان ستون نمایشی'}"  dataField="titlePropertyName" >
 												
 										
 				</dxi-item>
 									<dxi-item [label]="{text: 'با تعداد رکوردهای بزرگتر از 1000'}"  dataField="isLarge" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'جدول مجازی-نتیجه شکست یک جدول  واقعی'}"  dataField="isVirtualEntity" editorType='dxCheckBox'>
 												
 										
 				</dxi-item>

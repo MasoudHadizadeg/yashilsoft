@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Yashil.Common.Core.Dtos;
 
 namespace Yashil.Common.Core.Interfaces
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<T, TR> where T : class
     {
         void Delete(T entity);
 
@@ -32,5 +33,6 @@ namespace Yashil.Common.Core.Interfaces
         IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties);
         ValueTask<T> GetAsync(object id, bool readOnly = true);
         Task<int> CountAsync();
+        string GetEntityDescriptionByPropName(TR key, string propName);
     }
 }

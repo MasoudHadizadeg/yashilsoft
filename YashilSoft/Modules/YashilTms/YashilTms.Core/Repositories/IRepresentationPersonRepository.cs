@@ -6,5 +6,8 @@ namespace YashilTms.Core.Repositories
 {
 	public interface IRepresentationPersonRepository : IGenericRepository<RepresentationPerson>
     {
+    			string GetDescription(int id);		
+	
     }
 }      
+ 

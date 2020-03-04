@@ -1,6 +1,7 @@
 			
 		import { Component, OnInit } from '@angular/core';
 		import {CoursesPlanningStudentDetailComponent} from './courses-planning-student-detail.component';
+				import {CoursesPlanningStudentDetailTabBasedComponent} from './courses-planning-student-detail-tab-based.component';
 			
 		
 
@@ -12,7 +13,7 @@
 		  selectedItemId: number;
 		  columns: any[] = [];
 		  entityName = 'coursesPlanningStudent';
-		  detailComponent = CoursesPlanningStudentDetailComponent; 		  constructor() {
+		  detailComponent =  CoursesPlanningStudentDetailTabBasedComponent; 		  constructor() {
 							this.columns.push({ 
 					caption: 'کد',
 					dataField: 'code'

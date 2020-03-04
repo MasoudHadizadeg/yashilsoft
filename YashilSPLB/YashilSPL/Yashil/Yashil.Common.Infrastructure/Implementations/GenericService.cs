@@ -1,21 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Yashil.Common.Core.Classes;
+using Yashil.Common.Core.Dtos;
 using Yashil.Common.Core.Interfaces;
 
 namespace Yashil.Common.Infrastructure.Implementations
 {
-    public class GenericService<TModel, TK> : IGenericService<TModel> where TModel : class, IBaseEntity<TK>
+    public class GenericService<TModel, TK> : IGenericService<TModel,TK> where TModel : class, IBaseEntity<TK>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IGenericRepository<TModel> _repository;
+        private readonly IGenericRepository<TModel,TK> _repository;
         private readonly IUserPrincipal _userPrincipal;
 
-        public GenericService(IUnitOfWork unitOfWork, IGenericRepository<TModel> repository,
+        public GenericService(IUnitOfWork unitOfWork, IGenericRepository<TModel,TK> repository,
             IUserPrincipal userPrincipal)
         {
             _unitOfWork = unitOfWork;
@@ -124,6 +125,11 @@ namespace Yashil.Common.Infrastructure.Implementations
         public virtual async Task<int> SaveChangeAsync()
         {
             return await _unitOfWork.CommitAsync();
+        }
+
+        public string GetEntityDescriptionByPropName(TK key, string propName)
+        {
+            return _repository.GetEntityDescriptionByPropName(key, propName);
         }
         public IQueryable<TModel> GetAll(bool readOnly)
         {

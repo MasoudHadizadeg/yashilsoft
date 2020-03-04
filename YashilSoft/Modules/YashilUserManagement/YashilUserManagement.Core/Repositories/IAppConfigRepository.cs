@@ -6,5 +6,8 @@ namespace YashilUserManagement.Core.Repositories
 {
 	public interface IAppConfigRepository : IGenericRepository<AppConfig>
     {
+    			string GetDescription(int id);		
+	
     }
 }      
+ 

@@ -4,7 +4,7 @@ using Yashil.Common.Core.Interfaces;
 namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
 {
 
-        public class AppEntityListViewModel:IBaseViewModel
+   public class AppEntityListViewModel:IBaseViewModel
     {
 		public int ViewModelId
 	        {
@@ -15,15 +15,17 @@ namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
 		
         public string Title { get; set; }
 		
-        public int ObjectId { get; set; }
+        public bool GenerateTabForDescColumn { get; set; }
+		
+        public bool HasAttachmenet { get; set; }
+		
+        public int? SystemId { get; set; }
 		
         public string TitlePropertyName { get; set; }
 		
         public bool? IsLarge { get; set; }
 		
-        public string Description { get; set; }
-		
-        public string Props { get; set; }
+        public bool IsVirtualEntity { get; set; }
 		
         public string PersianTitle { get; set; }
 		
@@ -49,10 +51,16 @@ namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
 				
         public string Title { get; set; }
 				
-					[Range(0,int.MaxValue)]
-										 [Required] 
+					 [Required] 
 				
-        public int ObjectId { get; set; }
+        public bool GenerateTabForDescColumn { get; set; }
+				
+					 [Required] 
+				
+        public bool HasAttachmenet { get; set; }
+				
+
+        public int? SystemId { get; set; }
 				
 					[StringLength(600)]
 					
@@ -60,6 +68,10 @@ namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
 				
 
         public bool? IsLarge { get; set; }
+				
+					 [Required] 
+				
+        public bool IsVirtualEntity { get; set; }
 				
 
         public string Description { get; set; }

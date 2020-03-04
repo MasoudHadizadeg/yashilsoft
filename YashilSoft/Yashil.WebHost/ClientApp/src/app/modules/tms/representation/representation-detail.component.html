@@ -46,22 +46,19 @@
 					[editorOptions]="{ items: licenseTypes,displayExpr:'title',valueExpr:'id' }">
 															
 				</dxi-item>
-									<dxi-item [label]="{text: 'نوع مالکیت'}"  dataField="ownershipType" editorType='dxNumberBox'>
-												
-										
+									
+									<dxi-item dataField="ownershipType" editorType="dxSelectBox" [label]="{text: 'نوع مالکیت'}"  
+					[editorOptions]="{ items: ownershipTypes,displayExpr:'title',valueExpr:'id' }">
+															
 				</dxi-item>
-									<dxi-item [label]="{text: 'نوع مجوز تاسیس'}"  dataField="establishedLicenseType" editorType='dxNumberBox'>
-												
-										
+									
+									<dxi-item dataField="establishedLicenseType" editorType="dxSelectBox" [label]="{text: 'نوع مجوز تاسیس'}"  
+					[editorOptions]="{ items: establishedLicenseTypes,displayExpr:'title',valueExpr:'id' }">
+															
 				</dxi-item>
 									<dxi-item [label]="{text: 'متراژ'}"  dataField="area" editorType='dxNumberBox'>
 												
 										
-				</dxi-item>
-									
-									<dxi-item dataField="ownershipTypeId" editorType="dxSelectBox" [label]="{text: 'نوع مالکیت'}"  
-					[editorOptions]="{ items: ownershipTypes,displayExpr:'title',valueExpr:'id' }">
-															
 				</dxi-item>
 									<dxi-item [label]="{text: 'کد پستی'}"  dataField="postalCode" >
 												
@@ -72,10 +69,9 @@
 										
 				</dxi-item>
 									
-									<dxi-item dataField="accessLevelId" editorType="dxLookup" [label]="{text: 'سطح دسترسی'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: accessLevelDataSource,displayExpr:'title',valueExpr:'id' }">
-
-																				<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
+									<dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"  
+					[editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
+																					<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
 							
 				</dxi-item>
 </dx-form>

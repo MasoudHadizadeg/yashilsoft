@@ -6,6 +6,11 @@ namespace Yashil.Core.Entities
 {
     public partial class RepresentationPerson :IBaseEntity<int> ,IApplicationBasedEntity
     {
+        public RepresentationPerson()
+        {
+            CoursesPlanning = new HashSet<CoursesPlanning>();
+        }
+
         public int Id { get; set; }
         public string Code { get; set; }
         public int RepresentationId { get; set; }
@@ -33,5 +38,6 @@ namespace Yashil.Core.Entities
         public virtual Person Person { get; set; }
         public virtual Post Post { get; set; }
         public virtual Representation Representation { get; set; }
+        public virtual ICollection<CoursesPlanning> CoursesPlanning { get; set; }
     }
     }

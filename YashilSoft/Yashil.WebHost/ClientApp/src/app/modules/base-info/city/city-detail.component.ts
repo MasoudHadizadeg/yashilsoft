@@ -13,9 +13,9 @@ import {createStore} from 'devextreme-aspnet-data-nojquery';
 })
 export class CityDetailComponent extends BaseEdit implements OnInit {
 		 parentDataSource:any;
-	 	 customCategoryDataSource:any;
-	 	 countryDivisionTypeDataSource:any;
-	   constructor(private genericDataService: GenericDataService) {
+	 					customCategorys: any;
+					countryDivisionTypes: any;
+  constructor(private genericDataService: GenericDataService) {
     super(genericDataService);
     this.entityName = 'city';
   }
@@ -23,7 +23,7 @@ export class CityDetailComponent extends BaseEdit implements OnInit {
   ngOnInit() {
     super.ngOnInit();
 							this.parentDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'city');
-									this.customCategoryDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'commonBaseData');
-									this.countryDivisionTypeDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'commonBaseData');
+									this._genericDataService.getCommonBaseDataForSelect('CustomCategory').subscribe(res => this.customCategorys = res);
+									this._genericDataService.getCommonBaseDataForSelect('CountryDivisionType').subscribe(res => this.countryDivisionTypes = res);
 				  }      
 }

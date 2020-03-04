@@ -1,5 +1,5 @@
 import * as moment from 'jalali-moment';
-import {Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Input, OnInit, ViewChild} from '@angular/core';
 import {GenericDataService} from '../services/generic-data.service';
 import {DxFormComponent} from 'devextreme-angular/ui/form';
 import notify from 'devextreme/ui/notify';
@@ -16,6 +16,7 @@ export class BaseEdit extends Editable implements OnInit {
     keyExpr: string;
     displayExpr: string;
     parentIdExpr: string;
+    customLoadMethodName: string;
 
     @Input()
     public set entityParentId(value: number) {
@@ -177,7 +178,7 @@ export class BaseEdit extends Editable implements OnInit {
 
     public loadEntityData() {
         if (this.selectedEntityId && !this.isNew) {
-            this._genericDataService.getEntity(this.entityName, this.selectedEntityId).subscribe(
+            this._genericDataService.getEntity(this.entityName, this.selectedEntityId,this.customLoadMethodName).subscribe(
                 res => {
                     this.entity = res;
                     this.afterLoadData(res);

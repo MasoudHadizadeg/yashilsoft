@@ -16,8 +16,9 @@ export class RepresentationDetailComponent extends BaseEdit implements OnInit {
 	 	 cityDataSource:any;
 	 					licenseTypes: any;
 					ownershipTypes: any;
-	 accessLevelDataSource:any;
-	   constructor(private genericDataService: GenericDataService) {
+					establishedLicenseTypes: any;
+		accessLevels: any[] = [];
+	  constructor(private genericDataService: GenericDataService) {
     super(genericDataService);
     this.entityName = 'representation';
   }
@@ -28,6 +29,7 @@ export class RepresentationDetailComponent extends BaseEdit implements OnInit {
 									this.cityDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'city');
 									this._genericDataService.getCommonBaseDataForSelect('LicenseType').subscribe(res => this.licenseTypes = res);
 									this._genericDataService.getCommonBaseDataForSelect('OwnershipType').subscribe(res => this.ownershipTypes = res);
-									this.accessLevelDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'accessLevel');
-				  }      
+									this._genericDataService.getCommonBaseDataForSelect('EstablishedLicenseType').subscribe(res => this.establishedLicenseTypes = res);
+							this._genericDataService.getEntitiesByEntityName(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
+		  }      
 }

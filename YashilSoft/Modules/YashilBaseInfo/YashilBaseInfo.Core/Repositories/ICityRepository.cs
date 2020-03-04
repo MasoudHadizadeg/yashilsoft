@@ -6,5 +6,8 @@ namespace YashilBaseInfo.Core.Repositories
 {
 	public interface ICityRepository : IGenericRepository<City>
     {
+    			string GetDescription(int id);		
+	
     }
 }      
+ 

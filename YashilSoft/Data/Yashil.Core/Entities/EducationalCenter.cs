@@ -16,7 +16,12 @@ namespace Yashil.Core.Entities
         public int Id { get; set; }
         public string Code { get; set; }
         public string Title { get; set; }
+        public string About { get; set; }
+        public string Address { get; set; }
+        public int? EstablishedLicenseType { get; set; }
+        public string Goal { get; set; }
         public string Description { get; set; }
+        public string Ability { get; set; }
         public int CreateBy { get; set; }
         public int? ModifyBy { get; set; }
         public DateTime CreationDate { get; set; }

@@ -4,7 +4,7 @@ using Yashil.Common.Core.Interfaces;
 namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
 {
 
-        public class CommonBaseTypeListViewModel:IBaseViewModel
+   public class CommonBaseTypeListViewModel:IBaseViewModel
     {
 		public int ViewModelId
 	        {
@@ -20,8 +20,6 @@ namespace YashilBaseInfo.Web.Areas.BaseInf.ViewModels
         public string KeyName { get; set; }
 		
         public bool TreeBased { get; set; }
-		
-        public string Description { get; set; }
 		
         public int AccessLevelId { get; set; }
 				public string AccessLevelTitle { get; set; }	

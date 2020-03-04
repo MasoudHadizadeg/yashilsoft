@@ -28,24 +28,28 @@ namespace YashilUserManagement.Web
             services.AddScoped<IResourceService, ResourceService>();
             services.AddScoped<IApplicationRepository, ApplicationRepository>();
             services.AddScoped<IApplicationService, ApplicationService>();
-            services.AddScoped<IOrganizationRepository, OrganizationRepository>();
-            services.AddScoped<IOrganizationService, OrganizationService>();
             services.AddScoped<IAppActionRepository, AppActionRepository>();
             services.AddScoped<IAppActionService, AppActionService>();
+            services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+            services.AddScoped<IOrganizationService, OrganizationService>();
             services.AddScoped<IResourceAppActionRepository, ResourceAppActionRepository>();
             services.AddScoped<IResourceAppActionService, ResourceAppActionService>();
             services.AddScoped<IRoleResourceActionRepository, RoleResourceActionRepository>();
             services.AddScoped<IRoleResourceActionService, RoleResourceActionService>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IAppConfigRepository, AppConfigRepository>();
             services.AddScoped<IAppConfigService, AppConfigService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IMenuRepository, MenuRepository>();
             services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IUserRoleRepository, UserRoleRepository>();
             services.AddScoped<IUserRoleService, UserRoleService>();
+            services.AddScoped<IPostRepository, PostRepository>();
+            services.AddScoped<IPostService, PostService>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IPersonService, PersonService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

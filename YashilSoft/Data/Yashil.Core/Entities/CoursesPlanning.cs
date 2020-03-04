@@ -16,7 +16,7 @@ namespace Yashil.Core.Entities
         public int RepresentationId { get; set; }
         public bool Organizational { get; set; }
         public int CourceStatus { get; set; }
-        public int? RepresentationPerson { get; set; }
+        public int? RepresentationPersonId { get; set; }
         public int? Price { get; set; }
         public int CourseId { get; set; }
         public int? AgeCategory { get; set; }
@@ -37,6 +37,7 @@ namespace Yashil.Core.Entities
         public int CreatorOrganizationId { get; set; }
 
         public virtual AccessLevel AccessLevel { get; set; }
+        public virtual CommonBaseData AgeCategoryNavigation { get; set; }
         public virtual Application Application { get; set; }
         public virtual CommonBaseData CourceStatusNavigation { get; set; }
         public virtual CommonBaseData CourceTypeNavigation { get; set; }
@@ -47,6 +48,8 @@ namespace Yashil.Core.Entities
         public virtual CommonBaseData ImplementaionTypeNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual Representation Representation { get; set; }
+        public virtual RepresentationPerson RepresentationPerson { get; set; }
+        public virtual CommonBaseData RunTypeNavigation { get; set; }
         public virtual ICollection<CoursesPlanningStudent> CoursesPlanningStudent { get; set; }
     }
     }

@@ -24,7 +24,7 @@ namespace CodeGeneratorGreen
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void GenerateFormLoad(object sender, EventArgs e)
         {
             if (Directory.Exists("Files"))
             {
@@ -42,13 +42,13 @@ namespace CodeGeneratorGreen
                  new ModuleInfo
                  {
                      ClassNamespace = "YashilUserManagement", AngularModuleName = "UserManagement", AreaName = "UserMng",
-                     XmlFileName = "Data_user", GenerateProjectFiles = false, GenerateControllers = false,
-                     GenerateViewModels = true, GenerateServices = false, GenerateRepositories = false
+                     XmlFileName = "Data_user", GenerateProjectFiles = true, GenerateControllers = true,
+                     GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
                  },
                  new ModuleInfo
                  {
                      ClassNamespace = "YashilReport", AngularModuleName = "Report", AreaName = "Rpt",
-                     XmlFileName = "Data_Rpt", GenerateProjectFiles = true, GenerateControllers = true,
+                     XmlFileName = "Data_Rpt", GenerateProjectFiles = false, GenerateControllers = true,
                      GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
                  },
                  new ModuleInfo
@@ -60,7 +60,7 @@ namespace CodeGeneratorGreen
                  new ModuleInfo
                  {
                      ClassNamespace = "YashilDms", AngularModuleName = "Dms", AreaName = "Dms",
-                     XmlFileName = "Data_dms", GenerateProjectFiles = true, GenerateControllers = true,
+                     XmlFileName = "Data_dms", GenerateProjectFiles = false, GenerateControllers = true,
                      GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
                  },
                 new ModuleInfo
@@ -77,13 +77,14 @@ namespace CodeGeneratorGreen
 
                 var reader = new System.Xml.Serialization.XmlSerializer(typeof(Tables));
                 var file = new StreamReader($@"D:\Works\{moduleInfo.XmlFileName}.Xml");
-                var tables = (Tables) reader.Deserialize(file);
+                var tables = (Tables)reader.Deserialize(file);
 
                 file.Close();
                 SqlToCsharpHelper.dbTables = tables;
-
+                
                 foreach (var table in tables.TableList)
                 {
+                    SqlToCsharpHelper.Add(table);
                     SqlToCsharpHelper.table = table;
                     if (table.GenerateTabForDescColumn)
                     {
@@ -118,8 +119,6 @@ namespace CodeGeneratorGreen
                     }
                 }
                 GenerateDomainProfile();
-
-                GenerateAngularEntityEnum();
                 GenerateAngularIndexFile();
                 GenerateAngularEntryComponentFile();
                 GenerateAngularRouter();
@@ -128,7 +127,7 @@ namespace CodeGeneratorGreen
 
                 if (ApplicationInfo.Instance.ModuleInfo.GenerateProjectFiles)
                 {
-                 
+
                     GenerateModuleInitializer();
                     GenerateModuleJsonTemplate();
                     GenerateProgramTemplate();
@@ -139,7 +138,7 @@ namespace CodeGeneratorGreen
                     GenerateInfrastructureCsprojTemplate();
                 }
             }
-
+             GenerateAngularEntityEnum();
             Application.Exit();
         }
 

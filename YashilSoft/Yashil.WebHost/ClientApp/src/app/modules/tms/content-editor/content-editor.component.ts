@@ -15,12 +15,18 @@ export class ContentEditorComponent extends BaseEdit implements OnInit {
     propertyLabel: string;
     accessLevelDataSource: any;
 
+    get firstCharacterUpper() {
+        return this.propertyName.charAt(0).toUpperCase() + this.propertyName.slice(1);
+    }
+
     constructor(private genericDataService: GenericDataService) {
         super(genericDataService);
         this.showCloseButton = false;
     }
 
     ngOnInit() {
+        this.customLoadMethodName = `Get${this.firstCharacterUpper}`;
         super.ngOnInit();
+        this.entity.propertyName = this.propertyName;
     }
 }

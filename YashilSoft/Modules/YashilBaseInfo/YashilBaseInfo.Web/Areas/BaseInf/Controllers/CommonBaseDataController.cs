@@ -1,10 +1,5 @@
 	 
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
 using YashilBaseInfo.Core.Services;
@@ -20,11 +15,6 @@ namespace YashilBaseInfo.Web.Areas.BaseInf.Controllers
         {
             _mapper=mapper;
             _commonBaseDataService=commonBaseDataService;
-        }
-        [HttpGet("GetByKeyName")]
-        public Task<List<CommonBaseDataSimpleViewModel>> GetByKeyName(string keyName)
-        {
-            return _commonBaseDataService.GetByKeyName(keyName).ProjectTo<CommonBaseDataSimpleViewModel>(this._mapper.ConfigurationProvider).ToListAsync();
         }
     }
 }      
