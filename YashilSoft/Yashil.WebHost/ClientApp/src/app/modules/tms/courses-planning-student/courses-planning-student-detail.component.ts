@@ -24,6 +24,6 @@ export class CoursesPlanningStudentDetailComponent extends BaseEdit implements O
     super.ngOnInit();
 							this.coursesPlanningDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'coursesPlanning');
 									this.personDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'person');
-							this._genericDataService.getEntitiesByEntityName(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
+							this._genericDataService.getEntitiesByEntityNameForSelect(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
 		  }      
 }

@@ -6,7 +6,7 @@ using Yashil.Core.Entities;
 
 namespace YashilReport.Core.Services
 {
-    public interface IReportStoreService : IGenericService<ReportStore>
+    public interface IReportStoreService : IGenericService<ReportStore, int>
     {
         string GetReportDesigner(int reportId);
         string GetReportViewer(int reportId);

@@ -1,4 +1,5 @@
-	using Yashil.Common.Core.Classes;
+	using System.Linq;
+    using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -20,11 +21,11 @@ namespace YashilTms.Infrastructure.ServiceImpl
 			_coursesPlanningRepository = coursesPlanningRepository;
 			_userPrincipal = userPrincipal;
         }
-			  public string GetDescription(int id)
-				{
-					return _coursesPlanningRepository.GetDescription(id);
-				}	
-	
+
+        public IQueryable<CoursesPlanning> GetByRepresentationId(int representationId)
+        {
+            return _coursesPlanningRepository.GetByRepresentationId(representationId);
+        }
     }
 }      
  

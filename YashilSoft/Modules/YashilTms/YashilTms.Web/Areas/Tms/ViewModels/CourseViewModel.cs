@@ -12,31 +12,25 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 	            set => Id = value;
 	        }
         public int Id { get; set; }
-		
+
         public string Code { get; set; }
-		
+
         public string Title { get; set; }
-		
-        public int CourseCategoryId { get; set; }
-				public string CourseCategoryTitle { get; set; }	
-		
-        public int EducationalCenterId { get; set; }
-				public string EducationalCenterTitle { get; set; }	
-		
-        public int? SkillType { get; set; }
-				public string SkillTypeTitle { get; set; }	
-		
-        public int? CertificateType { get; set; }
-				public string CertificateTypeTitle { get; set; }	
-		
-        public int? EvaluationMethod { get; set; }
-				public string EvaluationMethodTitle { get; set; }	
-		
+
+        public string CourseCategoryTitle { get; set; }
+
+        public string EducationalCenterTitle { get; set; }
+
+        public string SkillTypeTitle { get; set; }
+
+        public string CertificateTypeTitle { get; set; }
+
+        public string EvaluationMethodTitle { get; set; }
+
         public int Duration { get; set; }
-		
-        public int AccessLevelId { get; set; }
-				public string AccessLevelTitle { get; set; }	
-		
+
+        public string AccessLevelTitle { get; set; }
+
     }
 
 
@@ -47,75 +41,27 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 	                get => Id;
 	                set => Id = value;
 	            }
-
-        public int Id { get; set; }
-				
-					[StringLength(300)]
-					
-        public string Code { get; set; }
-				
-					[StringLength(600)]
-										 [Required] 
-				
-        public string Title { get; set; }
-				
-					[Range(0,int.MaxValue)]
-										 [Required] 
-				
-        public int CourseCategoryId { get; set; }
-				public string CourseCategoryTitle { get; set; }	
-				
-					[Range(0,int.MaxValue)]
-										 [Required] 
-				
-        public int EducationalCenterId { get; set; }
-				public string EducationalCenterTitle { get; set; }	
-				
-
-        public string Description { get; set; }
-				
-
-        public string Topic { get; set; }
-				
-
-        public string Prerequisite { get; set; }
-				
-
-        public string Target { get; set; }
-				
-
-        public string Requirements { get; set; }
-				
-
-        public string Skill { get; set; }
-				
-
-        public int? SkillType { get; set; }
-				public string SkillTypeTitle { get; set; }	
-				
-
-        public int? CertificateType { get; set; }
-				public string CertificateTypeTitle { get; set; }	
-				
-
-        public int? EvaluationMethod { get; set; }
-				public string EvaluationMethodTitle { get; set; }	
-				
-					[Range(0,int.MaxValue)]
-										 [Required] 
-				
-        public int Duration { get; set; }
-				
-
-        public string Audience { get; set; }
-				
-					[Range(0,int.MaxValue)]
-										 [Required] 
-				
-        public int AccessLevelId { get; set; }
-				public string AccessLevelTitle { get; set; }	
-				
-    }
+				public int Id { get; set; }		
+				[StringLength(300)]				public string Code { get; set; }		
+				[StringLength(600)] 
+				[Required]
+				public string Title { get; set; }		
+				[Range(0,int.MaxValue)] 
+				[Required]
+				public int CourseCategoryId { get; set; }		
+				[Range(0,int.MaxValue)] 
+				[Required]
+				public int EducationalCenterId { get; set; }		
+				public int? SkillType { get; set; }		
+				public int? CertificateType { get; set; }		
+				public int? EvaluationMethod { get; set; }		
+				[Range(0,int.MaxValue)] 
+				[Required]
+				public int Duration { get; set; }		
+				[Range(0,int.MaxValue)] 
+				[Required]
+				public int AccessLevelId { get; set; }		
+}
 
   
 

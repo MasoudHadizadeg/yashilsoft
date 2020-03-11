@@ -10,13 +10,13 @@ using Yashil.Common.Core.Interfaces;
 
 namespace Yashil.Common.Infrastructure.Implementations
 {
-    public class GenericService<TModel, TK> : IGenericService<TModel,TK> where TModel : class, IBaseEntity<TK>
+    public class GenericService<TModel, TK> : IGenericService<TModel, TK> where TModel : class, IBaseEntity<TK>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IGenericRepository<TModel,TK> _repository;
+        private readonly IGenericRepository<TModel, TK> _repository;
         private readonly IUserPrincipal _userPrincipal;
 
-        public GenericService(IUnitOfWork unitOfWork, IGenericRepository<TModel,TK> repository,
+        public GenericService(IUnitOfWork unitOfWork, IGenericRepository<TModel, TK> repository,
             IUserPrincipal userPrincipal)
         {
             _unitOfWork = unitOfWork;
@@ -131,6 +131,18 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             return _repository.GetEntityDescriptionByPropName(key, propName);
         }
+
+        public async Task<bool> UpdateEntityDescription(DescriptionEditModel<TK> editModel)
+        {
+            var res = await _repository.UpdateEntityDescription(editModel);
+            if (!res)
+            {
+                return false;
+            }
+            _unitOfWork.Commit();
+            return true;
+        }
+
         public IQueryable<TModel> GetAll(bool readOnly)
         {
             return _repository.GetAll(readOnly);

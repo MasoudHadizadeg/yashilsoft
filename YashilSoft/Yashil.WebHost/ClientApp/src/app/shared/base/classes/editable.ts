@@ -2,6 +2,8 @@ import {EventEmitter, Input, Output} from '@angular/core';
 
 export class Editable {
     dataEntityName: string;
+    @Output()
+    afterInsertRow: EventEmitter<any> = new EventEmitter<any>();
 
     @Input()
     public set entityName(value: string) {

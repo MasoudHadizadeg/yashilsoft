@@ -1,78 +1,76 @@
+<app-base-edit-form [showCloseButton]='false' (submitEvent)="formSubmit($event)"
+                    (closeFormClick)="onCloseFormClick($event)">
+    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
-			<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
-<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+        <dxi-item dataField="educationalCenterId" editorType="dxLookup" [label]="{text: 'مرکز آموشي'}"
+                  [editorOptions]="{rtlEnabled:true,readOnly:allowSetEducationalCenter(),closeOnOutsideClick:true,showPopupTitle:false, dataSource: educationalCenterDataSource,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="مرکز آموشي اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
 
-									<dxi-item [label]="{text: 'کد'}"  dataField="code" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'عنوان'}"  dataField="title" >
-												
-																<dxi-validation-rule  type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="educationalCenterId" editorType="dxLookup" [label]="{text: 'مرکز آموشي'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: educationalCenterDataSource,displayExpr:'title',valueExpr:'id' }">
+        <dxi-item [label]="{text: 'کد'}" dataField="code">
 
-																				<dxi-validation-rule  type="required" message="مرکز آموشي اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="cityId" editorType="dxLookup" [label]="{text: 'شهر'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: cityDataSource,displayExpr:'title',valueExpr:'id' }">
 
-																				<dxi-validation-rule  type="required" message="شهر اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									<dxi-item [label]="{text: 'رایانامه (Email)'}"  dataField="email" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'شماره تلفن'}"  dataField="telephone" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'دور نگار'}"  dataField="faxNumber" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'شماره مجوز'}"  dataField="licenseNumber" >
-												
-										
-				</dxi-item>
-									
-									<dxi-item dataField="licenseType" editorType="dxSelectBox" [label]="{text: 'نوع مجوز تاسیس'}"  
-					[editorOptions]="{ items: licenseTypes,displayExpr:'title',valueExpr:'id' }">
-															
-				</dxi-item>
-									
-									<dxi-item dataField="ownershipType" editorType="dxSelectBox" [label]="{text: 'نوع مالکیت'}"  
-					[editorOptions]="{ items: ownershipTypes,displayExpr:'title',valueExpr:'id' }">
-															
-				</dxi-item>
-									
-									<dxi-item dataField="establishedLicenseType" editorType="dxSelectBox" [label]="{text: 'نوع مجوز تاسیس'}"  
-					[editorOptions]="{ items: establishedLicenseTypes,displayExpr:'title',valueExpr:'id' }">
-															
-				</dxi-item>
-									<dxi-item [label]="{text: 'متراژ'}"  dataField="area" editorType='dxNumberBox'>
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'کد پستی'}"  dataField="postalCode" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'آدرس'}"  dataField="address" >
-												
-										
-				</dxi-item>
-									
-									<dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"  
-					[editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
-																					<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-</dx-form>
+        </dxi-item>
+        <dxi-item [label]="{text: 'عنوان'}" dataField="title">
+
+            <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
+
+        </dxi-item>
+
+        <dxi-item dataField="cityId" editorType="dxLookup" [label]="{text: 'شهر'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: cityDataSource,displayExpr:'title',valueExpr:'id' }">
+
+            <dxi-validation-rule type="required" message="شهر اجباری می باشد"></dxi-validation-rule>
+
+        </dxi-item>
+        <dxi-item [label]="{text: 'رایانامه (Email)'}" dataField="email">
+
+
+        </dxi-item>
+        <dxi-item [label]="{text: 'شماره تلفن'}" dataField="telephone">
+
+
+        </dxi-item>
+        <dxi-item [label]="{text: 'دور نگار'}" dataField="faxNumber">
+
+
+        </dxi-item>
+        <dxi-item [label]="{text: 'شماره مجوز'}" dataField="licenseNumber">
+
+
+        </dxi-item>
+
+        <dxi-item dataField="licenseType" editorType="dxSelectBox" [label]="{text: 'نوع مدرک'}"
+                  [editorOptions]="{ items: licenseTypes,displayExpr:'title',valueExpr:'id' }">
+
+        </dxi-item>
+
+        <dxi-item dataField="ownershipType" editorType="dxSelectBox" [label]="{text: 'نوع مالکیت'}"
+                  [editorOptions]="{ items: ownershipTypes,displayExpr:'title',valueExpr:'id' }">
+
+        </dxi-item>
+
+        <dxi-item dataField="establishedLicenseType" editorType="dxSelectBox" [label]="{text: 'نوع مجوز تاسیس'}"
+                  [editorOptions]="{ items: establishedLicenseTypes,displayExpr:'title',valueExpr:'id' }">
+
+        </dxi-item>
+        <dxi-item [label]="{text: 'متراژ'}" dataField="area" editorType='dxNumberBox'>
+
+
+        </dxi-item>
+        <dxi-item [label]="{text: 'کد پستی'}" dataField="postalCode">
+
+
+        </dxi-item>
+        <dxi-item [label]="{text: 'آدرس'}" dataField="address">
+
+
+        </dxi-item>
+
+        <dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"
+                  [editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
+
+        </dxi-item>
+    </dx-form>
 </app-base-edit-form>

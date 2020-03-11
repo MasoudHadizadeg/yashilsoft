@@ -28,6 +28,6 @@ export class RepresentationPersonDetailComponent extends BaseEdit implements OnI
 									this.personDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'person');
 									this.postDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'post');
 									this._genericDataService.getCommonBaseDataForSelect('CooperationType').subscribe(res => this.cooperationTypes = res);
-							this._genericDataService.getEntitiesByEntityName(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
+							this._genericDataService.getEntitiesByEntityNameForSelect(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
 		  }      
 }

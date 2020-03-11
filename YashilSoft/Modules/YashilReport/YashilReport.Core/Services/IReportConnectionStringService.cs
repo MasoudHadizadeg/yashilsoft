@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilReport.Core.Services
 {
-	public interface IReportConnectionStringService : IGenericService<ReportConnectionString>
+	public interface IReportConnectionStringService : IGenericService<ReportConnectionString, int>
     {
         
     }

@@ -1,19 +1,12 @@
-			
+
+using System.Linq;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 
 namespace YashilTms.Core.Services
 {
-	public interface ICourseService : IGenericService<Course>
+    public interface ICourseService : IGenericService<Course, int>
     {
-			string GetDescription(int id);		
-			string GetTopic(int id);		
-			string GetPrerequisite(int id);		
-			string GetTarget(int id);		
-			string GetRequirements(int id);		
-			string GetSkill(int id);		
-			string GetAudience(int id);		
-	
+        IQueryable<Course> GetByEducationalCenterId(int educationalCenterId);
     }
-}      
- 
+}

@@ -7,7 +7,7 @@ using Yashil.Core.Entities;
 
 namespace YashilDashboard.Core.Services
 {
-	public interface IDashboardStoreService : IGenericService<DashboardStore>
+	public interface IDashboardStoreService : IGenericService<DashboardStore, int>
     {
         string GetDashboardDesigner(int dashboardId);
         string GetDashboardViewer( int dashboardId);

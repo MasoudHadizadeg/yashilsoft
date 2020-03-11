@@ -12,28 +12,23 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 	            set => Id = value;
 	        }
         public int Id { get; set; }
-		
+
         public string Code { get; set; }
-		
-        public int RepresentationId { get; set; }
-				public string RepresentationTitle { get; set; }	
-		
-        public int PersonId { get; set; }
-				public string PersonTitle { get; set; }	
-		
-        public int PostId { get; set; }
-				public string PostTitle { get; set; }	
-		
-        public int? CooperationType { get; set; }
-				public string CooperationTypeTitle { get; set; }	
-		
+
+        public string RepresentationTitle { get; set; }
+
+        public string PersonTitle { get; set; }
+
+        public string PostTitle { get; set; }
+
+        public string CooperationTypeTitle { get; set; }
+
         public int? FromDate { get; set; }
-		
+
         public int? ToDate { get; set; }
-		
-        public int AccessLevelId { get; set; }
-				public string AccessLevelTitle { get; set; }	
-		
+
+        public string AccessLevelTitle { get; set; }
+
     }
 
 
@@ -44,51 +39,25 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 	                get => Id;
 	                set => Id = value;
 	            }
-
-        public int Id { get; set; }
-				
-					[StringLength(300)]
-					
-        public string Code { get; set; }
-				
-					[Range(0,int.MaxValue)]
-										 [Required] 
-				
-        public int RepresentationId { get; set; }
-				public string RepresentationTitle { get; set; }	
-				
-					[Range(0,int.MaxValue)]
-										 [Required] 
-				
-        public int PersonId { get; set; }
-				public string PersonTitle { get; set; }	
-				
-					[Range(0,int.MaxValue)]
-										 [Required] 
-				
-        public int PostId { get; set; }
-				public string PostTitle { get; set; }	
-				
-
-        public int? CooperationType { get; set; }
-				public string CooperationTypeTitle { get; set; }	
-				
-
-        public int? FromDate { get; set; }
-				
-
-        public int? ToDate { get; set; }
-				
-
-        public string Description { get; set; }
-				
-					[Range(0,int.MaxValue)]
-										 [Required] 
-				
-        public int AccessLevelId { get; set; }
-				public string AccessLevelTitle { get; set; }	
-				
-    }
+				public int Id { get; set; }		
+				[StringLength(300)]				public string Code { get; set; }		
+				[Range(0,int.MaxValue)] 
+				[Required]
+				public int RepresentationId { get; set; }		
+				[Range(0,int.MaxValue)] 
+				[Required]
+				public int PersonId { get; set; }		
+				[Range(0,int.MaxValue)] 
+				[Required]
+				public int PostId { get; set; }		
+				public int? CooperationType { get; set; }		
+				public int? FromDate { get; set; }		
+				public int? ToDate { get; set; }		
+				public string Description { get; set; }		
+				[Range(0,int.MaxValue)] 
+				[Required]
+				public int AccessLevelId { get; set; }		
+}
 
   
 

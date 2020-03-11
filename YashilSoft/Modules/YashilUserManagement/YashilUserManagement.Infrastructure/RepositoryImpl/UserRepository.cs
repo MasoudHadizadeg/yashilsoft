@@ -29,12 +29,18 @@ namespace YashilUserManagement.Infrastructure.RepositoryImpl
 
         public bool CheckExistsUserName(string userName)
         {
-            return !DbSet.Any(x => x.UserName == userName && x.ApplicationId == _userPrincipal.ApplicationId);
+            return DbSet.Any(x => x.UserName == userName && x.ApplicationId == _userPrincipal.ApplicationId);
         }
 
         public User GetCurrentUserInfo()
         {
             return DbSet.Find(_userPrincipal.Id);
+        }
+
+        public bool CheckExistsNationalCode(string nationalCode)
+        {
+            
+            return DbSet.Any(x => x.NationalCode == nationalCode && x.ApplicationId == _userPrincipal.ApplicationId);
         }
     }
 }

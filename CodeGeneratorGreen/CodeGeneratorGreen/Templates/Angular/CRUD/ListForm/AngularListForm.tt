@@ -37,7 +37,10 @@
 			
 			foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name)))
 			{
-				
+				if(col.Name=="Code" || col.Name=="AccessLevelId")
+				{
+					continue;
+				}
 				var colCaption = col.Name.FirstCharacterToLower();
 
 				// If we can't map it, skip it

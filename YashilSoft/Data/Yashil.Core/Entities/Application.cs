@@ -8,6 +8,7 @@ namespace Yashil.Core.Entities
     {
         public Application()
         {
+            AdditionalUserProp = new HashSet<AdditionalUserProp>();
             AppAction = new HashSet<AppAction>();
             AppConfig = new HashSet<AppConfig>();
             AppDocument = new HashSet<AppDocument>();
@@ -55,6 +56,7 @@ namespace Yashil.Core.Entities
         public virtual User CreateByNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual Application Parent { get; set; }
+        public virtual ICollection<AdditionalUserProp> AdditionalUserProp { get; set; }
         public virtual ICollection<AppAction> AppAction { get; set; }
         public virtual ICollection<AppConfig> AppConfig { get; set; }
         public virtual ICollection<AppDocument> AppDocument { get; set; }

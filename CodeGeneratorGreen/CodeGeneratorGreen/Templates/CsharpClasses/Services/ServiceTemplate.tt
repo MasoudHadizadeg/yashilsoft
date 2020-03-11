@@ -32,25 +32,6 @@ namespace <#= ApplicationInfo.Instance.ServiceNamespace #>
 			_<#=repositoryProp#> = <#=repositoryProp#>;
 			_userPrincipal = userPrincipal;
         }
-<#
-		foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
-			{
-				 string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
-                string colNameFirstCharLower = col.Name.FirstCharacterToLower();
-                // If we can't map it, skip it
-	            if(propertyType != "string" ||  col.MaxLength!="-1")
-                {
-                    // Skip
-                    continue;
-                }
-		#>
-			  public string Get<#= col.Name #>(int id)
-				{
-					return _<#=repositoryProp#>.Get<#= col.Name #>(id);
-				}	
-<#
-			}
-	#>	
     }
 }      
  

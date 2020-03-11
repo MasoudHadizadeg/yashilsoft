@@ -1,79 +1,72 @@
-			
-		import { Component, OnInit } from '@angular/core';
-		import {RepresentationDetailComponent} from './representation-detail.component';
-				import {RepresentationDetailTabBasedComponent} from './representation-detail-tab-based.component';
-			
-		
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {RepresentationDetailTabBasedComponent} from './representation-detail-tab-based.component';
+import {Selectable} from '../../../shared/base/classes/selectable';
+import {BaseList} from '../../../shared/base/classes/base-list';
 
-		@Component({
-		  selector: 'app-representation-list',
-		  templateUrl: './representation-list.component.html'
-		})
-		export class RepresentationListComponent {
-		  selectedItemId: number;
-		  columns: any[] = [];
-		  entityName = 'representation';
-		  detailComponent =  RepresentationDetailTabBasedComponent; 		  constructor() {
-							this.columns.push({ 
-					caption: 'کد',
-					dataField: 'code'
-					});
-							this.columns.push({ 
-					caption: 'عنوان',
-					dataField: 'title'
-					});
-							this.columns.push({ 
-					caption: 'مرکز آموشي',
-					dataField: 'educationalCenterTitle'
-					});
-							this.columns.push({ 
-					caption: 'شهر',
-					dataField: 'cityTitle'
-					});
-							this.columns.push({ 
-					caption: 'رایانامه (Email)',
-					dataField: 'email'
-					});
-							this.columns.push({ 
-					caption: 'شماره تلفن',
-					dataField: 'telephone'
-					});
-							this.columns.push({ 
-					caption: 'دور نگار',
-					dataField: 'faxNumber'
-					});
-							this.columns.push({ 
-					caption: 'شماره مجوز',
-					dataField: 'licenseNumber'
-					});
-							this.columns.push({ 
-					caption: 'نوع مجوز تاسیس',
-					dataField: 'licenseTypeTitle'
-					});
-							this.columns.push({ 
-					caption: 'نوع مالکیت',
-					dataField: 'ownershipTypeTitle'
-					});
-							this.columns.push({ 
-					caption: 'نوع مجوز تاسیس',
-					dataField: 'establishedLicenseTypeTitle'
-					});
-							this.columns.push({ 
-					caption: 'متراژ',
-					dataField: 'area'
-					});
-							this.columns.push({ 
-					caption: 'کد پستی',
-					dataField: 'postalCode'
-					});
-							this.columns.push({ 
-					caption: 'آدرس',
-					dataField: 'address'
-					});
-							this.columns.push({ 
-					caption: 'سطح دسترسی',
-					dataField: 'accessLevelTitle'
-					});
-							
-				}
-		}
+
+@Component({
+    selector: 'app-representation-list',
+    templateUrl: './representation-list.component.html'
+})
+export class RepresentationListComponent extends Selectable implements OnInit {
+    @ViewChild('frmRep', {static: true}) frmRep: BaseList;
+    private _educationalCenterId: number;
+    @Input()
+    hideEducationalCenterColumn = false;
+
+    @Input()
+    set educationalCenterId(value: number) {
+        if (this._educationalCenterId !== value) {
+            this._educationalCenterId = value;
+            this.frmRep.customListUrl = `${this.baseListUrl}${this._educationalCenterId}`;
+            this.frmRep.refreshList();
+        }
+    }
+
+    get educationalCenterId(): number {
+        return this._educationalCenterId;
+    }
+
+    selectedItemId: number;
+    columns: any[] = [];
+    entityName = 'representation';
+    detailComponent = RepresentationDetailTabBasedComponent;
+    customListUrl: string;
+    baseListUrl = 'representation/GetByEducationalCenterIdForList?educationalCenterId=';
+
+    constructor() {
+        super();
+    }
+
+    setEducationalCenterId() {
+    }
+
+    afterInitialDetailComponent(componentInstance: any) {
+        (<RepresentationDetailTabBasedComponent>componentInstance).educationalCenterId = this.educationalCenterId;
+    }
+
+    ngOnInit(): void {
+        this.columns.push({
+            caption: 'عنوان',
+            dataField: 'title'
+        });
+        if (!this.hideEducationalCenterColumn) {
+            this.columns.push({
+                caption: 'مرکز آموشي',
+                dataField: 'educationalCenterTitle'
+            });
+        }
+        this.columns.push({
+            caption: 'شهر',
+            dataField: 'cityTitle'
+        });
+        this.columns.push({
+            caption: 'نوع مدرک',
+            dataField: 'licenseTypeTitle'
+        });
+        this.columns.push({
+            caption: 'نوع مجوز تاسیس',
+            dataField: 'establishedLicenseTypeTitle'
+        });
+    }
+}

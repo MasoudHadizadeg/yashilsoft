@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Yashil.Core.CustomViewModels
+﻿namespace Yashil.Core.CustomViewModels
 {
     public class DescriptionEditModel
     {

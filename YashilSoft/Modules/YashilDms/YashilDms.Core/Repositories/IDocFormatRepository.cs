@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilDms.Core.Repositories
 {
-	public interface IDocFormatRepository : IGenericRepository<DocFormat>
+	public interface IDocFormatRepository : IGenericRepository<DocFormat, int>
     {
     }
 }      

@@ -1,4 +1,4 @@
-﻿namespace Yashil.Core.Classes
+﻿namespace Yashil.Core.Enums
 {
     public static class YashilClaimTypes
     {

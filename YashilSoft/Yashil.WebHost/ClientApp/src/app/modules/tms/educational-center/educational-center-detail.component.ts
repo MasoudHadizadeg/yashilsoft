@@ -20,6 +20,6 @@ export class EducationalCenterDetailComponent extends BaseEdit implements OnInit
 
   ngOnInit() {
     super.ngOnInit();
-					this._genericDataService.getEntitiesByEntityName(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
+					this._genericDataService.getEntitiesByEntityNameForSelect(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
 		  }      
 }

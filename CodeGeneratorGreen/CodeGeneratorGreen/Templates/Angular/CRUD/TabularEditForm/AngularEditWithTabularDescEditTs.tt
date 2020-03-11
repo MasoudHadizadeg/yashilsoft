@@ -20,7 +20,30 @@ import {Editable} from '../../../shared/base/classes/editable';
     templateUrl: './<#=angularFriendlyName#>-detail-tab-based.component.html'
 })
 export class <#=table.Name #>DetailTabBasedComponent extends Editable implements OnInit {
-    tabs = [
+
+    allowEditDesc: boolean;
+    tabs: any[] = [];
+    constructor(private genericDataService: GenericDataService) {
+        super();
+        this.entityName = '<#=firstCharacterLower#>';
+    }
+
+    ngOnInit() {
+        if (this.selectedEntityId && this.selectedEntityId !== 0) {
+            this.allowEditDesc = true;
+        } else {
+            this.allowEditDesc = false;
+        }
+        this.bindTabs();
+    }
+    rowInserted(insertedRowId: any) {
+        this.selectedEntityId = insertedRowId;
+        this.allowEditDesc = true;
+        this.bindTabs();
+    }
+    bindTabs(){
+
+    this.tabs = [
     {id: 1, title: '<#=table.TableDesc #>', template: '<#=firstCharacterLower#>'},
 <#
     // Keep count so we don't whitespace the last property/column
@@ -42,20 +65,16 @@ export class <#=table.Name #>DetailTabBasedComponent extends Editable implements
 
    
 				#>
-					 {id: <#=i#>, title: '<#=colCaption #>', template: '<#=colNameFirstCharLower#>'},
+					 {id: <#=i#>, title: '<#=colCaption #>', template: '<#=colNameFirstCharLower#>', disabled: !this.allowEditDesc},
 				<#
       
     }
 #>
  ];
 
-    constructor(private genericDataService: GenericDataService) {
-        super();
-        this.entityName = '<#=firstCharacterLower#>';
-    }
+}
 
-    ngOnInit() {
-    }
+
 }
 
 

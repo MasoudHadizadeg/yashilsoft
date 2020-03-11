@@ -38,6 +38,6 @@ export class CoursesPlanningDetailComponent extends BaseEdit implements OnInit {
 									this._genericDataService.getCommonBaseDataForSelect('CourceType').subscribe(res => this.courceTypes = res);
 									this._genericDataService.getCommonBaseDataForSelect('RunType').subscribe(res => this.runTypes = res);
 									this._genericDataService.getCommonBaseDataForSelect('CustomGender').subscribe(res => this.customGenders = res);
-							this._genericDataService.getEntitiesByEntityName(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
+							this._genericDataService.getEntitiesByEntityNameForSelect(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
 		  }      
 }

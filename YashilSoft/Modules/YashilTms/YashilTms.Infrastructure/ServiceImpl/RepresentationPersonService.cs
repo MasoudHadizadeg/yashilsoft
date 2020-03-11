@@ -20,11 +20,6 @@ namespace YashilTms.Infrastructure.ServiceImpl
 			_representationPersonRepository = representationPersonRepository;
 			_userPrincipal = userPrincipal;
         }
-			  public string GetDescription(int id)
-				{
-					return _representationPersonRepository.GetDescription(id);
-				}	
-	
     }
 }      
  

@@ -58,7 +58,8 @@
     "screenfull": "3.3.3",
     "tslib": "1.9.0",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "DevExpress.ui.dxValidationGroupResult": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.20",

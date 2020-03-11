@@ -8,7 +8,7 @@ import {GenericDataService} from '../../../shared/base/services/generic-data.ser
     templateUrl: './content-editor.component.html'
 })
 export class ContentEditorComponent extends BaseEdit implements OnInit {
-
+    contentHeight = 400;
     @Input()
     propertyName: string;
     @Input()
@@ -25,7 +25,10 @@ export class ContentEditorComponent extends BaseEdit implements OnInit {
     }
 
     ngOnInit() {
-        this.customLoadMethodName = `Get${this.firstCharacterUpper}`;
+        this.contentHeight = window.innerHeight - 250;
+        this.customLoadMethodNameWithParams = `GetPropertyByName/${this.selectedEntityId}/${this.propertyName}`;
+        this.customUpdateMethodName = `UpdateEntityDescription`;
+
         super.ngOnInit();
         this.entity.propertyName = this.propertyName;
     }

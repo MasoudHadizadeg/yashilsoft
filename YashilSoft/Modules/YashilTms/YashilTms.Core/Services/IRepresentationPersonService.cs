@@ -4,10 +4,8 @@ using Yashil.Core.Entities;
 
 namespace YashilTms.Core.Services
 {
-	public interface IRepresentationPersonService : IGenericService<RepresentationPerson>
+	public interface IRepresentationPersonService : IGenericService<RepresentationPerson,int>
     {
-			string GetDescription(int id);		
-	
     }
 }      
  

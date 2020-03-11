@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilDashboard.Core.Services
 {
-	public interface IDashboardConnectionStringService : IGenericService<DashboardConnectionString>
+	public interface IDashboardConnectionStringService : IGenericService<DashboardConnectionString, int>
     {
     }
 }      

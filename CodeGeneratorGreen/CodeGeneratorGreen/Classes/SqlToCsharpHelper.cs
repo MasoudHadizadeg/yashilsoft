@@ -26,8 +26,6 @@ namespace CodeGeneratorGreen.Classes
                     return "byte[]";
                 case "bit":
                     return "bool";
-                case "char":
-                    return "char";
                 case "datetime":
                 case "smalldatetime":
                     return "DateTime";
@@ -40,6 +38,7 @@ namespace CodeGeneratorGreen.Classes
                 case "int":
                     return "int";
                 case "nchar":
+                case "char":
                 case "nvarchar":
                 case "text":
                 case "varchar":

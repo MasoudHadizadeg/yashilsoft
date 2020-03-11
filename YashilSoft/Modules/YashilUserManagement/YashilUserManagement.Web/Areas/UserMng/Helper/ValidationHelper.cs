@@ -11,16 +11,17 @@ namespace YashilUserManagement.Web.Areas.UserMng.Helper
         /// </summary>
         /// <param name="nationalCode">کد ملی وارد شده</param>
         /// <exception cref="System.Exception"></exception>
-        public static Boolean IsValidNationalCode(this String nationalCode)
+        public static bool IsValidNationalCode(this String nationalCode)
         {
             //در صورتی که کد ملی وارد شده طولش کمتر از 10 رقم باشد
             if (nationalCode.Length != 10)
-                throw new Exception("طول کد ملی باید ده کاراکتر باشد");
+                return false;
 
             //در صورتی که کد ملی ده رقم عددی نباشد
             var regex = new Regex(@"\d{10}");
             if (!regex.IsMatch(nationalCode))
-                throw new Exception("کد ملی تشکیل شده از ده رقم عددی می‌باشد؛ لطفا کد ملی را صحیح وارد نمایید");
+                return false;
+
 
             //در صورتی که رقم‌های کد ملی وارد شده یکسان باشد
             var allDigitEqual = new[]

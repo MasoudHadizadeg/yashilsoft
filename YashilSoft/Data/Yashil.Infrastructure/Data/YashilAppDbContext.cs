@@ -7,6 +7,7 @@ namespace Yashil.Infrastructure.Data
     public partial class YashilAppDbContext : DbContext
     {
         public virtual DbSet<AccessLevel> AccessLevel { get; set; }
+        public virtual DbSet<AdditionalUserProp> AdditionalUserProp { get; set; }
         public virtual DbSet<AppAction> AppAction { get; set; }
         public virtual DbSet<AppConfig> AppConfig { get; set; }
         public virtual DbSet<AppDocument> AppDocument { get; set; }
@@ -118,6 +119,77 @@ namespace Yashil.Infrastructure.Data
                     .WithMany(p => p.AccessLevelModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
                     .HasConstraintName("FK_AccessLevel_User1");
+            });
+
+            modelBuilder.Entity<AdditionalUserProp>(entity =>
+            {
+                entity.ToTable("AdditionalUserProp", "tms");
+
+                entity.HasComment("ويژگي هاي کاربر در سامانه tms");
+
+                entity.HasIndex(e => e.UserId)
+                    .HasName("IX_AdditionalUserProp")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasComment("");
+
+                entity.Property(e => e.ApplicationId).HasComment("برنامه");
+
+                entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
+
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان ایجاد");
+
+                entity.Property(e => e.CreatorOrganizationId).HasComment("سازمان ایجاد کننده رکورد");
+
+                entity.Property(e => e.Deleted).HasComment("حذف شده");
+
+                entity.Property(e => e.EducationalCenterId).HasComment("مرکز آموزشی");
+
+                entity.Property(e => e.ModificationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان تغییر");
+
+                entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
+
+                entity.Property(e => e.RepresentationId).HasComment("نمایندگی");
+
+                entity.Property(e => e.UserId).HasComment("کاربر");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.AdditionalUserProp)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AdditionalUserProp_Application");
+
+                entity.HasOne(d => d.CreateByNavigation)
+                    .WithMany(p => p.AdditionalUserPropCreateByNavigation)
+                    .HasForeignKey(d => d.CreateBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AdditionalUserProp_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.AdditionalUserProp)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AdditionalUserProp_Organization");
+
+                entity.HasOne(d => d.ModifyByNavigation)
+                    .WithMany(p => p.AdditionalUserPropModifyByNavigation)
+                    .HasForeignKey(d => d.ModifyBy)
+                    .HasConstraintName("FK_AdditionalUserProp_User1");
+
+                entity.HasOne(d => d.Representation)
+                    .WithMany(p => p.AdditionalUserProp)
+                    .HasForeignKey(d => d.RepresentationId)
+                    .HasConstraintName("FK_AdditionalUserProp_Representation");
+
+                entity.HasOne(d => d.User)
+                    .WithOne(p => p.AdditionalUserPropUser)
+                    .HasForeignKey<AdditionalUserProp>(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AdditionalUserProp_User2");
             });
 
             modelBuilder.Entity<AppAction>(entity =>
@@ -2592,7 +2664,7 @@ namespace Yashil.Infrastructure.Data
                     .HasMaxLength(200)
                     .HasComment("شماره مجوز");
 
-                entity.Property(e => e.LicenseType).HasComment("نوع مجوز تاسیس");
+                entity.Property(e => e.LicenseType).HasComment("نوع مدرک");
 
                 entity.Property(e => e.ModificationDate)
                     .HasColumnType("datetime")

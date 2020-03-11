@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilDashboard.Core.Repositories
 {
-	public interface IUserDashboardRepository : IGenericRepository<UserDashboard>
+	public interface IUserDashboardRepository : IGenericRepository<UserDashboard, int>
     {
     }
 }      

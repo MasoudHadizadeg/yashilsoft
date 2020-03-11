@@ -1,8 +1,8 @@
-<app-base-edit-form [showCloseButton]="false" (submitEvent)="formSubmit($event)">
+<app-base-edit-form [showCloseButton]="false"  (submitEvent)="formSubmit($event)">
     <dx-form id="form" [colCount]="1" #detailForm [formData]="entity" [showColonAfterLabel]="false">
-        <dxi-item [editorOptions]="{ height: 300 }" [dataField]="propertyName" editorType='dxHtmlEditor'>
+        <dxi-item  [dataField]="propertyName" editorType='dxHtmlEditor'>
             <dxo-label [showColon]="false" text=" "></dxo-label>
-            <dx-html-editor height="300" rtlEnabled="true" [(ngModel)]="entity.description">
+            <dx-html-editor [height]="contentHeight" rtlEnabled="true" [(ngModel)]="entity.description">
                 <dxo-toolbar>
                     <dxi-item formatName="undo"></dxi-item>
                     <dxi-item formatName="redo"></dxi-item>

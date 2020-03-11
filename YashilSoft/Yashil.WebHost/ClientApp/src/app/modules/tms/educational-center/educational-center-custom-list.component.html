@@ -1,0 +1,32 @@
+<div style="width: 100%;" [style.height.px]="contentHeight">
+    <as-split direction="horizontal" dir="ltr">
+        <as-split direction="horizontal">
+            <as-split-area size="70" #t1 dir="rtl">
+                <dx-tab-panel
+                        [style.height.px]="contentHeight"
+                        #tabPanel
+                        rtlEnabled="true"
+                        [dataSource]="tabs"
+                        [selectedIndex]="0"
+                        [loop]="false"
+                        [animationEnabled]="false"
+                        [swipeEnabled]="false">
+                    <div *dxTemplate="let company of 'representation'" class="tab-content-edit-form">
+                        <app-representation-list [hideEducationalCenterColumn]="true"
+                                [educationalCenterId]="selectedEducationalCenterId"></app-representation-list>
+                    </div>
+                    <div *dxTemplate="let company of 'courseCategory'" class="tab-content-edit-form">
+                        <app-course-category-list [hideEducationalCenterColumn]="true"
+                                [educationalCenterId]="selectedEducationalCenterId"></app-course-category-list>
+                    </div>
+                </dx-tab-panel>
+            </as-split-area>
+            <as-split-area size="30" #t2 dir="rtl">
+                <app-educational-center-list
+                        (selectedRowChanged)="selectedEducationalCenterChange($event)"></app-educational-center-list>
+
+            </as-split-area>
+        </as-split>
+
+    </as-split>
+</div>

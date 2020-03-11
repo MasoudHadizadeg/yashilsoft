@@ -5,7 +5,7 @@ using Yashil.Common.Core.Dtos;
 
 namespace Yashil.Common.Core.Interfaces
 {
-    public interface IGenericService<TModel, TR> where TModel : class
+    public interface IGenericService<TModel, TK> where TModel : class
     {
         void Delete(TModel entity, bool saveAfterDelete = false);
         Task Delete(object id, bool saveAfterDelete = false);
@@ -22,6 +22,7 @@ namespace Yashil.Common.Core.Interfaces
         IQueryable<TModel> GetAll(bool readOnly = false);
 
         Task<int> SaveChangeAsync();
-        string GetEntityDescriptionByPropName(TR key, string propName);
+        string GetEntityDescriptionByPropName(TK key, string propName);
+        Task<bool> UpdateEntityDescription(DescriptionEditModel<TK> editModel);
     }
 }

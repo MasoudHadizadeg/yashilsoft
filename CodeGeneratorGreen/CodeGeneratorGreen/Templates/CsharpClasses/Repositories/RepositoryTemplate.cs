@@ -105,49 +105,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
             #line hidden
             this.Write(" context, IUserPrincipal userPrincipal) : base(context,userPrincipal)\r\n          " +
                     "  {\r\n                _context = context;\r\n                _userPrincipal = userP" +
-                    "rincipal;\r\n            }\r\n    ");
-            
-            #line 34 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
-
-		foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
-			{
-				 string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
-                string colNameFirstCharLower = col.Name.FirstCharacterToLower();
-                // If we can't map it, skip it
-	            if(propertyType != "string" ||  col.MaxLength!="-1")
-                {
-                    // Skip
-                    continue;
-                }
-		
-            
-            #line default
-            #line hidden
-            this.Write("\t\t\t  public string Get");
-            
-            #line 46 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
-            
-            #line default
-            #line hidden
-            this.Write("(int id)\r\n\t\t\t\t{\r\n\t\t\t\t\treturn DbSet.Where(ApplicationBasedDefaultFilter()).Where(x" +
-                    " => x.Id == id).Select(x => x.");
-            
-            #line 48 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
-            
-            #line default
-            #line hidden
-            this.Write(").FirstOrDefault();\r\n\t\t\t\t}\t\r\n");
-            
-            #line 50 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
-
-			}
-	
-            
-            #line default
-            #line hidden
-            this.Write("\t\r\n    }\r\n}      \r\n");
+                    "rincipal;\r\n            }\r\n    }\r\n}      \r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

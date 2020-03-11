@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {CourseDetailComponent} from './course-detail.component';
+import {Component} from '@angular/core';
 import {CourseDetailTabBasedComponent} from './course-detail-tab-based.component';
 
 
@@ -14,10 +13,6 @@ export class CourseListComponent {
     detailComponent = CourseDetailTabBasedComponent;
 
     constructor() {
-        this.columns.push({
-            caption: 'کد',
-            dataField: 'code'
-        });
         this.columns.push({
             caption: 'عنوان',
             dataField: 'title'
@@ -45,10 +40,6 @@ export class CourseListComponent {
         this.columns.push({
             caption: 'مدت دوره(ساعت)',
             dataField: 'duration'
-        });
-        this.columns.push({
-            caption: 'سطح دسترسی',
-            dataField: 'accessLevelTitle'
         });
 
     }

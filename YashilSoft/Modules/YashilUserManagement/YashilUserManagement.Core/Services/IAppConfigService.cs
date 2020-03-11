@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilUserManagement.Core.Services
 {
-	public interface IAppConfigService : IGenericService<AppConfig>
+	public interface IAppConfigService : IGenericService<AppConfig, int>
     {
 			string GetDescription(int id);		
 	

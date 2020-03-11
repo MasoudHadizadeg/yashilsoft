@@ -1,13 +1,13 @@
 			
+using System.Linq;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 
 namespace YashilTms.Core.Services
 {
-	public interface ICoursesPlanningService : IGenericService<CoursesPlanning>
+	public interface ICoursesPlanningService : IGenericService<CoursesPlanning,int>
     {
-			string GetDescription(int id);		
-	
+        IQueryable<CoursesPlanning> GetByRepresentationId(int representationId);
     }
 }      
  

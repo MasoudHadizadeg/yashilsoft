@@ -5,7 +5,7 @@ using Yashil.Core.Entities;
 
 namespace YashilReport.Core.Repositories
 {
-    public interface IReportGroupRepository : IGenericRepository<ReportGroup>
+    public interface IReportGroupRepository : IGenericRepository<ReportGroup, int>
     {
         IQueryable<ReportGroup> GetByReportId(int id);
         IQueryable<ReportGroup> GetNotAssignedToReportId(int id);

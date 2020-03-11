@@ -61,41 +61,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Services
             
             #line default
             #line hidden
-            this.Write(">\r\n    {\r\n");
-            
-            #line 19 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
-
-		foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
-			{
-				 string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
-                // If we can't map it, skip it
-	            if(propertyType != "string" ||  col.MaxLength!="-1")
-                {
-					
-                    // Skip
-                    continue;
-                }
-		
-            
-            #line default
-            #line hidden
-            this.Write("\t\t\tstring Get");
-            
-            #line 31 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
-            
-            #line default
-            #line hidden
-            this.Write("(int id);\t\t\r\n");
-            
-            #line 32 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
-
-			}
-	
-            
-            #line default
-            #line hidden
-            this.Write("\t\r\n    }\r\n}      \r\n ");
+            this.Write(",int>\r\n    {\r\n    }\r\n}      \r\n ");
             return this.GenerationEnvironment.ToString();
         }
     }

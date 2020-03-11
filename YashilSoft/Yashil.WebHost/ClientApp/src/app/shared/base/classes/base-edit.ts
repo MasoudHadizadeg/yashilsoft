@@ -7,6 +7,8 @@ import {catchError} from 'rxjs/operators';
 import {BaseEditFormComponent} from '../base-edit-form/base-edit-form.component';
 import {Editable} from './editable';
 
+// import dxValidationGroupResult = DevExpress.ui.dxValidationGroupResult;
+
 export class BaseEdit extends Editable implements OnInit {
     // tslint:disable-next-line:variable-name
     _genericDataService: GenericDataService;
@@ -16,7 +18,12 @@ export class BaseEdit extends Editable implements OnInit {
     keyExpr: string;
     displayExpr: string;
     parentIdExpr: string;
-    customLoadMethodName: string;
+    /**
+     * Set Custom Method Name
+     * Sample CustomMethod?id=1&code=9854
+     */
+    customLoadMethodNameWithParams: string;
+    customUpdateMethodName: string;
 
     @Input()
     public set entityParentId(value: number) {
@@ -89,22 +96,35 @@ export class BaseEdit extends Editable implements OnInit {
 
     public formSubmit(e) {
         this.baseEditFormComponent.allowSave = false;
-        let errorMsg = 'بروز خطا در ذخیره سازی';
+        e.preventDefault();
         this.doBeforeSubmit(e);
         if (this.detailForm && this.detailForm.instance) {
             try {
                 const result = this.detailForm.instance.validate();
-                if (result && !result.isValid) {
-                    e.preventDefault();
-                    return;
+                if (result.status === 'pending') {
+                    (result.complete as Promise<any>).then(x => {
+                        if (x.isValid) {
+                            this.doSubmitForm(e);
+                        }
+                        this.baseEditFormComponent.allowSave = true;
+                    });
+                } else {
+                    if (result.isValid) {
+                        this.doSubmitForm(e);
+                    } else {
+                        this.baseEditFormComponent.allowSave = true;
+                    }
                 }
             } catch (e) {
             } finally {
-                this.baseEditFormComponent.allowSave = true;
             }
         }
+    }
+
+    private doSubmitForm(e) {
+        let errorMsg = 'بروز خطا در ذخیره سازی';
         if (this.entity.id) {
-            this._genericDataService.updateEntity(this.entityName, this.entity).pipe(catchError(err => {
+            this._genericDataService.updateEntity(this.entityName, this.entity, this.customUpdateMethodName).pipe(catchError(err => {
                 if (err && err.error !== '' && (typeof err.error) === 'string') {
                     errorMsg = err.error;
                 }
@@ -126,6 +146,7 @@ export class BaseEdit extends Editable implements OnInit {
                             at: 'center top'
                         }
                     }, 'success', 3000);
+                    this.baseEditFormComponent.allowSave = true;
                     this.afterSave();
                     this.closeForm();
                 });
@@ -141,9 +162,10 @@ export class BaseEdit extends Editable implements OnInit {
                         at: 'center top'
                     }
                 }, 'error', 3000);
+                this.baseEditFormComponent.allowSave = true;
                 return '';
             })).subscribe(
-                msg => {
+                res => {
                     notify({
                         message: 'ذخیره سازی با موفقیت انجام شد',
                         position: {
@@ -151,7 +173,10 @@ export class BaseEdit extends Editable implements OnInit {
                             at: 'center top'
                         }
                     }, 'success', 3000);
-                    // this.baseEditFormComponent.allowSave = true;
+                    this.baseEditFormComponent.allowSave = true;
+                    this.entity.id = res;
+                    this.selectedEntityId = res;
+                    this.afterInsertRow.emit(res);
                     this.afterSave();
                     this.closeForm();
                 }
@@ -178,7 +203,7 @@ export class BaseEdit extends Editable implements OnInit {
 
     public loadEntityData() {
         if (this.selectedEntityId && !this.isNew) {
-            this._genericDataService.getEntity(this.entityName, this.selectedEntityId,this.customLoadMethodName).subscribe(
+            this._genericDataService.getEntity(this.entityName, this.selectedEntityId, this.customLoadMethodNameWithParams).subscribe(
                 res => {
                     this.entity = res;
                     this.afterLoadData(res);

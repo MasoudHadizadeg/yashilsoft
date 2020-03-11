@@ -6,7 +6,7 @@ using Yashil.Core.Entities;
 
 namespace YashilDashboard.Core.Repositories
 {
-	public interface IDashboardGroupDashboardRepository : IGenericRepository<DashboardGroupDashboard>
+	public interface IDashboardGroupDashboardRepository : IGenericRepository<DashboardGroupDashboard, int>
     {
         Task AssignSelectedItemsToDashboardGroup(List<int> selectedDashboardStores, int dashboardGroupId, bool assign);
     }

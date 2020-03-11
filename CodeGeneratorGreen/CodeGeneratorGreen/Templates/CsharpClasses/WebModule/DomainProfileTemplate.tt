@@ -26,18 +26,7 @@ namespace <#=ApplicationInfo.Instance.ClassNamespace #>.Web.Areas.<#=Application
 				var foreignColumns = table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name) && x.IsForeignKey && x.ReferencedObjectTitleColumn != null && x.ReferencedObject != table.Name);
 				#>
 				
-				CreateMap<<#=table.Name #>, <#=table.Name #>EditModel>()
-				<#
-				foreach (var foreignColumn in foreignColumns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
-        {
-            if(foreignColumn.ReferencedObject!="CommonBaseData")
-            {
-					#>
-					.ForMember(x => x.<#=foreignColumn.Name.Replace("Id", "") #>Title, 
-					b => b.MapFrom(c => c.<#=foreignColumn.Name.Replace("Id", "") #>.<#=foreignColumn.ReferencedObjectTitleColumn #>))
-			<#}
-            else{#>.ForMember(x => x.<#=foreignColumn.Name.Replace("Id", "") #>Title, b => b.MapFrom(c => c.<#=foreignColumn.Name.Replace("Id", "")#>Navigation.Title))<#}}#>;			
-				
+				CreateMap<<#=table.Name #>, <#=table.Name #>EditModel>();
 
                 CreateMap<<#=table.Name #>, <#=table.Name #>ListViewModel>()
 				<#

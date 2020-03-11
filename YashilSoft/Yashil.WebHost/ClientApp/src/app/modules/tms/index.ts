@@ -1,5 +1,3 @@
-import {Routes} from '@angular/router';
-
 import {CoursesPlanningStudentDetailTabBasedComponent} from './courses-planning-student/courses-planning-student-detail-tab-based.component';
 
 import {CoursesPlanningStudentDetailComponent} from './courses-planning-student/courses-planning-student-detail.component';
@@ -32,8 +30,12 @@ import {EducationalCenterDetailTabBasedComponent} from './educational-center/edu
 
 import {EducationalCenterDetailComponent} from './educational-center/educational-center-detail.component';
 import {EducationalCenterListComponent} from './educational-center/educational-center-list.component';
+
+import {AdditionalUserPropDetailComponent} from './additional-user-prop/additional-user-prop-detail.component';
+import {AdditionalUserPropListComponent} from './additional-user-prop/additional-user-prop-list.component';
 import {Provider} from '@angular/core';
 import {ContentEditorComponent} from './content-editor/content-editor.component';
+import {EducationalCenterCustomListComponent} from './educational-center/educational-center-custom-list.component';
 
 export const COMPONENTS: Provider[] = [
 
@@ -70,5 +72,9 @@ export const COMPONENTS: Provider[] = [
     EducationalCenterListComponent,
 
     EducationalCenterDetailComponent,
-    ContentEditorComponent
+    AdditionalUserPropListComponent,
+
+    AdditionalUserPropDetailComponent,
+    ContentEditorComponent,
+    EducationalCenterCustomListComponent
 ];

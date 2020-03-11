@@ -5,7 +5,7 @@ using Yashil.Core.Entities;
 
 namespace YashilDms.Core.Services
 {
-    public interface IAppDocumentService : IGenericService<AppDocument>
+    public interface IAppDocumentService : IGenericService<AppDocument, int>
     {
         /// <summary>
         /// 

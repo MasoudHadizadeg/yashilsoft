@@ -15,10 +15,6 @@
 		  entityName = 'coursesPlanning';
 		  detailComponent =  CoursesPlanningDetailTabBasedComponent; 		  constructor() {
 							this.columns.push({ 
-					caption: 'کد',
-					dataField: 'code'
-					});
-							this.columns.push({ 
 					caption: 'نمایندگی',
 					dataField: 'representationTitle'
 					});
@@ -69,10 +65,6 @@
 							this.columns.push({ 
 					caption: 'حداکثر ظرفیت',
 					dataField: 'maxCapacity'
-					});
-							this.columns.push({ 
-					caption: 'سطح دسترسی',
-					dataField: 'accessLevelTitle'
 					});
 							
 				}

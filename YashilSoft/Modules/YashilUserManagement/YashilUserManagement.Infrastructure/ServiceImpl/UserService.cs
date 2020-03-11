@@ -1,4 +1,3 @@
-			
 using System.Text;
 using System.Threading.Tasks;
 using Yashil.Common.Core.Classes;
@@ -11,15 +10,17 @@ using YashilUserManagement.Core.Services;
 
 namespace YashilUserManagement.Infrastructure.ServiceImpl
 {
-	public class UserService : GenericService<User,int>, IUserService
+    public class UserService : GenericService<User, int>, IUserService
     {
-		private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
         private readonly IUserPrincipal _userPrincipal;
-		public UserService (IUnitOfWork unitOfWork, IUserRepository userRepository, IUserPrincipal userPrincipal) : base(unitOfWork, userRepository,userPrincipal)
+
+        public UserService(IUnitOfWork unitOfWork, IUserRepository userRepository, IUserPrincipal userPrincipal) : base(
+            unitOfWork, userRepository, userPrincipal)
         {
-			_unitOfWork = unitOfWork;
-			_userRepository = userRepository;
+            _unitOfWork = unitOfWork;
+            _userRepository = userRepository;
             _userPrincipal = userPrincipal;
         }
 
@@ -43,6 +44,11 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
             return _userRepository.GetCurrentUserInfo();
         }
 
+        public bool CheckExistsNationalCode(string nationalCode)
+        {
+            return _userRepository.CheckExistsNationalCode(nationalCode);
+        }
+
         public void SetUserPass(string userUserName, byte[] passwordHash, byte[] passwordSalt)
         {
             var user = _userRepository.GetUserByUserName(userUserName).Result;
@@ -51,4 +57,4 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
             _unitOfWork.Commit();
         }
     }
-}      
+}

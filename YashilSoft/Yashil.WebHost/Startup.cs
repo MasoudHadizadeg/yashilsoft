@@ -20,8 +20,10 @@ using Yashil.Common.SharedKernel;
 using Yashil.Common.SharedKernel.Helpers;
 using Yashil.Common.SharedKernel.Module;
 using Yashil.Common.SharedKernel.Web;
+using Yashil.Core.ControllersExtenders;
 using Yashil.Infrastructure.Data;
 using Yashil.Runtime.RequestFormatter;
+using Yashil.WebHost.ControllersDefaultExtenders;
 using Yashil.WebHost.Extensions;
 
 
@@ -87,6 +89,7 @@ namespace Yashil.WebHost
             services.AddDbContext<YashilAppDbContext>(options =>
                 options.UseSqlServer(connectionString));
             services.AddScoped<IUnitOfWork, UnitOfWork<YashilAppDbContext>>();
+            services.AddScoped<IUserControllerExtender, UserControllerDefaultExtender>();
 
             var orderedMapperProfiles = new List<IOrderedMapperProfile>();
             foreach (var module in GlobalConfiguration.Modules)

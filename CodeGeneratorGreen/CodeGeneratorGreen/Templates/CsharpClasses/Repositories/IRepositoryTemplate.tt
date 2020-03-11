@@ -15,25 +15,8 @@ using Yashil.Core.Entities;
 
 namespace <#= ApplicationInfo.Instance.IRepositoryNamespace #>
 {
-	public interface I<#= table.Name #>Repository : IGenericRepository<<#= table.Name #>>
+	public interface I<#= table.Name #>Repository : IGenericRepository<<#= table.Name #>,int>
     {
-    <#
-		foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
-			{
-				 string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
-                string colNameFirstCharLower = col.Name.FirstCharacterToLower();
-                // If we can't map it, skip it
-	            if(propertyType != "string" ||  col.MaxLength!="-1")
-                {
-					
-                    // Skip
-                    continue;
-                }
-		#>
-			string Get<#=col.Name#>(int id);		
-<#
-			}
-	#>	
     }
 }      
  

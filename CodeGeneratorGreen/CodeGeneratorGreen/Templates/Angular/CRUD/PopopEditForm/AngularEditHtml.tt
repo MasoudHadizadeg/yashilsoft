@@ -4,11 +4,15 @@
 <#@ import namespace="System.Linq" #>
 
 			<#
-			var table = SqlToCsharpHelper.table;
-	string firstCharacterLower = table.Name.FirstCharacterToLower();
+var table = SqlToCsharpHelper.table;
+string firstCharacterLower = table.Name.FirstCharacterToLower();
+string closeButtonStatus="";
+if(table.GenerateTabForDescColumn){
+        closeButtonStatus="[showCloseButton]='false'";
+    }
 			#>
-<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
-<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+	<app-base-edit-form <#=closeButtonStatus #>  (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+	<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
 
 <#
 			// Keep count so we don't whitespace the last property/column

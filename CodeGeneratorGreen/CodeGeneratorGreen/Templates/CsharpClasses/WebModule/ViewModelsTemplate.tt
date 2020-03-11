@@ -41,15 +41,20 @@ namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
 				{
 					propertyType += "?";
 				}
-
+				string colNamef;
+				if (col.IsForeignKey)
+					{
+						colNamef = col.Name.Replace("Id", "") + "Title";
+						propertyType ="string";
+					}
+				else
+					colNamef = col.Name;
+				
+				if((propertyType == "string" &&  col.MaxLength=="-1")){
+							continue;
+					}
 				#>
-        public <#= propertyType #> <#= col.Name #> { get; set; }
-		<# if (col.IsForeignKey)
-				{
-					#>
-		public string <#= col.Name.Replace("Id", "") #>Title { get; set; }	
-		<#
-				} #>
+        public <#= propertyType #> <#= colNamef #> { get; set; }
 
 <#
 			}
@@ -74,12 +79,12 @@ namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
 				i++;
 				string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
 				// If we can't map it, skip it
-				if (string.IsNullOrWhiteSpace(propertyType))
+				
+				if (string.IsNullOrWhiteSpace(propertyType) || (propertyType == "string" &&  col.MaxLength=="-1" && table.GenerateTabForDescColumn))
 				{
 					// Skip
 					continue;
 				}
-
 				// Handle nullable columns by making the type nullable
 				if (col.AllowNull && (propertyType != "string" && propertyType != "byte[]"))
 				{
@@ -89,43 +94,13 @@ namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
 				if (propertyType == "int" && col.IsPrimaryKey != "1")
 				{
 					#>
-					[Range(0,int.MaxValue)]
-					<#
-				}
-				if (propertyType == "string" && col.MaxLength!="-1")
-				{
-					#>
-					[StringLength(<#=col.MaxLength #>)]
-					<#
-				}
-				if (!col.AllowNull && col.IsPrimaryKey != "1")
-				{
-					#>
-					 [Required] 
-				<#
-				}
-				#>
-
-        public <#= propertyType #> <#= col.Name #> { get; set; }
-		<# if (col.IsForeignKey)
-				{
-					#>
-		public string <#= col.Name.Replace("Id", "") #>Title { get; set; }	
-		<#
-				} #>
-		
-<#
-				// Do we insert the space?
-				if (i != columnCount)
-				{
-#>
-<#
-				}
-#>
-<#
-			}
-#>
-    }
+				[Range(0,int.MaxValue)]<#}if (propertyType == "string" && col.MaxLength!="-1"){#>
+				[StringLength(<#=col.MaxLength #>)]<#}if (!col.AllowNull && col.IsPrimaryKey != "1"){#> 
+				[Required]
+<#}#>
+				public <#= propertyType #> <#= col.Name #> { get; set; }		
+<#}#>
+}
 
   
 

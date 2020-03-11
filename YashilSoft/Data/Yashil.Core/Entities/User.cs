@@ -10,6 +10,8 @@ namespace Yashil.Core.Entities
         {
             AccessLevelCreateByNavigation = new HashSet<AccessLevel>();
             AccessLevelModifyByNavigation = new HashSet<AccessLevel>();
+            AdditionalUserPropCreateByNavigation = new HashSet<AdditionalUserProp>();
+            AdditionalUserPropModifyByNavigation = new HashSet<AdditionalUserProp>();
             AppActionCreateByNavigation = new HashSet<AppAction>();
             AppActionModifyByNavigation = new HashSet<AppAction>();
             AppConfigCreateByNavigation = new HashSet<AppConfig>();
@@ -116,8 +118,11 @@ namespace Yashil.Core.Entities
         public virtual Application Application { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
         public virtual Organization Organization { get; set; }
+        public virtual AdditionalUserProp AdditionalUserPropUser { get; set; }
         public virtual ICollection<AccessLevel> AccessLevelCreateByNavigation { get; set; }
         public virtual ICollection<AccessLevel> AccessLevelModifyByNavigation { get; set; }
+        public virtual ICollection<AdditionalUserProp> AdditionalUserPropCreateByNavigation { get; set; }
+        public virtual ICollection<AdditionalUserProp> AdditionalUserPropModifyByNavigation { get; set; }
         public virtual ICollection<AppAction> AppActionCreateByNavigation { get; set; }
         public virtual ICollection<AppAction> AppActionModifyByNavigation { get; set; }
         public virtual ICollection<AppConfig> AppConfigCreateByNavigation { get; set; }

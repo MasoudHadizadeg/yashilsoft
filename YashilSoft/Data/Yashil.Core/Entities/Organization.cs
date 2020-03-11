@@ -9,6 +9,7 @@ namespace Yashil.Core.Entities
         public Organization()
         {
             AccessLevel = new HashSet<AccessLevel>();
+            AdditionalUserProp = new HashSet<AdditionalUserProp>();
             AppConfig = new HashSet<AppConfig>();
             AppDocument = new HashSet<AppDocument>();
             AppEntityAttribute = new HashSet<AppEntityAttribute>();
@@ -60,6 +61,7 @@ namespace Yashil.Core.Entities
         public virtual User ModifyByNavigation { get; set; }
         public virtual Organization Parent { get; set; }
         public virtual ICollection<AccessLevel> AccessLevel { get; set; }
+        public virtual ICollection<AdditionalUserProp> AdditionalUserProp { get; set; }
         public virtual ICollection<AppConfig> AppConfig { get; set; }
         public virtual ICollection<AppDocument> AppDocument { get; set; }
         public virtual ICollection<AppEntityAttribute> AppEntityAttribute { get; set; }

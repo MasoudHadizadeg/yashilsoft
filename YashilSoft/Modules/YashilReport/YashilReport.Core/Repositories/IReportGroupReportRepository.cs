@@ -6,7 +6,7 @@ using Yashil.Core.Entities;
 
 namespace YashilReport.Core.Repositories
 {
-	public interface IReportGroupReportRepository : IGenericRepository<ReportGroupReport>
+	public interface IReportGroupReportRepository : IGenericRepository<ReportGroupReport, int>
     {
         Task AssignSelectedItemsToReportGroup(List<int> selectedReports, int groupId, bool assign);
     }

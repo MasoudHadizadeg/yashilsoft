@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilReport.Core.Repositories
 {
-	public interface IReportConnectionStringRepository : IGenericRepository<ReportConnectionString>
+	public interface IReportConnectionStringRepository : IGenericRepository<ReportConnectionString, int>
     {
     }
 }      

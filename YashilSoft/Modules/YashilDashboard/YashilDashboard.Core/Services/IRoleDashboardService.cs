@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilDashboard.Core.Services
 {
-	public interface IRoleDashboardService : IGenericService<RoleDashboard>
+	public interface IRoleDashboardService : IGenericService<RoleDashboard, int>
     {
     }
 }      

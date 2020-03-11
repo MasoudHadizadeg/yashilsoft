@@ -1,16 +1,13 @@
-			
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 
 namespace YashilTms.Core.Services
 {
-	public interface IRepresentationService : IGenericService<Representation>
+    public interface IRepresentationService : IGenericService<Representation, int>
     {
-			string GetAbout(int id);		
-			string GetGoal(int id);		
-			string GetDescription(int id);		
-			string GetAbility(int id);		
-	
+        IQueryable<Representation> GetByEducationalCenterId(int educationalCenterId);
     }
-}      
- 
+}

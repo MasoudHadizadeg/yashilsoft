@@ -6,7 +6,7 @@ using Yashil.Core.Entities;
 
 namespace YashilReport.Core.Repositories
 {
-	public interface IRoleReportRepository : IGenericRepository<RoleReport>
+	public interface IRoleReportRepository : IGenericRepository<RoleReport, int>
     {
         Task AssignSelectedReportSoresToRole(List<int> selectedReports, int groupId, bool assign);
     }

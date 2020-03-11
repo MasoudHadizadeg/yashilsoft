@@ -15,10 +15,6 @@
 		  entityName = 'coursesPlanningStudent';
 		  detailComponent =  CoursesPlanningStudentDetailTabBasedComponent; 		  constructor() {
 							this.columns.push({ 
-					caption: 'کد',
-					dataField: 'code'
-					});
-							this.columns.push({ 
 					caption: 'دوره',
 					dataField: 'coursesPlanningTitle'
 					});
@@ -29,10 +25,6 @@
 							this.columns.push({ 
 					caption: 'نمره',
 					dataField: 'score'
-					});
-							this.columns.push({ 
-					caption: 'سطح دسترسی',
-					dataField: 'accessLevelTitle'
 					});
 							
 				}

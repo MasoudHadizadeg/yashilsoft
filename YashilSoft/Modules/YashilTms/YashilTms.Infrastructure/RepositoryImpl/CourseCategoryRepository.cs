@@ -16,16 +16,10 @@ namespace YashilTms.Infrastructure.RepositoryImpl
             _context = context;
             _userPrincipal = userPrincipal;
         }
-        public string GetDescription(int id)
+
+        public IQueryable<CourseCategory> GetByEducationalCenterId(int educationalCenterId)
         {
-
-
-
-
-           
-            return string.Empty;
-            //   return DbSet.Where(x => x.Id == id).Select(x => x.Description).FirstOrDefault();
+            return DbSet.Where(ApplicationBasedDefaultFilter()).Where(x => x.EducationalCenterId == educationalCenterId);
         }
-
     }
 }

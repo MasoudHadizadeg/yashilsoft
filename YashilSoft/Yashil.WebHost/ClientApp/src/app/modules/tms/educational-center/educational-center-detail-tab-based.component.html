@@ -10,23 +10,23 @@
     [animationEnabled]="false"
     [swipeEnabled]="false">
     <div *dxTemplate="let company of 'educationalCenter'" class="tab-content-edit-form">
-						<app-educational-center-detail [selectedEntityId]="selectedEntityId" entityName="educationalCenter" 
+						<app-educational-center-detail [selectedEntityId]="selectedEntityId" (afterInsertRow)="rowInserted($event)"  entityName="educationalCenter" 
 											></app-educational-center-detail>
 					</div>
 					<div *dxTemplate="let company of 'about'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="educationalCenter" propertyName="about"
+						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="educationalCenter" propertyName="About"
 											propertyLabel="درباره"></app-content-editor>
 					</div>
 									<div *dxTemplate="let company of 'goal'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="educationalCenter" propertyName="goal"
+						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="educationalCenter" propertyName="Goal"
 											propertyLabel="اهداف و ماموریت"></app-content-editor>
 					</div>
 									<div *dxTemplate="let company of 'description'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="educationalCenter" propertyName="description"
+						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="educationalCenter" propertyName="Description"
 											propertyLabel="توضیحات"></app-content-editor>
 					</div>
 									<div *dxTemplate="let company of 'ability'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="educationalCenter" propertyName="ability"
+						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="educationalCenter" propertyName="Ability"
 											propertyLabel="توانمندی ها و سوابق"></app-content-editor>
 					</div>
 				</dx-tab-panel>

@@ -19,7 +19,7 @@
     [animationEnabled]="false"
     [swipeEnabled]="false">
     <div *dxTemplate="let company of '<#=firstCharacterLower#>'" class="tab-content-edit-form">
-						<app-<#=angularFriendlyName#>-detail [selectedEntityId]="selectedEntityId" entityName="<#=firstCharacterLower#>" 
+						<app-<#=angularFriendlyName#>-detail [selectedEntityId]="selectedEntityId" (afterInsertRow)="rowInserted($event)"  entityName="<#=firstCharacterLower#>" 
 											></app-<#=angularFriendlyName#>-detail>
 					</div>
 <#
@@ -42,7 +42,7 @@
 
 				#>
 					<div *dxTemplate="let company of '<#=colNameFirstCharLower#>'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="<#=firstCharacterLower#>" propertyName="<#=colNameFirstCharLower#>"
+						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="<#=firstCharacterLower#>" propertyName="<#=col.Name#>"
 											propertyLabel="<#=colCaption #>"></app-content-editor>
 					</div>
 				<#

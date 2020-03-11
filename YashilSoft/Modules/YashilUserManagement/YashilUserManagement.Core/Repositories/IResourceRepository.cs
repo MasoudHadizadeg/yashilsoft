@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilUserManagement.Core.Repositories
 {
-	public interface IResourceRepository : IGenericRepository<Resource>
+	public interface IResourceRepository : IGenericRepository<Resource, int>
     {
     }
 }      

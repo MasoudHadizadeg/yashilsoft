@@ -1,55 +1,55 @@
+<app-base-edit-form [showCloseButton]='false' (submitEvent)="formSubmit($event)"
+                    (closeFormClick)="onCloseFormClick($event)">
+    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
-			<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
-<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+        <dxi-item [label]="{text: 'کد'}" dataField="code">
 
-									<dxi-item [label]="{text: 'کد'}"  dataField="code" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'عنوان'}"  dataField="title" >
-												
-																<dxi-validation-rule  type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="courseCategoryId" editorType="dxLookup" [label]="{text: 'گروه آموزشی'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: courseCategoryDataSource,displayExpr:'title',valueExpr:'id' }">
 
-																				<dxi-validation-rule  type="required" message="گروه آموزشی اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="educationalCenterId" editorType="dxLookup" [label]="{text: 'مرکز آموشی'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: educationalCenterDataSource,displayExpr:'title',valueExpr:'id' }">
+        </dxi-item>
+        <dxi-item [label]="{text: 'عنوان'}" dataField="title">
 
-																				<dxi-validation-rule  type="required" message="مرکز آموشی اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="skillType" editorType="dxSelectBox" [label]="{text: 'سطح مهارت دوره'}"  
-					[editorOptions]="{ items: skillTypes,displayExpr:'title',valueExpr:'id' }">
-															
-				</dxi-item>
-									
-									<dxi-item dataField="certificateType" editorType="dxSelectBox" [label]="{text: 'نوع گواهي نامه'}"  
-					[editorOptions]="{ items: certificateTypes,displayExpr:'title',valueExpr:'id' }">
-															
-				</dxi-item>
-									
-									<dxi-item dataField="evaluationMethod" editorType="dxSelectBox" [label]="{text: 'روش ارزیابی دوره'}"  
-					[editorOptions]="{ items: evaluationMethods,displayExpr:'title',valueExpr:'id' }">
-															
-				</dxi-item>
-									<dxi-item [label]="{text: 'مدت دوره(ساعت)'}"  dataField="duration" editorType='dxNumberBox'>
-												
-																<dxi-validation-rule  type="required" message="مدت دوره(ساعت) اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"  
-					[editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
-																					<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-</dx-form>
+            <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
+
+        </dxi-item>
+
+        <dxi-item dataField="courseCategoryId" editorType="dxLookup" [label]="{text: 'گروه آموزشی'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: courseCategoryDataSource,displayExpr:'title',valueExpr:'id' }">
+
+            <dxi-validation-rule type="required" message="گروه آموزشی اجباری می باشد"></dxi-validation-rule>
+
+        </dxi-item>
+
+        <dxi-item dataField="educationalCenterId" editorType="dxLookup" [label]="{text: 'مرکز آموشی'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: educationalCenterDataSource,displayExpr:'title',valueExpr:'id' }">
+
+            <dxi-validation-rule type="required" message="مرکز آموشی اجباری می باشد"></dxi-validation-rule>
+
+        </dxi-item>
+
+        <dxi-item dataField="skillType" editorType="dxSelectBox" [label]="{text: 'سطح مهارت دوره'}"
+                  [editorOptions]="{ items: skillTypes,displayExpr:'title',valueExpr:'id' }">
+
+        </dxi-item>
+
+        <dxi-item dataField="certificateType" editorType="dxSelectBox" [label]="{text: 'نوع گواهي نامه'}"
+                  [editorOptions]="{ items: certificateTypes,displayExpr:'title',valueExpr:'id' }">
+
+        </dxi-item>
+
+        <dxi-item dataField="evaluationMethod" editorType="dxSelectBox" [label]="{text: 'روش ارزیابی دوره'}"
+                  [editorOptions]="{ items: evaluationMethods,displayExpr:'title',valueExpr:'id' }">
+
+        </dxi-item>
+        <dxi-item [label]="{text: 'مدت دوره(ساعت)'}" dataField="duration" editorType='dxNumberBox'>
+
+            <dxi-validation-rule type="required" message="مدت دوره(ساعت) اجباری می باشد"></dxi-validation-rule>
+
+        </dxi-item>
+
+        <dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"
+                  [editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
+
+        </dxi-item>
+    </dx-form>
 </app-base-edit-form>

@@ -62,42 +62,7 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
             
             #line default
             #line hidden
-            this.Write(">\r\n    {\r\n    ");
-            
-            #line 20 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\IRepositoryTemplate.tt"
-
-		foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumns.Contains(x.Name)))
-			{
-				 string propertyType = SqlToCsharpHelper.GetNetDataType(col.ColType);
-                string colNameFirstCharLower = col.Name.FirstCharacterToLower();
-                // If we can't map it, skip it
-	            if(propertyType != "string" ||  col.MaxLength!="-1")
-                {
-					
-                    // Skip
-                    continue;
-                }
-		
-            
-            #line default
-            #line hidden
-            this.Write("\t\t\tstring Get");
-            
-            #line 33 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\IRepositoryTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
-            
-            #line default
-            #line hidden
-            this.Write("(int id);\t\t\r\n");
-            
-            #line 34 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\IRepositoryTemplate.tt"
-
-			}
-	
-            
-            #line default
-            #line hidden
-            this.Write("\t\r\n    }\r\n}      \r\n ");
+            this.Write(",int>\r\n    {\r\n    }\r\n}      \r\n ");
             return this.GenerationEnvironment.ToString();
         }
     }

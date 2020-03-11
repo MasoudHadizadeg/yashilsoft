@@ -4,10 +4,8 @@ using Yashil.Core.Entities;
 
 namespace YashilTms.Core.Repositories
 {
-	public interface ICoursesPlanningStudentRepository : IGenericRepository<CoursesPlanningStudent>
+	public interface ICoursesPlanningStudentRepository : IGenericRepository<CoursesPlanningStudent,int>
     {
-    			string GetDescription(int id);		
-	
     }
 }      
  

@@ -228,7 +228,7 @@ foreach (var col in foreignKeys)
             
             #line default
             #line hidden
-            this.Write("\t\t\tthis._genericDataService.getEntitiesByEntityName(Entity.");
+            this.Write("\t\t\tthis._genericDataService.getEntitiesByEntityNameForSelect(Entity.");
             
             #line 94 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(refTable));

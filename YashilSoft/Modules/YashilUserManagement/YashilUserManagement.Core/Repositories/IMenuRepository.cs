@@ -6,7 +6,7 @@ using Yashil.Core.Entities;
 
 namespace YashilUserManagement.Core.Repositories
 {
-	public interface IMenuRepository : IGenericRepository<Menu>
+	public interface IMenuRepository : IGenericRepository<Menu, int>
     {
         Task<List<Menu>> GetUserMenus(int currentUserId);
     }

@@ -16,22 +16,5 @@ namespace YashilTms.Infrastructure.RepositoryImpl
                 _context = context;
                 _userPrincipal = userPrincipal;
             }
-    			  public string GetAbout(int id)
-				{
-					return DbSet.Where(x => x.Id == id).Select(x => x.About).FirstOrDefault();
-				}	
-			  public string GetGoal(int id)
-				{
-					return DbSet.Where(x => x.Id == id).Select(x => x.Goal).FirstOrDefault();
-				}	
-			  public string GetDescription(int id)
-				{
-					return DbSet.Where(x => x.Id == id).Select(x => x.Description).FirstOrDefault();
-				}	
-			  public string GetAbility(int id)
-				{
-					return DbSet.Where(x => x.Id == id).Select(x => x.Ability).FirstOrDefault();
-				}	
-	
     }
 }      

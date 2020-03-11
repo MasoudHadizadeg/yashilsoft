@@ -159,7 +159,10 @@ if(table.GenerateTabForDescColumn){
 			
 			foreach (var col in table.Columns.Where(x => !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name)))
 			{
-				
+				if(col.Name=="Code" || col.Name=="AccessLevelId")
+				{
+					continue;
+				}
 				var colCaption = col.Name.FirstCharacterToLower();
 
 				// If we can't map it, skip it
@@ -179,21 +182,21 @@ if(table.GenerateTabForDescColumn){
             #line hidden
             this.Write("\t\t\t\tthis.columns.push({ \r\n\t\t\t\t\tcaption: \'");
             
-            #line 56 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 59 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colCaption));
             
             #line default
             #line hidden
             this.Write("\',\r\n\t\t\t\t\tdataField: \'");
             
-            #line 57 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 60 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNamef));
             
             #line default
             #line hidden
             this.Write("\'\r\n\t\t\t\t\t});\r\n\t\t\t");
             
-            #line 59 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 62 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
 
 			} 
             

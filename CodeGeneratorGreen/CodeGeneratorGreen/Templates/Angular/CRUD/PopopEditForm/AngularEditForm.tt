@@ -91,7 +91,7 @@ export class <#=table.Name #>DetailComponent extends BaseEdit implements OnInit 
 				else
 				{
 					#>
-			this._genericDataService.getEntitiesByEntityName(Entity.<#=refTable #>).subscribe(res => this.<#=foreignKeyVar #>s = res);
+			this._genericDataService.getEntitiesByEntityNameForSelect(Entity.<#=refTable #>).subscribe(res => this.<#=foreignKeyVar #>s = res);
 		<#
 				}
 			} #>

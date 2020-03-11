@@ -55,7 +55,8 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.TabularEditForm
             
             #line default
             #line hidden
-            this.Write("-detail [selectedEntityId]=\"selectedEntityId\" entityName=\"");
+            this.Write("-detail [selectedEntityId]=\"selectedEntityId\" (afterInsertRow)=\"rowInserted($even" +
+                    "t)\"  entityName=\"");
             
             #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(firstCharacterLower));
@@ -112,7 +113,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.TabularEditForm
             this.Write("\" propertyName=\"");
             
             #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditHtml.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower));
+            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
             
             #line default
             #line hidden

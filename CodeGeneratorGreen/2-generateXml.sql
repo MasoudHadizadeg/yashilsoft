@@ -85,7 +85,7 @@ FROM   sys.schemas                  AS s
        INNER JOIN sys.tables        AS t
             ON  s.schema_id = t.schema_id
             AND t.name NOT IN ('sysdiagrams', 'TableDesc')
-            AND s.name = 'base'
+            AND s.name = 'tms'
        INNER JOIN base.AppEntity    AS ae
             ON  t.[object_id] = ae.SystemId
                 FOR XML PATH('Table'),

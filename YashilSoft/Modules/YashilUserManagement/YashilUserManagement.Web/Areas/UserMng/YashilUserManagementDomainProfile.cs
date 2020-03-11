@@ -67,7 +67,8 @@ namespace YashilUserManagement.Web.Areas.UserMng
                 ;
             CreateMap<ResourceAppActionEditModel, ResourceAppAction>();
 
-            CreateMap<ResourceAppAction, ResourceAppActionSimpleViewModel>();
+            CreateMap<ResourceAppAction, ResourceAppActionSimpleViewModel>().ForMember(x => x.Title,
+                b => b.MapFrom(c => c.Resource.Description));
 
 
             CreateMap<RoleResourceAction, RoleResourceActionEditModel>()
@@ -77,41 +78,35 @@ namespace YashilUserManagement.Web.Areas.UserMng
 
 
             CreateMap<RoleResourceAction, RoleResourceActionListViewModel>()
+                .ForMember(x => x.ResourceActionTitle,
+                    b => b.MapFrom(c => c.ResourceAction.Resource.Title))
                 .ForMember(x => x.RoleTitle,
-                    b => b.MapFrom(c => c.Role.Title))
-                ;
+                    b => b.MapFrom(c => c.Role.Title));
             CreateMap<RoleResourceActionEditModel, RoleResourceAction>();
 
-            CreateMap<RoleResourceAction, RoleResourceActionSimpleViewModel>();
+            CreateMap<RoleResourceAction, RoleResourceActionSimpleViewModel>().ForMember(x => x.Title,
+                b => b.MapFrom(c => c.ResourceAction.Resource.Description));
 
 
-            CreateMap<Role, RoleEditModel>()
-                ;
+            CreateMap<Role, RoleEditModel>();
 
 
-            CreateMap<Role, RoleListViewModel>()
-                ;
+            CreateMap<Role, RoleListViewModel>();
             CreateMap<RoleEditModel, Role>();
 
             CreateMap<Role, RoleSimpleViewModel>();
 
 
-            CreateMap<AppConfig, AppConfigEditModel>()
-                ;
+            CreateMap<AppConfig, AppConfigEditModel>();
 
 
-            CreateMap<AppConfig, AppConfigListViewModel>()
-                ;
+            CreateMap<AppConfig, AppConfigListViewModel>();
             CreateMap<AppConfigEditModel, AppConfig>();
 
             CreateMap<AppConfig, AppConfigSimpleViewModel>();
 
 
-            CreateMap<User, UserEditModel>()
-                .ForMember(x => x.OrganizationTitle,
-                    b => b.MapFrom(c => c.Organization.Title))
-                .ForMember(x => x.AccessLevelTitle,
-                    b => b.MapFrom(c => c.AccessLevel.Title));
+            CreateMap<User, UserEditModel>();
 
 
             CreateMap<User, UserListViewModel>()

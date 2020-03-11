@@ -14,10 +14,6 @@
 		  entityName = 'representationPerson';
 		  detailComponent = RepresentationPersonDetailComponent; 		  constructor() {
 							this.columns.push({ 
-					caption: 'کد',
-					dataField: 'code'
-					});
-							this.columns.push({ 
 					caption: 'نمایندگی',
 					dataField: 'representationTitle'
 					});
@@ -40,10 +36,6 @@
 							this.columns.push({ 
 					caption: 'تاریخ رهایی',
 					dataField: 'toDate'
-					});
-							this.columns.push({ 
-					caption: 'سطح دسترسی',
-					dataField: 'accessLevelTitle'
 					});
 							
 				}

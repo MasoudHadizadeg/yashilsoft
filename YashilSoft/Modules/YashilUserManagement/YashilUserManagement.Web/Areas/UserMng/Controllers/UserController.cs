@@ -1,11 +1,14 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Yashil.Common.SharedKernel.Helpers;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
+using Yashil.Core.ControllersExtenders;
 using Yashil.Core.Entities;
+using Yashil.Core.Enums;
 using YashilUserManagement.Core.Services;
 using YashilUserManagement.Web.Areas.UserMng.Helper;
 using YashilUserManagement.Web.Areas.UserMng.ViewModels;
@@ -17,39 +20,73 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
+        private readonly IUserControllerExtender _userCustomService;
 
-        public UserController(IUserService userService, IMapper mapper) : base(userService, mapper)
+        public UserController(IUserControllerExtender userCustomService, IUserService userService,
+            IMapper mapper) : base(
+            userService, mapper)
         {
+            _userCustomService = userCustomService;
             _mapper = mapper;
             _userService = userService;
         }
 
+        protected override async Task<UserEditModel> GetEntityForEdit(int id)
+        {
+            var entityForEdit = base.GetEntityForEdit(id);
+            entityForEdit.Result.AdditionalInfoList =  _userCustomService.GetCustomProps(id);
+            return await entityForEdit;
+        }
+
         protected override void CustomMapBeforeInsert(UserEditModel editModel, User entity)
         {
-            entity.Password = Encoding.UTF8.GetBytes(editModel.PasswordStr);
-            CryptographyHelper.CreatePasswordHash(editModel.PasswordStr + editModel.UserName, out var passwordHash,
-                out var passwordSalt);
-
-            entity.Password = passwordHash;
-            entity.PasswordSalt = passwordSalt;
-
+            _userCustomService?.BeforeInsert(entity,editModel.AdditionalInfoList, editModel.Id);
+            SetAccessLevel(editModel, entity);
+            SetPassword(editModel, entity);
             base.CustomMapBeforeInsert(editModel, entity);
+        }
+
+        private void SetAccessLevel(UserEditModel editModel, User entity)
+        {
+            // در صورتی که سطح دسترسی ست نشده باشد، سطح دسترسی عادی تعریف میشود
+            if (editModel.AccessLevelId == 0)
+            {
+                entity.AccessLevelId = (int)AccessLevelEnum.Normal;
+            }
+            else
+            {
+                // سطح دسترسی کاربر جدید باید کمتر یا مساوی سطح دسترسی کاربر  جاری باشد
+                var currentUserAccessLevelId = _userService.GetCurrentUserInfo().AccessLevelId;
+                if (editModel.AccessLevelId > currentUserAccessLevelId)
+                {
+                    entity.AccessLevelId = currentUserAccessLevelId;
+                }
+            }
         }
 
         protected override void CustomMapBeforeUpdate(UserEditModel editModel, User entity)
         {
+            _userCustomService?.BeforeUpdate(editModel.AdditionalInfoList, editModel.Id);
+            SetAccessLevel(editModel, entity);
             if (!string.IsNullOrEmpty(editModel.PasswordStr))
             {
-                // entity.Password = Encoding.UTF8.GetBytes(editModel.PasswordStr+ editModel.UserName);
-                CryptographyHelper.CreatePasswordHash(editModel.PasswordStr + editModel.UserName, out var passwordHash, out var passwordSalt);
-                entity.Password = passwordHash;
-                entity.PasswordSalt = passwordSalt;
+                SetPassword(editModel, entity);
             }
 
             base.CustomMapBeforeUpdate(editModel, entity);
         }
 
-        protected override bool GetPropertiesForApplyOrIgnoreUpdate(User entity, UserEditModel editModel, out List<string> props)
+        private void SetPassword(UserEditModel editModel, User entity)
+        {
+            // entity.Password = Encoding.UTF8.GetBytes(editModel.PasswordStr+ editModel.UserName);
+            CryptographyHelper.CreatePasswordHash(editModel.PasswordStr + editModel.UserName, out var passwordHash,
+                out var passwordSalt);
+            entity.Password = passwordHash;
+            entity.PasswordSalt = passwordSalt;
+        }
+
+        protected override bool GetPropertiesForApplyOrIgnoreUpdate(User entity, UserEditModel editModel,
+            out List<string> props)
         {
             props = new List<string> { "NationalCode", "UserName" };
             if (string.IsNullOrEmpty(editModel.PasswordStr))
@@ -70,6 +107,11 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
         [HttpGet("CheckNationalCode")]
         public object CheckNationalCode(string nationalCode)
         {
+            if (_userService.CheckExistsNationalCode(nationalCode))
+            {
+                return false;
+            }
+
             return nationalCode.IsValidNationalCode();
         }
 

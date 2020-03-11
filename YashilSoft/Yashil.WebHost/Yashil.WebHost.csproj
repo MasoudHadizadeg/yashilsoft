@@ -52,7 +52,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
-    <PackageReference Include="Yashil.Common.Core" Version="1.5.1" />
+    <PackageReference Include="Yashil.Common.Core" Version="1.6.2" />
     <PackageReference Include="Yashil.Runtime" Version="1.5.1" />
   </ItemGroup>
   <Target Name="CopyModule" AfterTargets="Build">

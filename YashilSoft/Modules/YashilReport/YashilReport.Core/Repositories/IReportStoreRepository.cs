@@ -6,7 +6,7 @@ using Yashil.Core.Entities;
 
 namespace YashilReport.Core.Repositories
 {
-	public interface IReportStoreRepository : IGenericRepository<ReportStore>
+	public interface IReportStoreRepository : IGenericRepository<ReportStore, int>
     {
         void DeleteContentionStrings(int reportId);
         Task<ReportStore> GetForEditAsync(int reportId, bool readOnly = true);

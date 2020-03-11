@@ -5,7 +5,7 @@ using Yashil.Core.Entities;
 
 namespace YashilBaseInfo.Core.Services
 {
-    public interface IYashilConnectionStringService : IGenericService<YashilConnectionString>
+    public interface IYashilConnectionStringService : IGenericService<YashilConnectionString, int>
     {
         List<YashilConnectionString> FindByIds(IEnumerable<int> connectionStringIds);
 

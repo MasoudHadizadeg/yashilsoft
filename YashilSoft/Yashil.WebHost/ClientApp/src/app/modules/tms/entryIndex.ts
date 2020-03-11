@@ -23,7 +23,11 @@ import {CourseCategoryDetailComponent} from './course-category/course-category-d
 import {EducationalCenterDetailTabBasedComponent} from './educational-center/educational-center-detail-tab-based.component';
 
 import {EducationalCenterDetailComponent} from './educational-center/educational-center-detail.component';
+
+import {AdditionalUserPropDetailComponent} from './additional-user-prop/additional-user-prop-detail.component';
 import {Provider} from '@angular/core';
+import {ContentEditorComponent} from './content-editor/content-editor.component';
+import {EducationalCenterCustomListComponent} from './educational-center/educational-center-custom-list.component';
 
 export const ENTRYCOMPONENTS: Provider[] = [
     CoursesPlanningStudentDetailTabBasedComponent,
@@ -38,5 +42,8 @@ export const ENTRYCOMPONENTS: Provider[] = [
     CourseCategoryDetailTabBasedComponent,
     CourseCategoryDetailComponent,
     EducationalCenterDetailTabBasedComponent,
-    EducationalCenterDetailComponent
+    EducationalCenterDetailComponent,
+    AdditionalUserPropDetailComponent,
+    ContentEditorComponent,
+    EducationalCenterCustomListComponent
 ];

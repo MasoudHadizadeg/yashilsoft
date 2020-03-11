@@ -1,2 +1,3 @@
-				<app-base-list-form [columns]="columns" [entityName]="entityName" [detailComponent]="detailComponent">
-	</app-base-list-form>
+<app-base-list-form (selectedRowChanged)="selectedRowChanged.emit($event)" [columns]="columns" [entityName]="entityName"
+                    [detailComponent]="detailComponent">
+</app-base-list-form>

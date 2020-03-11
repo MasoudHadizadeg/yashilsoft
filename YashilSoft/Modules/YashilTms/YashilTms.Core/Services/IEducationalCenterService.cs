@@ -4,13 +4,8 @@ using Yashil.Core.Entities;
 
 namespace YashilTms.Core.Services
 {
-	public interface IEducationalCenterService : IGenericService<EducationalCenter>
+	public interface IEducationalCenterService : IGenericService<EducationalCenter,int>
     {
-			string GetAbout(int id);		
-			string GetGoal(int id);		
-			string GetDescription(int id);		
-			string GetAbility(int id);		
-	
     }
 }      
  

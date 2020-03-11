@@ -86,6 +86,8 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     @Input()
     additionalData = {};
     @Output()
+    afterInitialDetailComponent: EventEmitter<any> = new EventEmitter<any>();
+    @Output()
     beforeAddClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output()
     public selectedRowChanged: EventEmitter<any> = new EventEmitter<any>();
@@ -298,6 +300,7 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
         editComponent.closeFormClick = this.closeActionEmitter;
         editComponent.additionalData = this.additionalData;
         editComponent.showCloseButton = true;
+        this.afterSetDialogContent(componentRef.instance);
     }
 
     editEntity(id) {
@@ -396,5 +399,9 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
             return false;
         }
         return true;
+    }
+
+    private afterSetDialogContent(instance: any) {
+        this.afterInitialDetailComponent.emit(instance);
     }
 }

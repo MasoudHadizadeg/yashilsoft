@@ -6,7 +6,7 @@ using Yashil.Core.Entities;
 
 namespace YashilDashboard.Core.Repositories
 {
-	public interface IDashboardStoreRepository : IGenericRepository<DashboardStore>
+	public interface IDashboardStoreRepository : IGenericRepository<DashboardStore, int>
     {
         void DeleteContentionStrings(int dashboardId);
         Task<DashboardStore> GetForEditAsync(int dashboardId, bool readOnly = false);

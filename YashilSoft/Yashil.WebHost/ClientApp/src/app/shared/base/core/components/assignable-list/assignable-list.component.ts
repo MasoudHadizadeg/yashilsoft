@@ -11,6 +11,7 @@ import {custom} from 'devextreme/ui/dialog';
     templateUrl: 'assignable-list.component.html'
 })
 export class AssignableListComponent implements OnInit {
+    gridHeight = 400;
     @ViewChild('notSelectedItemsGrid', {static: false}) notSelectedItemsDataGrid: DxDataGridComponent;
     @ViewChild('selectedItemsGrid', {static: false}) selectedItemsDataGrid: DxDataGridComponent;
     itemDataSource: any;
@@ -58,6 +59,7 @@ export class AssignableListComponent implements OnInit {
                 dataField: 'title'
             });
         }
+        this.gridHeight = window.innerHeight - 180;
         this.itemDataSource = this.genericDataService.createCustomDatasourceForSelect('id', this.groupEntityName);
     }
 

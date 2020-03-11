@@ -1,2 +1,4 @@
-				<app-base-list-form [columns]="columns" [entityName]="entityName" [detailComponent]="detailComponent">
-	</app-base-list-form>
+<app-base-list-form #frmCategory loadAfterSetFilter="true" [columns]="columns" [entityName]="entityName"
+                    [detailComponent]="detailComponent"
+                    (afterInitialDetailComponent)="afterInitialDetailComponent($event)">
+</app-base-list-form>

@@ -10,11 +10,11 @@
     [animationEnabled]="false"
     [swipeEnabled]="false">
     <div *dxTemplate="let company of 'coursesPlanning'" class="tab-content-edit-form">
-						<app-courses-planning-detail [selectedEntityId]="selectedEntityId" entityName="coursesPlanning" 
+						<app-courses-planning-detail [selectedEntityId]="selectedEntityId" (afterInsertRow)="rowInserted($event)"  entityName="coursesPlanning" 
 											></app-courses-planning-detail>
 					</div>
 					<div *dxTemplate="let company of 'description'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="coursesPlanning" propertyName="description"
+						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="coursesPlanning" propertyName="Description"
 											propertyLabel="توضیحات"></app-content-editor>
 					</div>
 				</dx-tab-panel>

@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilUserManagement.Core.Services
 {
-	public interface IPostService : IGenericService<Post>
+	public interface IPostService : IGenericService<Post, int>
     {
 			string GetDescription(int id);		
 	

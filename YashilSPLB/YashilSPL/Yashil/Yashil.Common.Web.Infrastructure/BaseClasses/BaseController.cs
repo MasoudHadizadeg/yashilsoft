@@ -20,9 +20,9 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
     [ApiController]
     [Authorize]
     public class BaseController<TModel, TK, TListViewModel, TEditModel, TSelectViewModel> : ControllerBase
-        where TModel : class, IBaseEntity<TK>
+        where TModel : class, IBaseEntity<TK> 
     {
-        private readonly IGenericService<TModel> _genericService;
+        private readonly IGenericService<TModel, TK> _genericService;
         private readonly IMapper _mapper;
 
         protected int? CurrentUserId
@@ -38,7 +38,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             }
         }
 
-        public BaseController(IGenericService<TModel> genericService, IMapper mapper)
+        public BaseController(IGenericService<TModel, TK> genericService, IMapper mapper)
         {
             _genericService = genericService;
             _mapper = mapper;
@@ -74,12 +74,18 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             }
         }
 
-        [HttpGet("GetEntityDescription")]
-        public async Task<DescriptionEditModel> GetEntityDescription([FromRoute] TK id,string propName)
+        [HttpGet("GetPropertyByName/{id}/{propName}")]
+        public DescriptionEditModel<TK> GetPropertyByName([FromRoute] TK id, string propName)
         {
             try
             {
-                return await GetEntityDescriptionByPropName(id, propName);
+                var entityDescription = _genericService.GetEntityDescriptionByPropName(id, propName);
+                return new DescriptionEditModel<TK>
+                {
+                    Description = entityDescription,
+                    Id = id,
+                    PropertyName = propName
+                };
             }
             catch (Exception e)
             {
@@ -88,12 +94,31 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             }
         }
 
-        private async Task<DescriptionEditModel> GetEntityDescriptionByPropName(TK id, string propName)
+        [HttpPut("UpdateEntityDescription")]
+        public async Task<HttpResponseMessage> UpdateEntityDescription(DescriptionEditModel<TK> descEditModel)
         {
-            var entity = await _genericService.GetEntityDescriptionByPropName(id, propName);
-            return _mapper.Map<DescriptionEditModel>(entity);
-        }
+            if (!ModelState.IsValid)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
 
+            try
+            {
+                var res = await _genericService.UpdateEntityDescription(descEditModel);
+                if (!res)
+                {
+                    return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e);
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
+        }
         protected virtual async Task<TEditModel> GetEntityForEdit(TK id)
         {
             var entity = await _genericService.GetAsync(id, true);
@@ -149,6 +174,7 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             return Accepted(entity.Id);
         }
 
+
         [HttpPut]
         public async Task<HttpResponseMessage> PutEntity(TEditModel editModel)
         {
@@ -189,36 +215,12 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
         /// <param name="props"></param>
         /// <returns>در صورتی که می خواهید  لیست ویژگی ها بروز نشود مقدار نادرست و در غیر این صورت مقدار درست را برگردانید</returns>
         [NonAction]
-        protected virtual bool GetPropertiesForApplyOrIgnoreUpdate(TModel entity,TEditModel editModel, out List<string> props)
+        protected virtual bool GetPropertiesForApplyOrIgnoreUpdate(TModel entity, TEditModel editModel, out List<string> props)
         {
             props = new List<string>();
             return true;
         }
 
-
-        [HttpPut("PutEntityCustom")]
-        public HttpResponseMessage PutEntityCustom(EditableViewModel<TEditModel> editModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-            }
-
-            try
-            {
-                //var entity = _mapper.Map<TEditModel, TModel>(editModel.EditModel);
-                //CustomMapBeforeUpdate(editModel.EditModel, entity);
-                //Repo.Update(entity, entity.Id, editModel.ChangedProps.ToArray());
-                //UnitOfWork.Commit();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
-            return new HttpResponseMessage(HttpStatusCode.OK);
-        }
 
         private Expression<Func<TModel, bool>> CustomFilter(CustomDataSourceLoadOptions loadOptions)
         {

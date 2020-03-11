@@ -20,11 +20,6 @@ namespace YashilTms.Infrastructure.ServiceImpl
 			_coursesPlanningStudentRepository = coursesPlanningStudentRepository;
 			_userPrincipal = userPrincipal;
         }
-			  public string GetDescription(int id)
-				{
-					return _coursesPlanningStudentRepository.GetDescription(id);
-				}	
-	
     }
 }      
  

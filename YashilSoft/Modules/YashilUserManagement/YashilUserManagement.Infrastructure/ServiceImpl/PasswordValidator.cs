@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Yashil.Common.Core.Dtos;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.SharedKernel.Helpers;
-using Yashil.Core.Classes;
+using Yashil.Core.Enums;
 using YashilUserManagement.Core.Services;
 
 namespace YashilUserManagement.Infrastructure.ServiceImpl

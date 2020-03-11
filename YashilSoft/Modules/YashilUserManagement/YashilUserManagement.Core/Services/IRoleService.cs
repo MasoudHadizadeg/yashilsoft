@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilUserManagement.Core.Services
 {
-	public interface IRoleService : IGenericService<Role>
+	public interface IRoleService : IGenericService<Role, int>
     {
     }
 }      

@@ -1,2 +1,6 @@
-				<app-base-list-form [columns]="columns" [entityName]="entityName" [detailComponent]="detailComponent">
-	</app-base-list-form>
+<app-base-list-form loadAfterSetFilter="true" #frmRep
+                    (selectedRowChanged)="selectedRowChanged.emit($event)"
+                    (afterInitialDetailComponent)="afterInitialDetailComponent($event)"
+                    (beforeAddClicked)="setEducationalCenterId" [columns]="columns" [entityName]="entityName"
+                    [detailComponent]="detailComponent">
+</app-base-list-form>

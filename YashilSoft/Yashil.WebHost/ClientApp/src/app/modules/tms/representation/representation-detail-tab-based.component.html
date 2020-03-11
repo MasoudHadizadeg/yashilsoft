@@ -1,6 +1,3 @@
-
-	
-
 <dx-tab-panel
     #tabPanel
     rtlEnabled="true"
@@ -10,23 +7,24 @@
     [animationEnabled]="false"
     [swipeEnabled]="false">
     <div *dxTemplate="let company of 'representation'" class="tab-content-edit-form">
-						<app-representation-detail [selectedEntityId]="selectedEntityId" entityName="representation" 
-											></app-representation-detail>
-					</div>
-					<div *dxTemplate="let company of 'about'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="representation" propertyName="about"
-											propertyLabel="درباره"></app-content-editor>
-					</div>
-									<div *dxTemplate="let company of 'goal'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="representation" propertyName="goal"
-											propertyLabel="اهداف و ماموریت"></app-content-editor>
-					</div>
-									<div *dxTemplate="let company of 'description'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="representation" propertyName="description"
-											propertyLabel="توضیحات"></app-content-editor>
-					</div>
-									<div *dxTemplate="let company of 'ability'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="representation" propertyName="ability"
-											propertyLabel="توانمندی ها و سوابق"></app-content-editor>
-					</div>
-				</dx-tab-panel>
+        <app-representation-detail [educationalCenterId]="educationalCenterId" [selectedEntityId]="selectedEntityId" (afterInsertRow)="rowInserted($event)"
+                                   entityName="representation"
+        ></app-representation-detail>
+    </div>
+    <div *dxTemplate="let company of 'about'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="representation" propertyName="About"
+                            propertyLabel="درباره"></app-content-editor>
+    </div>
+    <div *dxTemplate="let company of 'goal'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="representation" propertyName="Goal"
+                            propertyLabel="اهداف و ماموریت"></app-content-editor>
+    </div>
+    <div *dxTemplate="let company of 'description'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="representation" propertyName="Description"
+                            propertyLabel="توضیحات"></app-content-editor>
+    </div>
+    <div *dxTemplate="let company of 'ability'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="representation" propertyName="Ability"
+                            propertyLabel="توانمندی ها و سوابق"></app-content-editor>
+    </div>
+</dx-tab-panel>

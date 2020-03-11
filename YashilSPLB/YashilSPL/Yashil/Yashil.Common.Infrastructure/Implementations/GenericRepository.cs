@@ -11,7 +11,7 @@ using Yashil.Common.Core.Interfaces;
 
 namespace Yashil.Common.Infrastructure.Implementations
 {
-    public abstract class GenericRepository<T, TR> : IGenericRepository<T,TR>
+    public abstract class GenericRepository<T, TR> : IGenericRepository<T, TR>
         where T : class, IBaseEntity<TR> where TR : IEquatable<TR>
     {
         private readonly DbContext _context;
@@ -118,7 +118,6 @@ namespace Yashil.Common.Infrastructure.Implementations
 
         public virtual async Task<T> AddAsync(T t)
         {
-
             t.CreateBy = _userPrincipal.Id;
             t.CreationDate = DateTime.Now;
 
@@ -158,6 +157,7 @@ namespace Yashil.Common.Infrastructure.Implementations
         {
             if (t == null)
                 return null;
+
             var exist = _context.Set<T>().Find(key);
             var existResult = exist;
             if (existResult != null)
@@ -165,7 +165,7 @@ namespace Yashil.Common.Infrastructure.Implementations
                 var entityEntry = _context.Entry(existResult);
                 entityEntry.CurrentValues.SetValues(t);
 
-                SetDefaultReadOnlyProps(entityEntry);
+                PrepareEntityBeforeUpdate(entityEntry);
 
                 if (props != null && props.Count > 0)
                 {
@@ -185,10 +185,13 @@ namespace Yashil.Common.Infrastructure.Implementations
             return exist;
         }
 
-        private void SetDefaultReadOnlyProps(EntityEntry<T> entityEntry)
+        private void PrepareEntityBeforeUpdate(EntityEntry<T> entityEntry)
         {
             entityEntry.Property("CreationDate").IsModified = false;
             entityEntry.Property("CreateBy").IsModified = false;
+
+            entityEntry.Entity.ModifyBy = _userPrincipal.Id;
+            entityEntry.Entity.ModificationDate = DateTime.Now;
 
             var creatorOrganizationId = entityEntry.Property("CreatorOrganizationId");
             if (creatorOrganizationId != null)
@@ -209,7 +212,8 @@ namespace Yashil.Common.Infrastructure.Implementations
         }
 
 
-        public virtual async Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> props, bool modifyProps = true)
+        public virtual async Task<ValueTask<T>?> UpdateAsync(T t, object key, List<string> props,
+            bool modifyProps = true)
         {
             if (t == null)
                 return null;
@@ -220,7 +224,7 @@ namespace Yashil.Common.Infrastructure.Implementations
                 var entityEntry = _context.Entry(existResult);
                 entityEntry.CurrentValues.SetValues(t);
 
-                SetDefaultReadOnlyProps(entityEntry);
+                PrepareEntityBeforeUpdate(entityEntry);
 
                 if (props != null && props.Count > 0)
                 {
@@ -228,7 +232,8 @@ namespace Yashil.Common.Infrastructure.Implementations
                                                                                   (modifyProps &&
                                                                                    !props.Contains(m.Metadata.Name)) ||
                                                                                   (!modifyProps &&
-                                                                                   props.Contains(m.Metadata.Name))).ToList();
+                                                                                   props.Contains(m.Metadata.Name)))
+                        .ToList();
                     foreach (var notModifiedProperty in notModifiedProperties)
                     {
                         entityEntry.Property(notModifiedProperty.Metadata.Name).IsModified = false;
@@ -251,22 +256,40 @@ namespace Yashil.Common.Infrastructure.Implementations
             return await _context.Set<T>().CountAsync();
         }
 
-        public string GetEntityDescriptionByPropName(TR key, string propName)
+        public virtual string GetEntityDescriptionByPropName(TR key, string propName)
         {
-
             var property = typeof(T).GetProperty(propName);
-            if (property != null)
+            if (property != null && property.PropertyType.Name == "String")
             {
-                return DbSet.Where(x => x.Id.Equals(key)).Select(x => EF.Property<string>(x, "Topic")).FirstOrDefault();
+                return DbSet.Where(x => x.Id.Equals(key)).Select(x => EF.Property<string>(x, propName))
+                    .FirstOrDefault();
             }
 
             return null;
-
         }
-        // var propertyInfo = DbSet.GetType().GetProperty("Topic");
 
-        //return DbSet.Where(x => x.Id == id).Select(x => x.Topic).FirstOrDefault();
+        public virtual async Task<bool> UpdateEntityDescription(DescriptionEditModel<TR> editModel)
+        {
+            var property = typeof(T).GetProperty(editModel.PropertyName);
+            if (property != null && property.PropertyType.Name == "String")
+            {
+                var exist = await _context.Set<T>().FindAsync(editModel.Id);
+                var entityEntry = _context.Entry(exist);
+                entityEntry.Property(editModel.PropertyName).IsModified = true;
+                try
+                {
+                    entityEntry.Property(editModel.PropertyName).CurrentValue = editModel.Description;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
 
+                PrepareEntityBeforeUpdate(entityEntry);
+                return true;
+            }
 
+            return false;
+        }
     }
 }
