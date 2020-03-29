@@ -13,24 +13,24 @@ using  YashilTms.Web.Areas.Tms.ViewModels;
 
 namespace YashilTms.Web.Areas.Tms.Controllers
 {
-	public class CoursesPlanningController : BaseController<CoursesPlanning ,int,CoursesPlanningListViewModel, CoursesPlanningEditModel,CoursesPlanningSimpleViewModel>
+	public class CoursePlanningController : BaseController<CoursePlanning ,int,CoursePlanningListViewModel, CoursePlanningEditModel,CoursePlanningSimpleViewModel>
     {
         private readonly IMapper _mapper;
-        private readonly ICoursesPlanningService _coursesPlanningService;
-        public CoursesPlanningController(ICoursesPlanningService coursesPlanningService, IMapper mapper) : base(coursesPlanningService, mapper)
+        private readonly ICoursePlanningService _coursePlanningService;
+        public CoursePlanningController(ICoursePlanningService coursePlanningService, IMapper mapper) : base(coursePlanningService, mapper)
         {
             _mapper=mapper;
-            _coursesPlanningService=coursesPlanningService;
+            _coursePlanningService=coursePlanningService;
         }
         [HttpGet("GetByRepresentationIdForList")]
         public async Task<LoadResult> GetByRepresentationIdForList(CustomDataSourceLoadOptions loadOptions,
             int? representationId)
         {
             var representations = representationId.HasValue
-                ? _coursesPlanningService.GetByRepresentationId(representationId.Value)
-                : _coursesPlanningService.GetAll(true);
+                ? _coursePlanningService.GetByRepresentationId(representationId.Value)
+                : _coursePlanningService.GetAll(true);
 
-            return await DataSourceLoader.LoadAsync(representations.ProjectTo<CoursesPlanningListViewModel>(_mapper.ConfigurationProvider), loadOptions);
+            return await DataSourceLoader.LoadAsync(representations.ProjectTo<CoursePlanningListViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
     }
 }      

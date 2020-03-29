@@ -11,6 +11,11 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 import {MessageService} from '../../shared/base/messages/message.service';
 import {ENTRYCOMPONENTS} from './entryIndex';
 import {TmsRoutingModule} from './tms-routing.module';
+import {DxDropDownBoxModule, DxTreeViewModule} from 'devextreme-angular';
+import {UserExtenderService} from '../../shared/services/user-extender.service';
+import {CachedKey} from './tms-enums';
+import {CachedDataService} from '../../shared/services/cached-data.service';
+import {GenericDataService} from '../../shared/base/services/generic-data.service';
 
 @NgModule({
     declarations: [COMPONENTS],
@@ -24,7 +29,9 @@ import {TmsRoutingModule} from './tms-routing.module';
         DpDatePickerModule,
         SharedModule,
         AngularSplitModule.forRoot(),
-        ImageCropperModule
+        ImageCropperModule,
+        DxTreeViewModule,
+        DxDropDownBoxModule
     ],
     providers: [
         MessageService,
@@ -37,4 +44,9 @@ import {TmsRoutingModule} from './tms-routing.module';
     exports: [COMPONENTS],
 })
 export class TmsModule {
+    constructor(private userExtenderService: UserExtenderService, private cachedDataService: CachedDataService, private genericDataService: GenericDataService) {
+        this.genericDataService.getCustomEntitiesByUrl(`api/AdditionalUserProp/GetCurrentUserAdditionalProp`).subscribe((res: any) => {
+            this.cachedDataService.setData(CachedKey.AdditionalUserProp, res);
+        });
+    }
 }

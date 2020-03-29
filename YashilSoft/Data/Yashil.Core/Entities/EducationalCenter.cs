@@ -9,7 +9,7 @@ namespace Yashil.Core.Entities
         public EducationalCenter()
         {
             Course = new HashSet<Course>();
-            CourseCategory = new HashSet<CourseCategory>();
+            EducationalCenterMainCourseCategory = new HashSet<EducationalCenterMainCourseCategory>();
             Representation = new HashSet<Representation>();
         }
 
@@ -37,7 +37,7 @@ namespace Yashil.Core.Entities
         public virtual Organization CreatorOrganization { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual ICollection<Course> Course { get; set; }
-        public virtual ICollection<CourseCategory> CourseCategory { get; set; }
+        public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategory { get; set; }
         public virtual ICollection<Representation> Representation { get; set; }
     }
     }

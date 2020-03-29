@@ -1,0 +1,44 @@
+<div style="width: 100%;" [style.height.px]="contentHeight">
+    <div class="row" style="padding-bottom: 5px">
+        <div class="col-6">
+            <div style="float: right;width: 20%;margin-top: 0.5rem; font-size: 14px;text-align: right">
+                <label>مرکز آموزشی : </label>
+            </div>
+            <div style="float: right; width: 80%">
+                <dx-lookup
+                        [dataSource]="educationalCenterDataSource"
+                        [(value)]="educationalCenterId"
+                        displayExpr="title"
+                        valueExpr="id"
+                        rtlEnabled="true"
+                        [showPopupTitle]="false">
+                </dx-lookup>
+            </div>
+        </div>
+        <div class="col-6">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+
+            <div style="width: 100%;" [style.height.px]="contentHeight">
+                <app-base-list-form [allowInsertInForm]="selectedEntity!==null"
+                                    [isForTree]="true"
+                                    [dataStructureIsPlain]="true"
+                                    lazyLoading="false"
+                                    #frmCategory
+                                    [loadAfterSetFilter]="true"
+                                    [columns]="columns"
+                                    [entityName]="entityName"
+                                    [detailComponent]="detailComponent"
+                                    (selectedRowChanged)="onRowSelect($event)"
+                                    (afterInitialDetailComponent)="afterInitialDetailComponent($event)">
+                </app-base-list-form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+

@@ -17,11 +17,13 @@
 
         </dxi-item>
 
-        <dxi-item dataField="cityId" editorType="dxLookup" [label]="{text: 'شهر'}"
-                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: cityDataSource,displayExpr:'title',valueExpr:'id' }">
+        <!--        <dxi-item dataField="cityId" editorType="dxLookup" [label]="{text: 'شهر'}"-->
+        <!--                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: cityDataSource,displayExpr:'title',valueExpr:'id' }">-->
 
-            <dxi-validation-rule type="required" message="شهر اجباری می باشد"></dxi-validation-rule>
+        <!--            <dxi-validation-rule type="required" message="شهر اجباری می باشد"></dxi-validation-rule>-->
 
+        <!--        </dxi-item>-->
+        <dxi-item [template]="'cityTemplate'" dataField="cityId" [label]="{text: 'شهر'}">
         </dxi-item>
         <dxi-item [label]="{text: 'رایانامه (Email)'}" dataField="email">
 
@@ -72,5 +74,35 @@
             <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
 
         </dxi-item>
+        <div *dxTemplate="let data of 'cityTemplate'">
+            <dx-drop-down-box
+                    [(value)]="entity.cityId"
+                    valueExpr="id"
+                    displayExpr="title"
+                    placeholder="انتخاب شهر..."
+                    [showClearButton]="true"
+                    [dataSource]="cityDataSource"
+                    (onValueChanged)="syncTreeViewSelection($event)"
+            >
+
+                <div *dxTemplate="let data of 'content'">
+                    <dx-tree-view
+                            [dataSource]="cityDataSource"
+                            dataStructure="plain"
+                            keyExpr="id"
+                            parentIdExpr="parentId"
+                            selectionMode="single"
+                            displayExpr="title"
+                            rtlEnabled="true"
+                            [selectByClick]="true"
+                            [searchEnabled]="true"
+                            (onContentReady)="syncTreeViewSelection($event)"
+                            (onItemSelectionChanged)="treeView_itemSelectionChanged($event)"
+
+                    >
+                    </dx-tree-view>
+                </div>
+            </dx-drop-down-box>
+        </div>
     </dx-form>
 </app-base-edit-form>

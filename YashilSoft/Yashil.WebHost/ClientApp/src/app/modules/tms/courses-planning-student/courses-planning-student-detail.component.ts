@@ -12,17 +12,17 @@ import {createStore} from 'devextreme-aspnet-data-nojquery';
   templateUrl: './courses-planning-student-detail.component.html'
 })
 export class CoursesPlanningStudentDetailComponent extends BaseEdit implements OnInit {
-		 coursesPlanningDataSource:any;
+		 coursePlanningDataSource:any;
 	 	 personDataSource:any;
 	 		accessLevels: any[] = [];
 	  constructor(private genericDataService: GenericDataService) {
     super(genericDataService);
-    this.entityName = 'coursesPlanningStudent';
+    this.entityName = 'coursePlanningStudent';
   }
 
   ngOnInit() {
     super.ngOnInit();
-							this.coursesPlanningDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'coursesPlanning');
+							this.coursePlanningDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'coursePlanning');
 									this.personDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'person');
 							this._genericDataService.getEntitiesByEntityNameForSelect(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
 		  }      

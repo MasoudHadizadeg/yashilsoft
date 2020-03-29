@@ -7,14 +7,14 @@ using  YashilTms.Web.Areas.Tms.ViewModels;
 
 namespace YashilTms.Web.Areas.Tms.Controllers
 {
-	public class CoursesPlanningStudentController : BaseController<CoursesPlanningStudent ,int,CoursesPlanningStudentListViewModel, CoursesPlanningStudentEditModel,CoursesPlanningStudentSimpleViewModel>
+	public class CoursePlanningStudentController : BaseController<CoursePlanningStudent ,int,CoursePlanningStudentListViewModel, CoursePlanningStudentEditModel,CoursePlanningStudentSimpleViewModel>
     {
         private readonly IMapper _mapper;
-        private readonly ICoursesPlanningStudentService _coursesPlanningStudentService;
-        public CoursesPlanningStudentController(ICoursesPlanningStudentService coursesPlanningStudentService, IMapper mapper) : base(coursesPlanningStudentService, mapper)
+        private readonly ICoursePlanningStudentService _coursePlanningStudentService;
+        public CoursePlanningStudentController(ICoursePlanningStudentService coursePlanningStudentService, IMapper mapper) : base(coursePlanningStudentService, mapper)
         {
             _mapper=mapper;
-            _coursesPlanningStudentService=coursesPlanningStudentService;
+            _coursePlanningStudentService=coursePlanningStudentService;
         }
     }
 }      

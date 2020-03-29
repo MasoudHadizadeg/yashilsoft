@@ -86,8 +86,8 @@ export class CustomDevDataSource {
                     for (let i = 0; i < changedProps.length; i++) {
                         changedProps[i] = changedProps[i].charAt(0).toUpperCase() + changedProps[i].slice(1);
                     }
+                    values['id'] = key;
                     const data = {EditModel: values, ChangedProps: changedProps};
-                    values['id'] = key.id;
                     return this.httpClient.put<any>('/api/' + entityName + '/PutEntityCustom', data, {})
                         .toPromise().then();
                 }

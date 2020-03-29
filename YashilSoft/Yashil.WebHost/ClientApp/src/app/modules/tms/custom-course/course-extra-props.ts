@@ -3,9 +3,9 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-course-extra-params',
-    templateUrl: './cource-extra-props.html'
+    templateUrl: './course-extra-props.html'
 })
-export class CourceExtraPropsComponent implements OnInit {
+export class CourseExtraPropsComponent implements OnInit {
     tabs: any[] = [];
 
     constructor() {

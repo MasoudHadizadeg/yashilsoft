@@ -1,2 +1,6 @@
-<app-base-list-form [columns]="columns" [entityName]="entityName" [detailComponent]="detailComponent">
+<app-base-list-form (afterInitialDetailComponent)="afterInitialDetailComponent($event)"
+                    [columns]="columns"
+                    [entityName]="entityName"
+                    #frmCourse
+                    [detailComponent]="detailComponent">
 </app-base-list-form>

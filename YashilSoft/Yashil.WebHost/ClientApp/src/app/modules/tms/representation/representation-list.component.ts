@@ -17,6 +17,7 @@ export class RepresentationListComponent extends Selectable implements OnInit {
     @Input()
     set educationalCenterId(value: number) {
         if (this._educationalCenterId !== value) {
+            this.loadAfterSetFilter = true;
             this._educationalCenterId = value;
             this.frmRep.customListUrl = `${this.baseListUrl}${this._educationalCenterId}`;
             this.frmRep.refreshList();
@@ -27,6 +28,7 @@ export class RepresentationListComponent extends Selectable implements OnInit {
         return this._educationalCenterId;
     }
 
+    loadAfterSetFilter: boolean;
     selectedItemId: number;
     columns: any[] = [];
     entityName = 'representation';
@@ -46,6 +48,9 @@ export class RepresentationListComponent extends Selectable implements OnInit {
     }
 
     ngOnInit(): void {
+        if (this.educationalCenterId) {
+            this.loadAfterSetFilter = true;
+        }
         this.columns.push({
             caption: 'عنوان',
             dataField: 'title'
@@ -53,7 +58,8 @@ export class RepresentationListComponent extends Selectable implements OnInit {
         if (!this.hideEducationalCenterColumn) {
             this.columns.push({
                 caption: 'مرکز آموشي',
-                dataField: 'educationalCenterTitle'
+                dataField: 'educationalCenterTitle',
+                groupIndex: 1
             });
         }
         this.columns.push({

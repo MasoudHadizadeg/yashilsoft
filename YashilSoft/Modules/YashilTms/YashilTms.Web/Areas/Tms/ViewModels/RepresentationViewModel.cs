@@ -56,14 +56,11 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 				public int Id { get; set; }		
 				[StringLength(300)]				public string Code { get; set; }		
 				[StringLength(600)] 
-				[Required]
-				public string Title { get; set; }		
+				[Required]				public string Title { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int EducationalCenterId { get; set; }		
+				[Required]				public int EducationalCenterId { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int CityId { get; set; }		
+				[Required]				public int CityId { get; set; }		
 				[StringLength(600)]				public string Email { get; set; }		
 				[StringLength(20)]				public string Telephone { get; set; }		
 				[StringLength(20)]				public string FaxNumber { get; set; }		
@@ -75,8 +72,7 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 				[StringLength(10)]				public string PostalCode { get; set; }		
 				[StringLength(600)]				public string Address { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int AccessLevelId { get; set; }		
+				[Required]				public int AccessLevelId { get; set; }		
 }
 
   

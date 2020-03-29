@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilTms.Core.Repositories
 {
-	public interface ICoursesPlanningStudentRepository : IGenericRepository<CoursesPlanningStudent,int>
+	public interface ICoursePlanningStudentRepository : IGenericRepository<CoursePlanningStudent,int>
     {
     }
 }      

@@ -94,10 +94,11 @@ namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
 				if (propertyType == "int" && col.IsPrimaryKey != "1")
 				{
 					#>
-				[Range(0,int.MaxValue)]<#}if (propertyType == "string" && col.MaxLength!="-1"){#>
-				[StringLength(<#=col.MaxLength #>)]<#}if (!col.AllowNull && col.IsPrimaryKey != "1"){#> 
-				[Required]
-<#}#>
+				[Range(0,int.MaxValue)]<#}
+				if (propertyType == "string" && col.MaxLength!="-1"){#>
+				[StringLength(<#=col.MaxLength #>)]<#}
+				if (!col.AllowNull && col.IsPrimaryKey != "1" && propertyType!="bool"){#> 
+				[Required]<#}#>
 				public <#= propertyType #> <#= col.Name #> { get; set; }		
 <#}#>
 }

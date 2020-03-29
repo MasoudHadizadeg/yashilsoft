@@ -1,4 +1,4 @@
-<app-base-list-form loadAfterSetFilter="true" #frmRep
+<app-base-list-form [loadAfterSetFilter]="loadAfterSetFilter" #frmRep
                     (selectedRowChanged)="selectedRowChanged.emit($event)"
                     (afterInitialDetailComponent)="afterInitialDetailComponent($event)"
                     (beforeAddClicked)="setEducationalCenterId" [columns]="columns" [entityName]="entityName"

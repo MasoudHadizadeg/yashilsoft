@@ -1,0 +1,49 @@
+<div style="width: 100%;" [style.height.px]="contentHeight">
+    <div class="row" style="padding-bottom: 5px">
+        <div class="col-6">
+            <div style="float: right;width: 20%;margin-top: 0.5rem; font-size: 14px;text-align: right">
+                <label>مرکز آموزشی : </label>
+            </div>
+            <div style="float: right; width: 80%">
+                <dx-lookup
+                        [dataSource]="educationalCenterDataSource"
+                        [(value)]="educationalCenterId"
+                        displayExpr="title"
+                        valueExpr="id"
+                        rtlEnabled="true"
+                        (onSelectionChanged)="selectedEducationalCenterChanged($event)"
+                        [showPopupTitle]="false">
+                </dx-lookup>
+            </div>
+        </div>
+        <div class="col-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+
+            <div style="width: 100%;" [style.height.px]="contentHeight">
+                <as-split direction="horizontal" dir="ltr">
+                    <as-split direction="horizontal">
+                        <as-split-area size="70" #t1 dir="rtl">
+                            <app-base-list-form allowGrouping="true"
+                                                loadAfterSetFilter="true"
+                                                (afterInitialDetailComponent)="afterInitialDetailComponent($event)"
+                                                [columns]="columns"
+                                                [entityName]="entityName"
+                                                #frmCourse
+                                                [detailComponent]="detailComponent">
+                            </app-base-list-form>
+                        </as-split-area>
+                        <as-split-area size="30" #t2 dir="rtl">
+                            <app-course-category-list [isForSelectReadOnly]="forSelect" hideEducationalCenterColumn="true" (selectedRowChanged)="selectedCourseCategoryChanged($event)"
+                                                      [educationalCenterId]="educationalCenterId"></app-course-category-list>
+                        </as-split-area>
+                    </as-split>
+
+                </as-split>
+            </div>
+
+
+        </div>
+    </div>
+</div>

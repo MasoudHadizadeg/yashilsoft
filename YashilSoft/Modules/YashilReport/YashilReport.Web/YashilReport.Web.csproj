@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Stimulsoft.Reports.Web.NetCore" Version="2020.1.1" />
-    <PackageReference Include="Yashil.Common.Web.Infrastructure" Version="1.6.6" />
+    <PackageReference Include="Yashil.Common.Web.Infrastructure" Version="1.6.7" />
   </ItemGroup> 
 
   <ItemGroup>

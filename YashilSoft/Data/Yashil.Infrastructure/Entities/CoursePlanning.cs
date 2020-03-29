@@ -3,24 +3,24 @@ using System.Collections.Generic;
 
 namespace Yashil.Infrastructure.Entities
 {
-    public partial class CoursesPlanning
+    public partial class CoursePlanning
     {
-        public CoursesPlanning()
+        public CoursePlanning()
         {
-            CoursesPlanningStudent = new HashSet<CoursesPlanningStudent>();
+            CoursePlanningStudent = new HashSet<CoursePlanningStudent>();
         }
 
         public int Id { get; set; }
         public string Code { get; set; }
         public int RepresentationId { get; set; }
         public bool Organizational { get; set; }
-        public int CourceStatus { get; set; }
+        public int CourseStatus { get; set; }
         public int? RepresentationPersonId { get; set; }
         public int? Price { get; set; }
         public int CourseId { get; set; }
         public int? AgeCategory { get; set; }
-        public int ImplementaionType { get; set; }
-        public int CourceType { get; set; }
+        public int ImplementationType { get; set; }
+        public int CourseType { get; set; }
         public int RunType { get; set; }
         public int StartDate { get; set; }
         public int CustomGender { get; set; }
@@ -38,17 +38,17 @@ namespace Yashil.Infrastructure.Entities
         public virtual AccessLevel AccessLevel { get; set; }
         public virtual CommonBaseData AgeCategoryNavigation { get; set; }
         public virtual Application Application { get; set; }
-        public virtual CommonBaseData CourceStatusNavigation { get; set; }
-        public virtual CommonBaseData CourceTypeNavigation { get; set; }
         public virtual Course Course { get; set; }
+        public virtual CommonBaseData CourseStatusNavigation { get; set; }
+        public virtual CommonBaseData CourseTypeNavigation { get; set; }
         public virtual User CreateByNavigation { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
         public virtual CommonBaseData CustomGenderNavigation { get; set; }
-        public virtual CommonBaseData ImplementaionTypeNavigation { get; set; }
+        public virtual CommonBaseData ImplementationTypeNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual Representation Representation { get; set; }
         public virtual RepresentationPerson RepresentationPerson { get; set; }
         public virtual CommonBaseData RunTypeNavigation { get; set; }
-        public virtual ICollection<CoursesPlanningStudent> CoursesPlanningStudent { get; set; }
+        public virtual ICollection<CoursePlanningStudent> CoursePlanningStudent { get; set; }
     }
 }

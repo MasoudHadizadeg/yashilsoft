@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {DashboardGroupDashboardDetailComponent} from './dashboard-group-dashboard-detail.component';
 
 @Component({

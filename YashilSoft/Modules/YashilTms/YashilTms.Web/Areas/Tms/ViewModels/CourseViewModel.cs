@@ -44,23 +44,18 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 				public int Id { get; set; }		
 				[StringLength(300)]				public string Code { get; set; }		
 				[StringLength(600)] 
-				[Required]
-				public string Title { get; set; }		
+				[Required]				public string Title { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int CourseCategoryId { get; set; }		
+				[Required]				public int CourseCategoryId { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int EducationalCenterId { get; set; }		
+				[Required]				public int EducationalCenterId { get; set; }		
 				public int? SkillType { get; set; }		
 				public int? CertificateType { get; set; }		
 				public int? EvaluationMethod { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int Duration { get; set; }		
+				[Required]				public int Duration { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int AccessLevelId { get; set; }		
+				[Required]				public int AccessLevelId { get; set; }		
 }
 
   

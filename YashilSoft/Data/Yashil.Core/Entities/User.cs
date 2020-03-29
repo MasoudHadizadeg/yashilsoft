@@ -36,10 +36,10 @@ namespace Yashil.Core.Entities
             CourseCategoryModifyByNavigation = new HashSet<CourseCategory>();
             CourseCreateByNavigation = new HashSet<Course>();
             CourseModifyByNavigation = new HashSet<Course>();
-            CoursesPlanningCreateByNavigation = new HashSet<CoursesPlanning>();
-            CoursesPlanningModifyByNavigation = new HashSet<CoursesPlanning>();
-            CoursesPlanningStudentCreateByNavigation = new HashSet<CoursesPlanningStudent>();
-            CoursesPlanningStudentModifyByNavigation = new HashSet<CoursesPlanningStudent>();
+            CoursePlanningCreateByNavigation = new HashSet<CoursePlanning>();
+            CoursePlanningModifyByNavigation = new HashSet<CoursePlanning>();
+            CoursePlanningStudentCreateByNavigation = new HashSet<CoursePlanningStudent>();
+            CoursePlanningStudentModifyByNavigation = new HashSet<CoursePlanningStudent>();
             DashboardConnectionStringCreateByNavigation = new HashSet<DashboardConnectionString>();
             DashboardConnectionStringModifyByNavigation = new HashSet<DashboardConnectionString>();
             DashboardGroupDashboardCreateByNavigation = new HashSet<DashboardGroupDashboard>();
@@ -53,7 +53,11 @@ namespace Yashil.Core.Entities
             DocumentCategoryCreateByNavigation = new HashSet<DocumentCategory>();
             DocumentCategoryModifyByNavigation = new HashSet<DocumentCategory>();
             EducationalCenterCreateByNavigation = new HashSet<EducationalCenter>();
+            EducationalCenterMainCourseCategoryCreateByNavigation = new HashSet<EducationalCenterMainCourseCategory>();
+            EducationalCenterMainCourseCategoryModifyByNavigation = new HashSet<EducationalCenterMainCourseCategory>();
             EducationalCenterModifyByNavigation = new HashSet<EducationalCenter>();
+            MainCourseCategoryCreateByNavigation = new HashSet<MainCourseCategory>();
+            MainCourseCategoryModifyByNavigation = new HashSet<MainCourseCategory>();
             MenuCreateByNavigation = new HashSet<Menu>();
             MenuModifyByNavigation = new HashSet<Menu>();
             OrganizationCreateByNavigation = new HashSet<Organization>();
@@ -147,10 +151,10 @@ namespace Yashil.Core.Entities
         public virtual ICollection<CourseCategory> CourseCategoryModifyByNavigation { get; set; }
         public virtual ICollection<Course> CourseCreateByNavigation { get; set; }
         public virtual ICollection<Course> CourseModifyByNavigation { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanningCreateByNavigation { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanningModifyByNavigation { get; set; }
-        public virtual ICollection<CoursesPlanningStudent> CoursesPlanningStudentCreateByNavigation { get; set; }
-        public virtual ICollection<CoursesPlanningStudent> CoursesPlanningStudentModifyByNavigation { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanningCreateByNavigation { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanningModifyByNavigation { get; set; }
+        public virtual ICollection<CoursePlanningStudent> CoursePlanningStudentCreateByNavigation { get; set; }
+        public virtual ICollection<CoursePlanningStudent> CoursePlanningStudentModifyByNavigation { get; set; }
         public virtual ICollection<DashboardConnectionString> DashboardConnectionStringCreateByNavigation { get; set; }
         public virtual ICollection<DashboardConnectionString> DashboardConnectionStringModifyByNavigation { get; set; }
         public virtual ICollection<DashboardGroupDashboard> DashboardGroupDashboardCreateByNavigation { get; set; }
@@ -164,7 +168,11 @@ namespace Yashil.Core.Entities
         public virtual ICollection<DocumentCategory> DocumentCategoryCreateByNavigation { get; set; }
         public virtual ICollection<DocumentCategory> DocumentCategoryModifyByNavigation { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenterCreateByNavigation { get; set; }
+        public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategoryCreateByNavigation { get; set; }
+        public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategoryModifyByNavigation { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenterModifyByNavigation { get; set; }
+        public virtual ICollection<MainCourseCategory> MainCourseCategoryCreateByNavigation { get; set; }
+        public virtual ICollection<MainCourseCategory> MainCourseCategoryModifyByNavigation { get; set; }
         public virtual ICollection<Menu> MenuCreateByNavigation { get; set; }
         public virtual ICollection<Menu> MenuModifyByNavigation { get; set; }
         public virtual ICollection<Organization> OrganizationCreateByNavigation { get; set; }

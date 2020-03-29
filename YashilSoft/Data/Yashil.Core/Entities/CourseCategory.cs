@@ -16,8 +16,10 @@ namespace Yashil.Core.Entities
         public int? ParentId { get; set; }
         public string Code { get; set; }
         public string Title { get; set; }
-        public int EducationalCenterId { get; set; }
+        public int DisplayOrder { get; set; }
+        public int EducationalCenterMainCourseCategoryId { get; set; }
         public string Description { get; set; }
+        public string CodePath { get; set; }
         public int CreateBy { get; set; }
         public int? ModifyBy { get; set; }
         public DateTime CreationDate { get; set; }
@@ -31,7 +33,7 @@ namespace Yashil.Core.Entities
         public virtual Application Application { get; set; }
         public virtual User CreateByNavigation { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
-        public virtual EducationalCenter EducationalCenter { get; set; }
+        public virtual EducationalCenterMainCourseCategory EducationalCenterMainCourseCategory { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual CourseCategory Parent { get; set; }
         public virtual ICollection<Course> Course { get; set; }

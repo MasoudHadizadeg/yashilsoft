@@ -2,7 +2,7 @@
     <div class="col-1">
         {{groupEntityLabel}} :
     </div>
-    <div class="col-4" [ngClass]="{'dx-rtl': true}" >
+    <div class="col-4" [ngClass]="{'dx-rtl': true}">
         <dx-lookup
                 [dataSource]="itemDataSource"
                 [closeOnOutsideClick]="true"
@@ -76,9 +76,11 @@
                       [rtlEnabled]="true"
                       [rowAlternationEnabled]="true"
                       [height]="gridHeight"
-                      [columns]="columns"
+                      [columns]="assignedColumns"
                       [wordWrapEnabled]="true"
                       [remoteOperations]="true">
+            <dxo-editing mode="row" [allowUpdating]="allowEditAssignedItems">
+            </dxo-editing>
             <dxo-selection
                     selectAllMode="allPages"
                     showCheckBoxesMode="onClick"

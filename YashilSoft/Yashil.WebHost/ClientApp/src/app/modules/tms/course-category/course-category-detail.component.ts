@@ -11,9 +11,14 @@ import {Entity} from '../../../shared/base/base-data/entity.enum';
 export class CourseCategoryDetailComponent extends BaseEdit implements OnInit {
     @Input()
     educationalCenterId: number;
+    @Input()
+    educationalCenterMainCourseCategoryId: number;
+    @Input()
+    parentId: number;
     parentDataSource: any;
     educationalCenterDataSource: any;
     accessLevels: any[] = [];
+    mainCourseCategories: any[] = [];
 
     constructor(private genericDataService: GenericDataService) {
         super(genericDataService);
@@ -24,13 +29,34 @@ export class CourseCategoryDetailComponent extends BaseEdit implements OnInit {
         super.ngOnInit();
         if (!this.selectedEntityId && this.educationalCenterId) {
             this.entity.educationalCenterId = this.educationalCenterId;
+            this.entity.educationalCenterMainCourseCategoryId = this.educationalCenterMainCourseCategoryId;
+            this.entity.parentId = this.parentId;
         }
-        this.parentDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'courseCategory');
+        // this.parentDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'courseCategory');
+        this._genericDataService.getCustomEntitiesByUrl(`api/courseCategory/GetByEducationalCenterMainCourseCategoryId/${this.educationalCenterMainCourseCategoryId}`)
+            .subscribe(res => {
+                if (this.selectedEntityId) {
+                    res = res.filter(x => x.id !== this.selectedEntityId);
+                }
+                this.parentDataSource = res;
+            });
         this.educationalCenterDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'educationalCenter');
         this._genericDataService.getEntitiesByEntityNameForSelect(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
+        this._genericDataService.getCustomEntitiesByUrl(`api/educationalCenterMainCourseCategory/GetByEducationalCenterId/${this.educationalCenterId}`)
+            .subscribe(res => {
+                this.mainCourseCategories = res
+            });
+    }
+
+    allowSetMainCourseCategories() {
+        return (this.entity && this.entity.id) || this.educationalCenterMainCourseCategoryId != null;
     }
 
     allowSetEducationalCenter() {
         return this.educationalCenterId != null && this.educationalCenterId !== undefined;
+    }
+
+    allowSEducationalCenterMainCourseCategoryId() {
+        return this.educationalCenterMainCourseCategoryId != null && this.educationalCenterMainCourseCategoryId !== undefined;
     }
 }

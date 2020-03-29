@@ -4,7 +4,7 @@ using Yashil.Common.Core.Interfaces;
 namespace YashilTms.Web.Areas.Tms.ViewModels
 {
 
-   public class CoursesPlanningStudentListViewModel:IBaseViewModel
+   public class CoursePlanningStudentListViewModel:IBaseViewModel
     {
 		public int ViewModelId
 	        {
@@ -15,7 +15,7 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 
         public string Code { get; set; }
 
-        public string CoursesPlanningTitle { get; set; }
+        public string CoursePlanningTitle { get; set; }
 
         public string PersonTitle { get; set; }
 
@@ -26,7 +26,7 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
     }
 
 
-	    public class CoursesPlanningStudentEditModel:IBaseViewModel
+	    public class CoursePlanningStudentEditModel:IBaseViewModel
         {
 	        public int ViewModelId
 	            {
@@ -36,24 +36,20 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 				public int Id { get; set; }		
 				[StringLength(300)]				public string Code { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int CoursesPlanningId { get; set; }		
+				[Required]				public int CoursePlanningId { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int PersonId { get; set; }		
+				[Required]				public int PersonId { get; set; }		
  
-				[Required]
-				public double Score { get; set; }		
+				[Required]				public double Score { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int AccessLevelId { get; set; }		
+				[Required]				public int AccessLevelId { get; set; }		
 }
 
   
 
 
 
-public class CoursesPlanningStudentSimpleViewModel:IBaseViewModel
+public class CoursePlanningStudentSimpleViewModel:IBaseViewModel
         {
 	        public int ViewModelId
 	            {

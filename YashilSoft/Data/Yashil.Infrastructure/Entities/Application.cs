@@ -18,14 +18,16 @@ namespace Yashil.Infrastructure.Entities
             CommonBaseType = new HashSet<CommonBaseType>();
             Course = new HashSet<Course>();
             CourseCategory = new HashSet<CourseCategory>();
-            CoursesPlanning = new HashSet<CoursesPlanning>();
-            CoursesPlanningStudent = new HashSet<CoursesPlanningStudent>();
+            CoursePlanning = new HashSet<CoursePlanning>();
+            CoursePlanningStudent = new HashSet<CoursePlanningStudent>();
             DashboardGroup = new HashSet<DashboardGroup>();
             DashboardStore = new HashSet<DashboardStore>();
             DocType = new HashSet<DocType>();
             DocumentCategory = new HashSet<DocumentCategory>();
             EducationalCenter = new HashSet<EducationalCenter>();
+            EducationalCenterMainCourseCategory = new HashSet<EducationalCenterMainCourseCategory>();
             InverseParent = new HashSet<Application>();
+            MainCourseCategory = new HashSet<MainCourseCategory>();
             Menu = new HashSet<Menu>();
             Organization = new HashSet<Organization>();
             Person = new HashSet<Person>();
@@ -66,14 +68,16 @@ namespace Yashil.Infrastructure.Entities
         public virtual ICollection<CommonBaseType> CommonBaseType { get; set; }
         public virtual ICollection<Course> Course { get; set; }
         public virtual ICollection<CourseCategory> CourseCategory { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanning { get; set; }
-        public virtual ICollection<CoursesPlanningStudent> CoursesPlanningStudent { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanning { get; set; }
+        public virtual ICollection<CoursePlanningStudent> CoursePlanningStudent { get; set; }
         public virtual ICollection<DashboardGroup> DashboardGroup { get; set; }
         public virtual ICollection<DashboardStore> DashboardStore { get; set; }
         public virtual ICollection<DocType> DocType { get; set; }
         public virtual ICollection<DocumentCategory> DocumentCategory { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenter { get; set; }
+        public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategory { get; set; }
         public virtual ICollection<Application> InverseParent { get; set; }
+        public virtual ICollection<MainCourseCategory> MainCourseCategory { get; set; }
         public virtual ICollection<Menu> Menu { get; set; }
         public virtual ICollection<Organization> Organization { get; set; }
         public virtual ICollection<Person> Person { get; set; }

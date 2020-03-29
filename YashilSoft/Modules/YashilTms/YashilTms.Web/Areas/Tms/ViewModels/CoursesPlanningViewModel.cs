@@ -1,16 +1,17 @@
-			using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using Yashil.Common.Core.Interfaces;
+
 namespace YashilTms.Web.Areas.Tms.ViewModels
 {
-
-   public class CoursesPlanningListViewModel:IBaseViewModel
+    public class CoursePlanningListViewModel : IBaseViewModel
     {
-		public int ViewModelId
-	        {
-	            get => Id;
-	            set => Id = value;
-	        }
+        public int ViewModelId
+        {
+            get => Id;
+            set => Id = value;
+        }
+
         public int Id { get; set; }
 
         public string Code { get; set; }
@@ -19,7 +20,7 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 
         public bool Organizational { get; set; }
 
-        public string CourceStatusTitle { get; set; }
+        public string CourseStatusTitle { get; set; }
 
         public string RepresentationPersonTitle { get; set; }
 
@@ -29,9 +30,9 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 
         public string AgeCategoryTitle { get; set; }
 
-        public string ImplementaionTypeTitle { get; set; }
+        public string ImplementationTypeTitle { get; set; }
 
-        public string CourceTypeTitle { get; set; }
+        public string CourseTypeTitle { get; set; }
 
         public string RunTypeTitle { get; set; }
 
@@ -42,71 +43,46 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
         public int MaxCapacity { get; set; }
 
         public string AccessLevelTitle { get; set; }
-
     }
 
 
-	    public class CoursesPlanningEditModel:IBaseViewModel
+    public class CoursePlanningEditModel : IBaseViewModel
+    {
+        public int ViewModelId
         {
-	        public int ViewModelId
-	            {
-	                get => Id;
-	                set => Id = value;
-	            }
-				public int Id { get; set; }		
-				[StringLength(300)]				public string Code { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]
-				public int RepresentationId { get; set; }		
- 
-				[Required]
-				public bool Organizational { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]
-				public int CourceStatus { get; set; }		
-				public int? RepresentationPersonId { get; set; }		
-				public int? Price { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]
-				public int CourseId { get; set; }		
-				public int? AgeCategory { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]
-				public int ImplementaionType { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]
-				public int CourceType { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]
-				public int RunType { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]
-				public int StartDate { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]
-				public int CustomGender { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]
-				public int MaxCapacity { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]
-				public int AccessLevelId { get; set; }		
-}
+            get => Id;
+            set => Id = value;
+        }
 
-  
+        public int Id { get; set; }
+        [StringLength(300)] public string Code { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int RepresentationId { get; set; }
+        public bool Organizational { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int CourseStatus { get; set; }
+        public int? RepresentationPersonId { get; set; }
+        public int? Price { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int CourseId { get; set; }
+        public int? AgeCategory { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int ImplementationType { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int CourseType { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int RunType { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int StartDate { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int CustomGender { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int MaxCapacity { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int AccessLevelId { get; set; }
+    }
 
 
-
-public class CoursesPlanningSimpleViewModel:IBaseViewModel
+    public class CoursePlanningSimpleViewModel : IBaseViewModel
+    {
+        public int ViewModelId
         {
-	        public int ViewModelId
-	            {
-	                get => Id;
-	                set => Id = value;
-	            }
+            get => Id;
+            set => Id = value;
+        }
+
         public int Id { get; set; }
 
-							public string Title { get; set; }
-			    }
-
-}      
+        public string Title { get; set; }
+    }
+}

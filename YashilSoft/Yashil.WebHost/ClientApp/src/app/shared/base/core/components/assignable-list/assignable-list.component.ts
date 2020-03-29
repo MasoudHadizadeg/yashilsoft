@@ -11,6 +11,8 @@ import {custom} from 'devextreme/ui/dialog';
     templateUrl: 'assignable-list.component.html'
 })
 export class AssignableListComponent implements OnInit {
+    @Input()
+    allowEditAssignedItems = false;
     gridHeight = 400;
     @ViewChild('notSelectedItemsGrid', {static: false}) notSelectedItemsDataGrid: DxDataGridComponent;
     @ViewChild('selectedItemsGrid', {static: false}) selectedItemsDataGrid: DxDataGridComponent;
@@ -41,6 +43,8 @@ export class AssignableListComponent implements OnInit {
     @Input()
     columns: any[] = [];
     @Input()
+    assignedColumns: any[] = [];
+    @Input()
     getAssignedMethodName: string;
     @Input()
     getNotAssignedMethodName: string;
@@ -53,11 +57,15 @@ export class AssignableListComponent implements OnInit {
     }
 
     ngOnInit() {
+        const defaultColumn = {
+            caption: 'عنوان',
+            dataField: 'title'
+        };
         if (this.columns.length === 0) {
-            this.columns.push({
-                caption: 'عنوان',
-                dataField: 'title'
-            });
+            this.columns.push(defaultColumn);
+        }
+        if (this.assignedColumns.length === 0) {
+            this.columns.push(defaultColumn);
         }
         this.gridHeight = window.innerHeight - 180;
         this.itemDataSource = this.genericDataService.createCustomDatasourceForSelect('id', this.groupEntityName);
@@ -69,7 +77,8 @@ export class AssignableListComponent implements OnInit {
     bindLists() {
         const getAssignedMethod = `${this.assignableListName}/Get${this.assignableListName}sAssignedTo${this.groupEntityName}Async?id=${this.selectedGroupItemId}`;
         const getNotAssignedMethod = `${this.assignableListName}/Get${this.assignableListName}sNotAssignedTo${this.groupEntityName}Async?id=${this.selectedGroupItemId}`;
-        this.assignedItemDataSource = new CustomDevDataSource(this.httpClient).getCustomDataSourceWithCustomListUrl(getAssignedMethod);
+        this.assignedItemDataSource = new CustomDevDataSource(this.httpClient).getCustomDataSource(this.assignableListName, [], getAssignedMethod);
+        // getCustomDataSourceWithCustomListUrl(getAssignedMethod);
         this.notAssignedItemDataSource = new CustomDevDataSource(this.httpClient).getCustomDataSourceWithCustomListUrl(getNotAssignedMethod);
     }
 

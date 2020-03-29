@@ -12,13 +12,13 @@ namespace Yashil.Infrastructure.Entities
             CityCustomCategoryNavigation = new HashSet<City>();
             CourseCertificateTypeNavigation = new HashSet<Course>();
             CourseEvaluationMethodNavigation = new HashSet<Course>();
+            CoursePlanningAgeCategoryNavigation = new HashSet<CoursePlanning>();
+            CoursePlanningCourseStatusNavigation = new HashSet<CoursePlanning>();
+            CoursePlanningCourseTypeNavigation = new HashSet<CoursePlanning>();
+            CoursePlanningCustomGenderNavigation = new HashSet<CoursePlanning>();
+            CoursePlanningImplementationTypeNavigation = new HashSet<CoursePlanning>();
+            CoursePlanningRunTypeNavigation = new HashSet<CoursePlanning>();
             CourseSkillTypeNavigation = new HashSet<Course>();
-            CoursesPlanningAgeCategoryNavigation = new HashSet<CoursesPlanning>();
-            CoursesPlanningCourceStatusNavigation = new HashSet<CoursesPlanning>();
-            CoursesPlanningCourceTypeNavigation = new HashSet<CoursesPlanning>();
-            CoursesPlanningCustomGenderNavigation = new HashSet<CoursesPlanning>();
-            CoursesPlanningImplementaionTypeNavigation = new HashSet<CoursesPlanning>();
-            CoursesPlanningRunTypeNavigation = new HashSet<CoursesPlanning>();
             InverseParent = new HashSet<CommonBaseData>();
             PersonEducationGradeNavigation = new HashSet<Person>();
             PersonGenderNavigation = new HashSet<Person>();
@@ -58,13 +58,13 @@ namespace Yashil.Infrastructure.Entities
         public virtual ICollection<City> CityCustomCategoryNavigation { get; set; }
         public virtual ICollection<Course> CourseCertificateTypeNavigation { get; set; }
         public virtual ICollection<Course> CourseEvaluationMethodNavigation { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanningAgeCategoryNavigation { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanningCourseStatusNavigation { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanningCourseTypeNavigation { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanningCustomGenderNavigation { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanningImplementationTypeNavigation { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanningRunTypeNavigation { get; set; }
         public virtual ICollection<Course> CourseSkillTypeNavigation { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanningAgeCategoryNavigation { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanningCourceStatusNavigation { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanningCourceTypeNavigation { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanningCustomGenderNavigation { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanningImplementaionTypeNavigation { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanningRunTypeNavigation { get; set; }
         public virtual ICollection<CommonBaseData> InverseParent { get; set; }
         public virtual ICollection<Person> PersonEducationGradeNavigation { get; set; }
         public virtual ICollection<Person> PersonGenderNavigation { get; set; }

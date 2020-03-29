@@ -8,23 +8,23 @@ using YashilTms.Core.Services;
 
 namespace YashilTms.Infrastructure.ServiceImpl
 {
-	public class CoursesPlanningService : GenericService<CoursesPlanning,int>, ICoursesPlanningService
+	public class CoursePlanningService : GenericService<CoursePlanning,int>, ICoursePlanningService
     {
 		private readonly IUnitOfWork _unitOfWork;
-        private readonly ICoursesPlanningRepository _coursesPlanningRepository;
+        private readonly ICoursePlanningRepository _coursePlanningRepository;
 		private readonly IUserPrincipal _userPrincipal;
        
-		public CoursesPlanningService (IUnitOfWork unitOfWork, ICoursesPlanningRepository coursesPlanningRepository, IUserPrincipal userPrincipal)
-			: base(unitOfWork, coursesPlanningRepository,userPrincipal)
+		public CoursePlanningService (IUnitOfWork unitOfWork, ICoursePlanningRepository coursePlanningRepository, IUserPrincipal userPrincipal)
+			: base(unitOfWork, coursePlanningRepository,userPrincipal)
         {
 			_unitOfWork = unitOfWork;
-			_coursesPlanningRepository = coursesPlanningRepository;
+			_coursePlanningRepository = coursePlanningRepository;
 			_userPrincipal = userPrincipal;
         }
 
-        public IQueryable<CoursesPlanning> GetByRepresentationId(int representationId)
+        public IQueryable<CoursePlanning> GetByRepresentationId(int representationId)
         {
-            return _coursesPlanningRepository.GetByRepresentationId(representationId);
+            return _coursePlanningRepository.GetByRepresentationId(representationId);
         }
     }
 }      

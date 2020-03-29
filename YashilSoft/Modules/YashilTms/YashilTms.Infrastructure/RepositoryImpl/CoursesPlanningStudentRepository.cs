@@ -7,11 +7,11 @@ using YashilTms.Core.Repositories;
 
 namespace YashilTms.Infrastructure.RepositoryImpl
 {
-	public class CoursesPlanningStudentRepository : GenericApplicationBasedRepository<CoursesPlanningStudent,int>, ICoursesPlanningStudentRepository
+	public class CoursePlanningStudentRepository : GenericApplicationBasedRepository<CoursePlanningStudent,int>, ICoursePlanningStudentRepository
     {
         private readonly YashilAppDbContext _context;
         private readonly IUserPrincipal _userPrincipal;
-		public CoursesPlanningStudentRepository (YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context,userPrincipal)
+		public CoursePlanningStudentRepository (YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context,userPrincipal)
             {
                 _context = context;
                 _userPrincipal = userPrincipal;

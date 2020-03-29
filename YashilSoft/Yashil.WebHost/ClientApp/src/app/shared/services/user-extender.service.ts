@@ -26,7 +26,9 @@ export class UserExtenderService implements OnInit {
     setEntity(entity, isNew = false) {
         this._entity = entity;
         if (!isNew) {
-            this.firstLoad = true;
+            if (this._entity.additionalInfoList && this._entity.additionalInfoList[1]) {
+                this.firstLoad = true;
+            }
             this.bindDataSources(entity.additionalInfoList[0]);
         }
     }
@@ -41,6 +43,7 @@ export class UserExtenderService implements OnInit {
             },
             dataField: 'additionalInfoList[1]',
             editorType: 'dxLookup',
+            showClearButton: true,
             editorOptions: {
                 rtlEnabled: true,
                 closeOnOutsideClick: true,

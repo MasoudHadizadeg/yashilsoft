@@ -3,13 +3,16 @@ using System.Collections.Generic;
 
 namespace Yashil.Infrastructure.Entities
 {
-    public partial class CoursesPlanningStudent
+    public partial class MainCourseCategory
     {
+        public MainCourseCategory()
+        {
+            EducationalCenterMainCourseCategory = new HashSet<EducationalCenterMainCourseCategory>();
+        }
+
         public int Id { get; set; }
         public string Code { get; set; }
-        public int CoursesPlanningId { get; set; }
-        public int PersonId { get; set; }
-        public double Score { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public int CreateBy { get; set; }
         public int? ModifyBy { get; set; }
@@ -22,10 +25,9 @@ namespace Yashil.Infrastructure.Entities
 
         public virtual AccessLevel AccessLevel { get; set; }
         public virtual Application Application { get; set; }
-        public virtual CoursesPlanning CoursesPlanning { get; set; }
         public virtual User CreateByNavigation { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
         public virtual User ModifyByNavigation { get; set; }
-        public virtual Person Person { get; set; }
+        public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategory { get; set; }
     }
 }

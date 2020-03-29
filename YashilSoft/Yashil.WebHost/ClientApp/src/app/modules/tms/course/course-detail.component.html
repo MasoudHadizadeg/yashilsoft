@@ -3,32 +3,19 @@
     <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
         <dxi-item [label]="{text: 'کد'}" dataField="code">
-
-
         </dxi-item>
         <dxi-item [label]="{text: 'عنوان'}" dataField="title">
-
             <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
-
-        <dxi-item dataField="courseCategoryId" editorType="dxLookup" [label]="{text: 'گروه آموزشی'}"
-                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: courseCategoryDataSource,displayExpr:'title',valueExpr:'id' }">
-
-            <dxi-validation-rule type="required" message="گروه آموزشی اجباری می باشد"></dxi-validation-rule>
-
-        </dxi-item>
-
         <dxi-item dataField="educationalCenterId" editorType="dxLookup" [label]="{text: 'مرکز آموشی'}"
-                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: educationalCenterDataSource,displayExpr:'title',valueExpr:'id' }">
-
+                  [editorOptions]="{rtlEnabled:true,onSelectionChanged:selectedEducationalCenterChanged,readOnly:allowSetEducationalCenter(),closeOnOutsideClick:true,showPopupTitle:false, dataSource: educationalCenterDataSource,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="مرکز آموشی اجباری می باشد"></dxi-validation-rule>
-
+        </dxi-item>
+        <dxi-item [template]="'courseCategoryTree'" dataField="courseCategoryId" [label]="{text: 'دسته'}">
         </dxi-item>
 
         <dxi-item dataField="skillType" editorType="dxSelectBox" [label]="{text: 'سطح مهارت دوره'}"
                   [editorOptions]="{ items: skillTypes,displayExpr:'title',valueExpr:'id' }">
-
         </dxi-item>
 
         <dxi-item dataField="certificateType" editorType="dxSelectBox" [label]="{text: 'نوع گواهي نامه'}"
@@ -51,5 +38,35 @@
             <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
 
         </dxi-item>
+        <div *dxTemplate="let data of 'courseCategoryTree'">
+            <dx-drop-down-box
+                    [(value)]="entity.courseCategoryId"
+                    valueExpr="id"
+                    displayExpr="title"
+                    placeholder="انتخاب گروه..."
+                    [showClearButton]="true"
+                    [dataSource]="courseCategoryDataSource"
+                    (onValueChanged)="syncTreeViewSelection($event)">
+
+                <div *dxTemplate="let data of 'content'">
+                    <dx-tree-view
+                            [dataSource]="courseCategoryDataSource"
+                            dataStructure="plain"
+
+                            keyExpr="id"
+                            parentIdExpr="parentId"
+                            selectionMode="single"
+                            displayExpr="title"
+                            rtlEnabled="true"
+                            [selectByClick]="true"
+                            [searchEnabled]="true"
+                            (onContentReady)="syncTreeViewSelection($event)"
+                            (onItemSelectionChanged)="treeView_itemSelectionChanged($event)"
+
+                    >
+                    </dx-tree-view>
+                </div>
+            </dx-drop-down-box>
+        </div>
     </dx-form>
 </app-base-edit-form>

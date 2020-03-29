@@ -20,15 +20,13 @@ namespace YashilTms.Web
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IAdditionalUserPropRepository, AdditionalUserPropRepository>();
-            services.AddScoped<IAdditionalUserPropService, AdditionalUserPropService>();
             services.AddScoped<IUserControllerExtender, UserControllerExtender>();
-            services.AddScoped<ICoursesPlanningStudentRepository, CoursesPlanningStudentRepository>();
-            services.AddScoped<ICoursesPlanningStudentService, CoursesPlanningStudentService>();
+            services.AddScoped<ICoursePlanningStudentRepository, CoursePlanningStudentRepository>();
+            services.AddScoped<ICoursePlanningStudentService, CoursePlanningStudentService>();
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<ICourseService, CourseService>();
-            services.AddScoped<ICoursesPlanningRepository, CoursesPlanningRepository>();
-            services.AddScoped<ICoursesPlanningService, CoursesPlanningService>();
+            services.AddScoped<ICoursePlanningRepository, CoursePlanningRepository>();
+            services.AddScoped<ICoursePlanningService, CoursePlanningService>();
             services.AddScoped<IRepresentationRepository, RepresentationRepository>();
             services.AddScoped<IRepresentationService, RepresentationService>();
             services.AddScoped<IRepresentationPersonRepository, RepresentationPersonRepository>();
@@ -37,7 +35,15 @@ namespace YashilTms.Web
             services.AddScoped<ICourseCategoryService, CourseCategoryService>();
             services.AddScoped<IEducationalCenterRepository, EducationalCenterRepository>();
             services.AddScoped<IEducationalCenterService, EducationalCenterService>();
-
+            services.AddScoped<IAdditionalUserPropRepository, AdditionalUserPropRepository>();
+            services.AddScoped<IAdditionalUserPropService, AdditionalUserPropService>();
+            services.AddScoped<IMainCourseCategoryRepository, MainCourseCategoryRepository>();
+            services.AddScoped<IMainCourseCategoryService, MainCourseCategoryService>();
+            services
+                .AddScoped<IEducationalCenterMainCourseCategoryRepository, EducationalCenterMainCourseCategoryRepository
+                >();
+            services
+                .AddScoped<IEducationalCenterMainCourseCategoryService, EducationalCenterMainCourseCategoryService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

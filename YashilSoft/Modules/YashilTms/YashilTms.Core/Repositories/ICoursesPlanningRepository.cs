@@ -5,8 +5,8 @@ using Yashil.Core.Entities;
 
 namespace YashilTms.Core.Repositories
 {
-    public interface ICoursesPlanningRepository : IGenericRepository<CoursesPlanning, int>
+    public interface ICoursePlanningRepository : IGenericRepository<CoursePlanning, int>
     {
-        IQueryable<CoursesPlanning> GetByRepresentationId(int representationId);
+        IQueryable<CoursePlanning> GetByRepresentationId(int representationId);
     }
 }

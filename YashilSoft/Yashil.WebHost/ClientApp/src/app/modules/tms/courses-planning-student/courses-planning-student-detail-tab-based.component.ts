@@ -16,7 +16,7 @@ export class CoursesPlanningStudentDetailTabBasedComponent extends Editable impl
     tabs: any[] = [];
     constructor(private genericDataService: GenericDataService) {
         super();
-        this.entityName = 'coursesPlanningStudent';
+        this.entityName = 'coursePlanningStudent';
     }
 
     ngOnInit() {
@@ -35,7 +35,7 @@ export class CoursesPlanningStudentDetailTabBasedComponent extends Editable impl
     bindTabs(){
 
     this.tabs = [
-    {id: 1, title: 'دانشجويان شرکت کننده در دوره ', template: 'coursesPlanningStudent'},
+    {id: 1, title: 'دانشجويان شرکت کننده در دوره ', template: 'coursePlanningStudent'},
 					 {id: 2, title: 'توضیحات', template: 'description', disabled: !this.allowEditDesc},
 				 ];
 

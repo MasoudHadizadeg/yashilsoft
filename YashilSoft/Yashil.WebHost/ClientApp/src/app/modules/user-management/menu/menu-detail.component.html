@@ -1,55 +1,32 @@
+<app-base-edit-form (closeFormClick)="onCloseFormClick($event)" (submitEvent)="formSubmit($event)">
+    <dx-form #detailForm  [colCount]="2" [formData]="entity" id="form">
 
-			<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
-<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+        <dxi-item  cssClass="text-align-left" [label]="{text: 'مسیر'}" dataField="path">
+        </dxi-item>
+        <dxi-item [label]="{text: 'عنوان'}" dataField="title">
+            <dxi-validation-rule message="عنوان اجباری می باشد" type="required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item  cssClass="text-align-left" [label]="{text: 'آیکون'}" dataField="icon">
+        </dxi-item>
+        <dxi-item  cssClass="text-align-left" [label]="{text: 'کلاس'}" dataField="class">
+        </dxi-item>
+        <dxi-item  cssClass="text-align-left" [label]="{text: 'نشان'}" dataField="badge">
+        </dxi-item>
+        <dxi-item  cssClass="text-align-left" [label]="{text: 'کلاس مشان'}" dataField="badgeClass">
+        </dxi-item>
+        <dxi-item [label]="{text: 'لینک خارجی'}" dataField="isExternalLink" editorType='dxCheckBox'>
+        </dxi-item>
 
-									<dxi-item [label]="{text: 'مسیر'}"  dataField="path" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'عنوان'}"  dataField="title" >
-												
-																<dxi-validation-rule  type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									<dxi-item [label]="{text: 'آیکون'}"  dataField="icon" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'کلاس'}"  dataField="class" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'نشان'}"  dataField="badge" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'کلاس مشان'}"  dataField="badgeClass" >
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'لینک خارجی'}"  dataField="isExternalLink" editorType='dxCheckBox'>
-												
-										
-				</dxi-item>
-									
-									<dxi-item dataField="parentId" editorType="dxLookup" [label]="{text: 'پدر'}"  
-					[editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: parentDataSource,displayExpr:'title',valueExpr:'id' }">
+        <dxi-item  [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: parentDataSource,displayExpr:'title',valueExpr:'id' }" [label]="{text: 'پدر'}" dataField="parentId"
+                editorType="dxLookup">
+        </dxi-item>
 
-														
-				</dxi-item>
-									
-									<dxi-item dataField="resourceId" editorType="dxLookup" [label]="{text: 'منبع'}"  
-					[editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: resourceDataSource,displayExpr:'title',valueExpr:'id' }">
-
-														
-				</dxi-item>
-									<dxi-item [label]="{text: 'مجازی'}"  dataField="isVirtual" editorType='dxCheckBox'>
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'ترتیب'}"  dataField="orderNo" editorType='dxNumberBox'>
-												
-										
-				</dxi-item>
-</dx-form>
+        <dxi-item [editorOptions]="{closeOnOutsideClick:true,showPopupTitle:false, dataSource: resourceDataSource,displayExpr:'title',valueExpr:'id' }" [label]="{text: 'منبع'}" dataField="resourceId"
+                editorType="dxLookup">
+        </dxi-item>
+        <dxi-item [label]="{text: 'مجازی'}" dataField="isVirtual" editorType='dxCheckBox'>
+        </dxi-item>
+        <dxi-item [label]="{text: 'ترتیب'}" dataField="orderNo" editorType='dxNumberBox'>
+        </dxi-item>
+    </dx-form>
 </app-base-edit-form>

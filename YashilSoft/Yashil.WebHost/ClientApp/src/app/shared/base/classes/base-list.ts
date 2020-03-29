@@ -29,6 +29,8 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     /*
     * this use for custom Mode when u need bind data to custom component without dataSource
     * */
+    @Input()
+    allowAdd = true;
     selectedItemId: number;
     allowEditSelectedRow: boolean;
     allowDeleteSelectedRow: boolean;
@@ -61,13 +63,10 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     @Input()
     columnHidingEnabled: boolean;
 
-    // @Input()
-    // set rootValue(val) {
-    //     this._rootValue = val;
-    //     if (val !== undefined) {
-    //         this.bindDataSource();
-    //     }
-    // }
+    @Input()
+    set rootValue(val) {
+        this._rootValue = val;
+    }
 
     get rootValue() {
         return this._rootValue;
@@ -98,6 +97,7 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     private deleteConfirm: any;
     @Input()
     allowLoadData = true;
+    @Input()
     dataStructureIsPlain = false;
     entities: any = {};
     gridDataSource: any = {};
@@ -199,9 +199,15 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     }
 
     loadPlainData() {
-        this._genericDataService.getEntities(this.entityName).subscribe((res: any) => {
-            this.entities = res.data;
-        });
+        if (this.customListUrl) {
+            this._genericDataService.getCustomEntitiesByUrl(`/api/${this.customListUrl}`).subscribe((res: any) => {
+                this.gridDataSource = res;
+            });
+        } else {
+            this._genericDataService.getEntities(this.entityName).subscribe((res: any) => {
+                this.gridDataSource = res;
+            });
+        }
     }
 
     public refreshList() {
@@ -210,9 +216,6 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
 
     public afterSave(): void {
         this.bindDataSource();
-        if (this.dataStructureIsPlain) {
-            this.loadPlainData();
-        }
     }
 
     public applyDynamicFilters(dataTableFilters) {
@@ -224,7 +227,11 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
             return;
         }
         const pageFilters = this.customFilters;
-        this.gridDataSource = this.getCustomDataSource(this.entityName, pageFilters, this.customListUrl);
+        if (this.dataStructureIsPlain) {
+            this.loadPlainData();
+        } else {
+            this.gridDataSource = this.getCustomDataSource(this.entityName, pageFilters, this.customListUrl);
+        }
     }
 
     private declareDeleteConfirm() {

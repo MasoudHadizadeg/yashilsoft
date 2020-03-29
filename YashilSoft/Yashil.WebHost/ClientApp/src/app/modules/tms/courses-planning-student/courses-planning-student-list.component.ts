@@ -12,11 +12,11 @@
 		export class CoursesPlanningStudentListComponent {
 		  selectedItemId: number;
 		  columns: any[] = [];
-		  entityName = 'coursesPlanningStudent';
+		  entityName = 'coursePlanningStudent';
 		  detailComponent =  CoursesPlanningStudentDetailTabBasedComponent; 		  constructor() {
 							this.columns.push({ 
 					caption: 'دوره',
-					dataField: 'coursesPlanningTitle'
+					dataField: 'coursePlanningTitle'
 					});
 							this.columns.push({ 
 					caption: 'دانشجو',

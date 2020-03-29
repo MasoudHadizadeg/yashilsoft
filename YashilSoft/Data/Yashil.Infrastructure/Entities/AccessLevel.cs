@@ -14,10 +14,11 @@ namespace Yashil.Infrastructure.Entities
             CommonBaseType = new HashSet<CommonBaseType>();
             Course = new HashSet<Course>();
             CourseCategory = new HashSet<CourseCategory>();
-            CoursesPlanning = new HashSet<CoursesPlanning>();
-            CoursesPlanningStudent = new HashSet<CoursesPlanningStudent>();
+            CoursePlanning = new HashSet<CoursePlanning>();
+            CoursePlanningStudent = new HashSet<CoursePlanningStudent>();
             DashboardStore = new HashSet<DashboardStore>();
             EducationalCenter = new HashSet<EducationalCenter>();
+            MainCourseCategory = new HashSet<MainCourseCategory>();
             Person = new HashSet<Person>();
             Post = new HashSet<Post>();
             ReportStore = new HashSet<ReportStore>();
@@ -48,10 +49,11 @@ namespace Yashil.Infrastructure.Entities
         public virtual ICollection<CommonBaseType> CommonBaseType { get; set; }
         public virtual ICollection<Course> Course { get; set; }
         public virtual ICollection<CourseCategory> CourseCategory { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanning { get; set; }
-        public virtual ICollection<CoursesPlanningStudent> CoursesPlanningStudent { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanning { get; set; }
+        public virtual ICollection<CoursePlanningStudent> CoursePlanningStudent { get; set; }
         public virtual ICollection<DashboardStore> DashboardStore { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenter { get; set; }
+        public virtual ICollection<MainCourseCategory> MainCourseCategory { get; set; }
         public virtual ICollection<Person> Person { get; set; }
         public virtual ICollection<Post> Post { get; set; }
         public virtual ICollection<ReportStore> ReportStore { get; set; }

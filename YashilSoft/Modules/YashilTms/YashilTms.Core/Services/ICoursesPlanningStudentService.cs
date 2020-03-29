@@ -4,7 +4,7 @@ using Yashil.Core.Entities;
 
 namespace YashilTms.Core.Services
 {
-	public interface ICoursesPlanningStudentService : IGenericService<CoursesPlanningStudent,int>
+	public interface ICoursePlanningStudentService : IGenericService<CoursePlanningStudent,int>
     {
     }
 }      

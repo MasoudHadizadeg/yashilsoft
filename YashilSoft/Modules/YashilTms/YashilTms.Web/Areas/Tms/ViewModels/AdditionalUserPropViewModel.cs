@@ -16,7 +16,7 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 
         public string UserTitle { get; set; }
 
-        public int? EducationalCenterId { get; set; }
+        public int EducationalCenterId { get; set; }
 
         public string RepresentationTitle { get; set; }
     }
@@ -31,8 +31,8 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
         }
 
         public int Id { get; set; }
-        public int? UserId { get; set; }
-        public int? EducationalCenterId { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int UserId { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int EducationalCenterId { get; set; }
         public int? RepresentationId { get; set; }
     }
 

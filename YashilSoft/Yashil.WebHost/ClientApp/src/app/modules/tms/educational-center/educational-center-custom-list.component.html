@@ -19,6 +19,10 @@
                         <app-course-category-list [hideEducationalCenterColumn]="true"
                                 [educationalCenterId]="selectedEducationalCenterId"></app-course-category-list>
                     </div>
+                    <div *dxTemplate="let company of 'course'" class="tab-content-edit-form">
+                        <app-course-list [hideEducationalCenterColumn]="true"
+                                [educationalCenterId]="selectedEducationalCenterId"></app-course-list>
+                    </div>
                 </dx-tab-panel>
             </as-split-area>
             <as-split-area size="30" #t2 dir="rtl">

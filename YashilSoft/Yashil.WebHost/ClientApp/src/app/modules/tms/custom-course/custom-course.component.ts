@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GenericDataService} from '../../../shared/base/services/generic-data.service';
 import {Editable} from '../../../shared/base/classes/editable';
-import {CourceExtraPropsComponent} from './cource-extra-props';
+import {CourseExtraPropsComponent} from './course-extra-props';
 
 
 @Component({
@@ -10,7 +10,7 @@ import {CourceExtraPropsComponent} from './cource-extra-props';
 })
 export class CustomCourseComponent extends Editable implements OnInit {
     tabs: any[] = [];
-    extraDetailComponent = CourceExtraPropsComponent;
+    extraDetailComponent = CourseExtraPropsComponent;
 
     constructor(private genericDataService: GenericDataService) {
         super();

@@ -8,7 +8,7 @@ namespace Yashil.Core.Entities
     {
         public RepresentationPerson()
         {
-            CoursesPlanning = new HashSet<CoursesPlanning>();
+            CoursePlanning = new HashSet<CoursePlanning>();
         }
 
         public int Id { get; set; }
@@ -38,6 +38,6 @@ namespace Yashil.Core.Entities
         public virtual Person Person { get; set; }
         public virtual Post Post { get; set; }
         public virtual Representation Representation { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanning { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanning { get; set; }
     }
     }

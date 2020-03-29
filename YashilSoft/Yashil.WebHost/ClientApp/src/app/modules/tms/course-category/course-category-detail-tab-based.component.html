@@ -7,7 +7,10 @@
     [animationEnabled]="false"
     [swipeEnabled]="false">
     <div *dxTemplate="let company of 'courseCategory'" class="tab-content-edit-form">
-        <app-course-category-detail [educationalCenterId]="educationalCenterId" [selectedEntityId]="selectedEntityId"
+        <app-course-category-detail [educationalCenterId]="educationalCenterId"
+                                    [educationalCenterMainCourseCategoryId]="educationalCenterMainCourseCategoryId"
+                                    [selectedEntityId]="selectedEntityId"
+                                    [parentId]="parentId"
                                     (afterInsertRow)="rowInserted($event)"
                                     entityName="courseCategory"
         ></app-course-category-detail>

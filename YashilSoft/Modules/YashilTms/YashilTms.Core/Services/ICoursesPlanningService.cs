@@ -5,9 +5,9 @@ using Yashil.Core.Entities;
 
 namespace YashilTms.Core.Services
 {
-	public interface ICoursesPlanningService : IGenericService<CoursesPlanning,int>
+	public interface ICoursePlanningService : IGenericService<CoursePlanning,int>
     {
-        IQueryable<CoursesPlanning> GetByRepresentationId(int representationId);
+        IQueryable<CoursePlanning> GetByRepresentationId(int representationId);
     }
 }      
  

@@ -12,13 +12,16 @@ export class CourseCategoryListComponent extends Selectable implements OnInit {
     @ViewChild('frmCategory', {static: true}) frmRep: BaseList;
     private _educationalCenterId: number;
     @Input()
+    isForSelectReadOnly = false;
+    @Input()
     hideEducationalCenterColumn = false;
+    selectedEntity: any = null;
+
     @Input()
     set educationalCenterId(value: number) {
-        if (this._educationalCenterId !== value) {
+        if (value && this._educationalCenterId !== value) {
             this._educationalCenterId = value;
-            this.frmRep.customListUrl = `${this.baseListUrl}${this._educationalCenterId}`;
-            this.frmRep.refreshList();
+            this.bindTree();
         }
     }
 
@@ -26,8 +29,9 @@ export class CourseCategoryListComponent extends Selectable implements OnInit {
         return this._educationalCenterId;
     }
 
+    loadAfterSetFilter: boolean;
     customListUrl: string;
-    baseListUrl = 'courseCategory/GetByEducationalCenterIdForList?educationalCenterId=';
+    baseListUrl = 'courseCategory/GetMainCourseCategoriesByEducationalCenterId';
 
     selectedItemId: number;
     columns: any[] = [];
@@ -38,8 +42,25 @@ export class CourseCategoryListComponent extends Selectable implements OnInit {
         super();
     }
 
+    bindTree() {
+        if (this._educationalCenterId) {
+            this.frmRep.customListUrl = `${this.baseListUrl}?educationalCenterId=${this._educationalCenterId}`;
+        } else {
+            this.frmRep.customListUrl = `${this.baseListUrl}`;
+        }
+        this.frmRep.dataStructureIsPlain = true;
+        this.frmRep.isForTree = true;
+        this.frmRep.rootValue = null;
+        this.frmRep.refreshList();
+    }
+
     afterInitialDetailComponent(componentInstance: any) {
-        (<CourseCategoryDetailTabBasedComponent>componentInstance).educationalCenterId = this.educationalCenterId;
+        const comp = (<CourseCategoryDetailTabBasedComponent>componentInstance);
+        comp.educationalCenterId = this.educationalCenterId;
+        if (this.selectedEntity) {
+            comp.educationalCenterMainCourseCategoryId = this.selectedEntity.educationalCenterMainCourseCategoryId;
+            comp.parentId = this.selectedEntity.isMainCourseCategory === true ? null : this.selectedEntity.id;
+        }
     }
 
     ngOnInit(): void {
@@ -50,8 +71,13 @@ export class CourseCategoryListComponent extends Selectable implements OnInit {
         if (!this.hideEducationalCenterColumn) {
             this.columns.push({
                 caption: 'مرکز آموزشی',
-                dataField: 'educationalCenterTitle'
+                dataField: 'educationalCenterTitle',
             });
         }
+    }
+
+    onRowSelect(item: any) {
+        this.selectedEntity = item;
+        this.selectedRowChanged.emit(item);
     }
 }

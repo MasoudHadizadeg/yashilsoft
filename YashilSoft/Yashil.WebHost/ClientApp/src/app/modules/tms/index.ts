@@ -33,48 +33,47 @@ import {EducationalCenterListComponent} from './educational-center/educational-c
 
 import {AdditionalUserPropDetailComponent} from './additional-user-prop/additional-user-prop-detail.component';
 import {AdditionalUserPropListComponent} from './additional-user-prop/additional-user-prop-list.component';
+
+import {MainCourseCategoryDetailComponent} from './main-course-category/main-course-category-detail.component';
+import {MainCourseCategoryListComponent} from './main-course-category/main-course-category-list.component';
+
+import {EducationalCenterMainCourseCategoryDetailComponent} from './educational-center-main-course-category/educational-center-main-course-category-detail.component';
+import {EducationalCenterMainCourseCategoryListComponent} from './educational-center-main-course-category/educational-center-main-course-category-list.component';
 import {Provider} from '@angular/core';
 import {ContentEditorComponent} from './content-editor/content-editor.component';
 import {EducationalCenterCustomListComponent} from './educational-center/educational-center-custom-list.component';
+import {CourseCategoryCustomListComponent} from './course-category/course-category-custom-list.component';
+import {CourseCustomListComponent} from './course/course-custom-list.component';
 
 export const COMPONENTS: Provider[] = [
-
-
     CoursesPlanningStudentDetailTabBasedComponent,
     CoursesPlanningStudentListComponent,
-
     CoursesPlanningStudentDetailComponent,
-
     CourseDetailTabBasedComponent,
     CourseListComponent,
-
     CourseDetailComponent,
-
     CoursesPlanningDetailTabBasedComponent,
     CoursesPlanningListComponent,
-
     CoursesPlanningDetailComponent,
-
     RepresentationDetailTabBasedComponent,
     RepresentationListComponent,
-
     RepresentationDetailComponent,
     RepresentationPersonListComponent,
-
     RepresentationPersonDetailComponent,
-
     CourseCategoryDetailTabBasedComponent,
     CourseCategoryListComponent,
-
     CourseCategoryDetailComponent,
-
     EducationalCenterDetailTabBasedComponent,
     EducationalCenterListComponent,
-
     EducationalCenterDetailComponent,
     AdditionalUserPropListComponent,
-
     AdditionalUserPropDetailComponent,
+    MainCourseCategoryListComponent,
+    MainCourseCategoryDetailComponent,
+    EducationalCenterMainCourseCategoryListComponent,
+    EducationalCenterMainCourseCategoryDetailComponent,
     ContentEditorComponent,
-    EducationalCenterCustomListComponent
+    EducationalCenterCustomListComponent,
+    CourseCategoryCustomListComponent,
+    CourseCustomListComponent
 ];

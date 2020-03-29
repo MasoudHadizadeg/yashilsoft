@@ -20,7 +20,7 @@ namespace Yashil.Core.Entities
         public int? Price { get; set; }
         public int CourseId { get; set; }
         public int? AgeCategory { get; set; }
-        public int ImplementaionType { get; set; }
+        public int ImplementationType { get; set; }
         public int CourceType { get; set; }
         public int RunType { get; set; }
         public int StartDate { get; set; }
@@ -45,7 +45,7 @@ namespace Yashil.Core.Entities
         public virtual User CreateByNavigation { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
         public virtual CommonBaseData CustomGenderNavigation { get; set; }
-        public virtual CommonBaseData ImplementaionTypeNavigation { get; set; }
+        public virtual CommonBaseData ImplementationTypeNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual Representation Representation { get; set; }
         public virtual RepresentationPerson RepresentationPerson { get; set; }

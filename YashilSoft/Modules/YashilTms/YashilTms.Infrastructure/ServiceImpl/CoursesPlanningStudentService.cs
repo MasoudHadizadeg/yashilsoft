@@ -7,17 +7,17 @@ using YashilTms.Core.Services;
 
 namespace YashilTms.Infrastructure.ServiceImpl
 {
-	public class CoursesPlanningStudentService : GenericService<CoursesPlanningStudent,int>, ICoursesPlanningStudentService
+	public class CoursePlanningStudentService : GenericService<CoursePlanningStudent,int>, ICoursePlanningStudentService
     {
 		private readonly IUnitOfWork _unitOfWork;
-        private readonly ICoursesPlanningStudentRepository _coursesPlanningStudentRepository;
+        private readonly ICoursePlanningStudentRepository _coursePlanningStudentRepository;
 		private readonly IUserPrincipal _userPrincipal;
        
-		public CoursesPlanningStudentService (IUnitOfWork unitOfWork, ICoursesPlanningStudentRepository coursesPlanningStudentRepository, IUserPrincipal userPrincipal)
-			: base(unitOfWork, coursesPlanningStudentRepository,userPrincipal)
+		public CoursePlanningStudentService (IUnitOfWork unitOfWork, ICoursePlanningStudentRepository coursePlanningStudentRepository, IUserPrincipal userPrincipal)
+			: base(unitOfWork, coursePlanningStudentRepository,userPrincipal)
         {
 			_unitOfWork = unitOfWork;
-			_coursesPlanningStudentRepository = coursesPlanningStudentRepository;
+			_coursePlanningStudentRepository = coursePlanningStudentRepository;
 			_userPrincipal = userPrincipal;
         }
     }

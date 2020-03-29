@@ -8,6 +8,7 @@ namespace YashilTms.Core.Services
 	public interface ICourseCategoryService : IGenericService<CourseCategory,int>
     {
         IQueryable<CourseCategory> GetByEducationalCenterId(int educationalCenterId);
+        IQueryable<CourseCategory> GetByEducationalCenterMainCourseCategoryId(int educationalCenterMainCourseCategoryId);
     }
 }      
  

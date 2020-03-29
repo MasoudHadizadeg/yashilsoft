@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
@@ -51,8 +52,6 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
             return await DataSourceLoader.LoadAsync(entities.ProjectTo<TListViewModel>(_mapper.ConfigurationProvider),
                 loadOptions);
         }
-
-
 
         [HttpGet("GetForSelect")]
         public Task<LoadResult> GetForSelect(CustomDataSourceLoadOptions loadOptions)
@@ -217,7 +216,9 @@ namespace Yashil.Common.Web.Infrastructure.BaseClasses
         [NonAction]
         protected virtual bool GetPropertiesForApplyOrIgnoreUpdate(TModel entity, TEditModel editModel, out List<string> props)
         {
-            props = new List<string>();
+            var myPropertyInfo = editModel.GetType().GetProperties();
+            props = myPropertyInfo.Select(t => t.Name).ToList();
+
             return true;
         }
 

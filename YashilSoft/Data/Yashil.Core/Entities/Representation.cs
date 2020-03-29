@@ -9,7 +9,7 @@ namespace Yashil.Core.Entities
         public Representation()
         {
             AdditionalUserProp = new HashSet<AdditionalUserProp>();
-            CoursesPlanning = new HashSet<CoursesPlanning>();
+            CoursePlanning = new HashSet<CoursePlanning>();
             RepresentationPerson = new HashSet<RepresentationPerson>();
         }
 
@@ -52,7 +52,7 @@ namespace Yashil.Core.Entities
         public virtual User ModifyByNavigation { get; set; }
         public virtual CommonBaseData OwnershipTypeNavigation { get; set; }
         public virtual ICollection<AdditionalUserProp> AdditionalUserProp { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanning { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanning { get; set; }
         public virtual ICollection<RepresentationPerson> RepresentationPerson { get; set; }
     }
     }

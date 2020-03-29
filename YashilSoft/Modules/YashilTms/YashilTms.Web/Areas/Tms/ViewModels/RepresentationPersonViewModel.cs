@@ -42,21 +42,17 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 				public int Id { get; set; }		
 				[StringLength(300)]				public string Code { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int RepresentationId { get; set; }		
+				[Required]				public int RepresentationId { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int PersonId { get; set; }		
+				[Required]				public int PersonId { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int PostId { get; set; }		
+				[Required]				public int PostId { get; set; }		
 				public int? CooperationType { get; set; }		
 				public int? FromDate { get; set; }		
 				public int? ToDate { get; set; }		
 				public string Description { get; set; }		
 				[Range(0,int.MaxValue)] 
-				[Required]
-				public int AccessLevelId { get; set; }		
+				[Required]				public int AccessLevelId { get; set; }		
 }
 
   

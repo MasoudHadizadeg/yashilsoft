@@ -1,4 +1,12 @@
-<app-base-list-form #frmCategory loadAfterSetFilter="true" [columns]="columns" [entityName]="entityName"
+<app-base-list-form [isForSelectReadOnly]="isForSelectReadOnly"
+                    [allowInsertInForm]="selectedEntity!==null"
+                    [isForTree]="true"
+                    [dataStructureIsPlain]="true"
+                    lazyLoading="false" #frmCategory
+                    loadAfterSetFilter="true"
+                    [columns]="columns"
+                    [entityName]="entityName"
                     [detailComponent]="detailComponent"
+                    (selectedRowChanged)="onRowSelect($event)"
                     (afterInitialDetailComponent)="afterInitialDetailComponent($event)">
 </app-base-list-form>

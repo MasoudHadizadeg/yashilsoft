@@ -1,97 +1,101 @@
+<app-base-edit-form [showCloseButton]='false' (submitEvent)="formSubmit($event)"
+                    (closeFormClick)="onCloseFormClick($event)">
+    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
+        <dxi-item dataField="representationId" editorType="dxLookup" [label]="{text: 'نمایندگی'}"
+                  [editorOptions]="{rtlEnabled:true,onSelectionChanged:selectedRepresentationChanged,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationDataSource,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="نمایندگی اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item [template]="'courseCategoryTree'" dataField="courseCategoryId" [label]="{text: 'دسته'}">
+        </dxi-item>
+        <dxi-item dataField="courseId" editorType="dxLookup" [label]="{text: 'دوره'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: courseDataSource,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="دوره اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
 
-				<app-base-edit-form [showCloseButton]='false'  (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
-	<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+        <dxi-item dataField="courseStatus" editorType="dxSelectBox" [label]="{text: 'وضعیت دوره'}"
+                  [editorOptions]="{ items: courseStatuss,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="وضعیت دوره اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
 
-									<dxi-item [label]="{text: 'کد'}"  dataField="code" >
-												
-										
-				</dxi-item>
-									
-									<dxi-item dataField="representationId" editorType="dxLookup" [label]="{text: 'نمایندگی'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationDataSource,displayExpr:'title',valueExpr:'id' }">
+        <dxi-item dataField="representationPersonId" editorType="dxLookup" [label]="{text: 'مدرس'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationPersonDataSource,displayExpr:'title',valueExpr:'id' }">
+        </dxi-item>
+        <dxi-item [label]="{text: 'قیمت دوره'}" dataField="price" editorType='dxNumberBox'>
+        </dxi-item>
 
-																				<dxi-validation-rule  type="required" message="نمایندگی اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									<dxi-item [label]="{text: 'دوره سازمانی'}"  dataField="organizational" editorType='dxCheckBox'>
-												
-										
-				</dxi-item>
-									
-									<dxi-item dataField="courceStatus" editorType="dxSelectBox" [label]="{text: 'وضعیت دوره'}"  
-					[editorOptions]="{ items: courceStatuss,displayExpr:'title',valueExpr:'id' }">
-																					<dxi-validation-rule  type="required" message="وضعیت دوره اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="representationPersonId" editorType="dxLookup" [label]="{text: 'مدرس'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationPersonDataSource,displayExpr:'title',valueExpr:'id' }">
 
-														
-				</dxi-item>
-									<dxi-item [label]="{text: 'قیمت دوره'}"  dataField="price" editorType='dxNumberBox'>
-												
-										
-				</dxi-item>
-									
-									<dxi-item dataField="courseId" editorType="dxLookup" [label]="{text: 'دوره'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: courseDataSource,displayExpr:'title',valueExpr:'id' }">
+        <dxi-item dataField="ageCategory" editorType="dxSelectBox" [label]="{text: 'رده سنی'}"
+                  [editorOptions]="{ items: ageCategorys,displayExpr:'title',valueExpr:'id' }">
+        </dxi-item>
 
-																				<dxi-validation-rule  type="required" message="دوره اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="ageCategory" editorType="dxSelectBox" [label]="{text: 'رده سنی'}"  
-					[editorOptions]="{ items: ageCategorys,displayExpr:'title',valueExpr:'id' }">
-															
-				</dxi-item>
-									
-									<dxi-item dataField="implementaionType" editorType="dxSelectBox" [label]="{text: 'نوع برگزاری'}"  
-					[editorOptions]="{ items: implementaionTypes,displayExpr:'title',valueExpr:'id' }">
-																					<dxi-validation-rule  type="required" message="نوع برگزاری اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="courceType" editorType="dxSelectBox" [label]="{text: 'نوع دوره'}"  
-					[editorOptions]="{ items: courceTypes,displayExpr:'title',valueExpr:'id' }">
-																					<dxi-validation-rule  type="required" message="نوع دوره اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="runType" editorType="dxSelectBox" [label]="{text: 'روش اجرای دوره'}"  
-					[editorOptions]="{ items: runTypes,displayExpr:'title',valueExpr:'id' }">
-																					<dxi-validation-rule  type="required" message="روش اجرای دوره اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									<dxi-item [label]="{text: 'تاریخ شروع'}"  dataField="startDate" editorType='dxNumberBox'>
-													<dp-date-picker
-							[config]="datePickerConfig"
-							dir="rtl"
-							mode="day"
-							placeholder="تاریخ شروع"
-							theme="dp-material"
-														[ngModel]="entity.startDate" (ngModelChange)="entity.startDate=convertDateToStrint($event)">
-														</dp-date-picker>
-												
-																<dxi-validation-rule  type="required" message="تاریخ شروع اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="customGender" editorType="dxSelectBox" [label]="{text: 'جنسیت'}"  
-					[editorOptions]="{ items: customGenders,displayExpr:'title',valueExpr:'id' }">
-																					<dxi-validation-rule  type="required" message="جنسیت اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									<dxi-item [label]="{text: 'حداکثر ظرفیت'}"  dataField="maxCapacity" editorType='dxNumberBox'>
-												
-																<dxi-validation-rule  type="required" message="حداکثر ظرفیت اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"  
-					[editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
-																					<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-</dx-form>
+        <dxi-item dataField="implementationType" editorType="dxSelectBox" [label]="{text: 'نوع برگزاری'}"
+                  [editorOptions]="{ items: implementationTypes,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="نوع برگزاری اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item dataField="courseType" editorType="dxSelectBox" [label]="{text: 'نوع دوره'}"
+                  [editorOptions]="{ items: courseTypes,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="نوع دوره اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="runType" editorType="dxSelectBox" [label]="{text: 'روش اجرای دوره'}"
+                  [editorOptions]="{ items: runTypes,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="روش اجرای دوره اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item [label]="{text: 'تاریخ شروع'}" dataField="startDate" editorType='dxNumberBox'>
+            <dp-date-picker
+                    [config]="datePickerConfig"
+                    dir="rtl"
+                    mode="day"
+                    placeholder="تاریخ شروع"
+                    theme="dp-material"
+                    [ngModel]="entity.startDate" (ngModelChange)="entity.startDate=convertDateToInt($event)">
+            </dp-date-picker>
+            <dxi-validation-rule type="required" message="تاریخ شروع اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item dataField="customGender" editorType="dxSelectBox" [label]="{text: 'جنسیت'}"
+                  [editorOptions]="{ items: customGenders,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="جنسیت اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item [label]="{text: 'حداکثر ظرفیت'}" dataField="maxCapacity" editorType='dxNumberBox'>
+            <dxi-validation-rule type="required" message="حداکثر ظرفیت اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"
+                  [editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item [label]="{text: 'دوره سازمانی'}" dataField="organizational" editorType='dxCheckBox'>
+        </dxi-item>
+        <div *dxTemplate="let data of 'courseCategoryTree'">
+            <dx-drop-down-box
+                    [(value)]="entity.courseCategoryId"
+                    valueExpr="id"
+                    displayExpr="title"
+                    placeholder="انتخاب گروه..."
+                    [showClearButton]="true"
+                    [dataSource]="courseCategoryDataSource"
+                    (onValueChanged)="syncTreeViewSelection($event)">
+
+                <div *dxTemplate="let data of 'content'">
+                    <dx-tree-view
+                            [dataSource]="courseCategoryDataSource"
+                            dataStructure="plain"
+
+                            keyExpr="id"
+                            parentIdExpr="parentId"
+                            selectionMode="single"
+                            displayExpr="title"
+                            rtlEnabled="true"
+                            [selectByClick]="true"
+                            [searchEnabled]="true"
+                            (onContentReady)="syncTreeViewSelection($event)"
+                            (onItemSelectionChanged)="treeView_itemSelectionChanged($event)"
+
+                    >
+                    </dx-tree-view>
+                </div>
+            </dx-drop-down-box>
+        </div>
+    </dx-form>
 </app-base-edit-form>

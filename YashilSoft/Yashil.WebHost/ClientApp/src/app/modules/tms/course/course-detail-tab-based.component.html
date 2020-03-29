@@ -1,6 +1,3 @@
-
-	
-
 <dx-tab-panel
     #tabPanel
     rtlEnabled="true"
@@ -10,35 +7,36 @@
     [animationEnabled]="false"
     [swipeEnabled]="false">
     <div *dxTemplate="let company of 'course'" class="tab-content-edit-form">
-						<app-course-detail [selectedEntityId]="selectedEntityId" (afterInsertRow)="rowInserted($event)"  entityName="course" 
-											></app-course-detail>
-					</div>
-					<div *dxTemplate="let company of 'description'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Description"
-											propertyLabel="معرفی دوره"></app-content-editor>
-					</div>
-									<div *dxTemplate="let company of 'topic'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Topic"
-											propertyLabel="سرفصل دوره"></app-content-editor>
-					</div>
-									<div *dxTemplate="let company of 'prerequisite'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Prerequisite"
-											propertyLabel="پیش نیاز"></app-content-editor>
-					</div>
-									<div *dxTemplate="let company of 'target'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Target"
-											propertyLabel="اهداف دوره"></app-content-editor>
-					</div>
-									<div *dxTemplate="let company of 'requirements'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Requirements"
-											propertyLabel="الزامات دوره"></app-content-editor>
-					</div>
-									<div *dxTemplate="let company of 'skill'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Skill"
-											propertyLabel="مهارت در انتهای دوره"></app-content-editor>
-					</div>
-									<div *dxTemplate="let company of 'audience'" class="tab-content-edit-form">
-						<app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Audience"
-											propertyLabel="مخاطب دوره"></app-content-editor>
-					</div>
-				</dx-tab-panel>
+        <app-course-detail [educationalCenterId]="educationalCenterId" [courseCategoryId]="courseCategoryId" [selectedEntityId]="selectedEntityId" (afterInsertRow)="rowInserted($event)"
+                           entityName="course"
+        ></app-course-detail>
+    </div>
+    <div *dxTemplate="let company of 'description'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Description"
+                            propertyLabel="معرفی دوره"></app-content-editor>
+    </div>
+    <div *dxTemplate="let company of 'topic'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Topic"
+                            propertyLabel="سرفصل دوره"></app-content-editor>
+    </div>
+    <div *dxTemplate="let company of 'prerequisite'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Prerequisite"
+                            propertyLabel="پیش نیاز"></app-content-editor>
+    </div>
+    <div *dxTemplate="let company of 'target'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Target"
+                            propertyLabel="اهداف دوره"></app-content-editor>
+    </div>
+    <div *dxTemplate="let company of 'requirements'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Requirements"
+                            propertyLabel="الزامات دوره"></app-content-editor>
+    </div>
+    <div *dxTemplate="let company of 'skill'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Skill"
+                            propertyLabel="مهارت در انتهای دوره"></app-content-editor>
+    </div>
+    <div *dxTemplate="let company of 'audience'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="course" propertyName="Audience"
+                            propertyLabel="مخاطب دوره"></app-content-editor>
+    </div>
+</dx-tab-panel>

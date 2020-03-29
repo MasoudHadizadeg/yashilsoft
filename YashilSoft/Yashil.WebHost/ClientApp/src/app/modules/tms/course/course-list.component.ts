@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {CourseDetailTabBasedComponent} from './course-detail-tab-based.component';
+import {BaseList} from '../../../shared/base/classes/base-list';
 
 
 @Component({
@@ -7,10 +8,41 @@ import {CourseDetailTabBasedComponent} from './course-detail-tab-based.component
     templateUrl: './course-list.component.html'
 })
 export class CourseListComponent {
+    @ViewChild('frmCourse', {static: true}) frmCourse: BaseList;
+    private _educationalCenterId: number;
+    /**
+     * Course Category And Education Center Id
+     */
+    @Input()
+    courseInfo: {};
+    @Input()
+    hideEducationalCenterColumn = false;
+    selectedEntity: any = null;
+
+    @Input()
+    set educationalCenterId(value: number) {
+        if (this._educationalCenterId !== value) {
+            this._educationalCenterId = value;
+            this.frmCourse.customListUrl = `${this.baseListUrl}${this._educationalCenterId}`;
+            this.frmCourse.refreshList();
+        }
+    }
+
+    get educationalCenterId(): number {
+        return this._educationalCenterId;
+    }
+
+    customListUrl: string;
+    baseListUrl = 'course/GetByEducationalCenterIdForList?educationalCenterId=';
     selectedItemId: number;
     columns: any[] = [];
     entityName = 'course';
     detailComponent = CourseDetailTabBasedComponent;
+
+    afterInitialDetailComponent(componentInstance: any) {
+        const comp = (<CourseDetailTabBasedComponent>componentInstance);
+        comp.educationalCenterId = this.educationalCenterId;
+    }
 
     constructor() {
         this.columns.push({
@@ -19,12 +51,16 @@ export class CourseListComponent {
         });
         this.columns.push({
             caption: 'گروه آموزشی',
-            dataField: 'courseCategoryTitle'
+            dataField: 'courseCategoryTitle',
+            groupIndex: 2
         });
-        this.columns.push({
-            caption: 'مرکز آموشی',
-            dataField: 'educationalCenterTitle'
-        });
+        if (!this.educationalCenterId) {
+            this.columns.push({
+                caption: 'مرکز آموشی',
+                dataField: 'educationalCenterTitle',
+                groupIndex: 1
+            });
+        }
         this.columns.push({
             caption: 'سطح مهارت دوره',
             dataField: 'skillTypeTitle'

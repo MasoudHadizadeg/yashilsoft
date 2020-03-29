@@ -12,8 +12,9 @@ export class EducationalCenterCustomListComponent {
     contentHeight: number;
     selectedEducationalCenterId: number;
     tabs = [
+        {id: 1, title: 'گروه', template: 'courseCategory'},
         {id: 2, title: 'نمایندگی ها', template: 'representation'},
-        {id: 1, title: 'دسته بندي ', template: 'courseCategory'}
+        {id: 3, title: 'دوره', template: 'course'}
     ];
 
     constructor() {

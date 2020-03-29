@@ -8,6 +8,7 @@ namespace YashilTms.Core.Repositories
 	public interface ICourseCategoryRepository : IGenericRepository<CourseCategory,int>
     {
         IQueryable<CourseCategory> GetByEducationalCenterId(int educationalCenterId);
+        IQueryable<CourseCategory> GetByEducationalCenterMainCourseCategoryId(int educationalCenterMainCourseCategoryId);
     }
 }      
  

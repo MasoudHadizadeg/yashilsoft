@@ -8,7 +8,7 @@ namespace Yashil.Core.Entities
     {
         public Course()
         {
-            CoursesPlanning = new HashSet<CoursesPlanning>();
+            CoursePlanning = new HashSet<CoursePlanning>();
         }
 
         public int Id { get; set; }
@@ -46,6 +46,6 @@ namespace Yashil.Core.Entities
         public virtual CommonBaseData EvaluationMethodNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual CommonBaseData SkillTypeNavigation { get; set; }
-        public virtual ICollection<CoursesPlanning> CoursesPlanning { get; set; }
+        public virtual ICollection<CoursePlanning> CoursePlanning { get; set; }
     }
     }

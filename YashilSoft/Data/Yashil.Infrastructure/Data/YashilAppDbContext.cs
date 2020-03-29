@@ -21,8 +21,8 @@ namespace Yashil.Infrastructure.Data
         public virtual DbSet<CommonBaseType> CommonBaseType { get; set; }
         public virtual DbSet<Course> Course { get; set; }
         public virtual DbSet<CourseCategory> CourseCategory { get; set; }
-        public virtual DbSet<CoursesPlanning> CoursesPlanning { get; set; }
-        public virtual DbSet<CoursesPlanningStudent> CoursesPlanningStudent { get; set; }
+        public virtual DbSet<CoursePlanning> CoursePlanning { get; set; }
+        public virtual DbSet<CoursePlanningStudent> CoursePlanningStudent { get; set; }
         public virtual DbSet<DashboardConnectionString> DashboardConnectionString { get; set; }
         public virtual DbSet<DashboardGroup> DashboardGroup { get; set; }
         public virtual DbSet<DashboardGroupDashboard> DashboardGroupDashboard { get; set; }
@@ -31,6 +31,8 @@ namespace Yashil.Infrastructure.Data
         public virtual DbSet<DocType> DocType { get; set; }
         public virtual DbSet<DocumentCategory> DocumentCategory { get; set; }
         public virtual DbSet<EducationalCenter> EducationalCenter { get; set; }
+        public virtual DbSet<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategory { get; set; }
+        public virtual DbSet<MainCourseCategory> MainCourseCategory { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Organization> Organization { get; set; }
         public virtual DbSet<Person> Person { get; set; }
@@ -1133,7 +1135,7 @@ namespace Yashil.Infrastructure.Data
             {
                 entity.ToTable("CourseCategory", "tms");
 
-                entity.HasComment("دسته بندي ");
+                entity.HasComment("دسته بندي  آموزشی");
 
                 entity.Property(e => e.Id).HasComment("");
 
@@ -1157,7 +1159,9 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Description).HasComment("توضیحات");
 
-                entity.Property(e => e.EducationalCenterId).HasComment("مرکز آموزشی");
+                entity.Property(e => e.DisplayOrder).HasComment("ترتیب نمایش");
+
+                entity.Property(e => e.EducationalCenterMainCourseCategoryId).HasComment("دسته بندی اصلی مرکز آموزشی");
 
                 entity.Property(e => e.ModificationDate)
                     .HasColumnType("datetime")
@@ -1194,11 +1198,11 @@ namespace Yashil.Infrastructure.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CourseCategory_Organization");
 
-                entity.HasOne(d => d.EducationalCenter)
+                entity.HasOne(d => d.EducationalCenterMainCourseCategory)
                     .WithMany(p => p.CourseCategory)
-                    .HasForeignKey(d => d.EducationalCenterId)
+                    .HasForeignKey(d => d.EducationalCenterMainCourseCategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CourseCategory_EducationalCenter");
+                    .HasConstraintName("FK_CourseCategory_EducationalCenterMainCourseCategory");
 
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.CourseCategoryModifyByNavigation)
@@ -1211,9 +1215,9 @@ namespace Yashil.Infrastructure.Data
                     .HasConstraintName("FK_CourseCategory_CourseCategory");
             });
 
-            modelBuilder.Entity<CoursesPlanning>(entity =>
+            modelBuilder.Entity<CoursePlanning>(entity =>
             {
-                entity.ToTable("CoursesPlanning", "tms");
+                entity.ToTable("CoursePlanning", "tms");
 
                 entity.HasComment("برنامه ريزي دوره");
 
@@ -1229,11 +1233,11 @@ namespace Yashil.Infrastructure.Data
                     .HasMaxLength(150)
                     .HasComment("کد");
 
-                entity.Property(e => e.CourceStatus).HasComment("وضعیت دوره");
-
-                entity.Property(e => e.CourceType).HasComment("نوع دوره");
-
                 entity.Property(e => e.CourseId).HasComment("دوره");
+
+                entity.Property(e => e.CourseStatus).HasComment("وضعیت دوره");
+
+                entity.Property(e => e.CourseType).HasComment("نوع دوره");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
 
@@ -1249,7 +1253,7 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Description).HasComment("توضیحات");
 
-                entity.Property(e => e.ImplementaionType).HasComment("نوع برگزاری");
+                entity.Property(e => e.ImplementationType).HasComment("نوع برگزاری");
 
                 entity.Property(e => e.MaxCapacity)
                     .HasDefaultValueSql("((-1))")
@@ -1276,90 +1280,90 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.StartDate).HasComment("تاریخ شروع");
 
                 entity.HasOne(d => d.AccessLevel)
-                    .WithMany(p => p.CoursesPlanning)
+                    .WithMany(p => p.CoursePlanning)
                     .HasForeignKey(d => d.AccessLevelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanning_AccessLevel");
 
                 entity.HasOne(d => d.AgeCategoryNavigation)
-                    .WithMany(p => p.CoursesPlanningAgeCategoryNavigation)
+                    .WithMany(p => p.CoursePlanningAgeCategoryNavigation)
                     .HasForeignKey(d => d.AgeCategory)
                     .HasConstraintName("FK_CoursesPlanning_CommonBaseData5");
 
                 entity.HasOne(d => d.Application)
-                    .WithMany(p => p.CoursesPlanning)
+                    .WithMany(p => p.CoursePlanning)
                     .HasForeignKey(d => d.ApplicationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanning_Application");
 
-                entity.HasOne(d => d.CourceStatusNavigation)
-                    .WithMany(p => p.CoursesPlanningCourceStatusNavigation)
-                    .HasForeignKey(d => d.CourceStatus)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_CommonBaseData3");
-
-                entity.HasOne(d => d.CourceTypeNavigation)
-                    .WithMany(p => p.CoursesPlanningCourceTypeNavigation)
-                    .HasForeignKey(d => d.CourceType)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_CommonBaseData1");
-
                 entity.HasOne(d => d.Course)
-                    .WithMany(p => p.CoursesPlanning)
+                    .WithMany(p => p.CoursePlanning)
                     .HasForeignKey(d => d.CourseId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanning_Course");
 
+                entity.HasOne(d => d.CourseStatusNavigation)
+                    .WithMany(p => p.CoursePlanningCourseStatusNavigation)
+                    .HasForeignKey(d => d.CourseStatus)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CoursesPlanning_CommonBaseData3");
+
+                entity.HasOne(d => d.CourseTypeNavigation)
+                    .WithMany(p => p.CoursePlanningCourseTypeNavigation)
+                    .HasForeignKey(d => d.CourseType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CoursesPlanning_CommonBaseData1");
+
                 entity.HasOne(d => d.CreateByNavigation)
-                    .WithMany(p => p.CoursesPlanningCreateByNavigation)
+                    .WithMany(p => p.CoursePlanningCreateByNavigation)
                     .HasForeignKey(d => d.CreateBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanning_User");
 
                 entity.HasOne(d => d.CreatorOrganization)
-                    .WithMany(p => p.CoursesPlanning)
+                    .WithMany(p => p.CoursePlanning)
                     .HasForeignKey(d => d.CreatorOrganizationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanning_Organization");
 
                 entity.HasOne(d => d.CustomGenderNavigation)
-                    .WithMany(p => p.CoursesPlanningCustomGenderNavigation)
+                    .WithMany(p => p.CoursePlanningCustomGenderNavigation)
                     .HasForeignKey(d => d.CustomGender)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanning_CommonBaseData2");
 
-                entity.HasOne(d => d.ImplementaionTypeNavigation)
-                    .WithMany(p => p.CoursesPlanningImplementaionTypeNavigation)
-                    .HasForeignKey(d => d.ImplementaionType)
+                entity.HasOne(d => d.ImplementationTypeNavigation)
+                    .WithMany(p => p.CoursePlanningImplementationTypeNavigation)
+                    .HasForeignKey(d => d.ImplementationType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanning_CommonBaseData");
 
                 entity.HasOne(d => d.ModifyByNavigation)
-                    .WithMany(p => p.CoursesPlanningModifyByNavigation)
+                    .WithMany(p => p.CoursePlanningModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
                     .HasConstraintName("FK_CoursesPlanning_User1");
 
                 entity.HasOne(d => d.Representation)
-                    .WithMany(p => p.CoursesPlanning)
+                    .WithMany(p => p.CoursePlanning)
                     .HasForeignKey(d => d.RepresentationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanning_Representation");
 
                 entity.HasOne(d => d.RepresentationPerson)
-                    .WithMany(p => p.CoursesPlanning)
+                    .WithMany(p => p.CoursePlanning)
                     .HasForeignKey(d => d.RepresentationPersonId)
                     .HasConstraintName("FK_CoursesPlanning_RepresentationPerson");
 
                 entity.HasOne(d => d.RunTypeNavigation)
-                    .WithMany(p => p.CoursesPlanningRunTypeNavigation)
+                    .WithMany(p => p.CoursePlanningRunTypeNavigation)
                     .HasForeignKey(d => d.RunType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanning_CommonBaseData4");
             });
 
-            modelBuilder.Entity<CoursesPlanningStudent>(entity =>
+            modelBuilder.Entity<CoursePlanningStudent>(entity =>
             {
-                entity.ToTable("CoursesPlanningStudent", "tms");
+                entity.ToTable("CoursePlanningStudent", "tms");
 
                 entity.HasComment("دانشجويان شرکت کننده در دوره ");
 
@@ -1373,7 +1377,7 @@ namespace Yashil.Infrastructure.Data
                     .HasMaxLength(150)
                     .HasComment("کد");
 
-                entity.Property(e => e.CoursesPlanningId).HasComment("دوره");
+                entity.Property(e => e.CoursePlanningId).HasComment("دوره");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
 
@@ -1398,42 +1402,42 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.Score).HasComment("نمره");
 
                 entity.HasOne(d => d.AccessLevel)
-                    .WithMany(p => p.CoursesPlanningStudent)
+                    .WithMany(p => p.CoursePlanningStudent)
                     .HasForeignKey(d => d.AccessLevelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanningStudent_AccessLevel");
 
                 entity.HasOne(d => d.Application)
-                    .WithMany(p => p.CoursesPlanningStudent)
+                    .WithMany(p => p.CoursePlanningStudent)
                     .HasForeignKey(d => d.ApplicationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanningStudent_Application");
 
-                entity.HasOne(d => d.CoursesPlanning)
-                    .WithMany(p => p.CoursesPlanningStudent)
-                    .HasForeignKey(d => d.CoursesPlanningId)
+                entity.HasOne(d => d.CoursePlanning)
+                    .WithMany(p => p.CoursePlanningStudent)
+                    .HasForeignKey(d => d.CoursePlanningId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanningStudent_CoursesPlanning");
 
                 entity.HasOne(d => d.CreateByNavigation)
-                    .WithMany(p => p.CoursesPlanningStudentCreateByNavigation)
+                    .WithMany(p => p.CoursePlanningStudentCreateByNavigation)
                     .HasForeignKey(d => d.CreateBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanningStudent_User");
 
                 entity.HasOne(d => d.CreatorOrganization)
-                    .WithMany(p => p.CoursesPlanningStudent)
+                    .WithMany(p => p.CoursePlanningStudent)
                     .HasForeignKey(d => d.CreatorOrganizationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanningStudent_Organization");
 
                 entity.HasOne(d => d.ModifyByNavigation)
-                    .WithMany(p => p.CoursesPlanningStudentModifyByNavigation)
+                    .WithMany(p => p.CoursePlanningStudentModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
                     .HasConstraintName("FK_CoursesPlanningStudent_User1");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.CoursesPlanningStudent)
+                    .WithMany(p => p.CoursePlanningStudent)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanningStudent_Person");
@@ -2001,6 +2005,149 @@ namespace Yashil.Infrastructure.Data
                     .WithMany(p => p.EducationalCenterModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
                     .HasConstraintName("FK_EducationalCenter_User1");
+            });
+
+            modelBuilder.Entity<EducationalCenterMainCourseCategory>(entity =>
+            {
+                entity.ToTable("EducationalCenterMainCourseCategory", "tms");
+
+                entity.HasComment(" دسته بندي اصلي مراکز آموزشي");
+
+                entity.HasIndex(e => new { e.EducationalCenterId, e.MainCourseCategoryId, e.ApplicationId })
+                    .HasName("IX_EducationalCenterMainCourseCategory")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasComment("");
+
+                entity.Property(e => e.ApplicationId).HasComment("برنامه");
+
+                entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
+
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان ایجاد");
+
+                entity.Property(e => e.CreatorOrganizationId).HasComment("سازمان ایجاد کننده رکورد");
+
+                entity.Property(e => e.Deleted).HasComment("حذف شده");
+
+                entity.Property(e => e.Description).HasComment("توضیحات");
+
+                entity.Property(e => e.DisplayOrder).HasComment("ترتیب نمایش");
+
+                entity.Property(e => e.EducationalCenterId).HasComment("مرکز آموشي");
+
+                entity.Property(e => e.MainCourseCategoryId).HasComment("دسته بندی اصلی");
+
+                entity.Property(e => e.ModificationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان تغییر");
+
+                entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.EducationalCenterMainCourseCategory)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EducationalCenterMainCourseCategory_Application");
+
+                entity.HasOne(d => d.CreateByNavigation)
+                    .WithMany(p => p.EducationalCenterMainCourseCategoryCreateByNavigation)
+                    .HasForeignKey(d => d.CreateBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EducationalCenterMainCourseCategory_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.EducationalCenterMainCourseCategory)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EducationalCenterMainCourseCategory_Organization");
+
+                entity.HasOne(d => d.EducationalCenter)
+                    .WithMany(p => p.EducationalCenterMainCourseCategory)
+                    .HasForeignKey(d => d.EducationalCenterId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EducationalCenterMainCourseCategory_EducationalCenter");
+
+                entity.HasOne(d => d.MainCourseCategory)
+                    .WithMany(p => p.EducationalCenterMainCourseCategory)
+                    .HasForeignKey(d => d.MainCourseCategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EducationalCenterMainCourseCategory_MainCourseCategory");
+
+                entity.HasOne(d => d.ModifyByNavigation)
+                    .WithMany(p => p.EducationalCenterMainCourseCategoryModifyByNavigation)
+                    .HasForeignKey(d => d.ModifyBy)
+                    .HasConstraintName("FK_EducationalCenterMainCourseCategory_User1");
+            });
+
+            modelBuilder.Entity<MainCourseCategory>(entity =>
+            {
+                entity.ToTable("MainCourseCategory", "tms");
+
+                entity.HasComment("دسته بندي اصلي آموزشی");
+
+                entity.Property(e => e.Id).HasComment("");
+
+                entity.Property(e => e.AccessLevelId).HasComment("سطح دسترسی");
+
+                entity.Property(e => e.ApplicationId).HasComment("برنامه");
+
+                entity.Property(e => e.Code)
+                    .HasMaxLength(150)
+                    .HasComment("کد");
+
+                entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
+
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان ایجاد");
+
+                entity.Property(e => e.CreatorOrganizationId).HasComment("سازمان ایجاد کننده رکورد");
+
+                entity.Property(e => e.Deleted).HasComment("حذف شده");
+
+                entity.Property(e => e.Description).HasComment("توضیحات");
+
+                entity.Property(e => e.ModificationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان تغییر");
+
+                entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(300)
+                    .HasComment("عنوان");
+
+                entity.HasOne(d => d.AccessLevel)
+                    .WithMany(p => p.MainCourseCategory)
+                    .HasForeignKey(d => d.AccessLevelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MainCourseCategory_AccessLevel");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.MainCourseCategory)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MainCourseCategory_Application");
+
+                entity.HasOne(d => d.CreateByNavigation)
+                    .WithMany(p => p.MainCourseCategoryCreateByNavigation)
+                    .HasForeignKey(d => d.CreateBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MainCourseCategory_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.MainCourseCategory)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MainCourseCategory_Organization");
+
+                entity.HasOne(d => d.ModifyByNavigation)
+                    .WithMany(p => p.MainCourseCategoryModifyByNavigation)
+                    .HasForeignKey(d => d.ModifyBy)
+                    .HasConstraintName("FK_MainCourseCategory_User1");
             });
 
             modelBuilder.Entity<Menu>(entity =>

@@ -7,7 +7,7 @@ namespace Yashil.Infrastructure.Entities
     {
         public Person()
         {
-            CoursesPlanningStudent = new HashSet<CoursesPlanningStudent>();
+            CoursePlanningStudent = new HashSet<CoursePlanningStudent>();
             RepresentationPerson = new HashSet<RepresentationPerson>();
         }
 
@@ -39,7 +39,7 @@ namespace Yashil.Infrastructure.Entities
         public virtual CommonBaseData EducationGradeNavigation { get; set; }
         public virtual CommonBaseData GenderNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
-        public virtual ICollection<CoursesPlanningStudent> CoursesPlanningStudent { get; set; }
+        public virtual ICollection<CoursePlanningStudent> CoursePlanningStudent { get; set; }
         public virtual ICollection<RepresentationPerson> RepresentationPerson { get; set; }
     }
 }

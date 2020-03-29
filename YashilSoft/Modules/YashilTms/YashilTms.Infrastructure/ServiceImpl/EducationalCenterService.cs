@@ -1,4 +1,4 @@
-	using Yashil.Common.Core.Classes;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
 using Yashil.Core.Entities;
@@ -20,6 +20,7 @@ namespace YashilTms.Infrastructure.ServiceImpl
 			_educationalCenterRepository = educationalCenterRepository;
 			_userPrincipal = userPrincipal;
         }
+
     }
 }      
  

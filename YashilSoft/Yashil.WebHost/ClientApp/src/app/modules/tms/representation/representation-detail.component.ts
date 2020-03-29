@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {BaseEdit} from '../../../shared/base/classes/base-edit';
 import {GenericDataService} from '../../../shared/base/services/generic-data.service';
 import {Entity} from '../../../shared/base/base-data/entity.enum';
+import {DxTreeViewComponent} from 'devextreme-angular';
 
 
 @Component({
@@ -9,6 +10,7 @@ import {Entity} from '../../../shared/base/base-data/entity.enum';
     templateUrl: './representation-detail.component.html'
 })
 export class RepresentationDetailComponent extends BaseEdit implements OnInit {
+    @ViewChild(DxTreeViewComponent, {static: false}) treeView;
     @Input()
     educationalCenterId: number;
     educationalCenterDataSource: any;
@@ -39,5 +41,19 @@ export class RepresentationDetailComponent extends BaseEdit implements OnInit {
 
     allowSetEducationalCenter() {
         return this.educationalCenterId != null && this.educationalCenterId !== undefined;
+    }
+
+    syncTreeViewSelection(e) {
+        const component = (e && e.component) || (this.treeView && this.treeView.instance);
+
+        if (!component) {
+            return;
+        }
+    }
+
+    treeView_itemSelectionChanged(e) {
+        if (e.itemData.parentId) {
+            this.entity.cityId = e.itemData.id;
+        }
     }
 }
