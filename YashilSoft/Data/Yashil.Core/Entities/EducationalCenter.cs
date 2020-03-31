@@ -35,6 +35,7 @@ namespace Yashil.Core.Entities
         public virtual Application Application { get; set; }
         public virtual User CreateByNavigation { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
+        public virtual CommonBaseData EstablishedLicenseTypeNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual ICollection<Course> Course { get; set; }
         public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategory { get; set; }

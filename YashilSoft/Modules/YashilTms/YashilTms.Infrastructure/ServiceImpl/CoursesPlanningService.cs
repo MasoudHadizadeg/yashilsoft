@@ -26,6 +26,16 @@ namespace YashilTms.Infrastructure.ServiceImpl
         {
             return _coursePlanningRepository.GetByRepresentationId(representationId);
         }
+
+        public IQueryable<CoursePlanning> GetByCourseCategoryId(int courseCategoryId, bool hierarchical = true)
+        {
+            return _coursePlanningRepository.GetByCourseCategoryId(courseCategoryId, hierarchical);
+        }
+
+        public IQueryable<CoursePlanning> GetByMainCourseCategoryId(int educationalCenterMainCourseCategoryId)
+        {
+            return _coursePlanningRepository.GetByMainCourseCategoryId(educationalCenterMainCourseCategoryId);
+        }
     }
 }      
  

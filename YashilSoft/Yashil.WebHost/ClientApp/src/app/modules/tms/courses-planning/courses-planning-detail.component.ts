@@ -4,7 +4,7 @@ import {GenericDataService} from '../../../shared/base/services/generic-data.ser
 import {Entity} from '../../../shared/base/base-data/entity.enum';
 import {CachedDataService} from '../../../shared/services/cached-data.service';
 import {CachedKey} from '../tms-enums';
-import {DxTreeViewComponent} from 'devextreme-angular';
+import {DxDropDownBoxComponent, DxTreeViewComponent} from 'devextreme-angular';
 
 
 @Component({
@@ -13,8 +13,13 @@ import {DxTreeViewComponent} from 'devextreme-angular';
 })
 export class CoursesPlanningDetailComponent extends BaseEdit implements OnInit {
     @ViewChild(DxTreeViewComponent, {static: false}) treeView;
+    @ViewChild('ddlCourse', {static: false}) courseComponent: DxDropDownBoxComponent;
     @Input()
     representationId: number;
+    @Input()
+    educationalCenterId: number;
+    @Input()
+    courseCategoryId: number;
     courseCategoryDataSource: any;
     representationDataSource: any;
     courseStatuss: any;
@@ -26,12 +31,15 @@ export class CoursesPlanningDetailComponent extends BaseEdit implements OnInit {
     runTypes: any;
     customGenders: any;
     accessLevels: any[] = [];
-    firstLoad = false;
+    baseListUrlByCourseCategoryId = 'GetByCourseCategoryId?courseCategoryId=';
+    baseListUrlByMainCourseCategoryId = 'GetByMainCourseCategoryId';
+    selectedCourseCategory: any;
+    selectedCourseChanged = false;
 
     constructor(private genericDataService: GenericDataService, private cachedDataService: CachedDataService) {
         super(genericDataService);
         this.entityName = 'coursePlanning';
-        this.selectedRepresentationChanged = this.selectedRepresentationChanged.bind(this);
+        this.selectedRepresentationValueChanged = this.selectedRepresentationValueChanged.bind(this);
     }
 
     ngOnInit() {
@@ -45,10 +53,19 @@ export class CoursesPlanningDetailComponent extends BaseEdit implements OnInit {
                 this.bindCourseCategoriesDataSources(data.representationId);
             }
         }
+        if (!this.selectedEntityId) {
+            this.initialEntityDefaultValies();
+            if (this.educationalCenterId) {
+                this.entity.educationalCenterId = this.educationalCenterId;
+            }
+            if (this.courseCategoryId) {
+                this.entity.courseCategoryId = this.courseCategoryId;
+                this.bindCourseDataSources();
+            }
+        }
         this.representationDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'representation');
         this._genericDataService.getCommonBaseDataForSelect('CourseStatus').subscribe(res => this.courseStatuss = res);
         this.representationPersonDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'representationPerson');
-        // this.courseDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'course');
         this._genericDataService.getCommonBaseDataForSelect('AgeCategory').subscribe(res => this.ageCategorys = res);
         this._genericDataService.getCommonBaseDataForSelect('ImplementationType').subscribe(res => this.implementationTypes = res);
         this._genericDataService.getCommonBaseDataForSelect('CourseType').subscribe(res => this.courseTypes = res);
@@ -57,41 +74,80 @@ export class CoursesPlanningDetailComponent extends BaseEdit implements OnInit {
         this._genericDataService.getEntitiesByEntityNameForSelect(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
     }
 
-    syncTreeViewSelection(e) {
-        const component = (e && e.component) || (this.treeView && this.treeView.instance);
-
-        if (!component) {
-            return;
+    selectedCourseCategoryValueChanged(e) {
+        if (e.previousValue != null && e.previousValue) {
+            const that = this;
+            setTimeout(x => {
+                that.entity.courseId = null;
+            }, 0);
+            this.bindCourseDataSources();
+            this.selectedCourseChanged = true;
         }
     }
 
-    treeView_itemSelectionChanged(e) {
+    selectedCourseCategoryChanged(e) {
+        this.selectedCourseCategory = e.itemData;
         if (!e.itemData.isMainCourseCategory) {
             this.entity.courseCategoryId = e.itemData.id;
         }
     }
 
-    selectedRepresentationChanged(e) {
-        if (e && e.selectedItem) {
-            if (!this.firstLoad) {
-                this.entity.courseCategoryId = null;
-                this.entity.courseId = null;
-                this.bindCourseCategoriesDataSources(e.selectedItem.id);
-            }
-            this.firstLoad = false;
+    private bindCourseDataSources() {
+        let customListUrl = '';
+        if (this.selectedCourseCategory && this.selectedCourseCategory.isMainCourseCategory) {
+            customListUrl = `${this.baseListUrlByMainCourseCategoryId}?educationalCenterMainCourseCategoryId=${this.selectedCourseCategory.educationalCenterMainCourseCategoryId}`;
+        } else if (this.entity.courseCategoryId) {
+            customListUrl = `${this.baseListUrlByCourseCategoryId}${this.entity.courseCategoryId}`;
         }
+        if (customListUrl !== '') {
+            this.courseDataSource = this._genericDataService.createCustomDatasourceWithAction('id', 'course', customListUrl);
+        }
+    }
+
+    selectedRepresentationValueChanged(e) {
+        if (e.previousValue != null && e.previousValue) {
+            this.entity.courseCategoryId = null;
+            this.entity.courseId = null;
+        }
+        this.bindCourseCategoriesDataSources(e.value);
     }
 
     afterLoadData(res: any): any {
         this.bindCourseCategoriesDataSources(res.representationId);
+        this.bindCourseDataSources();
         return super.afterLoadData(res);
     }
 
+    onCourseSelectionChanged(e) {
+        if (e && e.selectedRowsData && e.selectedRowsData.length > 0) {
+            this.entity.courseId = e.selectedRowsData[0].id;
+        }
+    }
+
     private bindCourseCategoriesDataSources(id: any) {
-        this.courseCategoryDataSource =
-            this._genericDataService.getCustomEntitiesByUrl(`api/courseCategory/GetMainCourseCategoriesByEducationalCenterId?educationalCenterId=${id}`).subscribe((res: any) => {
-                this.courseCategoryDataSource = res;
-            });
-        this.courseDataSource = this._genericDataService.createCustomDatasourceWithAction('id', 'course', `GetByRepresentationIdForSelect?representationId=${id}`);
+        if (id) {
+            this.courseCategoryDataSource =
+                this._genericDataService.getCustomEntitiesByUrl(`api/courseCategory/GetMainCourseCategoriesByEducationalCenterId?educationalCenterId=${id}`).subscribe((res: any) => {
+                    this.courseCategoryDataSource = res;
+                });
+        } else {
+            this.courseCategoryDataSource = null;
+        }
+    }
+
+    courseCategoryTreeContentReady(e: any) {
+        // if (this.selectedCourseChanged) {
+        //     this.selectedCourseChanged = false;
+        //     this.entity.courseId = null;
+        // }
+    }
+
+    private initialEntityDefaultValies() {
+        this.entity.courseStatus = 55;
+        this.entity.ageCategory = 17;
+        this.entity.implementationType = 12;
+        this.entity.courseType = 5;
+        this.entity.runType = 34;
+        this.entity.customGender = 4;
     }
 }

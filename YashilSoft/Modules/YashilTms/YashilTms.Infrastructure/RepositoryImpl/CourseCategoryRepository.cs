@@ -25,11 +25,15 @@ namespace YashilTms.Infrastructure.RepositoryImpl
 
         public override IQueryable<CourseCategory> GetAll(bool readOnly = false)
         {
-            var additionalUserProp = _context.AdditionalUserProp.AsNoTracking().FirstOrDefault(x => x.UserId == _userPrincipal.Id);
+            var additionalUserProp = _context.AdditionalUserProp.AsNoTracking()
+                .FirstOrDefault(x => x.UserId == _userPrincipal.Id);
             if (additionalUserProp != null)
             {
-                return base.GetAll(readOnly).Where(x => x.EducationalCenterMainCourseCategory.EducationalCenterId == additionalUserProp.EducationalCenterId);
+                return base.GetAll(readOnly).Where(x =>
+                    x.EducationalCenterMainCourseCategory.EducationalCenterId ==
+                    additionalUserProp.EducationalCenterId);
             }
+
             return base.GetAll(readOnly);
         }
 
@@ -50,7 +54,7 @@ namespace YashilTms.Infrastructure.RepositoryImpl
         {
             int key = (int) id;
             var firstOrDefaultAsync = DbSet.Include(x => x.EducationalCenterMainCourseCategory)
-                .FirstOrDefaultAsync(x => x.Id==key);
+                .FirstOrDefaultAsync(x => x.Id == key);
             return new ValueTask<CourseCategory>(firstOrDefaultAsync);
         }
     }

@@ -25,8 +25,7 @@
                 <as-split direction="horizontal" dir="ltr">
                     <as-split direction="horizontal">
                         <as-split-area size="70" #t1 dir="rtl">
-                            <app-base-list-form allowGrouping="true"
-                                                loadAfterSetFilter="true"
+                            <app-base-list-form loadAfterSetFilter="true"
                                                 (afterInitialDetailComponent)="afterInitialDetailComponent($event)"
                                                 [columns]="columns"
                                                 [entityName]="entityName"
@@ -35,7 +34,8 @@
                             </app-base-list-form>
                         </as-split-area>
                         <as-split-area size="30" #t2 dir="rtl">
-                            <app-course-category-list [isForSelectReadOnly]="forSelect" hideEducationalCenterColumn="true" (selectedRowChanged)="selectedCourseCategoryChanged($event)"
+                            <app-course-category-list [isForSelectReadOnly]="true" hideEducationalCenterColumn="true"
+                                                      (selectedRowChanged)="selectedCourseCategoryChanged($event)"
                                                       [educationalCenterId]="educationalCenterId"></app-course-category-list>
                         </as-split-area>
                     </as-split>

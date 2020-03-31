@@ -2,16 +2,14 @@
                     (closeFormClick)="onCloseFormClick($event)">
     <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
         <dxi-item dataField="representationId" editorType="dxLookup" [label]="{text: 'نمایندگی'}"
-                  [editorOptions]="{rtlEnabled:true,onSelectionChanged:selectedRepresentationChanged,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationDataSource,displayExpr:'title',valueExpr:'id' }">
+                  [editorOptions]="{rtlEnabled:true,onValueChanged:selectedRepresentationValueChanged,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationDataSource,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="نمایندگی اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item [template]="'courseCategoryTree'" dataField="courseCategoryId" [label]="{text: 'دسته'}">
-        </dxi-item>
-        <dxi-item dataField="courseId" editorType="dxLookup" [label]="{text: 'دوره'}"
-                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: courseDataSource,displayExpr:'title',valueExpr:'id' }">
-            <dxi-validation-rule type="required" message="دوره اجباری می باشد"></dxi-validation-rule>
-        </dxi-item>
 
+        <dxi-item [template]="'courseCategoryTree'" [label]="{text: 'دسته'}">
+        </dxi-item>
+        <dxi-item [template]="'courseGridTemplate'" [label]="{text: 'دوره'}">
+        </dxi-item>
         <dxi-item dataField="courseStatus" editorType="dxSelectBox" [label]="{text: 'وضعیت دوره'}"
                   [editorOptions]="{ items: courseStatuss,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="وضعیت دوره اجباری می باشد"></dxi-validation-rule>
@@ -22,12 +20,9 @@
         </dxi-item>
         <dxi-item [label]="{text: 'قیمت دوره'}" dataField="price" editorType='dxNumberBox'>
         </dxi-item>
-
-
         <dxi-item dataField="ageCategory" editorType="dxSelectBox" [label]="{text: 'رده سنی'}"
                   [editorOptions]="{ items: ageCategorys,displayExpr:'title',valueExpr:'id' }">
         </dxi-item>
-
         <dxi-item dataField="implementationType" editorType="dxSelectBox" [label]="{text: 'نوع برگزاری'}"
                   [editorOptions]="{ items: implementationTypes,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="نوع برگزاری اجباری می باشد"></dxi-validation-rule>
@@ -48,7 +43,7 @@
                     mode="day"
                     placeholder="تاریخ شروع"
                     theme="dp-material"
-                    [ngModel]="entity.startDate" (ngModelChange)="entity.startDate=convertDateToInt($event)">
+                    [ngModel]="entity.startDate | intToStringDate" (ngModelChange)="entity.startDate=convertDateToInt($event)">
             </dp-date-picker>
             <dxi-validation-rule type="required" message="تاریخ شروع اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
@@ -67,21 +62,53 @@
         </dxi-item>
         <dxi-item [label]="{text: 'دوره سازمانی'}" dataField="organizational" editorType='dxCheckBox'>
         </dxi-item>
+        <div *dxTemplate="let data of 'courseGridTemplate'">
+            <dx-drop-down-box
+                #ddlCourse
+                [(value)]="entity.courseId"
+                valueExpr="id"
+                displayExpr="title"
+                placeholder="انتخاب دوره..."
+                [dataSource]="courseDataSource"
+                [deferRendering]="false"
+                [showClearButton]="true">
+
+                <div *dxTemplate="let data of 'content'">
+                    <dx-data-grid id="gridContainer"
+                                  [dataSource]="courseDataSource"
+                                  [showBorders]="true"
+                                  [remoteOperations]="true"
+                                  rtlEnabled="true"
+                                  [hoverStateEnabled]="true"
+                                  (onSelectionChanged)="onCourseSelectionChanged($event);ddlCourse.instance.close();">
+                        <dxo-filter-row visible="true"></dxo-filter-row>
+                        <dxo-selection mode="single"></dxo-selection>
+                        <dxi-column dataField="title" caption="عنوان" width="60%"></dxi-column>
+                        <dxi-column dataField="courseCategoryTitle" caption="گروه آموزشی" width="25%"></dxi-column>
+                        <dxi-column dataField="duration" caption="مدت دوره(ساعت)"></dxi-column>
+                        <dxo-paging [pageSize]="12"></dxo-paging>
+                        <dxo-pager
+                                [showPageSizeSelector]="true"
+                                [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                    </dx-data-grid>
+                </div>
+            </dx-drop-down-box>
+        </div>
         <div *dxTemplate="let data of 'courseCategoryTree'">
             <dx-drop-down-box
-                    [(value)]="entity.courseCategoryId"
-                    valueExpr="id"
-                    displayExpr="title"
-                    placeholder="انتخاب گروه..."
-                    [showClearButton]="true"
-                    [dataSource]="courseCategoryDataSource"
-                    (onValueChanged)="syncTreeViewSelection($event)">
+                #ddlCourseCategoryId
+                [(value)]="entity.courseCategoryId"
+                valueExpr="id"
+                displayExpr="title"
+                placeholder="انتخاب گروه..."
+                [showClearButton]="true"
+                [dataSource]="courseCategoryDataSource"
+                (onValueChanged)="selectedCourseCategoryValueChanged($event);">
 
                 <div *dxTemplate="let data of 'content'">
                     <dx-tree-view
                             [dataSource]="courseCategoryDataSource"
                             dataStructure="plain"
-
                             keyExpr="id"
                             parentIdExpr="parentId"
                             selectionMode="single"
@@ -89,9 +116,8 @@
                             rtlEnabled="true"
                             [selectByClick]="true"
                             [searchEnabled]="true"
-                            (onContentReady)="syncTreeViewSelection($event)"
-                            (onItemSelectionChanged)="treeView_itemSelectionChanged($event)"
-
+                            (onContentReady)="courseCategoryTreeContentReady($event)"
+                            (onItemSelectionChanged)="selectedCourseCategoryChanged($event);ddlCourseCategoryId.instance.close()"
                     >
                     </dx-tree-view>
                 </div>

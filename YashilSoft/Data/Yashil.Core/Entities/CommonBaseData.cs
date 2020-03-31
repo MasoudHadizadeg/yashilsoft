@@ -20,6 +20,7 @@ namespace Yashil.Core.Entities
             CoursePlanningImplementationTypeNavigation = new HashSet<CoursePlanning>();
             CoursePlanningRunTypeNavigation = new HashSet<CoursePlanning>();
             CourseSkillTypeNavigation = new HashSet<Course>();
+            EducationalCenter = new HashSet<EducationalCenter>();
             InverseParent = new HashSet<CommonBaseData>();
             PersonEducationGradeNavigation = new HashSet<Person>();
             PersonGenderNavigation = new HashSet<Person>();
@@ -66,6 +67,7 @@ namespace Yashil.Core.Entities
         public virtual ICollection<CoursePlanning> CoursePlanningImplementationTypeNavigation { get; set; }
         public virtual ICollection<CoursePlanning> CoursePlanningRunTypeNavigation { get; set; }
         public virtual ICollection<Course> CourseSkillTypeNavigation { get; set; }
+        public virtual ICollection<EducationalCenter> EducationalCenter { get; set; }
         public virtual ICollection<CommonBaseData> InverseParent { get; set; }
         public virtual ICollection<Person> PersonEducationGradeNavigation { get; set; }
         public virtual ICollection<Person> PersonGenderNavigation { get; set; }

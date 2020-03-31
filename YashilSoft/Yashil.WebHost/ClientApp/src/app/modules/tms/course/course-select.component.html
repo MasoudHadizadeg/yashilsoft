@@ -1,0 +1,17 @@
+<dx-text-box>
+    <dxi-button name="btnSelectCourse" icon="add" [options]="btnSelectCourseOptions"></dxi-button>
+</dx-text-box>
+<dx-popup
+        class="popup"
+        [fullScreen]="true"
+        [showTitle]="true"
+        [(visible)]="showCourse"
+        title="انتخاب دوره"
+        [dragEnabled]="false"
+        [closeOnOutsideClick]="true"
+        rtlEnabled="true"
+        [deferRendering]="false">
+    <div *dxTemplate="let data = model of 'content'">
+        <app-course-custom-list [educationalCenterId]="educationalCenterId" ></app-course-custom-list>
+    </div>
+</dx-popup>

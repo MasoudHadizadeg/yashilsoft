@@ -2001,6 +2001,11 @@ namespace Yashil.Infrastructure.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_EducationalCenter_Organization");
 
+                entity.HasOne(d => d.EstablishedLicenseTypeNavigation)
+                    .WithMany(p => p.EducationalCenter)
+                    .HasForeignKey(d => d.EstablishedLicenseType)
+                    .HasConstraintName("FK_EducationalCenter_CommonBaseData");
+
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.EducationalCenterModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)

@@ -70,6 +70,8 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
         [Range(0, int.MaxValue)] [Required] public int CustomGender { get; set; }
         [Range(0, int.MaxValue)] [Required] public int MaxCapacity { get; set; }
         [Range(0, int.MaxValue)] [Required] public int AccessLevelId { get; set; }
+        [Required] public int CourseCategoryId { get; set; }
+        public string CourseTitle { get; set; }
     }
 
 

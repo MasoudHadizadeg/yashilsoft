@@ -51,14 +51,12 @@ export class CourseListComponent {
         });
         this.columns.push({
             caption: 'گروه آموزشی',
-            dataField: 'courseCategoryTitle',
-            groupIndex: 2
+            dataField: 'courseCategoryTitle'
         });
         if (!this.educationalCenterId) {
             this.columns.push({
                 caption: 'مرکز آموشی',
-                dataField: 'educationalCenterTitle',
-                groupIndex: 1
+                dataField: 'educationalCenterTitle'
             });
         }
         this.columns.push({

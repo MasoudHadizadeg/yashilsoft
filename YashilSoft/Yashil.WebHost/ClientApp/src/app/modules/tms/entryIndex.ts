@@ -19,6 +19,7 @@ import {ContentEditorComponent} from './content-editor/content-editor.component'
 import {EducationalCenterCustomListComponent} from './educational-center/educational-center-custom-list.component';
 import {CourseCategoryListComponent} from './course-category/course-category-list.component';
 import {CourseListComponent} from './course/course-list.component';
+import {CourseSelectComponent} from './course/course-select.component';
 
 export const ENTRYCOMPONENTS: Provider[] = [
     CoursesPlanningStudentDetailTabBasedComponent,
@@ -40,5 +41,6 @@ export const ENTRYCOMPONENTS: Provider[] = [
     ContentEditorComponent,
     EducationalCenterCustomListComponent,
     CourseCategoryListComponent,
-    CourseListComponent
+    CourseListComponent,
+    CourseSelectComponent
 ];

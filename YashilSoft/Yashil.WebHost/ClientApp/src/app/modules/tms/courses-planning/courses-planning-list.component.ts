@@ -18,24 +18,17 @@ export class CoursesPlanningListComponent {
             dataField: 'representationTitle'
         });
         this.columns.push({
+            caption: 'دوره',
+            dataField: 'courseTitle',
+            width: 300
+        });
+        this.columns.push({
             caption: 'دوره سازمانی',
             dataField: 'organizational'
         });
         this.columns.push({
             caption: 'وضعیت دوره',
             dataField: 'courseStatusTitle'
-        });
-        this.columns.push({
-            caption: 'مدرس',
-            dataField: 'representationPersonTitle'
-        });
-        this.columns.push({
-            caption: 'قیمت دوره',
-            dataField: 'price'
-        });
-        this.columns.push({
-            caption: 'دوره',
-            dataField: 'courseTitle'
         });
         this.columns.push({
             caption: 'رده سنی',
@@ -55,7 +48,8 @@ export class CoursesPlanningListComponent {
         });
         this.columns.push({
             caption: 'تاریخ شروع',
-            dataField: 'startDate'
+            dataField: 'startDate',
+            cellTemplate: 'intDate'
         });
         this.columns.push({
             caption: 'جنسیت',

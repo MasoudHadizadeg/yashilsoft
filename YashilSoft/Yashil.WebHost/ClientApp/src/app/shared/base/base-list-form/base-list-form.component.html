@@ -28,12 +28,11 @@
               (onSelectionChanged)="onSelectionChanged($event)">
     <dxo-summary>
         <dxi-group-item
-
                 column="id"
                 summaryType="count">
         </dxi-group-item>
     </dxo-summary>
-    <dxo-group-panel  [visible]="true" *ngIf="allowGrouping"></dxo-group-panel>
+    <dxo-group-panel [visible]="true" *ngIf="allowGrouping"></dxo-group-panel>
     <dxo-grouping #expand [autoExpandAll]="true" expandMode='rowClick'></dxo-grouping>
 
     <dxo-scrolling *ngIf="virtualPaging" mode="virtual" rowRenderingMode="virtual"

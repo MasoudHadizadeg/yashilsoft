@@ -9,6 +9,7 @@ import {Editable} from '../../../shared/base/classes/editable';
 })
 export class CourseCategoryDetailTabBasedComponent extends Editable implements OnInit {
     educationalCenterId: number;
+    courseCategoryId: number;
     educationalCenterMainCourseCategoryId: number;
     parentId: number;
     allowEditDesc: boolean;

@@ -45,7 +45,11 @@ namespace YashilTms.Web.Areas.Tms
             CreateMap<Course, CourseSimpleViewModel>();
 
 
-            CreateMap<CoursePlanning, CoursePlanningEditModel>();
+            CreateMap<CoursePlanning, CoursePlanningEditModel>().ForMember(x => x.CourseCategoryId,
+                x => x.MapFrom(b => b.Course.CourseCategoryId))
+                .ForMember(x => x.CourseTitle,
+                    x => x.MapFrom(b => b.Course.Title));
+
 
             CreateMap<CoursePlanning, CoursePlanningListViewModel>()
                 .ForMember(x => x.RepresentationTitle,

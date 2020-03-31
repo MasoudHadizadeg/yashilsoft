@@ -13,11 +13,12 @@ import {NgModule} from '@angular/core';
 import {EducationalCenterCustomListComponent} from './educational-center/educational-center-custom-list.component';
 import {CourseCategoryCustomListComponent} from './course-category/course-category-custom-list.component';
 import {CourseCustomListComponent} from './course/course-custom-list.component';
+import {CoursePlanningCustomListComponent} from './courses-planning/course-planning-custom-list.component';
 
 const routes: Routes = [
     {path: 'coursePlanningStudents', component: CoursesPlanningStudentListComponent, canActivate: [AuthGuard]},
     {path: 'courses', component: CourseCustomListComponent, canActivate: [AuthGuard]},
-    {path: 'coursePlannings', component: CoursesPlanningListComponent, canActivate: [AuthGuard]},
+    {path: 'coursePlannings', component: CoursePlanningCustomListComponent, canActivate: [AuthGuard]},
     {path: 'representations', component: RepresentationListComponent, canActivate: [AuthGuard]},
     {path: 'representationPersons', component: RepresentationPersonListComponent, canActivate: [AuthGuard]},
     {path: 'courseCategorys', component: CourseCategoryCustomListComponent, canActivate: [AuthGuard]},

@@ -1,11 +1,11 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {GenericDataService} from '../base/services/generic-data.service';
 import {DxFormComponent} from 'devextreme-angular/ui/form';
 
 @Injectable({
     providedIn: 'root'
 })
-export class UserExtenderService implements OnInit {
+export class UserExtenderService {
     representationDataSource: any;
     educationalCenterDataSource: any;
     _detailForm: DxFormComponent;
@@ -48,7 +48,6 @@ export class UserExtenderService implements OnInit {
                 rtlEnabled: true,
                 closeOnOutsideClick: true,
                 showPopupTitle: false,
-                dataSource: this.representationDataSource,
                 displayExpr: 'title',
                 valueExpr: 'id'
             }
@@ -94,8 +93,5 @@ export class UserExtenderService implements OnInit {
             this.representationDataSource = null;
         }
         this._detailForm.instance.getEditor('representationId').option('dataSource', this.representationDataSource);
-    }
-
-    ngOnInit(): void {
     }
 }

@@ -27,10 +27,12 @@ export class CourseCategoryDetailComponent extends BaseEdit implements OnInit {
 
     ngOnInit() {
         super.ngOnInit();
-        if (!this.selectedEntityId && this.educationalCenterId) {
-            this.entity.educationalCenterId = this.educationalCenterId;
-            this.entity.educationalCenterMainCourseCategoryId = this.educationalCenterMainCourseCategoryId;
-            this.entity.parentId = this.parentId;
+        if (!this.selectedEntityId) {
+            if (this.educationalCenterId) {
+                this.entity.educationalCenterId = this.educationalCenterId;
+                this.entity.educationalCenterMainCourseCategoryId = this.educationalCenterMainCourseCategoryId;
+                this.entity.parentId = this.parentId;
+            }
         }
         // this.parentDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'courseCategory');
         this._genericDataService.getCustomEntitiesByUrl(`api/courseCategory/GetByEducationalCenterMainCourseCategoryId/${this.educationalCenterMainCourseCategoryId}`)
