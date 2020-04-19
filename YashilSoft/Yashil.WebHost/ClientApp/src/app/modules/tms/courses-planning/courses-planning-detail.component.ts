@@ -4,7 +4,8 @@ import {GenericDataService} from '../../../shared/base/services/generic-data.ser
 import {Entity} from '../../../shared/base/base-data/entity.enum';
 import {CachedDataService} from '../../../shared/services/cached-data.service';
 import {CachedKey} from '../tms-enums';
-import {DxDropDownBoxComponent, DxTreeViewComponent} from 'devextreme-angular';
+import {DxTreeViewComponent} from 'devextreme-angular/ui/tree-view';
+import {DxDropDownBoxComponent} from 'devextreme-angular/ui/drop-down-box';
 
 
 @Component({

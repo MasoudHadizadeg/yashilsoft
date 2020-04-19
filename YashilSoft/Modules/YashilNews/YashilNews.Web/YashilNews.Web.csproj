@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.6.2" />
-    <PackageReference Include="Yashil.Common.Web.Infrastructure" Version="1.6.7" />
+    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.7.1" />
+    <PackageReference Include="Yashil.Common.Web.Infrastructure" Version="1.7.1" />
   </ItemGroup> 
 
   <ItemGroup>

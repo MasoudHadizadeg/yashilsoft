@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="DevExpress.Dashboard.Core" Version="19.2.3" />
-    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.6.2" />
+    <PackageReference Include="Yashil.Common.SharedKernel" Version="1.7.1" />
   </ItemGroup>
 
   <ItemGroup>

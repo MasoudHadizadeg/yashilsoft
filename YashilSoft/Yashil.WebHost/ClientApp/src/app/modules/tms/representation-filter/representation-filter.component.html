@@ -5,7 +5,7 @@
         </div>
         <div style="float: right; width: 80%">
             <dx-lookup
-                    [disabled]="additionalUserProp || !additionalUserProp.educationalCenterId"
+                    [disabled]="additionalUserProp && additionalUserProp.educationalCenterId"
                     [dataSource]="educationalCenterDataSource"
                     [(value)]="educationalCenterId"
                     displayExpr="title"

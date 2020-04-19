@@ -45,6 +45,17 @@ export class CourseCategoryCustomListComponent extends Selectable implements OnI
         this.contentHeight = window.innerHeight - 110;
     }
 
+    ngOnInit(): void {
+        this.additionalUserProp = this.cachedDataService.getData(CachedKey.AdditionalUserProp);
+        if (this.additionalUserProp && this.additionalUserProp.educationalCenterId) {
+            this.educationalCenterId = this.additionalUserProp.educationalCenterId;
+        }
+        this.educationalCenterDataSource = this.genericDataService.createCustomDatasourceForSelect('id', 'educationalCenter');
+        this.columns.push({
+            caption: 'عنوان',
+            dataField: 'title'
+        });
+    }
     bindTree() {
         if (this._educationalCenterId) {
             this.frmRep.customListUrl = `${this.baseListUrl}?educationalCenterId=${this._educationalCenterId}`;
@@ -66,17 +77,6 @@ export class CourseCategoryCustomListComponent extends Selectable implements OnI
         }
     }
 
-    ngOnInit(): void {
-        const data = this.cachedDataService.getData(CachedKey.AdditionalUserProp);
-        if (data && data.educationalCenterId) {
-            this.educationalCenterId = data.educationalCenterId;
-        }
-        this.educationalCenterDataSource = this.genericDataService.createCustomDatasourceForSelect('id', 'educationalCenter');
-        this.columns.push({
-            caption: 'عنوان',
-            dataField: 'title'
-        });
-    }
 
     onRowSelect(item: any) {
         this.selectedEntity = item;

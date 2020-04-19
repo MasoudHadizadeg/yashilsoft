@@ -12,7 +12,6 @@ import {EducationalCenterDetailComponent} from './educational-center/educational
 import {AdditionalUserPropDetailComponent} from './additional-user-prop/additional-user-prop-detail.component';
 import {MainCourseCategoryDetailComponent} from './main-course-category/main-course-category-detail.component';
 import {EducationalCenterMainCourseCategoryDetailComponent} from './educational-center-main-course-category/educational-center-main-course-category-detail.component';
-import {Provider} from '@angular/core';
 import {ContentEditorComponent} from './content-editor/content-editor.component';
 import {EducationalCenterCustomListComponent} from './educational-center/educational-center-custom-list.component';
 import {CourseCategoryListComponent} from './course-category/course-category-list.component';
@@ -22,6 +21,7 @@ import {CoursePlanningStudentDetailComponent} from './course-planning-student/co
 import {RepresentationTeacherDetailComponent} from './representation-teacher/representation-teacher-detail.component';
 import {RepresentationCourseCategoryDetailComponent} from './representation-course-category/representation-course-category-detail.component';
 import {PersonBankAccountDetailComponent} from './person-bank-account/person-bank-account-detail.component';
+import {Provider} from '@angular/core';
 
 export const ENTRYCOMPONENTS: Provider[] = [
     CoursesPlanningDetailTabBasedComponent,

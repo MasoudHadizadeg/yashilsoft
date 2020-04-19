@@ -7,10 +7,12 @@ import {NewsStoreDetailTabBasedComponent} from './news-store/news-store-detail-t
 import {NewsStoreDetailComponent} from './news-store/news-store-detail.component';
 
 import {Provider} from '@angular/core';
+import {NewsKeywordDetailComponent} from './news-keyword/news-keyword-detail.component';
 
 export const ENTRYCOMPONENTS: Provider[] = [
     MainNewsDetailComponent,
     ServiceDetailComponent,
     NewsStoreDetailTabBasedComponent,
     NewsStoreDetailComponent,
+    NewsKeywordDetailComponent
 ];

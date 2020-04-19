@@ -1,7 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DxFormComponent} from 'devextreme-angular';
 
 @Component({
     selector: 'app-forgot-password-page',

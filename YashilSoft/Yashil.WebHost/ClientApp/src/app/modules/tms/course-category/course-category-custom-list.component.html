@@ -8,7 +8,7 @@
                 <dx-lookup
                         [dataSource]="educationalCenterDataSource"
                         [(value)]="educationalCenterId"
-                        [disabled]="educationalCenterId"
+                        [disabled]="additionalUserProp && additionalUserProp.educationalCenterId"
                         displayExpr="title"
                         valueExpr="id"
                         rtlEnabled="true"

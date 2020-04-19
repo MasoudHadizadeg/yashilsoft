@@ -2,9 +2,9 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {CourseDetailTabBasedComponent} from './course-detail-tab-based.component';
 import {BaseList} from '../../../shared/base/classes/base-list';
 import {GenericDataService} from '../../../shared/base/services/generic-data.service';
-import {DxTreeViewComponent} from 'devextreme-angular';
 import {CachedDataService} from '../../../shared/services/cached-data.service';
 import {CachedKey} from '../tms-enums';
+import {DxTreeViewComponent} from 'devextreme-angular/ui/tree-view';
 
 
 @Component({

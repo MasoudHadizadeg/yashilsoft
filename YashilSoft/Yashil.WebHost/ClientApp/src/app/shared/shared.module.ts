@@ -54,8 +54,7 @@ import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import {DynamicScriptLoaderService} from './services/dynamic-script-loader.service';
 import {CoreModule} from '../core/core.module';
 import {AssignableListComponent} from './base/core/components/assignable-list/assignable-list.component';
-import {NgScrollbarModule} from 'ngx-scrollbar';
-import {DxButtonGroupModule} from 'devextreme-angular';
+import {DxButtonGroupModule} from 'devextreme-angular/ui/button-group';
 import {PersonListComponent} from './components/person/person-list.component';
 import {PersonDetailComponent} from './components/person/person-detail.component';
 import {PersonSelectComponent} from './components/person/person-select/person-select.component';
@@ -114,7 +113,6 @@ import {DxTreeViewModule} from 'devextreme-angular/ui/tree-view';
         PersonSelectComponent
     ],
     imports: [
-        NgScrollbarModule,
         DxTileViewModule,
         TranslateModule,
         DxDropDownBoxModule,

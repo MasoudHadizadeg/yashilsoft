@@ -1,7 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Inject, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ConfigService} from '../../shared/services/config.service';
 import {DOCUMENT} from '@angular/common';
-import {DxFormComponent} from 'devextreme-angular';
 
 @Component({
     selector: 'app-full-split-layout',

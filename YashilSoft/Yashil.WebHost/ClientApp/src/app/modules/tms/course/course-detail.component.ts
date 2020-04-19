@@ -2,7 +2,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {BaseEdit} from '../../../shared/base/classes/base-edit';
 import {GenericDataService} from '../../../shared/base/services/generic-data.service';
 import {Entity} from '../../../shared/base/base-data/entity.enum';
-import {DxTreeViewComponent} from 'devextreme-angular';
+import {DxTreeViewComponent} from 'devextreme-angular/ui/tree-view';
 
 
 @Component({
