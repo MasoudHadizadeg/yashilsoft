@@ -2,7 +2,7 @@
                     (closeFormClick)="onCloseFormClick($event)">
     <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
         <dxi-item dataField="serviceId" editorType="dxLookup" [label]="{text: 'سرویس خبری'}"
-                  [editorOptions]="{rtlEnabled:true,onSelectionChanged:selectedNewsTypeChanged,closeOnOutsideClick:true,showPopupTitle:false, dataSource: serviceDataSource,displayExpr:'title',valueExpr:'id',readOnly:true }">
+                  [editorOptions]="{rtlEnabled:true,onSelectionChanged:selectedNewsTypeChanged,closeOnOutsideClick:true,showPopupTitle:false, dataSource: serviceDataSource,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="سرویس خبری اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
         <dxi-item dataField="newsType" editorType="dxSelectBox" [label]="{text: 'نوع '}"

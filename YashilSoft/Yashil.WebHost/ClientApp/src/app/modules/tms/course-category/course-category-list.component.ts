@@ -11,11 +11,25 @@ import {Selectable} from '../../../shared/base/classes/selectable';
 export class CourseCategoryListComponent extends Selectable implements OnInit {
     @ViewChild('frmCategory', {static: true}) frmRep: BaseList;
     private _educationalCenterId: number;
+    private _representationId: number;
     @Input()
     isForSelectReadOnly = false;
     @Input()
     hideEducationalCenterColumn = false;
     selectedEntity: any = null;
+
+    @Input()
+    set representationId(value: number) {
+        if (value && this._representationId !== value) {
+            this._representationId = value;
+            this.bindTree();
+        }
+    }
+
+    get representationId(): number {
+        return this._representationId;
+    }
+
 
     @Input()
     set educationalCenterId(value: number) {
@@ -45,6 +59,8 @@ export class CourseCategoryListComponent extends Selectable implements OnInit {
     bindTree() {
         if (this._educationalCenterId) {
             this.frmRep.customListUrl = `${this.baseListUrl}?educationalCenterId=${this._educationalCenterId}`;
+        } else if (this.representationId) {
+            this.frmRep.customListUrl = `courseCategory/GetRepresentationCourseCategories?representationId=${this.representationId}`;
         } else {
             this.frmRep.customListUrl = `${this.baseListUrl}`;
         }
@@ -55,7 +71,7 @@ export class CourseCategoryListComponent extends Selectable implements OnInit {
     }
 
     afterInitialDetailComponent(componentInstance: any) {
-        const comp = (<CourseCategoryDetailTabBasedComponent>componentInstance);
+        const comp = (<CourseCategoryDetailTabBasedComponent>componentInstance.instance);
         comp.educationalCenterId = this.educationalCenterId;
         if (this.selectedEntity) {
             comp.educationalCenterMainCourseCategoryId = this.selectedEntity.educationalCenterMainCourseCategoryId;

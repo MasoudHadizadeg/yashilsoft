@@ -6,19 +6,10 @@ namespace YashilNews.Core.Repositories
 {
 	public interface IMainNewsRepository : IGenericRepository<MainNews,int>
     {
+		          
+        IQueryable<MainNews> GetByCustomFilter( int? newsStoreId);
+           
 		
-		IQueryable<MainNews> GetByNewsStoreId(int newsStoreId);
-		
-		IQueryable<MainNews> GetByNewsPropertyId(int newsPropertyId);
-		
-		IQueryable<MainNews> GetByCreateBy(int createBy);
-		
-		IQueryable<MainNews> GetByModifyBy(int modifyBy);
-		
-		IQueryable<MainNews> GetByApplicationId(int applicationId);
-		
-		IQueryable<MainNews> GetByCreatorOrganizationId(int creatorOrganizationId);
-		    
     }
 }      
  

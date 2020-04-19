@@ -27,5 +27,11 @@ namespace YashilTms.Infrastructure.ServiceImpl
         {
             return _representationPersonRepository.GetByRepresentationId(representationId);
         }
+
+        public IQueryable<RepresentationPerson> GetByCustomFilter(int? representationId, int? personId, int? postId)
+        {
+            return _representationPersonRepository.GetByCustomFilter(representationId, personId, postId);
+        }
+
     }
 }

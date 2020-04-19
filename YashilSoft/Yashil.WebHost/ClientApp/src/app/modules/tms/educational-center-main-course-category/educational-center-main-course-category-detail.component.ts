@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BaseEdit} from '../../../shared/base/classes/base-edit';
 import {GenericDataService} from '../../../shared/base/services/generic-data.service';
 
@@ -9,6 +9,10 @@ import {GenericDataService} from '../../../shared/base/services/generic-data.ser
 })
 export class EducationalCenterMainCourseCategoryDetailComponent extends BaseEdit implements OnInit {
     columns: any[] = [];
+    @Input()
+    educationalCenterId: number;
+    @Input()
+    mainCourseCategoryId: number;
 
     constructor(private genericDataService: GenericDataService) {
         super(genericDataService);

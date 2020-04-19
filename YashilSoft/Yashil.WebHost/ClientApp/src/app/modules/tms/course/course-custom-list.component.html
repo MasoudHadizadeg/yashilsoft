@@ -24,7 +24,7 @@
             <div style="width: 100%;" [style.height.px]="contentHeight">
                 <as-split direction="horizontal" dir="ltr">
                     <as-split direction="horizontal">
-                        <as-split-area size="70" #t1 dir="rtl">
+                        <as-split-area size="75" #t1 dir="rtl">
                             <app-base-list-form title="دوره" allowGrouping="true"
                                                 loadAfterSetFilter="true"
                                                 (afterInitialDetailComponent)="afterInitialDetailComponent($event)"
@@ -34,7 +34,7 @@
                                                 [detailComponent]="detailComponent">
                             </app-base-list-form>
                         </as-split-area>
-                        <as-split-area size="30" #t2 dir="rtl">
+                        <as-split-area size="25" #t2 dir="rtl">
                             <app-course-category-list [isForSelectReadOnly]="forSelect" hideEducationalCenterColumn="true" (selectedRowChanged)="selectedCourseCategoryChanged($event)"
                                                       [educationalCenterId]="educationalCenterId"></app-course-category-list>
                         </as-split-area>

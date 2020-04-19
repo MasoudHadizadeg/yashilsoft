@@ -9,7 +9,10 @@ namespace Yashil.Core.Entities
         public Person()
         {
             CoursePlanningStudent = new HashSet<CoursePlanningStudent>();
+            PersonBankAccount = new HashSet<PersonBankAccount>();
+            Representation = new HashSet<Representation>();
             RepresentationPerson = new HashSet<RepresentationPerson>();
+            RepresentationTeacher = new HashSet<RepresentationTeacher>();
         }
 
         public int Id { get; set; }
@@ -41,6 +44,9 @@ namespace Yashil.Core.Entities
         public virtual CommonBaseData GenderNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual ICollection<CoursePlanningStudent> CoursePlanningStudent { get; set; }
+        public virtual ICollection<PersonBankAccount> PersonBankAccount { get; set; }
+        public virtual ICollection<Representation> Representation { get; set; }
         public virtual ICollection<RepresentationPerson> RepresentationPerson { get; set; }
+        public virtual ICollection<RepresentationTeacher> RepresentationTeacher { get; set; }
     }
     }

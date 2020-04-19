@@ -8,5 +8,6 @@ namespace YashilUserManagement.Core.Repositories
         string GetDescription(int id);
 
         bool CheckExistsNationalCode(string nationalCode, int? personId);
+        Person GetByNationalCode(string nationalCode);
     }
 }

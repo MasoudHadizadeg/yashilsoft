@@ -1,0 +1,9 @@
+<app-base-list-form [isForTree]="true"
+                    #listForm
+                    (afterInitialDetailComponent)="afterInitialDetailComponent($event)"
+                    [loadAfterSetFilter]="loadAfterSetFilter"
+                    (selectedRowChanged)="selectedServiceChanged($event)"
+                    [columns]="columns"
+                    [entityName]="entityName"
+                    [detailComponent]="detailComponent">
+</app-base-list-form>

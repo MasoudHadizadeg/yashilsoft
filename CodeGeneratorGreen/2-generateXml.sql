@@ -2,6 +2,7 @@
  * Code formatted by SoftTree SQL Assistant © v9.1.276
  * Time: 3/3/2020 11:15:58 AM
  ************************************************************/
+USE YashilDb
 
 EXEC INSERT_AppEntity
 
@@ -85,7 +86,7 @@ FROM   sys.schemas                  AS s
        INNER JOIN sys.tables        AS t
             ON  s.schema_id = t.schema_id
             AND t.name NOT IN ('sysdiagrams', 'TableDesc')
-            AND s.name = 'news'
+            AND s.name = 'tms'
        INNER JOIN base.AppEntity    AS ae
             ON  t.[object_id] = ae.SystemId
                 FOR XML PATH('Table'),

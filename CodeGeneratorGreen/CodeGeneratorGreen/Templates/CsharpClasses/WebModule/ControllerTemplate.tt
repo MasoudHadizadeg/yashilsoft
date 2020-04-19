@@ -6,13 +6,10 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ assembly name="System.Core" #>
-
-
 	<#		
             var table = SqlToCsharpHelper.table; 
 			string lowerTableName = table.Name.FirstCharacterToLower();
 			#> 
-
 using AutoMapper.QueryableExtensions;
 using System.Threading.Tasks;
 using DevExtreme.AspNet.Data;
@@ -37,16 +34,22 @@ namespace <#= ApplicationInfo.Instance.ControllerNamespace #>
             _<#=lowerTableName#>Service=<#=lowerTableName#>Service;
         }
       <#
-            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var cols=table.ForeignKeyColumns;
             var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
-            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=> x.Name.FirstCharacterToLower()).ToArray());
     if(!string.IsNullOrEmpty(colsParams)){
         #>
-        [HttpGet("GetByCustomFilter")]
-        public async Task<LoadResult> GetByCustomFilter(CustomDataSourceLoadOptions loadOptions, <#=colsParams #>)
+        [HttpGet("GetByCustomFilterForList")]
+        public async Task<LoadResult> GetByCustomFilterForList(CustomDataSourceLoadOptions loadOptions, <#=colsParams #>)
         {
-            var newsStores = _newsStoreService.GetByCustomFilter(<#=colVar #>);
+            var <#=lowerTableName#>s = _<#=lowerTableName#>Service.GetByCustomFilter(<#=colVar #>);
             return await DataSourceLoader.LoadAsync(<#=lowerTableName#>s.ProjectTo<<#=table.Name#>ListViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+        [HttpGet("GetByCustomForSelect")]
+        public async Task<LoadResult> GetByCustomForSelect(CustomDataSourceLoadOptions loadOptions, <#=colsParams #>)
+        {
+            var <#=lowerTableName#>s = _<#=lowerTableName#>Service.GetByCustomFilter(<#=colVar #>);
+            return await DataSourceLoader.LoadAsync(<#=lowerTableName#>s.ProjectTo<<#=table.Name#>SimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
 <#}#>  
     }

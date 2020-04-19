@@ -40,7 +40,7 @@ export class CourseListComponent {
     detailComponent = CourseDetailTabBasedComponent;
 
     afterInitialDetailComponent(componentInstance: any) {
-        const comp = (<CourseDetailTabBasedComponent>componentInstance);
+        const comp = (<CourseDetailTabBasedComponent>componentInstance.instance);
         comp.educationalCenterId = this.educationalCenterId;
     }
 

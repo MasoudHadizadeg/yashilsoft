@@ -32,9 +32,9 @@ namespace <#= ApplicationInfo.Instance.RepositoryNamespace #>
                 _userPrincipal = userPrincipal;
             }
          <#
-            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var cols=table.ForeignKeyColumns;
             var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
-            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=>  x.Name.FirstCharacterToLower()).ToArray());
         if(!string.IsNullOrEmpty(colsParams)){
         #>
         
@@ -42,9 +42,9 @@ namespace <#= ApplicationInfo.Instance.RepositoryNamespace #>
     public IQueryable<<#= table.Name #>> GetByCustomFilter(<#=colsParams#>)
         {
             var query= GetAll(true);
-             <#foreach (Column col in table.Columns.Where(x => x.IsForeignKey))
+             <#foreach (Column col in table.ForeignKeyColumns)
                 {#>
-            if (serviceId.HasValue)
+            if ( <#=col.Name.FirstCharacterToLower()#>.HasValue)
                 {
                     query = query.Where(x => x.<#=col.Name#> == <#=col.Name.FirstCharacterToLower()#>.Value);
                 }

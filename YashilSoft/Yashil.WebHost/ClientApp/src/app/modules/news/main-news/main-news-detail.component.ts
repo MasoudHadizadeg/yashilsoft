@@ -14,11 +14,8 @@ import {createStore} from 'devextreme-aspnet-data-nojquery';
 export class MainNewsDetailComponent extends BaseEdit implements OnInit {
 						@Input()
 			newsStoreId:number;
-						@Input()
-			newsPropertyId:number;
 					 newsStoreDataSource:any;
-	 					newsPropertys: any;
-  constructor(private genericDataService: GenericDataService) {
+	   constructor(private genericDataService: GenericDataService) {
     super(genericDataService);
     this.entityName = 'mainNews';
   }
@@ -27,10 +24,7 @@ export class MainNewsDetailComponent extends BaseEdit implements OnInit {
     super.ngOnInit();
 				if(this.newsStoreId)
 				this.entity.newsStoreId=this.newsStoreId;
-						if(this.newsPropertyId)
-				this.entity.newsPropertyId=this.newsPropertyId;
 			
 							this.newsStoreDataSource = this._genericDataService.createCustomDatasourceForSelect('id', 'newsStore');
-									this._genericDataService.getCommonBaseDataForSelect('NewsProperty').subscribe(res => this.newsPropertys = res);
 				  }      
 }

@@ -16,42 +16,25 @@ namespace YashilNews.Infrastructure.RepositoryImpl
                 _context = context;
                 _userPrincipal = userPrincipal;
             }
-
-        
-        public IQueryable<Service> GetByParentId(int parentId)
+                 
+   
+    public IQueryable<Service> GetByCustomFilter( int? parentId, int? appEntityId)
         {
-            return GetAll(true).Where(x => x.ParentId == parentId);
-        }
-      
-        public IQueryable<Service> GetByAppEntityId(int appEntityId)
-        {
-            return GetAll(true).Where(x => x.AppEntityId == appEntityId);
-        }
-      
-        public IQueryable<Service> GetByCreateBy(int createBy)
-        {
-            return GetAll(true).Where(x => x.CreateBy == createBy);
-        }
-      
-        public IQueryable<Service> GetByModifyBy(int modifyBy)
-        {
-            return GetAll(true).Where(x => x.ModifyBy == modifyBy);
-        }
-      
-        public IQueryable<Service> GetByApplicationId(int applicationId)
-        {
-            return GetAll(true).Where(x => x.ApplicationId == applicationId);
-        }
-      
-        public IQueryable<Service> GetByAccessLevelId(int accessLevelId)
-        {
-            return GetAll(true).Where(x => x.AccessLevelId == accessLevelId);
-        }
-      
-        public IQueryable<Service> GetByCreatorOrganizationId(int creatorOrganizationId)
-        {
-            return GetAll(true).Where(x => x.CreatorOrganizationId == creatorOrganizationId);
-        }
+            var query= GetAll(true);
+                         if ( parentId.HasValue)
+                {
+                    query = query.Where(x => x.ParentId == parentId.Value);
+                }
+                          if ( appEntityId.HasValue)
+                {
+                    query = query.Where(x => x.AppEntityId == appEntityId.Value);
+                }
+                  
           
+            return query;
+        }
+           
+
+       
     }
 }      

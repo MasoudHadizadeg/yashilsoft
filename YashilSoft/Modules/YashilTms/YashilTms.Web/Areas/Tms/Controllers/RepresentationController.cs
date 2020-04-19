@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -34,8 +35,10 @@ namespace YashilTms.Web.Areas.Tms.Controllers
                 ? _representationService.GetByEducationalCenterId(educationalCenterId.Value)
                 : _representationService.GetAll(true);
 
-            return await DataSourceLoader.LoadAsync(representations.ProjectTo<RepresentationSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
+            return await DataSourceLoader.LoadAsync(
+                representations.ProjectTo<RepresentationSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
+
         [HttpGet("GetByEducationalCenterIdForList")]
         public async Task<LoadResult> GetByEducationalCenterForList(CustomDataSourceLoadOptions loadOptions,
             int? educationalCenterId)
@@ -45,6 +48,17 @@ namespace YashilTms.Web.Areas.Tms.Controllers
                 : _representationService.GetAll(true);
 
             return await DataSourceLoader.LoadAsync(representations.ProjectTo<RepresentationListViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+
+        protected override void CustomMapBeforeInsert(RepresentationEditModel editModel, Representation entity)
+        {
+            foreach (var courseCategoryId in editModel.CourseCategories)
+            {
+                entity.RepresentationCourseCategory.Add(new RepresentationCourseCategory
+                {
+                    CourseCategoryId = courseCategoryId
+                });
+            }
         }
     }
 }

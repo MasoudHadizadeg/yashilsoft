@@ -10,6 +10,7 @@ namespace Yashil.Core.Entities
         {
             Course = new HashSet<Course>();
             InverseParent = new HashSet<CourseCategory>();
+            RepresentationCourseCategory = new HashSet<RepresentationCourseCategory>();
         }
 
         public int Id { get; set; }
@@ -38,5 +39,6 @@ namespace Yashil.Core.Entities
         public virtual CourseCategory Parent { get; set; }
         public virtual ICollection<Course> Course { get; set; }
         public virtual ICollection<CourseCategory> InverseParent { get; set; }
+        public virtual ICollection<RepresentationCourseCategory> RepresentationCourseCategory { get; set; }
     }
     }

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Selectable} from '../../../shared/base/classes/selectable';
-import {GenericDataService} from '../../../shared/base/services/generic-data.service';
+import {Selectable} from '../../../base/classes/selectable';
+import {GenericDataService} from '../../../base/services/generic-data.service';
 
 
 @Component({

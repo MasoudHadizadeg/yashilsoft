@@ -21,8 +21,6 @@ import {MenuDetailComponent} from './menu/menu-detail.component';
 import {UserRoleDetailComponent} from './user-role/user-role-detail.component';
 
 import {PostDetailComponent} from './post/post-detail.component';
-
-import {PersonDetailComponent} from './person/person-detail.component';
 import {Provider} from '@angular/core';
 import {JobDetailComponent} from './job/job-detail.component';
 
@@ -40,5 +38,4 @@ export const ENTRYCOMPONENTS: Provider[] = [
     MenuDetailComponent,
     UserRoleDetailComponent,
     PostDetailComponent,
-    PersonDetailComponent
 ];

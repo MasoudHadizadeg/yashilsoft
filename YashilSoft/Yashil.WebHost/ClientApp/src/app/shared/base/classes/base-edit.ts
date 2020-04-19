@@ -206,6 +206,7 @@ export class BaseEdit extends Editable implements OnInit {
     }
 
     public afterLoadData(res: any): any {
+        this.afterDataLoaded.emit(res);
     }
 
     public loadEntityData() {

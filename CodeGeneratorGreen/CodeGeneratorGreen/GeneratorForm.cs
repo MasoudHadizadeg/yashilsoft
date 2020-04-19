@@ -66,7 +66,7 @@ namespace CodeGeneratorGreen
                 new ModuleInfo
                 {
                     ClassNamespace = "YashilTms", AngularModuleName = "Tms", AreaName = "Tms",
-                    XmlFileName = "Data_tms", GenerateProjectFiles = false, GenerateControllers = true,
+                    XmlFileName = "Data_tms", GenerateProjectFiles = true, GenerateControllers = true,
                     GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
                 },
                 new ModuleInfo

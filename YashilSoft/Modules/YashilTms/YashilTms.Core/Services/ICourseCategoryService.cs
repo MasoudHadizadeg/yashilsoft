@@ -9,6 +9,7 @@ namespace YashilTms.Core.Services
     {
         IQueryable<CourseCategory> GetByEducationalCenterId(int educationalCenterId);
         IQueryable<CourseCategory> GetByEducationalCenterMainCourseCategoryId(int educationalCenterMainCourseCategoryId);
+        IQueryable<CourseCategory> GetRepresentationCourseCategories(int representationId);
     }
 }      
  

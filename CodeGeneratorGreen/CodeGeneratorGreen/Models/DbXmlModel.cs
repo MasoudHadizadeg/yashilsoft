@@ -75,6 +75,14 @@ namespace CodeGeneratorGreen.Models
         [XmlElement(ElementName = "Column")] 
         public List<Column> Columns { get; set; }
 
+        public List<Column> ForeignKeyColumns
+        {
+            get
+            {
+                return Columns.Where(x => x.IsForeignKey && !ApplicationInfo.Instance.SkipForeignKeyInCustomFilter.Contains(x.Name)).ToList();
+            }
+        }
+
         [XmlAttribute(AttributeName = "schema")]
         public string Schema { get; set; }
 
@@ -90,6 +98,7 @@ namespace CodeGeneratorGreen.Models
         public bool IsApplicationBased => Columns.Any(x => x.Name == "ApplicationId");
         [XmlAttribute(AttributeName = "generateTabForDescColumn")] public bool GenerateTabForDescColumn { get; set; }
         [XmlAttribute(AttributeName = "hasAttachmenet")] public bool HasAttachmenet { get; set; }
+
     }
 
     [XmlRoot(ElementName = "Tables")]

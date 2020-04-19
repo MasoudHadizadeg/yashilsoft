@@ -56,4 +56,8 @@ export class RepresentationDetailComponent extends BaseEdit implements OnInit {
             this.entity.cityId = e.itemData.id;
         }
     }
+
+    selectedPersonChanged(selectedPersonId: any) {
+        this.entity.founderId = selectedPersonId;
+    }
 }

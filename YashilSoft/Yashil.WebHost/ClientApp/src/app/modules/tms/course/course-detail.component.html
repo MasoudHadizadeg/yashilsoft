@@ -11,7 +11,8 @@
                   [editorOptions]="{rtlEnabled:true,onSelectionChanged:selectedEducationalCenterChanged,readOnly:allowSetEducationalCenter(),closeOnOutsideClick:true,showPopupTitle:false, dataSource: educationalCenterDataSource,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="مرکز آموشی اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item [template]="'courseCategoryTree'" dataField="courseCategoryId" [label]="{text: 'دسته'}">
+        <dxi-item [template]="'courseCategoryTree'" dataField="courseCategoryId" [label]="{text: 'زیرگروه'}">
+            <dxi-validation-rule type="required" message=" زیرگروه اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
 
         <dxi-item dataField="skillType" editorType="dxSelectBox" [label]="{text: 'سطح مهارت دوره'}"
@@ -28,12 +29,11 @@
 
         </dxi-item>
         <dxi-item [label]="{text: 'مدت دوره(ساعت)'}" dataField="duration" editorType='dxNumberBox'>
-
             <dxi-validation-rule type="required" message="مدت دوره(ساعت) اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
         <div *dxTemplate="let data of 'courseCategoryTree'">
             <dx-drop-down-box
+                    #ddlCourseCategory
                     [(value)]="entity.courseCategoryId"
                     valueExpr="id"
                     displayExpr="title"
@@ -46,7 +46,6 @@
                     <dx-tree-view
                             [dataSource]="courseCategoryDataSource"
                             dataStructure="plain"
-
                             keyExpr="id"
                             parentIdExpr="parentId"
                             selectionMode="single"
@@ -55,7 +54,7 @@
                             [selectByClick]="true"
                             [searchEnabled]="true"
                             (onContentReady)="syncTreeViewSelection($event)"
-                            (onItemSelectionChanged)="treeView_itemSelectionChanged($event)"
+                            (onItemSelectionChanged)="treeView_itemSelectionChanged($event);ddlCourseCategory.instance.close();"
 
                     >
                     </dx-tree-view>

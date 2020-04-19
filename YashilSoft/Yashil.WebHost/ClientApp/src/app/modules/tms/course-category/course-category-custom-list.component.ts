@@ -58,7 +58,7 @@ export class CourseCategoryCustomListComponent extends Selectable implements OnI
     }
 
     afterInitialDetailComponent(componentInstance: any) {
-        const comp = (<CourseCategoryDetailTabBasedComponent>componentInstance);
+        const comp = (<CourseCategoryDetailTabBasedComponent>componentInstance.instance);
         comp.educationalCenterId = this.educationalCenterId;
         if (this.selectedEntity) {
             comp.educationalCenterMainCourseCategoryId = this.selectedEntity.educationalCenterMainCourseCategoryId;

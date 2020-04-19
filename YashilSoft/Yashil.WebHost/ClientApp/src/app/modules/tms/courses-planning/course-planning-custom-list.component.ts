@@ -6,7 +6,6 @@ import {CachedDataService} from '../../../shared/services/cached-data.service';
 import {CachedKey} from '../tms-enums';
 import {CoursesPlanningDetailTabBasedComponent} from './courses-planning-detail-tab-based.component';
 
-
 @Component({
     selector: 'app-course-planning-custom-list',
     templateUrl: './course-planning-custom-list.component.html'
@@ -52,6 +51,7 @@ export class CoursePlanningCustomListComponent implements OnInit {
         const comp = (<CoursesPlanningDetailTabBasedComponent>componentInstance.instance);
         comp.educationalCenterId = this.educationalCenterId;
         comp.courseCategoryId = this.courseCategoryId;
+        comp.representationId = this.representationId;
     }
 
     constructor(private genericDataService: GenericDataService, private cachedDataService: CachedDataService) {
@@ -69,6 +69,7 @@ export class CoursePlanningCustomListComponent implements OnInit {
                 this.representationId = data.representationId;
             }
         }
+        this.bindDataSources();
         this.educationalCenterDataSource = this.genericDataService.createCustomDatasourceForSelect('id', 'educationalCenter');
     }
 
@@ -87,21 +88,27 @@ export class CoursePlanningCustomListComponent implements OnInit {
     }
 
     selectedEducationalCenterChanged(e) {
-        if (e && e.selectedItem) {
+        if (e) {
             this.courseCategoryId = null;
         }
     }
 
-    private bindDataSources(id: any) {
-        if (this.selectedCourseCategory && this.selectedCourseCategory.isMainCourseCategory) {
-            const ecmcc = this.selectedCourseCategory.educationalCenterMainCourseCategoryId;
-            this.frmCourse.customListUrl =
-                `${this.baseListUrlByMainCourseCategoryId}?educationalCenterMainCourseCategoryId=${ecmcc}&representationId=${this.representationId}`;
+    private bindDataSources() {
+        if (this.selectedCourseCategory) {
+            if (this.selectedCourseCategory.isMainCourseCategory) {
+                const ecmcc = this.selectedCourseCategory.educationalCenterMainCourseCategoryId;
+                this.frmCourse.customListUrl =
+                    `${this.baseListUrlByMainCourseCategoryId}?educationalCenterMainCourseCategoryId=${ecmcc}&representationId=${this.representationId}`;
+            } else {
+                this.frmCourse.customListUrl = `${this.baseListUrlByCourseCategoryId}?courseCategoryId=${this.selectedCourseCategory.id}&representationId=${this.representationId}`;
+            }
+            this.frmCourse.refreshList();
         } else {
-            this.frmCourse.customListUrl = `${this.baseListUrlByCourseCategoryId}?courseCategoryId=${id}&representationId=${this.representationId}`;
+            if (this.representationId) {
+                this.frmCourse.customListUrl = `coursePlanning/GetByCustomFilterForList?representationId=${this.representationId}`;
+                this.frmCourse.refreshList();
+            }
         }
-
-        this.frmCourse.refreshList();
     }
 
     private bindColumns() {
@@ -111,25 +118,33 @@ export class CoursePlanningCustomListComponent implements OnInit {
             width: 300
         });
         this.columns.push({
+            caption: 'گروه آموزشی',
+            dataField: 'courseCategoryTitle'
+        });
+        this.columns.push({
             caption: 'دوره سازمانی',
             dataField: 'organizational'
         });
         this.columns.push({
             caption: 'وضعیت دوره',
-            dataField: 'courseStatusTitle'
+            dataField: 'courseStatusTitle',
+            width: '100px'
         });
         this.columns.push({
             caption: 'رده سنی',
-            dataField: 'ageCategoryTitle'
+            dataField: 'ageCategoryTitle',
+            width: '80px'
         });
         this.columns.push({
             caption: 'نوع برگزاری',
-            dataField: 'implementationTypeTitle'
+            dataField: 'implementationTypeTitle',
+            width: '80px'
         });
         this.columns.push({
             caption: 'تاریخ شروع',
             dataField: 'startDate',
-            cellTemplate: 'intDate'
+            cellTemplate: 'intDate',
+            width: '80px'
         });
     }
 
@@ -138,12 +153,13 @@ export class CoursePlanningCustomListComponent implements OnInit {
         if (item && !item.isMainCourseCategory) {
             this.courseCategoryId = item.id;
         }
-        this.bindDataSources(item.id);
+        this.bindDataSources();
     }
 
     onSelectedRepresentationChanged(item: any) {
         this.educationalCenterId = item.educationalCenter.id;
         this.representationId = item.representation.id;
         this.selectedEducationalCenterChanged(item.educationalCenter);
+        this.bindDataSources()
     }
 }

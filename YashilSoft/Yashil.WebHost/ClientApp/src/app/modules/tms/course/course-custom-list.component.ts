@@ -51,7 +51,7 @@ export class CourseCustomListComponent implements OnInit {
     detailComponent = CourseDetailTabBasedComponent;
 
     afterInitialDetailComponent(componentInstance: any) {
-        const comp = (<CourseDetailTabBasedComponent>componentInstance);
+        const comp = (<CourseDetailTabBasedComponent>componentInstance.instance);
         comp.educationalCenterId = this.educationalCenterId;
         comp.courseCategoryId = this.courseCategoryId;
     }
@@ -80,6 +80,7 @@ export class CourseCustomListComponent implements OnInit {
             this.courseCategoryId = null;
         }
     }
+
     selectedCourseCategoryChanged(item: any) {
         this.selectedCourseCategory = item;
         if (this.selectedCourseCategory && !this.selectedCourseCategory.isMainCourseCategory) {
@@ -87,6 +88,7 @@ export class CourseCustomListComponent implements OnInit {
         }
         this.bindDataSources();
     }
+
     private bindDataSources() {
         if (this.selectedCourseCategory && this.selectedCourseCategory.isMainCourseCategory) {
             this.frmCourse.customListUrl = `${this.baseListUrlByMainCourseCategoryId}?educationalCenterMainCourseCategoryId=${this.selectedCourseCategory.educationalCenterMainCourseCategoryId}`;

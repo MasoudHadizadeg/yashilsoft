@@ -16,8 +16,6 @@ namespace YashilNews.Web.Areas.News.ViewModels
 
         public string NewsStoreTitle { get; set; }
 
-        public string NewsPropertyTitle { get; set; }
-
         public bool Simplenews { get; set; }
 
         public bool ShowInMainPageSlider { get; set; }
@@ -49,8 +47,6 @@ namespace YashilNews.Web.Areas.News.ViewModels
 				public int Id { get; set; }		
 				[Range(0,int.MaxValue)] 
 				[Required]				public int NewsStoreId { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]				public int NewsPropertyId { get; set; }		
 				public bool Simplenews { get; set; }		
 				public bool ShowInMainPageSlider { get; set; }		
 				public bool IsHotNews { get; set; }		

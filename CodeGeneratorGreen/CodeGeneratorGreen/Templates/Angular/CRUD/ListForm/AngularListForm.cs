@@ -194,7 +194,7 @@ foreach (var col in table.Columns.Where(x => x.IsForeignKey && !ApplicationInfo.
             
             #line default
             #line hidden
-            this.Write("/GetByCustomFilterForList\';\r\n\t\t  constructor() {\r\n\t\t\tsuper();\r\n\t\t\t");
+            this.Write("/GetByCustomFilterForList?\';\r\n\t\t  constructor() {\r\n\t\t\tsuper();\r\n\t\t\t");
             
             #line 57 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
 
@@ -258,7 +258,7 @@ foreach (var col in table.Columns.Where(x => x.IsForeignKey && !ApplicationInfo.
             
             #line default
             #line hidden
-            this.Write("\t\tif (this.listForm) {\r\n\t\t\tlet customListUrl = `${this.baseListUrl}`;\r\n\t\t\t");
+            this.Write("\t\tlet customListUrl = `${this.baseListUrl}`;\r\n\t\tif (this.listForm) {\r\n\t\t\t");
             
             #line 102 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
 foreach (var col in cols)
@@ -273,7 +273,7 @@ foreach (var col in cols)
             
             #line default
             #line hidden
-            this.Write("){\r\n\t\t\t\t\tcustomListUrl = += `");
+            this.Write("){\r\n\t\t\t\t\tcustomListUrl += `");
             
             #line 105 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(col.Name.FirstCharacterToLower()));
@@ -294,16 +294,16 @@ foreach (var col in cols)
             
             #line default
             #line hidden
-            this.Write("\t\t\tthis.listForm.customListUrl = customListUrl;\r\n            this.listForm.refres" +
-                    "hList();\r\n\t\t}\r\n\t\tlet res=false;\r\n\t\tif(");
+            this.Write("\t\t}\r\n\t\tlet res=false;\r\n\t\tif(");
             
-            #line 112 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
+            #line 110 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colsIfCondition));
             
             #line default
             #line hidden
-            this.Write("){\r\n\t\t\tres=true;\r\n\t\t}\r\n\t\treturn res;\r\n    }\r\n    afterInitialDetailComponent(comp" +
-                    "onentInstance: any) {\r\n        const comp = (<");
+            this.Write("){\r\n\t\t\tthis.listForm.customListUrl = customListUrl;\r\n            this.listForm.re" +
+                    "freshList();\r\n\t\t\tres=true;\r\n\t\t}\r\n\t\treturn res;\r\n    }\r\n    afterInitialDetailCom" +
+                    "ponent(componentInstance: any) {\r\n        const comp = (<");
             
             #line 118 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListForm.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(detailComponentName));

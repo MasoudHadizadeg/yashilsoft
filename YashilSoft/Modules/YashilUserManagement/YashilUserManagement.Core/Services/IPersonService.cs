@@ -9,6 +9,7 @@ namespace YashilUserManagement.Core.Services
 			string GetDescription(int id);
 
             bool CheckExistsNationalCode(string nationalCode, int? personId);
+            Person GetByNationalCode(string nationalCode);
     }
 }      
  

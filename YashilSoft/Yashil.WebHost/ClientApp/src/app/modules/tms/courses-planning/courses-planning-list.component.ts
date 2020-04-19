@@ -23,6 +23,10 @@ export class CoursesPlanningListComponent {
             width: 300
         });
         this.columns.push({
+            caption: 'گروه آموزشی',
+            dataField: 'courseCategoryTitle'
+        });
+        this.columns.push({
             caption: 'دوره سازمانی',
             dataField: 'organizational'
         });

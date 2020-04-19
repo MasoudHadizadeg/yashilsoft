@@ -69,6 +69,9 @@ export class AssignableListComponent implements OnInit {
         }
         this.gridHeight = window.innerHeight - 180;
         this.itemDataSource = this.genericDataService.createCustomDatasourceForSelect('id', this.groupEntityName);
+        if (this.selectedGroupItemId){
+            this.bindLists();
+        }
     }
 
     /**

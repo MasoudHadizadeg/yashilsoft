@@ -11,7 +11,6 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 import {MessageService} from '../../shared/base/messages/message.service';
 import {ENTRYCOMPONENTS} from './entryIndex';
 import {TmsRoutingModule} from './tms-routing.module';
-import {DxDropDownBoxModule, DxTextBoxModule, DxTreeViewModule} from 'devextreme-angular';
 import {DmsModule} from '../dms/dms.module';
 
 @NgModule({
@@ -27,9 +26,6 @@ import {DmsModule} from '../dms/dms.module';
         SharedModule,
         AngularSplitModule.forRoot(),
         ImageCropperModule,
-        DxTreeViewModule,
-        DxDropDownBoxModule,
-        DxTextBoxModule,
         DmsModule
     ],
     providers: [

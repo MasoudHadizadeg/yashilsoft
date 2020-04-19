@@ -28,13 +28,17 @@ export class NewsStoreDetailTabBasedComponent extends Editable implements OnInit
         } else {
             this.allowEditDesc = false;
         }
-        this.genericDataService.getCommonBaseDataForSelect('NewsType').subscribe((res: any) => {
-            const newsType = res.filter(x => x.id === this.newsType);
-            if (newsType) {
-                this.newsTypeTitle = newsType[0].title;
-            }
+        if (this.newsType) {
+            this.genericDataService.getCommonBaseDataForSelect('NewsType').subscribe((res: any) => {
+                const newsType = res.filter(x => x.id === this.newsType);
+                if (newsType && newsType.length !== 0) {
+                    this.newsTypeTitle = newsType[0].title;
+                }
+                this.bindTabs();
+            });
+        } else {
             this.bindTabs();
-        });
+        }
     }
 
     rowInserted(insertedRowId: any) {

@@ -6,21 +6,10 @@ namespace YashilNews.Core.Repositories
 {
 	public interface INewsKeywordRepository : IGenericRepository<NewsKeyword,int>
     {
+		          
+        IQueryable<NewsKeyword> GetByCustomFilter( int? newsStoreId, int? keywordId);
+           
 		
-		IQueryable<NewsKeyword> GetByNewsStoreId(int newsStoreId);
-		
-		IQueryable<NewsKeyword> GetByKeywordId(int keywordId);
-		
-		IQueryable<NewsKeyword> GetByCreateBy(int createBy);
-		
-		IQueryable<NewsKeyword> GetByModifyBy(int modifyBy);
-		
-		IQueryable<NewsKeyword> GetByApplicationId(int applicationId);
-		
-		IQueryable<NewsKeyword> GetByAccessLevelId(int accessLevelId);
-		
-		IQueryable<NewsKeyword> GetByCreatorOrganizationId(int creatorOrganizationId);
-		    
     }
 }      
  

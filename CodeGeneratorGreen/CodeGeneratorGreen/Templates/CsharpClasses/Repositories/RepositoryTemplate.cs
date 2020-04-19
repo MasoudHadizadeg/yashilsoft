@@ -109,9 +109,9 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
             
             #line 34 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
 
-            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var cols=table.ForeignKeyColumns;
             var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
-            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=>  x.Name.FirstCharacterToLower()).ToArray());
         if(!string.IsNullOrEmpty(colsParams)){
         
             
@@ -134,13 +134,19 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
             this.Write(")\r\n        {\r\n            var query= GetAll(true);\r\n             ");
             
             #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
-foreach (Column col in table.Columns.Where(x => x.IsForeignKey))
+foreach (Column col in table.ForeignKeyColumns)
                 {
             
             #line default
             #line hidden
-            this.Write("            if (serviceId.HasValue)\r\n                {\r\n                    query" +
-                    " = query.Where(x => x.");
+            this.Write("            if ( ");
+            
+            #line 47 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name.FirstCharacterToLower()));
+            
+            #line default
+            #line hidden
+            this.Write(".HasValue)\r\n                {\r\n                    query = query.Where(x => x.");
             
             #line 49 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));

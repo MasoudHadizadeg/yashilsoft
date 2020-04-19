@@ -7,7 +7,9 @@
     [dataSource]="personDataSource"
     [deferRendering]="false"
     [showClearButton]="true">
-
+    <div *dxTemplate="let data of 'dropDownButton'">
+        <dx-button icon="plus"></dx-button>
+    </div>
     <div *dxTemplate="let data of 'content'">
         <dx-data-grid id="gridContainer"
                       width="100%"

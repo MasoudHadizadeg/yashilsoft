@@ -105,7 +105,17 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     @Input()
     dataStructureIsPlain = false;
     entities: any = {};
-    gridDataSource: any = {};
+    _gridDataSource: any = {};
+    set gridDataSource(val) {
+        if (val !== this._gridDataSource) {
+            this._gridDataSource = val;
+        }
+    }
+
+    get gridDataSource() {
+        return this._gridDataSource;
+    }
+
     _genericDataService: GenericDataService;
     dataEntityName: string;
     remoteOperations: any = {};
@@ -194,8 +204,8 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     }
 
     ngOnInit(): void {
-        this.setListTitle();
         this.declareDeleteConfirm();
+        this.setListTitle();
         if (this.isCustomEditForm && !this.isForSelectReadOnly) {
             const editColumn = { // Pushes the "Contacts" band column into the "columns" array
                 caption: '',
@@ -350,10 +360,10 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
         this.selectedItemId = null;
         this.showEditForm = true;
         this.dialogService.dialogOpend.emit(false);
-        this.setDialogContent(true, null);
+        this.setDialogContent(true, null, null);
     }
 
-    setDialogContent(isNew: boolean, selectedEntityId) {
+    setDialogContent(isNew: boolean, selectedEntityId, selectedItem: any) {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.detailComponent);
         const viewContainerRef = this.detailComponentContainer.viewContainerRef;
         viewContainerRef.clear();
@@ -364,7 +374,7 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
         editComponent.closeFormClick = this.closeActionEmitter;
         editComponent.additionalData = this.additionalData;
         editComponent.showCloseButton = true;
-        this.afterSetDialogContent(componentRef.instance);
+        this.afterSetDialogContent(componentRef.instance, selectedItem);
     }
 
     editEntity(id) {
@@ -374,12 +384,23 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
             this.listGrid.instance.editRow(selectedRowIndex);
             return;
         }
+        let selectedItem = null;
+        if (this.listGrid) {
+            if (this.listGrid.instance.getSelectedRowsData().length === 0) {
+                const keys = [id];
+                this.listGrid.instance.selectRows(keys, true);
+            }
+            const selectedRow = this.listGrid.instance.getSelectedRowsData();
+            if (selectedRow) {
+                selectedItem = selectedRow[0];
+            }
+        }
         this.selectedRowId = id;
         this.isNew = false;
         this.selectedItemId = this.selectedRowId;
         this.showEditForm = true;
         this.dialogService.dialogOpend.emit(false);
-        this.setDialogContent(false, this.selectedItemId);
+        this.setDialogContent(false, this.selectedItemId, selectedItem);
     }
 
     protected setSelectedRow(selectedRowId, selectedRow) {
@@ -389,11 +410,11 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     }
 
     afterLoadData(result) {
-        if (result && result['data'].length > 0) {
-            const firstRowId = result['data'][0][this.rowKey];
-            this.selectedRowKeys = [firstRowId];
-            this.setSelectedRow(firstRowId, result['data'][0]);
-        }
+        // if (result && result['data'].length > 0) {
+        //     const firstRowId = result['data'][0][this.rowKey];
+        //     this.selectedRowKeys = [firstRowId];
+        //     this.setSelectedRow(firstRowId, result['data'][0]);
+        // }
     }
 
     allowEditRecord(data: any) {
@@ -419,8 +440,8 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
         return true;
     }
 
-    private afterSetDialogContent(instance: any) {
-        this.afterInitialDetailComponent.emit(instance);
+    private afterSetDialogContent(instance: any, selectedItem: any) {
+        this.afterInitialDetailComponent.emit({instance: instance, selectedItem: selectedItem});
     }
 
     private setListTitle() {

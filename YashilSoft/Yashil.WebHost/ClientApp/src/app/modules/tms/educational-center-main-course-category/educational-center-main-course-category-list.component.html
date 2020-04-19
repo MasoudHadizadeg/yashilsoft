@@ -1,3 +1,9 @@
-<app-base-list-form allowGrouping="true" [columns]="columns" [entityName]="entityName"
+<app-base-list-form #listForm
+                    [allowGrouping]="!educationalCenterId"
+                    (afterInitialDetailComponent)="afterInitialDetailComponent($event)"
+                    [loadAfterSetFilter]="loadAfterSetFilter"
+                    (selectedRowChanged)="selectedRowChanged.emit($event)"
+                    [columns]="columns"
+                    [entityName]="entityName"
                     [detailComponent]="detailComponent">
 </app-base-list-form>

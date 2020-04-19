@@ -21,8 +21,7 @@ using YashilReport.Web.Areas.Rpt.ViewModels;
 
 namespace YashilReport.Web.Areas.Rpt.Controllers
 {
-    public class ReportStoreController : BaseController<ReportStore, int, ReportStoreListViewModel, ReportStoreEditModel
-        , ReportStoreSimpleViewModel>
+    public class ReportStoreController : BaseController<ReportStore, int, ReportStoreListViewModel, ReportStoreEditModel, ReportStoreSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IReportStoreService _reportStoreService;
@@ -73,7 +72,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
                 ModificationDate = DateTime.Now,
                 ReportFile = report.SaveToByteArray()
             };
-            await _reportStoreService.UpdateAsync(reportStore, data.ReportId, new List<string> {"ReportFile"}, true,
+            await _reportStoreService.UpdateAsync(reportStore, data.ReportId, new List<string> { "ReportFile" }, true,
                 true);
 
             return true;
@@ -104,8 +103,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
             }
         }
 
-        protected override async Task UpdateAsync(ReportStore entity, ReportStoreEditModel editModel, int entityId,
-            List<string> props, bool modifyProps = true)
+        protected override async Task UpdateAsync(ReportStore entity, ReportStoreEditModel editModel, int entityId, List<string> props, bool modifyProps = true)
         {
             var reportConnectionStrings = editModel.ConnectionStringIds.Select(conStringId =>
                 new ReportConnectionString
@@ -133,8 +131,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         }
 
         [HttpGet("GetReportStoresAssignedToReportGroupAsync")]
-        public async Task<LoadResult> GetReportStoresAssignedToReportGroupAsync(
-            CustomDataSourceLoadOptions loadOptions, int id)
+        public async Task<LoadResult> GetReportStoresAssignedToReportGroupAsync(CustomDataSourceLoadOptions loadOptions, int id)
         {
             IQueryable<ReportStore> entities = _reportStoreService.GetReportStoresAssignedToGroupAsync(id);
             return await DataSourceLoader.LoadAsync(
@@ -142,8 +139,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         }
 
         [HttpGet("GetReportStoresNotAssignedToReportGroupAsync")]
-        public async Task<LoadResult> GetReportStoresNotAssignedToReportGroupAsync(
-            CustomDataSourceLoadOptions loadOptions, int id)
+        public async Task<LoadResult> GetReportStoresNotAssignedToReportGroupAsync(CustomDataSourceLoadOptions loadOptions, int id)
         {
             IQueryable<ReportStore> entities = _reportStoreService.GetReportStoresNotAssignedToGroupAsync(id);
             return await DataSourceLoader.LoadAsync(
@@ -159,8 +155,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         }
 
         [HttpGet("GetReportStoresAssignedToRoleAsync")]
-        public async Task<LoadResult> GetReportStoresAssignedToRoleAsync(
-            CustomDataSourceLoadOptions loadOptions, int id)
+        public async Task<LoadResult> GetReportStoresAssignedToRoleAsync(CustomDataSourceLoadOptions loadOptions, int id)
         {
             IQueryable<ReportStore> entities = _reportStoreService.GetReportStoresAssignedToRoleAsync(id);
             return await DataSourceLoader.LoadAsync(
@@ -168,8 +163,7 @@ namespace YashilReport.Web.Areas.Rpt.Controllers
         }
 
         [HttpGet("GetReportStoresNotAssignedToRoleAsync")]
-        public async Task<LoadResult> GetReportStoresNotAssignedToRoleAsync(
-            CustomDataSourceLoadOptions loadOptions, int id)
+        public async Task<LoadResult> GetReportStoresNotAssignedToRoleAsync(CustomDataSourceLoadOptions loadOptions, int id)
         {
             IQueryable<ReportStore> entities = _reportStoreService.GetReportStoresNotAssignedToRoleAsync(id);
             return await DataSourceLoader.LoadAsync(

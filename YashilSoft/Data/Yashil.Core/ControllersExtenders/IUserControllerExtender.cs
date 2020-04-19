@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Yashil.Core.CustomViewModels;
 using Yashil.Core.Entities;
 
 namespace Yashil.Core.ControllersExtenders
@@ -9,6 +7,6 @@ namespace Yashil.Core.ControllersExtenders
     {
         void BeforeUpdate(List<object> editModelKeyValues, int userId);
         List<object> GetCustomProps(int id);
-        void BeforeInsert(User modelKeyValues, List<object> editModelKeyValues, int userId);
+         void BeforeInsert(User modelKeyValues, List<object> editModelKeyValues, int userId);
     }
 }

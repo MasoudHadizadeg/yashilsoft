@@ -19,7 +19,9 @@ import {CourseCategoryListComponent} from './course-category/course-category-lis
 import {CourseListComponent} from './course/course-list.component';
 import {CourseSelectComponent} from './course/course-select.component';
 import {CoursePlanningStudentDetailComponent} from './course-planning-student/course-planning-student-detail.component';
-import {RepresentationFilterComponent} from './representation-filter/representation-filter.component';
+import {RepresentationTeacherDetailComponent} from './representation-teacher/representation-teacher-detail.component';
+import {RepresentationCourseCategoryDetailComponent} from './representation-course-category/representation-course-category-detail.component';
+import {PersonBankAccountDetailComponent} from './person-bank-account/person-bank-account-detail.component';
 
 export const ENTRYCOMPONENTS: Provider[] = [
     CoursesPlanningDetailTabBasedComponent,
@@ -43,5 +45,7 @@ export const ENTRYCOMPONENTS: Provider[] = [
     CourseCategoryListComponent,
     CourseListComponent,
     CourseSelectComponent,
-    RepresentationFilterComponent
+    RepresentationTeacherDetailComponent,
+    RepresentationCourseCategoryDetailComponent,
+    PersonBankAccountDetailComponent,
 ];

@@ -10,6 +10,7 @@ namespace Yashil.Core.Entities
         {
             AppEntityAttributeMapping = new HashSet<AppEntityAttributeMapping>();
             DocumentCategory = new HashSet<DocumentCategory>();
+            EvaluationStatus = new HashSet<EvaluationStatus>();
             Service = new HashSet<Service>();
         }
 
@@ -34,6 +35,7 @@ namespace Yashil.Core.Entities
 
         public virtual ICollection<AppEntityAttributeMapping> AppEntityAttributeMapping { get; set; }
         public virtual ICollection<DocumentCategory> DocumentCategory { get; set; }
+        public virtual ICollection<EvaluationStatus> EvaluationStatus { get; set; }
         public virtual ICollection<Service> Service { get; set; }
     }
     }

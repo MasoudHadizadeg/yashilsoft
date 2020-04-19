@@ -25,8 +25,11 @@ namespace CodeGeneratorGreen.Classes
 
         public List<string> skipedColumns = new List<string>
         {
-            "CreateBy", "ModifyBy", "CreationDate", "Deleted", "ModificationDate", "ApplicationId",
-            "CreatorOrganizationId"
+            "CreateBy", "ModifyBy", "CreationDate", "Deleted", "ModificationDate", "ApplicationId", "CreatorOrganizationId"
+        }; 
+        public List<string> SkipForeignKeyInCustomFilter = new List<string>
+        {
+            "CreateBy", "ModifyBy", "ApplicationId", "CreatorOrganizationId", "AccessLevelId"
         };
 
         public List<string> skipedColumnInAngularList = new List<string>

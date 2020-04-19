@@ -10,5 +10,6 @@ namespace YashilTms.Core.Services
         IQueryable<Course> GetByRepresentationId(int representationId);
         IQueryable<Course> GetByCourseCategoryId(int courseCategoryId, bool hierarchical = true);
         IQueryable<Course> GetByMainCourseCategoryId(int educationalCenterMainCourseCategoryId);
+        IQueryable<Course> GetRepresentationCourseByCategoryId(int representationId, int courseCategoryId, bool hierarchical);
     }
 }

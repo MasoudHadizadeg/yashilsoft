@@ -12,6 +12,7 @@ import {CourseCategoryCustomListComponent} from './course-category/course-catego
 import {CourseCustomListComponent} from './course/course-custom-list.component';
 import {CoursePlanningCustomListComponent} from './courses-planning/course-planning-custom-list.component';
 import {CoursePlanningStudentListComponent} from './course-planning-student/course-planning-student-list.component';
+import {RepresentationTeacherListComponent} from './representation-teacher/representation-teacher-list.component';
 
 const routes: Routes = [
     {path: 'coursePlanningStudents', component: CoursePlanningStudentListComponent, canActivate: [AuthGuard]},
@@ -24,7 +25,8 @@ const routes: Routes = [
     {path: 'educationalCenterManagement', component: EducationalCenterCustomListComponent, canActivate: [AuthGuard]},
     {path: 'additionalUserProps', component: AdditionalUserPropListComponent, canActivate: [AuthGuard]},
     {path: 'mainCourseCategorys', component: MainCourseCategoryListComponent, canActivate: [AuthGuard]},
-    {path: 'educationalCenterMainCourseCategorys', component: EducationalCenterMainCourseCategoryListComponent, canActivate: [AuthGuard]}
+    {path: 'educationalCenterMainCourseCategorys', component: EducationalCenterMainCourseCategoryListComponent, canActivate: [AuthGuard]},
+    {path: 'representationTeachers', component: RepresentationTeacherListComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

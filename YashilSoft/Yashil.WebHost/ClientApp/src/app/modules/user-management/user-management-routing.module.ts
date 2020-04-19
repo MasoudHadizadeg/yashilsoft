@@ -12,7 +12,7 @@ import {UserListComponent} from './user/user-list.component';
 import {MenuListComponent} from './menu/menu-list.component';
 import {UserRoleListComponent} from './user-role/user-role-list.component';
 import {PostListComponent} from './post/post-list.component';
-import {PersonListComponent} from './person/person-list.component';
+import {PersonListComponent} from '../../shared/components/person/person-list.component';
 import {NgModule} from '@angular/core';
 import {JobListComponent} from './job/job-list.component';
 

@@ -33,54 +33,35 @@ import {UserRoleListComponent} from './user-role/user-role-list.component';
 
 import {PostDetailComponent} from './post/post-detail.component';
 import {PostListComponent} from './post/post-list.component';
-
-import {PersonDetailComponent} from './person/person-detail.component';
-import {PersonListComponent} from './person/person-list.component';
-
 import {Provider} from '@angular/core';
 import {JobListComponent} from './job/job-list.component';
 import {JobDetailComponent} from './job/job-detail.component';
 
 export const COMPONENTS: Provider[] = [
-
     ResourceListComponent,
-
     ResourceDetailComponent,
     ApplicationListComponent,
-
     ApplicationDetailComponent,
     AppActionListComponent,
     AppActionDetailComponent,
     OrganizationListComponent,
-
     OrganizationDetailComponent,
     ResourceAppActionListComponent,
-
     ResourceAppActionDetailComponent,
     RoleResourceActionListComponent,
-
     RoleResourceActionDetailComponent,
     RoleListComponent,
-
     RoleDetailComponent,
     AppConfigListComponent,
-
     AppConfigDetailComponent,
     UserListComponent,
-
     UserDetailComponent,
     MenuListComponent,
-
     MenuDetailComponent,
     UserRoleListComponent,
-
     UserRoleDetailComponent,
     PostListComponent,
-
     PostDetailComponent,
-    PersonListComponent,
-
-    PersonDetailComponent,
     JobListComponent,
     JobDetailComponent
 ];

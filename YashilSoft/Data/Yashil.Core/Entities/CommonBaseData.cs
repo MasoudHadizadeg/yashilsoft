@@ -24,15 +24,15 @@ namespace Yashil.Core.Entities
             EducationalCenter = new HashSet<EducationalCenter>();
             InverseParent = new HashSet<CommonBaseData>();
             Keyword = new HashSet<Keyword>();
-            MainNews = new HashSet<MainNews>();
             NewsStoreLanguageNavigation = new HashSet<NewsStore>();
             NewsStoreNewsTypeNavigation = new HashSet<NewsStore>();
+            PersonBankAccount = new HashSet<PersonBankAccount>();
             PersonEducationGradeNavigation = new HashSet<Person>();
             PersonGenderNavigation = new HashSet<Person>();
-            RepresentationEstablishedLicenseTypeNavigation = new HashSet<Representation>();
+            RepresentationEstablishedLicenseType = new HashSet<RepresentationEstablishedLicenseType>();
             RepresentationLicenseTypeNavigation = new HashSet<Representation>();
             RepresentationOwnershipTypeNavigation = new HashSet<Representation>();
-            RepresentationPerson = new HashSet<RepresentationPerson>();
+            RepresentationTeacher = new HashSet<RepresentationTeacher>();
         }
 
         public int Id { get; set; }
@@ -76,14 +76,14 @@ namespace Yashil.Core.Entities
         public virtual ICollection<EducationalCenter> EducationalCenter { get; set; }
         public virtual ICollection<CommonBaseData> InverseParent { get; set; }
         public virtual ICollection<Keyword> Keyword { get; set; }
-        public virtual ICollection<MainNews> MainNews { get; set; }
         public virtual ICollection<NewsStore> NewsStoreLanguageNavigation { get; set; }
         public virtual ICollection<NewsStore> NewsStoreNewsTypeNavigation { get; set; }
+        public virtual ICollection<PersonBankAccount> PersonBankAccount { get; set; }
         public virtual ICollection<Person> PersonEducationGradeNavigation { get; set; }
         public virtual ICollection<Person> PersonGenderNavigation { get; set; }
-        public virtual ICollection<Representation> RepresentationEstablishedLicenseTypeNavigation { get; set; }
+        public virtual ICollection<RepresentationEstablishedLicenseType> RepresentationEstablishedLicenseType { get; set; }
         public virtual ICollection<Representation> RepresentationLicenseTypeNavigation { get; set; }
         public virtual ICollection<Representation> RepresentationOwnershipTypeNavigation { get; set; }
-        public virtual ICollection<RepresentationPerson> RepresentationPerson { get; set; }
+        public virtual ICollection<RepresentationTeacher> RepresentationTeacher { get; set; }
     }
     }

@@ -63,14 +63,14 @@ namespace YashilTms.Web.Areas.Tms.Controllers
 
 
         [HttpPut("PutEntityCustom")]
-        public  HttpResponseMessage PutEntityCustom(EducationalCenterMainCourseCategoryCustomEditModel editModel)
+        public HttpResponseMessage PutEntityCustom(EducationalCenterMainCourseCategoryCustomEditModel editModel)
         {
             var entity = new EducationalCenterMainCourseCategory
             {
                 DisplayOrder = editModel.EditModel.DisplayOrder,
                 Id = editModel.EditModel.Id
             };
-            _educationalCenterMainCourseCategoryService.Update(entity, entity.Id, new List<string> {"DisplayOrder"},
+            _educationalCenterMainCourseCategoryService.Update(entity, entity.Id, new List<string> { "DisplayOrder" },
                 true, true);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
@@ -80,6 +80,19 @@ namespace YashilTms.Web.Areas.Tms.Controllers
         {
             var mainCourseCategories = _educationalCenterMainCourseCategoryService.GetMainCourseCategoriesByEducationalCenterId(id);
             return await mainCourseCategories.ProjectTo<EducationalCenterMainCourseCategorySimpleViewModel>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+        [HttpGet("GetByCustomFilterForList")]
+        public async Task<LoadResult> GetByCustomFilterForList(CustomDataSourceLoadOptions loadOptions, int? educationalCenterId, int? mainCourseCategoryId)
+        {
+            var educationalCenterMainCourseCategorys = _educationalCenterMainCourseCategoryService.GetByCustomFilter(educationalCenterId, mainCourseCategoryId);
+            return await DataSourceLoader.LoadAsync(educationalCenterMainCourseCategorys.ProjectTo<EducationalCenterMainCourseCategoryListViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+        [HttpGet("GetByCustomForSelect")]
+        public async Task<LoadResult> GetByCustomForSelect(CustomDataSourceLoadOptions loadOptions, int? educationalCenterId, int? mainCourseCategoryId)
+        {
+            var educationalCenterMainCourseCategorys = _educationalCenterMainCourseCategoryService.GetByCustomFilter(educationalCenterId, mainCourseCategoryId);
+            return await DataSourceLoader.LoadAsync(educationalCenterMainCourseCategorys.ProjectTo<EducationalCenterMainCourseCategorySimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
     }
 }

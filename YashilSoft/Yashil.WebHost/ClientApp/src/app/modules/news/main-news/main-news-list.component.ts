@@ -20,31 +20,20 @@ export class MainNewsListComponent extends Selectable implements OnInit {
     set newsStoreId(val) {
         if (val !== this._newsStoreId) {
             this._newsStoreId = val;
-            this.bindCustomDataSources();
         }
     }
 
-    private baseListUrlByNewsStoreId = 'mainNews/GetByNewsStoreIdForList?newsStoreId=';
-    _newsPropertyId: number;
-    @Input()
-    set newsPropertyId(val) {
-        if (val !== this._newsPropertyId) {
-            this._newsPropertyId = val;
-            this.bindCustomDataSources();
-        }
+    get newsStoreId(): number {
+        return this._newsStoreId;
     }
 
-    private baseListUrlByNewsPropertyId = 'mainNews/GetByNewsPropertyIdForList?newsPropertyId=';
+    private baseListUrl = 'mainNews/GetByCustomFilterForList';
 
     constructor() {
         super();
         this.columns.push({
             caption: 'خبر',
             dataField: 'newsStoreTitle'
-        });
-        this.columns.push({
-            caption: 'ویژگی خبر',
-            dataField: 'newsPropertyTitle'
         });
         this.columns.push({
             caption: 'خبر عادی',
@@ -92,28 +81,26 @@ export class MainNewsListComponent extends Selectable implements OnInit {
     }
 
     private bindCustomDataSources() {
-        if (this.newsStoreId) {
-            this.listForm.customListUrl = `${this.baseListUrlByNewsStoreId}${this.newsStoreId}`;
-        } else if (this.newsPropertyId) {
-            this.listForm.customListUrl = `${this.baseListUrlByNewsPropertyId}${this.newsPropertyId}`;
+        let customListUrl = `${this.baseListUrl}`;
+        if (this.listForm) {
+            if (this.newsStoreId) {
+                customListUrl += `newsStoreId=${this.newsStoreId}&`;
+            }
         }
         let res = false;
-        if (this.newsStoreId || this.newsPropertyId) {
-            res = true;
+        if (this.newsStoreId) {
+            this.listForm.customListUrl = customListUrl;
             this.listForm.refreshList();
+            res = true;
         }
         return res;
     }
 
     afterInitialDetailComponent(componentInstance: any) {
-        const comp = (<MainNewsDetailComponent>componentInstance);
+        const comp = (<MainNewsDetailComponent>componentInstance.instance);
 
         if (this.newsStoreId) {
             comp.newsStoreId = this.newsStoreId;
-        }
-
-        if (this.newsPropertyId) {
-            comp.newsPropertyId = this.newsPropertyId;
         }
 
     }

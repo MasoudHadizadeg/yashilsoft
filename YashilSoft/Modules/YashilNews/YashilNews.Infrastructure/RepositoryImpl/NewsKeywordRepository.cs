@@ -16,42 +16,25 @@ namespace YashilNews.Infrastructure.RepositoryImpl
                 _context = context;
                 _userPrincipal = userPrincipal;
             }
-
-        
-        public IQueryable<NewsKeyword> GetByNewsStoreId(int newsStoreId)
+                 
+   
+    public IQueryable<NewsKeyword> GetByCustomFilter( int? newsStoreId, int? keywordId)
         {
-            return GetAll(true).Where(x => x.NewsStoreId == newsStoreId);
-        }
-      
-        public IQueryable<NewsKeyword> GetByKeywordId(int keywordId)
-        {
-            return GetAll(true).Where(x => x.KeywordId == keywordId);
-        }
-      
-        public IQueryable<NewsKeyword> GetByCreateBy(int createBy)
-        {
-            return GetAll(true).Where(x => x.CreateBy == createBy);
-        }
-      
-        public IQueryable<NewsKeyword> GetByModifyBy(int modifyBy)
-        {
-            return GetAll(true).Where(x => x.ModifyBy == modifyBy);
-        }
-      
-        public IQueryable<NewsKeyword> GetByApplicationId(int applicationId)
-        {
-            return GetAll(true).Where(x => x.ApplicationId == applicationId);
-        }
-      
-        public IQueryable<NewsKeyword> GetByAccessLevelId(int accessLevelId)
-        {
-            return GetAll(true).Where(x => x.AccessLevelId == accessLevelId);
-        }
-      
-        public IQueryable<NewsKeyword> GetByCreatorOrganizationId(int creatorOrganizationId)
-        {
-            return GetAll(true).Where(x => x.CreatorOrganizationId == creatorOrganizationId);
-        }
+            var query= GetAll(true);
+                         if ( newsStoreId.HasValue)
+                {
+                    query = query.Where(x => x.NewsStoreId == newsStoreId.Value);
+                }
+                          if ( keywordId.HasValue)
+                {
+                    query = query.Where(x => x.KeywordId == keywordId.Value);
+                }
+                  
           
+            return query;
+        }
+           
+
+       
     }
 }      

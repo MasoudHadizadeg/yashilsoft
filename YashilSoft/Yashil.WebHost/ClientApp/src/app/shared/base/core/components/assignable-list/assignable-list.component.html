@@ -4,6 +4,7 @@
     </div>
     <div class="col-4" [ngClass]="{'dx-rtl': true}">
         <dx-lookup
+                [(value)]="selectedGroupItemId"
                 [dataSource]="itemDataSource"
                 [closeOnOutsideClick]="true"
                 [showPopupTitle]="false"

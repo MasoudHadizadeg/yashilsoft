@@ -11,7 +11,6 @@ namespace Yashil.Core.Entities
         public int RepresentationId { get; set; }
         public int PersonId { get; set; }
         public int PostId { get; set; }
-        public int? CooperationType { get; set; }
         public int? FromDate { get; set; }
         public int? ToDate { get; set; }
         public string Description { get; set; }
@@ -26,7 +25,6 @@ namespace Yashil.Core.Entities
 
         public virtual AccessLevel AccessLevel { get; set; }
         public virtual Application Application { get; set; }
-        public virtual CommonBaseData CooperationTypeNavigation { get; set; }
         public virtual User CreateByNavigation { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
         public virtual User ModifyByNavigation { get; set; }

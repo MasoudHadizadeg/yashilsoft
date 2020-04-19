@@ -1,0 +1,43 @@
+<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
+        <dxi-item dataField="representationId" editorType="dxLookup" [label]="{text: 'نمایندگی'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationDataSource,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="نمایندگی اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item [template]="'personGridTemplate'" [label]="{text: 'شخص'}">
+            <dxi-validation-rule type="required" message="شخص اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <div *dxTemplate="let data of 'personGridTemplate'">
+            <app-person-select (selectedRowChanged)="selectedPersonChanged($event)"
+                               [selectedItemId]="entity.personId"></app-person-select>
+        </div>
+        <dxi-item dataField="cooperationType" editorType="dxSelectBox" [label]="{text: 'نوع همکاری مدرسین'}"
+                  [editorOptions]="{ items: cooperationTypes,displayExpr:'title',valueExpr:'id' }">
+        </dxi-item>
+        <dxi-item [label]="{text: 'تاریخ جذب'}" dataField="fromDate" editorType='dxNumberBox'>
+            <dp-date-picker
+                    [config]="datePickerConfig"
+                    dir="rtl"
+                    mode="day"
+                    placeholder="تاریخ جذب"
+                    theme="dp-material"
+                    [ngModel]="entity.fromDate | intToStringDate"
+                    (ngModelChange)="entity.fromDate=convertDateToInt($event)">
+            </dp-date-picker>
+        </dxi-item>
+        <dxi-item [label]="{text: 'تاریخ رهایی'}" dataField="toDate" editorType='dxNumberBox'>
+            <dp-date-picker
+                    [config]="datePickerConfig"
+                    dir="rtl"
+                    mode="day"
+                    placeholder="تاریخ رهایی"
+                    theme="dp-material"
+                    [ngModel]="entity.toDate | intToStringDate"
+                    (ngModelChange)="entity.toDate=convertDateToInt($event)">
+            </dp-date-picker>
+        </dxi-item>
+        <dxi-item [label]="{text: 'توضیحات'}" dataField="description" editorType='dxTextArea'>
+        </dxi-item>
+    </dx-form>
+</app-base-edit-form>

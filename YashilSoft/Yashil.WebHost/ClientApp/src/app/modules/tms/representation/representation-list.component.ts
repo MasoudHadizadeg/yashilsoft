@@ -2,6 +2,8 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {RepresentationDetailTabBasedComponent} from './representation-detail-tab-based.component';
 import {Selectable} from '../../../shared/base/classes/selectable';
 import {BaseList} from '../../../shared/base/classes/base-list';
+import {CachedKey} from '../tms-enums';
+import {CachedDataService} from '../../../shared/services/cached-data.service';
 
 
 @Component({
@@ -13,7 +15,7 @@ export class RepresentationListComponent extends Selectable implements OnInit {
     private _educationalCenterId: number;
     @Input()
     hideEducationalCenterColumn = false;
-
+    representationId: number;
     @Input()
     set educationalCenterId(value: number) {
         if (this._educationalCenterId !== value) {
@@ -36,7 +38,7 @@ export class RepresentationListComponent extends Selectable implements OnInit {
     customListUrl: string;
     baseListUrl = 'representation/GetByEducationalCenterIdForList?educationalCenterId=';
 
-    constructor() {
+    constructor(private cachedDataService: CachedDataService) {
         super();
     }
 
@@ -44,16 +46,26 @@ export class RepresentationListComponent extends Selectable implements OnInit {
     }
 
     afterInitialDetailComponent(componentInstance: any) {
-        (<RepresentationDetailTabBasedComponent>componentInstance).educationalCenterId = this.educationalCenterId;
+        (<RepresentationDetailTabBasedComponent>componentInstance.instance).educationalCenterId = this.educationalCenterId;
     }
 
     ngOnInit(): void {
+        const data = this.cachedDataService.getData(CachedKey.AdditionalUserProp);
+        if (data) {
+            if (data.educationalCenterId) {
+                this.educationalCenterId = data.educationalCenterId;
+            }
+            if (data.representationId) {
+                this.representationId = data.representationId;
+            }
+        }
         if (this.educationalCenterId) {
             this.loadAfterSetFilter = true;
         }
         this.columns.push({
             caption: 'عنوان',
-            dataField: 'title'
+            dataField: 'title',
+            width: '50%'
         });
         if (!this.hideEducationalCenterColumn) {
             this.columns.push({
@@ -65,14 +77,6 @@ export class RepresentationListComponent extends Selectable implements OnInit {
         this.columns.push({
             caption: 'شهر',
             dataField: 'cityTitle'
-        });
-        this.columns.push({
-            caption: 'نوع مدرک',
-            dataField: 'licenseTypeTitle'
-        });
-        this.columns.push({
-            caption: 'نوع مجوز تاسیس',
-            dataField: 'establishedLicenseTypeTitle'
         });
     }
 }

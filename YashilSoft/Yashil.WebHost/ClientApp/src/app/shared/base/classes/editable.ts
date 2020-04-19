@@ -4,7 +4,8 @@ export class Editable {
     dataEntityName: string;
     @Output()
     afterInsertRow: EventEmitter<any> = new EventEmitter<any>();
-
+    @Output()
+    afterDataLoaded: EventEmitter<any> = new EventEmitter<any>();
     @Input()
     public set entityName(value: string) {
         this.dataEntityName = value;

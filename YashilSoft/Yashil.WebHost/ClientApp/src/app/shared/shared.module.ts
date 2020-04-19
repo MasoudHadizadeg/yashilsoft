@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {TranslateModule} from '@ngx-translate/core';
-
 // COMPONENTS
 import {FooterComponent} from './footer/footer.component';
 import {NavbarComponent} from './navbar/navbar.component';
@@ -57,8 +56,15 @@ import {CoreModule} from '../core/core.module';
 import {AssignableListComponent} from './base/core/components/assignable-list/assignable-list.component';
 import {NgScrollbarModule} from 'ngx-scrollbar';
 import {DxButtonGroupModule} from 'devextreme-angular';
+import {PersonListComponent} from './components/person/person-list.component';
+import {PersonDetailComponent} from './components/person/person-detail.component';
+import {PersonSelectComponent} from './components/person/person-select/person-select.component';
+import {DxDropDownBoxModule} from 'devextreme-angular/ui/drop-down-box';
+import {DxTextBoxModule} from 'devextreme-angular/ui/text-box';
+import {DxTreeViewModule} from 'devextreme-angular/ui/tree-view';
 
 @NgModule({
+    entryComponents: [PersonSelectComponent, PersonDetailComponent],
     exports: [
         CoreModule,
         FullLayoutComponent,
@@ -71,6 +77,9 @@ import {DxButtonGroupModule} from 'devextreme-angular';
         CommonModule,
         FooterComponent,
         NavbarComponent,
+        DxDropDownBoxModule,
+        DxTextBoxModule,
+        DxTreeViewModule,
         SidebarComponent,
         ToggleFullscreenDirective,
         SidebarDirective,
@@ -101,12 +110,16 @@ import {DxButtonGroupModule} from 'devextreme-angular';
         Base64imageDirective,
         DetailComponentDirective,
         DxListModule,
-        DxHtmlEditorModule
+        DxHtmlEditorModule,
+        PersonSelectComponent
     ],
     imports: [
         NgScrollbarModule,
         DxTileViewModule,
         TranslateModule,
+        DxDropDownBoxModule,
+        DxTextBoxModule,
+        DxTreeViewModule,
         DxLookupModule,
         DxScrollViewModule,
         DxDataGridModule,
@@ -133,6 +146,9 @@ import {DxButtonGroupModule} from 'devextreme-angular';
     ],
     declarations: [
         AssignableListComponent,
+        PersonListComponent,
+        PersonDetailComponent,
+        PersonSelectComponent,
         FooterComponent,
         NavbarComponent,
         SidebarComponent,
@@ -155,8 +171,7 @@ import {DxButtonGroupModule} from 'devextreme-angular';
         IntToStringTimePipe,
         PersianDayPipe,
         FullLayoutComponent,
-        FullLayoutSplitComponent,
-
+        FullLayoutSplitComponent
     ],
     providers: [
         DynamicScriptLoaderService,

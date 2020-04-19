@@ -12,11 +12,13 @@ export class PersonDetailComponent extends BaseEdit implements OnInit {
     genders: any;
     educationGrades: any;
     accessLevels: any[] = [];
+    allowEdit = false;
 
     constructor(private genericDataService: GenericDataService) {
         super(genericDataService);
         this.entityName = 'person';
         this.validateNationalCode = this.validateNationalCode.bind(this);
+        this.nationalCodeChanged = this.nationalCodeChanged.bind(this);
     }
 
     ngOnInit() {
@@ -63,5 +65,26 @@ export class PersonDetailComponent extends BaseEdit implements OnInit {
     validateNationalCode(params) {
         const actionName = this.selectedEntityId ? 'CheckNationalCode?nationalCode=' + params.value + '&personId=' + this.selectedEntityId : 'CheckNationalCode?nationalCode=' + params.value;
         return this.genericDataService.getEntitiesWithAction('person', actionName, null).toPromise();
+    }
+
+    nationalCodeChanged() {
+        if (this.entityName && this.entity.nationalCode && this.entity.nationalCode.length === 10) {
+            this._genericDataService.getEntitiesWithAction('Person', 'GetByNationalCode?nationalCode=' + this.entity.nationalCode, null)
+                .subscribe(res => {
+                    if (res) {
+                        this.entity = res;
+                        this.allowEdit = res['allowEdit'];
+                    } else {
+                        this.clearEntity();
+                    }
+                });
+        }
+    }
+
+    private clearEntity() {
+        // this.entity.name = null;
+        // this.entity.lastName = null;
+        // this.allowEdit = true;
+        this.entity = {};
     }
 }

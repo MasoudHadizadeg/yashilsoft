@@ -21,37 +21,13 @@ namespace YashilNews.Infrastructure.ServiceImpl
 			_mainNewsRepository = mainNewsRepository;
 			_userPrincipal = userPrincipal;
         }
-		
-        public IQueryable<MainNews> GetByNewsStoreId(int newsStoreId)
+                 
+        public IQueryable<MainNews> GetByCustomFilter( int? newsStoreId)
         {
-            return _mainNewsRepository.GetByNewsStoreId(newsStoreId);
+            return _mainNewsRepository.GetByCustomFilter(newsStoreId);
         }
-      
-        public IQueryable<MainNews> GetByNewsPropertyId(int newsPropertyId)
-        {
-            return _mainNewsRepository.GetByNewsPropertyId(newsPropertyId);
-        }
-      
-        public IQueryable<MainNews> GetByCreateBy(int createBy)
-        {
-            return _mainNewsRepository.GetByCreateBy(createBy);
-        }
-      
-        public IQueryable<MainNews> GetByModifyBy(int modifyBy)
-        {
-            return _mainNewsRepository.GetByModifyBy(modifyBy);
-        }
-      
-        public IQueryable<MainNews> GetByApplicationId(int applicationId)
-        {
-            return _mainNewsRepository.GetByApplicationId(applicationId);
-        }
-      
-        public IQueryable<MainNews> GetByCreatorOrganizationId(int creatorOrganizationId)
-        {
-            return _mainNewsRepository.GetByCreatorOrganizationId(creatorOrganizationId);
-        }
-          
+           
+
     }
 }      
  

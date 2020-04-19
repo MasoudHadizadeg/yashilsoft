@@ -51,7 +51,7 @@
 					return this._<#=propName#>;
 				}
 			<#}#>
-		  private baseListUrl = '<#=firstCharacterLower #>/GetByCustomFilterForList';
+		  private baseListUrl = '<#=firstCharacterLower #>/GetByCustomFilterForList?';
 		  constructor() {
 			super();
 			<#
@@ -97,19 +97,19 @@
 		var cols=table.Columns.Where(x => x.IsForeignKey && !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name));
 		var colsIfCondition = String.Join(" || ", cols.Select(x=> "this."+ x.Name.FirstCharacterToLower()).ToArray());
 		#>
+		let customListUrl = `${this.baseListUrl}`;
 		if (this.listForm) {
-			let customListUrl = `${this.baseListUrl}`;
 			<#foreach (var col in cols)
 			{#>
 				if(this.<#=col.Name.FirstCharacterToLower()#>){
-					customListUrl = += `<#=col.Name.FirstCharacterToLower()#>=${this.<#=col.Name.FirstCharacterToLower()#>}&`;
+					customListUrl += `<#=col.Name.FirstCharacterToLower()#>=${this.<#=col.Name.FirstCharacterToLower()#>}&`;
 				}
 			<#}#>
-			this.listForm.customListUrl = customListUrl;
-            this.listForm.refreshList();
 		}
 		let res=false;
 		if(<#=colsIfCondition#>){
+			this.listForm.customListUrl = customListUrl;
+            this.listForm.refreshList();
 			res=true;
 		}
 		return res;

@@ -1,7 +1,4 @@
-
-
 	 
-
 using AutoMapper.QueryableExtensions;
 using System.Threading.Tasks;
 using DevExtreme.AspNet.Data;
@@ -25,60 +22,18 @@ namespace YashilNews.Web.Areas.News.Controllers
             _mapper=mapper;
             _serviceService=serviceService;
         }
-                [HttpGet("GetByParentIdForList")]
-        public async Task<LoadResult> GetByParentIdForList(CustomDataSourceLoadOptions loadOptions,int parentId)
+              [HttpGet("GetByCustomFilterForList")]
+        public async Task<LoadResult> GetByCustomFilterForList(CustomDataSourceLoadOptions loadOptions,  int? parentId, int? appEntityId)
         {
-            var services = _serviceService.GetByParentId(parentId);
+            var services = _serviceService.GetByCustomFilter(parentId,appEntityId);
             return await DataSourceLoader.LoadAsync(services.ProjectTo<ServiceListViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
-        
-              [HttpGet("GetByAppEntityIdForList")]
-        public async Task<LoadResult> GetByAppEntityIdForList(CustomDataSourceLoadOptions loadOptions,int appEntityId)
+        [HttpGet("GetByCustomForSelect")]
+        public async Task<LoadResult> GetByCustomForSelect(CustomDataSourceLoadOptions loadOptions,  int? parentId, int? appEntityId)
         {
-            var services = _serviceService.GetByAppEntityId(appEntityId);
-            return await DataSourceLoader.LoadAsync(services.ProjectTo<ServiceListViewModel>(_mapper.ConfigurationProvider), loadOptions);
+            var services = _serviceService.GetByCustomFilter(parentId,appEntityId);
+            return await DataSourceLoader.LoadAsync(services.ProjectTo<ServiceSimpleViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
-        
-              [HttpGet("GetByCreateByForList")]
-        public async Task<LoadResult> GetByCreateByForList(CustomDataSourceLoadOptions loadOptions,int createBy)
-        {
-            var services = _serviceService.GetByCreateBy(createBy);
-            return await DataSourceLoader.LoadAsync(services.ProjectTo<ServiceListViewModel>(_mapper.ConfigurationProvider), loadOptions);
-        }
-        
-              [HttpGet("GetByModifyByForList")]
-        public async Task<LoadResult> GetByModifyByForList(CustomDataSourceLoadOptions loadOptions,int modifyBy)
-        {
-            var services = _serviceService.GetByModifyBy(modifyBy);
-            return await DataSourceLoader.LoadAsync(services.ProjectTo<ServiceListViewModel>(_mapper.ConfigurationProvider), loadOptions);
-        }
-        
-              [HttpGet("GetByApplicationIdForList")]
-        public async Task<LoadResult> GetByApplicationIdForList(CustomDataSourceLoadOptions loadOptions,int applicationId)
-        {
-            var services = _serviceService.GetByApplicationId(applicationId);
-            return await DataSourceLoader.LoadAsync(services.ProjectTo<ServiceListViewModel>(_mapper.ConfigurationProvider), loadOptions);
-        }
-        
-              [HttpGet("GetByAccessLevelIdForList")]
-        public async Task<LoadResult> GetByAccessLevelIdForList(CustomDataSourceLoadOptions loadOptions,int accessLevelId)
-        {
-            var services = _serviceService.GetByAccessLevelId(accessLevelId);
-            return await DataSourceLoader.LoadAsync(services.ProjectTo<ServiceListViewModel>(_mapper.ConfigurationProvider), loadOptions);
-        }
-        
-              [HttpGet("GetByCreatorOrganizationIdForList")]
-        public async Task<LoadResult> GetByCreatorOrganizationIdForList(CustomDataSourceLoadOptions loadOptions,int creatorOrganizationId)
-        {
-            var services = _serviceService.GetByCreatorOrganizationId(creatorOrganizationId);
-            return await DataSourceLoader.LoadAsync(services.ProjectTo<ServiceListViewModel>(_mapper.ConfigurationProvider), loadOptions);
-        }
-        
-             
-
-
-
-
-        
+  
     }
 }      

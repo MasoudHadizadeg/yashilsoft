@@ -38,6 +38,8 @@ namespace Yashil.Core.Entities
             CourseModifyByNavigation = new HashSet<Course>();
             CoursePlanningCreateByNavigation = new HashSet<CoursePlanning>();
             CoursePlanningModifyByNavigation = new HashSet<CoursePlanning>();
+            CoursePlanningScheduleCreateByNavigation = new HashSet<CoursePlanningSchedule>();
+            CoursePlanningScheduleModifyByNavigation = new HashSet<CoursePlanningSchedule>();
             CoursePlanningStudentCreateByNavigation = new HashSet<CoursePlanningStudent>();
             CoursePlanningStudentModifyByNavigation = new HashSet<CoursePlanningStudent>();
             DashboardConnectionStringCreateByNavigation = new HashSet<DashboardConnectionString>();
@@ -56,6 +58,8 @@ namespace Yashil.Core.Entities
             EducationalCenterMainCourseCategoryCreateByNavigation = new HashSet<EducationalCenterMainCourseCategory>();
             EducationalCenterMainCourseCategoryModifyByNavigation = new HashSet<EducationalCenterMainCourseCategory>();
             EducationalCenterModifyByNavigation = new HashSet<EducationalCenter>();
+            EvaluationStatusCreateByNavigation = new HashSet<EvaluationStatus>();
+            EvaluationStatusModifyByNavigation = new HashSet<EvaluationStatus>();
             JobCreateByNavigation = new HashSet<Job>();
             JobModifyByNavigation = new HashSet<Job>();
             KeywordCreateByNavigation = new HashSet<Keyword>();
@@ -72,6 +76,8 @@ namespace Yashil.Core.Entities
             NewsStoreModifyByNavigation = new HashSet<NewsStore>();
             OrganizationCreateByNavigation = new HashSet<Organization>();
             OrganizationModifyByNavigation = new HashSet<Organization>();
+            PersonBankAccountCreateByNavigation = new HashSet<PersonBankAccount>();
+            PersonBankAccountModifyByNavigation = new HashSet<PersonBankAccount>();
             PersonCreateByNavigation = new HashSet<Person>();
             PersonModifyByNavigation = new HashSet<Person>();
             PostCreateByNavigation = new HashSet<Post>();
@@ -82,10 +88,16 @@ namespace Yashil.Core.Entities
             ReportGroupReportModifyByNavigation = new HashSet<ReportGroupReport>();
             ReportStoreCreateByNavigation = new HashSet<ReportStore>();
             ReportStoreModifyByNavigation = new HashSet<ReportStore>();
+            RepresentationCourseCategoryCreateByNavigation = new HashSet<RepresentationCourseCategory>();
+            RepresentationCourseCategoryModifyByNavigation = new HashSet<RepresentationCourseCategory>();
             RepresentationCreateByNavigation = new HashSet<Representation>();
+            RepresentationEstablishedLicenseTypeCreateByNavigation = new HashSet<RepresentationEstablishedLicenseType>();
+            RepresentationEstablishedLicenseTypeModifyByNavigation = new HashSet<RepresentationEstablishedLicenseType>();
             RepresentationModifyByNavigation = new HashSet<Representation>();
             RepresentationPersonCreateByNavigation = new HashSet<RepresentationPerson>();
             RepresentationPersonModifyByNavigation = new HashSet<RepresentationPerson>();
+            RepresentationTeacherCreateByNavigation = new HashSet<RepresentationTeacher>();
+            RepresentationTeacherModifyByNavigation = new HashSet<RepresentationTeacher>();
             ResourceCreateByNavigation = new HashSet<Resource>();
             ResourceModifyByNavigation = new HashSet<Resource>();
             RoleCreateByNavigation = new HashSet<Role>();
@@ -165,6 +177,8 @@ namespace Yashil.Core.Entities
         public virtual ICollection<Course> CourseModifyByNavigation { get; set; }
         public virtual ICollection<CoursePlanning> CoursePlanningCreateByNavigation { get; set; }
         public virtual ICollection<CoursePlanning> CoursePlanningModifyByNavigation { get; set; }
+        public virtual ICollection<CoursePlanningSchedule> CoursePlanningScheduleCreateByNavigation { get; set; }
+        public virtual ICollection<CoursePlanningSchedule> CoursePlanningScheduleModifyByNavigation { get; set; }
         public virtual ICollection<CoursePlanningStudent> CoursePlanningStudentCreateByNavigation { get; set; }
         public virtual ICollection<CoursePlanningStudent> CoursePlanningStudentModifyByNavigation { get; set; }
         public virtual ICollection<DashboardConnectionString> DashboardConnectionStringCreateByNavigation { get; set; }
@@ -183,6 +197,8 @@ namespace Yashil.Core.Entities
         public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategoryCreateByNavigation { get; set; }
         public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategoryModifyByNavigation { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenterModifyByNavigation { get; set; }
+        public virtual ICollection<EvaluationStatus> EvaluationStatusCreateByNavigation { get; set; }
+        public virtual ICollection<EvaluationStatus> EvaluationStatusModifyByNavigation { get; set; }
         public virtual ICollection<Job> JobCreateByNavigation { get; set; }
         public virtual ICollection<Job> JobModifyByNavigation { get; set; }
         public virtual ICollection<Keyword> KeywordCreateByNavigation { get; set; }
@@ -199,6 +215,8 @@ namespace Yashil.Core.Entities
         public virtual ICollection<NewsStore> NewsStoreModifyByNavigation { get; set; }
         public virtual ICollection<Organization> OrganizationCreateByNavigation { get; set; }
         public virtual ICollection<Organization> OrganizationModifyByNavigation { get; set; }
+        public virtual ICollection<PersonBankAccount> PersonBankAccountCreateByNavigation { get; set; }
+        public virtual ICollection<PersonBankAccount> PersonBankAccountModifyByNavigation { get; set; }
         public virtual ICollection<Person> PersonCreateByNavigation { get; set; }
         public virtual ICollection<Person> PersonModifyByNavigation { get; set; }
         public virtual ICollection<Post> PostCreateByNavigation { get; set; }
@@ -209,10 +227,16 @@ namespace Yashil.Core.Entities
         public virtual ICollection<ReportGroupReport> ReportGroupReportModifyByNavigation { get; set; }
         public virtual ICollection<ReportStore> ReportStoreCreateByNavigation { get; set; }
         public virtual ICollection<ReportStore> ReportStoreModifyByNavigation { get; set; }
+        public virtual ICollection<RepresentationCourseCategory> RepresentationCourseCategoryCreateByNavigation { get; set; }
+        public virtual ICollection<RepresentationCourseCategory> RepresentationCourseCategoryModifyByNavigation { get; set; }
         public virtual ICollection<Representation> RepresentationCreateByNavigation { get; set; }
+        public virtual ICollection<RepresentationEstablishedLicenseType> RepresentationEstablishedLicenseTypeCreateByNavigation { get; set; }
+        public virtual ICollection<RepresentationEstablishedLicenseType> RepresentationEstablishedLicenseTypeModifyByNavigation { get; set; }
         public virtual ICollection<Representation> RepresentationModifyByNavigation { get; set; }
         public virtual ICollection<RepresentationPerson> RepresentationPersonCreateByNavigation { get; set; }
         public virtual ICollection<RepresentationPerson> RepresentationPersonModifyByNavigation { get; set; }
+        public virtual ICollection<RepresentationTeacher> RepresentationTeacherCreateByNavigation { get; set; }
+        public virtual ICollection<RepresentationTeacher> RepresentationTeacherModifyByNavigation { get; set; }
         public virtual ICollection<Resource> ResourceCreateByNavigation { get; set; }
         public virtual ICollection<Resource> ResourceModifyByNavigation { get; set; }
         public virtual ICollection<Role> RoleCreateByNavigation { get; set; }

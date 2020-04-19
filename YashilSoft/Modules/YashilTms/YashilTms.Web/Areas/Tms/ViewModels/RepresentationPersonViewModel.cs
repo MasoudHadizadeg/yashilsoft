@@ -22,13 +22,12 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
 
         public string PostTitle { get; set; }
 
-        public string CooperationTypeTitle { get; set; }
-
         public int? FromDate { get; set; }
 
         public int? ToDate { get; set; }
 
         public string AccessLevelTitle { get; set; }
+        public string NationalCode { get; set; }
     }
 
 

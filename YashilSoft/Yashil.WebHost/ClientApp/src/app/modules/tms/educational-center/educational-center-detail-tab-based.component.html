@@ -28,4 +28,15 @@
         <app-content-editor [selectedEntityId]="selectedEntityId" entityName="educationalCenter" propertyName="Ability"
                             propertyLabel="توانمندی ها و سوابق"></app-content-editor>
     </div>
+    <div *dxTemplate="let company of 'department'" class="tab-content-edit-form">
+        <app-educational-center-main-course-category-list
+                [educationalCenterId]="selectedEntityId"></app-educational-center-main-course-category-list>
+    </div>
+    <div *dxTemplate="let company of 'courseCategory'" class="tab-content-edit-form">
+        <app-course-category-list hideEducationalCenterColumn="true"
+                                  [educationalCenterId]="selectedEntityId"></app-course-category-list>
+    </div>
+    <div *dxTemplate="let company of 'representation'" class="tab-content-edit-form">
+        <app-representation-list [educationalCenterId]="selectedEntityId"></app-representation-list>
+    </div>
 </dx-tab-panel>

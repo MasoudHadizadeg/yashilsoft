@@ -15,5 +15,6 @@ namespace YashilTms.Core.Services
 
         IQueryable<EducationalCenterMainCourseCategory> GetMainCourseCategoriesByCourseCategoryId(int courseCategoryId,
             bool hierarchical = true);
+        IQueryable<EducationalCenterMainCourseCategory> GetByCustomFilter(int? educationalCenterId, int? mainCourseCategoryId);
     }
 }

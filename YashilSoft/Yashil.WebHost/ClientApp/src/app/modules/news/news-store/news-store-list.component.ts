@@ -17,6 +17,7 @@ export class NewsStoreListComponent extends Selectable implements OnInit {
     selectedItemId: number;
     columns: any[] = [];
     entityName = 'newsStore';
+    formNewsType: number;
     detailComponent = NewsStoreDetailTabBasedComponent;
     _serviceId: number;
     @Input()
@@ -30,8 +31,7 @@ export class NewsStoreListComponent extends Selectable implements OnInit {
         return this._serviceId;
     }
 
-    private baseListUrl = 'newsStore/GetByCustomFilter?';
-    private baseListUrlByServiceId = 'newsStore/GetByServiceIdForList?serviceId=';
+    private baseListUrl = 'newsStore/GetByCustomFilterForList?';
     _newsType: number;
     @Input()
     set newsType(val) {
@@ -44,7 +44,6 @@ export class NewsStoreListComponent extends Selectable implements OnInit {
         return this._newsType;
     }
 
-    private baseListUrlByNewsType = 'newsStore/GetByNewsTypeForList?newsType=';
     _language: number;
     @Input()
     set language(val) {
@@ -57,30 +56,30 @@ export class NewsStoreListComponent extends Selectable implements OnInit {
         return this._language;
     }
 
-    private baseListUrlByLanguage = 'newsStore/GetByLanguageForList?language=';
-    _accessLevelId: number;
-    @Input()
-    set accessLevelId(val) {
-        if (val !== this._accessLevelId) {
-            this._accessLevelId = val;
-        }
-    }
-
-    get accessLevelId(): number {
-        return this._accessLevelId;
-    }
-
-    private baseListUrlByAccessLevelId = 'newsStore/GetByAccessLevelIdForList?accessLevelId=';
-
     customButtons: any;
 
     constructor(private activatedRoute: ActivatedRoute) {
         super();
         this.customButtonClicked = this.customButtonClicked.bind(this);
-        this.columns.push({
-            caption: 'نوع خبر',
-            dataField: 'newsTypeTitle'
+    }
+
+    ngOnInit(): void {
+        this.activatedRoute.data.subscribe((data: { newsType: any }) => {
+            this.newsType = data.newsType;
+            this.formNewsType = data.newsType;
+            this.bindColumns();
+            this.bindCustomButtons();
+            this.bindCustomDataSources();
         });
+    }
+
+    bindColumns() {
+        if (!this.newsType) {
+            this.columns.push({
+                caption: 'نوع خبر',
+                dataField: 'newsTypeTitle'
+            });
+        }
         this.columns.push({
             caption: 'سرویس خبر',
             dataField: 'serviceTitle',
@@ -100,16 +99,6 @@ export class NewsStoreListComponent extends Selectable implements OnInit {
             dataField: 'confirmed'
         });
 
-    }
-
-    ngOnInit(): void {
-        this.activatedRoute.data.subscribe((data: { newsType: any }) => {
-            this.newsType = data.newsType;
-        });
-        // if (this.bindCustomDataSources()) {
-        //     this.loadAfterSetFilter = true;
-        // }
-        this.bindCustomButtons();
     }
 
     bindCustomButtons() {
@@ -148,8 +137,8 @@ export class NewsStoreListComponent extends Selectable implements OnInit {
     }
 
     public bindCustomDataSources() {
+        let customListUrl = `${this.baseListUrl}`;
         if (this.listForm) {
-            let customListUrl = `${this.baseListUrl}`;
             if (this.serviceId) {
                 customListUrl += `serviceId=${this.serviceId}&`;
             }
@@ -159,39 +148,39 @@ export class NewsStoreListComponent extends Selectable implements OnInit {
             if (this.language) {
                 this.listForm.customListUrl += `language=${this.language}&`;
             }
-            this.listForm.customListUrl = customListUrl;
-            this.listForm.refreshList();
         }
         let res = false;
-        if (this.serviceId || this.newsType || this.language || this.accessLevelId) {
+        if (this.serviceId || this.newsType || this.language) {
             res = true;
         }
+        /**
+         * For Null NewsType Must Refresh List For Simple News Film News And Pictorial News List
+         */
+        this.listForm.customListUrl = customListUrl;
+        this.listForm.refreshList();
         return res;
     }
 
     afterInitialDetailComponent(componentInstance: any) {
-        const comp = (<NewsStoreDetailTabBasedComponent>componentInstance);
+        const comp = (<NewsStoreDetailTabBasedComponent>componentInstance.instance);
 
         if (this.serviceId) {
             comp.serviceId = this.serviceId;
         }
-
-        if (this.newsType) {
-            comp.newsType = this.newsType;
+        if (componentInstance.selectedItem) {
+            comp.newsTypeTitle = componentInstance.selectedItem.newsTypeTitle;
         }
-
+        if (this.formNewsType) {
+            comp.newsType = this.formNewsType;
+        }
         if (this.language) {
             comp.language = this.language;
-        }
-
-        if (this.accessLevelId) {
-            comp.accessLevelId = this.accessLevelId;
         }
 
     }
 
     customButtonClicked(e: any) {
-        this.newsType = e;
+        this.formNewsType = e;
         this.listForm.addEntity();
     }
 }

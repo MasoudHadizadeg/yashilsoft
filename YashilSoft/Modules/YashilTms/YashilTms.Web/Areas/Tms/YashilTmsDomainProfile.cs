@@ -17,8 +17,8 @@ namespace YashilTms.Web.Areas.Tms
             CreateMap<CoursePlanningStudent, CoursePlanningStudentListViewModel>()
                 .ForMember(x => x.CoursePlanningTitle,
                     b => b.MapFrom(c => c.CoursePlanning.Course.Title))
-                .ForMember(x => x.PersonTitle,
-                    b => b.MapFrom(c => c.Person.Name))
+                .ForMember(x => x.PersonTitle, b => b.MapFrom(c => c.Person.Name + " " + c.Person.LastName))
+                .ForMember(x => x.NationalCode, b => b.MapFrom(c => c.Person.NationalCode))
                 .ForMember(x => x.AccessLevelTitle,
                     b => b.MapFrom(c => c.AccessLevel.Title));
             CreateMap<CoursePlanningStudentEditModel, CoursePlanningStudent>();
@@ -51,8 +51,8 @@ namespace YashilTms.Web.Areas.Tms
 
 
             CreateMap<CoursePlanning, CoursePlanningListViewModel>()
-                .ForMember(x => x.RepresentationTitle,
-                    b => b.MapFrom(c => c.Representation.Title))
+                .ForMember(x => x.RepresentationTitle, b => b.MapFrom(c => c.Representation.Title))
+                .ForMember(x => x.CourseCategoryTitle, b => b.MapFrom(c => c.Course.CourseCategory.Title))
                 .ForMember(x => x.CourseStatusTitle, b => b.MapFrom(c => c.CourseStatusNavigation.Title)).ForMember(
                     x => x.CourseTitle,
                     b => b.MapFrom(c => c.Course.Title))
@@ -60,10 +60,13 @@ namespace YashilTms.Web.Areas.Tms
                 .ForMember(x => x.ImplementationTypeTitle, b => b.MapFrom(c => c.ImplementationTypeNavigation.Title))
                 .ForMember(x => x.CourseTypeTitle, b => b.MapFrom(c => c.CourseTypeNavigation.Title))
                 .ForMember(x => x.RunTypeTitle, b => b.MapFrom(c => c.RunTypeNavigation.Title))
-                .ForMember(x => x.CustomGenderTitle, b => b.MapFrom(c => c.CustomGenderNavigation.Title)).ForMember(
+                .ForMember(x => x.CustomGenderTitle, b => b.MapFrom(c => c.CustomGenderNavigation.Title))
+                .ForMember(x => x.TeacherTitle,
+                    b => b.MapFrom(c =>
+                        c.RepresentationTeacher.Person.Name + " " + c.RepresentationTeacher.Person.LastName))
+                .ForMember(
                     x => x.AccessLevelTitle,
-                    b => b.MapFrom(c => c.AccessLevel.Title))
-                ;
+                    b => b.MapFrom(c => c.AccessLevel.Title));
             CreateMap<CoursePlanningEditModel, CoursePlanning>();
 
             CreateMap<CoursePlanning, CoursePlanningSimpleViewModel>();
@@ -72,14 +75,13 @@ namespace YashilTms.Web.Areas.Tms
             CreateMap<Representation, RepresentationEditModel>();
 
             CreateMap<Representation, RepresentationListViewModel>()
-                .ForMember(x => x.EducationalCenterTitle,
-                    b => b.MapFrom(c => c.EducationalCenter.Title))
+                .ForMember(x => x.EducationalCenterTitle, b => b.MapFrom(c => c.EducationalCenter.Title))
+                .ForMember(x => x.FounderFullName, b => b.MapFrom(c => c.Founder.Name + " " + c.Founder.LastName))
                 .ForMember(x => x.CityTitle,
                     b => b.MapFrom(c => c.City.Title))
                 .ForMember(x => x.LicenseTypeTitle, b => b.MapFrom(c => c.LicenseTypeNavigation.Title))
                 .ForMember(x => x.OwnershipTypeTitle, b => b.MapFrom(c => c.OwnershipTypeNavigation.Title))
-                .ForMember(x => x.EstablishedLicenseTypeTitle,
-                    b => b.MapFrom(c => c.EstablishedLicenseTypeNavigation.Title)).ForMember(x => x.AccessLevelTitle,
+                .ForMember(x => x.AccessLevelTitle,
                     b => b.MapFrom(c => c.AccessLevel.Title))
                 ;
             CreateMap<RepresentationEditModel, Representation>();
@@ -92,11 +94,10 @@ namespace YashilTms.Web.Areas.Tms
             CreateMap<RepresentationPerson, RepresentationPersonListViewModel>()
                 .ForMember(x => x.RepresentationTitle,
                     b => b.MapFrom(c => c.Representation.Title))
-                .ForMember(x => x.PersonTitle,
-                    b => b.MapFrom(c => c.Person.Name))
+                .ForMember(x => x.PersonTitle, b => b.MapFrom(c => c.Person.Name + " " + c.Person.LastName))
+                .ForMember(x => x.NationalCode, b => b.MapFrom(c => c.Person.NationalCode))
                 .ForMember(x => x.PostTitle,
                     b => b.MapFrom(c => c.Post.Title))
-                .ForMember(x => x.CooperationTypeTitle, b => b.MapFrom(c => c.CooperationTypeNavigation.Title))
                 .ForMember(x => x.AccessLevelTitle,
                     b => b.MapFrom(c => c.AccessLevel.Title));
             CreateMap<RepresentationPersonEditModel, RepresentationPerson>();
@@ -170,6 +171,52 @@ namespace YashilTms.Web.Areas.Tms
                     b => b.MapFrom(c => c.EducationalCenterId))
                 .ForMember(x => x.MainCourseCategoryId,
                     b => b.MapFrom(c => c.MainCourseCategoryId));
+            CreateMap<RepresentationTeacher, RepresentationTeacherEditModel>();
+
+            CreateMap<RepresentationTeacher, RepresentationTeacherListViewModel>()
+                .ForMember(x => x.PersonTitle, b => b.MapFrom(c => c.Person.Name + " " + c.Person.LastName))
+                .ForMember(x => x.PersonNationalCode, b => b.MapFrom(c => c.Person.NationalCode))
+                .ForMember(x => x.RepresentationTitle, b => b.MapFrom(c => c.Representation.Title))
+                .ForMember(x => x.AccessLevelTitle, b => b.MapFrom(c => c.AccessLevel.Title));
+            CreateMap<RepresentationTeacherEditModel, RepresentationTeacher>();
+
+            CreateMap<RepresentationTeacher, RepresentationTeacherSimpleViewModel>();
+            CreateMap<RepresentationCourseCategory, RepresentationCourseCategoryEditModel>();
+
+            CreateMap<RepresentationCourseCategory, RepresentationCourseCategoryListViewModel>()
+                .ForMember(x => x.RepresentationTitle,
+                    b => b.MapFrom(c => c.Representation.Title))
+                .ForMember(x => x.CourseCategoryTitle,
+                    b => b.MapFrom(c => c.CourseCategory.Title))
+                .ForMember(x => x.AccessLevelTitle,
+                    b => b.MapFrom(c => c.AccessLevel.Title));
+            CreateMap<RepresentationCourseCategoryEditModel, RepresentationCourseCategory>();
+
+            CreateMap<RepresentationCourseCategory, RepresentationCourseCategorySimpleViewModel>();
+
+
+            CreateMap<RepresentationEstablishedLicenseType, RepresentationEstablishedLicenseTypeEditModel>();
+
+            CreateMap<RepresentationEstablishedLicenseType, RepresentationEstablishedLicenseTypeListViewModel>()
+                .ForMember(x => x.RepresentationTitle,
+                    b => b.MapFrom(c => c.Representation.Title))
+                .ForMember(x => x.EstablishedLicenseTypeTitle,
+                    b => b.MapFrom(c => c.EstablishedLicenseTypeNavigation.Title)).ForMember(x => x.AccessLevelTitle,
+                    b => b.MapFrom(c => c.AccessLevel.Title));
+            CreateMap<RepresentationEstablishedLicenseTypeEditModel, RepresentationEstablishedLicenseType>();
+
+            CreateMap<RepresentationEstablishedLicenseType, RepresentationEstablishedLicenseTypeSimpleViewModel>();
+
+            CreateMap<PersonBankAccount, PersonBankAccountEditModel>();
+
+            CreateMap<PersonBankAccount, PersonBankAccountListViewModel>()
+                .ForMember(x => x.PersonTitle, b => b.MapFrom(c => c.Person.Name + " " + c.Person.LastName))
+                .ForMember(x => x.NationalCode, b => b.MapFrom(c => c.Person.NationalCode))
+                .ForMember(x => x.BankTypeTitle, b => b.MapFrom(c => c.BankTypeNavigation.Title))
+                .ForMember(x => x.AccessLevelTitle, b => b.MapFrom(c => c.AccessLevel.Title));
+            CreateMap<PersonBankAccountEditModel, PersonBankAccount>();
+
+            CreateMap<PersonBankAccount, PersonBankAccountSimpleViewModel>();
         }
     }
 }

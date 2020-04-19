@@ -11,6 +11,7 @@ import {NewsStoreListComponent} from './news-store/news-store-list.component';
 
 import {Provider} from '@angular/core';
 import {NewsStoreCustomListComponent} from './news-store/news-store-custom-list.component';
+import {NewsKeywordListComponent} from './news-keyword/news-keyword-list.component';
 
 export const COMPONENTS: Provider[] = [
 
@@ -23,7 +24,7 @@ export const COMPONENTS: Provider[] = [
 
     NewsStoreDetailTabBasedComponent,
     NewsStoreListComponent,
-
+    NewsKeywordListComponent,
     NewsStoreDetailComponent,
     NewsStoreCustomListComponent,
 ];

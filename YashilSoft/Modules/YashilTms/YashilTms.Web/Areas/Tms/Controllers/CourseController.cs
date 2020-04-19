@@ -46,6 +46,13 @@ namespace YashilTms.Web.Areas.Tms.Controllers
             var courses = _courseService.GetByCourseCategoryId(courseCategoryId, hierarchical);
             return await DataSourceLoader.LoadAsync(courses.ProjectTo<CourseListViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
+        [HttpGet("GetRepresentationCourseByCategoryId")]
+        public async Task<LoadResult> GetRepresentationCourseByCategoryId(CustomDataSourceLoadOptions loadOptions, int representationId, int courseCategoryId, bool hierarchical = true)
+        {
+            var courses = _courseService.GetRepresentationCourseByCategoryId(representationId,courseCategoryId, hierarchical);
+            return await DataSourceLoader.LoadAsync(courses.ProjectTo<CourseListViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+
         [HttpGet("GetByMainCourseCategoryId")]
         public async Task<LoadResult> GetByMainCourseCategoryId(CustomDataSourceLoadOptions loadOptions,int educationalCenterMainCourseCategoryId)
         {

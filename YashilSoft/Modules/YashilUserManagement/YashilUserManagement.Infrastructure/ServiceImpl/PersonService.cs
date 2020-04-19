@@ -13,8 +13,8 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
         private readonly IPersonRepository _personRepository;
         private readonly IUserPrincipal _userPrincipal;
 
-        public PersonService(IUnitOfWork unitOfWork, IPersonRepository personRepository, IUserPrincipal userPrincipal)
-            : base(unitOfWork, personRepository, userPrincipal)
+        public PersonService(IUnitOfWork unitOfWork, IPersonRepository personRepository, IUserPrincipal userPrincipal) :
+            base(unitOfWork, personRepository, userPrincipal)
         {
             _unitOfWork = unitOfWork;
             _personRepository = personRepository;
@@ -28,7 +28,12 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
 
         public bool CheckExistsNationalCode(string nationalCode, int? personId)
         {
-            return _personRepository.CheckExistsNationalCode(nationalCode,personId);
+            return _personRepository.CheckExistsNationalCode(nationalCode, personId);
+        }
+
+        public Person GetByNationalCode(string nationalCode)
+        {
+            return _personRepository.GetByNationalCode(nationalCode);
         }
     }
 }

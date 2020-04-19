@@ -16,14 +16,18 @@ namespace Yashil.Core.Entities
         public int RepresentationId { get; set; }
         public bool Organizational { get; set; }
         public int CourseStatus { get; set; }
-        public int? RepresentationPersonId { get; set; }
+        public bool? Published { get; set; }
+        public int? RepresentationTeacherId { get; set; }
         public int? Price { get; set; }
         public int CourseId { get; set; }
-        public int? AgeCategory { get; set; }
+        public string CoursePlanningScheduleFormula { get; set; }
+        public string CoursePlanningSchedule { get; set; }
+        public int AgeCategory { get; set; }
         public int ImplementationType { get; set; }
         public int CourseType { get; set; }
         public int RunType { get; set; }
         public int StartDate { get; set; }
+        public int? EndDate { get; set; }
         public int CustomGender { get; set; }
         public int MaxCapacity { get; set; }
         public bool Confirmed { get; set; }
@@ -50,6 +54,7 @@ namespace Yashil.Core.Entities
         public virtual CommonBaseData ImplementationTypeNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual Representation Representation { get; set; }
+        public virtual RepresentationTeacher RepresentationTeacher { get; set; }
         public virtual CommonBaseData RunTypeNavigation { get; set; }
         public virtual ICollection<CoursePlanningStudent> CoursePlanningStudent { get; set; }
     }

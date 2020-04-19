@@ -1,0 +1,47 @@
+<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
+        <dxi-item dataField="representationId" editorType="dxLookup" [label]="{text: 'نمایندگی'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationDataSource,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="نمایندگی اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+
+        <!--        <dxi-item dataField="courseCategoryId" editorType="dxLookup" [label]="{text: 'دسته بندي  آموزشی'}"-->
+        <!--                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: courseCategoryDataSource,displayExpr:'title',valueExpr:'id' }">-->
+        <!--            <dxi-validation-rule type="required" message="دسته بندي  آموزشی اجباری می باشد"></dxi-validation-rule>-->
+        <!--        </dxi-item>-->
+        <dxi-item [template]="'courseCategoryTree'" dataField="courseCategoryId" [label]="{text: 'دسته بندي  آموزشی'}">
+            <dxi-validation-rule type="required" message="دسته بندي  آموزشی اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item [label]="{text: 'توضیحات'}" dataField="description" editorType='dxTextArea'>
+        </dxi-item>
+        <div *dxTemplate="let data of 'courseCategoryTree'">
+            <dx-drop-down-box
+                    [(value)]="entity.courseCategoryId"
+                    valueExpr="id"
+                    #ddlCourseCategory
+                    displayExpr="title"
+                    placeholder="انتخاب گروه..."
+                    [showClearButton]="true"
+                    [dataSource]="courseCategoryDataSource"
+                    (onValueChanged)="syncTreeViewSelection($event)">
+
+                <div *dxTemplate="let data of 'content'">
+                    <dx-tree-view
+                            [dataSource]="courseCategoryDataSource"
+                            dataStructure="plain"
+                            keyExpr="id"
+                            parentIdExpr="parentId"
+                            selectionMode="single"
+                            displayExpr="title"
+                            rtlEnabled="true"
+                            [selectByClick]="true"
+                            [searchEnabled]="true"
+                            (onContentReady)="syncTreeViewSelection($event)"
+                            (onItemSelectionChanged)="treeView_itemSelectionChanged($event);ddlCourseCategory.instance.close();"
+                    >
+                    </dx-tree-view>
+                </div>
+            </dx-drop-down-box>
+        </div>
+    </dx-form>
+</app-base-edit-form>

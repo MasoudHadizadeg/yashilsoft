@@ -12,11 +12,14 @@ namespace YashilTms.Infrastructure.RepositoryImpl
     {
         private readonly YashilAppDbContext _context;
         private readonly IUserPrincipal _userPrincipal;
+        private readonly ICourseCategoryRepository _courseCategoryRepository;
 
-        public CourseRepository(YashilAppDbContext context, IUserPrincipal userPrincipal) : base(context, userPrincipal)
+        public CourseRepository(YashilAppDbContext context, IUserPrincipal userPrincipal,
+            ICourseCategoryRepository courseCategoryRepository) : base(context, userPrincipal)
         {
             _context = context;
             _userPrincipal = userPrincipal;
+            _courseCategoryRepository = courseCategoryRepository;
         }
 
         public override IQueryable<Course> GetAll(bool readOnly = false)
@@ -50,8 +53,7 @@ namespace YashilTms.Infrastructure.RepositoryImpl
                 var courseCategory = _context.CourseCategory.Find(courseCategoryId);
                 if (courseCategory != null)
                 {
-                    return GetAll(true)
-                        .Where(x => x.CourseCategory.CodePath.StartsWith(courseCategory.CodePath));
+                    return GetAll(true).Where(x => x.CourseCategory.CodePath.StartsWith(courseCategory.CodePath));
                 }
             }
 
@@ -60,7 +62,16 @@ namespace YashilTms.Infrastructure.RepositoryImpl
 
         public IQueryable<Course> GetByMainCourseCategoryId(int educationalCenterMainCourseCategoryId)
         {
-            return GetAll(true).Where(x => x.CourseCategory.EducationalCenterMainCourseCategoryId == educationalCenterMainCourseCategoryId);
+            return GetAll(true).Where(x =>
+                x.CourseCategory.EducationalCenterMainCourseCategoryId == educationalCenterMainCourseCategoryId);
+        }
+
+        public IQueryable<Course> GetRepresentationCourseByCategoryId(int representationId, int courseCategoryId,
+            bool hierarchical)
+        {
+            var representationCourseCategories =
+                _courseCategoryRepository.GetRepresentationCourseCategories(representationId, courseCategoryId);
+            return GetAll(true).Where(x => representationCourseCategories.Contains(x.CourseCategory));
         }
     }
 }

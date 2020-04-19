@@ -20,6 +20,7 @@ namespace Yashil.Core.Entities
             Course = new HashSet<Course>();
             CourseCategory = new HashSet<CourseCategory>();
             CoursePlanning = new HashSet<CoursePlanning>();
+            CoursePlanningSchedule = new HashSet<CoursePlanningSchedule>();
             CoursePlanningStudent = new HashSet<CoursePlanningStudent>();
             DashboardGroup = new HashSet<DashboardGroup>();
             DashboardStore = new HashSet<DashboardStore>();
@@ -27,6 +28,7 @@ namespace Yashil.Core.Entities
             DocumentCategory = new HashSet<DocumentCategory>();
             EducationalCenter = new HashSet<EducationalCenter>();
             EducationalCenterMainCourseCategory = new HashSet<EducationalCenterMainCourseCategory>();
+            EvaluationStatus = new HashSet<EvaluationStatus>();
             InverseParent = new HashSet<Application>();
             Job = new HashSet<Job>();
             Keyword = new HashSet<Keyword>();
@@ -37,11 +39,15 @@ namespace Yashil.Core.Entities
             NewsStore = new HashSet<NewsStore>();
             Organization = new HashSet<Organization>();
             Person = new HashSet<Person>();
+            PersonBankAccount = new HashSet<PersonBankAccount>();
             Post = new HashSet<Post>();
             ReportGroup = new HashSet<ReportGroup>();
             ReportStore = new HashSet<ReportStore>();
             Representation = new HashSet<Representation>();
+            RepresentationCourseCategory = new HashSet<RepresentationCourseCategory>();
+            RepresentationEstablishedLicenseType = new HashSet<RepresentationEstablishedLicenseType>();
             RepresentationPerson = new HashSet<RepresentationPerson>();
+            RepresentationTeacher = new HashSet<RepresentationTeacher>();
             Role = new HashSet<Role>();
             Service = new HashSet<Service>();
             User = new HashSet<User>();
@@ -76,6 +82,7 @@ namespace Yashil.Core.Entities
         public virtual ICollection<Course> Course { get; set; }
         public virtual ICollection<CourseCategory> CourseCategory { get; set; }
         public virtual ICollection<CoursePlanning> CoursePlanning { get; set; }
+        public virtual ICollection<CoursePlanningSchedule> CoursePlanningSchedule { get; set; }
         public virtual ICollection<CoursePlanningStudent> CoursePlanningStudent { get; set; }
         public virtual ICollection<DashboardGroup> DashboardGroup { get; set; }
         public virtual ICollection<DashboardStore> DashboardStore { get; set; }
@@ -83,6 +90,7 @@ namespace Yashil.Core.Entities
         public virtual ICollection<DocumentCategory> DocumentCategory { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenter { get; set; }
         public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategory { get; set; }
+        public virtual ICollection<EvaluationStatus> EvaluationStatus { get; set; }
         public virtual ICollection<Application> InverseParent { get; set; }
         public virtual ICollection<Job> Job { get; set; }
         public virtual ICollection<Keyword> Keyword { get; set; }
@@ -93,11 +101,15 @@ namespace Yashil.Core.Entities
         public virtual ICollection<NewsStore> NewsStore { get; set; }
         public virtual ICollection<Organization> Organization { get; set; }
         public virtual ICollection<Person> Person { get; set; }
+        public virtual ICollection<PersonBankAccount> PersonBankAccount { get; set; }
         public virtual ICollection<Post> Post { get; set; }
         public virtual ICollection<ReportGroup> ReportGroup { get; set; }
         public virtual ICollection<ReportStore> ReportStore { get; set; }
         public virtual ICollection<Representation> Representation { get; set; }
+        public virtual ICollection<RepresentationCourseCategory> RepresentationCourseCategory { get; set; }
+        public virtual ICollection<RepresentationEstablishedLicenseType> RepresentationEstablishedLicenseType { get; set; }
         public virtual ICollection<RepresentationPerson> RepresentationPerson { get; set; }
+        public virtual ICollection<RepresentationTeacher> RepresentationTeacher { get; set; }
         public virtual ICollection<Role> Role { get; set; }
         public virtual ICollection<Service> Service { get; set; }
         public virtual ICollection<User> User { get; set; }

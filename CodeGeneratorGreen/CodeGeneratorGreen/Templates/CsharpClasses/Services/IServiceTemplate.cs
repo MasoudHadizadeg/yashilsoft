@@ -66,9 +66,9 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Services
             
             #line 21 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
 
-            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var cols=table.ForeignKeyColumns;
             var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
-            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=>  x.Name.FirstCharacterToLower()).ToArray());
     if(!string.IsNullOrEmpty(colsParams)){
         
             

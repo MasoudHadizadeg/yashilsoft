@@ -19,7 +19,7 @@ namespace YashilNews.Web.Areas.News
                 CreateMap<MainNews, MainNewsListViewModel>()
 									.ForMember(x => x.NewsStoreTitle, 
 					b => b.MapFrom(c => c.NewsStore.Title))
-			.ForMember(x => x.NewsPropertyTitle, b => b.MapFrom(c => c.NewsProperty.Title));			
+			;			
 				CreateMap<MainNewsEditModel, MainNews>();
 
                 CreateMap<MainNews, MainNewsSimpleViewModel>();

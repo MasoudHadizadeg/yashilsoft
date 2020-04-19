@@ -7,9 +7,10 @@
     [animationEnabled]="false"
     [swipeEnabled]="false">
     <div *dxTemplate="let company of 'representation'" class="tab-content-edit-form">
-        <app-representation-detail [educationalCenterId]="educationalCenterId" [selectedEntityId]="selectedEntityId" (afterInsertRow)="rowInserted($event)"
-                                   entityName="representation"
-        ></app-representation-detail>
+        <app-representation-detail  [educationalCenterId]="educationalCenterId" [selectedEntityId]="selectedEntityId"
+                                   (afterInsertRow)="rowInserted($event)"
+                                    (afterDataLoaded)="DataLoaded($event)"
+                                   entityName="representation"></app-representation-detail>
     </div>
     <div *dxTemplate="let company of 'about'" class="tab-content-edit-form">
         <app-content-editor [selectedEntityId]="selectedEntityId" entityName="representation" propertyName="About"
@@ -27,4 +28,16 @@
         <app-content-editor [selectedEntityId]="selectedEntityId" entityName="representation" propertyName="Ability"
                             propertyLabel="توانمندی ها و سوابق"></app-content-editor>
     </div>
+    <div *dxTemplate="let company of 'docs'" class="tab-content-edit-form">
+        <app-entity-document-upload [appEntityName]="entityName" [docCategoryId]="19"
+                                    [objectId]="selectedEntityId"></app-entity-document-upload>
+    </div>
+    <div *dxTemplate="let company of 'courseCategory'" class="tab-content-edit-form">
+        <app-representation-course-category-list [representationId]="selectedEntityId">
+        </app-representation-course-category-list>
+    </div>
+    <div *dxTemplate="let company of 'bank'" class="tab-content-edit-form">
+        <app-person-bank-account-list [personId]="founderId"></app-person-bank-account-list>
+    </div>
+
 </dx-tab-panel>

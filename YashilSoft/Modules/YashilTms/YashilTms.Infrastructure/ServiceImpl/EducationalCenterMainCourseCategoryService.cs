@@ -57,5 +57,10 @@ namespace YashilTms.Infrastructure.ServiceImpl
         {
             return _educationalCenterMainCourseCategoryRepository.GetMainCourseCategoriesByCourseCategoryId(courseCategoryId, hierarchical);
         }
+        public IQueryable<EducationalCenterMainCourseCategory> GetByCustomFilter(int? educationalCenterId, int? mainCourseCategoryId)
+        {
+            return _educationalCenterMainCourseCategoryRepository.GetByCustomFilter(educationalCenterId, mainCourseCategoryId);
+        }
+
     }
 }

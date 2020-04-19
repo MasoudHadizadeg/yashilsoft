@@ -19,9 +19,9 @@ namespace <#= ApplicationInfo.Instance.IServiceNamespace #>
 	public interface I<#= table.Name #>Service : IGenericService<<#= table.Name #>,int>
     {
          <#
-            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var cols=table.ForeignKeyColumns;
             var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
-            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=>  x.Name.FirstCharacterToLower()).ToArray());
     if(!string.IsNullOrEmpty(colsParams)){
         #>
         

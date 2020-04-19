@@ -9,6 +9,7 @@ import {Editable} from '../../../shared/base/classes/editable';
 })
 export class CoursesPlanningDetailTabBasedComponent extends Editable implements OnInit {
     educationalCenterId: number;
+    representationId: number;
     courseCategoryId: number;
     allowEditDesc: boolean;
     tabs: any[] = [];
@@ -36,8 +37,8 @@ export class CoursesPlanningDetailTabBasedComponent extends Editable implements 
     bindTabs() {
         this.tabs = [
             {id: 1, title: 'برنامه ريزي دوره', template: 'coursePlanning'},
-            {id: 2, title: 'توضیحات', template: 'description', disabled: !this.allowEditDesc},
             {id: 2, title: 'فایلهای دوره', template: 'docs', disabled: !this.allowEditDesc},
+            {id: 2, title: 'توضیحات', template: 'description', disabled: !this.allowEditDesc},
         ];
     }
 }

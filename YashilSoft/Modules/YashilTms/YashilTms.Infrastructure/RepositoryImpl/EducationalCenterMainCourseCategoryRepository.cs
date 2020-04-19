@@ -96,5 +96,20 @@ namespace YashilTms.Infrastructure.RepositoryImpl
 
             return base.GetAll(readOnly);
         }
+        public IQueryable<EducationalCenterMainCourseCategory> GetByCustomFilter(int? educationalCenterId, int? mainCourseCategoryId)
+        {
+            var query = GetAll(true);
+            if (educationalCenterId.HasValue)
+            {
+                query = query.Where(x => x.EducationalCenterId == educationalCenterId.Value);
+            }
+            if (mainCourseCategoryId.HasValue)
+            {
+                query = query.Where(x => x.MainCourseCategoryId == mainCourseCategoryId.Value);
+            }
+
+
+            return query;
+        }
     }
 }

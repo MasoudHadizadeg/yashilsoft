@@ -65,7 +65,7 @@ namespace YashilTms.Web.Areas.Tms.Controllers
             var mainCourseCategories = _educationalCenterMainCourseCategoryService.GetMainCourseCategoryByRepresentationId(representationId);
             return GetMainAndSubCategories(mainCourseCategories);
         }
-       
+
         private List<CourseCategoryListViewModel> GetMainAndSubCategories(IQueryable<EducationalCenterMainCourseCategory> mainCourseCategories)
         {
             var educationalCenterCategories = mainCourseCategories.Select(x =>
@@ -92,11 +92,23 @@ namespace YashilTms.Web.Areas.Tms.Controllers
                     });
                 educationalCenterCategories.AddRange(courseCategories);
             }
-
             return educationalCenterCategories;
-
         }
 
+        [HttpGet("GetRepresentationCourseCategories")]
+        public List<CourseCategoryListViewModel> GetRepresentationCourseCategories(int representationId)
+        {
+            var representationCourseCategories = _courseCategoryService.GetRepresentationCourseCategories(representationId);
+            return representationCourseCategories.Select(x => new CourseCategoryListViewModel
+            {
+                Title = x.Title,
+                Id = x.Id,
+                IsMainCourseCategory = false,
+                ParentId = x.ParentId,
+                DisplayOrder = x.DisplayOrder,
+                EducationalCenterMainCourseCategoryId = x.EducationalCenterMainCourseCategoryId
 
+            }).ToList();
+        }
     }
 }

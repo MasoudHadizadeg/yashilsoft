@@ -21,5 +21,24 @@ namespace YashilTms.Infrastructure.RepositoryImpl
         {
             return GetAll(true).Where(x => x.RepresentationId == representationId);
         }
+
+        public IQueryable<RepresentationPerson> GetByCustomFilter(int? representationId, int? personId, int? postId)
+        {
+            var query = GetAll(true);
+            if (representationId.HasValue)
+            {
+                query = query.Where(x => x.RepresentationId == representationId.Value);
+            }
+            if (personId.HasValue)
+            {
+                query = query.Where(x => x.PersonId == personId.Value);
+            }
+            if (postId.HasValue)
+            {
+                query = query.Where(x => x.PostId == postId.Value);
+            }
+            return query;
+        }
+
     }
 }      

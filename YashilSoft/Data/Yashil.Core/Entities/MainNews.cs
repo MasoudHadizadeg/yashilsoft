@@ -8,7 +8,6 @@ namespace Yashil.Core.Entities
     {
         public int Id { get; set; }
         public int NewsStoreId { get; set; }
-        public int NewsPropertyId { get; set; }
         public bool Simplenews { get; set; }
         public bool ShowInMainPageSlider { get; set; }
         public bool IsHotNews { get; set; }
@@ -30,7 +29,6 @@ namespace Yashil.Core.Entities
         public virtual User CreateByNavigation { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
         public virtual User ModifyByNavigation { get; set; }
-        public virtual CommonBaseData NewsProperty { get; set; }
         public virtual NewsStore NewsStore { get; set; }
     }
     }

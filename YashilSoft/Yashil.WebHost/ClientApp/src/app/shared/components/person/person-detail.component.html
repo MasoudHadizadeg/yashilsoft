@@ -1,25 +1,26 @@
 <app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
     <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
+        <dxi-item [label]="{text: 'کد ملی'}" dataField="nationalCode"
+                  [editorOptions]="{valueChangeEvent:'keyup',onKeyUp: nationalCodeChanged,disabled: selectedEntityId}">
+            <dxi-validation-rule maxlength="10" minlength="10" type="required"
+                                 message="کد ملی اجباری می باشد"></dxi-validation-rule>
+            <dxi-validation-rule type="custom" message="فرمت کد ملی صحیح نیست"
+                                 [validationCallback]="nationalCodeValidate"></dxi-validation-rule>
+            <dxi-validation-rule type="async" message="این کد ملی قبلا ثبت شده است!"
+                                 [validationCallback]="validateNationalCode"></dxi-validation-rule>
+        </dxi-item>
         <dxi-item [label]="{text: 'نام'}" dataField="name">
-
             <dxi-validation-rule type="required" message="نام اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
         <dxi-item [label]="{text: 'نام خانوادگی'}" dataField="lastName">
-
             <dxi-validation-rule type="required" message="نام خانوادگی اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
         <dxi-item [label]="{text: 'نام پدر'}" dataField="fatherName">
-
             <dxi-validation-rule type="required" message="نام پدر اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
-
         <dxi-item dataField="gender" editorType="dxSelectBox" [label]="{text: 'جنسیت'}"
                   [editorOptions]="{ items: genders,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="جنسیت اجباری می باشد"></dxi-validation-rule>
-
         </dxi-item>
         <dxi-item [label]="{text: 'تاریخ تولد'}" dataField="birthDate" editorType='dxNumberBox'>
             <dp-date-picker
@@ -31,28 +32,16 @@
                     [ngModel]="entity.birthDate | intToStringDate"
                     (ngModelChange)="entity.birthDate=convertDateToInt($event)">
             </dp-date-picker>
-
-
         </dxi-item>
         <dxi-item [label]="{text: 'شماره تلفن'}" dataField="phoneNumber" editorOptions="mask: '\\0\\900 0000000'">
         </dxi-item>
-
         <dxi-item dataField="educationGrade" editorType="dxSelectBox" [label]="{text: 'مدرک تحصیلی'}"
                   [editorOptions]="{ items: educationGrades,displayExpr:'title',valueExpr:'id' }">
-
         </dxi-item>
         <dxi-item [label]="{text: 'رایانامه (Email)'}" dataField="email">
             <dxi-validation-rule type="email" message="فرمت آدرس  ایمیل ورودی صحیح نیست"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item [label]="{text: 'کد ملی'}" dataField="nationalCode">
-            <dxi-validation-rule maxlength="10" minlength="10" type="required"
-                                 message="کد ملی اجباری می باشد"></dxi-validation-rule>
-            <dxi-validation-rule type="custom" message="فرمت کد ملی صحیح نیست"
-                                 [validationCallback]="nationalCodeValidate"></dxi-validation-rule>
-            <dxi-validation-rule type="async" message="این کد ملی قبلا ثبت شده است!"
-                                 [validationCallback]="validateNationalCode"></dxi-validation-rule>
 
-        </dxi-item>
         <dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"
                   [editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
@@ -60,5 +49,3 @@
         </dxi-item>
     </dx-form>
 </app-base-edit-form>
-<app-entity-document-upload [appEntityName]="entityName" [docCategoryId]="14"
-                            [objectId]="selectedEntityId"></app-entity-document-upload>

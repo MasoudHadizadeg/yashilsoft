@@ -30,6 +30,11 @@ namespace YashilUserManagement.Infrastructure.RepositoryImpl
             return query.Any();
         }
 
+        public Person GetByNationalCode(string nationalCode)
+        {
+            return DbSet.FirstOrDefault(x => x.ApplicationId == _userPrincipal.ApplicationId && x.NationalCode.Contains(nationalCode));
+        }
+
         public string GetDescription(int id)
         {
             return DbSet.Where(x => x.Id == id).Select(x => x.Description).FirstOrDefault();
