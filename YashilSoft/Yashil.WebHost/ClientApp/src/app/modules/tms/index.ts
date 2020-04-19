@@ -1,8 +1,3 @@
-import {CoursesPlanningStudentDetailTabBasedComponent} from './courses-planning-student/courses-planning-student-detail-tab-based.component';
-
-import {CoursesPlanningStudentDetailComponent} from './courses-planning-student/courses-planning-student-detail.component';
-import {CoursesPlanningStudentListComponent} from './courses-planning-student/courses-planning-student-list.component';
-
 import {CourseDetailTabBasedComponent} from './course/course-detail-tab-based.component';
 
 import {CourseDetailComponent} from './course/course-detail.component';
@@ -46,11 +41,16 @@ import {CourseCategoryCustomListComponent} from './course-category/course-catego
 import {CourseCustomListComponent} from './course/course-custom-list.component';
 import {CourseSelectComponent} from './course/course-select.component';
 import {CoursePlanningCustomListComponent} from './courses-planning/course-planning-custom-list.component';
+import {CoursePlanningStudentDetailComponent} from './course-planning-student/course-planning-student-detail.component';
+import {CoursePlanningStudentListComponent} from './course-planning-student/course-planning-student-list.component';
+import {RepresentationPersonDetailTabBasedComponent} from './representation-person/representation-person-detail-tab-based.component';
+import {RepresentationFilterComponent} from './representation-filter/representation-filter.component';
 
 export const COMPONENTS: Provider[] = [
-    CoursesPlanningStudentDetailTabBasedComponent,
-    CoursesPlanningStudentListComponent,
-    CoursesPlanningStudentDetailComponent,
+    RepresentationPersonDetailTabBasedComponent,
+    CoursePlanningStudentDetailComponent,
+    CoursePlanningStudentListComponent,
+    CoursePlanningStudentDetailComponent,
     CourseDetailTabBasedComponent,
     CourseListComponent,
     CourseDetailComponent,
@@ -79,5 +79,6 @@ export const COMPONENTS: Provider[] = [
     CourseCategoryCustomListComponent,
     CourseCustomListComponent,
     CourseSelectComponent,
-    CoursePlanningCustomListComponent
+    CoursePlanningCustomListComponent,
+    RepresentationFilterComponent
 ];

@@ -40,9 +40,9 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
 
         public bool IsTitleRequired { get; set; }
 
-        public bool IsCategorized { get; set; }
+        public int DocumentCategoryId { get; set; }
+        public string DocumentCategoryTitle { get; set; }
     }
-
 
     public class DocTypeEditModel : IBaseViewModel
     {
@@ -82,6 +82,8 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
         [Required] public bool IsTitleRequired { get; set; }
 
         [Required] public bool IsCategorized { get; set; }
+        [Required] public int DocumentCategoryId { get; set; }
+        public string DocumentCategoryTitle { get; set; }
     }
 
     public class DocTypeCustomViewModel
@@ -108,8 +110,9 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
 
         public bool IsCategorized { get; set; }
         public string DocFormatTitle { get; set; }
+        public int DocumentCategoryId { get; set; }
+        public string DocumentCategoryTitle { get; set; }
     }
-
 
     public class DocTypeSimpleViewModel : IBaseViewModel
     {

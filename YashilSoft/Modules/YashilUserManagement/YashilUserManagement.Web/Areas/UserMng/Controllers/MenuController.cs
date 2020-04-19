@@ -9,18 +9,18 @@ using Microsoft.AspNetCore.Mvc;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
 using YashilUserManagement.Core.Services;
-using  YashilUserManagement.Web.Areas.UserMng.ViewModels;
+using YashilUserManagement.Web.Areas.UserMng.ViewModels;
 
 namespace YashilUserManagement.Web.Areas.UserMng.Controllers
 {
-	public class MenuController : BaseController<Menu ,int,MenuListViewModel,  MenuEditModel,MenuSimpleViewModel>
+    public class MenuController : BaseController<Menu, int, MenuListViewModel, MenuEditModel, MenuSimpleViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IMenuService _menuService;
         public MenuController(IMenuService menuService, IMapper mapper) : base(menuService, mapper)
         {
-            _mapper=mapper;
-            _menuService=menuService;
+            _mapper = mapper;
+            _menuService = menuService;
         }
         [HttpGet("UserMenu")]
         public async Task<object> UserMenu()
@@ -36,6 +36,7 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
                         var menuTreeViewModel = new MenuTreeViewModel
                         {
                             Title = menu.Title,
+                            ResourceTitle = menu.Resource?.Title,
                             BadgeClass = menu.BadgeClass ?? "",
                             Badge = menu.Badge ?? "",
                             Class = menu.Class ?? "",
@@ -49,6 +50,7 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
                                     BadgeClass = x.BadgeClass ?? "",
                                     Badge = x.Badge ?? "",
                                     Class = x.Class ?? "",
+                                    ResourceTitle = x.Resource?.Title,
                                     Icon = x.Icon ?? "",
                                     Path = x.Path ?? "",
                                     IsExternalLink = false
@@ -71,4 +73,4 @@ namespace YashilUserManagement.Web.Areas.UserMng.Controllers
             return menuTreeViewModels;
         }
     }
-}      
+}

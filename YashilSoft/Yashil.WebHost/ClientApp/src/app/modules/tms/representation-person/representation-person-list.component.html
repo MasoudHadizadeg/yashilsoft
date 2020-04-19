@@ -1,2 +1,17 @@
-				<app-base-list-form [columns]="columns" [entityName]="entityName" [detailComponent]="detailComponent">
-	</app-base-list-form>
+<div style="width: 100%;" [style.height.px]="contentHeight">
+    <app-representation-filter
+            (selectedRepresentationChanged)="onSelectedRepresentationChanged($event)"></app-representation-filter>
+    <div class="row">
+        <div class="col-12">
+
+            <div style="width: 100%;" [style.height.px]="contentHeight">
+                <app-base-list-form #frmRP (afterInitialDetailComponent)="afterInitialDetailComponent($event)"
+                                    [loadAfterSetFilter]="true" [columns]="columns" [entityName]="entityName"
+                                    [detailComponent]="detailComponent">
+                </app-base-list-form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

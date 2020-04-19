@@ -249,7 +249,7 @@ if (propertyType == "bool")
             
             #line default
             #line hidden
-            this.Write(" | intToDateTime\" (ngModelChange)=\"entity.");
+            this.Write(" | intToStringDate\" (ngModelChange)=\"entity.");
             
             #line 88 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower));
@@ -274,14 +274,14 @@ if (propertyType == "bool")
             
             #line default
             #line hidden
-            this.Write("\" (ngModelChange)=\"entity.");
+            this.Write(" | intToStringDate\" (ngModelChange)=\"entity.");
             
             #line 94 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower));
             
             #line default
             #line hidden
-            this.Write("=convertDateToStrint($event)\">\r\n\t\t\t\t\t\t\t");
+            this.Write("=convertDateToInt($event)\">\r\n\t\t\t\t\t\t\t");
             
             #line 95 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\PopopEditForm\AngularEditHtml.tt"
 

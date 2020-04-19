@@ -12,6 +12,7 @@ import {CachedDataService} from '../../../shared/services/cached-data.service';
     templateUrl: './course-category-custom-list.component.html'
 })
 export class CourseCategoryCustomListComponent extends Selectable implements OnInit {
+    additionalUserProp: any;
     @ViewChild('frmCategory', {static: true}) frmRep: BaseList;
     private _educationalCenterId: number;
     contentHeight: number;

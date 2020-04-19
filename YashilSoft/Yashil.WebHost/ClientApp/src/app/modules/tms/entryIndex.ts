@@ -1,5 +1,3 @@
-import {CoursesPlanningStudentDetailTabBasedComponent} from './courses-planning-student/courses-planning-student-detail-tab-based.component';
-import {CoursesPlanningStudentDetailComponent} from './courses-planning-student/courses-planning-student-detail.component';
 import {CourseDetailTabBasedComponent} from './course/course-detail-tab-based.component';
 import {CourseDetailComponent} from './course/course-detail.component';
 import {CoursesPlanningDetailTabBasedComponent} from './courses-planning/courses-planning-detail-tab-based.component';
@@ -20,10 +18,12 @@ import {EducationalCenterCustomListComponent} from './educational-center/educati
 import {CourseCategoryListComponent} from './course-category/course-category-list.component';
 import {CourseListComponent} from './course/course-list.component';
 import {CourseSelectComponent} from './course/course-select.component';
+import {CoursePlanningStudentDetailComponent} from './course-planning-student/course-planning-student-detail.component';
+import {RepresentationFilterComponent} from './representation-filter/representation-filter.component';
 
 export const ENTRYCOMPONENTS: Provider[] = [
-    CoursesPlanningStudentDetailTabBasedComponent,
-    CoursesPlanningStudentDetailComponent,
+    CoursesPlanningDetailTabBasedComponent,
+    CoursePlanningStudentDetailComponent,
     CourseDetailTabBasedComponent,
     CourseDetailComponent,
     CoursesPlanningDetailTabBasedComponent,
@@ -42,5 +42,6 @@ export const ENTRYCOMPONENTS: Provider[] = [
     EducationalCenterCustomListComponent,
     CourseCategoryListComponent,
     CourseListComponent,
-    CourseSelectComponent
+    CourseSelectComponent,
+    RepresentationFilterComponent
 ];

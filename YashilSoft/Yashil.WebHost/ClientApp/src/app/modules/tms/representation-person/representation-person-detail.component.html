@@ -1,70 +1,88 @@
+<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
-				<app-base-edit-form   (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
-	<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+        <dxi-item [label]="{text: 'کد'}" dataField="code">
+        </dxi-item>
 
-									<dxi-item [label]="{text: 'کد'}"  dataField="code" >
-												
-										
-				</dxi-item>
-									
-									<dxi-item dataField="representationId" editorType="dxLookup" [label]="{text: 'نمایندگی'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationDataSource,displayExpr:'title',valueExpr:'id' }">
+        <dxi-item *ngIf="!representationId" dataField="representationId" editorType="dxLookup"
+                  [label]="{text: 'نمایندگی'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationDataSource,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="نمایندگی اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item [template]="'personGridTemplate'" [label]="{text: 'شخص'}">
+            <dxi-validation-rule type="required" message="شخص اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="postId" editorType="dxLookup" [label]="{text: 'سمت'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: postDataSource,displayExpr:'title',valueExpr:'id' }">
+            <dxi-validation-rule type="required" message="سمت اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
 
-																				<dxi-validation-rule  type="required" message="نمایندگی اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="personId" editorType="dxLookup" [label]="{text: 'شخص'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: personDataSource,displayExpr:'name',valueExpr:'id' }">
+        <dxi-item dataField="cooperationType" editorType="dxSelectBox" [label]="{text: 'نوع همکاری'}"
+                  [editorOptions]="{ items: cooperationTypes,displayExpr:'title',valueExpr:'id' }">
 
-																				<dxi-validation-rule  type="required" message="شخص اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="postId" editorType="dxLookup" [label]="{text: 'سمت'}"
-					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: postDataSource,displayExpr:'title',valueExpr:'id' }">
+        </dxi-item>
+        <dxi-item [label]="{text: 'تاریخ جذب'}" dataField="fromDate" editorType='dxNumberBox'>
+            <dp-date-picker
+                    [config]="datePickerConfig"
+                    dir="rtl"
+                    mode="day"
+                    placeholder="تاریخ جذب"
+                    theme="dp-material"
+                    [ngModel]="entity.fromDate | intToStringDate"
+                    (ngModelChange)="entity.fromDate=convertDateToInt($event)">
+            </dp-date-picker>
 
-																				<dxi-validation-rule  type="required" message="سمت اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-									
-									<dxi-item dataField="cooperationType" editorType="dxSelectBox" [label]="{text: 'نوع همکاری مدرسین'}"  
-					[editorOptions]="{ items: cooperationTypes,displayExpr:'title',valueExpr:'id' }">
-															
-				</dxi-item>
-									<dxi-item [label]="{text: 'تاریخ جذب'}"  dataField="fromDate" editorType='dxNumberBox'>
-													<dp-date-picker
-							[config]="datePickerConfig"
-							dir="rtl"
-							mode="day"
-							placeholder="تاریخ جذب"
-							theme="dp-material"
-														[ngModel]="entity.fromDate" (ngModelChange)="entity.fromDate=convertDateToStrint($event)">
-														</dp-date-picker>
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'تاریخ رهایی'}"  dataField="toDate" editorType='dxNumberBox'>
-													<dp-date-picker
-							[config]="datePickerConfig"
-							dir="rtl"
-							mode="day"
-							placeholder="تاریخ رهایی"
-							theme="dp-material"
-														[ngModel]="entity.toDate" (ngModelChange)="entity.toDate=convertDateToStrint($event)">
-														</dp-date-picker>
-												
-										
-				</dxi-item>
-									<dxi-item [label]="{text: 'توضیحات'}"  dataField="description" editorType='dxTextArea'>
-												
-										
-				</dxi-item>
-									
-									<dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"  
-					[editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
-																					<dxi-validation-rule  type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
-							
-				</dxi-item>
-</dx-form>
+
+        </dxi-item>
+        <dxi-item [label]="{text: 'تاریخ رهایی'}" dataField="toDate" editorType='dxNumberBox'>
+            <dp-date-picker
+                    [config]="datePickerConfig"
+                    dir="rtl"
+                    mode="day"
+                    placeholder="تاریخ رهایی"
+                    theme="dp-material"
+                    [ngModel]="entity.toDate | intToStringDate"
+                    (ngModelChange)="entity.toDate=convertDateToInt($event)">
+            </dp-date-picker>
+
+
+        </dxi-item>
+        <dxi-item [label]="{text: 'توضیحات'}" dataField="description" editorType='dxTextArea'>
+
+
+        </dxi-item>
+
+
+        <div *dxTemplate="let data of 'personGridTemplate'">
+            <dx-drop-down-box
+                #ddlCourse
+                [(value)]="entity.personId"
+                valueExpr="id"
+                displayExpr="title"
+                placeholder="انتخاب شخص..."
+                [dataSource]="personDataSource"
+                [deferRendering]="false"
+                [showClearButton]="true">
+
+                <div *dxTemplate="let data of 'content'">
+                    <dx-data-grid id="gridContainer"
+                                  [dataSource]="personDataSource"
+                                  [showBorders]="true"
+                                  [remoteOperations]="true"
+                                  rtlEnabled="true"
+                                  [hoverStateEnabled]="true"
+                                  (onSelectionChanged)="onPersonSelectionChanged($event);ddlCourse.instance.close();">
+                        <dxo-filter-row visible="true"></dxo-filter-row>
+                        <dxo-selection mode="single"></dxo-selection>
+                        <dxi-column dataField="title" caption="نام" width="60%"></dxi-column>
+                        <dxi-column dataField="nationalCode" caption="کد ملی" width="25%"></dxi-column>
+                        <dxo-paging [pageSize]="12"></dxo-paging>
+                        <dxo-pager
+                                [showPageSizeSelector]="true"
+                                [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                    </dx-data-grid>
+                </div>
+            </dx-drop-down-box>
+        </div>
+    </dx-form>
 </app-base-edit-form>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {DocTypeDetailComponent} from './doc-type-detail.component';
 
 @Component({
@@ -6,6 +6,10 @@ import {DocTypeDetailComponent} from './doc-type-detail.component';
     templateUrl: './doc-type-list.component.html'
 })
 export class DocTypeListComponent {
+    @Input()
+    appEntityId: number;
+    @Input()
+    appEntityName: string;
     selectedItemId: number;
     columns: any[] = [];
     entityName = 'docType';
@@ -14,12 +18,17 @@ export class DocTypeListComponent {
     constructor() {
         this.columns.push({
             caption: 'عنوان',
-            dataField: 'title'
+            dataField: 'title',
         });
         this.columns.push({
             caption: 'موجودیت',
             dataField: 'appEntityTitle',
-            groupIndex: 1
+            groupIndex: 1,
+        });
+        this.columns.push({
+            caption: 'دسته بندی',
+            dataField: 'documentCategoryTitle',
+            groupIndex: 2
         });
         this.columns.push({
             caption: 'ترتیب نمایش',

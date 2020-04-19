@@ -18,4 +18,8 @@
     <PackageReference Include="Yashil.Common.Infrastructure" Version="1.6.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>

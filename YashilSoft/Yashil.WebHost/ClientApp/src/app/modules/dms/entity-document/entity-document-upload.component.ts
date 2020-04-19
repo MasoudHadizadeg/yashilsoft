@@ -12,9 +12,10 @@ import {FileFormat} from '../enums';
 export class EntityDocumentUploadComponent extends BaseEdit implements OnInit {
     @ViewChild('form', {static: true}) form: NgForm;
     @Input()
-    appEntityId: number;
+    appEntityName: string;
     @Input()
     objectId: number;
+    @Input()
     docCategoryId: number;
     docTypes: any[];
     docs: any[];
@@ -41,30 +42,24 @@ export class EntityDocumentUploadComponent extends BaseEdit implements OnInit {
     addDoc(docType: any) {
         this.docs.push({
             docTypeId: docType.id,
-            appEntityId: this.appEntityId,
+            appEntityName: this.appEntityName,
             objectId: this.objectId,
             docTypeTitle: docType.title,
             docType: docType
         })
     }
-
-    selectedDocumentCategoryChanged(item: any) {
-        this.docCategoryId = item.id;
-        this.getEntityObjectDocs();
-    }
-
     private getEntityObjectDocs() {
         if (!this.docCategoryId) {
             this.docCategoryId = 0;
         }
-        const param = new HttpParams().set('entityId', this.appEntityId.toString()).set('objectId', this.objectId.toString()).set('docCategoryId', this.docCategoryId.toString());
+        const param = new HttpParams().set('entityName', this.appEntityName).set('objectId', this.objectId.toString()).set('docCategoryId', this.docCategoryId.toString());
         this.genericDataService.getEntitiesWithAction('appDocument', 'GetObjectDocuments', param).subscribe((data: any) => {
             for (const docType of data.docTypes) {
                 const docs = data.docs.filter(x => x.docTypeId === docType.id);
                 if (docs.length === 0) {
                     data.docs.push({
                         docTypeId: docType.id,
-                        appEntityId: this.appEntityId,
+                        appEntityName: this.appEntityName,
                         objectId: this.objectId,
                         docTypeTitle: docType.title,
                         docType: docType

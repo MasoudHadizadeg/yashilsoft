@@ -15,4 +15,8 @@
         <app-content-editor [selectedEntityId]="selectedEntityId" entityName="coursePlanning" propertyName="Description"
                             propertyLabel="توضیحات"></app-content-editor>
     </div>
+    <div *dxTemplate="let company of 'docs'" class="tab-content-edit-form">
+        <app-entity-document-upload [appEntityName]="entityName" [docCategoryId]="12"
+                                    [objectId]="selectedEntityId"></app-entity-document-upload>
+    </div>
 </dx-tab-panel>

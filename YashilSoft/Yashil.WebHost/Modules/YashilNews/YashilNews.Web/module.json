@@ -1,0 +1,8 @@
+ 
+ {
+  "id": "YashilNews.Web",
+  "name": "YashilNews",
+  "isBundledWithHost": true,
+  "version": "1.0.0",
+  "subFolder": "YashilNews"
+}

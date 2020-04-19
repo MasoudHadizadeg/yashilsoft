@@ -21,7 +21,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.ListForm
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListHtml.tt"
+    #line 1 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListHtml.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class AngularListHtml : AngularListHtmlBase
     {
@@ -33,7 +33,7 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.ListForm
         {
             this.Write("\t\t\t");
             
-            #line 9 "D:\Works\AnstDashboard\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListHtml.tt"
+            #line 9 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\ListForm\AngularListHtml.tt"
 
 			var table = SqlToCsharpHelper.table;
 			string angularFriendlyName = table.Name.ToAngularFrendlyName();
@@ -41,8 +41,14 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.ListForm
             
             #line default
             #line hidden
-            this.Write("\t<app-base-list-form [columns]=\"columns\" [entityName]=\"entityName\" [detailCompone" +
-                    "nt]=\"detailComponent\">\r\n\t</app-base-list-form>");
+            this.Write(@"	<app-base-list-form #listForm 
+		(afterInitialDetailComponent)=""afterInitialDetailComponent($event)"" 
+		[loadAfterSetFilter]=""loadAfterSetFilter"" 
+		(selectedRowChanged)=""selectedRowChanged.emit($event)"" 
+		[columns]=""columns""
+		[entityName]=""entityName""
+		[detailComponent]=""detailComponent"">
+	</app-base-list-form>");
             return this.GenerationEnvironment.ToString();
         }
     }

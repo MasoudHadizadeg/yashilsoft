@@ -16,5 +16,10 @@ namespace YashilTms.Infrastructure.RepositoryImpl
                 _context = context;
                 _userPrincipal = userPrincipal;
             }
+
+        public IQueryable<RepresentationPerson> GetByRepresentationId(int representationId)
+        {
+            return GetAll(true).Where(x => x.RepresentationId == representationId);
+        }
     }
 }      

@@ -1,0 +1,26 @@
+<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
+        <dxi-item dataField="parentId" editorType="dxLookup" [label]="{text: 'سرویس پدر'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: parentDataSource,displayExpr:'title',valueExpr:'id' }">
+        </dxi-item>
+        <dxi-item [label]="{text: 'عنوان'}" dataField="title">
+            <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="appEntityId" editorType="dxLookup" [label]="{text: 'موجودیت'}"
+                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: appEntityDataSource,displayExpr:'title',valueExpr:'id' }">
+        </dxi-item>
+        <dxi-item [label]="{text: 'عنوان انگلیسی'}" dataField="englishTitle">
+            <dxi-validation-rule type="required" message="عنوان انگلیسی اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item [label]="{text: 'ترتیب نمایش'}" dataField="displayOrder" editorType='dxNumberBox'>
+            <dxi-validation-rule type="required" message="ترتیب نمایش اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item [label]="{text: 'سرویس های اصلی'}" dataField="isMain" editorType='dxCheckBox'>
+        </dxi-item>
+        <dxi-item [label]="{text: 'نمایش سرویس در صفحه اصلی'}" dataField="showInMainPage" editorType='dxCheckBox'>
+        </dxi-item>
+        <dxi-item [label]="{text: 'توضیحات'}" dataField="description" editorType='dxTextArea'>
+        </dxi-item>
+
+    </dx-form>
+</app-base-edit-form>

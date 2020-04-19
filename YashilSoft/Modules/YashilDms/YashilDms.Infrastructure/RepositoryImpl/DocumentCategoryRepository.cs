@@ -20,16 +20,19 @@ namespace YashilDms.Infrastructure.RepositoryImpl
             _userPrincipal = userPrincipal;
         }
 
-        public DocumentCategory GetDocumentDefaultCategory(int appEntityId, int objectId)
+        public DocumentCategory GetDocumentDefaultCategory(int appEntityId)
         {
-            return DbSet.Where(x => !x.ParentId.HasValue && x.AppEntityId == appEntityId && x.ObjectId == objectId)
-                .OrderBy(x => x.Id)
-                .FirstOrDefault();
+            return DbSet.Where(x => !x.ParentId.HasValue && x.AppEntityId == appEntityId).OrderBy(x => x.Id).FirstOrDefault();
         }
 
-        public IQueryable<DocumentCategory> GetAll(int appEntityId, int objectId)
+        public IQueryable<DocumentCategory> GetAll(string appEntityName)
         {
-            return GetAll(true).Where(x => x.AppEntityId == appEntityId && x.ObjectId == objectId);
+            return GetAll(true).Where(x => x.AppEntity.Title == appEntityName);
+        }
+
+        public IQueryable<DocumentCategory> GetAll(int appEntityId)
+        {
+            return GetAll(true).Where(x => x.AppEntityId == appEntityId);
         }
     }
 }

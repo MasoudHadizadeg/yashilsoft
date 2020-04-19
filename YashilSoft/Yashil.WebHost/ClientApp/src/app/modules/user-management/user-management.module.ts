@@ -11,6 +11,7 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 import {MessageService} from '../../shared/base/messages/message.service';
 import {ENTRYCOMPONENTS} from './entryIndex';
 import {UserManagementRoutingModule} from './user-management-routing.module';
+import {DmsModule} from '../dms/dms.module';
 
 @NgModule({
     declarations: [COMPONENTS],
@@ -24,7 +25,8 @@ import {UserManagementRoutingModule} from './user-management-routing.module';
         DpDatePickerModule,
         SharedModule,
         AngularSplitModule.forRoot(),
-        ImageCropperModule
+        ImageCropperModule,
+        DmsModule
     ],
     providers: [
         MessageService,

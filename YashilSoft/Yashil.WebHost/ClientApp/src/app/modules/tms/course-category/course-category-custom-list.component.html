@@ -1,5 +1,5 @@
 <div style="width: 100%;" [style.height.px]="contentHeight" >
-    <div class="row" style="padding-bottom: 5px" *ngIf="!educationalCenterId">
+    <div class="row" style="padding-bottom: 5px"  *ngIf="!additionalUserProp || !additionalUserProp.educationalCenterId">
         <div class="col-6">
             <div style="float: right;width: 20%;margin-top: 0.5rem; font-size: 14px;text-align: right">
                 <label>مرکز آموزشی : </label>
@@ -23,7 +23,7 @@
         <div class="col-12">
 
             <div style="width: 100%;" [style.height.px]="contentHeight">
-                <app-base-list-form [allowInsertInForm]="selectedEntity!==null"
+                <app-base-list-form  [allowInsertInForm]="selectedEntity!==null"
                                     [isForTree]="true"
                                     [dataStructureIsPlain]="true"
                                     lazyLoading="false"

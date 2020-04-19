@@ -16,14 +16,8 @@
             <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
 
         </dxi-item>
-
-        <!--        <dxi-item dataField="cityId" editorType="dxLookup" [label]="{text: 'شهر'}"-->
-        <!--                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: cityDataSource,displayExpr:'title',valueExpr:'id' }">-->
-
-        <!--            <dxi-validation-rule type="required" message="شهر اجباری می باشد"></dxi-validation-rule>-->
-
-        <!--        </dxi-item>-->
         <dxi-item [template]="'cityTemplate'" dataField="cityId" [label]="{text: 'شهر'}">
+            <dxi-validation-rule type="required" message="شهر اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
         <dxi-item [label]="{text: 'رایانامه (Email)'}" dataField="email">
 
@@ -52,10 +46,6 @@
 
         </dxi-item>
 
-        <dxi-item dataField="establishedLicenseType" editorType="dxSelectBox" [label]="{text: 'نوع مجوز تاسیس'}"
-                  [editorOptions]="{ items: establishedLicenseTypes,displayExpr:'title',valueExpr:'id' }">
-
-        </dxi-item>
         <dxi-item [label]="{text: 'متراژ'}" dataField="area" editorType='dxNumberBox'>
 
 
@@ -64,16 +54,12 @@
 
 
         </dxi-item>
-        <dxi-item [label]="{text: 'آدرس'}" dataField="address">
+        <dxi-item [label]="{text: 'آدرس'}" dataField="address" colSpan="2" editorType="dxTextArea">
 
 
         </dxi-item>
 
-        <dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"
-                  [editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
-            <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
 
-        </dxi-item>
         <div *dxTemplate="let data of 'cityTemplate'">
             <dx-drop-down-box
                     [(value)]="entity.cityId"
@@ -82,8 +68,7 @@
                     placeholder="انتخاب شهر..."
                     [showClearButton]="true"
                     [dataSource]="cityDataSource"
-                    (onValueChanged)="syncTreeViewSelection($event)"
-            >
+                    (onValueChanged)="syncTreeViewSelection($event)">
 
                 <div *dxTemplate="let data of 'content'">
                     <dx-tree-view

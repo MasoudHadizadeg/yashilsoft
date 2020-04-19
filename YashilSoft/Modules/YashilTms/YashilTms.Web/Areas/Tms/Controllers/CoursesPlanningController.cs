@@ -33,15 +33,15 @@ namespace YashilTms.Web.Areas.Tms.Controllers
             return await DataSourceLoader.LoadAsync(representations.ProjectTo<CoursePlanningListViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
         [HttpGet("GetByCourseCategoryId")]
-        public async Task<LoadResult> GetByCourseCategoryId(CustomDataSourceLoadOptions loadOptions, int courseCategoryId, bool hierarchical = true)
+        public async Task<LoadResult> GetByCourseCategoryId(CustomDataSourceLoadOptions loadOptions,int representationId, int courseCategoryId, bool hierarchical = true)
         {
-            var courses = _coursePlanningService.GetByCourseCategoryId(courseCategoryId, hierarchical);
+            var courses = _coursePlanningService.GetByCourseCategoryId(courseCategoryId, representationId, hierarchical);
             return await DataSourceLoader.LoadAsync(courses.ProjectTo<CoursePlanningListViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
         [HttpGet("GetByMainCourseCategoryId")]
-        public async Task<LoadResult> GetByMainCourseCategoryId(CustomDataSourceLoadOptions loadOptions, int educationalCenterMainCourseCategoryId)
+        public async Task<LoadResult> GetByMainCourseCategoryId(CustomDataSourceLoadOptions loadOptions, int representationId, int educationalCenterMainCourseCategoryId)
         {
-            var courses = _coursePlanningService.GetByMainCourseCategoryId(educationalCenterMainCourseCategoryId);
+            var courses = _coursePlanningService.GetByMainCourseCategoryId(educationalCenterMainCourseCategoryId, representationId);
             return await DataSourceLoader.LoadAsync(courses.ProjectTo<CoursePlanningListViewModel>(_mapper.ConfigurationProvider), loadOptions);
         }
     }

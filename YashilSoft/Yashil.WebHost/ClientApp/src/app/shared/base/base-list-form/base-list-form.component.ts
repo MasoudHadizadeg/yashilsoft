@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {BaseList} from '../classes/base-list';
+import { NgModule } from '@angular/core';
 
 @Component({
     selector: 'app-base-list-form',
@@ -7,4 +8,5 @@ import {BaseList} from '../classes/base-list';
     styleUrls: ['./base-list-form.component.css']
 })
 export class BaseListFormComponent extends BaseList implements AfterViewInit, OnInit {
+
 }

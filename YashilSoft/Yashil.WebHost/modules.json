@@ -15,6 +15,11 @@
     "subFolder": "YashilTms"
   },
   {
+    "id": "YashilNews.Web",
+    "version": "1.0.0",
+    "subFolder": "YashilNews"
+  },
+  {
     "id": "YashilUserManagement.Web",
     "version": "1.0.0",
     "subFolder": "YashilUserManagement"

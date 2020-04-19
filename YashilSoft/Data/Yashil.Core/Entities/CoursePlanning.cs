@@ -26,6 +26,8 @@ namespace Yashil.Core.Entities
         public int StartDate { get; set; }
         public int CustomGender { get; set; }
         public int MaxCapacity { get; set; }
+        public bool Confirmed { get; set; }
+        public int? DisplayOrder { get; set; }
         public string Description { get; set; }
         public int CreateBy { get; set; }
         public int? ModifyBy { get; set; }
@@ -48,7 +50,6 @@ namespace Yashil.Core.Entities
         public virtual CommonBaseData ImplementationTypeNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual Representation Representation { get; set; }
-        public virtual RepresentationPerson RepresentationPerson { get; set; }
         public virtual CommonBaseData RunTypeNavigation { get; set; }
         public virtual ICollection<CoursePlanningStudent> CoursePlanningStudent { get; set; }
     }

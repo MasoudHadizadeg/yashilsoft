@@ -15,10 +15,5 @@
         <dxi-item dataField="parentId" editorType="dxSelectBox" [label]="{text: 'زیرگروه پدر'}"
                   [editorOptions]="{rtlEnabled:true, items: parentDataSource,displayExpr:'title',valueExpr:'id' }">
         </dxi-item>
-        <dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"
-                  [editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
-            <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
-
-        </dxi-item>
     </dx-form>
 </app-base-edit-form>

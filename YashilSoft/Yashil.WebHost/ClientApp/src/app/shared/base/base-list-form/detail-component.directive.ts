@@ -1,9 +1,10 @@
 import {Directive, ViewContainerRef} from '@angular/core';
 
 @Directive({
-  selector: '[appDetailComponentHost]',
+    selector: '[appDetailComponentHost]',
 })
 export class DetailComponentDirective {
-  constructor(public viewContainerRef: ViewContainerRef) { }
+    constructor(public viewContainerRef: ViewContainerRef) {
+    }
 }
 

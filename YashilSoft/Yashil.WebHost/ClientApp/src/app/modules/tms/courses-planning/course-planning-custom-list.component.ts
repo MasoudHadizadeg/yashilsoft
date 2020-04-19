@@ -4,7 +4,6 @@ import {GenericDataService} from '../../../shared/base/services/generic-data.ser
 import {DxTreeViewComponent} from 'devextreme-angular';
 import {CachedDataService} from '../../../shared/services/cached-data.service';
 import {CachedKey} from '../tms-enums';
-import {CoursesPlanningDetailComponent} from './courses-planning-detail.component';
 import {CoursesPlanningDetailTabBasedComponent} from './courses-planning-detail-tab-based.component';
 
 
@@ -20,16 +19,16 @@ export class CoursePlanningCustomListComponent implements OnInit {
     contentHeight: number;
     educationalCenterDataSource: any;
     @ViewChild('frmCourse', {static: true}) frmCourse: BaseList;
-    private _educationalCenterId: number;
     selectedCourseCategory: any;
     /**
      * Course Category And Education Center Id
      */
+    representationId: number;
     @Input()
     courseInfo: {};
     @Input()
     hideEducationalCenterColumn = false;
-
+    private _educationalCenterId: number;
     @Input()
     set educationalCenterId(value: number) {
         if (this._educationalCenterId !== value) {
@@ -42,7 +41,7 @@ export class CoursePlanningCustomListComponent implements OnInit {
     }
 
     customListUrl: string;
-    baseListUrlByCourseCategoryId = 'coursePlanning/GetByCourseCategoryId?courseCategoryId=';
+    baseListUrlByCourseCategoryId = 'coursePlanning/GetByCourseCategoryId';
     baseListUrlByMainCourseCategoryId = 'coursePlanning/GetByMainCourseCategoryId';
     selectedItemId: number;
     columns: any[] = [];
@@ -50,7 +49,7 @@ export class CoursePlanningCustomListComponent implements OnInit {
     detailComponent = CoursesPlanningDetailTabBasedComponent;
 
     afterInitialDetailComponent(componentInstance: any) {
-        const comp = (<CoursesPlanningDetailTabBasedComponent>componentInstance);
+        const comp = (<CoursesPlanningDetailTabBasedComponent>componentInstance.instance);
         comp.educationalCenterId = this.educationalCenterId;
         comp.courseCategoryId = this.courseCategoryId;
     }
@@ -58,6 +57,19 @@ export class CoursePlanningCustomListComponent implements OnInit {
     constructor(private genericDataService: GenericDataService, private cachedDataService: CachedDataService) {
         this.contentHeight = window.innerHeight - 110;
         this.bindColumns();
+    }
+
+    ngOnInit(): void {
+        const data = this.cachedDataService.getData(CachedKey.AdditionalUserProp);
+        if (data) {
+            if (data.educationalCenterId) {
+                this.educationalCenterId = data.educationalCenterId;
+            }
+            if (data.representationId) {
+                this.representationId = data.representationId;
+            }
+        }
+        this.educationalCenterDataSource = this.genericDataService.createCustomDatasourceForSelect('id', 'educationalCenter');
     }
 
     syncTreeViewSelection(e) {
@@ -82,20 +94,14 @@ export class CoursePlanningCustomListComponent implements OnInit {
 
     private bindDataSources(id: any) {
         if (this.selectedCourseCategory && this.selectedCourseCategory.isMainCourseCategory) {
-            this.frmCourse.customListUrl = `${this.baseListUrlByMainCourseCategoryId}?educationalCenterMainCourseCategoryId=${this.selectedCourseCategory.educationalCenterMainCourseCategoryId}`;
+            const ecmcc = this.selectedCourseCategory.educationalCenterMainCourseCategoryId;
+            this.frmCourse.customListUrl =
+                `${this.baseListUrlByMainCourseCategoryId}?educationalCenterMainCourseCategoryId=${ecmcc}&representationId=${this.representationId}`;
         } else {
-            this.frmCourse.customListUrl = `${this.baseListUrlByCourseCategoryId}${id}`;
+            this.frmCourse.customListUrl = `${this.baseListUrlByCourseCategoryId}?courseCategoryId=${id}&representationId=${this.representationId}`;
         }
 
         this.frmCourse.refreshList();
-    }
-
-    ngOnInit(): void {
-        const data = this.cachedDataService.getData(CachedKey.AdditionalUserProp);
-        if (data && data.educationalCenterId) {
-            this.educationalCenterId = data.educationalCenterId;
-        }
-        this.educationalCenterDataSource = this.genericDataService.createCustomDatasourceForSelect('id', 'educationalCenter');
     }
 
     private bindColumns() {
@@ -129,11 +135,15 @@ export class CoursePlanningCustomListComponent implements OnInit {
 
     selectedCourseCategoryChanged(item: any) {
         this.selectedCourseCategory = item;
-        if (this.selectedCourseCategory && this.selectedCourseCategory.isMainCourseCategory) {
-            this.selectedCourseCategory = null;
-        } else {
+        if (item && !item.isMainCourseCategory) {
             this.courseCategoryId = item.id;
         }
         this.bindDataSources(item.id);
+    }
+
+    onSelectedRepresentationChanged(item: any) {
+        this.educationalCenterId = item.educationalCenter.id;
+        this.representationId = item.representation.id;
+        this.selectedEducationalCenterChanged(item.educationalCenter);
     }
 }

@@ -10,9 +10,14 @@
 			var table = SqlToCsharpHelper.table;
 			string angularFriendlyName = table.Name.ToAngularFrendlyName();
 			string firstCharacterLower = table.Name.FirstCharacterToLower();
+			string detailComponentName=table.Name +"DetailComponent";
+			if(table.GenerateTabForDescColumn){
+				detailComponentName=table.Name +"DetailTabBasedComponent"; 
+			}			
 			#>
-
-		import { Component, OnInit } from '@angular/core';
+		import {Selectable} from '../../../shared/base/classes/selectable';
+		import {BaseList} from '../../../shared/base/classes/base-list';
+		import {Component, Input, OnInit, ViewChild} from '@angular/core';
 		import {<#=table.Name #>DetailComponent} from './<#=angularFriendlyName #>-detail.component';
 		<#
 		if(table.GenerateTabForDescColumn){
@@ -25,12 +30,30 @@
 		  selector: 'app-<#=angularFriendlyName #>-list',
 		  templateUrl: './<#=angularFriendlyName #>-list.component.html'
 		})
-		export class <#=table.Name #>ListComponent {
+		export class <#=table.Name #>ListComponent extends Selectable  implements OnInit {
+		  @ViewChild('listForm', {static: true}) listForm: BaseList;
+		  loadAfterSetFilter:boolean;
 		  selectedItemId: number;
 		  columns: any[] = [];
 		  entityName = '<#=firstCharacterLower #>';
-		  detailComponent =<#if(table.GenerateTabForDescColumn){#>  <#=table.Name #>DetailTabBasedComponent; <#} else { #> <#=table.Name #>DetailComponent; <#}#>
+		  detailComponent =<#=detailComponentName #>;
+		 <#foreach (var col in table.Columns.Where(x => x.IsForeignKey && !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name)))
+			{
+			var propName = col.Name.FirstCharacterToLower();#>
+			_<#=propName#>:number;
+			@Input()
+			set <#=propName#>(val){
+				if(val!==this._<#=propName#>){
+					this._<#=propName#>=val;
+				}
+			}
+			get <#=propName#>(): number {
+					return this._<#=propName#>;
+				}
+			<#}#>
+		  private baseListUrl = '<#=firstCharacterLower #>/GetByCustomFilterForList';
 		  constructor() {
+			super();
 			<#
 			// Iterate all columns
 
@@ -63,4 +86,41 @@
 			} #>
 				
 				}
+			ngOnInit(): void {
+					if(this.bindCustomDataSources()){
+						this.loadAfterSetFilter=true;
+					}
+				}
+
+	private bindCustomDataSources() {
+		<#
+		var cols=table.Columns.Where(x => x.IsForeignKey && !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name));
+		var colsIfCondition = String.Join(" || ", cols.Select(x=> "this."+ x.Name.FirstCharacterToLower()).ToArray());
+		#>
+		if (this.listForm) {
+			let customListUrl = `${this.baseListUrl}`;
+			<#foreach (var col in cols)
+			{#>
+				if(this.<#=col.Name.FirstCharacterToLower()#>){
+					customListUrl = += `<#=col.Name.FirstCharacterToLower()#>=${this.<#=col.Name.FirstCharacterToLower()#>}&`;
+				}
+			<#}#>
+			this.listForm.customListUrl = customListUrl;
+            this.listForm.refreshList();
 		}
+		let res=false;
+		if(<#=colsIfCondition#>){
+			res=true;
+		}
+		return res;
+    }
+    afterInitialDetailComponent(componentInstance: any) {
+        const comp = (<<#=detailComponentName#>>componentInstance);
+		<#foreach (var col in cols)
+		{	#>		
+			if(this.<#=col.Name.FirstCharacterToLower()#>){
+				comp.<#=col.Name.FirstCharacterToLower()#> = this.<#=col.Name.FirstCharacterToLower()#>;
+			}
+		<#}#>        
+    }
+}

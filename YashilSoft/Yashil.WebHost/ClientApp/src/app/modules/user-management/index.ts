@@ -38,6 +38,8 @@ import {PersonDetailComponent} from './person/person-detail.component';
 import {PersonListComponent} from './person/person-list.component';
 
 import {Provider} from '@angular/core';
+import {JobListComponent} from './job/job-list.component';
+import {JobDetailComponent} from './job/job-detail.component';
 
 export const COMPONENTS: Provider[] = [
 
@@ -78,5 +80,7 @@ export const COMPONENTS: Provider[] = [
     PostDetailComponent,
     PersonListComponent,
 
-    PersonDetailComponent
+    PersonDetailComponent,
+    JobListComponent,
+    JobDetailComponent
 ];

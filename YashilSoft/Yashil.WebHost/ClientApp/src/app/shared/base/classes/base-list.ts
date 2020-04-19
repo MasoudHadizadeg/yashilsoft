@@ -21,14 +21,16 @@ import {BaseEdit} from './base-edit';
 import {FormEditType} from './edit-type';
 import {DialogService} from '../../../_services/dialog.service';
 import {Router} from '@angular/router';
-import {SharedDataService} from '../../../core/services/shared-data.service';
 import {CustomDevDataSource} from './custom-dev-data-source';
 import {HttpClient} from '@angular/common/http';
+import {CachedDataService} from '../../services/cached-data.service';
 
 export class BaseList extends CustomDevDataSource implements OnInit, AfterViewInit {
     /*
     * this use for custom Mode when u need bind data to custom component without dataSource
     * */
+    @Input()
+    customButtons: any[];
     @Input()
     allowAdd = true;
     selectedItemId: number;
@@ -43,6 +45,8 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
     title: string;
     @Input()
     allowInsertInForm = true;
+    @Input()
+    showAddButton = true;
     @Input()
     allowEditInForm = true;
     @Input()
@@ -72,7 +76,8 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
         return this._rootValue;
     }
 
-
+    @Output()
+    customButtonClicked: EventEmitter<any> = new EventEmitter<any>();
     @Input()
     offsetHeight: number;
     parentIdExpr: 'parentId';
@@ -167,14 +172,66 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver,
                 private dialogService: DialogService, genericDataService: GenericDataService,
-                public sharedDataService: SharedDataService, @Inject(HttpClient) httpClient: HttpClient,
+                private cachedDataService: CachedDataService, @Inject(HttpClient) httpClient: HttpClient,
                 public router: Router) {
         super(httpClient);
         this._genericDataService = genericDataService;
         this.bindDataSource = this.bindDataSource.bind(this);
         this.allowEditRecord = this.allowEditRecord.bind(this);
         this.allowDeleteRecord = this.allowDeleteRecord.bind(this);
+        this.selectedCustomButtonChanged = this.selectedCustomButtonChanged.bind(this);
         this._componentFactoryResolver = componentFactoryResolver;
+    }
+
+    ngAfterViewInit(): void {
+        this.setRemoteOperations();
+        if (this.lazyLoading) {
+            this.remoteOperations = {paging: true, sorting: true, filtering: false};
+        }
+        this.closeActionEmitter.subscribe(res => {
+            this.showEditForm = false;
+        });
+    }
+
+    ngOnInit(): void {
+        this.setListTitle();
+        this.declareDeleteConfirm();
+        if (this.isCustomEditForm && !this.isForSelectReadOnly) {
+            const editColumn = { // Pushes the "Contacts" band column into the "columns" array
+                caption: '',
+                width: '80px',
+                cellTemplate: 'cellTemplate',
+                allowEditing: false,
+                formItem: {
+                    visible: false
+                }
+            };
+            if (this.isForTree) {
+                this.columns.push(editColumn);
+            } else {
+                this.columns.unshift(editColumn);
+            }
+        }
+        let heightD = 150;
+        if (this.offsetHeight) {
+            heightD = this.offsetHeight;
+        }
+        if (this.allowGrouping && this.allowGrouping === true && heightD < 170) {
+            heightD = 170;
+        }
+        if (!this.gridHeight) {
+            this.gridHeight = window.innerHeight - heightD;
+        }
+        /*
+      * If Is For Tree bind To Data Source After Root Value Set
+      * */
+        if (!this.loadAfterSetFilter) {
+            this.bindDataSource();
+        }
+    }
+
+    selectedCustomButtonChanged(e: any) {
+        this.customButtonClicked.emit(e);
     }
 
     toggleFilter() {
@@ -325,52 +382,6 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
         this.setDialogContent(false, this.selectedItemId);
     }
 
-    ngAfterViewInit(): void {
-        this.setRemoteOperations();
-        if (this.lazyLoading) {
-            this.remoteOperations = {paging: true, sorting: true, filtering: false};
-        }
-        this.closeActionEmitter.subscribe(res => {
-            this.showEditForm = false;
-        });
-    }
-
-    ngOnInit(): void {
-        this.declareDeleteConfirm();
-        if (this.isCustomEditForm && !this.isForSelectReadOnly) {
-            const editColumn = { // Pushes the "Contacts" band column into the "columns" array
-                caption: '',
-                width: '80px',
-                cellTemplate: 'cellTemplate',
-                allowEditing: false,
-                formItem: {
-                    visible: false
-                }
-            };
-            if (this.isForTree) {
-                this.columns.push(editColumn);
-            } else {
-                this.columns.unshift(editColumn);
-            }
-        }
-        let heightD = 150;
-        if (this.offsetHeight) {
-            heightD = this.offsetHeight;
-        }
-        if (this.allowGrouping && this.allowGrouping === true && heightD < 170) {
-            heightD = 170;
-        }
-        if (!this.gridHeight) {
-            this.gridHeight = window.innerHeight - heightD;
-        }
-        /*
-      * If Is For Tree bind To Data Source After Root Value Set
-      * */
-        if (!this.loadAfterSetFilter) {
-            this.bindDataSource();
-        }
-    }
-
     protected setSelectedRow(selectedRowId, selectedRow) {
         this.selectedItemId = selectedRowId;
         this.allowEditSelectedRow = this.allowEditRecord(selectedRow);
@@ -410,5 +421,19 @@ export class BaseList extends CustomDevDataSource implements OnInit, AfterViewIn
 
     private afterSetDialogContent(instance: any) {
         this.afterInitialDetailComponent.emit(instance);
+    }
+
+    private setListTitle() {
+        if (!this.title) {
+            const moduleKy = this.router.url.split('/')[1];
+            const menuItems = this.cachedDataService.getData('menuItems');
+            const rootMenu = menuItems.filter(x => x.title === moduleKy);
+            if (rootMenu && rootMenu.length === 1) {
+                const menu = rootMenu[0].submenu.filter(x => x.path === this.router.url);
+                if (menu.length === 1) {
+                    this.title = menu[0].title;
+                }
+            }
+        }
     }
 }

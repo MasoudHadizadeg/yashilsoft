@@ -23,8 +23,7 @@ namespace YashilUserManagement.Web.Areas.UserMng
             CreateMap<Application, ApplicationEditModel>();
 
 
-            CreateMap<Application, ApplicationListViewModel>()
-                ;
+            CreateMap<Application, ApplicationListViewModel>();
             CreateMap<ApplicationEditModel, Application>();
 
             CreateMap<Application, ApplicationSimpleViewModel>();
@@ -33,8 +32,7 @@ namespace YashilUserManagement.Web.Areas.UserMng
             CreateMap<AppAction, AppActionEditModel>();
 
 
-            CreateMap<AppAction, AppActionListViewModel>()
-                ;
+            CreateMap<AppAction, AppActionListViewModel>();
             CreateMap<AppActionEditModel, AppAction>();
 
             CreateMap<AppAction, AppActionSimpleViewModel>();
@@ -150,14 +148,22 @@ namespace YashilUserManagement.Web.Areas.UserMng
             CreateMap<UserRole, UserRoleSimpleViewModel>().ForMember(x => x.Title, b => b.MapFrom(c => c.Role.Title));
 
 
-            CreateMap<Post, PostEditModel>()
+            CreateMap<Post, PostEditModel>();
+            CreateMap<Job, JobEditModel>();
+
+            CreateMap<Job, JobListViewModel>()
                 .ForMember(x => x.AccessLevelTitle,
-                    b => b.MapFrom(c => c.AccessLevel.Title));
+                    b => b.MapFrom(c => c.AccessLevel.Title))
+                ;
+            CreateMap<JobEditModel, Job>();
 
-
+            CreateMap<Job, JobSimpleViewModel>();
             CreateMap<Post, PostListViewModel>()
+                .ForMember(x => x.JobTitle,
+                    b => b.MapFrom(c => c.Job.Title))
                 .ForMember(x => x.AccessLevelTitle,
-                    b => b.MapFrom(c => c.AccessLevel.Title));
+                    b => b.MapFrom(c => c.AccessLevel.Title))
+                ;
             CreateMap<PostEditModel, Post>();
 
             CreateMap<Post, PostSimpleViewModel>();

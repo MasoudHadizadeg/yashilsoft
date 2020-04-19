@@ -6,8 +6,9 @@ namespace YashilUserManagement.Core.Services
 {
 	public interface IPersonService : IGenericService<Person, int>
     {
-			string GetDescription(int id);		
-	
+			string GetDescription(int id);
+
+            bool CheckExistsNationalCode(string nationalCode, int? personId);
     }
 }      
  

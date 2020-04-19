@@ -15,7 +15,8 @@ const routes: Routes = [
             {path: 'rpt', loadChildren: () => import('../report/report.module').then(m => m.ReportModule)},
             {path: 'base', loadChildren: () => import('../base-info/base-info.module').then(m => m.BaseInfoModule)},
             {path: 'dms', loadChildren: () => import('../dms/dms.module').then(m => m.DmsModule)},
-            {path: 'tms', loadChildren: () => import('../tms/tms.module').then(m => m.TmsModule)}
+            {path: 'tms', loadChildren: () => import('../tms/tms.module').then(m => m.TmsModule)},
+            {path: 'news', loadChildren: () => import('../news/news.module').then(m => m.NewsModule)}
         ]
     }
 ];

@@ -11,6 +11,7 @@ namespace Yashil.Core.Entities
         public int CoursePlanningId { get; set; }
         public int PersonId { get; set; }
         public double Score { get; set; }
+        public int? StudentStatus { get; set; }
         public string Description { get; set; }
         public int CreateBy { get; set; }
         public int? ModifyBy { get; set; }
@@ -28,5 +29,6 @@ namespace Yashil.Core.Entities
         public virtual Organization CreatorOrganization { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual Person Person { get; set; }
+        public virtual CommonBaseData StudentStatusNavigation { get; set; }
     }
     }

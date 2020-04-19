@@ -1,0 +1,37 @@
+<dx-tab-panel
+    #tabPanel
+    rtlEnabled="true"
+    [dataSource]="tabs"
+    [selectedIndex]="0"
+    [loop]="false"
+    [animationEnabled]="false"
+    [swipeEnabled]="false">
+    <div *dxTemplate="let company of 'newsStore'" class="tab-content-edit-form">
+        <app-news-store-detail
+                [selectedEntityId]="selectedEntityId"
+                (afterInsertRow)="rowInserted($event)"
+                entityName="newsStore"
+                [serviceId]="serviceId"
+                [newsType]="newsType"
+                [language]="language"
+                [accessLevelId]="accessLevelId"
+        >
+        </app-news-store-detail>
+    </div>
+    <div *dxTemplate="let company of 'body'" class="tab-content-edit-form">
+        <app-content-editor [selectedEntityId]="selectedEntityId" entityName="newsStore" propertyName="Body"
+                            propertyLabel="متن "></app-content-editor>
+    </div>
+    <div *dxTemplate="let company of 'mainNewsImage'" class="tab-content-edit-form">
+        <app-entity-document-upload [appEntityName]="entityName" [docCategoryId]="15"
+                                    [objectId]="selectedEntityId"></app-entity-document-upload>
+    </div>
+    <div *dxTemplate="let company of 'newsPictures'" class="tab-content-edit-form">
+        <app-entity-document-upload [appEntityName]="entityName" [docCategoryId]="16"
+                                    [objectId]="selectedEntityId"></app-entity-document-upload>
+    </div>
+    <div  *dxTemplate="let company of 'newsFilm'" class="tab-content-edit-form">
+        <app-entity-document-upload [appEntityName]="entityName" [docCategoryId]="18"
+                                    [objectId]="selectedEntityId"></app-entity-document-upload>
+    </div>
+</dx-tab-panel>

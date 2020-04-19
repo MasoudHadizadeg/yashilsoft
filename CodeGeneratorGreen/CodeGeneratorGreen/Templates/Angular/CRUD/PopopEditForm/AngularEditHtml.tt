@@ -85,13 +85,13 @@ if(table.GenerateTabForDescColumn){
 							<#if (propertyType == "bool")
 						{
 							#>
-							[ngModel]="entity.<#=colNameFirstCharLower #> | intToDateTime" (ngModelChange)="entity.<#=colNameFirstCharLower #>=convertDateToInt($event)">
+							[ngModel]="entity.<#=colNameFirstCharLower #> | intToStringDate" (ngModelChange)="entity.<#=colNameFirstCharLower #>=convertDateToInt($event)">
 							<#
 						}
 						else
 						{
 							#>
-							[ngModel]="entity.<#=colNameFirstCharLower #>" (ngModelChange)="entity.<#=colNameFirstCharLower #>=convertDateToStrint($event)">
+							[ngModel]="entity.<#=colNameFirstCharLower #> | intToStringDate" (ngModelChange)="entity.<#=colNameFirstCharLower #>=convertDateToInt($event)">
 							<#
 						} #>
 							</dp-date-picker>

@@ -63,11 +63,33 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.TabularEditForm
             
             #line default
             #line hidden
-            this.Write("DetailTabBasedComponent extends Editable implements OnInit {\r\n\r\n    allowEditDesc" +
-                    ": boolean;\r\n    tabs: any[] = [];\r\n    constructor(private genericDataService: G" +
-                    "enericDataService) {\r\n        super();\r\n        this.entityName = \'");
+            this.Write("DetailTabBasedComponent extends Editable implements OnInit {\r\n             ");
             
-            #line 28 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
+            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
+foreach (var col in table.Columns.Where(x => x.IsForeignKey && !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name)))
+			    {
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t    ");
+            
+            #line 25 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name.FirstCharacterToLower()));
+            
+            #line default
+            #line hidden
+            this.Write(":number;\r\n\t\t\t");
+            
+            #line 26 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    allowEditDesc: boolean;\r\n    tabs: any[] = [];\r\n    constructor(private gen" +
+                    "ericDataService: GenericDataService) {\r\n        super();\r\n        this.entityNam" +
+                    "e = \'");
+            
+            #line 32 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(firstCharacterLower));
             
             #line default
@@ -93,21 +115,21 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.TabularEditForm
     this.tabs = [
     {id: 1, title: '");
             
-            #line 47 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
+            #line 51 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.TableDesc));
             
             #line default
             #line hidden
             this.Write("\', template: \'");
             
-            #line 47 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
+            #line 51 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(firstCharacterLower));
             
             #line default
             #line hidden
             this.Write("\'},\r\n");
             
-            #line 48 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
+            #line 52 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
 
     // Keep count so we don't whitespace the last property/column
     int i = 1;
@@ -133,28 +155,28 @@ namespace CodeGeneratorGreen.Templates.Angular.CRUD.TabularEditForm
             #line hidden
             this.Write("\t\t\t\t\t {id: ");
             
-            #line 68 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
+            #line 72 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(i));
             
             #line default
             #line hidden
             this.Write(", title: \'");
             
-            #line 68 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
+            #line 72 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colCaption));
             
             #line default
             #line hidden
             this.Write("\', template: \'");
             
-            #line 68 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
+            #line 72 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(colNameFirstCharLower));
             
             #line default
             #line hidden
             this.Write("\', disabled: !this.allowEditDesc},\r\n\t\t\t\t");
             
-            #line 69 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
+            #line 73 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\Angular\CRUD\TabularEditForm\AngularEditWithTabularDescEditTs.tt"
 
       
     }

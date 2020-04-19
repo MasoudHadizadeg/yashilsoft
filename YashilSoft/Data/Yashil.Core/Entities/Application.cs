@@ -28,8 +28,13 @@ namespace Yashil.Core.Entities
             EducationalCenter = new HashSet<EducationalCenter>();
             EducationalCenterMainCourseCategory = new HashSet<EducationalCenterMainCourseCategory>();
             InverseParent = new HashSet<Application>();
+            Job = new HashSet<Job>();
+            Keyword = new HashSet<Keyword>();
             MainCourseCategory = new HashSet<MainCourseCategory>();
+            MainNews = new HashSet<MainNews>();
             Menu = new HashSet<Menu>();
+            NewsKeyword = new HashSet<NewsKeyword>();
+            NewsStore = new HashSet<NewsStore>();
             Organization = new HashSet<Organization>();
             Person = new HashSet<Person>();
             Post = new HashSet<Post>();
@@ -38,6 +43,7 @@ namespace Yashil.Core.Entities
             Representation = new HashSet<Representation>();
             RepresentationPerson = new HashSet<RepresentationPerson>();
             Role = new HashSet<Role>();
+            Service = new HashSet<Service>();
             User = new HashSet<User>();
             YashilConnectionString = new HashSet<YashilConnectionString>();
         }
@@ -78,8 +84,13 @@ namespace Yashil.Core.Entities
         public virtual ICollection<EducationalCenter> EducationalCenter { get; set; }
         public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategory { get; set; }
         public virtual ICollection<Application> InverseParent { get; set; }
+        public virtual ICollection<Job> Job { get; set; }
+        public virtual ICollection<Keyword> Keyword { get; set; }
         public virtual ICollection<MainCourseCategory> MainCourseCategory { get; set; }
+        public virtual ICollection<MainNews> MainNews { get; set; }
         public virtual ICollection<Menu> Menu { get; set; }
+        public virtual ICollection<NewsKeyword> NewsKeyword { get; set; }
+        public virtual ICollection<NewsStore> NewsStore { get; set; }
         public virtual ICollection<Organization> Organization { get; set; }
         public virtual ICollection<Person> Person { get; set; }
         public virtual ICollection<Post> Post { get; set; }
@@ -88,6 +99,7 @@ namespace Yashil.Core.Entities
         public virtual ICollection<Representation> Representation { get; set; }
         public virtual ICollection<RepresentationPerson> RepresentationPerson { get; set; }
         public virtual ICollection<Role> Role { get; set; }
+        public virtual ICollection<Service> Service { get; set; }
         public virtual ICollection<User> User { get; set; }
         public virtual ICollection<YashilConnectionString> YashilConnectionString { get; set; }
     }

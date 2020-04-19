@@ -9,8 +9,8 @@ namespace Yashil.Core.Entities
         public AppEntity()
         {
             AppEntityAttributeMapping = new HashSet<AppEntityAttributeMapping>();
-            DocType = new HashSet<DocType>();
             DocumentCategory = new HashSet<DocumentCategory>();
+            Service = new HashSet<Service>();
         }
 
         public int Id { get; set; }
@@ -32,10 +32,8 @@ namespace Yashil.Core.Entities
         public string EnglishTitle { get; set; }
         public string ApplicationBased { get; set; }
 
-        public virtual DocFormat CreateByNavigation { get; set; }
-        public virtual DocFormat ModifyByNavigation { get; set; }
         public virtual ICollection<AppEntityAttributeMapping> AppEntityAttributeMapping { get; set; }
-        public virtual ICollection<DocType> DocType { get; set; }
         public virtual ICollection<DocumentCategory> DocumentCategory { get; set; }
+        public virtual ICollection<Service> Service { get; set; }
     }
     }

@@ -1,0 +1,11 @@
+<app-base-list-form #listForm
+                    [showAddButton]="false"
+                    (customButtonClicked)="customButtonClicked($event)"
+                    [customButtons]="customButtons"
+                    (afterInitialDetailComponent)="afterInitialDetailComponent($event)"
+                    [loadAfterSetFilter]="loadAfterSetFilter"
+                    (selectedRowChanged)="selectedRowChanged.emit($event)"
+                    [columns]="columns"
+                    [entityName]="entityName"
+                    [detailComponent]="detailComponent">
+</app-base-list-form>

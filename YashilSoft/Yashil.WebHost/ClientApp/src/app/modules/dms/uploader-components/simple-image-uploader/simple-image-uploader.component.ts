@@ -17,7 +17,7 @@ export class SimpleImageUploaderComponent extends BaseEdit implements OnInit {
     docCategoryId: number;
     @Output()
     addDocEvent = new EventEmitter<any>();
-
+    showAddButton = true;
     currentUser: any;
     authorizationHeader: any;
     uploadUri: string;

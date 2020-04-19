@@ -24,8 +24,10 @@ import {PostDetailComponent} from './post/post-detail.component';
 
 import {PersonDetailComponent} from './person/person-detail.component';
 import {Provider} from '@angular/core';
+import {JobDetailComponent} from './job/job-detail.component';
 
 export const ENTRYCOMPONENTS: Provider[] = [
+    JobDetailComponent,
     ResourceDetailComponent,
     ApplicationDetailComponent,
     AppActionDetailComponent,

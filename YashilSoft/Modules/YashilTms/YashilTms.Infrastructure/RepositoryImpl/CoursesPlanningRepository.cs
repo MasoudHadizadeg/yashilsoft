@@ -26,24 +26,26 @@ namespace YashilTms.Infrastructure.RepositoryImpl
             return DbSet.Where(ApplicationBasedDefaultFilter()).Where(x => x.RepresentationId == representationId);
         }
 
-        public IQueryable<CoursePlanning> GetByCourseCategoryId(int courseCategoryId, bool hierarchical)
+        public IQueryable<CoursePlanning> GetByCourseCategoryId(int courseCategoryId, int representationId,
+            bool hierarchical)
         {
+            var query= GetAll(true).Where(x => x.RepresentationId == representationId);
             if (hierarchical)
             {
                 var courseCategory = _context.CourseCategory.Find(courseCategoryId);
                 if (courseCategory != null)
                 {
-                    return GetAll(true)
-                        .Where(x => x.Course.CourseCategory.CodePath.StartsWith(courseCategory.CodePath));
+                    return query.Where(x =>x.Course.CourseCategory.CodePath.StartsWith(courseCategory.CodePath));
                 }
             }
 
-            return GetAll(true).Where(x => x.Course.CourseCategoryId == courseCategoryId);
+            return query.Where(x => x.Course.CourseCategoryId == courseCategoryId);
         }
 
-        public IQueryable<CoursePlanning> GetByMainCourseCategoryId(int educationalCenterMainCourseCategoryId)
+        public IQueryable<CoursePlanning> GetByMainCourseCategoryId(int educationalCenterMainCourseCategoryId,
+            int representationId)
         {
-            return GetAll(true).Where(x => x.Course.CourseCategory.EducationalCenterMainCourseCategoryId == educationalCenterMainCourseCategoryId);
+            return GetAll(true).Where(x =>x.RepresentationId==representationId && x.Course.CourseCategory.EducationalCenterMainCourseCategoryId == educationalCenterMainCourseCategoryId);
         }
 
         public override IQueryable<CoursePlanning> GetAll(bool readOnly = false)

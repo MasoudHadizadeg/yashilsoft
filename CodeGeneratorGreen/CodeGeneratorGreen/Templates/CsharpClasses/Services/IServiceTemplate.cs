@@ -10,6 +10,7 @@
 namespace CodeGeneratorGreen.Templates.CsharpClasses.Services
 {
     using Classes;
+    using CodeGeneratorGreen.Extentions;
     using CodeGeneratorGreen.Models;
     using System.Linq;
     using System.Text;
@@ -30,38 +31,71 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Services
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\t\t\t");
+            this.Write("\r\n\t\t\t");
             
-            #line 8 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
+            #line 10 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
 
 			var table = SqlToCsharpHelper.table;
 			
             
             #line default
             #line hidden
-            this.Write("\r\nusing Yashil.Common.Core.Interfaces;\r\nusing Yashil.Core.Entities;\r\n\r\nnamespace " +
-                    "");
+            this.Write("using System.Linq;\r\nusing Yashil.Common.Core.Interfaces;\r\nusing Yashil.Core.Entit" +
+                    "ies;\r\n\r\nnamespace ");
             
-            #line 15 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
+            #line 17 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.IServiceNamespace));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\tpublic interface I");
             
-            #line 17 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
+            #line 19 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Service : IGenericService<");
             
-            #line 17 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
+            #line 19 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
-            this.Write(",int>\r\n    {\r\n    }\r\n}      \r\n ");
+            this.Write(",int>\r\n    {\r\n         ");
+            
+            #line 21 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
+
+            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+    if(!string.IsNullOrEmpty(colsParams)){
+        
+            
+            #line default
+            #line hidden
+            this.Write("        \r\n        IQueryable<");
+            
+            #line 28 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
+            
+            #line default
+            #line hidden
+            this.Write("> GetByCustomFilter(");
+            
+            #line 28 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(colsParams));
+            
+            #line default
+            #line hidden
+            this.Write(");\r\n        ");
+            
+            #line 29 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Services\IServiceTemplate.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write("   \r\n\t\t\r\n    }\r\n}      \r\n ");
             return this.GenerationEnvironment.ToString();
         }
     }

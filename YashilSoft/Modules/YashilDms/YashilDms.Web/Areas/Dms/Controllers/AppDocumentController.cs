@@ -5,9 +5,12 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Data.ResponseModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
 using YashilDms.Core.Services;
@@ -33,17 +36,18 @@ namespace YashilDms.Web.Areas.Dms.Controllers
         /// <summary>
         /// اسناد مربوط به یک رکورد از یک جدول واقعی یا مجازی را بر می گرداند
         /// </summary>
-        /// <param name="entityId"></param>
+        /// <param name="entityName"></param>
         /// <param name="objectId"></param>
+        /// <param name="docCategoryId"></param>
         /// <returns></returns>
         [HttpGet("GetObjectDocuments")]
-        public DocumentUploadViewModel GetObjectDocuments(int entityId, int objectId,int docCategoryId)
+        public DocumentUploadViewModel GetObjectDocuments(string entityName, int objectId,int docCategoryId)
         {
             var documentUploadViewModel = new DocumentUploadViewModel();
-            var docTypes = _docTypeService.GetEntityDocTypes(entityId);
+            var docTypes = _docTypeService.GetEntityDocTypes(entityName, docCategoryId);
             documentUploadViewModel.DocTypes = _mapper.ProjectTo<DocTypeCustomViewModel>(docTypes, _mapper.ConfigurationProvider).ToList();
 
-            var docs = _appDocumentService.GetObjectDocuments(entityId, objectId, docCategoryId);
+            var docs = _appDocumentService.GetObjectDocuments(entityName, objectId, docCategoryId);
             documentUploadViewModel.Docs =
                 _mapper.ProjectTo<AppDocumentListViewModel>(docs, _mapper.ConfigurationProvider).ToList();
             return documentUploadViewModel;
@@ -89,5 +93,6 @@ namespace YashilDms.Web.Areas.Dms.Controllers
             return File(appDoc.DocumentFile, appDoc.ContentType);
             //return appDoc.DocumentFile;
         }
+
     }
 }

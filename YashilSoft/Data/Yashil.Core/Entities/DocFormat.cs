@@ -8,8 +8,6 @@ namespace Yashil.Core.Entities
     {
         public DocFormat()
         {
-            AppEntityCreateByNavigation = new HashSet<AppEntity>();
-            AppEntityModifyByNavigation = new HashSet<AppEntity>();
             DocType = new HashSet<DocType>();
         }
 
@@ -26,8 +24,6 @@ namespace Yashil.Core.Entities
 
         public virtual User CreateByNavigation { get; set; }
         public virtual User ModifyByNavigation { get; set; }
-        public virtual ICollection<AppEntity> AppEntityCreateByNavigation { get; set; }
-        public virtual ICollection<AppEntity> AppEntityModifyByNavigation { get; set; }
         public virtual ICollection<DocType> DocType { get; set; }
     }
     }

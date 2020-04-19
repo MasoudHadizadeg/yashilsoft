@@ -150,4 +150,8 @@ export class CoursesPlanningDetailComponent extends BaseEdit implements OnInit {
         this.entity.runType = 34;
         this.entity.customGender = 4;
     }
+
+    selectedPersonChanged(item: any) {
+
+    }
 }

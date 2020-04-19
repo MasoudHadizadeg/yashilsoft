@@ -1,0 +1,56 @@
+
+				<app-base-edit-form   (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+	<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
+
+									
+									<dxi-item dataField="newsStoreId" editorType="dxLookup" [label]="{text: 'خبر'}"
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: newsStoreDataSource,displayExpr:'title',valueExpr:'id' }">
+
+																				<dxi-validation-rule  type="required" message="خبر اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+									
+									<dxi-item dataField="newsPropertyId" editorType="dxSelectBox" [label]="{text: 'ویژگی خبر'}"  
+					[editorOptions]="{ items: newsPropertys,displayExpr:'title',valueExpr:'id' }">
+																					<dxi-validation-rule  type="required" message="ویژگی خبر اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'خبر عادی'}"  dataField="simplenews" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'نمایش در اسلایدر صفحه اصلی'}"  dataField="showInMainPageSlider" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'خبر داغ'}"  dataField="isHotNews" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'خبر منتخب'}"  dataField="selectedNews" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'خبر اصلی سرویس خبری'}"  dataField="serviceMainNews" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'نمایش در قسمت چند رسانه ای'}"  dataField="showAsMultimedia" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'خبر مهم'}"  dataField="showAsImportantNews" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'انتخاب سردبیر'}"  dataField="editorSelected" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'ترتیب نمایش'}"  dataField="displayOrder" editorType='dxNumberBox'>
+												
+																<dxi-validation-rule  type="required" message="ترتیب نمایش اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+</dx-form>
+</app-base-edit-form>

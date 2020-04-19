@@ -1,5 +1,11 @@
 	 
+using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Data.ResponseModel;
+using Microsoft.AspNetCore.Mvc;
+using Yashil.Common.Core.Classes;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
 using YashilDms.Core.Services;
@@ -15,6 +21,18 @@ namespace YashilDms.Web.Areas.Dms.Controllers
         {
             _mapper=mapper;
             _docTypeService=docTypeService;
+        }
+        [HttpGet("GetEntitiesByAppEntityName")]
+        public async Task<LoadResult> GetEntitiesByAppEntityName(CustomDataSourceLoadOptions loadOptions, string appEntityName)
+        {
+            return await DataSourceLoader.LoadAsync(_docTypeService.GetEntitiesByAppEntityName(appEntityName)
+                .ProjectTo<DocTypeListViewModel>(this._mapper.ConfigurationProvider), loadOptions);
+        }
+        [HttpGet("GetEntitiesByDocumentCategoryId")]
+        public async Task<LoadResult> GetEntitiesByDocumentCategoryId(CustomDataSourceLoadOptions loadOptions, int documentCategoryId)
+        {
+            return await DataSourceLoader.LoadAsync(_docTypeService.GetEntitiesByDocumentCategoryId(documentCategoryId)
+                .ProjectTo<DocTypeListViewModel>(this._mapper.ConfigurationProvider), loadOptions);
         }
     }
 }      

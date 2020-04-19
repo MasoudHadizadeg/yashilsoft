@@ -1,0 +1,29 @@
+<dx-drop-down-box
+    #ddlPerson
+    [(value)]="selectedItemId"
+    valueExpr="id"
+    displayExpr="title"
+    placeholder="انتخاب شخص..."
+    [dataSource]="personDataSource"
+    [deferRendering]="false"
+    [showClearButton]="true">
+
+    <div *dxTemplate="let data of 'content'">
+        <dx-data-grid id="gridContainer"
+                      width="100%"
+                      [dataSource]="personDataSource"
+                      [showBorders]="true"
+                      [rtlEnabled]="true"
+                      [rowAlternationEnabled]="true"
+                      [columns]="columns"
+                      [wordWrapEnabled]="true"
+                      [remoteOperations]="true"
+                      (onSelectionChanged)="selectedPersonChanged($event);ddlPerson.instance.close();">
+            <dxo-scrolling mode="virtual" rowRenderingMode="virtual"
+                           columnRenderingMode="virtual"></dxo-scrolling>
+            <dxo-filter-row visible="true"></dxo-filter-row>
+            <dxo-header-filter visible="true"></dxo-header-filter>
+            <dxo-selection mode="single"></dxo-selection>
+        </dx-data-grid>
+    </div>
+</dx-drop-down-box>

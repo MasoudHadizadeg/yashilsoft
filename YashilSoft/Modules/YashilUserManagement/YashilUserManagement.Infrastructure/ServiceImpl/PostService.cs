@@ -20,11 +20,6 @@ namespace YashilUserManagement.Infrastructure.ServiceImpl
 			_postRepository = postRepository;
 			_userPrincipal = userPrincipal;
         }
-			  public string GetDescription(int id)
-				{
-					return _postRepository.GetDescription(id);
-				}	
-	
     }
 }      
  

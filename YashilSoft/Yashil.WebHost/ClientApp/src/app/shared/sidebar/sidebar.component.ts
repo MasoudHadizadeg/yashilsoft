@@ -6,6 +6,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {GenericDataService} from '../base/services/generic-data.service';
 import {RouteInfo} from './sidebar.metadata';
 import {YashilComponent} from '../../core/baseClasses/yashilComponent';
+import {CachedDataService} from '../services/cached-data.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -31,11 +32,13 @@ export class SidebarComponent extends YashilComponent implements OnInit, AfterVi
         private route: ActivatedRoute,
         public translate: TranslateService,
         private configService: ConfigService,
-        private  genericDataService: GenericDataService
+        private  genericDataService: GenericDataService,
+        private cachedDataService: CachedDataService
     ) {
         super();
         this.genericDataService.getEntitiesWithAction('Menu', 'UserMenu', null).subscribe(res => {
             this.menuItems = res;
+            this.cachedDataService.setData('menuItems', res);
         });
         if (this.depth === undefined) {
             this.depth = 0;

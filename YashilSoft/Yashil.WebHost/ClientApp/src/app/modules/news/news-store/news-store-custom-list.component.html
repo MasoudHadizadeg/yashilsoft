@@ -1,0 +1,18 @@
+<div style="width: 100%;" [style.height.px]="contentHeight">
+    <div class="row">
+        <div class="col-12">
+            <div style="width: 100%;" [style.height.px]="contentHeight">
+                <as-split direction="horizontal" dir="ltr">
+                    <as-split direction="horizontal">
+                        <as-split-area size="75" #t1 dir="rtl">
+                            <app-news-store-list #listForm [loadAfterSetFilter]="true" [serviceId]="selectedServiceId" [newsType]="newsType"></app-news-store-list>
+                        </as-split-area>
+                        <as-split-area size="25" #t2 dir="rtl">
+                            <app-service-list (selectedRowChanged)="selectedServiceChanged($event)"></app-service-list>
+                        </as-split-area>
+                    </as-split>
+                </as-split>
+            </div>
+        </div>
+    </div>
+</div>

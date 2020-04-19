@@ -5,9 +5,20 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-	<#		var table = SqlToCsharpHelper.table; 
+<#@ assembly name="System.Core" #>
+
+
+	<#		
+            var table = SqlToCsharpHelper.table; 
 			string lowerTableName = table.Name.FirstCharacterToLower();
 			#> 
+
+using AutoMapper.QueryableExtensions;
+using System.Threading.Tasks;
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Data.ResponseModel;
+using Microsoft.AspNetCore.Mvc;
+using Yashil.Common.Core.Classes;
 using AutoMapper;
 using Yashil.Common.Web.Infrastructure.BaseClasses;
 using Yashil.Core.Entities;
@@ -25,5 +36,18 @@ namespace <#= ApplicationInfo.Instance.ControllerNamespace #>
             _mapper=mapper;
             _<#=lowerTableName#>Service=<#=lowerTableName#>Service;
         }
+      <#
+            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+    if(!string.IsNullOrEmpty(colsParams)){
+        #>
+        [HttpGet("GetByCustomFilter")]
+        public async Task<LoadResult> GetByCustomFilter(CustomDataSourceLoadOptions loadOptions, <#=colsParams #>)
+        {
+            var newsStores = _newsStoreService.GetByCustomFilter(<#=colVar #>);
+            return await DataSourceLoader.LoadAsync(<#=lowerTableName#>s.ProjectTo<<#=table.Name#>ListViewModel>(_mapper.ConfigurationProvider), loadOptions);
+        }
+<#}#>  
     }
 }      

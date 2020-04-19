@@ -1,8 +1,5 @@
 <div class="row">
-    <div class="col-3">
-        <app-document-category-list [appEntityId]="appEntityId" [objectId]="objectId" (selectedRowChanged)="selectedDocumentCategoryChanged($event)" ></app-document-category-list>
-    </div>
-    <div class="col-9">
+    <div class="col-12">
         <div class="row">
             <div class="col-4" id="fileuploader-container" *ngFor="let item of docs  let i = index"
                  [ngSwitch]="item.docType.docFormatId">

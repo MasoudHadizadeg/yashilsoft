@@ -14,6 +14,7 @@ import {UserRoleListComponent} from './user-role/user-role-list.component';
 import {PostListComponent} from './post/post-list.component';
 import {PersonListComponent} from './person/person-list.component';
 import {NgModule} from '@angular/core';
+import {JobListComponent} from './job/job-list.component';
 
 const routes: Routes = [
     {path: 'resources', component: ResourceListComponent, canActivate: [AuthGuard]},
@@ -28,7 +29,8 @@ const routes: Routes = [
     {path: 'menus', component: MenuListComponent, canActivate: [AuthGuard]},
     {path: 'userRoles', component: UserRoleListComponent, canActivate: [AuthGuard]},
     {path: 'posts', component: PostListComponent, canActivate: [AuthGuard]},
-    {path: 'persons', component: PersonListComponent, canActivate: [AuthGuard]}
+    {path: 'persons', component: PersonListComponent, canActivate: [AuthGuard]},
+    {path: 'jobs', component: JobListComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

@@ -78,7 +78,6 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
         public string Description { get; set; }
     }
 
-
     public class AppDocumentSimpleViewModel : IBaseViewModel
     {
         public int ViewModelId

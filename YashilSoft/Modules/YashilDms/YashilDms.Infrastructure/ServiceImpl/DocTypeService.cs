@@ -22,9 +22,19 @@ namespace YashilDms.Infrastructure.ServiceImpl
 			_userPrincipal = userPrincipal;
         }
 
-        public IQueryable<DocType> GetEntityDocTypes(int entityId)
+        public IQueryable<DocType> GetEntityDocTypes(string entityName, int docCategoryId)
         {
-            return _docTypeRepository.GetEntityDocTypes(entityId);
+            return _docTypeRepository.GetEntityDocTypes(entityName, docCategoryId);
+        }
+
+        public IQueryable<DocType> GetEntitiesByAppEntityName(string appEntityName)
+        {
+            return _docTypeRepository.GetEntitiesByAppEntityName(appEntityName);
+        }
+
+        public IQueryable<DocType> GetEntitiesByDocumentCategoryId(int documentCategoryId)
+        {
+            return _docTypeRepository.GetEntitiesByDocumentCategoryId(documentCategoryId);
         }
     }
 }      

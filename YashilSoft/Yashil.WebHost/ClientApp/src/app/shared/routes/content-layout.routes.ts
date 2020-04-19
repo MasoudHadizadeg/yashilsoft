@@ -17,5 +17,9 @@ export const CONTENT_ROUTES: Routes = [
     {
         path: 'tms',
         loadChildren: () => import('../../modules/tms/tms.module').then(m => m.TmsModule)
+    },
+    {
+        path: 'news',
+        loadChildren: () => import('../../modules/news/news.module').then(m => m.NewsModule)
     }
 ];

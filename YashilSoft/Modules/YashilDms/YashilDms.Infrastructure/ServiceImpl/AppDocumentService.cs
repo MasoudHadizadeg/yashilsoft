@@ -40,21 +40,20 @@ namespace YashilDms.Infrastructure.ServiceImpl
             }
         }
 
-        public IQueryable<AppDocument> GetObjectDocuments(int entityId, int objectId, int docCategoryId)
+        public IQueryable<AppDocument> GetObjectDocuments(string entityName, int objectId, int docCategoryId)
         {
-            return _appDocumentRepository.GetObjectDocuments(entityId, objectId, docCategoryId);
+            return _appDocumentRepository.GetObjectDocuments(entityName, objectId, docCategoryId);
         }
 
-        public bool SaveDocument(int? docCategoryId, int appEntityId, int docTypeId, int? docId, int objectId,
-            IFormFile file)
+        public bool SaveDocument(int? docCategoryId, int appEntityId, int docTypeId, int? docId, int objectId, IFormFile file)
         {
             if (!docCategoryId.HasValue)
             {
-                var documentCategory = _documentCategoryService.GetDocumentDefaultCategory(appEntityId, objectId);
+                var documentCategory = _documentCategoryService.GetDocumentDefaultCategory(appEntityId);
                 if (documentCategory == null)
                 {
                     documentCategory = new DocumentCategory
-                    { AppEntityId = appEntityId, ObjectId = objectId, Title = @"اسناد" };
+                    { AppEntityId = appEntityId,  Title = @"اسناد" };
                     _documentCategoryService.Add(documentCategory, true);
                 }
 
@@ -73,7 +72,6 @@ namespace YashilDms.Infrastructure.ServiceImpl
                     Title = docType.Title,
                     OrginalName = file.FileName,
                     Extension = extension,
-                    DocumentCategoryId = docCategoryId.Value,
                     ContentType = file.ContentType
                 };
                 Add(appDocument, true);
@@ -84,7 +82,6 @@ namespace YashilDms.Infrastructure.ServiceImpl
                 appDocument.Title = docType.Title;
                 appDocument.OrginalName = file.FileName;
                 appDocument.Extension = extension;
-                appDocument.DocumentCategoryId = docCategoryId.Value;
                 appDocument.ContentType = file.ContentType;
             }
 
@@ -130,5 +127,11 @@ namespace YashilDms.Infrastructure.ServiceImpl
             }
             return appDocument;
         }
+
+        public int GetIdByTitle(string appEntityTitle)
+        {
+            return _appDocumentRepository.GetIdByTitle(appEntityTitle);
+        }
+
     }
 }

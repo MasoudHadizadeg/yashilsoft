@@ -14,12 +14,12 @@
 		  entityName = 'post';
 		  detailComponent = PostDetailComponent; 		  constructor() {
 							this.columns.push({ 
-					caption: 'کد',
-					dataField: 'code'
-					});
-							this.columns.push({ 
 					caption: 'عنوان',
 					dataField: 'title'
+					});
+							this.columns.push({ 
+					caption: 'شغل',
+					dataField: 'jobTitle'
 					});
 							this.columns.push({ 
 					caption: 'ParentId',
@@ -28,10 +28,6 @@
 							this.columns.push({ 
 					caption: 'پست مجازی',
 					dataField: 'isVirtual'
-					});
-							this.columns.push({ 
-					caption: 'سطح دسترسی',
-					dataField: 'accessLevelTitle'
 					});
 							
 				}

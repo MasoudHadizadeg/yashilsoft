@@ -1,49 +1,36 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AppDocumentDetailComponent} from './app-document-detail.component';
+import {GenericDataService} from '../../../shared/base/services/generic-data.service';
 
 @Component({
     selector: 'app-app-document-list',
     templateUrl: './app-document-list.component.html'
 })
-export class AppDocumentListComponent {
+export class AppDocumentListComponent implements OnInit {
+    contentHeight: number;
     selectedItemId: number;
     columns: any[] = [];
     entityName = 'appDocument';
     detailComponent = AppDocumentDetailComponent;
+    appEntityDataSource: any;
+    selectedAppEntity: any = {};
+    selectedAppEntityId: number;
+    tabs: any;
 
-    constructor() {
-        this.columns.push({
-            caption: 'نوع سند',
-            dataField: 'docTypeTitle'
-        });
-        this.columns.push({
-            caption: 'عنوان',
-            dataField: 'title'
-        });
-        this.columns.push({
-            caption: 'نام واقعی سند',
-            dataField: 'orginalName'
-        });
-        this.columns.push({
-            caption: 'گروه سند',
-            dataField: 'documentCategoryTitle'
-        });
-        this.columns.push({
-            caption: 'کد مالک سند',
-            dataField: 'objectId'
-        });
-        this.columns.push({
-            caption: 'سند',
-            dataField: 'documentFile'
-        });
-        this.columns.push({
-            caption: 'توضیح کوتاه',
-            dataField: 'shortDescription'
-        });
-        this.columns.push({
-            caption: 'ترتیب نمایش',
-            dataField: 'displayOrder'
-        });
+    constructor(private genericDataService: GenericDataService) {
+        this.contentHeight = window.innerHeight - 110;
+        this.selectedAppEntityIdChanged = this.selectedAppEntityIdChanged.bind(this);
+    }
 
+    ngOnInit(): void {
+        this.appEntityDataSource = this.genericDataService.createCustomDatasourceForSelect('id', 'appEntity');
+        this.tabs = [
+            {id: 1, title: 'دسته بندی اسناد', template: 'documentCategory'},
+            {id: 2, title: 'نوع سند', template: 'docType'},
+        ];
+    }
+
+    selectedAppEntityIdChanged(item: any) {
+        this.selectedAppEntity = item.selectedItem;
     }
 }

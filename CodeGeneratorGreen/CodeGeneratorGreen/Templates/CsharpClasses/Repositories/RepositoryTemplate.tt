@@ -31,5 +31,29 @@ namespace <#= ApplicationInfo.Instance.RepositoryNamespace #>
                 _context = context;
                 _userPrincipal = userPrincipal;
             }
+         <#
+            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+        if(!string.IsNullOrEmpty(colsParams)){
+        #>
+        
+   
+    public IQueryable<<#= table.Name #>> GetByCustomFilter(<#=colsParams#>)
+        {
+            var query= GetAll(true);
+             <#foreach (Column col in table.Columns.Where(x => x.IsForeignKey))
+                {#>
+            if (serviceId.HasValue)
+                {
+                    query = query.Where(x => x.<#=col.Name#> == <#=col.Name.FirstCharacterToLower()#>.Value);
+                }
+              <#}#>    
+          
+            return query;
+        }
+        <#}#>   
+
+       
     }
 }      

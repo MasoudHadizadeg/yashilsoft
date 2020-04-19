@@ -47,6 +47,8 @@ namespace YashilUserManagement.Web
             services.AddScoped<IUserRoleRepository, UserRoleRepository>();
             services.AddScoped<IUserRoleService, UserRoleService>();
             services.AddScoped<IPostRepository, PostRepository>();
+            services.AddScoped<IJobRepository, JobRepository>();
+            services.AddScoped<IJobService, JobService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPersonService, PersonService>();

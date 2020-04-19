@@ -19,12 +19,17 @@ namespace Yashil.Core.Entities
             CoursePlanningStudent = new HashSet<CoursePlanningStudent>();
             DashboardStore = new HashSet<DashboardStore>();
             EducationalCenter = new HashSet<EducationalCenter>();
+            Job = new HashSet<Job>();
+            Keyword = new HashSet<Keyword>();
             MainCourseCategory = new HashSet<MainCourseCategory>();
+            NewsKeyword = new HashSet<NewsKeyword>();
+            NewsStore = new HashSet<NewsStore>();
             Person = new HashSet<Person>();
             Post = new HashSet<Post>();
             ReportStore = new HashSet<ReportStore>();
             Representation = new HashSet<Representation>();
             RepresentationPerson = new HashSet<RepresentationPerson>();
+            Service = new HashSet<Service>();
             User = new HashSet<User>();
         }
 
@@ -54,12 +59,17 @@ namespace Yashil.Core.Entities
         public virtual ICollection<CoursePlanningStudent> CoursePlanningStudent { get; set; }
         public virtual ICollection<DashboardStore> DashboardStore { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenter { get; set; }
+        public virtual ICollection<Job> Job { get; set; }
+        public virtual ICollection<Keyword> Keyword { get; set; }
         public virtual ICollection<MainCourseCategory> MainCourseCategory { get; set; }
+        public virtual ICollection<NewsKeyword> NewsKeyword { get; set; }
+        public virtual ICollection<NewsStore> NewsStore { get; set; }
         public virtual ICollection<Person> Person { get; set; }
         public virtual ICollection<Post> Post { get; set; }
         public virtual ICollection<ReportStore> ReportStore { get; set; }
         public virtual ICollection<Representation> Representation { get; set; }
         public virtual ICollection<RepresentationPerson> RepresentationPerson { get; set; }
+        public virtual ICollection<Service> Service { get; set; }
         public virtual ICollection<User> User { get; set; }
     }
     }

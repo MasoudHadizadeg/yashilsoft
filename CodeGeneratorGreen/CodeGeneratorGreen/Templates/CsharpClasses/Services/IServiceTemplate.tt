@@ -1,14 +1,16 @@
 ﻿<#@ template language="C#" #>
-<#@ assembly name="System.Core" #>
 <#@ import namespace="Classes" #>
+<#@ import namespace="CodeGeneratorGreen.Extentions" #>
 <#@ import namespace="CodeGeneratorGreen.Models" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ assembly name="System.Core" #>
+
 			<#
 			var table = SqlToCsharpHelper.table;
 			#>
-
+using System.Linq;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities;
 
@@ -16,6 +18,16 @@ namespace <#= ApplicationInfo.Instance.IServiceNamespace #>
 {
 	public interface I<#= table.Name #>Service : IGenericService<<#= table.Name #>,int>
     {
+         <#
+            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+    if(!string.IsNullOrEmpty(colsParams)){
+        #>
+        
+        IQueryable<<#= table.Name #>> GetByCustomFilter(<#=colsParams #>);
+        <#}#>   
+		
     }
 }      
  

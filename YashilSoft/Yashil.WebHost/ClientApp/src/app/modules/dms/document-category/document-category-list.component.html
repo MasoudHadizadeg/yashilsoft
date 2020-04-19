@@ -1,4 +1,31 @@
-<app-base-list-form isForTree="true" rootValue="null"  [additionalData]="additionalData"
-                    [customListUrl]="customListUrl" (selectedRowChanged)="selectedItemChanged($event)"
-                    [columns]="columns" [entityName]="entityName" [detailComponent]="detailComponent">
+<!--<div class="row" *ngIf="showSelectedAppEntity">-->
+<!--    <div class="row" style="width: 100%;padding-bottom: 5px">-->
+<!--        <div class="col-6">-->
+<!--            <div style="float: right;width: 20%;margin-top: 0.5rem; font-size: 14px;text-align: right">-->
+<!--                <label>موجودیت : </label>-->
+<!--            </div>-->
+<!--            <div style="float: right; width: 80%">-->
+<!--                <dx-lookup-->
+<!--                        [dataSource]="appEntityDataSource"-->
+<!--                        [(value)]="selectedAppEntityId"-->
+<!--                        displayExpr="title"-->
+<!--                        valueExpr="id"-->
+<!--                        rtlEnabled="true"-->
+<!--                        (onSelectionChanged)="selectedAppEntityIdChanged($event)"-->
+<!--                        [showPopupTitle]="false">-->
+<!--                </dx-lookup>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-6"></div>-->
+<!--    </div>-->
+<!--</div>-->
+<app-base-list-form
+    #documentCategoryForm
+    allowGrouping="true"
+    rootValue="null"
+    [additionalData]="additionalData"
+    (selectedRowChanged)="selectedItemChanged($event)"
+    [columns]="columns"
+    [entityName]="entityName"
+    [detailComponent]="detailComponent">
 </app-base-list-form>

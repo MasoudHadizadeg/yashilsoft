@@ -56,10 +56,20 @@ namespace Yashil.Core.Entities
             EducationalCenterMainCourseCategoryCreateByNavigation = new HashSet<EducationalCenterMainCourseCategory>();
             EducationalCenterMainCourseCategoryModifyByNavigation = new HashSet<EducationalCenterMainCourseCategory>();
             EducationalCenterModifyByNavigation = new HashSet<EducationalCenter>();
+            JobCreateByNavigation = new HashSet<Job>();
+            JobModifyByNavigation = new HashSet<Job>();
+            KeywordCreateByNavigation = new HashSet<Keyword>();
+            KeywordModifyByNavigation = new HashSet<Keyword>();
             MainCourseCategoryCreateByNavigation = new HashSet<MainCourseCategory>();
             MainCourseCategoryModifyByNavigation = new HashSet<MainCourseCategory>();
+            MainNewsCreateByNavigation = new HashSet<MainNews>();
+            MainNewsModifyByNavigation = new HashSet<MainNews>();
             MenuCreateByNavigation = new HashSet<Menu>();
             MenuModifyByNavigation = new HashSet<Menu>();
+            NewsKeywordCreateByNavigation = new HashSet<NewsKeyword>();
+            NewsKeywordModifyByNavigation = new HashSet<NewsKeyword>();
+            NewsStoreCreateByNavigation = new HashSet<NewsStore>();
+            NewsStoreModifyByNavigation = new HashSet<NewsStore>();
             OrganizationCreateByNavigation = new HashSet<Organization>();
             OrganizationModifyByNavigation = new HashSet<Organization>();
             PersonCreateByNavigation = new HashSet<Person>();
@@ -84,6 +94,8 @@ namespace Yashil.Core.Entities
             RoleModifyByNavigation = new HashSet<Role>();
             RoleReportCreateByNavigation = new HashSet<RoleReport>();
             RoleReportModifyByNavigation = new HashSet<RoleReport>();
+            ServiceCreateByNavigation = new HashSet<Service>();
+            ServiceModifyByNavigation = new HashSet<Service>();
             UserDashboardCreateByNavigation = new HashSet<UserDashboard>();
             UserDashboardModifyByNavigation = new HashSet<UserDashboard>();
             UserDashboardUser = new HashSet<UserDashboard>();
@@ -171,10 +183,20 @@ namespace Yashil.Core.Entities
         public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategoryCreateByNavigation { get; set; }
         public virtual ICollection<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategoryModifyByNavigation { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenterModifyByNavigation { get; set; }
+        public virtual ICollection<Job> JobCreateByNavigation { get; set; }
+        public virtual ICollection<Job> JobModifyByNavigation { get; set; }
+        public virtual ICollection<Keyword> KeywordCreateByNavigation { get; set; }
+        public virtual ICollection<Keyword> KeywordModifyByNavigation { get; set; }
         public virtual ICollection<MainCourseCategory> MainCourseCategoryCreateByNavigation { get; set; }
         public virtual ICollection<MainCourseCategory> MainCourseCategoryModifyByNavigation { get; set; }
+        public virtual ICollection<MainNews> MainNewsCreateByNavigation { get; set; }
+        public virtual ICollection<MainNews> MainNewsModifyByNavigation { get; set; }
         public virtual ICollection<Menu> MenuCreateByNavigation { get; set; }
         public virtual ICollection<Menu> MenuModifyByNavigation { get; set; }
+        public virtual ICollection<NewsKeyword> NewsKeywordCreateByNavigation { get; set; }
+        public virtual ICollection<NewsKeyword> NewsKeywordModifyByNavigation { get; set; }
+        public virtual ICollection<NewsStore> NewsStoreCreateByNavigation { get; set; }
+        public virtual ICollection<NewsStore> NewsStoreModifyByNavigation { get; set; }
         public virtual ICollection<Organization> OrganizationCreateByNavigation { get; set; }
         public virtual ICollection<Organization> OrganizationModifyByNavigation { get; set; }
         public virtual ICollection<Person> PersonCreateByNavigation { get; set; }
@@ -199,6 +221,8 @@ namespace Yashil.Core.Entities
         public virtual ICollection<Role> RoleModifyByNavigation { get; set; }
         public virtual ICollection<RoleReport> RoleReportCreateByNavigation { get; set; }
         public virtual ICollection<RoleReport> RoleReportModifyByNavigation { get; set; }
+        public virtual ICollection<Service> ServiceCreateByNavigation { get; set; }
+        public virtual ICollection<Service> ServiceModifyByNavigation { get; set; }
         public virtual ICollection<UserDashboard> UserDashboardCreateByNavigation { get; set; }
         public virtual ICollection<UserDashboard> UserDashboardModifyByNavigation { get; set; }
         public virtual ICollection<UserDashboard> UserDashboardUser { get; set; }

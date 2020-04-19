@@ -9,7 +9,7 @@
 			<#
 			var table = SqlToCsharpHelper.table;
 			#>
-
+using System.Linq;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Core.Entities; 
 
@@ -17,6 +17,16 @@ namespace <#= ApplicationInfo.Instance.IRepositoryNamespace #>
 {
 	public interface I<#= table.Name #>Repository : IGenericRepository<<#= table.Name #>,int>
     {
+		  <#
+            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+    if(!string.IsNullOrEmpty(colsParams)){
+        #>
+        
+        IQueryable<<#= table.Name #>> GetByCustomFilter(<#=colsParams #>);
+        <#}#>   
+		
     }
 }      
  

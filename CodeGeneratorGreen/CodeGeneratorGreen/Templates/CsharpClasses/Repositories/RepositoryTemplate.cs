@@ -105,7 +105,70 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
             #line hidden
             this.Write(" context, IUserPrincipal userPrincipal) : base(context,userPrincipal)\r\n          " +
                     "  {\r\n                _context = context;\r\n                _userPrincipal = userP" +
-                    "rincipal;\r\n            }\r\n    }\r\n}      \r\n");
+                    "rincipal;\r\n            }\r\n         ");
+            
+            #line 34 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+
+            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+        if(!string.IsNullOrEmpty(colsParams)){
+        
+            
+            #line default
+            #line hidden
+            this.Write("        \r\n   \r\n    public IQueryable<");
+            
+            #line 42 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
+            
+            #line default
+            #line hidden
+            this.Write("> GetByCustomFilter(");
+            
+            #line 42 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(colsParams));
+            
+            #line default
+            #line hidden
+            this.Write(")\r\n        {\r\n            var query= GetAll(true);\r\n             ");
+            
+            #line 45 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+foreach (Column col in table.Columns.Where(x => x.IsForeignKey))
+                {
+            
+            #line default
+            #line hidden
+            this.Write("            if (serviceId.HasValue)\r\n                {\r\n                    query" +
+                    " = query.Where(x => x.");
+            
+            #line 49 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" == ");
+            
+            #line 49 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(col.Name.FirstCharacterToLower()));
+            
+            #line default
+            #line hidden
+            this.Write(".Value);\r\n                }\r\n              ");
+            
+            #line 51 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write("    \r\n          \r\n            return query;\r\n        }\r\n        ");
+            
+            #line 55 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\RepositoryTemplate.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write("   \r\n\r\n       \r\n    }\r\n}      \r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

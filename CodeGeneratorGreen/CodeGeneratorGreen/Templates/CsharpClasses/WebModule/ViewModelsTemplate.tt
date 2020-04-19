@@ -21,6 +21,7 @@ namespace <#= ApplicationInfo.Instance.ViewModelNamespace #>
 	            get => Id;
 	            set => Id = value;
 	        }
+		public int? ParentId { get; set; }
 <#
 			// Keep count so we don't whitespace the last property/column
 			int i = 0;

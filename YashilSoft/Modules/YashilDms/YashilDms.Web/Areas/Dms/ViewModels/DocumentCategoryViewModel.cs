@@ -16,19 +16,15 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
 
         public string Title { get; set; }
 
-        public int? ParentId { get; set; }
         public string ParentTitle { get; set; }
 
-        public int AppEntityId { get; set; }
         public string AppEntityTitle { get; set; }
-
-        public Int64 ObjectId { get; set; }
 
         public int? DisplayOrder { get; set; }
 
-        public string Description { get; set; }
-
         public bool IsActive { get; set; }
+
+        public bool IsCategorized { get; set; }
     }
 
 
@@ -41,27 +37,17 @@ namespace YashilDms.Web.Areas.Dms.ViewModels
         }
 
         public int Id { get; set; }
-
         [StringLength(100)] [Required] public string Title { get; set; }
-
-
         public int? ParentId { get; set; }
-        public string ParentTitle { get; set; }
-
-        [Range(0, int.MaxValue)] [Required] public int AppEntityId { get; set; }
+        [Range(0, int.MaxValue)] 
+        [Required] public int AppEntityId { get; set; }
+        public int? DisplayOrder { get; set; }
+        public string Description { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsCategorized { get; set; }
         public string AppEntityTitle { get; set; }
 
-        [Required] public Int64 ObjectId { get; set; }
-
-
-        public int? DisplayOrder { get; set; }
-
-
-        public string Description { get; set; }
-
-        [Required] public bool IsActive { get; set; }
     }
-
 
     public class DocumentCategorySimpleViewModel : IBaseViewModel
     {

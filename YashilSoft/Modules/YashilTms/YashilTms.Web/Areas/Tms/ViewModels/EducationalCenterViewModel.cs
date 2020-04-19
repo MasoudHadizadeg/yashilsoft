@@ -4,13 +4,14 @@ using Yashil.Common.Core.Interfaces;
 namespace YashilTms.Web.Areas.Tms.ViewModels
 {
 
-   public class EducationalCenterListViewModel:IBaseViewModel
+    public class EducationalCenterListViewModel : IBaseViewModel
     {
-		public int ViewModelId
-	        {
-	            get => Id;
-	            set => Id = value;
-	        }
+        public int ViewModelId
+        {
+            get => Id;
+            set => Id = value;
+        }
+
         public int Id { get; set; }
 
         public string Code { get; set; }
@@ -22,11 +23,11 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
         public int? EstablishedLicenseType { get; set; }
 
         public string AccessLevelTitle { get; set; }
-
+        public string EstablishedLicenseTypeTitle { get; set; }
     }
 
 
-	    public class EducationalCenterEditModel:IBaseViewModel
+    public class EducationalCenterEditModel:IBaseViewModel
         {
 	        public int ViewModelId
 	            {

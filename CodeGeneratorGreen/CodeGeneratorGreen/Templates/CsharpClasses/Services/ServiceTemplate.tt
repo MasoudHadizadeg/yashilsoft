@@ -10,6 +10,7 @@
 	var table = SqlToCsharpHelper.table;
 	string repositoryProp = table.Name.FirstCharacterToLower()+"Repository";
 	#>
+using System.Linq;
 using Yashil.Common.Core.Classes;
 using Yashil.Common.Core.Interfaces;
 using Yashil.Common.Infrastructure.Implementations;
@@ -32,6 +33,19 @@ namespace <#= ApplicationInfo.Instance.ServiceNamespace #>
 			_<#=repositoryProp#> = <#=repositoryProp#>;
 			_userPrincipal = userPrincipal;
         }
+         <#
+            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+    if(!string.IsNullOrEmpty(colsParams)){
+        #>
+        
+        public IQueryable<<#= table.Name #>> GetByCustomFilter(<#=colsParams #>)
+        {
+            return _<#=repositoryProp#>.GetByCustomFilter(<#=colVar#>);
+        }
+        <#}#>   
+
     }
 }      
  

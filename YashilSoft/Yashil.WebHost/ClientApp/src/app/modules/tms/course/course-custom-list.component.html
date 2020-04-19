@@ -1,5 +1,5 @@
 <div style="width: 100%;" [style.height.px]="contentHeight">
-    <div class="row" style="padding-bottom: 5px" *ngIf="!educationalCenterId">
+    <div class="row" style="padding-bottom: 5px"  *ngIf="!additionalUserProp || !additionalUserProp.educationalCenterId">
         <div class="col-6">
             <div style="float: right;width: 20%;margin-top: 0.5rem; font-size: 14px;text-align: right">
                 <label>مرکز آموزشی : </label>
@@ -25,7 +25,7 @@
                 <as-split direction="horizontal" dir="ltr">
                     <as-split direction="horizontal">
                         <as-split-area size="70" #t1 dir="rtl">
-                            <app-base-list-form allowGrouping="true"
+                            <app-base-list-form title="دوره" allowGrouping="true"
                                                 loadAfterSetFilter="true"
                                                 (afterInitialDetailComponent)="afterInitialDetailComponent($event)"
                                                 [columns]="columns"

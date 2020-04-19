@@ -7,7 +7,8 @@ namespace YashilTms.Core.Repositories
     public interface ICoursePlanningRepository : IGenericRepository<CoursePlanning, int>
     {
         IQueryable<CoursePlanning> GetByRepresentationId(int representationId);
-        IQueryable<CoursePlanning> GetByCourseCategoryId(int courseCategoryId, bool hierarchical);
-        IQueryable<CoursePlanning> GetByMainCourseCategoryId(int educationalCenterMainCourseCategoryId);
+        IQueryable<CoursePlanning> GetByCourseCategoryId(int courseCategoryId, int representationId, bool hierarchical);
+        IQueryable<CoursePlanning> GetByMainCourseCategoryId(int educationalCenterMainCourseCategoryId,
+            int representationId);
     }
 }

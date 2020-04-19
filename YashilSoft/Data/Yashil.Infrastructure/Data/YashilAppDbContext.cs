@@ -32,8 +32,13 @@ namespace Yashil.Infrastructure.Data
         public virtual DbSet<DocumentCategory> DocumentCategory { get; set; }
         public virtual DbSet<EducationalCenter> EducationalCenter { get; set; }
         public virtual DbSet<EducationalCenterMainCourseCategory> EducationalCenterMainCourseCategory { get; set; }
+        public virtual DbSet<Job> Job { get; set; }
+        public virtual DbSet<Keyword> Keyword { get; set; }
         public virtual DbSet<MainCourseCategory> MainCourseCategory { get; set; }
+        public virtual DbSet<MainNews> MainNews { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
+        public virtual DbSet<NewsKeyword> NewsKeyword { get; set; }
+        public virtual DbSet<NewsStore> NewsStore { get; set; }
         public virtual DbSet<Organization> Organization { get; set; }
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<Post> Post { get; set; }
@@ -49,6 +54,7 @@ namespace Yashil.Infrastructure.Data
         public virtual DbSet<RoleDashboard> RoleDashboard { get; set; }
         public virtual DbSet<RoleReport> RoleReport { get; set; }
         public virtual DbSet<RoleResourceAction> RoleResourceAction { get; set; }
+        public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserDashboard> UserDashboard { get; set; }
         public virtual DbSet<UserReport> UserReport { get; set; }
@@ -336,14 +342,13 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.DocTypeId).HasComment("نوع سند");
 
-                entity.Property(e => e.DocumentCategoryId).HasComment("گروه سند");
-
                 entity.Property(e => e.DocumentFile).HasComment("سند");
 
                 entity.Property(e => e.Extension)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .HasComment("پسوند فایل");
 
                 entity.Property(e => e.ModificationDate)
                     .HasColumnType("datetime")
@@ -386,12 +391,6 @@ namespace Yashil.Infrastructure.Data
                     .HasForeignKey(d => d.DocTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AppDocument_DocType");
-
-                entity.HasOne(d => d.DocumentCategory)
-                    .WithMany(p => p.AppDocument)
-                    .HasForeignKey(d => d.DocumentCategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_AppDocument_DocumentCategory");
 
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.AppDocumentModifyByNavigation)
@@ -455,17 +454,6 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.TitlePropertyName)
                     .HasMaxLength(300)
                     .HasComment("عنوان ستون نمایشی");
-
-                entity.HasOne(d => d.CreateByNavigation)
-                    .WithMany(p => p.AppEntityCreateByNavigation)
-                    .HasForeignKey(d => d.CreateBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_AppEntity_DocFormat");
-
-                entity.HasOne(d => d.ModifyByNavigation)
-                    .WithMany(p => p.AppEntityModifyByNavigation)
-                    .HasForeignKey(d => d.ModifyBy)
-                    .HasConstraintName("FK_AppEntity_DocFormat1");
             });
 
             modelBuilder.Entity<AppEntityAttribute>(entity =>
@@ -1233,6 +1221,8 @@ namespace Yashil.Infrastructure.Data
                     .HasMaxLength(150)
                     .HasComment("کد");
 
+                entity.Property(e => e.Confirmed).HasComment("تایید شده");
+
                 entity.Property(e => e.CourseId).HasComment("دوره");
 
                 entity.Property(e => e.CourseStatus).HasComment("وضعیت دوره");
@@ -1252,6 +1242,8 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.Deleted).HasComment("حذف شده");
 
                 entity.Property(e => e.Description).HasComment("توضیحات");
+
+                entity.Property(e => e.DisplayOrder).HasComment("ترتیب نمایش");
 
                 entity.Property(e => e.ImplementationType).HasComment("نوع برگزاری");
 
@@ -1283,82 +1275,77 @@ namespace Yashil.Infrastructure.Data
                     .WithMany(p => p.CoursePlanning)
                     .HasForeignKey(d => d.AccessLevelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_AccessLevel");
+                    .HasConstraintName("FK_CoursePlanning_AccessLevel");
 
                 entity.HasOne(d => d.AgeCategoryNavigation)
                     .WithMany(p => p.CoursePlanningAgeCategoryNavigation)
                     .HasForeignKey(d => d.AgeCategory)
-                    .HasConstraintName("FK_CoursesPlanning_CommonBaseData5");
+                    .HasConstraintName("FK_CoursePlanning_CommonBaseData1");
 
                 entity.HasOne(d => d.Application)
                     .WithMany(p => p.CoursePlanning)
                     .HasForeignKey(d => d.ApplicationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_Application");
+                    .HasConstraintName("FK_CoursePlanning_Application");
 
                 entity.HasOne(d => d.Course)
                     .WithMany(p => p.CoursePlanning)
                     .HasForeignKey(d => d.CourseId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_Course");
+                    .HasConstraintName("FK_CoursePlanning_Course");
 
                 entity.HasOne(d => d.CourseStatusNavigation)
                     .WithMany(p => p.CoursePlanningCourseStatusNavigation)
                     .HasForeignKey(d => d.CourseStatus)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_CommonBaseData3");
+                    .HasConstraintName("FK_CoursePlanning_CommonBaseData");
 
                 entity.HasOne(d => d.CourseTypeNavigation)
                     .WithMany(p => p.CoursePlanningCourseTypeNavigation)
                     .HasForeignKey(d => d.CourseType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_CommonBaseData1");
+                    .HasConstraintName("FK_CoursePlanning_CommonBaseData3");
 
                 entity.HasOne(d => d.CreateByNavigation)
                     .WithMany(p => p.CoursePlanningCreateByNavigation)
                     .HasForeignKey(d => d.CreateBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_User");
+                    .HasConstraintName("FK_CoursePlanning_User1");
 
                 entity.HasOne(d => d.CreatorOrganization)
                     .WithMany(p => p.CoursePlanning)
                     .HasForeignKey(d => d.CreatorOrganizationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_Organization");
+                    .HasConstraintName("FK_CoursePlanning_Organization");
 
                 entity.HasOne(d => d.CustomGenderNavigation)
                     .WithMany(p => p.CoursePlanningCustomGenderNavigation)
                     .HasForeignKey(d => d.CustomGender)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_CommonBaseData2");
+                    .HasConstraintName("FK_CoursePlanning_CommonBaseData5");
 
                 entity.HasOne(d => d.ImplementationTypeNavigation)
                     .WithMany(p => p.CoursePlanningImplementationTypeNavigation)
                     .HasForeignKey(d => d.ImplementationType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_CommonBaseData");
+                    .HasConstraintName("FK_CoursePlanning_CommonBaseData2");
 
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.CoursePlanningModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
-                    .HasConstraintName("FK_CoursesPlanning_User1");
+                    .HasConstraintName("FK_CoursePlanning_User");
 
                 entity.HasOne(d => d.Representation)
                     .WithMany(p => p.CoursePlanning)
                     .HasForeignKey(d => d.RepresentationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_Representation");
-
-                entity.HasOne(d => d.RepresentationPerson)
-                    .WithMany(p => p.CoursePlanning)
-                    .HasForeignKey(d => d.RepresentationPersonId)
-                    .HasConstraintName("FK_CoursesPlanning_RepresentationPerson");
+                    .HasConstraintName("FK_CoursePlanning_Representation");
 
                 entity.HasOne(d => d.RunTypeNavigation)
                     .WithMany(p => p.CoursePlanningRunTypeNavigation)
                     .HasForeignKey(d => d.RunType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CoursesPlanning_CommonBaseData4");
+                    .HasConstraintName("FK_CoursePlanning_CommonBaseData4");
             });
 
             modelBuilder.Entity<CoursePlanningStudent>(entity =>
@@ -1401,6 +1388,8 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Score).HasComment("نمره");
 
+                entity.Property(e => e.StudentStatus).HasComment("وضعیت دانشجو");
+
                 entity.HasOne(d => d.AccessLevel)
                     .WithMany(p => p.CoursePlanningStudent)
                     .HasForeignKey(d => d.AccessLevelId)
@@ -1441,6 +1430,11 @@ namespace Yashil.Infrastructure.Data
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CoursesPlanningStudent_Person");
+
+                entity.HasOne(d => d.StudentStatusNavigation)
+                    .WithMany(p => p.CoursePlanningStudent)
+                    .HasForeignKey(d => d.StudentStatus)
+                    .HasConstraintName("FK_CoursePlanningStudent_CommonBaseData");
             });
 
             modelBuilder.Entity<DashboardConnectionString>(entity =>
@@ -1750,10 +1744,6 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.Id).HasComment("کد");
 
-                entity.Property(e => e.AppEntityId)
-                    .HasDefaultValueSql("((1))")
-                    .HasComment("موجودیت");
-
                 entity.Property(e => e.ApplicationId).HasComment("برنامه");
 
                 entity.Property(e => e.AspectRatio)
@@ -1778,10 +1768,7 @@ namespace Yashil.Infrastructure.Data
 
                 entity.Property(e => e.DocFormatId).HasComment("فرمت سند");
 
-                entity.Property(e => e.IsCategorized)
-                    .IsRequired()
-                    .HasDefaultValueSql("((1))")
-                    .HasComment("آیا نیاز به دسته بندی سند وجود دارد؟");
+                entity.Property(e => e.DocumentCategoryId).HasComment("دسته بندی");
 
                 entity.Property(e => e.IsImage).HasComment("آیا فایل تصویر است؟");
 
@@ -1811,12 +1798,6 @@ namespace Yashil.Infrastructure.Data
                     .HasMaxLength(50)
                     .HasComment("عنوان");
 
-                entity.HasOne(d => d.AppEntity)
-                    .WithMany(p => p.DocType)
-                    .HasForeignKey(d => d.AppEntityId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DocType_AppEntity");
-
                 entity.HasOne(d => d.Application)
                     .WithMany(p => p.DocType)
                     .HasForeignKey(d => d.ApplicationId)
@@ -1840,6 +1821,12 @@ namespace Yashil.Infrastructure.Data
                     .HasForeignKey(d => d.DocFormatId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocType_DocFormat");
+
+                entity.HasOne(d => d.DocumentCategory)
+                    .WithMany(p => p.DocType)
+                    .HasForeignKey(d => d.DocumentCategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DocType_DocumentCategory");
 
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.DocTypeModifyByNavigation)
@@ -1876,13 +1863,13 @@ namespace Yashil.Infrastructure.Data
                     .HasDefaultValueSql("((1))")
                     .HasComment("فعال بودن");
 
+                entity.Property(e => e.IsCategorized).HasComment("اسناد دسته بندی شود؟");
+
                 entity.Property(e => e.ModificationDate)
                     .HasColumnType("datetime")
                     .HasComment("زمان تغییر");
 
                 entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
-
-                entity.Property(e => e.ObjectId).HasComment("کد مالک");
 
                 entity.Property(e => e.ParentId).HasComment("کد پدر");
 
@@ -2086,6 +2073,151 @@ namespace Yashil.Infrastructure.Data
                     .HasConstraintName("FK_EducationalCenterMainCourseCategory_User1");
             });
 
+            modelBuilder.Entity<Job>(entity =>
+            {
+                entity.ToTable("Job", "um");
+
+                entity.HasComment("شغل");
+
+                entity.HasIndex(e => new { e.Code, e.ApplicationId })
+                    .HasName("IX_Job")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasComment("");
+
+                entity.Property(e => e.AccessLevelId).HasComment("سطح دسترسی");
+
+                entity.Property(e => e.ApplicationId).HasComment("برنامه");
+
+                entity.Property(e => e.Code)
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .HasComment("کلید شغل");
+
+                entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
+
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان ایجاد");
+
+                entity.Property(e => e.CreatorOrganizationId).HasComment("سازمان ایجاد کننده رکورد");
+
+                entity.Property(e => e.Deleted).HasComment("حذف شده");
+
+                entity.Property(e => e.Description).HasComment("توضیحات");
+
+                entity.Property(e => e.ModificationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان تغییر");
+
+                entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(300)
+                    .HasComment("عنوان");
+
+                entity.HasOne(d => d.AccessLevel)
+                    .WithMany(p => p.Job)
+                    .HasForeignKey(d => d.AccessLevelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Job_AccessLevel");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.Job)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Job_Application");
+
+                entity.HasOne(d => d.CreateByNavigation)
+                    .WithMany(p => p.JobCreateByNavigation)
+                    .HasForeignKey(d => d.CreateBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Job_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.Job)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Job_Organization");
+
+                entity.HasOne(d => d.ModifyByNavigation)
+                    .WithMany(p => p.JobModifyByNavigation)
+                    .HasForeignKey(d => d.ModifyBy)
+                    .HasConstraintName("FK_Job_User1");
+            });
+
+            modelBuilder.Entity<Keyword>(entity =>
+            {
+                entity.ToTable("Keyword", "base");
+
+                entity.HasComment("کلمات کليدي");
+
+                entity.Property(e => e.Id).HasComment("");
+
+                entity.Property(e => e.AccessLevelId).HasComment("سطح دسترسی");
+
+                entity.Property(e => e.ApplicationId).HasComment("برنامه");
+
+                entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
+
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان ایجاد");
+
+                entity.Property(e => e.CreatorOrganizationId).HasComment("سازمان ایجاد کننده رکورد");
+
+                entity.Property(e => e.Deleted).HasComment("حذف شده");
+
+                entity.Property(e => e.KeywordType).HasComment("نوع کلمه کلیدی");
+
+                entity.Property(e => e.ModificationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان تغییر");
+
+                entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(300)
+                    .HasComment("عنوان");
+
+                entity.HasOne(d => d.AccessLevel)
+                    .WithMany(p => p.Keyword)
+                    .HasForeignKey(d => d.AccessLevelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Keyword_AccessLevel");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.Keyword)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Keyword_Application");
+
+                entity.HasOne(d => d.CreateByNavigation)
+                    .WithMany(p => p.KeywordCreateByNavigation)
+                    .HasForeignKey(d => d.CreateBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Keyword_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.Keyword)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Keyword_Organization");
+
+                entity.HasOne(d => d.KeywordTypeNavigation)
+                    .WithMany(p => p.Keyword)
+                    .HasForeignKey(d => d.KeywordType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Keyword_CommonBaseData1");
+
+                entity.HasOne(d => d.ModifyByNavigation)
+                    .WithMany(p => p.KeywordModifyByNavigation)
+                    .HasForeignKey(d => d.ModifyBy)
+                    .HasConstraintName("FK_Keyword_User1");
+            });
+
             modelBuilder.Entity<MainCourseCategory>(entity =>
             {
                 entity.ToTable("MainCourseCategory", "tms");
@@ -2153,6 +2285,90 @@ namespace Yashil.Infrastructure.Data
                     .WithMany(p => p.MainCourseCategoryModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
                     .HasConstraintName("FK_MainCourseCategory_User1");
+            });
+
+            modelBuilder.Entity<MainNews>(entity =>
+            {
+                entity.ToTable("MainNews", "news");
+
+                entity.HasComment("تنطیمات نمایش");
+
+                entity.Property(e => e.Id).HasComment("");
+
+                entity.Property(e => e.ApplicationId).HasComment("برنامه");
+
+                entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
+
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان ایجاد");
+
+                entity.Property(e => e.CreatorOrganizationId).HasComment("سازمان ایجاد کننده رکورد");
+
+                entity.Property(e => e.Deleted).HasComment("حذف شده");
+
+                entity.Property(e => e.DisplayOrder).HasComment("ترتیب نمایش");
+
+                entity.Property(e => e.EditorSelected).HasComment("انتخاب سردبیر");
+
+                entity.Property(e => e.IsHotNews).HasComment("خبر داغ");
+
+                entity.Property(e => e.ModificationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان تغییر");
+
+                entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
+
+                entity.Property(e => e.NewsPropertyId).HasComment("ویژگی خبر");
+
+                entity.Property(e => e.NewsStoreId).HasComment("خبر");
+
+                entity.Property(e => e.SelectedNews).HasComment("خبر منتخب");
+
+                entity.Property(e => e.ServiceMainNews).HasComment("خبر اصلی سرویس خبری");
+
+                entity.Property(e => e.ShowAsImportantNews).HasComment("خبر مهم");
+
+                entity.Property(e => e.ShowAsMultimedia).HasComment("نمایش در قسمت چند رسانه ای");
+
+                entity.Property(e => e.ShowInMainPageSlider).HasComment("نمایش در اسلایدر صفحه اصلی");
+
+                entity.Property(e => e.Simplenews).HasComment("خبر عادی");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.MainNews)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsProperty_Application");
+
+                entity.HasOne(d => d.CreateByNavigation)
+                    .WithMany(p => p.MainNewsCreateByNavigation)
+                    .HasForeignKey(d => d.CreateBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsProperty_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.MainNews)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsProperty_Organization");
+
+                entity.HasOne(d => d.ModifyByNavigation)
+                    .WithMany(p => p.MainNewsModifyByNavigation)
+                    .HasForeignKey(d => d.ModifyBy)
+                    .HasConstraintName("FK_NewsProperty_User1");
+
+                entity.HasOne(d => d.NewsProperty)
+                    .WithMany(p => p.MainNews)
+                    .HasForeignKey(d => d.NewsPropertyId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MainNews_CommonBaseData");
+
+                entity.HasOne(d => d.NewsStore)
+                    .WithMany(p => p.MainNews)
+                    .HasForeignKey(d => d.NewsStoreId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MainNews_NewsStore");
             });
 
             modelBuilder.Entity<Menu>(entity =>
@@ -2242,6 +2458,229 @@ namespace Yashil.Infrastructure.Data
                     .WithMany(p => p.Menu)
                     .HasForeignKey(d => d.ResourceId)
                     .HasConstraintName("FK_Menue_Resource");
+            });
+
+            modelBuilder.Entity<NewsKeyword>(entity =>
+            {
+                entity.ToTable("NewsKeyword", "news");
+
+                entity.HasComment("کلمات کليدي خبر");
+
+                entity.Property(e => e.Id).HasComment("");
+
+                entity.Property(e => e.AccessLevelId).HasComment("سطح دسترسی");
+
+                entity.Property(e => e.ApplicationId).HasComment("برنامه");
+
+                entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
+
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان ایجاد");
+
+                entity.Property(e => e.CreatorOrganizationId).HasComment("سازمان ایجاد کننده رکورد");
+
+                entity.Property(e => e.Deleted).HasComment("حذف شده");
+
+                entity.Property(e => e.KeywordId).HasComment("کلمه کلیدی");
+
+                entity.Property(e => e.ModificationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان تغییر");
+
+                entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
+
+                entity.Property(e => e.NewsStoreId).HasComment("خبر");
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(300)
+                    .HasComment("عنوان");
+
+                entity.HasOne(d => d.AccessLevel)
+                    .WithMany(p => p.NewsKeyword)
+                    .HasForeignKey(d => d.AccessLevelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsKeyword_AccessLevel");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.NewsKeyword)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsKeyword_Application");
+
+                entity.HasOne(d => d.CreateByNavigation)
+                    .WithMany(p => p.NewsKeywordCreateByNavigation)
+                    .HasForeignKey(d => d.CreateBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsKeyword_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.NewsKeyword)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsKeyword_Organization");
+
+                entity.HasOne(d => d.Keyword)
+                    .WithMany(p => p.NewsKeyword)
+                    .HasForeignKey(d => d.KeywordId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsKeyword_Keyword");
+
+                entity.HasOne(d => d.ModifyByNavigation)
+                    .WithMany(p => p.NewsKeywordModifyByNavigation)
+                    .HasForeignKey(d => d.ModifyBy)
+                    .HasConstraintName("FK_NewsKeyword_User1");
+
+                entity.HasOne(d => d.NewsStore)
+                    .WithMany(p => p.NewsKeyword)
+                    .HasForeignKey(d => d.NewsStoreId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsKeyword_NewsStore");
+            });
+
+            modelBuilder.Entity<NewsStore>(entity =>
+            {
+                entity.ToTable("NewsStore", "news");
+
+                entity.HasComment("خبر");
+
+                entity.Property(e => e.Id).HasComment("");
+
+                entity.Property(e => e.AccessLevelId).HasComment("سطح دسترسی");
+
+                entity.Property(e => e.ApplicationId).HasComment("برنامه");
+
+                entity.Property(e => e.Body).HasComment("متن خبر");
+
+                entity.Property(e => e.Code)
+                    .HasMaxLength(150)
+                    .HasComment("کد");
+
+                entity.Property(e => e.Confirmed).HasComment("تایید شده");
+
+                entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
+
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان ایجاد");
+
+                entity.Property(e => e.CreatorOrganizationId).HasComment("سازمان ایجاد کننده رکورد");
+
+                entity.Property(e => e.Deck)
+                    .HasMaxLength(500)
+                    .HasComment("زیرتیتر");
+
+                entity.Property(e => e.Deleted).HasComment("حذف شده");
+
+                entity.Property(e => e.EffluenceDate)
+                    .HasColumnType("datetime")
+                    .HasComment("تاریخ انتشار خبر به میلادی");
+
+                entity.Property(e => e.EffluenceDateInt).HasComment("تاریخ انتشار خبر");
+
+                entity.Property(e => e.EffluenceTime).HasComment("زمان انتشار خبر");
+
+                entity.Property(e => e.ExpireDate)
+                    .HasColumnType("datetime")
+                    .HasComment("تاریخ انقضای خبر به میلادی");
+
+                entity.Property(e => e.ExpireDateInt).HasComment("تاریخ انقضای خبر");
+
+                entity.Property(e => e.ExpireTime).HasComment("زمان انقضای خبر");
+
+                entity.Property(e => e.IsOtherSiteNews).HasComment("اخبار سایر سایت ها");
+
+                entity.Property(e => e.KeywordStr)
+                    .HasMaxLength(300)
+                    .HasComment("کلمات کلیدی");
+
+                entity.Property(e => e.Kicker)
+                    .HasMaxLength(500)
+                    .HasComment("روتیتر");
+
+                entity.Property(e => e.Language)
+                    .HasDefaultValueSql("((1))")
+                    .HasComment("زبان خبر");
+
+                entity.Property(e => e.Led)
+                    .IsRequired()
+                    .HasMaxLength(3900)
+                    .HasComment("لید");
+
+                entity.Property(e => e.ModificationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان تغییر");
+
+                entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
+
+                entity.Property(e => e.NewsType).HasComment("نوع خبر");
+
+                entity.Property(e => e.NewsWebSiteCode)
+                    .HasMaxLength(300)
+                    .HasComment("کد هش مربوط به مسیر صفحه در یک سایت دیگر");
+
+                entity.Property(e => e.ServiceId).HasComment("سرویس خبری");
+
+                entity.Property(e => e.SubTitle)
+                    .HasMaxLength(2000)
+                    .HasComment("خلاصه تیتر(سوتیتر)");
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(1000)
+                    .HasComment("تیتر");
+
+                entity.Property(e => e.ViewCount)
+                    .HasDefaultValueSql("((1))")
+                    .HasComment("تعداد بازدید از این خبر");
+
+                entity.HasOne(d => d.AccessLevel)
+                    .WithMany(p => p.NewsStore)
+                    .HasForeignKey(d => d.AccessLevelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_News_AccessLevel");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.NewsStore)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_News_Application");
+
+                entity.HasOne(d => d.CreateByNavigation)
+                    .WithMany(p => p.NewsStoreCreateByNavigation)
+                    .HasForeignKey(d => d.CreateBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_News_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.NewsStore)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_News_Organization");
+
+                entity.HasOne(d => d.LanguageNavigation)
+                    .WithMany(p => p.NewsStoreLanguageNavigation)
+                    .HasForeignKey(d => d.Language)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsStore_CommonBaseData1");
+
+                entity.HasOne(d => d.ModifyByNavigation)
+                    .WithMany(p => p.NewsStoreModifyByNavigation)
+                    .HasForeignKey(d => d.ModifyBy)
+                    .HasConstraintName("FK_News_User1");
+
+                entity.HasOne(d => d.NewsTypeNavigation)
+                    .WithMany(p => p.NewsStoreNewsTypeNavigation)
+                    .HasForeignKey(d => d.NewsType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsStore_CommonBaseData");
+
+                entity.HasOne(d => d.Service)
+                    .WithMany(p => p.NewsStore)
+                    .HasForeignKey(d => d.ServiceId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NewsStore_Service");
             });
 
             modelBuilder.Entity<Organization>(entity =>
@@ -2430,6 +2869,10 @@ namespace Yashil.Infrastructure.Data
 
                 entity.HasComment("سمت");
 
+                entity.HasIndex(e => new { e.Code, e.ApplicationId })
+                    .HasName("IX_Post")
+                    .IsUnique();
+
                 entity.Property(e => e.Id).HasComment("");
 
                 entity.Property(e => e.AccessLevelId).HasComment("سطح دسترسی");
@@ -2437,8 +2880,9 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.ApplicationId).HasComment("برنامه");
 
                 entity.Property(e => e.Code)
+                    .IsRequired()
                     .HasMaxLength(150)
-                    .HasComment("کد");
+                    .HasComment("کلید پست");
 
                 entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
 
@@ -2453,6 +2897,8 @@ namespace Yashil.Infrastructure.Data
                 entity.Property(e => e.Description).HasComment("توضیحات");
 
                 entity.Property(e => e.IsVirtual).HasComment("پست مجازی");
+
+                entity.Property(e => e.JobId).HasComment("شغل");
 
                 entity.Property(e => e.ModificationDate)
                     .HasColumnType("datetime")
@@ -2489,6 +2935,11 @@ namespace Yashil.Infrastructure.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Post_Organization");
 
+                entity.HasOne(d => d.Job)
+                    .WithMany(p => p.Post)
+                    .HasForeignKey(d => d.JobId)
+                    .HasConstraintName("FK_Post_Job");
+
                 entity.HasOne(d => d.ModifyByNavigation)
                     .WithMany(p => p.PostModifyByNavigation)
                     .HasForeignKey(d => d.ModifyBy)
@@ -2497,7 +2948,6 @@ namespace Yashil.Infrastructure.Data
                 entity.HasOne(d => d.Parent)
                     .WithMany(p => p.InverseParent)
                     .HasForeignKey(d => d.ParentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Post_Post");
             });
 
@@ -3287,6 +3737,98 @@ namespace Yashil.Infrastructure.Data
                     .HasForeignKey(d => d.RoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RoleResourceAction_Role");
+            });
+
+            modelBuilder.Entity<Service>(entity =>
+            {
+                entity.ToTable("Service", "news");
+
+                entity.HasComment("سرويس هاي خبري");
+
+                entity.Property(e => e.Id).HasComment("");
+
+                entity.Property(e => e.AccessLevelId).HasComment("سطح دسترسی");
+
+                entity.Property(e => e.AppEntityId).HasComment("کد موجودیت");
+
+                entity.Property(e => e.ApplicationId).HasComment("برنامه");
+
+                entity.Property(e => e.CreateBy).HasComment("ایجاد کننده");
+
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان ایجاد");
+
+                entity.Property(e => e.CreatorOrganizationId).HasComment("سازمان ایجاد کننده رکورد");
+
+                entity.Property(e => e.Deleted).HasComment("حذف شده");
+
+                entity.Property(e => e.Description).HasComment("توضیحات");
+
+                entity.Property(e => e.DisplayOrder).HasComment("ترتیب نمایش");
+
+                entity.Property(e => e.EnglishTitle)
+                    .IsRequired()
+                    .HasMaxLength(500)
+                    .HasComment("عنوان انگلیسی");
+
+                entity.Property(e => e.IsMain).HasComment("سرویس های اصلی");
+
+                entity.Property(e => e.ModificationDate)
+                    .HasColumnType("datetime")
+                    .HasComment("زمان تغییر");
+
+                entity.Property(e => e.ModifyBy).HasComment("ویرایش کننده");
+
+                entity.Property(e => e.ObjectId).HasComment("کد رکورد");
+
+                entity.Property(e => e.ParentId).HasComment("کد");
+
+                entity.Property(e => e.ShowInMainPage).HasComment("نمایش سرویس در صفحه اصلی");
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(300)
+                    .HasComment("عنوان");
+
+                entity.HasOne(d => d.AccessLevel)
+                    .WithMany(p => p.Service)
+                    .HasForeignKey(d => d.AccessLevelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Service_AccessLevel");
+
+                entity.HasOne(d => d.AppEntity)
+                    .WithMany(p => p.Service)
+                    .HasForeignKey(d => d.AppEntityId)
+                    .HasConstraintName("FK_Service_AppEntity");
+
+                entity.HasOne(d => d.Application)
+                    .WithMany(p => p.Service)
+                    .HasForeignKey(d => d.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Service_Application");
+
+                entity.HasOne(d => d.CreateByNavigation)
+                    .WithMany(p => p.ServiceCreateByNavigation)
+                    .HasForeignKey(d => d.CreateBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Service_User");
+
+                entity.HasOne(d => d.CreatorOrganization)
+                    .WithMany(p => p.Service)
+                    .HasForeignKey(d => d.CreatorOrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Service_Organization");
+
+                entity.HasOne(d => d.ModifyByNavigation)
+                    .WithMany(p => p.ServiceModifyByNavigation)
+                    .HasForeignKey(d => d.ModifyBy)
+                    .HasConstraintName("FK_Service_User1");
+
+                entity.HasOne(d => d.Parent)
+                    .WithMany(p => p.InverseParent)
+                    .HasForeignKey(d => d.ParentId)
+                    .HasConstraintName("FK_Service_Service");
             });
 
             modelBuilder.Entity<User>(entity =>

@@ -20,11 +20,15 @@ namespace YashilDms.Infrastructure.RepositoryImpl
             _userPrincipal = userPrincipal;
         }
 
-        public IQueryable<AppDocument> GetObjectDocuments(int entityId, int objectId, int docCategoryId)
+        public IQueryable<AppDocument> GetObjectDocuments(string entityName, int objectId, int docCategoryId)
         {
-            return DbSet
-                .Where(x => x.DocType.AppEntityId == entityId && x.ObjectId == objectId &&
-                            x.DocumentCategoryId == docCategoryId).Where(ApplicationBasedDefaultFilter());
+            return DbSet.Where(x => x.DocType.DocumentCategory.AppEntity.Title == entityName && x.ObjectId == objectId &&
+                                    x.DocType.DocumentCategoryId == docCategoryId).Where(ApplicationBasedDefaultFilter());
+        }
+
+        public int GetIdByTitle(string appEntityTitle)
+        {
+            return DbSet.Where(x => x.Title == appEntityTitle).Select(x => x.Id).FirstOrDefault();
         }
 
         public override AppDocument Get(object id, bool readOnly = false)
@@ -33,10 +37,8 @@ namespace YashilDms.Infrastructure.RepositoryImpl
             {
                 return DbSet.AsNoTracking().Include(x => x.DocType).FirstOrDefault(x => x.Id == (int) id);
             }
-            else
-            {
-                return DbSet.Include(x => x.DocType).FirstOrDefault(x => x.Id == (int) id);
-            }
+
+            return DbSet.Include(x => x.DocType).FirstOrDefault(x => x.Id == (int) id);
         }
     }
 }

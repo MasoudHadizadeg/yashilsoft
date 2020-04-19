@@ -12,10 +12,7 @@ import {MessageService} from '../../shared/base/messages/message.service';
 import {ENTRYCOMPONENTS} from './entryIndex';
 import {TmsRoutingModule} from './tms-routing.module';
 import {DxDropDownBoxModule, DxTextBoxModule, DxTreeViewModule} from 'devextreme-angular';
-import {UserExtenderService} from '../../shared/services/user-extender.service';
-import {CachedKey} from './tms-enums';
-import {CachedDataService} from '../../shared/services/cached-data.service';
-import {GenericDataService} from '../../shared/base/services/generic-data.service';
+import {DmsModule} from '../dms/dms.module';
 
 @NgModule({
     declarations: [COMPONENTS],
@@ -32,7 +29,8 @@ import {GenericDataService} from '../../shared/base/services/generic-data.servic
         ImageCropperModule,
         DxTreeViewModule,
         DxDropDownBoxModule,
-        DxTextBoxModule
+        DxTextBoxModule,
+        DmsModule
     ],
     providers: [
         MessageService,

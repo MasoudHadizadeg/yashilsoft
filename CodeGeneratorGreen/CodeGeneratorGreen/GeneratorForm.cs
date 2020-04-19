@@ -42,7 +42,7 @@ namespace CodeGeneratorGreen
                  new ModuleInfo
                  {
                      ClassNamespace = "YashilUserManagement", AngularModuleName = "UserManagement", AreaName = "UserMng",
-                     XmlFileName = "Data_user", GenerateProjectFiles = true, GenerateControllers = true,
+                     XmlFileName = "Data_user", GenerateProjectFiles = false, GenerateControllers = true,
                      GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
                  },
                  new ModuleInfo
@@ -54,7 +54,7 @@ namespace CodeGeneratorGreen
                  new ModuleInfo
                  {
                      ClassNamespace = "YashilBaseInfo", AngularModuleName = "BaseInfo", AreaName = "BaseInf",
-                     XmlFileName = "Data_base", GenerateProjectFiles = true, GenerateControllers = true,
+                     XmlFileName = "Data_base", GenerateProjectFiles = false, GenerateControllers = true,
                      GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
                  },
                  new ModuleInfo
@@ -66,7 +66,13 @@ namespace CodeGeneratorGreen
                 new ModuleInfo
                 {
                     ClassNamespace = "YashilTms", AngularModuleName = "Tms", AreaName = "Tms",
-                    XmlFileName = "Data_tms", GenerateProjectFiles = true, GenerateControllers = true,
+                    XmlFileName = "Data_tms", GenerateProjectFiles = false, GenerateControllers = true,
+                    GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
+                },
+                new ModuleInfo
+                {
+                    ClassNamespace = "YashilNews", AngularModuleName = "News", AreaName = "News",
+                    XmlFileName = "Data_news", GenerateProjectFiles = false, GenerateControllers = true,
                     GenerateViewModels = true, GenerateServices = true, GenerateRepositories = true
                 }
             };

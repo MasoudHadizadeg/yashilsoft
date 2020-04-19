@@ -9,6 +9,7 @@ import {Entity} from '../../../shared/base/base-data/entity.enum';
     templateUrl: './educational-center-detail.component.html'
 })
 export class EducationalCenterDetailComponent extends BaseEdit implements OnInit {
+    establishedLicenseTypes: any;
     accessLevels: any[] = [];
 
     constructor(private genericDataService: GenericDataService) {
@@ -18,6 +19,10 @@ export class EducationalCenterDetailComponent extends BaseEdit implements OnInit
 
     ngOnInit() {
         super.ngOnInit();
+        this._genericDataService.getCommonBaseDataForSelect('EstablishedLicenseType').subscribe(res => {
+                this.establishedLicenseTypes = res;
+            }
+        );
         this._genericDataService.getEntitiesByEntityNameForSelect(Entity.AccessLevel).subscribe(res => this.accessLevels = res);
     }
 }

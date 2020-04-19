@@ -7,8 +7,9 @@ namespace YashilBaseInfo.Core.Services
 	public interface IAppEntityService : IGenericService<AppEntity, int>
     {
 			string GetDescription(int id);		
-			string GetProps(int id);		
-	
+			string GetProps(int id);
+
+            int GetIdByTitle(string editModelAppEntityTitle);
     }
 }      
  

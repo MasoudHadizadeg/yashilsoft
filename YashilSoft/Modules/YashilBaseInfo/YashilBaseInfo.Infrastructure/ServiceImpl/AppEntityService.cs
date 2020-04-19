@@ -27,8 +27,13 @@ namespace YashilBaseInfo.Infrastructure.ServiceImpl
 			  public string GetProps(int id)
 				{
 					return _appEntityRepository.GetProps(id);
-				}	
-	
+				}
+
+              public int GetIdByTitle(string editModelAppEntityTitle)
+              {
+                  return _appEntityRepository.GetIdByTitle(editModelAppEntityTitle);
+
+              }
     }
 }      
  

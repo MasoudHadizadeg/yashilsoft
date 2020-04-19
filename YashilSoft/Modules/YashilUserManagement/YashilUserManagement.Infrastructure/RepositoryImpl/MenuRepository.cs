@@ -24,7 +24,7 @@ namespace YashilUserManagement.Infrastructure.RepositoryImpl
             var userRoles = _context.Set<UserRole>().Where(t => t.UserId == userId).Select(x => x.RoleId);
             var resources = _context.Set<RoleResourceAction>().Where(x => userRoles.Contains(x.RoleId))
                 .Select(x => x.ResourceAction.ResourceId);
-            return GetAll().Where(x => !x.ResourceId.HasValue || resources.Contains(x.ResourceId.Value)).ToListAsync();
+            return GetAll().Where(x => !x.ResourceId.HasValue || resources.Contains(x.ResourceId.Value)).Include(x=>x.Resource).ToListAsync();
         }
     }
 }

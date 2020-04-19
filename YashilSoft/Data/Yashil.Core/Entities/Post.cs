@@ -15,7 +15,8 @@ namespace Yashil.Core.Entities
         public int Id { get; set; }
         public string Code { get; set; }
         public string Title { get; set; }
-        public int ParentId { get; set; }
+        public int? JobId { get; set; }
+        public int? ParentId { get; set; }
         public bool IsVirtual { get; set; }
         public string Description { get; set; }
         public int CreateBy { get; set; }
@@ -31,6 +32,7 @@ namespace Yashil.Core.Entities
         public virtual Application Application { get; set; }
         public virtual User CreateByNavigation { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
+        public virtual Job Job { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual Post Parent { get; set; }
         public virtual ICollection<Post> InverseParent { get; set; }

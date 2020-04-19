@@ -20,8 +20,7 @@ namespace YashilTms.Web.Areas.Tms
                 .ForMember(x => x.PersonTitle,
                     b => b.MapFrom(c => c.Person.Name))
                 .ForMember(x => x.AccessLevelTitle,
-                    b => b.MapFrom(c => c.AccessLevel.Title))
-                ;
+                    b => b.MapFrom(c => c.AccessLevel.Title));
             CreateMap<CoursePlanningStudentEditModel, CoursePlanningStudent>();
 
             CreateMap<CoursePlanningStudent, CoursePlanningStudentSimpleViewModel>();
@@ -46,7 +45,7 @@ namespace YashilTms.Web.Areas.Tms
 
 
             CreateMap<CoursePlanning, CoursePlanningEditModel>().ForMember(x => x.CourseCategoryId,
-                x => x.MapFrom(b => b.Course.CourseCategoryId))
+                    x => x.MapFrom(b => b.Course.CourseCategoryId))
                 .ForMember(x => x.CourseTitle,
                     x => x.MapFrom(b => b.Course.Title));
 
@@ -99,15 +98,14 @@ namespace YashilTms.Web.Areas.Tms
                     b => b.MapFrom(c => c.Post.Title))
                 .ForMember(x => x.CooperationTypeTitle, b => b.MapFrom(c => c.CooperationTypeNavigation.Title))
                 .ForMember(x => x.AccessLevelTitle,
-                    b => b.MapFrom(c => c.AccessLevel.Title))
-                ;
+                    b => b.MapFrom(c => c.AccessLevel.Title));
             CreateMap<RepresentationPersonEditModel, RepresentationPerson>();
 
             CreateMap<RepresentationPerson, RepresentationPersonSimpleViewModel>();
 
 
-            CreateMap<CourseCategory, CourseCategoryEditModel>().ForMember(x=>x.EducationalCenterId,
-                b=>b.MapFrom(c=>c.EducationalCenterMainCourseCategory.EducationalCenterId));
+            CreateMap<CourseCategory, CourseCategoryEditModel>().ForMember(x => x.EducationalCenterId,
+                b => b.MapFrom(c => c.EducationalCenterMainCourseCategory.EducationalCenterId));
 
             CreateMap<CourseCategory, CourseCategoryListViewModel>()
                 .ForMember(x => x.EducationalCenterMainCourseCategoryTitle,
@@ -125,7 +123,8 @@ namespace YashilTms.Web.Areas.Tms
             CreateMap<EducationalCenter, EducationalCenterListViewModel>()
                 .ForMember(x => x.AccessLevelTitle,
                     b => b.MapFrom(c => c.AccessLevel.Title))
-                ;
+                .ForMember(x => x.EstablishedLicenseTypeTitle,
+                    b => b.MapFrom(c => c.EstablishedLicenseTypeNavigation.Title));
             CreateMap<EducationalCenterEditModel, EducationalCenter>();
 
             CreateMap<EducationalCenter, EducationalCenterSimpleViewModel>();
@@ -165,12 +164,12 @@ namespace YashilTms.Web.Areas.Tms
             CreateMap<EducationalCenterMainCourseCategoryEditModel, EducationalCenterMainCourseCategory>();
 
             CreateMap<EducationalCenterMainCourseCategory, EducationalCenterMainCourseCategorySimpleViewModel>()
-                .ForMember(x=>x.Title,
-                b=>b.MapFrom(c=>c.MainCourseCategory.Title))
+                .ForMember(x => x.Title,
+                    b => b.MapFrom(c => c.MainCourseCategory.Title))
                 .ForMember(x => x.EducationalCenterId,
                     b => b.MapFrom(c => c.EducationalCenterId))
                 .ForMember(x => x.MainCourseCategoryId,
-                b => b.MapFrom(c => c.MainCourseCategoryId));
+                    b => b.MapFrom(c => c.MainCourseCategoryId));
         }
     }
 }

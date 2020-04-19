@@ -1,16 +1,17 @@
-			using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using Yashil.Common.Core.Interfaces;
+
 namespace YashilTms.Web.Areas.Tms.ViewModels
 {
-
-   public class RepresentationPersonListViewModel:IBaseViewModel
+    public class RepresentationPersonListViewModel : IBaseViewModel
     {
-		public int ViewModelId
-	        {
-	            get => Id;
-	            set => Id = value;
-	        }
+        public int ViewModelId
+        {
+            get => Id;
+            set => Id = value;
+        }
+
         public int Id { get; set; }
 
         public string Code { get; set; }
@@ -28,47 +29,40 @@ namespace YashilTms.Web.Areas.Tms.ViewModels
         public int? ToDate { get; set; }
 
         public string AccessLevelTitle { get; set; }
-
     }
 
 
-	    public class RepresentationPersonEditModel:IBaseViewModel
+    public class RepresentationPersonEditModel : IBaseViewModel
+    {
+        public int ViewModelId
         {
-	        public int ViewModelId
-	            {
-	                get => Id;
-	                set => Id = value;
-	            }
-				public int Id { get; set; }		
-				[StringLength(300)]				public string Code { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]				public int RepresentationId { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]				public int PersonId { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]				public int PostId { get; set; }		
-				public int? CooperationType { get; set; }		
-				public int? FromDate { get; set; }		
-				public int? ToDate { get; set; }		
-				public string Description { get; set; }		
-				[Range(0,int.MaxValue)] 
-				[Required]				public int AccessLevelId { get; set; }		
-}
+            get => Id;
+            set => Id = value;
+        }
 
-  
+        public int Id { get; set; }
+        [StringLength(300)] public string Code { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int RepresentationId { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int PersonId { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int PostId { get; set; }
+        public int? CooperationType { get; set; }
+        public int? FromDate { get; set; }
+        public int? ToDate { get; set; }
+        public string Description { get; set; }
+        [Range(0, int.MaxValue)] [Required] public int AccessLevelId { get; set; }
+    }
 
 
-
-public class RepresentationPersonSimpleViewModel:IBaseViewModel
+    public class RepresentationPersonSimpleViewModel : IBaseViewModel
+    {
+        public int ViewModelId
         {
-	        public int ViewModelId
-	            {
-	                get => Id;
-	                set => Id = value;
-	            }
+            get => Id;
+            set => Id = value;
+        }
+
         public int Id { get; set; }
 
-							public string Title { get; set; }
-			    }
-
-}      
+        public string Title { get; set; }
+    }
+}

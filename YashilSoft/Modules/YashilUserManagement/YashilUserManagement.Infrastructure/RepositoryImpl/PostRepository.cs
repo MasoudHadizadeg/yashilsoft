@@ -16,10 +16,5 @@ namespace YashilUserManagement.Infrastructure.RepositoryImpl
                 _context = context;
                 _userPrincipal = userPrincipal;
             }
-    			  public string GetDescription(int id)
-				{
-					return DbSet.Where(x => x.Id == id).Select(x => x.Description).FirstOrDefault();
-				}	
-	
     }
 }      

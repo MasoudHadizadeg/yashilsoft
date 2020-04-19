@@ -1,20 +1,40 @@
-<app-base-edit-form (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
-    <dx-form id="form" [colCount]="2" #detailForm [formData]="entity">
 
-        <dxi-item [label]="{text: 'عنوان'}" dataField="title">
-            <dxi-validation-rule type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
-        </dxi-item>
-        <dxi-item dataField="parentId" editorType="dxLookup" [label]="{text: 'کد پدر'}"
-                  [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: parentDataSource,displayExpr:'title',valueExpr:'id' }">
-        </dxi-item>
-        <dxi-item [label]="{text: 'ترتیب نمایش'}" dataField="displayOrder" editorType='dxNumberBox'>
-        </dxi-item>
+				<app-base-edit-form   (submitEvent)="formSubmit($event)" (closeFormClick)="onCloseFormClick($event)">
+	<dx-form id="form"  [colCount]="2" #detailForm [formData]="entity">
 
-        <dxi-item [label]="{text: 'توضیح کامل'}" dataField="description" editorType='dxTextArea'>
-        </dxi-item>
+									<dxi-item [label]="{text: 'عنوان'}"  dataField="title" >
+												
+																<dxi-validation-rule  type="required" message="عنوان اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+									
+									<dxi-item dataField="parentId" editorType="dxLookup" [label]="{text: 'کد پدر'}"
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: parentDataSource,displayExpr:'title',valueExpr:'id' }">
 
-        <dxi-item [label]="{text: 'فعال بودن'}" dataField="isActive" editorType='dxCheckBox'>
-        </dxi-item>
+														
+				</dxi-item>
+									
+									<dxi-item dataField="appEntityId" editorType="dxLookup" [label]="{text: 'موجودیت'}"
+					[editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: appEntityDataSource,displayExpr:'title',valueExpr:'id' }">
 
-    </dx-form>
+																				<dxi-validation-rule  type="required" message="موجودیت اجباری می باشد"></dxi-validation-rule>
+							
+				</dxi-item>
+									<dxi-item [label]="{text: 'ترتیب نمایش'}"  dataField="displayOrder" editorType='dxNumberBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'توضیح کامل'}"  dataField="description" editorType='dxTextArea'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'فعال بودن'}"  dataField="isActive" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+									<dxi-item [label]="{text: 'اسناد دسته بندی شود؟'}"  dataField="isCategorized" editorType='dxCheckBox'>
+												
+										
+				</dxi-item>
+</dx-form>
 </app-base-edit-form>

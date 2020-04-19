@@ -7,6 +7,7 @@ namespace YashilDms.Core.Repositories
 {
 	public interface IAppDocumentRepository : IGenericRepository<AppDocument, int>
     {
-        IQueryable<AppDocument> GetObjectDocuments(int entityId, int objectId, int docCategoryId);
+        IQueryable<AppDocument> GetObjectDocuments(string entityName, int objectId, int docCategoryId);
+        int GetIdByTitle(string appEntityTitle);
     }
 }      

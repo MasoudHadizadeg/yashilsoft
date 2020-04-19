@@ -1,11 +1,16 @@
 <div style="text-align: right;background: #8689c8;" class="p-1" *ngIf="showListHeader">
-    <dx-button class="mediumIcon" icon="plus" (onClick)="addEntity()" *ngIf="!isForSelectReadOnly && allowInsertInForm">
+    <dx-button class="mediumIcon" icon="plus" (onClick)="addEntity()" *ngIf="!isForSelectReadOnly && allowInsertInForm && showAddButton">
     </dx-button>
     <!--    <dx-button class="mediumIcon" icon="edit" (onClick)="editEntity(selectedItemId)" style="margin-right: 5px"-->
     <!--               *ngIf="selectedItemId && !isForSelectReadOnly && allowEditSelectedRow && allowEditInForm">-->
     <!--    </dx-button>-->
     <dx-button *ngIf="showFilterButton && showFilterButton===true" class="mediumIcon" icon="filter"
-               style="margin-right: 5px" (onClick)="toggleFilter()">
+               style="margin-right: 5px;" (onClick)="toggleFilter()">
+    </dx-button>
+
+    <dx-button *ngFor='let button of customButtons' class="mediumIcon" [icon]="button.icon" [text]="button.text" [type]="button.type"
+               style="margin-right: 5px;font-size: 12px !important;"
+               (onClick)="selectedCustomButtonChanged(button.key)">
     </dx-button>
     <span style="color: white">
         {{title}}

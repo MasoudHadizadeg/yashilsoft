@@ -24,7 +24,7 @@
 
 			#>	
 
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BaseEdit} from '../../../shared/base/classes/base-edit';
 import {GenericDataService} from '../../../shared/base/services/generic-data.service';
 import {Entity} from '../../../shared/base/base-data/entity.enum';
@@ -36,6 +36,11 @@ import {createStore} from 'devextreme-aspnet-data-nojquery';
   templateUrl: './<#=angularFriendlyName #>-detail.component.html'
 })
 export class <#=table.Name #>DetailComponent extends BaseEdit implements OnInit {
+			<#	foreach (var col in table.Columns.Where(x => x.IsForeignKey && !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name)))
+			{#>
+			@Input()
+			<#=col.Name.FirstCharacterToLower()#>:number;
+			<#}#>
 	<#
 			
 			string foreignKeyVar;
@@ -69,6 +74,12 @@ export class <#=table.Name #>DetailComponent extends BaseEdit implements OnInit 
 
   ngOnInit() {
     super.ngOnInit();
+	<#foreach (var col in table.Columns.Where(x => x.IsForeignKey && !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name)))
+			{#>
+			if(this.<#=col.Name.FirstCharacterToLower()#>)
+				this.entity.<#=col.Name.FirstCharacterToLower()#>=this.<#=col.Name.FirstCharacterToLower()#>;
+			<#}#>
+
 		<#foreach (var col in foreignKeys)
 			{
 				var refTable = col.ReferencedObject;

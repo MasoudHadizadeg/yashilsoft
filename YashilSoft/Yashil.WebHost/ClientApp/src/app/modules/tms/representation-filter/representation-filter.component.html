@@ -1,0 +1,38 @@
+<div class="row" style="padding-bottom: 5px" *ngIf="!additionalUserProp || !additionalUserProp.educationalCenterId">
+    <div class="col-5">
+        <div style="float: right;width: 20%;margin-top: 0.5rem; font-size: 14px;text-align: right">
+            <label>مرکز آموزشی : </label>
+        </div>
+        <div style="float: right; width: 80%">
+            <dx-lookup
+                    [dataSource]="educationalCenterDataSource"
+                    [(value)]="educationalCenterId"
+                    displayExpr="title"
+                    valueExpr="id"
+                    rtlEnabled="true"
+                    (onSelectionChanged)="selectedEducationalCenterChanged($event)"
+                    [showPopupTitle]="false">
+            </dx-lookup>
+        </div>
+    </div>
+    <div class="col-5">
+        <div style="float: right;width: 20%;margin-top: 0.5rem; font-size: 14px;text-align: right">
+            <label> نمایندگی : </label>
+        </div>
+        <div style="float: right; width: 80%">
+            <dx-lookup
+                    [dataSource]="representationDataSource"
+                    [(value)]="representationId"
+                    displayExpr="title"
+                    valueExpr="id"
+                    rtlEnabled="true"
+                    (onSelectionChanged)="onSelectedRepresentationChanged($event)"
+                    [showPopupTitle]="false">
+            </dx-lookup>
+        </div>
+    </div>
+    <div class="col-2" style="text-align: right">
+        <dx-button icon="search" text="فیلتر" (onClick)="applyFilter()" [disabled]="!selectedData.representation">
+        </dx-button>
+    </div>
+</div>

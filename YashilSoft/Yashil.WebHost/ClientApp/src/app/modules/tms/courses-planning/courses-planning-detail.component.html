@@ -14,7 +14,12 @@
                   [editorOptions]="{ items: courseStatuss,displayExpr:'title',valueExpr:'id' }">
             <dxi-validation-rule type="required" message="وضعیت دوره اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
-
+        <dxi-item [template]="'personGridTemplate'" [label]="{text: 'شخص'}">
+            <dxi-validation-rule type="required" message="شخص اجباری می باشد"></dxi-validation-rule>
+        </dxi-item>
+        <div *dxTemplate="let data of 'personGridTemplate'">
+            <app-person-select (selectedRowChanged)="selectedPersonChanged($event)"></app-person-select>
+        </div>
         <dxi-item dataField="representationPersonId" editorType="dxLookup" [label]="{text: 'مدرس'}"
                   [editorOptions]="{rtlEnabled:true,closeOnOutsideClick:true,showPopupTitle:false, dataSource: representationPersonDataSource,displayExpr:'title',valueExpr:'id' }">
         </dxi-item>
@@ -43,7 +48,8 @@
                     mode="day"
                     placeholder="تاریخ شروع"
                     theme="dp-material"
-                    [ngModel]="entity.startDate | intToStringDate" (ngModelChange)="entity.startDate=convertDateToInt($event)">
+                    [ngModel]="entity.startDate | intToStringDate"
+                    (ngModelChange)="entity.startDate=convertDateToInt($event)">
             </dp-date-picker>
             <dxi-validation-rule type="required" message="تاریخ شروع اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
@@ -56,10 +62,6 @@
             <dxi-validation-rule type="required" message="حداکثر ظرفیت اجباری می باشد"></dxi-validation-rule>
         </dxi-item>
 
-        <dxi-item dataField="accessLevelId" editorType="dxSelectBox" [label]="{text: 'سطح دسترسی'}"
-                  [editorOptions]="{ items: accessLevels,displayExpr:'title',valueExpr:'id' }">
-            <dxi-validation-rule type="required" message="سطح دسترسی اجباری می باشد"></dxi-validation-rule>
-        </dxi-item>
         <dxi-item [label]="{text: 'دوره سازمانی'}" dataField="organizational" editorType='dxCheckBox'>
         </dxi-item>
         <div *dxTemplate="let data of 'courseGridTemplate'">

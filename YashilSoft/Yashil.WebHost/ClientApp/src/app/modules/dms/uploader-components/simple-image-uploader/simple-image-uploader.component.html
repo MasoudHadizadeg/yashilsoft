@@ -1,7 +1,9 @@
 <div class="card" style="margin-bottom: 5px">
     <div class="card-header" style="text-align: right; padding: 6px !important;">{{doc.docType.title}}
-        <dx-button class="mediumIcon" icon="plus" (onClick)="addFile()" *ngIf="doc.docType.maxCount===-1 || doc.docType.maxCount >1 ">
-    </dx-button></div>
+        <dx-button class="mediumIcon" icon="plus" (onClick)="showAddButton=false;addFile();"
+                   *ngIf="(doc.docType.maxCount===-1 || doc.docType.maxCount >1) && showAddButton ">
+        </dx-button>
+    </div>
     <div class="card-body" style="padding: 2px !important;height: 100px">
         <dx-file-uploader rtlEnabled="true"
                           labelText=""
@@ -9,7 +11,7 @@
                           accept="image/*"
                           [uploadHeaders]="authorizationHeader"
                           [uploadUrl]="uploadUri"
-                          maxFileSize="50000"
+                          [maxFileSize]="doc.docType.maxSize"
                           (valueChange)="showImage($event)"
                           uploadMode="instantly"
                           (onUploadStarted)="uploadStarted($event)"

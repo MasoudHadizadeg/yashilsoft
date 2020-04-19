@@ -34,6 +34,7 @@
     <ProjectReference Include="..\Modules\YashilBaseInfo\YashilBaseInfo.Web\YashilBaseInfo.Web.csproj" />
     <ProjectReference Include="..\Modules\YashilDashboard\YashilDashboard.Web\YashilDashboard.Web.csproj" />
     <ProjectReference Include="..\Modules\YashilDms\YashilDms.Web\YashilDms.Web.csproj" />
+    <ProjectReference Include="..\Modules\YashilNews\YashilNews.Web\YashilNews.Web.csproj" />
     <ProjectReference Include="..\Modules\YashilReport\YashilReport.Web\YashilReport.Web.csproj" />
     <ProjectReference Include="..\Modules\YashilTms\YashilTms.Web\YashilTms.Web.csproj" />
     <ProjectReference Include="..\Modules\YashilUserManagement\YashilUserManagement.Web\YashilUserManagement.Web.csproj" />

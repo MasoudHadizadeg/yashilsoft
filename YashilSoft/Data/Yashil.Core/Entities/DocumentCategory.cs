@@ -8,7 +8,7 @@ namespace Yashil.Core.Entities
     {
         public DocumentCategory()
         {
-            AppDocument = new HashSet<AppDocument>();
+            DocType = new HashSet<DocType>();
             InverseParent = new HashSet<DocumentCategory>();
         }
 
@@ -16,10 +16,10 @@ namespace Yashil.Core.Entities
         public string Title { get; set; }
         public int? ParentId { get; set; }
         public int AppEntityId { get; set; }
-        public long ObjectId { get; set; }
         public int? DisplayOrder { get; set; }
         public string Description { get; set; }
         public bool? IsActive { get; set; }
+        public bool IsCategorized { get; set; }
         public int CreatorOrganizationId { get; set; }
         public int CreateBy { get; set; }
         public int? ModifyBy { get; set; }
@@ -34,7 +34,7 @@ namespace Yashil.Core.Entities
         public virtual Organization CreatorOrganization { get; set; }
         public virtual User ModifyByNavigation { get; set; }
         public virtual DocumentCategory Parent { get; set; }
-        public virtual ICollection<AppDocument> AppDocument { get; set; }
+        public virtual ICollection<DocType> DocType { get; set; }
         public virtual ICollection<DocumentCategory> InverseParent { get; set; }
     }
     }

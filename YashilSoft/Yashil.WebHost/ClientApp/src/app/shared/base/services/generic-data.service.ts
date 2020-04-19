@@ -135,7 +135,7 @@ export class GenericDataService {
 
     /** GET res from the server */
     getEntities(entityName: string): Observable<any[]> {
-        return this.httpClient.get<any[]>(`${this.baseUrl}/${this.baseUrl}/${entityName}`)
+        return this.httpClient.get<any[]>(`${this.baseUrl}/${entityName}`)
             .pipe(
                 tap(res => this.log('fetched res')),
                 catchError(this.handleError('getEntities', []))

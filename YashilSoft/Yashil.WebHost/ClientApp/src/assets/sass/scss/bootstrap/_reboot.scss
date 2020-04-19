@@ -5,8 +5,8 @@ html {
 
 body {
   font-family: $font-family-content;
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 14px !important;
+  font-weight: 300 !important;
   line-height: 1.5em;
   color: rgba(0, 0, 0, 0.87);
   min-height: 100vh;

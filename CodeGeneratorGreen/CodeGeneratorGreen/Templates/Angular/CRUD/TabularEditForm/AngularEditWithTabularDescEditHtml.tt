@@ -19,8 +19,15 @@
     [animationEnabled]="false"
     [swipeEnabled]="false">
     <div *dxTemplate="let company of '<#=firstCharacterLower#>'" class="tab-content-edit-form">
-						<app-<#=angularFriendlyName#>-detail [selectedEntityId]="selectedEntityId" (afterInsertRow)="rowInserted($event)"  entityName="<#=firstCharacterLower#>" 
-											></app-<#=angularFriendlyName#>-detail>
+						<app-<#=angularFriendlyName#>-detail 
+                            [selectedEntityId]="selectedEntityId" 
+                            (afterInsertRow)="rowInserted($event)"  
+                            entityName="<#=firstCharacterLower#>" 
+                            <#foreach (var col in table.Columns.Where(x => x.IsForeignKey && !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name)))
+                            {#>
+                            [<#=col.Name.FirstCharacterToLower()#>]="<#=col.Name.FirstCharacterToLower()#>"
+                            <#}#>>
+                        </app-<#=angularFriendlyName#>-detail>
 					</div>
 <#
 			// Keep count so we don't whitespace the last property/column

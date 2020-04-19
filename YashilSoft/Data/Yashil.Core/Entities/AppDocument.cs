@@ -10,7 +10,6 @@ namespace Yashil.Core.Entities
         public int DocTypeId { get; set; }
         public string Title { get; set; }
         public string OrginalName { get; set; }
-        public int DocumentCategoryId { get; set; }
         public long ObjectId { get; set; }
         public byte[] DocumentFile { get; set; }
         public string ShortDescription { get; set; }
@@ -30,7 +29,6 @@ namespace Yashil.Core.Entities
         public virtual User CreateByNavigation { get; set; }
         public virtual Organization CreatorOrganization { get; set; }
         public virtual DocType DocType { get; set; }
-        public virtual DocumentCategory DocumentCategory { get; set; }
         public virtual User ModifyByNavigation { get; set; }
     }
     }

@@ -31,75 +31,86 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\t");
+            this.Write("\r\n\r\n\t");
             
-            #line 8 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
-		var table = SqlToCsharpHelper.table; 
+            #line 11 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+		
+            var table = SqlToCsharpHelper.table; 
 			string lowerTableName = table.Name.FirstCharacterToLower();
 			
             
             #line default
             #line hidden
-            this.Write(" \r\nusing AutoMapper;\r\nusing Yashil.Common.Web.Infrastructure.BaseClasses;\r\nusing " +
-                    "Yashil.Core.Entities;\r\nusing ");
+            this.Write(@" 
+
+using AutoMapper.QueryableExtensions;
+using System.Threading.Tasks;
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Data.ResponseModel;
+using Microsoft.AspNetCore.Mvc;
+using Yashil.Common.Core.Classes;
+using AutoMapper;
+using Yashil.Common.Web.Infrastructure.BaseClasses;
+using Yashil.Core.Entities;
+using ");
             
-            #line 14 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 25 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Core.Services;\r\nusing  ");
             
-            #line 15 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 26 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ClassNamespace));
             
             #line default
             #line hidden
             this.Write(".Web.Areas.");
             
-            #line 15 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 26 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.AreaName));
             
             #line default
             #line hidden
             this.Write(".ViewModels;\r\n\r\nnamespace ");
             
-            #line 17 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 28 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.ControllerNamespace));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\tpublic class ");
             
-            #line 19 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 30 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Controller : BaseController<");
             
-            #line 19 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 30 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write(" ,int,");
             
-            #line 19 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 30 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("ListViewModel, ");
             
-            #line 19 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 30 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("EditModel,");
             
-            #line 19 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 30 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
@@ -107,61 +118,109 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.WebModule
             this.Write("SimpleViewModel>\r\n    {\r\n        private readonly IMapper _mapper;\r\n        priva" +
                     "te readonly I");
             
-            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 33 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Service _");
             
-            #line 22 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 33 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(lowerTableName));
             
             #line default
             #line hidden
             this.Write("Service;\r\n        public ");
             
-            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 34 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Controller(I");
             
-            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 34 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
             
             #line default
             #line hidden
             this.Write("Service ");
             
-            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 34 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(lowerTableName));
             
             #line default
             #line hidden
             this.Write("Service, IMapper mapper) : base(");
             
-            #line 23 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 34 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(lowerTableName));
             
             #line default
             #line hidden
             this.Write("Service, mapper)\r\n        {\r\n            _mapper=mapper;\r\n            _");
             
-            #line 26 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 37 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(lowerTableName));
             
             #line default
             #line hidden
             this.Write("Service=");
             
-            #line 26 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            #line 37 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(lowerTableName));
             
             #line default
             #line hidden
-            this.Write("Service;\r\n        }\r\n    }\r\n}      ");
+            this.Write("Service;\r\n        }\r\n      ");
+            
+            #line 39 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+
+            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+    if(!string.IsNullOrEmpty(colsParams)){
+        
+            
+            #line default
+            #line hidden
+            this.Write("        [HttpGet(\"GetByCustomFilter\")]\r\n        public async Task<LoadResult> Get" +
+                    "ByCustomFilter(CustomDataSourceLoadOptions loadOptions, ");
+            
+            #line 46 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(colsParams));
+            
+            #line default
+            #line hidden
+            this.Write(")\r\n        {\r\n            var newsStores = _newsStoreService.GetByCustomFilter(");
+            
+            #line 48 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(colVar));
+            
+            #line default
+            #line hidden
+            this.Write(");\r\n            return await DataSourceLoader.LoadAsync(");
+            
+            #line 49 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(lowerTableName));
+            
+            #line default
+            #line hidden
+            this.Write("s.ProjectTo<");
+            
+            #line 49 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
+            
+            #line default
+            #line hidden
+            this.Write("ListViewModel>(_mapper.ConfigurationProvider), loadOptions);\r\n        }\r\n");
+            
+            #line 51 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\WebModule\ControllerTemplate.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write("  \r\n    }\r\n}      ");
             return this.GenerationEnvironment.ToString();
         }
     }

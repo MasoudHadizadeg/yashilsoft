@@ -37,6 +37,7 @@ export class CoursesPlanningDetailTabBasedComponent extends Editable implements 
         this.tabs = [
             {id: 1, title: 'برنامه ريزي دوره', template: 'coursePlanning'},
             {id: 2, title: 'توضیحات', template: 'description', disabled: !this.allowEditDesc},
+            {id: 2, title: 'فایلهای دوره', template: 'docs', disabled: !this.allowEditDesc},
         ];
     }
 }

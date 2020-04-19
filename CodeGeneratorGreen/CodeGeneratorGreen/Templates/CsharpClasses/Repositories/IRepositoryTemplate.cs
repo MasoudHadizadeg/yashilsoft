@@ -40,8 +40,8 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
             
             #line default
             #line hidden
-            this.Write("\r\nusing Yashil.Common.Core.Interfaces;\r\nusing Yashil.Core.Entities; \r\n\r\nnamespace" +
-                    " ");
+            this.Write("using System.Linq;\r\nusing Yashil.Common.Core.Interfaces;\r\nusing Yashil.Core.Entit" +
+                    "ies; \r\n\r\nnamespace ");
             
             #line 16 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\IRepositoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ApplicationInfo.Instance.IRepositoryNamespace));
@@ -62,7 +62,40 @@ namespace CodeGeneratorGreen.Templates.CsharpClasses.Repositories
             
             #line default
             #line hidden
-            this.Write(",int>\r\n    {\r\n    }\r\n}      \r\n ");
+            this.Write(",int>\r\n    {\r\n\t\t  ");
+            
+            #line 20 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\IRepositoryTemplate.tt"
+
+            var cols=table.Columns.Where(x => x.IsForeignKey);
+            var colsParams = String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+            var colVar=String.Join(",", cols.Select(x=> " int? "+ x.Name.FirstCharacterToLower()).ToArray());
+    if(!string.IsNullOrEmpty(colsParams)){
+        
+            
+            #line default
+            #line hidden
+            this.Write("        \r\n        IQueryable<");
+            
+            #line 27 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\IRepositoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(table.Name));
+            
+            #line default
+            #line hidden
+            this.Write("> GetByCustomFilter(");
+            
+            #line 27 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\IRepositoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(colsParams));
+            
+            #line default
+            #line hidden
+            this.Write(");\r\n        ");
+            
+            #line 28 "D:\Works\YashilSPL\CodeGeneratorGreen\CodeGeneratorGreen\Templates\CsharpClasses\Repositories\IRepositoryTemplate.tt"
+}
+            
+            #line default
+            #line hidden
+            this.Write("   \r\n\t\t\r\n    }\r\n}      \r\n ");
             return this.GenerationEnvironment.ToString();
         }
     }

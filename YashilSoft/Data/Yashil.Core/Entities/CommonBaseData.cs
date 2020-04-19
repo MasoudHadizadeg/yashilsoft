@@ -19,9 +19,14 @@ namespace Yashil.Core.Entities
             CoursePlanningCustomGenderNavigation = new HashSet<CoursePlanning>();
             CoursePlanningImplementationTypeNavigation = new HashSet<CoursePlanning>();
             CoursePlanningRunTypeNavigation = new HashSet<CoursePlanning>();
+            CoursePlanningStudent = new HashSet<CoursePlanningStudent>();
             CourseSkillTypeNavigation = new HashSet<Course>();
             EducationalCenter = new HashSet<EducationalCenter>();
             InverseParent = new HashSet<CommonBaseData>();
+            Keyword = new HashSet<Keyword>();
+            MainNews = new HashSet<MainNews>();
+            NewsStoreLanguageNavigation = new HashSet<NewsStore>();
+            NewsStoreNewsTypeNavigation = new HashSet<NewsStore>();
             PersonEducationGradeNavigation = new HashSet<Person>();
             PersonGenderNavigation = new HashSet<Person>();
             RepresentationEstablishedLicenseTypeNavigation = new HashSet<Representation>();
@@ -66,9 +71,14 @@ namespace Yashil.Core.Entities
         public virtual ICollection<CoursePlanning> CoursePlanningCustomGenderNavigation { get; set; }
         public virtual ICollection<CoursePlanning> CoursePlanningImplementationTypeNavigation { get; set; }
         public virtual ICollection<CoursePlanning> CoursePlanningRunTypeNavigation { get; set; }
+        public virtual ICollection<CoursePlanningStudent> CoursePlanningStudent { get; set; }
         public virtual ICollection<Course> CourseSkillTypeNavigation { get; set; }
         public virtual ICollection<EducationalCenter> EducationalCenter { get; set; }
         public virtual ICollection<CommonBaseData> InverseParent { get; set; }
+        public virtual ICollection<Keyword> Keyword { get; set; }
+        public virtual ICollection<MainNews> MainNews { get; set; }
+        public virtual ICollection<NewsStore> NewsStoreLanguageNavigation { get; set; }
+        public virtual ICollection<NewsStore> NewsStoreNewsTypeNavigation { get; set; }
         public virtual ICollection<Person> PersonEducationGradeNavigation { get; set; }
         public virtual ICollection<Person> PersonGenderNavigation { get; set; }
         public virtual ICollection<Representation> RepresentationEstablishedLicenseTypeNavigation { get; set; }

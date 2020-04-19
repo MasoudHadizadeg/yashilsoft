@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {TranslateModule} from '@ngx-translate/core';
+
 // COMPONENTS
 import {FooterComponent} from './footer/footer.component';
 import {NavbarComponent} from './navbar/navbar.component';
@@ -55,6 +56,7 @@ import {DynamicScriptLoaderService} from './services/dynamic-script-loader.servi
 import {CoreModule} from '../core/core.module';
 import {AssignableListComponent} from './base/core/components/assignable-list/assignable-list.component';
 import {NgScrollbarModule} from 'ngx-scrollbar';
+import {DxButtonGroupModule} from 'devextreme-angular';
 
 @NgModule({
     exports: [
@@ -126,7 +128,8 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
         DxValidatorModule,
         DxValidationSummaryModule,
         AngularSplitModule,
-        CoreModule
+        CoreModule,
+        DxButtonGroupModule
     ],
     declarations: [
         AssignableListComponent,
@@ -152,7 +155,8 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
         IntToStringTimePipe,
         PersianDayPipe,
         FullLayoutComponent,
-        FullLayoutSplitComponent
+        FullLayoutSplitComponent,
+
     ],
     providers: [
         DynamicScriptLoaderService,

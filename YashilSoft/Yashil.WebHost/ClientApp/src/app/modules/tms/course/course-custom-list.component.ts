@@ -12,6 +12,7 @@ import {CachedKey} from '../tms-enums';
     templateUrl: './course-custom-list.component.html'
 })
 export class CourseCustomListComponent implements OnInit {
+    additionalUserProp: any;
     @Input()
     forSelect = false;
     @ViewChild(DxTreeViewComponent, {static: false}) treeView;
@@ -79,21 +80,27 @@ export class CourseCustomListComponent implements OnInit {
             this.courseCategoryId = null;
         }
     }
-
-    private bindDataSources(id: any) {
+    selectedCourseCategoryChanged(item: any) {
+        this.selectedCourseCategory = item;
+        if (this.selectedCourseCategory && !this.selectedCourseCategory.isMainCourseCategory) {
+            this.courseCategoryId = item.id;
+        }
+        this.bindDataSources();
+    }
+    private bindDataSources() {
         if (this.selectedCourseCategory && this.selectedCourseCategory.isMainCourseCategory) {
             this.frmCourse.customListUrl = `${this.baseListUrlByMainCourseCategoryId}?educationalCenterMainCourseCategoryId=${this.selectedCourseCategory.educationalCenterMainCourseCategoryId}`;
         } else {
-            this.frmCourse.customListUrl = `${this.baseListUrlByCourseCategoryId}${id}`;
+            this.frmCourse.customListUrl = `${this.baseListUrlByCourseCategoryId}${this.selectedCourseCategory.id}`;
         }
 
         this.frmCourse.refreshList();
     }
 
     ngOnInit(): void {
-        const data = this.cachedDataService.getData(CachedKey.AdditionalUserProp);
-        if (data && data.educationalCenterId) {
-            this.educationalCenterId = data.educationalCenterId;
+        this.additionalUserProp = this.cachedDataService.getData(CachedKey.AdditionalUserProp);
+        if (this.additionalUserProp && this.additionalUserProp.educationalCenterId) {
+            this.educationalCenterId = this.additionalUserProp.educationalCenterId;
         }
         this.educationalCenterDataSource = this.genericDataService.createCustomDatasourceForSelect('id', 'educationalCenter');
     }
@@ -119,13 +126,5 @@ export class CourseCustomListComponent implements OnInit {
 
     }
 
-    selectedCourseCategoryChanged(item: any) {
-        this.selectedCourseCategory = item;
-        if (this.selectedCourseCategory && this.selectedCourseCategory.isMainCourseCategory) {
-            this.selectedCourseCategory = null;
-        } else {
-            this.courseCategoryId = item.id;
-        }
-        this.bindDataSources(item.id);
-    }
+
 }

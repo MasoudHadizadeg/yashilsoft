@@ -20,6 +20,10 @@ import {Editable} from '../../../shared/base/classes/editable';
     templateUrl: './<#=angularFriendlyName#>-detail-tab-based.component.html'
 })
 export class <#=table.Name #>DetailTabBasedComponent extends Editable implements OnInit {
+             <#foreach (var col in table.Columns.Where(x => x.IsForeignKey && !ApplicationInfo.Instance.skipedColumnInAngularList.Contains(x.Name)))
+			    {#>
+			    <#=col.Name.FirstCharacterToLower()#>:number;
+			<#}#>
 
     allowEditDesc: boolean;
     tabs: any[] = [];
